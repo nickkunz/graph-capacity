@@ -40,10 +40,10 @@ def _ensure_finite(value, default = 0.0) -> float:
     return value
 
 ## save dictionary to json
-def _dict_to_json(invar: dict, path: str) -> None:
+def _save_to_json(data: dict, path: str) -> None:
     os.makedirs(os.path.dirname(p = path), exist_ok = True)
     with open(path, 'w') as fp:
-        json.dump(obj = invar, fp = fp, indent = 2, default = str)
+        json.dump(obj = data, fp = fp, indent = 2, default = str)
 
 ## make get request with retries
 def _request_with_retry(
