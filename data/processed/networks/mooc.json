@@ -1,0 +1,22 @@
+{
+  "n_nodes": 7144,
+  "n_edges": 683559,
+  "n_articulation_points": 0,
+  "n_bridges": 0,
+  "diameter": 2,
+  "radius": 2,
+  "degeneracy": 97,
+  "k_core_size": 7144,
+  "maximum_degree": 7047,
+  "degree_variance": 646938.0917600216,
+  "global_clustering": 0.0,
+  "degree_assortativity": -1.0,
+  "degree_entropy": 0.07186061555040615,
+  "joint_degree_entropy": 0.0,
+  "degree_skewness": 8.406143542591895,
+  "spectral_radius": 826.7762696159101,
+  "spectral_radius_ratio": 1.0,
+  "algebraic_connectivity": 97.0,
+  "laplacian_energy": 1330187.015117581,
+  "spectral_entropy": 0.6931471805599453
+}
