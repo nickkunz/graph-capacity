@@ -17,7 +17,7 @@ from torch_geometric.datasets import BitcoinOTC
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 ## modules
-from src.utils import _create_igraph_object, _dict_to_json
+from src.utils import _create_igraph_object, _dict_to_json, _request_with_retry
 from src.invariants import GraphInvariants, BipartiteInvariants
 
 ## build tripartite user–rating–user network
@@ -329,6 +329,126 @@ def build_network_amazon(data: pd.DataFrame) -> tuple[list[str], list[tuple[str,
     return nodes, edges
 
 
+## load world bank project data
+def load_network_worldbank(url: str, start_year: int, end_year: int) -> pd.DataFrame:
+
+    ## base query params
+    base = {
+        "format": "json",
+        "frmYear": int(start_year),
+        "toYear": int(end_year),
+        "fl": "lendinginstr, totalamt, countryshortname, boardapprovaldate",
+    }
+
+    ## paginate until all records fetched   
+    data = list()
+    offset, rows = 0, 2000
+    while True:
+        params = {**base, "rows": rows, "os": offset}
+        response  = _request_with_retry(url = url, params = params)
+        payload = response.json()
+        projects = payload.get("projects", {})
+        if not projects:
+            break
+            
+        ## accumulate results
+        data.extend(projects.values())
+        total = int(payload.get("total", 0))
+        offset += rows
+        if offset >= total:
+            break
+    if not data:
+        raise RuntimeError("no projects returned for the specified window")
+    return pd.DataFrame(data)
+
+
+## load world bank country metadata
+def load_metadata_worldbank(url: str, timeout: int = 60) -> pd.DataFrame:
+    response = _request_with_retry(url = url, params = {"format": "json"}, timeout = timeout)
+    json = response.json()
+    if not isinstance(json, list) or len(json) < 2:
+        raise RuntimeError("unexpected response structure from world bank country api")
+    records = json[1]
+    return pd.json_normalize(records)
+
+
+## process world bank project data
+def process_network_worldbank(data: pd.DataFrame) -> pd.DataFrame:
+    return (
+        data.copy()
+        .explode("countryshortname")
+        .assign(
+            totalamt = lambda df: pd.to_numeric(
+                df["totalamt"].astype(str).str.replace(",", ""), errors = "coerce"
+            )
+        )
+        .dropna(subset = ["countryshortname", "lendinginstr", "boardapprovaldate", "totalamt"])
+        .query(
+            "countryshortname != '' and "
+            "lendinginstr != '' and "
+            "boardapprovaldate != '' and "
+            "totalamt > 0"
+        )
+    )
+
+## all comments lower case
+def build_network_worldbank(data: pd.DataFrame, data_meta: pd.DataFrame) -> tuple[list[str], list[tuple[str, str]]]:
+
+    ## validate presence of required columns
+    if not {'lendinginstr', 'countryshortname'}.issubset(data.columns):
+        raise ValueError("data must contain 'lendinginstr' and 'countryshortname'")
+    if not {'name', 'lendingType.id', 'incomeLevel.id'}.issubset(data_meta.columns):
+        raise ValueError("data_meta must contain 'name', 'lendingType.id', and 'incomeLevel.id'")
+
+    ## extract unique nodes
+    instruments = data['lendinginstr'].dropna().unique()
+    countries = data['countryshortname'].dropna().unique()
+
+    instrument_nodes = [f"instrument::{x}" for x in instruments]
+    country_nodes = [f"country::{x}" for x in countries]
+    nodes = instrument_nodes + country_nodes
+
+    ## prepare simplified eligibility metadata
+    meta = (
+        data_meta[['name', 'lendingType.id', 'incomeLevel.id']]
+        .rename(columns={'name': 'countryshortname'})
+        .drop_duplicates(subset='countryshortname')
+    )
+    meta['ida_eligible'] = meta['lendingType.id'].isin(['IDX', 'IDB'])
+    meta['ibrd_eligible'] = meta['lendingType.id'].isin(['IBR', 'IBD'])
+    meta['blend_eligible'] = meta['lendingType.id'].isin(['IDB', 'IBR'])
+    meta['income_group'] = meta['incomeLevel.id'].fillna('NA')
+
+    ## helper to determine eligibility for a given instrument
+    def eligible(instr: str, row) -> bool:
+        instr_l = instr.lower()
+        if "ida" in instr_l and not row['ida_eligible']:
+            return False
+        if "ibrd" in instr_l and not row['ibrd_eligible']:
+            return False
+        if "blend" in instr_l and not row['blend_eligible']:
+            return False
+        
+        ## income group constraints (optional heuristics)
+        if "high" in instr_l and row['income_group'] != 'HIC':
+            return False
+        if "low" in instr_l and row['income_group'] not in ['LIC', 'LMC']:
+            return False
+        return True
+
+    ## restrict metadata to countries appearing in data
+    meta = meta.loc[meta['countryshortname'].isin(countries)]
+
+    ## generate edges based on rules instead of realized co-occurrence
+    edges = []
+    for _, c_row in meta.iterrows():
+        for instr in instruments:
+            if eligible(instr, c_row):
+                edges.append((f"instrument::{instr}", f"country::{c_row['countryshortname']}"))
+
+    return nodes, edges
+
+
 ## execute
 if __name__ == '__main__':
 
@@ -348,7 +468,10 @@ if __name__ == '__main__':
     nodes_contracts, edges_contracts = build_network_contracts(data = data_contracts)
     graph_contracts = _create_igraph_object(nodes = nodes_contracts, edges = edges_contracts)
     invar_contracts = GraphInvariants(graph = graph_contracts).all()
-    _dict_to_json(invar = invar_contracts, path = path_out + "contracts.json")
+    _dict_to_json(
+        invar = invar_contracts, 
+        path = path_out + "contracts.json"
+    )
 
     ## mooc student actions network
     data_mooc = load_network_mooc(
@@ -365,14 +488,42 @@ if __name__ == '__main__':
     nodes_amazon, edges_amazon = build_network_amazon(data = data_amazon)
     graph_amazon = _create_igraph_object(nodes_amazon, edges_amazon)
     invar_amazon = GraphInvariants(graph_amazon).all()
-    _dict_to_json(invar = invar_amazon, path = path_out + "amazon.json")
+    _dict_to_json(
+        invar = invar_amazon, 
+        path = path_out + "amazon.json"
+    )
 
     ## bitcoin user–rating–user network
-    data_bitcoin = BitcoinOTC(root = root_data + "BitcoinOTC")
+    data_bitcoin = BitcoinOTC(
+        root = root_data + "BitcoinOTC"
+    )
     nodes_bitcoin, edges_bitcoin = build_network_bitcoin(data = data_bitcoin)
     graph_bitcoin = _create_igraph_object(nodes = nodes_bitcoin, edges = edges_bitcoin)
     invar_bitcoin = GraphInvariants(graph = graph_bitcoin).all()
-    _dict_to_json(invar = invar_bitcoin, path = path_out + "trade.json")
+    _dict_to_json(
+        invar = invar_bitcoin,
+        path = path_out + "trade.json"
+    )
 
-
-
+    ## load network data from the world bank
+    data_worldbank = load_network_worldbank(
+        url = "https://search.worldbank.org/api/v2/projects", 
+        start_year = 2005, 
+        end_year = 2025
+    )
+    data_worldbank = process_network_worldbank(data = data_worldbank)
+    data_meta_worldbank = load_metadata_worldbank(
+        url = "https://api.worldbank.org/v2/country"
+    )
+    nodes_worldbank, edges_worldbank = build_network_worldbank(
+        data = data_worldbank, data_meta = data_meta_worldbank
+    )
+    graph_worldbank = _create_igraph_object(
+        nodes = nodes_worldbank, 
+        edges = edges_worldbank
+    )
+    invar_worldbank = GraphInvariants(graph_worldbank).all()
+    _dict_to_json(
+        invar = invar_worldbank,
+        path = path_out + "worldbank.json"
+    )
