@@ -1,4 +1,6 @@
-data/scripts/.DS_Store
-
 .venv
 .DS_Store
+
+data/scripts/.DS_Store
+
+src/__pycache__
