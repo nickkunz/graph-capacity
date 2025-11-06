@@ -46,7 +46,12 @@ def _dict_to_json(invar: dict, path: str) -> None:
         json.dump(obj = invar, fp = fp, indent = 2, default = str)
 
 ## make get request with retries
-def _request_with_retry(url: str, params: dict, retries: int = 3, timeout: int = 60, sleep: float = 0.5) -> requests.Response:
+def _request_with_retry(
+    url: str, 
+    params: dict, 
+    retries: int = 3, 
+    timeout: int = 60, 
+    sleep: float = 0.5) -> requests.Response:
     for attempt in range(retries):
         try:
             response = requests.get(
