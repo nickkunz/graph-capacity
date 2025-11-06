@@ -1,6 +1,8 @@
 ## libraries
 import os
+import time
 import json
+import requests
 import numpy as np
 import pandas as pd
 import igraph as ig
@@ -42,3 +44,19 @@ def _dict_to_json(invar: dict, path: str) -> None:
     os.makedirs(os.path.dirname(p = path), exist_ok = True)
     with open(path, 'w') as fp:
         json.dump(obj = invar, fp = fp, indent = 2, default = str)
+
+## make get request with retries
+def _request_with_retry(url: str, params: dict, retries: int = 3, timeout: int = 60, sleep: float = 0.5) -> requests.Response:
+    for attempt in range(retries):
+        try:
+            response = requests.get(
+                url = url, 
+                params = params, 
+                timeout = timeout
+            )
+            response.raise_for_status()
+            return response
+        except requests.RequestException as e:
+            if attempt < retries - 1:
+                time.sleep(sleep * (2 ** attempt))
+            raise RuntimeError(f"Request failed after {retries} retries: {e}")
