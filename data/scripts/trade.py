@@ -329,7 +329,7 @@ def build_network_amazon(data: pd.DataFrame) -> tuple[list[str], list[tuple[str,
     return nodes, edges
 
 
-## execute logging
+## execute
 if __name__ == '__main__':
 
     ## configuration paths
