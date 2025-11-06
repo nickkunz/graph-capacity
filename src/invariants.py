@@ -21,7 +21,7 @@ class GraphInvariants:
         global features. Guarantees returned values are finite (no inf, -inf, or nan).
 
     Args:
-        G (igraph.Graph): An igraph object representing the graph.
+        graph (igraph.Graph): An igraph object representing the graph.
 
     Returns:
         dict: Each method returns a dictionary containing the extracted graph-level 
@@ -32,26 +32,26 @@ class GraphInvariants:
     """
 
     ## init input
-    def __init__(self, G):
-        if not isinstance(G, ig.Graph):
-            raise TypeError("Input G must be an igraph.Graph object")
-        self.G = G
+    def __init__(self, graph):
+        if not isinstance(graph, ig.Graph):
+            raise TypeError("Input graph must be an igraph.Graph object")
+        self.graph = graph
 
     ## compute simple (linear-time) graph invariants
     def simple(self):
-        G = self.G
+        graph = self.graph
         features = {}
 
         ## number of nodes and edges (cardinality of graph)
-        features['n_nodes'] = G.vcount()
-        features['n_edges'] = G.ecount()
+        features['n_nodes'] = graph.vcount()
+        features['n_edges'] = graph.ecount()
 
         ## articulation points (vertex cut set of size 1)
-        articulation_points = G.articulation_points()
+        articulation_points = graph.articulation_points()
         features['n_articulation_points'] = len(articulation_points)
 
         ## bridges (edges whose removal increases number of components)
-        bridges = G.bridges()
+        bridges = graph.bridges()
         features['n_bridges'] = len(bridges)
 
         ## simple pure graph invariants
@@ -59,11 +59,11 @@ class GraphInvariants:
 
     ## compute cohesion (cubic-time) graph invariants
     def cohesion(self):
-        G = self.G
+        graph = self.graph
         features = {}
 
         ## operate on the largest connected component for canonical diameter/radius on disconnected graphs
-        H = G.components().giant() if G.vcount() > 0 else G
+        H = graph.components().giant() if graph.vcount() > 0 else graph
 
         ## diameter (longest shortest‐path length)
         diam = H.diameter()
@@ -75,7 +75,7 @@ class GraphInvariants:
         features['radius'] = _ensure_finite(finite.min() if finite.size > 0 else 0.0)
 
         ## degeneracy (largest core number) and k-core size on the whole graph (standard)
-        core_nums = G.coreness()
+        core_nums = graph.coreness()
         if len(core_nums) > 0:
             arr = np.array(core_nums)
             d = int(arr.max())
@@ -89,11 +89,11 @@ class GraphInvariants:
 
     ## compute extremal graph invariants
     def extremal(self):
-        G = self.G
+        graph = self.graph
         features = {}
         
         ## maximum degree (extremum of degree sequence)
-        degrees = G.degree()
+        degrees = graph.degree()
         features['maximum_degree'] = max(degrees) if degrees else 0.0
 
         ## extremal pure graph invariant
@@ -101,19 +101,19 @@ class GraphInvariants:
 
     ## compute statistical graph invariants
     def statistical(self):
-        G = self.G
+        graph = self.graph
         features = {}
 
         ## degree sequence variance
-        degrees = G.degree()
+        degrees = graph.degree()
         features['degree_variance'] = np.var(degrees) if degrees else 0.0
 
         ## global clustering coefficient (fraction of triangles among connected triples)
-        clustering = G.transitivity_undirected()
+        clustering = graph.transitivity_undirected()
         features['global_clustering'] = _ensure_finite(clustering, 0.0)
 
         ## degree assortativity (correlation of connected node degrees)
-        assortativity = G.assortativity_degree(directed = False)
+        assortativity = graph.assortativity_degree(directed = False)
         features['degree_assortativity'] = _ensure_finite(assortativity, 0.0)
 
         ## shannon entropy of degree sequence
@@ -125,10 +125,10 @@ class GraphInvariants:
             features['degree_entropy'] = 0.0
 
         ## joint degree entropy (unordered degree pairs across undirected edges)
-        if G.ecount() > 0:
-            deg = np.array(G.degree())
+        if graph.ecount() > 0:
+            deg = np.array(graph.degree())
             ## make each edge’s degree pair unordered by sorting the pair
-            sources, targets = np.array(G.get_edgelist(), dtype=int).T
+            sources, targets = np.array(graph.get_edgelist(), dtype=int).T
             deg_pairs = np.sort(np.column_stack((deg[sources], deg[targets])), axis=1)
             pairs, counts = np.unique(deg_pairs, axis = 0, return_counts = True)
             probs = counts / counts.sum()
@@ -146,10 +146,10 @@ class GraphInvariants:
     
     ## compute global spectral graph invariants (uses canonical gutman–zhang)
     def spectral(self):
-        G = self.G
+        graph = self.graph
         features = {}
 
-        n_nodes = G.vcount()
+        n_nodes = graph.vcount()
         if n_nodes < 2:
             return {
                 'spectral_radius': 0.0,
@@ -160,7 +160,7 @@ class GraphInvariants:
             }
 
         ## use sparse matrix for memory efficiency
-        A_sparse = G.get_adjacency_sparse().astype(np.float64)
+        A_sparse = graph.get_adjacency_sparse().astype(np.float64)
 
         ## compute the 2 largest magnitude eigenvalues from sparse adjacency
         try:
@@ -177,7 +177,7 @@ class GraphInvariants:
             abs_eigs = np.sort(np.abs(adj_eigvals))[::-1]
         except Exception:
             # fallback for convergence issues or small graphs
-            A = np.array(G.get_adjacency().data, dtype = float)
+            A = np.array(graph.get_adjacency().data, dtype = float)
             adj_eigvals = np.linalg.eigvalsh(A)
             abs_eigs = np.sort(np.abs(adj_eigvals))[::-1]
 
@@ -192,7 +192,7 @@ class GraphInvariants:
             features['spectral_radius_ratio'] = 0.0
 
         ## laplacian spectrum (unnormalized)
-        L_sparse = G.laplacian(normalized = False)
+        L_sparse = graph.laplacian(normalized = False)
         
         ## compute 2 smallest algebraic eigenvalues for algebraic connectivity
         try:
@@ -200,7 +200,7 @@ class GraphInvariants:
             lap_eigvals_small = eigsh(L_sparse, k=2, which='SM', return_eigenvectors=False, sigma=0)
         except Exception:
             # fallback for convergence issues
-            L = np.array(G.laplacian(normalized = False), dtype = float)
+            L = np.array(graph.laplacian(normalized = False), dtype = float)
             lap_eigvals_small = np.linalg.eigvalsh(L)
 
         ## algebraic connectivity (second smallest laplacian eigenvalue)
