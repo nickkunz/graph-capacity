@@ -379,10 +379,22 @@ def process_network_worldbank(data: pd.DataFrame) -> pd.DataFrame:
         .explode("countryshortname")
         .assign(
             totalamt = lambda df: pd.to_numeric(
-                df["totalamt"].astype(str).str.replace(",", ""), errors = "coerce"
-            )
+                arg = df["totalamt"].astype(str).str.replace(",", ""), 
+                errors = "coerce"
+            ),
+            boardapprovaldate = lambda df: pd.to_datetime(
+                arg = df["boardapprovaldate"], 
+                errors = "coerce"
+            ).dt.strftime("%Y-%m-%d"),
         )
-        .dropna(subset = ["countryshortname", "lendinginstr", "boardapprovaldate", "totalamt"])
+        .dropna(
+            subset = [
+                "countryshortname", 
+                "lendinginstr", 
+                "boardapprovaldate", 
+                "totalamt"
+            ]
+        )
         .query(
             "countryshortname != '' and "
             "lendinginstr != '' and "
