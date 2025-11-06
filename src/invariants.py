@@ -36,6 +36,10 @@ class GraphInvariants:
         if not isinstance(graph, ig.Graph):
             raise TypeError("Input graph must be an igraph.Graph object")
         self.graph = graph
+        self._A_sparse = None
+        self._L_sparse = None
+        self._is_connected = None
+        self._degree = None
 
     ## compute simple (linear-time) graph invariants
     def simple(self):
@@ -64,17 +68,30 @@ class GraphInvariants:
 
         ## operate on the largest connected component for canonical diameter/radius on disconnected graphs
         H = graph.components().giant() if graph.vcount() > 0 else graph
+        if H.vcount() < 2:
+            return {
+                'diameter': 0.0,
+                'radius': 0.0,
+                'degeneracy': 0.0,
+                'k_core_size': 0.0
+            }
 
-        ## diameter (longest shortest‐path length)
-        diam = H.diameter()
-        features['diameter'] = _ensure_finite(diam, 0.0)
+        ## diameter (longest shortest-path distance among all vertex pairs)
+        try:
+            diam = H.diameter(directed = False, unconn = False)
+            features['diameter'] = _ensure_finite(float(diam), 0.0)
+        except Exception:
+            features['diameter'] = 0.0
         
         ## radius (minimum eccentricity among vertices)
-        ecc = np.array(H.eccentricity())
-        finite = ecc[np.isfinite(ecc)]
-        features['radius'] = _ensure_finite(finite.min() if finite.size > 0 else 0.0)
+        try:
+            ecc = np.array(H.eccentricity())
+            finite_ecc = ecc[np.isfinite(ecc)]
+            features['radius'] = _ensure_finite(float(finite_ecc.min()), 0.0) if finite_ecc.size > 0 else 0.0
+        except Exception:
+            features['radius'] = 0.0
 
-        ## degeneracy (largest core number) and k-core size on the whole graph (standard)
+        ## degeneracy (largest core number)
         core_nums = graph.coreness()
         if len(core_nums) > 0:
             arr = np.array(core_nums)
@@ -93,7 +110,9 @@ class GraphInvariants:
         features = {}
         
         ## maximum degree (extremum of degree sequence)
-        degrees = graph.degree()
+        if self._degree is None:
+            self._degree = self.graph.degree()
+        degrees = self._degree
         features['maximum_degree'] = max(degrees) if degrees else 0.0
 
         ## extremal pure graph invariant
@@ -105,7 +124,9 @@ class GraphInvariants:
         features = {}
 
         ## degree sequence variance
-        degrees = graph.degree()
+        if self._degree is None:
+            self._degree = self.graph.degree()
+        degrees = self._degree
         features['degree_variance'] = np.var(degrees) if degrees else 0.0
 
         ## global clustering coefficient (fraction of triangles among connected triples)
@@ -126,7 +147,7 @@ class GraphInvariants:
 
         ## joint degree entropy (unordered degree pairs across undirected edges)
         if graph.ecount() > 0:
-            deg = np.array(graph.degree())
+            deg = np.array(degrees)
             ## make each edge’s degree pair unordered by sorting the pair
             sources, targets = np.array(graph.get_edgelist(), dtype=int).T
             deg_pairs = np.sort(np.column_stack((deg[sources], deg[targets])), axis=1)
@@ -159,61 +180,76 @@ class GraphInvariants:
                 'spectral_entropy': 0.0,
             }
 
-        ## use sparse matrix for memory efficiency
-        A_sparse = graph.get_adjacency_sparse().astype(np.float64)
+        ## use cached sparse matrices
+        if self._A_sparse is None:
+            self._A_sparse = graph.get_adjacency_sparse().astype(np.float64)
+            self._A_sparse.sort_indices()
+        A_sparse = self._A_sparse
 
-        ## compute the 2 largest magnitude eigenvalues from sparse adjacency
+        ## compute 2 largest magnitude eigenvalues
+        v0 = np.ones(n_nodes, dtype=np.float64) / np.sqrt(n_nodes)
         try:
-            # k=2 to get ratio, which='LM' for largest magnitude
-            # Use a larger ncv value for better convergence stability
             adj_eigvals = eigsh(
-                A_sparse, 
+                A = A_sparse, 
                 k = 2, 
-                which = 'LM', 
+                which = 'LA',
+                v0 = v0,
                 return_eigenvectors = False, 
-                ncv = 32,
-                tol = 1e-6,
+                tol = 1e-6, 
+                maxiter = 300
             )
-            abs_eigs = np.sort(np.abs(adj_eigvals))[::-1]
+            adj_eigvals = adj_eigvals[::-1]
         except Exception:
-            # fallback for convergence issues or small graphs
-            A = np.array(graph.get_adjacency().data, dtype = float)
+            A = np.array(graph.get_adjacency().data, dtype=float)
             adj_eigvals = np.linalg.eigvalsh(A)
-            abs_eigs = np.sort(np.abs(adj_eigvals))[::-1]
+            adj_eigvals = np.sort(np.real(adj_eigvals))[::-1]
 
-        ## spectral radius (largest magnitude eigenvalue)
-        features['spectral_radius'] = abs_eigs[0] if abs_eigs.size > 0 else 0.0
+        ## spectral radius (largest algebraic eigenvalue)
+        features['spectral_radius'] = adj_eigvals[0] if adj_eigvals.size > 0 else 0.0
 
-        ## spectral radius ratio (|λ1| / |λ2|); guard division by zero
-        if abs_eigs.size > 1 and abs_eigs[1] > 1e-9:
-            ratio = abs_eigs[0] / abs_eigs[1]
+        ## spectral radius ratio
+        if adj_eigvals.size > 1 and abs(adj_eigvals[1]) > 1e-9:
+            ratio = abs(adj_eigvals[0]) / abs(adj_eigvals[1])
             features['spectral_radius_ratio'] = _ensure_finite(ratio, 0.0)
         else:
             features['spectral_radius_ratio'] = 0.0
 
-        ## laplacian spectrum (unnormalized)
-        L_sparse = graph.laplacian(normalized = False)
-        
-        ## compute 2 smallest algebraic eigenvalues for algebraic connectivity
-        try:
-            # which='SM' for smallest magnitude. sigma=0 helps find eigenvalues near zero.
-            lap_eigvals_small = eigsh(L_sparse, k=2, which='SM', return_eigenvectors=False, sigma=0)
-        except Exception:
-            # fallback for convergence issues
-            L = np.array(graph.laplacian(normalized = False), dtype = float)
-            lap_eigvals_small = np.linalg.eigvalsh(L)
+        ## algebraic connectivity (2nd smallest laplacian eigenvalue)
+        if self._is_connected is None:
+            self._is_connected = self.graph.is_connected()
+        if not self._is_connected:
+            features['algebraic_connectivity'] = 0.0
+        else:
+            if self._L_sparse is None:
+                L_coo = graph.laplacian(normalized=False).astype(np.float64)
+                self._L_sparse = L_coo.tocsr()
+                self._L_sparse.sort_indices()
+            L_sparse = self._L_sparse
+            
+            lap_eigvals_small = None
+            try:
+                lap_eigvals_small = eigsh(
+                    A = L_sparse,
+                    k = 2,
+                    sigma = 0.0,
+                    which = 'LM',  ## finds eigenvalues closest to sigma
+                    v0 = v0,
+                    return_eigenvectors = False,
+                    tol = 1e-6,
+                    maxiter = 300
+                )
+            except Exception:
+                L = np.array(graph.laplacian(normalized=False), dtype=float)
+                lap_eigvals_small = np.linalg.eigvalsh(L)
 
-        ## algebraic connectivity (second smallest laplacian eigenvalue)
-        # The smallest is always 0 for a connected graph.
-        alg_conn = lap_eigvals_small[1] if lap_eigvals_small.size > 1 else 0.0
-        features['algebraic_connectivity'] = _ensure_finite(float(alg_conn), 0.0)
+            lap_eigvals_small = np.sort(np.real(lap_eigvals_small))
+            alg_conn = lap_eigvals_small[1] if lap_eigvals_small.size > 1 else 0.0
+            features['algebraic_connectivity'] = _ensure_finite(float(alg_conn), 0.0)
 
-        ## The following still require the full spectrum, which is too slow for large graphs.
-        ## We skip them to ensure timely completion.
+        ## skip expensive full spectrum computations
         features['laplacian_energy'] = 0.0
         features['spectral_entropy'] = 0.0
 
-        ## spectral pure graph invariants
         return features
 
     ## compute all invariants and ensure all are finite
