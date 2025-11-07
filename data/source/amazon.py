@@ -91,9 +91,12 @@ def process_events_amazon(data: pd.DataFrame) -> pd.DataFrame:
     if "timestamp" not in data.columns:
         raise ValueError("Input DataFrame must contain 'timestamp' column.")
 
-    data_copy = data[["timestamp"]].copy()
-    data_copy["datetime"] = pd.to_datetime(data_copy["timestamp"], unit="s", utc=True)
-    return data_copy[["datetime"]]
+    return (
+        data[["timestamp"]]
+        .copy()
+        .assign(datetime = lambda df: pd.to_datetime(df["timestamp"], unit = "s", utc = True))
+        [["datetime"]]
+    )
 
 ## amazon user-product network
 class AmazonProcessor:
