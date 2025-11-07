@@ -6,7 +6,6 @@ logger = logging.getLogger(__name__)
 import igraph as ig
 import numpy as np
 import scipy.stats as stats
-from scipy.sparse.linalg import eigsh
 
 ## utilities
 from src.utils import _ensure_finite
@@ -36,13 +35,11 @@ class GraphInvariants:
         if not isinstance(graph, ig.Graph):
             raise TypeError("Input graph must be an igraph.Graph object")
         self.graph = graph
-        self._A_sparse = None
-        self._L_sparse = None
         self._is_connected = None
         self._degree = None
 
     ## compute simple (linear-time) graph invariants
-    def simple(self):
+    def simple(self) -> dict:
         graph = self.graph
         features = {}
 
@@ -62,7 +59,7 @@ class GraphInvariants:
         return features
 
     ## compute cohesion (cubic-time) graph invariants
-    def cohesion(self):
+    def cohesion(self) -> dict:
         graph = self.graph
         features = {}
 
@@ -80,7 +77,7 @@ class GraphInvariants:
         try:
             diam = H.diameter(directed = False, unconn = False)
             features['diameter'] = _ensure_finite(float(diam), 0.0)
-        except Exception:
+        except ig.InternalError:
             features['diameter'] = 0.0
         
         ## radius (minimum eccentricity among vertices)
@@ -88,16 +85,15 @@ class GraphInvariants:
             ecc = np.array(H.eccentricity())
             finite_ecc = ecc[np.isfinite(ecc)]
             features['radius'] = _ensure_finite(float(finite_ecc.min()), 0.0) if finite_ecc.size > 0 else 0.0
-        except Exception:
+        except ig.InternalError:
             features['radius'] = 0.0
 
         ## degeneracy (largest core number)
         core_nums = graph.coreness()
-        if len(core_nums) > 0:
-            arr = np.array(core_nums)
-            d = int(arr.max())
+        if core_nums:
+            d = max(core_nums)
             features['degeneracy'] = d
-            features['k_core_size'] = int((arr == d).sum())
+            features['k_core_size'] = core_nums.count(d)
         else:
             features['degeneracy'] = 0.0
             features['k_core_size'] = 0.0
@@ -105,8 +101,7 @@ class GraphInvariants:
         return features
 
     ## compute extremal graph invariants
-    def extremal(self):
-        graph = self.graph
+    def extremal(self) -> dict:
         features = {}
         
         ## maximum degree (extremum of degree sequence)
@@ -119,7 +114,7 @@ class GraphInvariants:
         return features
 
     ## compute statistical graph invariants
-    def statistical(self):
+    def statistical(self) -> dict:
         graph = self.graph
         features = {}
 
@@ -165,12 +160,12 @@ class GraphInvariants:
 
         return features
     
-    ## compute global spectral graph invariants (uses canonical gutman–zhang)
-    def spectral(self):
+    ## compute global spectral graph invariants (exact deterministic version)
+    def spectral(self) -> dict:
         graph = self.graph
         features = {}
-
         n_nodes = graph.vcount()
+
         if n_nodes < 2:
             return {
                 'spectral_radius': 0.0,
@@ -180,75 +175,50 @@ class GraphInvariants:
                 'spectral_entropy': 0.0,
             }
 
-        ## use cached sparse matrices
-        if self._A_sparse is None:
-            self._A_sparse = graph.get_adjacency_sparse().astype(np.float64)
-            self._A_sparse.sort_indices()
-        A_sparse = self._A_sparse
+        ## adjacency and laplacian as dense symmetric matrices
+        A = np.array(graph.get_adjacency().data, dtype=float)
+        L = np.array(graph.laplacian(normalized=False), dtype=float)
 
-        ## compute 2 largest magnitude eigenvalues
-        v0 = np.ones(n_nodes, dtype=np.float64) / np.sqrt(n_nodes)
-        try:
-            adj_eigvals = eigsh(
-                A = A_sparse, 
-                k = 2, 
-                which = 'LA',
-                v0 = v0,
-                return_eigenvectors = False, 
-                tol = 1e-6, 
-                maxiter = 300
+        ## full spectra (exact, no approximation)
+        adj_eigvals = np.linalg.eigvalsh(A)
+        lap_eigvals = np.linalg.eigvalsh(L)
+
+        ## sort spectra
+        adj_eigvals = np.sort(np.real(adj_eigvals))[::-1]
+        lap_eigvals = np.sort(np.real(lap_eigvals))
+
+        ## spectral radius and ratio
+        features['spectral_radius'] = float(adj_eigvals[0])
+        if len(adj_eigvals) > 1 and abs(adj_eigvals[1]) > 1e-12:
+            features['spectral_radius_ratio'] = _ensure_finite(
+                abs(adj_eigvals[0]) / abs(adj_eigvals[1]), 0.0
             )
-            adj_eigvals = adj_eigvals[::-1]
-        except Exception:
-            A = np.array(graph.get_adjacency().data, dtype=float)
-            adj_eigvals = np.linalg.eigvalsh(A)
-            adj_eigvals = np.sort(np.real(adj_eigvals))[::-1]
-
-        ## spectral radius (largest algebraic eigenvalue)
-        features['spectral_radius'] = adj_eigvals[0] if adj_eigvals.size > 0 else 0.0
-
-        ## spectral radius ratio
-        if adj_eigvals.size > 1 and abs(adj_eigvals[1]) > 1e-9:
-            ratio = abs(adj_eigvals[0]) / abs(adj_eigvals[1])
-            features['spectral_radius_ratio'] = _ensure_finite(ratio, 0.0)
         else:
             features['spectral_radius_ratio'] = 0.0
 
-        ## algebraic connectivity (2nd smallest laplacian eigenvalue)
+        ## algebraic connectivity (2nd smallest Laplacian eigenvalue)
         if self._is_connected is None:
-            self._is_connected = self.graph.is_connected()
-        if not self._is_connected:
-            features['algebraic_connectivity'] = 0.0
+            self._is_connected = graph.is_connected()
+        features['algebraic_connectivity'] = (
+            _ensure_finite(float(lap_eigvals[1]), 0.0)
+            if self._is_connected and len(lap_eigvals) > 1
+            else 0.0
+        )
+
+        ## laplacian energy (Gutman–Zhang)
+        n_edges = graph.ecount()
+        mean_eig = (2 * n_edges) / n_nodes
+        energy = np.sum(np.abs(lap_eigvals - mean_eig))
+        features['laplacian_energy'] = _ensure_finite(float(energy), 0.0)
+
+        ## spectral entropy (normalized squared eigenvalues)
+        squared = np.square(adj_eigvals)
+        total = squared.sum()
+        if total > 1e-12:
+            p = squared / total
+            features['spectral_entropy'] = -np.sum(p * np.log(p + 1e-16))
         else:
-            if self._L_sparse is None:
-                L_coo = graph.laplacian(normalized=False).astype(np.float64)
-                self._L_sparse = L_coo.tocsr()
-                self._L_sparse.sort_indices()
-            L_sparse = self._L_sparse
-            
-            lap_eigvals_small = None
-            try:
-                lap_eigvals_small = eigsh(
-                    A = L_sparse,
-                    k = 2,
-                    sigma = 0.0,
-                    which = 'LM',  ## finds eigenvalues closest to sigma
-                    v0 = v0,
-                    return_eigenvectors = False,
-                    tol = 1e-6,
-                    maxiter = 300
-                )
-            except Exception:
-                L = np.array(graph.laplacian(normalized=False), dtype=float)
-                lap_eigvals_small = np.linalg.eigvalsh(L)
-
-            lap_eigvals_small = np.sort(np.real(lap_eigvals_small))
-            alg_conn = lap_eigvals_small[1] if lap_eigvals_small.size > 1 else 0.0
-            features['algebraic_connectivity'] = _ensure_finite(float(alg_conn), 0.0)
-
-        ## skip expensive full spectrum computations
-        features['laplacian_energy'] = 0.0
-        features['spectral_entropy'] = 0.0
+            features['spectral_entropy'] = 0.0
 
         return features
 
@@ -292,7 +262,6 @@ class BipartiteInvariants:
             raise TypeError("Inputs m and n must be integers.")
         if m < 0 or n < 0:
             raise ValueError("Inputs m and n must be non-negative.")
-        
         self.m = m
         self.n = n
         self.is_trivial = (self.m == 0 or self.n == 0)
@@ -350,8 +319,12 @@ class BipartiteInvariants:
     def statistical(self) -> dict:
         if self.is_trivial:
             return {
-                'degree_variance': 0.0, 'global_clustering': 0.0, 'degree_assortativity': 0.0,
-                'degree_entropy': 0.0, 'joint_degree_entropy': 0.0, 'degree_skewness': 0.0
+                'degree_variance': 0.0,
+                'global_clustering': 0.0,
+                'degree_assortativity': 0.0,
+                'degree_entropy': 0.0,
+                'joint_degree_entropy': 0.0,
+                'degree_skewness': 0.0
             }
         
         N = self.m + self.n
@@ -398,10 +371,13 @@ class BipartiteInvariants:
     def spectral(self) -> dict:
         if self.is_trivial:
             return {
-                'spectral_radius': 0.0, 'spectral_radius_ratio': 0.0, 'algebraic_connectivity': 0.0,
-                'laplacian_energy': 0.0, 'spectral_entropy': 0.0
+                'spectral_radius': 0.0,
+                'spectral_radius_ratio': 0.0,
+                'algebraic_connectivity': 0.0,
+                'laplacian_energy': 0.0,
+                'spectral_entropy': 0.0
             }
-        
+                
         ## spectral radius and ratio
         spec_rad = np.sqrt(self.m * self.n)
         spec_rad_ratio = 1.0 if self.m > 0 and self.n > 0 else 0.0
