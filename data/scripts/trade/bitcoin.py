@@ -5,11 +5,9 @@ import torch
 import pandas as pd
 from torch_geometric.datasets import BitcoinOTC
 
-## project root to path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..')))
-
 ## modules
-from src.utils import _create_igraph_object
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..')))
+from src.utils import _create_igraph_object, _aggregate_by_day
 from src.invariants import GraphInvariants
 
 ## build tripartite user–rating–user network
@@ -74,7 +72,7 @@ class BitcoinProcessor:
 
     def load_data(self):
         """ Loads the raw data from source. """
-        self.data_raw = BitcoinOTC(root = self.root_path + "BitcoinOTC")
+        self.data_raw = BitcoinOTC(root = self.root_path + "bitcoin")
         return self
 
     def process_network(self):
@@ -90,7 +88,8 @@ class BitcoinProcessor:
         """ Processes the event data. """
         if self.data_raw is None:
             self.load_data()
-        self.events = load_events_bitcoin(data = self.data_raw, index = self.index)
+        events = load_events_bitcoin(data = self.data_raw, index = self.index)
+        self.events = _aggregate_by_day(events, datetime = 'datetime')
         return self
 
     def run(self):
@@ -99,5 +98,5 @@ class BitcoinProcessor:
         self.process_events()
         return {
             "invariants": self.invariants,
-            "events": self.events
+            "events": self.events.to_dict(orient = "records")
         }
