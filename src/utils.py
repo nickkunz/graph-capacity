@@ -11,8 +11,8 @@ import igraph as ig
 def _aggregate_by_day(data: pd.DataFrame, datetime: str) -> pd.DataFrame:
     if not pd.api.types.is_datetime64_any_dtype(data[datetime]):
         data[datetime] = pd.to_datetime(data[datetime], errors = 'coerce')    
-    data['date'] = data[datetime].dt.date
-    return data.groupby('date').agg(
+    data['day'] = data[datetime].dt.date
+    return data.groupby('day').agg(
         target = (datetime, 'size')
     ).reset_index()
 
