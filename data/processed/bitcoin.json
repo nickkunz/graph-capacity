@@ -18,8 +18,8 @@
     "spectral_radius": 121.10992567201649,
     "spectral_radius_ratio": 3.7046829568489303,
     "algebraic_connectivity": 0.0,
-    "spectral_entropy": 1.1256129919877698,
-    "laplacian_energy": 2740.299687606217
+    "laplacian_energy": 3655.8697830643778,
+    "spectral_entropy": 1.1256129919877682
   },
   "events": [
     {

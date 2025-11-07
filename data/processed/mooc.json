@@ -1,0 +1,146 @@
+{
+  "invariants": {
+    "n_nodes": 7144,
+    "n_edges": 683559,
+    "n_articulation_points": 0,
+    "n_bridges": 0,
+    "diameter": 2,
+    "radius": 2,
+    "degeneracy": 97,
+    "k_core_size": 7144,
+    "maximum_degree": 7047,
+    "degree_variance": 646938.0917600216,
+    "global_clustering": 0.0,
+    "degree_assortativity": -1.0,
+    "degree_entropy": 0.07186061555040615,
+    "joint_degree_entropy": 0.0,
+    "degree_skewness": 8.406143542591895,
+    "spectral_radius": 826.7762696159101,
+    "spectral_radius_ratio": 1.0,
+    "algebraic_connectivity": 97.0,
+    "laplacian_energy": 1330187.015117581,
+    "spectral_entropy": 0.6931471805599453
+  },
+  "events": [
+    {
+      "day": "1970-01-01",
+      "target": 4953
+    },
+    {
+      "day": "1970-01-02",
+      "target": 17912
+    },
+    {
+      "day": "1970-01-03",
+      "target": 15345
+    },
+    {
+      "day": "1970-01-04",
+      "target": 12541
+    },
+    {
+      "day": "1970-01-05",
+      "target": 11054
+    },
+    {
+      "day": "1970-01-06",
+      "target": 8570
+    },
+    {
+      "day": "1970-01-07",
+      "target": 7301
+    },
+    {
+      "day": "1970-01-08",
+      "target": 8255
+    },
+    {
+      "day": "1970-01-09",
+      "target": 15489
+    },
+    {
+      "day": "1970-01-10",
+      "target": 14624
+    },
+    {
+      "day": "1970-01-11",
+      "target": 13456
+    },
+    {
+      "day": "1970-01-12",
+      "target": 13387
+    },
+    {
+      "day": "1970-01-13",
+      "target": 12698
+    },
+    {
+      "day": "1970-01-14",
+      "target": 11142
+    },
+    {
+      "day": "1970-01-15",
+      "target": 11190
+    },
+    {
+      "day": "1970-01-16",
+      "target": 15161
+    },
+    {
+      "day": "1970-01-17",
+      "target": 15259
+    },
+    {
+      "day": "1970-01-18",
+      "target": 17185
+    },
+    {
+      "day": "1970-01-19",
+      "target": 14695
+    },
+    {
+      "day": "1970-01-20",
+      "target": 15559
+    },
+    {
+      "day": "1970-01-21",
+      "target": 13254
+    },
+    {
+      "day": "1970-01-22",
+      "target": 14266
+    },
+    {
+      "day": "1970-01-23",
+      "target": 18213
+    },
+    {
+      "day": "1970-01-24",
+      "target": 16725
+    },
+    {
+      "day": "1970-01-25",
+      "target": 16274
+    },
+    {
+      "day": "1970-01-26",
+      "target": 14424
+    },
+    {
+      "day": "1970-01-27",
+      "target": 15445
+    },
+    {
+      "day": "1970-01-28",
+      "target": 13853
+    },
+    {
+      "day": "1970-01-29",
+      "target": 15514
+    },
+    {
+      "day": "1970-01-30",
+      "target": 18005
+    }
+  ]
+}
