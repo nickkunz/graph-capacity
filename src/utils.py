@@ -63,5 +63,5 @@ def _request_with_retry(
             return response
         except requests.RequestException as e:
             if attempt < retries - 1:
-                time.sleep(seconds = sleep * (2 ** attempt))
+                time.sleep(sleep * (2 ** attempt))
             raise RuntimeError(f"Request failed after {retries} retries: {e}")
