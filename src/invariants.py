@@ -6,6 +6,7 @@ logger = logging.getLogger(__name__)
 import igraph as ig
 import numpy as np
 import scipy.stats as stats
+from scipy.sparse import csc_matrix, diags, eye
 
 ## utilities
 from src.utils import _ensure_finite
@@ -160,66 +161,104 @@ class GraphInvariants:
 
         return features
     
-    ## compute global spectral graph invariants (exact deterministic version)
+    ## compute global spectral graph invariants (trace-polynomial)
     def spectral(self) -> dict:
         graph = self.graph
         features = {}
         n_nodes = graph.vcount()
-
+        
         if n_nodes < 2:
             return {
-                'spectral_radius': 0.0,
-                'spectral_radius_ratio': 0.0,
-                'laplacian_energy': 0.0,
-                'algebraic_connectivity': 0.0,
-                'spectral_entropy': 0.0,
+                'normalized_laplacian_second_moment': 0.0,
+                'normalized_laplacian_third_moment': 0.0,
+                'random_walk_triangle_weight': 0.0,
+                'random_walk_fourth_moment': 0.0,
+                'adjacency_fourth_moment_per_node': 0.0,
             }
-
-        ## adjacency and laplacian as dense symmetric matrices
-        A = np.array(graph.get_adjacency().data, dtype=float)
-        L = np.array(graph.laplacian(normalized=False), dtype=float)
-
-        ## full spectra (exact, no approximation)
-        adj_eigvals = np.linalg.eigvalsh(A)
-        lap_eigvals = np.linalg.eigvalsh(L)
-
-        ## sort spectra
-        adj_eigvals = np.sort(np.real(adj_eigvals))[::-1]
-        lap_eigvals = np.sort(np.real(lap_eigvals))
-
-        ## spectral radius and ratio
-        features['spectral_radius'] = float(adj_eigvals[0])
-        if len(adj_eigvals) > 1 and abs(adj_eigvals[1]) > 1e-12:
-            features['spectral_radius_ratio'] = _ensure_finite(
-                abs(adj_eigvals[0]) / abs(adj_eigvals[1]), 0.0
+        
+        ## precompute degrees and adjacency
+        degrees = np.array(graph.degree(), dtype = float)
+        n_edges = graph.ecount()
+        edges = graph.get_edgelist()
+        has_isolated = np.any(degrees == 0)
+        
+        ## adjacency as sparse matrix
+        A = csc_matrix(graph.get_adjacency_sparse(), dtype = float)
+        
+        ## 1. normalized laplacian second moment: O(E) - scales well
+        if n_edges > 0 and not has_isolated:
+            edge_array = np.array(edges, dtype = int)
+            sum_inv = np.sum(
+                1.0 / (degrees[edge_array[:, 0]] * degrees[edge_array[:, 1]])
+            )
+            features['normalized_laplacian_second_moment'] = _ensure_finite(
+                1.0 + (2.0 / n_nodes) * sum_inv, 0.0
             )
         else:
-            features['spectral_radius_ratio'] = 0.0
-
-        ## algebraic connectivity (2nd smallest Laplacian eigenvalue)
-        if self._is_connected is None:
-            self._is_connected = graph.is_connected()
-        features['algebraic_connectivity'] = (
-            _ensure_finite(float(lap_eigvals[1]), 0.0)
-            if self._is_connected and len(lap_eigvals) > 1
-            else 0.0
-        )
-
-        ## laplacian energy (Gutman–Zhang)
-        n_edges = graph.ecount()
-        mean_eig = (2 * n_edges) / n_nodes
-        energy = np.sum(np.abs(lap_eigvals - mean_eig))
-        features['laplacian_energy'] = _ensure_finite(float(energy), 0.0)
-
-        ## spectral entropy (normalized squared eigenvalues)
-        squared = np.square(adj_eigvals)
-        total = squared.sum()
-        if total > 1e-12:
-            p = squared / total
-            features['spectral_entropy'] = -np.sum(p * np.log(p + 1e-16))
+            features['normalized_laplacian_second_moment'] = 0.0
+        
+        ## precompute degree-normalized matrices if no isolated vertices
+        if n_edges > 0 and not has_isolated:
+            D_inv_sqrt = diags(1.0 / np.sqrt(degrees))
+            D_inv = diags(1.0 / degrees)
+            I = eye(n_nodes, format = 'csr')
+        
+        ## normalized laplacian third moment: O(E²)
+        if n_edges > 0 and not has_isolated:
+            L_norm = I - D_inv_sqrt @ A @ D_inv_sqrt
+            L2 = L_norm @ L_norm
+            
+            ## monitor densification
+            if logger.isEnabledFor(logging.DEBUG):
+                logger.debug(f"L_norm nnz: {L_norm.nnz}, L2 nnz: {L2.nnz}")
+            
+            L3 = L2 @ L_norm
+            trace_L3 = L3.diagonal().sum()
+            features['normalized_laplacian_third_moment'] = _ensure_finite(
+                trace_L3 / n_nodes, 0.0
+            )
         else:
-            features['spectral_entropy'] = 0.0
-
+            features['normalized_laplacian_third_moment'] = 0.0
+        
+        ## random walk moments: O(E²)
+        if n_edges > 0 and not has_isolated:
+            P = D_inv @ A
+            P2 = P @ P
+            
+            ## monitor densification
+            if logger.isEnabledFor(logging.DEBUG):
+                logger.debug(f"P nnz: {P.nnz}, P2 nnz: {P2.nnz}")
+            
+            ## random walk triangle weight: tr(P³)/n
+            P3 = P2 @ P
+            trace_P3 = P3.diagonal().sum()
+            features['random_walk_triangle_weight'] = _ensure_finite(
+                trace_P3 / n_nodes, 0.0
+            )
+            
+            ## random walk fourth moment: tr(P⁴)/n
+            P4 = P2 @ P2
+            trace_P4 = P4.diagonal().sum()
+            features['random_walk_fourth_moment'] = _ensure_finite(
+                trace_P4 / n_nodes, 0.0
+            )
+        else:
+            features['random_walk_triangle_weight'] = 0.0
+            features['random_walk_fourth_moment'] = 0.0
+        
+        ## adjacency fourth moment
+        A2 = A @ A
+        
+        ## monitor densification
+        if logger.isEnabledFor(logging.DEBUG):
+            logger.debug(f"A nnz: {A.nnz}, A2 nnz: {A2.nnz}")
+        
+        A4 = A2 @ A2
+        trace_A4 = A4.diagonal().sum()
+        features['adjacency_fourth_moment_per_node'] = _ensure_finite(
+            trace_A4 / n_nodes, 0.0
+        )
+        
         return features
 
     ## compute all invariants and ensure all are finite
