@@ -8,7 +8,7 @@ from io import BytesIO
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.utils import _create_igraph_object, _aggregate_by_day
+from src.utils import _create_igraph_object, _aggregate_by_day, _request_with_retry
 from src.invariants import GraphInvariants
 
 ## load amazon network
@@ -26,8 +26,7 @@ def load_network_amazon(url: str, root_path: str, name: str, timeout: int = 30) 
             content = f.read()
     else:
         try:
-            response = requests.get(url = url, stream = True, timeout = timeout)
-            response.raise_for_status()
+            response = _request_with_retry(url = url, params = {}, timeout = timeout)
             with open(path_local, 'wb') as f:
                 f.write(response.content)
             with gzip.GzipFile(fileobj = BytesIO(response.content)) as gz:
