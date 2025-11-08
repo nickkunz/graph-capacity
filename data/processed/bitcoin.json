@@ -1,6 +1,6 @@
 {
   "invariants": {
-    "n_nodes": 232,
+    "n_nodes": 222,
     "n_edges": 1514,
     "n_articulation_points": 8,
     "n_bridges": 12,
@@ -9,17 +9,17 @@
     "degeneracy": 52,
     "k_core_size": 5,
     "maximum_degree": 914,
-    "degree_variance": 4105.480083234245,
+    "degree_variance": 4282.392662933204,
     "global_clustering": 0.0,
     "degree_assortativity": -0.5891432394981481,
-    "degree_entropy": 2.6301797551880437,
+    "degree_entropy": 2.562967849921751,
     "joint_degree_entropy": 4.242388172509357,
-    "degree_skewness": 12.52652143305312,
-    "spectral_radius": 121.10992567201649,
-    "spectral_radius_ratio": 3.7046829568489303,
-    "algebraic_connectivity": 0.0,
-    "laplacian_energy": 3655.8697830643778,
-    "spectral_entropy": 1.1256129919877682
+    "degree_skewness": 12.264853527653058,
+    "normalized_laplacian_second_moment": 1.0127076148398881,
+    "normalized_laplacian_third_moment": 1.0836141998100903,
+    "random_walk_triangle_weight": 0.0,
+    "random_walk_fourth_moment": 0.01387892849679577,
+    "adjacency_fourth_moment_per_node": 1949046.7207207207
   },
   "events": [
     {

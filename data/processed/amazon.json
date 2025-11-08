@@ -14,7 +14,12 @@
     "degree_assortativity": -0.14904075672571718,
     "degree_entropy": 1.5549051116538495,
     "joint_degree_entropy": 7.037932263724522,
-    "degree_skewness": 21.559858076111162
+    "degree_skewness": 21.559858076111162,
+    "normalized_laplacian_second_moment": 1.2674508119125436,
+    "normalized_laplacian_third_moment": 1.802352435737631,
+    "random_walk_triangle_weight": 0.0,
+    "random_walk_fourth_moment": 0.22228930095577978,
+    "adjacency_fourth_moment_per_node": 1558.771822219262
   },
   "events": [
     {
