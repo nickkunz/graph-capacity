@@ -11,7 +11,8 @@ from data.source.bitcoin import BitcoinProcessor
 from data.source.amazon import AmazonProcessor
 from data.source.federal import FederalProcessor
 from data.source.mooc import MoocProcessor
-from data.source.worldbank import WorldBankProcessor
+from data.source.world import WorldBankProcessor
+from data.source.wiki import WikiProcessor
 
 ## config settings
 config = configparser.ConfigParser()
@@ -26,12 +27,14 @@ NAME_BITCOIN = config['names']['NAME_BITCOIN']
 NAME_FEDERAL = config['names']['NAME_FEDERAL']
 NAME_MOOC = config['names']['NAME_MOOC']
 NAME_WORLD = config['names']['NAME_WORLD']
+NAME_WIKI = config['names']['NAME_WIKI']
 
 URL_AMAZON = config['urls']['URL_AMAZON']
 URL_FEDERAL = config['urls']['URL_FEDERAL']
 URL_MOOC = config['urls']['URL_MOOC']
 URL_WORLD_NETWORK = config['urls']['URL_WORLD_NETWORK']
 URL_WORLD_METADATA = config['urls']['URL_WORLD_METADATA']
+URL_WIKI_EVENTS = config['urls']['URL_WIKI_EVENTS']
 
 ## logging
 logging.basicConfig(
@@ -109,3 +112,15 @@ if __name__ == '__main__':
         logging.info(f"World Bank data saved to {world_path}")
     else:
         logging.info(f"World Bank data already exists at {world_path}. Skipping data source.")
+
+    ## --- wiki --- ##
+    wiki_path = PATH_OUT + NAME_WIKI + '.json'
+    if not os.path.exists(wiki_path):
+        logging.info("Processing Wiki data...")
+        data_wiki = WikiProcessor(
+            url_events = URL_WIKI_EVENTS
+        ).run()
+        _save_to_json(data = data_wiki, path = wiki_path)
+        logging.info(f"Wiki data saved to {wiki_path}")
+    else:
+        logging.info(f"Wiki data already exists at {wiki_path}. Skipping data source.")
