@@ -14,21 +14,22 @@ from src.invariants import GraphInvariants
 
 ## build tripartite user–rating–user network
 def build_network_bitcoin(data: BitcoinOTC, index: int = 10) -> tuple[list[str], list[tuple[str, str]]]:
-
+    
     ## single graph object
-    data_idx = data[index] ## snapshot at given index
+    data_idx = data[index]
 
-    ## extract users and ratings
+    ## extract users
     users = torch.unique(data_idx.edge_index).cpu().numpy()
     user_nodes = [f"user_{u}" for u in users]
-
-    ## all possible rating nodes (–10 to +10)
-    rating_nodes = [f"rating_{r}" for r in range(-10, 11)]
 
     ## extract directed edges
     src_users = data_idx.edge_index[0].cpu().numpy()
     dst_users = data_idx.edge_index[1].cpu().numpy()
     ratings = data_idx.edge_attr.cpu().numpy().astype(int).flatten()
+
+    ## only create rating nodes that actually appear in the data
+    unique_ratings = set(ratings)
+    rating_nodes = [f"rating_{r}" for r in sorted(unique_ratings)]
 
     ## build tripartite edges: user → rating → user
     edges = []
