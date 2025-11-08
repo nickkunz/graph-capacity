@@ -9,7 +9,7 @@ from typing import Optional, Dict, Any
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.utils import _create_igraph_object, _aggregate_by_day
+from src.utils import _create_igraph_object, _aggregate_by_day, _load_network_pyg
 from src.invariants import GraphInvariants
 
 ## build tripartite user–rating–user network
@@ -77,7 +77,10 @@ class BitcoinProcessor:
 
     def load_data(self):
         """ Loads the raw data from source. """
-        self.data_raw = BitcoinOTC(root = self.root_path + "bitcoin")
+        self.data_raw = _load_network_pyg(
+            dataset = "BitcoinOTC",
+            root = os.path.join(self.root_path, "bitcoin")
+        )
         return self
 
     def process_network(self):
