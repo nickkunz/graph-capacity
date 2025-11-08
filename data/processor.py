@@ -47,7 +47,11 @@ if __name__ == '__main__':
     federal_path = PATH_OUT + NAME_FEDERAL + '.json'
     if not os.path.exists(federal_path):
         logging.info("Processing Federal data...")
-        data_federal = FederalProcessor(url = URL_FEDERAL, start_date = "2014-01-01", end_date = "2024-12-31").run()
+        data_federal = FederalProcessor(
+            url = URL_FEDERAL,
+            start_date = "2014-01-01",
+            end_date = "2024-12-31"
+        ).run()
         _save_to_json(data = data_federal, path = federal_path)
         logging.info(f"Federal data saved to {federal_path}")
     else:
@@ -57,7 +61,9 @@ if __name__ == '__main__':
     mooc_path = PATH_OUT + NAME_MOOC + '.json'
     if not os.path.exists(mooc_path):
         logging.info("Processing MOOC data...")
-        data_mooc = MoocProcessor(url = URL_MOOC).run()
+        data_mooc = MoocProcessor(
+            url = URL_MOOC
+        ).run()
         _save_to_json(data = data_mooc, path = mooc_path)
         logging.info(f"MOOC data saved to {mooc_path}")
     else:
@@ -67,7 +73,9 @@ if __name__ == '__main__':
     bitcoin_path = PATH_OUT + NAME_BITCOIN + '.json'
     if not os.path.exists(bitcoin_path):
         logging.info("Processing Bitcoin data...")
-        data_bitcoin = BitcoinProcessor(root_path = PATH_ROOT).run()    
+        data_bitcoin = BitcoinProcessor(
+            root_path = PATH_ROOT
+        ).run()
         _save_to_json(data = data_bitcoin, path = bitcoin_path)
         logging.info(f"Bitcoin data saved to {bitcoin_path}")
     else:
@@ -77,7 +85,11 @@ if __name__ == '__main__':
     amazon_path = PATH_OUT + NAME_AMAZON + '.json'
     if not os.path.exists(amazon_path):
         logging.info("Processing Amazon data...")
-        data_amazon = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON).run()
+        data_amazon = AmazonProcessor(
+            root_path = PATH_ROOT, 
+            url = URL_AMAZON, 
+            name = NAME_AMAZON
+        ).run()
         _save_to_json(data = data_amazon, path = amazon_path)
         logging.info(f"Amazon data saved to {amazon_path}")
     else:
