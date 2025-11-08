@@ -1,10 +1,10 @@
 .venv
+.github
 .DS_Store
 
 src/__pycache__
 
 data/__pycache__
-data/scripts/.DS_Store
-data/scripts/__pycache__
-data/scripts/trade/__pycache__
+data/source/.DS_Store
+data/source/__pycache__
 data/original/*
