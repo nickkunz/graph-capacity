@@ -433,7 +433,7 @@ class BipartiteInvariants:
         rw3 = 0.0
 
         ## random-walk fourth moment: tr(P^4)/N
-        rw4 = 2.0 / N
+        rw4 = (2.0 * (m/n + n/m)) / N if m > 0 and n > 0 else 0.0
 
         ## adjacency fourth moment per node: tr(A^4)/N
         a4 = 2.0 * (m**2) * (n**2) / N
