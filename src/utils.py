@@ -193,7 +193,7 @@ def _load_network_pyg(dataset: str, root: str, **kwargs) -> object:
     try:
         dataset_module = importlib.import_module('torch_geometric.datasets')
         dataset_class = getattr(dataset_module, dataset)
-        return dataset_class(root=root, **kwargs)
+        return dataset_class(root = root, **kwargs)
     except AttributeError:
         raise ImportError(f"Dataset '{dataset}' not found in torch_geometric.datasets.")
     except Exception as e:
