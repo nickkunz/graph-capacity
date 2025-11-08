@@ -13,6 +13,7 @@ from data.source.federal import FederalProcessor
 from data.source.mooc import MoocProcessor
 from data.source.world import WorldBankProcessor
 from data.source.wiki import WikiProcessor
+from data.source.jodie import JodieProcessor
 
 ## config settings
 config = configparser.ConfigParser()
@@ -28,6 +29,7 @@ NAME_FEDERAL = config['names']['NAME_FEDERAL']
 NAME_MOOC = config['names']['NAME_MOOC']
 NAME_WORLD = config['names']['NAME_WORLD']
 NAME_WIKI = config['names']['NAME_WIKI']
+NAME_JODIE = config['names']['NAME_JODIE']
 
 URL_AMAZON = config['urls']['URL_AMAZON']
 URL_FEDERAL = config['urls']['URL_FEDERAL']
@@ -124,3 +126,16 @@ if __name__ == '__main__':
         logging.info(f"Wiki data saved to {wiki_path}")
     else:
         logging.info(f"Wiki data already exists at {wiki_path}. Skipping data source.")
+
+    ## --- jodie --- ##
+    jodie_path = PATH_OUT + NAME_JODIE + '.json'
+    if not os.path.exists(jodie_path):
+        logging.info("Processing JODIE data...")
+        data_jodie = JodieProcessor(
+            root_path=PATH_ROOT,
+            name="wikipedia"  # JODIE dataset requires a specific name like 'wikipedia' or 'reddit'
+        ).run()
+        _save_to_json(data=data_jodie, path=jodie_path)
+        logging.info(f"JODIE data saved to {jodie_path}")
+    else:
+        logging.info(f"JODIE data already exists at {jodie_path}. Skipping data source.")
