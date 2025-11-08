@@ -1,6 +1,7 @@
 ## libraries
 import os
 import io
+import ssl
 import time
 import json
 import torch
@@ -10,6 +11,7 @@ import importlib
 import numpy as np
 import pandas as pd
 import igraph as ig
+import urllib.request
 from torch_geometric_temporal.signal import DynamicGraphTemporalSignal
 
 ## daily aggregation
@@ -59,7 +61,7 @@ def _request_with_retry(
     retries: int = 3, 
     timeout: int = 60, 
     sleep: float = 0.5
-) -> requests.Response:
+    ) -> requests.Response:
     for attempt in range(retries):
         try:
             if method.upper() == 'GET':
@@ -87,15 +89,22 @@ def _request_with_retry(
 ## load generic snap temporal dataset
 def _load_network_snap(url: str) -> pd.DataFrame:
     try:
-        data = pd.read_csv(
-            url,
-            sep = r'\s+',
-            header = None,
-            names = ["src", "dst", "timestamp"],
-            comment = '#',
-            compression = 'gzip',
-            engine = 'python' ## engine for regex separator
-        )
+        ## create ssl context that does not verify certificates
+        context = ssl.create_default_context()
+        context.check_hostname = False
+        context.verify_mode = ssl.CERT_NONE
+
+        ## open url with ssl context
+        with urllib.request.urlopen(url = url, context = context) as response:
+            data = pd.read_csv(
+                response,
+                sep = r'\s+',
+                header = None,
+                names = ["src", "dst", "timestamp"],
+                comment = '#',
+                compression = 'gzip',
+                engine = 'python'  # engine for regex separator
+            )
     except Exception as e:
         raise RuntimeError(f"Failed to load data from {url} with pandas: {e}")
     if data.empty:
