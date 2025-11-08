@@ -9,7 +9,7 @@ from typing import Optional, Dict, Any, Iterator
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-from src.utils import _create_igraph_object, _aggregate_by_day
+from src.utils import _create_igraph_object, _aggregate_by_day, _request_with_retry
 from src.invariants import GraphInvariants
 
 ## load network contracts from endpoint
@@ -42,10 +42,8 @@ def _post_network_federal(
     }
     if keyword:
         json["filters"]["keywords"] = [keyword]
-
     try:
-        response = requests.post(url = url, json = json, timeout = 120)
-        response.raise_for_status()
+        response = _request_with_retry(url = url, method = 'POST', json = json)
         return response.json()
     except Exception as e:
         raise RuntimeError(f"Failed POST request to {url}: {str(e)}")
