@@ -1,0 +1,72 @@
+## libraries
+import os
+import sys
+import pandas as pd
+from torch_geometric.datasets import JODIEDataset
+from typing import Optional, Dict, Any
+
+## modules
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+from src.utils import _create_igraph_object, _aggregate_by_day, _load_network_pyg, _build_network_pyg
+from src.invariants import GraphInvariants
+
+## load jodie wikipedia events from raw data
+def load_events_jodie(data: JODIEDataset) -> pd.DataFrame:
+    data = data[0]
+    return pd.DataFrame({
+        'src': data.src.numpy(),
+        'dst': data.dst.numpy(),
+        'timestamp': data.t.numpy()
+    })
+
+## process jodie wikipedia events
+def process_events_jodie(data: pd.DataFrame) -> pd.DataFrame:
+    return data.assign(
+        datetime = lambda d: pd.to_datetime(d['timestamp'], unit = 's')
+    )
+
+## jodie network
+class JodieProcessor:
+    def __init__(self, root_path: str, name: str):
+        self.root_path = root_path
+        self.name = name
+        self.data_raw: Optional[JODIEDataset] = None
+        self.graph = None
+        self.invariants: Optional[Dict[str, Any]] = None
+        self.events: Optional[pd.DataFrame] = None
+
+    def load_data(self):
+        """ Loads the raw data from source. """
+        self.data_raw = _load_network_pyg(
+            dataset = "JODIEDataset",
+            root = self.root_path,
+            name = self.name
+        )
+        return self
+
+    def process_network(self):
+        """ Builds the network and computes invariants. """
+        if self.data_raw is None:
+            self.load_data()
+        nodes, edges = _build_network_pyg(data = self.data_raw)
+        self.graph = _create_igraph_object(nodes = nodes, edges = edges)
+        self.invariants = GraphInvariants(graph = self.graph).all()
+        return self
+
+    def process_events(self):
+        """ Processes the event data. """
+        if self.data_raw is None:
+            self.load_data()
+        events = load_events_jodie(data = self.data_raw)
+        events = process_events_jodie(data = events)
+        self.events = _aggregate_by_day(data = events, datetime = 'datetime')
+        return self
+
+    def run(self):
+        """ Executes the pipeline and returns the final result. """
+        self.process_network()
+        self.process_events()
+        return {
+            "invariants": self.invariants,
+            "events": self.events.to_dict(orient = "records")
+        }
