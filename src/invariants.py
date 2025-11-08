@@ -160,8 +160,8 @@ class GraphInvariants:
             features['degree_skewness'] = _ensure_finite(stats.skew(degrees, bias = False), 0.0)
 
         return features
-    
-    ## compute global spectral graph invariants (trace-polynomial)
+
+    ## compute spectral invariants (trace-polynomial, no eigendecomposition)
     def spectral(self) -> dict:
         graph = self.graph
         features = {}
@@ -406,70 +406,71 @@ class BipartiteInvariants:
             'degree_skewness': _ensure_finite(float(skewness))
         }
 
-    ## compute spectral bipartite invariants
+    ## compute spectral invariants (trace-polynomial, no eigendecomposition)
     def spectral(self) -> dict:
+
+        ## trivial cases: no edges
         if self.is_trivial:
             return {
-                'spectral_radius': 0.0,
-                'spectral_radius_ratio': 0.0,
-                'algebraic_connectivity': 0.0,
-                'laplacian_energy': 0.0,
-                'spectral_entropy': 0.0
+                'normalized_laplacian_second_moment': 0.0,
+                'normalized_laplacian_third_moment': 0.0,
+                'random_walk_triangle_weight': 0.0,
+                'random_walk_fourth_moment': 0.0,
+                'adjacency_fourth_moment_per_node': 0.0,
             }
-                
-        ## spectral radius and ratio
-        spec_rad = np.sqrt(self.m * self.n)
-        spec_rad_ratio = 1.0 if self.m > 0 and self.n > 0 else 0.0
         
-        ## algebraic connectivity
-        alg_conn = float(min(self.m, self.n))
-        
-        ## laplacian energy: sum of absolute differences of laplacian eigenvalues from the mean.
-        ## eigenvalues are m+n (1), m (n-1 times), n (m-1 times), 0 (1).
-        N = self.m + self.n
-        mean_eig = (2 * self.m * self.n) / N
-        energy = (abs(N - mean_eig) + (self.n - 1) * abs(self.m - mean_eig) + 
-                  (self.m - 1) * abs(self.n - mean_eig) + abs(0 - mean_eig))
-        
-        ## spectral entropy (from adjacency matrix eigenvalues)
-        ## eigenvalues are sqrt(mn), -sqrt(mn), and 0 (n-2 times).
-        ## normalized squared eigenvalues are 0.5, 0.5.
-        spec_entropy = - (0.5 * np.log(0.5) + 0.5 * np.log(0.5)) if (self.m > 0 and self.n > 0) else 0.0
+        ## non-trivial case: K_{m,n}
+        m, n = self.m, self.n
+        N = m + n
+
+        ## normalized laplacian second moment: tr(L^2)/N = [4 + (N-2)*1]/N = (N+2)/N
+        nl2 = 1.0 + 2.0 / N
+
+        ## normalized laplacian third moment: tr(L^3)/N = [8 + (N-2)*1]/N = (N+6)/N
+        nl3 = 1.0 + 6.0 / N
+
+        ## random-walk triangle weight: tr(P^3)/N = 0 for bipartite graphs
+        rw3 = 0.0
+
+        ## random-walk fourth moment: tr(P^4)/N
+        rw4 = 2.0 / N
+
+        ## adjacency fourth moment per node: tr(A^4)/N
+        a4 = 2.0 * (m**2) * (n**2) / N
 
         return {
-            'spectral_radius': _ensure_finite(float(spec_rad)),
-            'spectral_radius_ratio': _ensure_finite(float(spec_rad_ratio)),
-            'algebraic_connectivity': _ensure_finite(float(alg_conn)),
-            'laplacian_energy': _ensure_finite(float(energy)),
-            'spectral_entropy': _ensure_finite(float(spec_entropy))
+            'normalized_laplacian_second_moment': _ensure_finite(float(nl2), 0.0),
+            'normalized_laplacian_third_moment': _ensure_finite(float(nl3), 0.0),
+            'random_walk_triangle_weight': _ensure_finite(float(rw3), 0.0),
+            'random_walk_fourth_moment': _ensure_finite(float(rw4), 0.0),
+            'adjacency_fourth_moment_per_node': _ensure_finite(float(a4), 0.0),
         }
 
     ## compute all bipartite invariants
     def all(self) -> dict:
         if self.is_trivial:
             return {
-                'n_nodes': 0, 
-                'n_edges': 0, 
-                'n_articulation_points': 0, 
+                'n_nodes': 0,
+                'n_edges': 0,
+                'n_articulation_points': 0,
                 'n_bridges': 0,
-                'diameter': 0, 
-                'radius': 0, 
-                'degeneracy': 0, 
+                'diameter': 0,
+                'radius': 0,
+                'degeneracy': 0,
                 'k_core_size': 0,
-                'maximum_degree': 0, 
-                'degree_variance': 0.0, 
+                'maximum_degree': 0,
+                'degree_variance': 0.0,
                 'global_clustering': 0.0,
                 'degree_assortativity': 0.0,
-                'degree_entropy': 0.0, 
+                'degree_entropy': 0.0,
                 'joint_degree_entropy': 0.0,
-                'degree_skewness': 0.0, 
-                'spectral_radius': 0.0, 
-                'spectral_radius_ratio': 0.0,
-                'algebraic_connectivity': 0.0, 
-                'laplacian_energy': 0.0, 
-                'spectral_entropy': 0.0
+                'degree_skewness': 0.0,
+                'normalized_laplacian_second_moment': 0.0,
+                'normalized_laplacian_third_moment': 0.0,
+                'random_walk_triangle_weight': 0.0,
+                'random_walk_fourth_moment': 0.0,
+                'adjacency_fourth_moment_per_node': 0.0,
             }
-            
         features = {}
         features.update(self.simple())
         features.update(self.cohesion())
@@ -477,9 +478,7 @@ class BipartiteInvariants:
         features.update(self.statistical())
         features.update(self.spectral())
 
-        ## final results check - should never trigger with proper implementation
-        for key, value in features.items():
-            if not np.isfinite(value):
-                raise ValueError(f"Feature '{key}' is non-finite ({value}).")
-
+        for k, v in features.items():
+            if not np.isfinite(v):
+                raise ValueError(f"Feature '{k}' is non-finite ({v}).")
         return features
