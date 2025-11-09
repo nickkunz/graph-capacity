@@ -122,7 +122,7 @@ def _compute_network_snap(data: pd.DataFrame) -> tuple[int, int]:
 ## load network from pytorch geometric temporal dataset
 def _load_network_pygt(loader):
     try:
-        dataset = loader().get_dataset()
+        dataset = loader.get_dataset()
         if dataset is None:
             raise RuntimeError("PyTorch Geometric Temporal dataset loader returned None.")
         return dataset
@@ -137,10 +137,10 @@ def _load_network_pygt(loader):
 def _build_network_pygt(dataset: DynamicGraphTemporalSignal) -> tuple[list[str], list[tuple]]:
     try:
         first_snap = next(iter(dataset))        
-        if not hasattr(first_snap, 'y') or not hasattr(first_snap, 'edge_index'):
-            raise RuntimeError("PyTorch Geometric Temporal dataset snapshot missing required attributes (y or edge_index).")
+        if not hasattr(first_snap, 'num_nodes') or not hasattr(first_snap, 'edge_index'):
+            raise RuntimeError("PyTorch Geometric Temporal dataset snapshot missing required attributes (num_nodes or edge_index).")
         
-        num_nodes = first_snap.y.numel()
+        num_nodes = first_snap.num_nodes
         edge_index = first_snap.edge_index.numpy()
         
         ## create node list (node ids as strings)
