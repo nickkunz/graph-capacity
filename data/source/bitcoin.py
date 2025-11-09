@@ -67,8 +67,9 @@ def load_events_bitcoin(data: BitcoinOTC, index: int = 10) -> pd.DataFrame:
 
 ## bitcoin user–rating–user network
 class BitcoinProcessor:
-    def __init__(self, root_path: str, index: int = 10):  ## strictly the 11th snapshot
+    def __init__(self, root_path: str, name: str, index: int = 10):  ## strictly the 11th snapshot
         self.root_path: str = root_path
+        self.name: str = name
         self.index: int = index
         self.data_raw: Optional[BitcoinOTC] = None
         self.graph: Optional[igraph.Graph] = None
@@ -79,7 +80,7 @@ class BitcoinProcessor:
         """ Loads the raw data from source. """
         self.data_raw = _load_network_pyg(
             dataset = "BitcoinOTC",
-            root = os.path.join(self.root_path, "bitcoin")
+            root = os.path.join(self.root_path, self.name)
         )
         return self
 
