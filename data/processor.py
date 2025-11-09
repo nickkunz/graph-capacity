@@ -22,6 +22,7 @@ from data.source.windmill import WindmillProcessor
 from data.source.metrla import MetrLaProcessor
 from data.source.pemsbay import PemsBayProcessor
 from data.source.montevideo import MontevideoProcessor
+from data.source.celegans import CelegansProcessor
 
 ## config settings
 config = configparser.ConfigParser()
@@ -46,6 +47,7 @@ NAME_WINDMILL = config['names']['NAME_WINDMILL']
 NAME_METRLA = config['names']['NAME_METRLA']
 NAME_PEMSBAY = config['names']['NAME_PEMSBAY']
 NAME_MONTEVIDEO = config['names']['NAME_MONTEVIDEO']
+NAME_CELEGANS = config['names']['NAME_CELEGANS']
 
 URL_AMAZON = config['urls']['URL_AMAZON'].strip('"')
 URL_FEDERAL = config['urls']['URL_FEDERAL'].strip('"')
@@ -227,4 +229,14 @@ if __name__ == '__main__':
         logging.info(f"Montevideo data saved to {montevideo_path}")
     else:
         logging.info(f"Montevideo data already exists at {montevideo_path}. Skipping data source.")
+
+    ## --- c. elegans --- ##
+    celegans_path = os.path.join(PATH_OUT, f"{NAME_CELEGANS}.json")
+    if not os.path.exists(celegans_path):
+        logging.info("Processing C. Elegans data...")
+        data_celegans = CelegansProcessor().run()
+        _save_to_json(data = data_celegans, path = celegans_path)
+        logging.info(f"C. Elegans data saved to {celegans_path}")
+    else:
+        logging.info(f"C. Elegans data already exists at {celegans_path}. Skipping data source.")
 
