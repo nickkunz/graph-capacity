@@ -1,10 +1,11 @@
 .venv
 .github
 .DS_Store
+cache
 
 src/__pycache__
 
 data/__pycache__
 data/source/.DS_Store
 data/source/__pycache__
-data/original/*
+
