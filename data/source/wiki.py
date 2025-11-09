@@ -4,7 +4,6 @@ import sys
 import numpy as np
 import pandas as pd
 import igraph as ig
-from typing import Optional, Dict, Any
 from torch_geometric_temporal.dataset import WikiMathsDatasetLoader
 
 ## modules
@@ -45,7 +44,7 @@ class WikiProcessor:
 
     def load_data(self):
         """ Loads the raw data from source. """
-        loader = WikiMathsDatasetLoader  ## class, not instance!
+        loader = WikiMathsDatasetLoader()
         self.network_raw = _load_network_pygt(loader = loader)
         self.events_raw = _load_events_zip(
             url = self.url_events,
