@@ -1,0 +1,138 @@
+{
+  "invariants": {
+    "n_nodes": 2964,
+    "n_edges": 9371,
+    "n_articulation_points": 38,
+    "n_bridges": 1699,
+    "diameter": 8.0,
+    "radius": 4.0,
+    "degeneracy": 13,
+    "k_core_size": 55,
+    "maximum_degree": 1139,
+    "degree_variance": 1932.9744814517348,
+    "global_clustering": 0.0,
+    "degree_assortativity": -0.6007474371857727,
+    "degree_entropy": 1.7394038649818697,
+    "joint_degree_entropy": 5.101561207886473,
+    "degree_skewness": 18.31778300832575,
+    "normalized_laplacian_second_moment": 1.0138185788792222,
+    "normalized_laplacian_third_moment": 1.0414557366376667,
+    "random_walk_triangle_weight": 0.0,
+    "random_walk_fourth_moment": 0.009430404406801601,
+    "adjacency_fourth_moment_per_node": 18478.31241565452
+  },
+  "events": [
+    {
+      "day": "2005-07-01",
+      "target": 83
+    },
+    {
+      "day": "2006-06-01",
+      "target": 137
+    },
+    {
+      "day": "2006-10-01",
+      "target": 18
+    },
+    {
+      "day": "2008-07-01",
+      "target": 88
+    },
+    {
+      "day": "2009-06-01",
+      "target": 16
+    },
+    {
+      "day": "2009-07-01",
+      "target": 104
+    },
+    {
+      "day": "2009-08-01",
+      "target": 16
+    },
+    {
+      "day": "2011-04-01",
+      "target": 91
+    },
+    {
+      "day": "2011-05-01",
+      "target": 98
+    },
+    {
+      "day": "2011-09-01",
+      "target": 85
+    },
+    {
+      "day": "2012-05-01",
+      "target": 63
+    },
+    {
+      "day": "2012-06-01",
+      "target": 237
+    },
+    {
+      "day": "2013-06-01",
+      "target": 143
+    },
+    {
+      "day": "2013-07-01",
+      "target": 191
+    },
+    {
+      "day": "2014-06-01",
+      "target": 421
+    },
+    {
+      "day": "2014-07-01",
+      "target": 193
+    },
+    {
+      "day": "2015-04-01",
+      "target": 42
+    },
+    {
+      "day": "2015-09-01",
+      "target": 230
+    },
+    {
+      "day": "2015-10-01",
+      "target": 32
+    },
+    {
+      "day": "2016-09-01",
+      "target": 327
+    },
+    {
+      "day": "2017-04-01",
+      "target": 57
+    },
+    {
+      "day": "2017-05-01",
+      "target": 37
+    },
+    {
+      "day": "2017-06-01",
+      "target": 35
+    },
+    {
+      "day": "2017-08-01",
+      "target": 92
+    },
+    {
+      "day": "2018-05-01",
+      "target": 1278
+    },
+    {
+      "day": "2019-04-01",
+      "target": 11847
+    },
+    {
+      "day": "2019-05-01",
+      "target": 1620
+    },
+    {
+      "day": "2019-06-01",
+      "target": 415
+    }
+  ]
+}

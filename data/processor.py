@@ -22,7 +22,7 @@ from data.source.windmill import WindmillProcessor
 from data.source.metrla import MetrLaProcessor
 from data.source.pemsbay import PemsBayProcessor
 from data.source.montevideo import MontevideoProcessor
-from data.source.celegans import CelegansProcessor
+from data.source.crop import CropProcessor
 
 ## config settings
 config = configparser.ConfigParser()
@@ -47,7 +47,7 @@ NAME_WINDMILL = config['names']['NAME_WINDMILL']
 NAME_METRLA = config['names']['NAME_METRLA']
 NAME_PEMSBAY = config['names']['NAME_PEMSBAY']
 NAME_MONTEVIDEO = config['names']['NAME_MONTEVIDEO']
-NAME_CELEGANS = config['names']['NAME_CELEGANS']
+NAME_CROP = config['names']['NAME_CROP']
 
 URL_AMAZON = config['urls']['URL_AMAZON'].strip('"')
 URL_FEDERAL = config['urls']['URL_FEDERAL'].strip('"')
@@ -58,6 +58,8 @@ URL_WIKI = config['urls']['URL_WIKI'].strip('"')
 URL_OVERFLOW = config['urls']['URL_OVERFLOW'].strip('"')
 URL_EMAIL = config['urls']['URL_EMAIL'].strip('"')
 URL_COLLEGE = config['urls']['URL_COLLEGE'].strip('"')
+URL_CROP_SAMPLING = config['urls']['URL_CROP_SAMPLING'].strip('"')
+URL_CROP_FIELD = config['urls']['URL_CROP_FIELD'].strip('"')
 
 FILE_IDLING_EVENTS = config['files']['FILE_IDLING_EVENTS'].strip('"')
 
@@ -230,13 +232,12 @@ if __name__ == '__main__':
     else:
         logging.info(f"Montevideo data already exists at {montevideo_path}. Skipping data source.")
 
-    ## --- c. elegans --- ##
-    celegans_path = os.path.join(PATH_OUT, f"{NAME_CELEGANS}.json")
-    if not os.path.exists(celegans_path):
-        logging.info("Processing C. Elegans data...")
-        data_celegans = CelegansProcessor().run()
-        _save_to_json(data = data_celegans, path = celegans_path)
-        logging.info(f"C. Elegans data saved to {celegans_path}")
+    ## --- crop pollinator --- ##
+    crop_path = os.path.join(PATH_OUT, f"{NAME_CROP}.json")
+    if not os.path.exists(crop_path):
+        logging.info("Processing CropPol data...")
+        data_crop = CropProcessor(url_sampling = URL_CROP_SAMPLING, url_field = URL_CROP_FIELD).run()
+        _save_to_json(data=data_crop, path=crop_path)
+        logging.info(f"CropPol data saved to {crop_path}")
     else:
-        logging.info(f"C. Elegans data already exists at {celegans_path}. Skipping data source.")
-
+        logging.info(f"CropPol data already exists at {crop_path}. Skipping data source.")
