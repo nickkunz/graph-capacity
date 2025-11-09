@@ -43,5 +43,5 @@ class EmailProcessor:
         self.process_events()
         return {
             "invariants": self.invariants,
-            "events": self.events.to_dict(orient="records")
+            "events": self.events.to_dict(orient = "records")
         }
