@@ -38,32 +38,33 @@ def _process_events_wind(data: DynamicGraphTemporalSignal, hours: int = 24, thre
 
 ## windmill power output network
 class WindmillProcessor:
-    def __init__(self):
-        self.data_raw: Optional[DynamicGraphTemporalSignal] = None
+    def __init__(self, raw_data_dir: str):
+        self.raw_data_dir = raw_data_dir
+        self.dataset: Optional[DynamicGraphTemporalSignal] = None
         self.graph: Optional[ig.Graph] = None
         self.invariants: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
 
     def load_data(self):
         """ Loads the raw data from source. """
-        loader = WindmillOutputLargeDatasetLoader  ## class, not instance!
-        self.data_raw = _load_network_pygt(loader = loader)
+        loader = WindmillOutputLargeDatasetLoader(raw_data_dir = self.raw_data_dir)
+        self.dataset = _load_network_pygt(loader=loader)
         return self
 
     def process_network(self):
         """ Builds the network and computes invariants. """
-        if self.data_raw is None:
+        if self.dataset is None:
             self.load_data()
-        nodes, edges = _build_network_pygt(dataset = self.data_raw)
+        nodes, edges = _build_network_pygt(dataset = self.dataset)
         self.graph = _create_igraph_object(nodes = nodes, edges = edges)
         self.invariants = GraphInvariants(graph = self.graph).all()
         return self
 
     def process_events(self):
         """ Processes the event data. """
-        if self.data_raw is None:
+        if self.dataset is None:
             self.load_data()
-        self.events = _process_events_wind(data = self.data_raw)
+        self.events = _process_events_wind(data = self.dataset)
         return self
 
     def run(self):
