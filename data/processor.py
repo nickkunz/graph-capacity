@@ -14,6 +14,9 @@ from data.source.mooc import MoocProcessor
 from data.source.world import WorldBankProcessor
 from data.source.wiki import WikiProcessor
 from data.source.jodie import JodieProcessor
+from data.source.overflow import OverflowProcessor
+from data.source.email import EmailProcessor
+from data.source.college import CollegeProcessor
 
 ## config settings
 config = configparser.ConfigParser()
@@ -30,6 +33,9 @@ NAME_MOOC = config['names']['NAME_MOOC']
 NAME_WORLD = config['names']['NAME_WORLD']
 NAME_WIKI = config['names']['NAME_WIKI']
 NAME_JODIE = config['names']['NAME_JODIE']
+NAME_OVERFLOW = config['names']['NAME_OVERFLOW']
+NAME_EMAIL = config['names']['NAME_EMAIL']
+NAME_COLLEGE = config['names']['NAME_COLLEGE']
 
 URL_AMAZON = config['urls']['URL_AMAZON']
 URL_FEDERAL = config['urls']['URL_FEDERAL']
@@ -37,6 +43,9 @@ URL_MOOC = config['urls']['URL_MOOC']
 URL_WORLD_NETWORK = config['urls']['URL_WORLD_NETWORK']
 URL_WORLD_METADATA = config['urls']['URL_WORLD_METADATA']
 URL_WIKI_EVENTS = config['urls']['URL_WIKI_EVENTS']
+URL_OVERFLOW = config['urls']['URL_OVERFLOW']
+URL_EMAIL = config['urls']['URL_EMAIL']
+URL_COLLEGE = config['urls']['URL_COLLEGE']
 
 ## logging
 logging.basicConfig(
@@ -139,3 +148,39 @@ if __name__ == '__main__':
         logging.info(f"JODIE data saved to {jodie_path}")
     else:
         logging.info(f"JODIE data already exists at {jodie_path}. Skipping data source.")
+
+    ## --- stackoverflow --- ##
+    overflow_path = PATH_OUT + NAME_OVERFLOW + '.json'
+    if not os.path.exists(overflow_path):
+        logging.info("Processing Stack Overflow data...")
+        data_overflow = OverflowProcessor(
+            url = URL_OVERFLOW
+        ).run()
+        _save_to_json(data = data_overflow, path = overflow_path)
+        logging.info(f"Stack Overflow data saved to {overflow_path}")
+    else:
+        logging.info(f"Stack Overflow data already exists at {overflow_path}. Skipping data source.")
+
+    ## --- email --- ##
+    email_path = PATH_OUT + NAME_EMAIL + '.json'
+    if not os.path.exists(email_path):
+        logging.info("Processing Email data...")
+        data_email = EmailProcessor(
+            url = URL_EMAIL
+        ).run()
+        _save_to_json(data = data_email, path = email_path)
+        logging.info(f"Email data saved to {email_path}")
+    else:
+        logging.info(f"Email data already exists at {email_path}. Skipping data source.")
+
+    ## --- college --- ##
+    college_path = PATH_OUT + NAME_COLLEGE + '.json'
+    if not os.path.exists(college_path):
+        logging.info("Processing College Message data...")
+        data_college = CollegeProcessor(
+            url = URL_COLLEGE
+        ).run()
+        _save_to_json(data = data_college, path = college_path)
+        logging.info(f"College Message data saved to {college_path}")
+    else:
+        logging.info(f"College Message data already exists at {college_path}. Skipping data source.")
