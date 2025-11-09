@@ -198,18 +198,16 @@ class CelegansProcessor:
         """ Builds the network and computes invariants. """
         if self.data_network is None:
             self.load_data()
-        
-        nodes, edges = _build_network_celegans(data=self.data_network)
-        self.graph = _create_igraph_object(nodes=nodes, edges=edges)
-        self.invariants = GraphInvariants(graph=self.graph).all()
+        nodes, edges = _build_network_celegans(data = self.data_network)
+        self.graph = _create_igraph_object(nodes = nodes, edges = edges)
+        self.invariants = GraphInvariants(graph = self.graph).all()
         return self
 
     def process_events(self):
         """ Processes the event data. """
         if self.data_events is None:
             self.load_data()
-        
-        self.events = _aggregate_by_day(data=self.data_events, datetime='day')
+        self.events = _aggregate_by_day(data = self.data_events, datetime = 'day')
         return self
 
     def run(self):
