@@ -120,9 +120,9 @@ def _load_events_faers(id: str, url: str) -> pd.DataFrame:
 ## process faers adverse event reports
 def _process_events_faers(data: pd.DataFrame) -> pd.DataFrame:
     if data.empty:
-        return pd.DataFrame(columns = ["date", "target"])
-    data["date"] = pd.to_datetime(data["date"])
-    return data.groupby("date").size().reset_index(name = "target")
+        return pd.DataFrame(columns = ["day", "target"])
+    data["day"] = pd.to_datetime(arg = data["date"]).dt.date
+    return data.groupby("day").size().reset_index(name = "target")
 
 ## faers adverse event network
 class FaersProcessor:
@@ -166,4 +166,3 @@ class FaersProcessor:
             "invariants": self.invariants,
             "events": self.events.to_dict(orient = "records")
         }
-    
