@@ -1,0 +1,178 @@
+{
+  "invariants": {
+    "n_nodes": 19,
+    "n_edges": 31,
+    "n_articulation_points": 0,
+    "n_bridges": 0,
+    "diameter": 6.0,
+    "radius": 3.0,
+    "degeneracy": 2,
+    "k_core_size": 19,
+    "maximum_degree": 5,
+    "degree_variance": 0.7202216066481996,
+    "global_clustering": 0.1948051948051948,
+    "degree_assortativity": 0.5660964230171069,
+    "degree_entropy": 1.2187590038372849,
+    "joint_degree_entropy": 1.6946249124960264,
+    "degree_skewness": -0.014011927112048865,
+    "normalized_laplacian_second_moment": 1.320906432748538,
+    "normalized_laplacian_third_moment": 1.9377192982456137,
+    "random_walk_triangle_weight": 0.025,
+    "random_walk_fourth_moment": 0.19333272417153993,
+    "adjacency_fourth_moment_per_node": 23.68421052631579
+  },
+  "events": [
+    {
+      "day": "2010-02-19",
+      "target": 6
+    },
+    {
+      "day": "2010-02-20",
+      "target": 1
+    },
+    {
+      "day": "2010-03-08",
+      "target": 5
+    },
+    {
+      "day": "2010-03-11",
+      "target": 4
+    },
+    {
+      "day": "2010-03-12",
+      "target": 3
+    },
+    {
+      "day": "2010-03-15",
+      "target": 2
+    },
+    {
+      "day": "2010-03-16",
+      "target": 2
+    },
+    {
+      "day": "2010-03-20",
+      "target": 10
+    },
+    {
+      "day": "2010-04-01",
+      "target": 3
+    },
+    {
+      "day": "2010-04-05",
+      "target": 5
+    },
+    {
+      "day": "2010-05-04",
+      "target": 2
+    },
+    {
+      "day": "2010-05-05",
+      "target": 1
+    },
+    {
+      "day": "2010-05-10",
+      "target": 14
+    },
+    {
+      "day": "2010-05-11",
+      "target": 26
+    },
+    {
+      "day": "2010-06-01",
+      "target": 2
+    },
+    {
+      "day": "2010-06-02",
+      "target": 2
+    },
+    {
+      "day": "2010-06-03",
+      "target": 8
+    },
+    {
+      "day": "2010-06-10",
+      "target": 7
+    },
+    {
+      "day": "2010-06-11",
+      "target": 1
+    },
+    {
+      "day": "2010-07-01",
+      "target": 6
+    },
+    {
+      "day": "2010-07-02",
+      "target": 6
+    },
+    {
+      "day": "2010-07-03",
+      "target": 5
+    },
+    {
+      "day": "2010-07-04",
+      "target": 3
+    },
+    {
+      "day": "2010-07-15",
+      "target": 10
+    },
+    {
+      "day": "2010-08-01",
+      "target": 2
+    },
+    {
+      "day": "2010-08-03",
+      "target": 1
+    },
+    {
+      "day": "2010-08-16",
+      "target": 6
+    },
+    {
+      "day": "2010-09-02",
+      "target": 3
+    },
+    {
+      "day": "2010-09-15",
+      "target": 7
+    },
+    {
+      "day": "2010-09-17",
+      "target": 1
+    },
+    {
+      "day": "2010-10-01",
+      "target": 4
+    },
+    {
+      "day": "2010-10-15",
+      "target": 1
+    },
+    {
+      "day": "2010-10-16",
+      "target": 2
+    },
+    {
+      "day": "2010-11-01",
+      "target": 7
+    },
+    {
+      "day": "2010-12-16",
+      "target": 4
+    },
+    {
+      "day": "2011-02-25",
+      "target": 2
+    },
+    {
+      "day": "2011-02-26",
+      "target": 4
+    },
+    {
+      "day": "2011-02-28",
+      "target": 1
+    }
+  ]
+}
