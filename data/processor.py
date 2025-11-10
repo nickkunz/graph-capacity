@@ -26,6 +26,7 @@ from data.source.montevideo import MontevideoProcessor
 from data.source.crop import CropProcessor
 from data.source.faers import FaersProcessor
 from data.source.epilepsy import EpilepsyProcessor
+from data.source.gwosc import GwoscProcessor
 
 ## config settings
 config = configparser.ConfigParser()
@@ -54,6 +55,7 @@ NAME_MONTEVIDEO = config['names']['NAME_MONTEVIDEO']
 NAME_CROP = config['names']['NAME_CROP']
 NAME_FAERS = config['names']['NAME_FAERS']
 NAME_EPILEPSY = config['names']['NAME_EPILEPSY']
+NAME_GWOSC = config['names']['NAME_GWOSC']
 
 URL_AMAZON = config['urls']['URL_AMAZON'].strip('"')
 URL_FEDERAL = config['urls']['URL_FEDERAL'].strip('"')
@@ -68,6 +70,7 @@ URL_CROP_SAMPLING = config['urls']['URL_CROP_SAMPLING'].strip('"')
 URL_CROP_FIELD = config['urls']['URL_CROP_FIELD'].strip('"')
 URL_FAERS = config['urls']['URL_FAERS'].strip('"')
 URL_EPILEPSY = config['urls']['URL_EPILEPSY'].strip('"')
+URL_GWOSC = config['urls']['URL_GWOSC'].strip('"')
 
 FILE_IDLING_EVENTS = config['files']['FILE_IDLING_EVENTS'].strip('"')
 
@@ -280,3 +283,13 @@ if __name__ == '__main__':
         logging.info(f"Epilepsy data saved to {path_epilepsy}")
     else:
         logging.info(f"Epilepsy data already exists at {path_epilepsy}. Skipping data source.")
+
+    ## --- gwosc --- ##
+    path_gwosc = os.path.join(PATH_OUT, f"{NAME_GWOSC}.json")
+    if not os.path.exists(path_gwosc):
+        logging.info("Processing GWOSC data...")
+        data_gwosc = GwoscProcessor(url = URL_GWOSC).run()
+        _save_to_json(data = data_gwosc, path = path_gwosc)
+        logging.info(f"GWOSC data saved to {path_gwosc}")
+    else:
+        logging.info(f"GWOSC data already exists at {path_gwosc}. Skipping data source.")
