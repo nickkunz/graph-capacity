@@ -23,6 +23,7 @@ from data.source.metrla import MetrLaProcessor
 from data.source.pemsbay import PemsBayProcessor
 from data.source.montevideo import MontevideoProcessor
 from data.source.crop import CropProcessor
+from data.source.faers import FaersProcessor
 
 ## config settings
 config = configparser.ConfigParser()
@@ -48,6 +49,7 @@ NAME_METRLA = config['names']['NAME_METRLA']
 NAME_PEMSBAY = config['names']['NAME_PEMSBAY']
 NAME_MONTEVIDEO = config['names']['NAME_MONTEVIDEO']
 NAME_CROP = config['names']['NAME_CROP']
+NAME_FAERS = config['names']['NAME_FAERS']
 
 URL_AMAZON = config['urls']['URL_AMAZON'].strip('"')
 URL_FEDERAL = config['urls']['URL_FEDERAL'].strip('"')
@@ -60,6 +62,7 @@ URL_EMAIL = config['urls']['URL_EMAIL'].strip('"')
 URL_COLLEGE = config['urls']['URL_COLLEGE'].strip('"')
 URL_CROP_SAMPLING = config['urls']['URL_CROP_SAMPLING'].strip('"')
 URL_CROP_FIELD = config['urls']['URL_CROP_FIELD'].strip('"')
+URL_FAERS = config['urls']['URL_FAERS'].strip('"')
 
 FILE_IDLING_EVENTS = config['files']['FILE_IDLING_EVENTS'].strip('"')
 
@@ -223,21 +226,31 @@ if __name__ == '__main__':
         logging.info(f"PEMS-BAY data already exists at {pemsbay_path}. Skipping data source.")
 
     ## --- montevideo --- ##
-    montevideo_path = os.path.join(PATH_OUT, f"{NAME_MONTEVIDEO}.json")
-    if not os.path.exists(montevideo_path):
+    path_montevideo = os.path.join(PATH_OUT, f"{NAME_MONTEVIDEO}.json")
+    if not os.path.exists(path_montevideo):
         logging.info("Processing Montevideo data...")
         data_montevideo = MontevideoProcessor().run()
-        _save_to_json(data = data_montevideo, path = montevideo_path)
-        logging.info(f"Montevideo data saved to {montevideo_path}")
+        _save_to_json(data = data_montevideo, path = path_montevideo)
+        logging.info(f"Montevideo data saved to {path_montevideo}")
     else:
-        logging.info(f"Montevideo data already exists at {montevideo_path}. Skipping data source.")
+        logging.info(f"Montevideo data already exists at {path_montevideo}. Skipping data source.")
 
     ## --- crop pollinator --- ##
-    crop_path = os.path.join(PATH_OUT, f"{NAME_CROP}.json")
-    if not os.path.exists(crop_path):
+    path_crop = os.path.join(PATH_OUT, f"{NAME_CROP}.json")
+    if not os.path.exists(path_crop):
         logging.info("Processing CropPol data...")
         data_crop = CropProcessor(url_sampling = URL_CROP_SAMPLING, url_field = URL_CROP_FIELD).run()
-        _save_to_json(data=data_crop, path=crop_path)
-        logging.info(f"CropPol data saved to {crop_path}")
+        _save_to_json(data = data_crop, path = path_crop)
+        logging.info(f"CropPol data saved to {path_crop}")
     else:
-        logging.info(f"CropPol data already exists at {crop_path}. Skipping data source.")
+        logging.info(f"CropPol data already exists at {path_crop}. Skipping data source.")
+
+    ## --- faers --- ##
+    path_faers = os.path.join(PATH_OUT, f"{NAME_FAERS}.json")
+    if not os.path.exists(path_faers):
+        logging.info("Processing FAERS data...")
+        data_faers = FaersProcessor(id = "IMATINIB", url = URL_FAERS).run()
+        _save_to_json(data = data_faers, path = path_faers)
+        logging.info(f"FAERS data saved to {path_faers}")
+    else:
+        logging.info(f"FAERS data already exists at {path_faers}. Skipping data source.")
