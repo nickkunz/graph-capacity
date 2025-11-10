@@ -23,15 +23,6 @@ def _aggregate_by_day(data: pd.DataFrame, datetime: str) -> pd.DataFrame:
         target = (datetime, 'size')
     ).reset_index()
 
-## haversine distance matrix
-def _compute_haversine(a, b) -> np.ndarray:
-    radius = 6371.0
-    lat1, lon1 = np.radians(a)
-    lat2, lon2 = np.radians(b)
-    dlat, dlon = lat2 - lat1, lon2 - lon1
-    a = np.sin(dlat/2) ** 2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon/2) ** 2
-    return radius * 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
-
 ## igraph object from nodes and edges
 def _create_igraph_object(nodes: list[str], edges: list[tuple]) -> ig.Graph:
     g = ig.Graph(directed = False)
