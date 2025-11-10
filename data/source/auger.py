@@ -17,7 +17,7 @@ from src.invariants import GraphInvariants
 from src.utils import _create_igraph_object, _aggregate_by_day
 
 ## filter auger stations by array and validate coordinates
-def process_network_auger(data: pd.DataFrame) -> pd.DataFrame:
+def _process_network_auger(data: pd.DataFrame) -> pd.DataFrame:
     return (
         data
         .dropna(subset = ["id", "northing", "easting", "sd1500", "sd750"])
@@ -27,12 +27,12 @@ def process_network_auger(data: pd.DataFrame) -> pd.DataFrame:
     )
 
 ## build station graph with mutual 6-nn at nominal spacing
-def build_station_graph(station_map: pd.DataFrame, array: str = "both"):
+def _build_network_auger(station_map: pd.DataFrame, array: str = "both"):
     
     ## build both arrays and combine
     if array == "both":
-        edges_1500, nodes_1500 = build_station_graph(station_map, array = "sd1500")
-        edges_750, nodes_750 = build_station_graph(station_map, array = "sd750")
+        edges_1500, nodes_1500 = _build_network_auger(station_map, array = "sd1500")
+        edges_750, nodes_750 = _build_network_auger(station_map, array = "sd750")
 
         ## combine unique nodes and all edges
         all_nodes = list(set(nodes_1500 + nodes_750))
@@ -80,7 +80,7 @@ def build_station_graph(station_map: pd.DataFrame, array: str = "both"):
 
 
 ## load auger cosmic ray events from summary zip
-def load_auger_events(url: str, timeout: int = 120) -> pd.DataFrame:
+def _load_events_auger(url: str, timeout: int = 120) -> pd.DataFrame:
     
     ## download and extract zip
     response = requests.get(url = url, timeout = timeout)
@@ -108,7 +108,7 @@ def load_auger_events(url: str, timeout: int = 120) -> pd.DataFrame:
     return pd.concat(frames, ignore_index = True)
 
 ## process auger cosmic ray events, convert time and extract key fields
-def process_auger_events(data: pd.DataFrame) -> pd.DataFrame:
+def _process_events_auger(data: pd.DataFrame) -> pd.DataFrame:
     
     ## convert gps time to datetime (seconds since 1980-01-06 UTC)
     gps_epoch = datetime(1980, 1, 6, tzinfo = timezone.utc)
@@ -143,15 +143,15 @@ class AugerProcessor:
         """ Loads the raw data from source. """
         os.environ['SSL_CERT_FILE'] = certifi.where()
         self.data_network = pd.read_csv(filepath_or_buffer=self.url_network)
-        self.data_events = load_auger_events(url=self.url_events)
+        self.data_events = _load_events_auger(url=self.url_events)
         return self
 
     def process_network(self):
         """ Builds the network and computes invariants. """
         if self.data_network is None:
             self.load_data()
-        station_map = process_network_auger(data=self.data_network)
-        edges, nodes = build_station_graph(station_map=station_map)
+        station_map = _process_network_auger(data=self.data_network)
+        edges, nodes = _build_network_auger(station_map=station_map)
         
         self.graph = _create_igraph_object(nodes=nodes, edges=edges)
         self.invariants = GraphInvariants(graph=self.graph).all()
@@ -162,7 +162,7 @@ class AugerProcessor:
         if self.data_events is None:
             self.load_data()
             
-        events_processed = process_auger_events(data=self.data_events)
+        events_processed = _process_events_auger(data=self.data_events)
         self.events = _aggregate_by_day(data=events_processed, datetime='datetime')
         return self
 
