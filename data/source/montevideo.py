@@ -14,30 +14,32 @@ from src.utils import _load_network_pygt, _build_network_pygt, _create_igraph_ob
 from src.invariants import GraphInvariants
 
 ## process montevideo dataset into daily event aggregates
-def _process_events_montevideo(data: DynamicGraphTemporalSignal, hours: int = 24, percentile: int = 99) -> pd.DataFrame:
+def _process_events_montevideo(data, hours: int = 24, perc: int = 99) -> pd.DataFrame:
 
     ## collect standardized inflow [nodes × hours]
-    signal = np.stack([snap.y.numpy().flatten() for snap in data], axis=1)
+    ys = []
+    for snap in data:
+        ys.append(snap.y.detach().cpu().numpy().ravel())
+    signal = np.column_stack(ys)
 
     ## global thresholding for high activity
-    threshold = np.percentile(a=signal, q=percentile)
+    threshold = np.percentile(a = signal, q = perc)
     activity = signal > threshold
 
     ## count total high-activity events per hour
-    events_per_hour = activity.sum(axis=0)
+    events = activity.sum(axis = 0)
 
-    ## trim to full days and reshape for daily aggregation
-    num_days = events_per_hour.size // hours
-    if num_days == 0:
-        return pd.DataFrame({"day": [], "target": []})
+    ## trim to full days
+    totals = (events.size // hours) * hours
+    events = events[:totals].reshape(-1, hours)
 
-    totals = num_days * hours
-    daily_events = events_per_hour[:totals].reshape(-1, hours).sum(axis=1)
+    ## daily aggregation
+    daily = events.sum(axis = 1).astype(np.int32)
 
-    ## create output dataframe
+    ## construct dataframe
     return pd.DataFrame({
-        "day": pd.to_datetime(pd.date_range(start='2020-01-01', periods=num_days, freq='D')).date,
-        "target": daily_events.astype(np.int64)
+        "day": np.arange(daily.size, dtype = np.int64),
+        "target": daily
     })
 
 ## montevideo bus network
