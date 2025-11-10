@@ -8,7 +8,7 @@ from typing import Optional, Dict, Any
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.utils import _create_igraph_object, _aggregate_by_day
+from src.utils import _create_igraph_object
 from src.invariants import GraphInvariants
 
 ## load caenorhabditis elegans network data
@@ -179,6 +179,9 @@ def _load_events_celegans() -> pd.DataFrame:
     events["day"] = np.floor(events["time_days"]).astype(int)
     return events
 
+def _process_events_celegans(data: pd.DataFrame) -> pd.DataFrame:
+    return data.groupby('day').size().reset_index(name='target')
+
 ## c. elegans network
 class CelegansProcessor:
     def __init__(self):
@@ -207,7 +210,7 @@ class CelegansProcessor:
         """ Processes the event data. """
         if self.data_events is None:
             self.load_data()
-        self.events = _aggregate_by_day(data = self.data_events, datetime = 'day')
+        self.events = _process_events_celegans(data = self.data_events)
         return self
 
     def run(self):
