@@ -12,7 +12,7 @@ from src.utils import _create_igraph_object, _aggregate_by_day, _request_with_re
 from src.invariants import GraphInvariants
 
 ## load amazon network
-def load_network_amazon(url: str, root_path: str, name: str, timeout: int = 30) -> pd.DataFrame:
+def _load_network_amazon(url: str, root_path: str, name: str, timeout: int = 30) -> pd.DataFrame:
     
     ## configure path
     file_name = os.path.basename(url)
@@ -61,7 +61,7 @@ def load_network_amazon(url: str, root_path: str, name: str, timeout: int = 30) 
         raise RuntimeError(f"Failed to parse reviews from data: {str(e)}")
 
 ## build amazon network
-def build_network_amazon(data: pd.DataFrame) -> tuple[list[str], list[tuple[str, str]]]:
+def _build_network_amazon(data: pd.DataFrame) -> tuple[list[str], list[tuple[str, str]]]:
     
     ## validate input
     if not {'user_id', 'product_id'}.issubset(data.columns):
@@ -86,7 +86,7 @@ def build_network_amazon(data: pd.DataFrame) -> tuple[list[str], list[tuple[str,
     return nodes, edges
 
 ## process amazon review event counts
-def process_events_amazon(data: pd.DataFrame) -> pd.DataFrame:
+def _process_events_amazon(data: pd.DataFrame) -> pd.DataFrame:
     if "timestamp" not in data.columns:
         raise ValueError("Input DataFrame must contain 'timestamp' column.")
 
@@ -108,14 +108,14 @@ class AmazonProcessor:
 
     def load_data(self):
         """ Loads the raw data from source. """
-        self.data_raw = load_network_amazon(url = self.url, root_path = self.root_path, name = self.name)
+        self.data_raw = _load_network_amazon(url = self.url, root_path = self.root_path, name = self.name)
         return self
 
     def process_network(self):
         """ Builds the network and computes invariants. """
         if self.data_raw is None:
             self.load_data()
-        nodes, edges = build_network_amazon(data = self.data_raw)
+        nodes, edges = _build_network_amazon(data = self.data_raw)
         self.graph = _create_igraph_object(nodes = nodes, edges = edges)
         self.invariants = GraphInvariants(graph = self.graph).all()
         return self
@@ -124,7 +124,7 @@ class AmazonProcessor:
         """ Processes the event data. """
         if self.data_raw is None:
             self.load_data()
-        events = process_events_amazon(data = self.data_raw)
+        events = _process_events_amazon(data = self.data_raw)
         self.events = _aggregate_by_day(events, datetime = 'datetime') 
         return self
 
