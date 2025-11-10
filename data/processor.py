@@ -16,6 +16,7 @@ from data.source.wiki import WikiProcessor
 from data.source.jodie import JodieProcessor
 from data.source.overflow import OverflowProcessor
 from data.source.email import EmailProcessor
+from data.source.celegans import CelegansProcessor
 from data.source.college import CollegeProcessor
 from data.source.idling import IdlingProcessor
 from data.source.windmill import WindmillProcessor
@@ -24,6 +25,7 @@ from data.source.pemsbay import PemsBayProcessor
 from data.source.montevideo import MontevideoProcessor
 from data.source.crop import CropProcessor
 from data.source.faers import FaersProcessor
+from data.source.epilepsy import EpilepsyProcessor
 
 ## config settings
 config = configparser.ConfigParser()
@@ -43,6 +45,7 @@ NAME_JODIE = config['names']['NAME_JODIE']
 NAME_OVERFLOW = config['names']['NAME_OVERFLOW']
 NAME_EMAIL = config['names']['NAME_EMAIL']
 NAME_COLLEGE = config['names']['NAME_COLLEGE']
+NAME_CELEGANS = config['names']['NAME_CELEGANS']
 NAME_IDLING = config['names']['NAME_IDLING']
 NAME_WINDMILL = config['names']['NAME_WINDMILL']
 NAME_METRLA = config['names']['NAME_METRLA']
@@ -50,6 +53,7 @@ NAME_PEMSBAY = config['names']['NAME_PEMSBAY']
 NAME_MONTEVIDEO = config['names']['NAME_MONTEVIDEO']
 NAME_CROP = config['names']['NAME_CROP']
 NAME_FAERS = config['names']['NAME_FAERS']
+NAME_EPILEPSY = config['names']['NAME_EPILEPSY']
 
 URL_AMAZON = config['urls']['URL_AMAZON'].strip('"')
 URL_FEDERAL = config['urls']['URL_FEDERAL'].strip('"')
@@ -63,6 +67,7 @@ URL_COLLEGE = config['urls']['URL_COLLEGE'].strip('"')
 URL_CROP_SAMPLING = config['urls']['URL_CROP_SAMPLING'].strip('"')
 URL_CROP_FIELD = config['urls']['URL_CROP_FIELD'].strip('"')
 URL_FAERS = config['urls']['URL_FAERS'].strip('"')
+URL_EPILEPSY = config['urls']['URL_EPILEPSY'].strip('"')
 
 FILE_IDLING_EVENTS = config['files']['FILE_IDLING_EVENTS'].strip('"')
 
@@ -139,7 +144,7 @@ if __name__ == '__main__':
     wiki_path = os.path.join(PATH_OUT, f"{NAME_WIKI}.json")
     if not os.path.exists(wiki_path):
         logging.info("Processing Wiki data...")
-        data_wiki = WikiProcessor(url_events = URL_WIKI).run()
+        data_wiki = WikiProcessor(url = URL_WIKI, name = "wikivital_mathematics.json").run()
         _save_to_json(data = data_wiki, path = wiki_path)
         logging.info(f"Wiki data saved to {wiki_path}")
     else:
@@ -254,3 +259,24 @@ if __name__ == '__main__':
         logging.info(f"FAERS data saved to {path_faers}")
     else:
         logging.info(f"FAERS data already exists at {path_faers}. Skipping data source.")
+
+    ## --- c. elegans --- ##
+    path_celegans = os.path.join(PATH_OUT, f"{NAME_CELEGANS}.json")
+    if not os.path.exists(path_celegans):
+        logging.info("Processing C. Elegans data...")
+        data_celegans = CelegansProcessor().run()
+        _save_to_json(data = data_celegans, path = path_celegans)
+        logging.info(f"C. Elegans data saved to {path_celegans}")
+    else:
+        logging.info(f"C. Elegans data already exists at {path_celegans}. Skipping data source.")
+
+    ## --- epilepsy --- ##
+    path_epilepsy = os.path.join(PATH_OUT, f"{NAME_EPILEPSY}.json")
+    if not os.path.exists(path_epilepsy):
+        logging.info("Processing Epilepsy data...")
+        ids = [f'chb{i:02d}' for i in range(1, 25)]
+        data_epilepsy = EpilepsyProcessor(url = URL_EPILEPSY, ids = ids).run()
+        _save_to_json(data = data_epilepsy, path = path_epilepsy)
+        logging.info(f"Epilepsy data saved to {path_epilepsy}")
+    else:
+        logging.info(f"Epilepsy data already exists at {path_epilepsy}. Skipping data source.")
