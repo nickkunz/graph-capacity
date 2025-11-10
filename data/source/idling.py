@@ -71,8 +71,8 @@ def _process_events_idling(data: pd.DataFrame) -> pd.DataFrame:
 
 ## idling vehicle network
 class IdlingProcessor:
-    def __init__(self, events_path: str, query: str = "Halifax, Canada"):
-        self.events_path = events_path
+    def __init__(self, path_events: str, query: str = "Halifax, Canada"):
+        self.path_events = path_events
         self.query = query
         self.data_network: Optional[nx.MultiDiGraph] = None
         self.data_events: Optional[pd.DataFrame] = None
@@ -83,7 +83,7 @@ class IdlingProcessor:
     def load_data(self):
         """ Loads the raw data from source. """
         self.data_network = _load_network_idling(query = self.query)
-        self.data_events = _load_events_idling(path = self.events_path)
+        self.data_events = _load_events_idling(path = self.path_events)
         return self
 
     def process_network(self):
