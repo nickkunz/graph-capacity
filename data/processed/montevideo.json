@@ -1,0 +1,146 @@
+{
+  "invariants": {
+    "n_nodes": 675,
+    "n_edges": 690,
+    "n_articulation_points": 261,
+    "n_bridges": 259,
+    "diameter": 155.0,
+    "radius": 78.0,
+    "degeneracy": 2,
+    "k_core_size": 426,
+    "maximum_degree": 4,
+    "degree_variance": 0.10765432098765433,
+    "global_clustering": 0.015852047556142668,
+    "degree_assortativity": 0.07457348466275639,
+    "degree_entropy": 0.3606306197615379,
+    "joint_degree_entropy": 0.6955851595890644,
+    "degree_skewness": 2.3645724369854,
+    "normalized_laplacian_second_moment": 1.4888065843621399,
+    "normalized_laplacian_third_moment": 2.4647839506172837,
+    "random_walk_triangle_weight": 0.0016358024691358023,
+    "random_walk_fourth_moment": 0.3623225308641975,
+    "adjacency_fourth_moment_per_node": 6.554074074074074
+  },
+  "events": [
+    {
+      "day": "2020-01-01",
+      "target": 188
+    },
+    {
+      "day": "2020-01-02",
+      "target": 206
+    },
+    {
+      "day": "2020-01-03",
+      "target": 116
+    },
+    {
+      "day": "2020-01-04",
+      "target": 52
+    },
+    {
+      "day": "2020-01-05",
+      "target": 168
+    },
+    {
+      "day": "2020-01-06",
+      "target": 256
+    },
+    {
+      "day": "2020-01-07",
+      "target": 197
+    },
+    {
+      "day": "2020-01-08",
+      "target": 209
+    },
+    {
+      "day": "2020-01-09",
+      "target": 240
+    },
+    {
+      "day": "2020-01-10",
+      "target": 138
+    },
+    {
+      "day": "2020-01-11",
+      "target": 54
+    },
+    {
+      "day": "2020-01-12",
+      "target": 104
+    },
+    {
+      "day": "2020-01-13",
+      "target": 217
+    },
+    {
+      "day": "2020-01-14",
+      "target": 206
+    },
+    {
+      "day": "2020-01-15",
+      "target": 184
+    },
+    {
+      "day": "2020-01-16",
+      "target": 232
+    },
+    {
+      "day": "2020-01-17",
+      "target": 108
+    },
+    {
+      "day": "2020-01-18",
+      "target": 64
+    },
+    {
+      "day": "2020-01-19",
+      "target": 193
+    },
+    {
+      "day": "2020-01-20",
+      "target": 145
+    },
+    {
+      "day": "2020-01-21",
+      "target": 209
+    },
+    {
+      "day": "2020-01-22",
+      "target": 121
+    },
+    {
+      "day": "2020-01-23",
+      "target": 217
+    },
+    {
+      "day": "2020-01-24",
+      "target": 116
+    },
+    {
+      "day": "2020-01-25",
+      "target": 46
+    },
+    {
+      "day": "2020-01-26",
+      "target": 166
+    },
+    {
+      "day": "2020-01-27",
+      "target": 181
+    },
+    {
+      "day": "2020-01-28",
+      "target": 174
+    },
+    {
+      "day": "2020-01-29",
+      "target": 194
+    },
+    {
+      "day": "2020-01-30",
+      "target": 190
+    }
+  ]
+}
