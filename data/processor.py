@@ -27,6 +27,8 @@ from data.source.crop import CropProcessor
 from data.source.faers import FaersProcessor
 from data.source.epilepsy import EpilepsyProcessor
 from data.source.gwosc import GwoscProcessor
+from data.source.nwis import NwisProcessor
+from data.source.auger import AugerProcessor
 
 ## config settings
 config = configparser.ConfigParser()
@@ -56,6 +58,8 @@ NAME_CROP = config['names']['NAME_CROP']
 NAME_FAERS = config['names']['NAME_FAERS']
 NAME_EPILEPSY = config['names']['NAME_EPILEPSY']
 NAME_GWOSC = config['names']['NAME_GWOSC']
+NAME_NWIS = config['names']['NAME_NWIS']
+NAME_AUGER = config['names']['NAME_AUGER']
 
 URL_AMAZON = config['urls']['URL_AMAZON'].strip('"')
 URL_FEDERAL = config['urls']['URL_FEDERAL'].strip('"')
@@ -71,6 +75,11 @@ URL_CROP_FIELD = config['urls']['URL_CROP_FIELD'].strip('"')
 URL_FAERS = config['urls']['URL_FAERS'].strip('"')
 URL_EPILEPSY = config['urls']['URL_EPILEPSY'].strip('"')
 URL_GWOSC = config['urls']['URL_GWOSC'].strip('"')
+URL_NWIS_INVENTORY = config['urls']['URL_NWIS_INVENTORY'].strip('"')
+URL_NWIS_SITE = config['urls']['URL_NWIS_SITE'].strip('"')
+URL_NWIS_IV = config['urls']['URL_NWIS_IV'].strip('"')
+URL_AUGER_NETWORK = config['urls']['URL_AUGER_NETWORK'].strip('"')
+URL_AUGER_EVENTS = config['urls']['URL_AUGER_EVENTS'].strip('"')
 
 FILE_IDLING_EVENTS = config['files']['FILE_IDLING_EVENTS'].strip('"')
 
@@ -293,3 +302,41 @@ if __name__ == '__main__':
         logging.info(f"GWOSC data saved to {path_gwosc}")
     else:
         logging.info(f"GWOSC data already exists at {path_gwosc}. Skipping data source.")
+
+    ## --- nwis --- ##
+    path_nwis = os.path.join(PATH_OUT, f"{NAME_NWIS}.json")
+    if not os.path.exists(path_nwis):
+        logging.info("Processing NWIS data...")
+        params = {
+            "format": "rdb",
+            "group_key": "huc_cd",
+            "huc_cd": "1501",
+            "siteType": "ST",
+            "agency_cd": "USGS",
+            "siteStatus": "active",
+        }
+        data_nwis = NwisProcessor(
+            url_inventory = URL_NWIS_INVENTORY,
+            url_site = URL_NWIS_SITE,
+            url_iv = URL_NWIS_IV,
+            params = params,
+            start_date = "2014-01-01",
+            end_date = "2024-12-31"
+        ).run()
+        _save_to_json(data=data_nwis, path=path_nwis)
+        logging.info(f"NWIS data saved to {path_nwis}")
+    else:
+        logging.info(f"NWIS data already exists at {path_nwis}. Skipping data source.")
+
+    ## --- auger --- ##
+    path_auger = os.path.join(PATH_OUT, f"{NAME_AUGER}.json")
+    if not os.path.exists(path_auger):
+        logging.info("Processing Auger data...")
+        data_auger = AugerProcessor(
+            url_network = URL_AUGER_NETWORK,
+            url_events = URL_AUGER_EVENTS
+        ).run()
+        _save_to_json(data = data_auger, path=path_auger)
+        logging.info(f"Auger data saved to {path_auger}")
+    else:
+        logging.info(f"Auger data already exists at {path_auger}. Skipping data source.")
