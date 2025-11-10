@@ -60,12 +60,12 @@ NAME_MONTEVIDEO = config['names']['NAME_MONTEVIDEO']
 NAME_CROP = config['names']['NAME_CROP']
 NAME_FAERS = config['names']['NAME_FAERS']
 NAME_EPILEPSY = config['names']['NAME_EPILEPSY']
+NAME_CHICKENPOX = config['names']['NAME_CHICKENPOX']
 NAME_GWOSC = config['names']['NAME_GWOSC']
 NAME_RIVER = config['names']['NAME_RIVER']
 NAME_AUGER = config['names']['NAME_AUGER']
 NAME_SEISMIC = config['names']['NAME_SEISMIC']
 NAME_RAIN = config['names']['NAME_RAIN']
-NAME_CHICKENPOX = config['names']['NAME_CHICKENPOX']
 
 URL_AMAZON = config['urls']['URL_AMAZON'].strip('"')
 URL_FEDERAL = config['urls']['URL_FEDERAL'].strip('"')
