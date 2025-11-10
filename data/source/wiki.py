@@ -8,7 +8,7 @@ from torch_geometric_temporal.dataset import WikiMathsDatasetLoader
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-from src.utils import _build_network_pygt, _create_igraph_object, _load_network_pygt, _load_events_zip, _aggregate_by_day
+from src.utils import _build_network_pygt, _create_igraph_object, _load_network_pygt, _load_events_zip
 from src.invariants import GraphInvariants
 
 ## process wikimaths json to get daily event counts
@@ -29,15 +29,16 @@ def process_events_wiki(data: dict) -> pd.DataFrame:
     ## filter for the documented 731-day window and add correct dates
     data_events = pd.DataFrame(events)
     data_events = data_events.tail(periods).copy()
-    data_events['datetime'] = pd.to_datetime(pd.date_range(start = start, periods = periods))
+    data_events['day'] = pd.to_datetime(pd.date_range(start = start, periods = periods)).date
     return data_events
 
 ## wikimaths network
 class WikiProcessor:
-    def __init__(self, url_events: str):
-        self.url_events = url_events
-        self.network_raw = None
-        self.events_raw = None
+    def __init__(self, url: str, name: str = "wikivital_mathematics.json"):
+        self.url = url
+        self.name = name
+        self.data_network = None
+        self.data_events = None
         self.graph = None
         self.invariants = None
         self.events = None
@@ -45,30 +46,27 @@ class WikiProcessor:
     def load_data(self):
         """ Loads the raw data from source. """
         loader = WikiMathsDatasetLoader()
-        self.network_raw = _load_network_pygt(loader = loader)
-        self.events_raw = _load_events_zip(
-            url = self.url_events,
-            name = "wikivital_mathematics.json"
+        self.data_network = _load_network_pygt(loader = loader)
+        self.data_events = _load_events_zip(
+            url = self.url,
+            name = self.name
         )
         return self
 
     def process_network(self):
         """ Builds the network and computes invariants. """
-        if self.network_raw is None:
+        if self.data_network is None:
             self.load_data()
-
-        nodes, edges = _build_network_pygt(dataset = self.network_raw)
+        nodes, edges = _build_network_pygt(dataset = self.data_network)
         self.graph = _create_igraph_object(nodes = nodes, edges = edges)
         self.invariants = GraphInvariants(graph = self.graph).all()
         return self
 
     def process_events(self):
         """ Processes the event data. """
-        if self.events_raw is None:
+        if self.data_events is None:
             self.load_data()
-
-        events = process_events_wiki(data = self.events_raw)
-        self.events = _aggregate_by_day(data = events, datetime = 'datetime')
+        self.events = process_events_wiki(data = self.data_events)
         return self
 
     def run(self):
