@@ -27,10 +27,11 @@ from data.source.crop import CropProcessor
 from data.source.faers import FaersProcessor
 from data.source.epilepsy import EpilepsyProcessor
 from data.source.gwosc import GwoscProcessor
-from data.source.nwis import NwisProcessor
+from data.source.river import NwisProcessor
 from data.source.auger import AugerProcessor
 from data.source.seismic import SeismicProcessor
 from data.source.rain import RainProcessor
+from data.source.chickenpox import ChickenpoxProcessor
 
 ## config settings
 config = configparser.ConfigParser()
@@ -64,6 +65,7 @@ NAME_NWIS = config['names']['NAME_NWIS']
 NAME_AUGER = config['names']['NAME_AUGER']
 NAME_SEISMIC = config['names']['NAME_SEISMIC']
 NAME_RAIN = config['names']['NAME_RAIN']
+NAME_CHICKENPOX = config['names']['NAME_CHICKENPOX']
 
 URL_AMAZON = config['urls']['URL_AMAZON'].strip('"')
 URL_FEDERAL = config['urls']['URL_FEDERAL'].strip('"')
@@ -78,6 +80,7 @@ URL_CROP_SAMPLING = config['urls']['URL_CROP_SAMPLING'].strip('"')
 URL_CROP_FIELD = config['urls']['URL_CROP_FIELD'].strip('"')
 URL_FAERS = config['urls']['URL_FAERS'].strip('"')
 URL_EPILEPSY = config['urls']['URL_EPILEPSY'].strip('"')
+URL_CHICKENPOX_EVENTS = config['urls']['URL_CHICKENPOX_EVENTS'].strip('"')
 URL_GWOSC = config['urls']['URL_GWOSC'].strip('"')
 URL_NWIS_INVENTORY = config['urls']['URL_NWIS_INVENTORY'].strip('"')
 URL_NWIS_SITE = config['urls']['URL_NWIS_SITE'].strip('"')
@@ -86,8 +89,6 @@ URL_AUGER_NETWORK = config['urls']['URL_AUGER_NETWORK'].strip('"')
 URL_AUGER_EVENTS = config['urls']['URL_AUGER_EVENTS'].strip('"')
 URL_SEISMIC_NETWORK = config['urls']['URL_SEISMIC_NETWORK'].strip('"')
 URL_SEISMIC_EVENTS = config['urls']['URL_SEISMIC_EVENTS'].strip('"')
-
-FILE_IDLING_EVENTS = config['files']['FILE_IDLING_EVENTS'].strip('"')
 
 ## logging
 logging.basicConfig(
@@ -212,7 +213,7 @@ if __name__ == '__main__':
     idling_path = os.path.join(PATH_OUT, f"{NAME_IDLING}.json")
     if not os.path.exists(idling_path):
         logging.info("Processing Halifax idling data...")
-        data_idling = IdlingProcessor(events_path = FILE_IDLING_EVENTS).run()
+        data_idling = IdlingProcessor(path_events = PATH_ROOT + "idling/").run()
         _save_to_json(data = data_idling, path = idling_path)
         logging.info(f"Halifax idling data saved to {idling_path}")
     else:
@@ -298,6 +299,19 @@ if __name__ == '__main__':
         logging.info(f"Epilepsy data saved to {path_epilepsy}")
     else:
         logging.info(f"Epilepsy data already exists at {path_epilepsy}. Skipping data source.")
+
+    ## --- chickenpox --- ##
+    path_chickenpox = os.path.join(PATH_OUT, f"{NAME_CHICKENPOX}.json")
+    if not os.path.exists(path_chickenpox):
+        logging.info("Processing Chickenpox data...")
+        data_chickenpox = ChickenpoxProcessor(
+            url = URL_CHICKENPOX_EVENTS, 
+            name = "hungary_chickenpox.csv"
+        ).run()
+        _save_to_json(data = data_chickenpox, path = path_chickenpox)
+        logging.info(f"Chickenpox data saved to {path_chickenpox}")
+    else:
+        logging.info(f"Chickenpox data already exists at {path_chickenpox}. Skipping data source.")
 
     ## --- gwosc --- ##
     path_gwosc = os.path.join(PATH_OUT, f"{NAME_GWOSC}.json")
