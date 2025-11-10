@@ -23,8 +23,76 @@
   },
   "events": [
     {
-      "day": "1970-01-01",
-      "target": 39
+      "day": 0,
+      "target": 4
+    },
+    {
+      "day": 1,
+      "target": 8
+    },
+    {
+      "day": 2,
+      "target": 3
+    },
+    {
+      "day": 3,
+      "target": 1
+    },
+    {
+      "day": 5,
+      "target": 1
+    },
+    {
+      "day": 7,
+      "target": 3
+    },
+    {
+      "day": 8,
+      "target": 2
+    },
+    {
+      "day": 9,
+      "target": 1
+    },
+    {
+      "day": 10,
+      "target": 2
+    },
+    {
+      "day": 14,
+      "target": 3
+    },
+    {
+      "day": 15,
+      "target": 2
+    },
+    {
+      "day": 16,
+      "target": 1
+    },
+    {
+      "day": 17,
+      "target": 1
+    },
+    {
+      "day": 20,
+      "target": 1
+    },
+    {
+      "day": 30,
+      "target": 3
+    },
+    {
+      "day": 31,
+      "target": 1
+    },
+    {
+      "day": 32,
+      "target": 1
+    },
+    {
+      "day": 33,
+      "target": 1
     }
   ]
 }
