@@ -29,6 +29,8 @@ from data.source.epilepsy import EpilepsyProcessor
 from data.source.gwosc import GwoscProcessor
 from data.source.nwis import NwisProcessor
 from data.source.auger import AugerProcessor
+from data.source.seismic import SeismicProcessor
+from data.source.rain import RainProcessor
 
 ## config settings
 config = configparser.ConfigParser()
@@ -60,6 +62,8 @@ NAME_EPILEPSY = config['names']['NAME_EPILEPSY']
 NAME_GWOSC = config['names']['NAME_GWOSC']
 NAME_NWIS = config['names']['NAME_NWIS']
 NAME_AUGER = config['names']['NAME_AUGER']
+NAME_SEISMIC = config['names']['NAME_SEISMIC']
+NAME_RAIN = config['names']['NAME_RAIN']
 
 URL_AMAZON = config['urls']['URL_AMAZON'].strip('"')
 URL_FEDERAL = config['urls']['URL_FEDERAL'].strip('"')
@@ -80,6 +84,8 @@ URL_NWIS_SITE = config['urls']['URL_NWIS_SITE'].strip('"')
 URL_NWIS_IV = config['urls']['URL_NWIS_IV'].strip('"')
 URL_AUGER_NETWORK = config['urls']['URL_AUGER_NETWORK'].strip('"')
 URL_AUGER_EVENTS = config['urls']['URL_AUGER_EVENTS'].strip('"')
+URL_SEISMIC_NETWORK = config['urls']['URL_SEISMIC_NETWORK'].strip('"')
+URL_SEISMIC_EVENTS = config['urls']['URL_SEISMIC_EVENTS'].strip('"')
 
 FILE_IDLING_EVENTS = config['files']['FILE_IDLING_EVENTS'].strip('"')
 
@@ -340,3 +346,50 @@ if __name__ == '__main__':
         logging.info(f"Auger data saved to {path_auger}")
     else:
         logging.info(f"Auger data already exists at {path_auger}. Skipping data source.")
+
+    ## --- seismic --- ##
+    path_seismic = os.path.join(PATH_OUT, f"{NAME_SEISMIC}.json")
+    if not os.path.exists(path_seismic):
+        logging.info("Processing Seismic data...")
+        
+        ## define parameters for the seismic data
+        params_network = {"level": "station", "format": "xml", "network": "IU"}
+        namespace = {"ns": "http://www.fdsn.org/xml/station/1"}
+        row_path = ".//ns:Station"
+        col_map = {
+            "code": ".@code",
+            "lat": ".//ns:Latitude",
+            "lon": ".//ns:Longitude"
+        }
+        params_events = {
+            "starttime": "2023-01-01",
+            "endtime": "2023-12-31"
+        }
+
+        data_seismic = SeismicProcessor(
+            url_network=URL_SEISMIC_NETWORK,
+            params_network=params_network,
+            namespace=namespace,
+            row_path=row_path,
+            col_map=col_map,
+            url_events=URL_SEISMIC_EVENTS,
+            params_events=params_events
+        ).run()
+        _save_to_json(data=data_seismic, path=path_seismic)
+        logging.info(f"Seismic data saved to {path_seismic}")
+    else:
+        logging.info(f"Seismic data already exists at {path_seismic}. Skipping data source.")
+
+    ## --- rain --- ##
+    path_rain = os.path.join(PATH_OUT, f"{NAME_RAIN}.json")
+    if not os.path.exists(path_rain):
+        logging.info("Processing Rain data...")
+        data_rain = RainProcessor(
+            country="LA",
+            start_date="2024-01-01",
+            end_date="2024-03-31"
+        ).run()
+        _save_to_json(data=data_rain, path=path_rain)
+        logging.info(f"Rain data saved to {path_rain}")
+    else:
+        logging.info(f"Rain data already exists at {path_rain}. Skipping data source.")
