@@ -61,7 +61,7 @@ NAME_CROP = config['names']['NAME_CROP']
 NAME_FAERS = config['names']['NAME_FAERS']
 NAME_EPILEPSY = config['names']['NAME_EPILEPSY']
 NAME_GWOSC = config['names']['NAME_GWOSC']
-NAME_NWIS = config['names']['NAME_NWIS']
+NAME_RIVER = config['names']['NAME_RIVER']
 NAME_AUGER = config['names']['NAME_AUGER']
 NAME_SEISMIC = config['names']['NAME_SEISMIC']
 NAME_RAIN = config['names']['NAME_RAIN']
@@ -82,9 +82,9 @@ URL_FAERS = config['urls']['URL_FAERS'].strip('"')
 URL_EPILEPSY = config['urls']['URL_EPILEPSY'].strip('"')
 URL_CHICKENPOX_EVENTS = config['urls']['URL_CHICKENPOX_EVENTS'].strip('"')
 URL_GWOSC = config['urls']['URL_GWOSC'].strip('"')
-URL_NWIS_INVENTORY = config['urls']['URL_NWIS_INVENTORY'].strip('"')
-URL_NWIS_SITE = config['urls']['URL_NWIS_SITE'].strip('"')
-URL_NWIS_IV = config['urls']['URL_NWIS_IV'].strip('"')
+URL_RIVER_INVENTORY = config['urls']['URL_RIVER_INVENTORY'].strip('"')
+URL_RIVER_SITE = config['urls']['URL_RIVER_SITE'].strip('"')
+URL_RIVER_IV = config['urls']['URL_RIVER_IV'].strip('"')
 URL_AUGER_NETWORK = config['urls']['URL_AUGER_NETWORK'].strip('"')
 URL_AUGER_EVENTS = config['urls']['URL_AUGER_EVENTS'].strip('"')
 URL_SEISMIC_NETWORK = config['urls']['URL_SEISMIC_NETWORK'].strip('"')
@@ -324,9 +324,9 @@ if __name__ == '__main__':
         logging.info(f"GWOSC data already exists at {path_gwosc}. Skipping data source.")
 
     ## --- nwis --- ##
-    path_nwis = os.path.join(PATH_OUT, f"{NAME_NWIS}.json")
+    path_nwis = os.path.join(PATH_OUT, f"{NAME_RIVER}.json")
     if not os.path.exists(path_nwis):
-        logging.info("Processing NWIS data...")
+        logging.info("Processing NWIS river data...")
         params = {
             "format": "rdb",
             "group_key": "huc_cd",
@@ -336,17 +336,17 @@ if __name__ == '__main__':
             "siteStatus": "active",
         }
         data_nwis = NwisProcessor(
-            url_inventory = URL_NWIS_INVENTORY,
-            url_site = URL_NWIS_SITE,
-            url_iv = URL_NWIS_IV,
+            url_inventory = URL_RIVER_INVENTORY,
+            url_site = URL_RIVER_SITE,
+            url_iv = URL_RIVER_IV,
             params = params,
             start_date = "2014-01-01",
             end_date = "2024-12-31"
         ).run()
         _save_to_json(data=data_nwis, path=path_nwis)
-        logging.info(f"NWIS data saved to {path_nwis}")
+        logging.info(f"NWIS river data saved to {path_nwis}")
     else:
-        logging.info(f"NWIS data already exists at {path_nwis}. Skipping data source.")
+        logging.info(f"NWIS river data already exists at {path_nwis}. Skipping data source.")
 
     ## --- auger --- ##
     path_auger = os.path.join(PATH_OUT, f"{NAME_AUGER}.json")
