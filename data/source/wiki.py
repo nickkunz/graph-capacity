@@ -30,7 +30,7 @@ def process_events_wiki(data: dict) -> pd.DataFrame:
     data_events = pd.DataFrame(events)
     data_events = data_events.tail(periods).copy()
     data_events['day'] = pd.to_datetime(pd.date_range(start = start, periods = periods)).date
-    return data_events
+    return data_events[['day', 'target']]
 
 ## wikimaths network
 class WikiProcessor:
