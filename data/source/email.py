@@ -9,32 +9,40 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.
 from src.utils import _aggregate_by_day, _load_network_snap, _compute_network_snap
 from src.invariants import BipartiteInvariants
 
+## process email events
+def process_events_email(data: pd.DataFrame) -> pd.DataFrame:
+    data['day'] = (data['timestamp'] // 86400)
+    return data.groupby('day').agg(
+        target=('day', 'size')
+    ).reset_index()
+
 ## email user-user network
 class EmailProcessor:
     def __init__(self, url: str):
         self.url = url
-        self.data_raw: Optional[pd.DataFrame] = None
+        self.data: Optional[pd.DataFrame] = None
         self.invariants: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
 
     def load_data(self):
         """ Loads the raw data from source. """
-        self.data_raw = _load_network_snap(url = self.url)
+        self.data = _load_network_snap(url = self.url)
         return self
 
     def process_network(self):
         """ Builds the network and computes invariants. """
-        if self.data_raw is None:
+        if self.data is None:
             self.load_data()
-        m, n = _compute_network_snap(data = self.data_raw)
+        m = pd.concat([self.data["src"], self.data["dst"]]).nunique()
+        n = (self.data['timestamp'] // 86400).nunique()
         self.invariants = BipartiteInvariants(m = m, n = n).all()
         return self
 
     def process_events(self):
         """ Processes the event data. """
-        if self.data_raw is None:
+        if self.data is None:
             self.load_data()
-        self.events = _aggregate_by_day(data = self.data_raw, datetime = 'day')
+        self.events = process_events_email(data = self.data)
         return self
 
     def run(self):
