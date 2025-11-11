@@ -13,28 +13,31 @@ from src.invariants import BipartiteInvariants
 class OverflowProcessor:
     def __init__(self, url: str):
         self.url = url
-        self.data_raw: Optional[pd.DataFrame] = None
+        self.data: Optional[pd.DataFrame] = None
         self.invariants: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
 
     def load_data(self):
         """ Loads the raw data from source. """
-        self.data_raw = _load_network_snap(url = self.url)
+        self.data = _load_network_snap(url = self.url)
+        print(f"Min timestamp: {self.data['timestamp'].min()}")
+        print(f"As date: {pd.to_datetime(self.data['timestamp'].min(), unit='s')}")
         return self
 
     def process_network(self):
         """ Builds the network and computes invariants. """
-        if self.data_raw is None:
+        if self.data is None:
             self.load_data()
-        m, n = _compute_network_snap(data = self.data_raw)
+        m, n = _compute_network_snap(data = self.data, unix_time = True)
         self.invariants = BipartiteInvariants(m = m, n = n).all()
         return self
+        
 
     def process_events(self):
         """ Processes the event data. """
-        if self.data_raw is None:
+        if self.data is None:
             self.load_data()
-        self.events = _aggregate_by_day(data = self.data_raw, datetime = 'day')
+        self.events = _aggregate_by_day(data = self.data, datetime = 'day')
         return self
 
     def run(self):
@@ -43,5 +46,5 @@ class OverflowProcessor:
         self.process_events()
         return {
             "invariants": self.invariants,
-            "events": self.events.to_dict(orient="records")
+            "events": self.events.to_dict(orient = "records")
         }
