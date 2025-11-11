@@ -88,7 +88,7 @@ def _load_network_snap(url: str) -> pd.DataFrame:
         ## open url with ssl context
         with urllib.request.urlopen(url = url, context = context) as response:
             data = pd.read_csv(
-                response,
+                filepath_or_buffer = response,
                 sep = r'\s+',
                 header = None,
                 names = ["src", "dst", "timestamp"],
