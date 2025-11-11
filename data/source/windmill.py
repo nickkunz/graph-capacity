@@ -31,7 +31,7 @@ def _process_events_wind(data: DynamicGraphTemporalSignal, hours: int = 24, thre
     daily = events[:totals].reshape(-1, hours).sum(axis = 1).astype(np.int64)
     
     return pd.DataFrame({
-        "day": pd.date_range(start = '1970-01-01', periods = daily.size, freq = 'D').date,
+        "day": np.arange(daily.size, dtype = np.int64),
         "target": daily
         }
     )
