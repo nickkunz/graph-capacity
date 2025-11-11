@@ -14,7 +14,7 @@ from src.utils import _aggregate_by_day
 from src.invariants import BipartiteInvariants
 
 ## load mooc_actions from the snap tarball robustly (streaming, stdlib parsing)
-def load_network_mooc(url: str) -> pd.DataFrame:
+def _load_network_mooc(url: str) -> pd.DataFrame:
     
     ## create ssl context that can handle self-signed certificates
     ssl_context = ssl.create_default_context()
@@ -72,7 +72,7 @@ def load_network_mooc(url: str) -> pd.DataFrame:
     return data[["src", "dst", "timestamp"]]
 
 ## compute network size from data
-def compute_network_mooc(data: pd.DataFrame) -> dict:
+def _compute_network_mooc(data: pd.DataFrame) -> dict:
     if not {"src", "dst"}.issubset(data.columns):
         raise ValueError("Data must have columns 'src' and 'dst'.")
     m = data["src"].nunique()
@@ -80,41 +80,36 @@ def compute_network_mooc(data: pd.DataFrame) -> dict:
     return m, n
 
 ## process event counts
-def process_events_mooc(data: pd.DataFrame) -> pd.DataFrame:
-    return data.assign(
-        datetime = lambda df: pd.to_datetime(arg = df["timestamp"], unit = "s", utc = True),
-        day = lambda df: df["timestamp"] // (24 * 60 * 60),
-    )
-
+def _process_events_mooc(data: pd.DataFrame) -> pd.DataFrame:
+    data["day"] = data["timestamp"] // (24 * 60 * 60)
+    return data.groupby("day").size().reset_index(name="target")
 
 ## mooc user-action network
 class MoocProcessor:
     def __init__(self, url: str):
         self.url: str = url
-        self.data_raw: Optional[pd.DataFrame] = None
-        self.data_processed: Optional[pd.DataFrame] = None
+        self.data: Optional[pd.DataFrame] = None
         self.invariants: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
 
     def load_data(self):
         """ Loads the raw data from source. """
-        self.data_raw = load_network_mooc(url = self.url)
+        self.data = _load_network_mooc(url = self.url)
         return self
 
     def process_network(self):
         """ Builds the network and computes invariants. """
-        if self.data_raw is None:
+        if self.data is None:
             self.load_data()
-        m, n = compute_network_mooc(data = self.data_raw)
+        m, n = _compute_network_mooc(data = self.data)
         self.invariants = BipartiteInvariants(m = m, n = n).all()
         return self
 
     def process_events(self):
         """ Processes the event data. """
-        if self.data_raw is None:
+        if self.data is None:
             self.load_data()
-        data_events = process_events_mooc(self.data_raw.copy())
-        self.events = _aggregate_by_day(data = data_events, datetime = 'datetime')
+        self.events = _process_events_mooc(self.data.copy())
         return self
 
     def run(self):
@@ -123,5 +118,5 @@ class MoocProcessor:
         self.process_events()
         return {
             "invariants": self.invariants,
-            "events": self.events.to_dict(orient="records")
+            "events": self.events.to_dict(orient = "records")
         }
