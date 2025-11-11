@@ -103,11 +103,16 @@ def _load_network_snap(url: str) -> pd.DataFrame:
     return data
 
 ## build generic snap temporal dataset (fully connected bipartite)
-def _compute_network_snap(data: pd.DataFrame) -> tuple[int, int]:
+def _compute_network_snap(data: pd.DataFrame, unix_time: bool = True) -> tuple[int, int]:
     m = pd.concat([data["src"], data["dst"]]).nunique()
-    data["day"] = pd.to_datetime(data["timestamp"], unit = "s", utc = True).dt.floor("1D")
-    days = pd.date_range(start = data["day"].min(), end = data["day"].max(), freq = "1D")
-    n = len(days)
+    if unix_time:
+        data["day"] = pd.to_datetime(data["timestamp"], unit = "s", utc = True).dt.floor("1D")
+        days = pd.date_range(start = data["day"].min(), end = data["day"].max(), freq = "1D")
+        n = len(days)
+    else:
+        ## relative timestamps: enumerate days
+        data["day"] = data["timestamp"] // 86400
+        n = int(data["day"].max()) + 1
     return m, n
 
 ## load network from pytorch geometric temporal dataset
