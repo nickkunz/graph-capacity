@@ -7,31 +7,31 @@ import configparser
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from src.utils import _save_to_json
-from data.source.federal import FederalProcessor
-from data.source.bitcoin import BitcoinProcessor
-from data.source.amazon import AmazonProcessor
-from data.source.mooc import MoocProcessor
-from data.source.world import WorldBankProcessor
-from data.source.wiki import WikiProcessor
-from data.source.jodie import JodieProcessor
-from data.source.overflow import OverflowProcessor
-from data.source.email import EmailProcessor
-from data.source.celegans import CelegansProcessor
-from data.source.college import CollegeProcessor
-from data.source.idling import IdlingProcessor
-from data.source.windmill import WindmillProcessor
-from data.source.metrla import MetrLaProcessor
-from data.source.pemsbay import PemsBayProcessor
-from data.source.montevideo import MontevideoProcessor
-from data.source.crop import CropProcessor
-from data.source.faers import FaersProcessor
-from data.source.epilepsy import EpilepsyProcessor
-from data.source.gwosc import GwoscProcessor
-from data.source.river import NwisProcessor
-from data.source.auger import AugerProcessor
-from data.source.seismic import SeismicProcessor
-from data.source.rain import RainProcessor
-from data.source.chickenpox import ChickenpoxProcessor
+from data.scripts.federal import FederalProcessor
+from data.scripts.bitcoin import BitcoinProcessor
+from data.scripts.amazon import AmazonProcessor
+from data.scripts.mooc import MoocProcessor
+from data.scripts.world import WorldBankProcessor
+from data.scripts.wiki import WikiProcessor
+from data.scripts.jodie import JodieProcessor
+from data.scripts.overflow import OverflowProcessor
+from data.scripts.email import EmailProcessor
+from data.scripts.celegans import CelegansProcessor
+from data.scripts.college import CollegeProcessor
+from data.scripts.idling import IdlingProcessor
+from data.scripts.windmill import WindmillProcessor
+from data.scripts.metrla import MetrLaProcessor
+from data.scripts.pemsbay import PemsBayProcessor
+from data.scripts.montevideo import MontevideoProcessor
+from data.scripts.crop import CropProcessor
+from data.scripts.faers import FaersProcessor
+from data.scripts.epilepsy import EpilepsyProcessor
+from data.scripts.gwosc import GwoscProcessor
+from data.scripts.river import NwisProcessor
+from data.scripts.auger import AugerProcessor
+from data.scripts.seismic import SeismicProcessor
+from data.scripts.rain import RainProcessor
+from data.scripts.chickenpox import ChickenpoxProcessor
 
 ## config settings
 config = configparser.ConfigParser()
