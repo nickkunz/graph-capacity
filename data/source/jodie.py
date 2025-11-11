@@ -21,9 +21,10 @@ def load_events_jodie(data: JODIEDataset) -> pd.DataFrame:
 
 ## process jodie wikipedia events
 def process_events_jodie(data: pd.DataFrame) -> pd.DataFrame:
-    return data.assign(
-        datetime = lambda d: pd.to_datetime(d['timestamp'], unit = 's')
-    )
+    data['day'] = (data['timestamp'] // 86400)
+    return data.groupby('day').agg(
+        target=('day', 'size')
+    ).reset_index()
 
 ## jodie network
 class JodieProcessor:
@@ -58,8 +59,7 @@ class JodieProcessor:
         if self.data_raw is None:
             self.load_data()
         events = load_events_jodie(data = self.data_raw)
-        events = process_events_jodie(data = events)
-        self.events = _aggregate_by_day(data = events, datetime = 'datetime')
+        self.events = process_events_jodie(data = events)
         return self
 
     def run(self):
