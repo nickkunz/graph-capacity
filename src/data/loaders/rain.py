@@ -144,8 +144,12 @@ class RainProcessor:
         if self.data_events_raw is None:
             self.load_data()
             
-        events_processed = _process_events_rain(data=self.data_events_raw)
-        self.events = _aggregate_by_day(data=events_processed, datetime='timestamp')
+        data_events = _process_events_rain(data=self.data_events_raw)
+        self.events = _aggregate_by_day(
+            data = data_events, 
+            datetime = 'timestamp',
+            label = 'date'
+        )
         return self
 
     def run(self):
