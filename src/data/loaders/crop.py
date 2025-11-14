@@ -185,7 +185,11 @@ class CropProcessor:
         if self.data_network is None:
             self.load_data()
         self.events = _process_events_croppol(data = self.data_events)
-        self.events = _aggregate_by_day(self.events, datetime = 'day')
+        self.events = _aggregate_by_day(
+            data = self.events,
+            datetime = 'day',
+            label = 'date'
+        )
         return self
 
     def run(self):

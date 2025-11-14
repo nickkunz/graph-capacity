@@ -63,8 +63,8 @@ def _load_events_idling(path: str) -> pd.DataFrame:
 ## process events data
 def _process_events_idling(data: pd.DataFrame) -> pd.DataFrame:
     return (
-        data.assign(day = pd.to_datetime(data['datetime'], unit = 's').dt.date)
-        .groupby('day')
+        data.assign(date = pd.to_datetime(data['datetime'], unit = 's').dt.date)
+        .groupby('date')
         .size()
         .reset_index(name = 'target')
     )

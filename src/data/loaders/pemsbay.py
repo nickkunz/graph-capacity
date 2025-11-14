@@ -41,9 +41,16 @@ def _process_events_pemsbay(data: DynamicGraphTemporalSignal, sample_rate_minute
 
     ## create output dataframe
     return pd.DataFrame({
-        "day": pd.to_datetime(pd.date_range(start='2001-05-01', periods=num_days, freq='D')).date,
+        "date": pd.to_datetime(
+            pd.date_range(
+                start = '2001-05-01', 
+                periods = num_days, 
+                freq = 'D'
+            )
+        ).date,
         "target": daily_events.astype(np.int64)
-    })
+        }
+)
 
 ## pems-bay traffic network
 class PemsBayProcessor:

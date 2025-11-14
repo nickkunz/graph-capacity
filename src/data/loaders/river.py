@@ -337,7 +337,7 @@ class NwisProcessor:
         if self.station_metadata is None:
             self.load_data()
 
-        events_df = _execute_events_nwis(
+        data_events = _execute_events_nwis(
             session=self.session,
             url=self.url_iv,
             meta_data=self.station_metadata,
@@ -345,7 +345,11 @@ class NwisProcessor:
             end_date=self.end_date,
             max_workers=self.max_workers
         )
-        self.events = _aggregate_by_day(data=events_df, datetime='datetime')
+        self.events = _aggregate_by_day(
+            data = data_events, 
+            datetime = 'datetime',
+            label = 'date'
+        )
         return self
 
     def run(self):

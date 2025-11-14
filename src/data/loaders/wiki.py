@@ -29,8 +29,8 @@ def process_events_wiki(data: dict) -> pd.DataFrame:
     ## filter for the documented 731-day window and add correct dates
     data_events = pd.DataFrame(events)
     data_events = data_events.tail(periods).copy()
-    data_events['day'] = pd.to_datetime(pd.date_range(start = start, periods = periods)).date
-    return data_events[['day', 'target']]
+    data_events['date'] = pd.to_datetime(pd.date_range(start = start, periods = periods)).date
+    return data_events[['date', 'target']]
 
 ## wikimaths network
 class WikiProcessor:

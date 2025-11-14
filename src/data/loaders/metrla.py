@@ -42,7 +42,13 @@ def _process_events_metrla(data: DynamicGraphTemporalSignal, sample_rate_minutes
 
     ## create output dataframe
     return pd.DataFrame({
-        "day": pd.to_datetime(pd.date_range(start='2012-03-01', periods=num_days, freq='D')).date,
+        "date": pd.to_datetime(
+            pd.date_range(
+                start = '2012-03-01', 
+                periods = num_days, 
+                freq = 'D'
+            )
+        ).date,
         "target": daily_events.astype(np.int64)
     })
 

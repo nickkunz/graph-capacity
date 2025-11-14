@@ -122,8 +122,8 @@ def _load_events_epilepsy(url: str, ids: str) -> pd.DataFrame:
     return data[['datetime']].sort_values('datetime').reset_index(drop = True)
 
 def _process_events_epilepsy(events: pd.DataFrame) -> pd.DataFrame:
-    events['day'] = events['datetime'].dt.date
-    return events.groupby('day').size().reset_index(name = 'target')
+    events['date'] = events['datetime'].dt.date
+    return events.groupby('date').size().reset_index(name = 'target')
 
 ## epilepsy seizure network
 class EpilepsyProcessor:
@@ -170,7 +170,7 @@ class EpilepsyProcessor:
         """ Processes the event data. """
         if self.data_events is None:
             self.load_data()
-        self.events = _process_events_epilepsy(events=self.data_events)
+        self.events = _process_events_epilepsy(events = self.data_events)
         return self
 
     def run(self):

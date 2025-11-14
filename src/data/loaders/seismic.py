@@ -208,8 +208,12 @@ class SeismicProcessor:
         if self.data_events_raw is None:
             self.load_data()
             
-        events_processed = _process_events_seismic(data=self.data_events_raw)
-        self.events = _aggregate_by_day(data=events_processed, datetime='datetime')
+        data_events = _process_events_seismic(data=self.data_events_raw)
+        self.events = _aggregate_by_day(
+            data = data_events,
+            datetime = 'datetime',
+            label = 'date'
+        )
         return self
 
     def run(self):

@@ -163,7 +163,11 @@ class AugerProcessor:
             self.load_data()
             
         events_processed = _process_events_auger(data=self.data_events)
-        self.events = _aggregate_by_day(data=events_processed, datetime='datetime')
+        self.events = _aggregate_by_day(
+            data = events_processed,
+            datetime = 'datetime',
+            label = 'date'
+        )
         return self
 
     def run(self):

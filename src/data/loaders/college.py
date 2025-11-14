@@ -34,7 +34,11 @@ class CollegeProcessor:
         """ Processes the event data. """
         if self.data is None:
             self.load_data()
-        self.events = _aggregate_by_day(data = self.data, datetime = 'day')
+        self.events = _aggregate_by_day(
+            data = self.data, 
+            datetime = 'day',
+            label = 'date'
+        )
         return self
 
     def run(self):

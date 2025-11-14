@@ -84,7 +84,11 @@ class GwoscProcessor:
             self.load_data()
         network_nodes = set(self.data_network.keys())
         events = _process_events_gwosc(events = self.data_events, network = network_nodes)
-        self.events = _aggregate_by_day(data = events, datetime = 'datetime')
+        self.events = _aggregate_by_day(
+            data = events,
+            datetime = 'datetime',
+            label = "date"
+        )
         return self
 
     def run(self):

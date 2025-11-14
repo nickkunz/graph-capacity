@@ -98,7 +98,11 @@ class BitcoinProcessor:
         if self.data_raw is None:
             self.load_data()
         events = load_events_bitcoin(data = self.data_raw, index = self.index)
-        self.events = _aggregate_by_day(events, datetime = 'datetime')
+        self.events = _aggregate_by_day(
+            data = events, 
+            datetime = 'datetime',
+            label = 'date'
+        )
         return self
 
     def run(self):

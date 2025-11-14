@@ -195,7 +195,8 @@ class WorldBankProcessor:
             self.process_data()
         self.events = _aggregate_by_day(
             data = self.data_processed,
-            datetime = 'boardapprovaldate'
+            datetime = 'boardapprovaldate',
+            label = 'date'
         )
         return self
 

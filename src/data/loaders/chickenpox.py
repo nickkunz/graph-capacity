@@ -36,7 +36,7 @@ def _process_events_chickenpox(data: pd.DataFrame) -> pd.DataFrame:
 
     ## construct final dataframe
     return pd.DataFrame({
-        "day": data['date'].dt.date,
+        "date": data['date'].dt.date,
         "target": feat_sum.astype("int64", errors = "ignore")
     })
 

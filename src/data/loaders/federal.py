@@ -202,7 +202,11 @@ class FederalProcessor:
         if self.data_processed is None:
             self.process_data()
         events = process_events_federal(data = self.data_processed)
-        self.events = _aggregate_by_day(events, datetime = "datetime")
+        self.events = _aggregate_by_day(
+            data = events, 
+            datetime = "datetime",
+            label = "date"
+        )
         return self
 
     def run(self):
