@@ -15,11 +15,11 @@ import urllib.request
 from torch_geometric_temporal.signal import DynamicGraphTemporalSignal
 
 ## daily aggregation
-def _aggregate_by_day(data: pd.DataFrame, datetime: str) -> pd.DataFrame:
+def _aggregate_by_day(data: pd.DataFrame, datetime: str, label: str = 'day') -> pd.DataFrame:
     if not pd.api.types.is_datetime64_any_dtype(data[datetime]):
         data[datetime] = pd.to_datetime(data[datetime], errors = 'coerce')    
-    data['day'] = data[datetime].dt.date
-    return data.groupby('day').agg(
+    data[label] = data[datetime].dt.date
+    return data.groupby(label).agg(
         target = (datetime, 'size')
     ).reset_index()
 
