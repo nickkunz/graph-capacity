@@ -8,7 +8,7 @@ import unittest
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 ## modules
-from data.scripts.trade.bitcoin import BitcoinProcessor
+from src.data.loaders.bitcoin import BitcoinProcessor
 
 ## test case
 class TestBitcoinProcessor(unittest.TestCase):
