@@ -402,9 +402,9 @@ if __name__ == '__main__':
     if not os.path.exists(path_rain):
         logging.info("Processing Rain data...")
         data_rain = RainProcessor(
-            country="LA",
-            start_date="2024-01-01",
-            end_date="2024-03-31"
+            country = "LA",  ## iso country code for laos
+            start_date = "2024-01-01",
+            end_date = "2024-03-31"
         ).run()
         _save_to_json(data=data_rain, path=path_rain)
         logging.info(f"Rain data saved to {path_rain}")
