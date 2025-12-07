@@ -9,17 +9,24 @@
     "degeneracy": 13,
     "k_core_size": 55,
     "maximum_degree": 1139,
-    "degree_variance": 1932.9744814517348,
+    "degree_variance": 1932.974481451735,
     "global_clustering": 0.0,
     "degree_assortativity": -0.6007474371857727,
     "degree_entropy": 1.7394038649818697,
     "joint_degree_entropy": 5.101561207886473,
-    "degree_skewness": 18.31778300832575,
+    "degree_skewness": 18.317783008325744,
     "normalized_laplacian_second_moment": 1.0138185788792222,
     "normalized_laplacian_third_moment": 1.0414557366376667,
     "random_walk_triangle_weight": 0.0,
-    "random_walk_fourth_moment": 0.009430404406801603,
+    "random_walk_fourth_moment": 0.009430404406801604,
     "adjacency_fourth_moment_per_node": 18478.31241565452
+  },
+  "features": {
+    "mean_count": 642.7142857142857,
+    "lag1_autocorr": 0.17793108151453657,
+    "coef_variation": 3.4635220803040707,
+    "fano_factor": 7709.991059741658,
+    "norm_succ_diff": 1.483868843282044
   },
   "events": [
     {
