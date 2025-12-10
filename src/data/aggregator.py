@@ -119,7 +119,7 @@ def normalize_event_fields(events):
 
     return df_events, has_day, has_date
 
-def add_metadata_columns(df_events, dataset_name, meta_map, invariants, invariant_order):
+def add_metadata_columns(df_events, dataset_name, meta_map, invariants, invariant_order, descriptors, descriptor_order):
     df_events = df_events.copy()
     df_events['name'] = dataset_name
     df_events['discipline'] = meta_map.get(dataset_name, {}).get('discipline', 'Unknown')
@@ -129,6 +129,11 @@ def add_metadata_columns(df_events, dataset_name, meta_map, invariants, invarian
         df_events[key] = value
         if key not in invariant_order:
             invariant_order.append(key)
+
+    for key, value in descriptors.items():
+        df_events[key] = value
+        if key not in descriptor_order:
+            descriptor_order.append(key)
 
     return df_events
 
@@ -140,11 +145,12 @@ def select_max_event(df_events, has_day, has_date):
     df_max.drop(columns=['day', 'date'], inplace=True, errors='ignore')
     return df_max, log_day, log_date
 
-def process_dataset(file_path, dataset_name, meta_map, invariant_order):
+def process_dataset(file_path, dataset_name, meta_map, invariant_order, descriptor_order):
     with open(file_path, 'r') as f:
         data = json.load(f)
 
     invariants = data.get('invariants', {})
+    descriptors = data.get('descriptors', {})
     events = data.get('events', [])
 
     if not events:
@@ -157,7 +163,15 @@ def process_dataset(file_path, dataset_name, meta_map, invariant_order):
         logging.warning(f"All events in {os.path.basename(file_path)} are invalid after parsing. Skipping.")
         return None
 
-    df_events = add_metadata_columns(df_events, dataset_name, meta_map, invariants, invariant_order)
+    df_events = add_metadata_columns(
+        df_events,
+        dataset_name,
+        meta_map,
+        invariants,
+        invariant_order,
+        descriptors,
+        descriptor_order
+    )
     df_max, log_day, log_date = select_max_event(df_events, has_day, has_date)
 
     logging.info(
@@ -170,10 +184,11 @@ def process_dataset(file_path, dataset_name, meta_map, invariant_order):
 
     return df_events, df_max
 
-def build_all_dataframe(all_data, invariant_order):
+def build_all_dataframe(all_data, invariant_order, descriptor_order):
     master_all_df = pd.concat(all_data, ignore_index=True)
     invariant_cols = [col for col in invariant_order if col in master_all_df.columns]
-    all_column_order = ['name', 'domain', 'discipline'] + invariant_cols + ['day', 'date', 'target']
+    descriptor_cols = [col for col in descriptor_order if col in master_all_df.columns]
+    all_column_order = ['name', 'domain', 'discipline'] + invariant_cols + descriptor_cols + ['day', 'date', 'target']
 
     for col in all_column_order:
         if col not in master_all_df.columns:
@@ -181,10 +196,11 @@ def build_all_dataframe(all_data, invariant_order):
 
     return master_all_df[all_column_order]
 
-def build_max_dataframe(max_data, invariant_order):
+def build_max_dataframe(max_data, invariant_order, descriptor_order):
     master_max_df = pd.concat(max_data, ignore_index=True) if max_data else pd.DataFrame()
     invariant_cols = [col for col in invariant_order if col in master_max_df.columns]
-    max_column_order = ['name', 'domain', 'discipline'] + invariant_cols + ['target']
+    descriptor_cols = [col for col in descriptor_order if col in master_max_df.columns]
+    max_column_order = ['name', 'domain', 'discipline'] + invariant_cols + descriptor_cols + ['target']
 
     for col in max_column_order:
         if col not in master_max_df.columns:
@@ -197,14 +213,17 @@ def create_master_dataframe(processed_dir, output_all_path, output_max_path):
     Loads all intermediate .json objects from the processed directory into two CSV files:
 
     1. data_all.csv: one row per observed event across all datasets, retaining both day
-       and date information for each measurement.
+         and date information for each measurement. Invariants and process descriptors are
+         appended as dataset-level columns alongside metadata.
     2. data_max.csv: one row per dataset capturing only the event with the largest target
-       value. These rows omit the day and date columns while preserving invariants.
+         value. These rows omit the day and date columns while preserving invariants and
+         descriptors.
     """
     meta_map = get_dataset_meta()
     all_data = []
     max_data = []
     invariant_order = []
+    descriptor_order = []
     
     json_files = [f for f in os.listdir(processed_dir) if f.endswith('.json')]
     logging.info(f"Found {len(json_files)} JSON files to process.")
@@ -215,7 +234,7 @@ def create_master_dataframe(processed_dir, output_all_path, output_max_path):
 
         logging.info(f"Processing {file_name}...")
 
-        processed = process_dataset(file_path, dataset_name, meta_map, invariant_order)
+        processed = process_dataset(file_path, dataset_name, meta_map, invariant_order, descriptor_order)
 
         if not processed:
             continue
@@ -228,8 +247,8 @@ def create_master_dataframe(processed_dir, output_all_path, output_max_path):
         logging.error("No data was processed. Exiting.")
         return
 
-    master_all_df = build_all_dataframe(all_data, invariant_order)
-    master_max_df = build_max_dataframe(max_data, invariant_order)
+    master_all_df = build_all_dataframe(all_data, invariant_order, descriptor_order)
+    master_max_df = build_max_dataframe(max_data, invariant_order, descriptor_order)
 
     # Save to CSV files
     master_all_df.to_csv(output_all_path, index=False)
