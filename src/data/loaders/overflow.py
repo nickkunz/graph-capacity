@@ -8,6 +8,7 @@ from typing import Optional, Dict, Any
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from src.utils import _aggregate_by_day, _load_network_snap, _compute_network_snap
 from src.invariants import BipartiteInvariants
+from src.descriptors import ProcessDescriptors
 
 ## stackoverflow user-user network
 class OverflowProcessor:
@@ -15,6 +16,7 @@ class OverflowProcessor:
         self.url = url
         self.data: Optional[pd.DataFrame] = None
         self.invariants: Optional[Dict[str, Any]] = None
+        self.features: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
 
     def load_data(self):
@@ -31,7 +33,17 @@ class OverflowProcessor:
         m, n = _compute_network_snap(data = self.data, unix_time = True)
         self.invariants = BipartiteInvariants(m = m, n = n).all()
         return self
-        
+
+    def process_descriptors(self):
+        """Computes process descriptors over daily event counts."""
+        if self.events is None:
+            self.process_events()
+        self.features = ProcessDescriptors(
+            data = self.events.copy(),
+            sort_by = ["date"],
+            target = "target"
+        ).all()
+        return self
 
     def process_events(self):
         """ Processes the event data. """
@@ -47,8 +59,10 @@ class OverflowProcessor:
     def run(self):
         """ Executes the pipeline and returns the final result. """
         self.process_network()
+        self.process_descriptors()
         self.process_events()
         return {
             "invariants": self.invariants,
+            "features": self.features,
             "events": self.events.to_dict(orient = "records")
         }

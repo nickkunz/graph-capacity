@@ -1,25 +1,32 @@
 {
   "invariants": {
-    "n_nodes": 6034,
-    "n_edges": 74450,
+    "n_nodes": 6036,
+    "n_edges": 74470,
     "n_articulation_points": 147,
     "n_bridges": 1013,
     "diameter": 4.0,
     "radius": 2.0,
     "degeneracy": 50,
     "k_core_size": 101,
-    "maximum_degree": 3065,
-    "degree_variance": 4520.977431391159,
+    "maximum_degree": 3067,
+    "degree_variance": 4521.682497021405,
     "global_clustering": 0.0,
-    "degree_assortativity": -0.12302186039286055,
-    "degree_entropy": 3.743603825460988,
-    "joint_degree_entropy": 9.660777435197252,
-    "degree_skewness": 18.737283051511337,
-    "normalized_laplacian_second_moment": 1.026216565992216,
-    "normalized_laplacian_third_moment": 1.0786496979766478,
+    "degree_assortativity": -0.12292156543614624,
+    "degree_entropy": 3.7436885663220045,
+    "joint_degree_entropy": 9.660838129446992,
+    "degree_skewness": 18.757008008843457,
+    "normalized_laplacian_second_moment": 1.0262096148874096,
+    "normalized_laplacian_third_moment": 1.0786288446622287,
     "random_walk_triangle_weight": 0.0,
-    "random_walk_fourth_moment": 0.005028231072727352,
-    "adjacency_fourth_moment_per_node": 91085.61352336759
+    "random_walk_fourth_moment": 0.005028943289300644,
+    "adjacency_fourth_moment_per_node": 91063.72630881378
+  },
+  "features": {
+    "mean_count": 380.6169878096736,
+    "lag1_autocorr": 0.1250657603901977,
+    "coef_variation": 3.789778143603868,
+    "fano_factor": 5466.580420596792,
+    "norm_succ_diff": 1.5218478608512762
   },
   "events": [
     {
@@ -419,10 +426,6 @@
       "target": 49
     },
     {
-      "date": "2008-01-16",
-      "target": 76
-    },
-    {
       "date": "2008-01-22",
       "target": 1
     },
@@ -437,6 +440,10 @@
     {
       "date": "2008-02-01",
       "target": 3
+    },
+    {
+      "date": "2008-02-13",
+      "target": 100
     },
     {
       "date": "2008-02-22",
@@ -847,12 +854,12 @@
       "target": 4
     },
     {
-      "date": "2010-12-14",
-      "target": 12
+      "date": "2010-12-08",
+      "target": 11
     },
     {
-      "date": "2010-12-15",
-      "target": 11
+      "date": "2010-12-14",
+      "target": 12
     },
     {
       "date": "2011-01-10",

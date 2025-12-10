@@ -21,6 +21,13 @@
     "random_walk_fourth_moment": 0.11025271293702665,
     "adjacency_fourth_moment_per_node": 60.0
   },
+  "features": {
+    "mean_count": 8.157894736842104,
+    "lag1_autocorr": 0.2867441998457248,
+    "coef_variation": 1.0665511182269487,
+    "fano_factor": 9.279860505665821,
+    "norm_succ_diff": 0.771926765475058
+  },
   "events": [
     {
       "date": "2024-01-12",

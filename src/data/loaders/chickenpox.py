@@ -10,6 +10,7 @@ from torch_geometric_temporal.dataset import ChickenpoxDatasetLoader
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from src.utils import _load_network_pygt, _build_network_pygt, _create_igraph_object, _load_events_zip
 from src.invariants import GraphInvariants
+from src.descriptors import ProcessDescriptors
 
 ## process chickenpox events data
 def _process_events_chickenpox(data: pd.DataFrame) -> pd.DataFrame:
@@ -49,6 +50,7 @@ class ChickenpoxProcessor:
         self.data_events: Optional[pd.DataFrame] = None
         self.graph: Optional[ig.Graph] = None
         self.invariants: Optional[Dict[str, Any]] = None
+        self.features: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
 
     def load_data(self):
@@ -74,11 +76,24 @@ class ChickenpoxProcessor:
         self.events = _process_events_chickenpox(data = self.data_events)
         return self
 
+    def process_descriptors(self):
+        """Computes process descriptors on daily case counts."""
+        if self.events is None:
+            self.process_events()
+        self.features = ProcessDescriptors(
+            data = self.events.copy(),
+            sort_by = ["date"],
+            target = "target"
+        ).all()
+        return self
+
     def run(self):
         """ Executes the pipeline and returns the final result. """
         self.process_network()
+        self.process_descriptors()
         self.process_events()
         return {
             "invariants": self.invariants,
+            "features": self.features,
             "events": self.events.to_dict(orient = "records")
         }

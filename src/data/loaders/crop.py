@@ -11,7 +11,7 @@ from typing import Optional, Dict, Any
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from src.utils import _aggregate_by_day, _create_igraph_object
 from src.invariants import GraphInvariants
-from src.features import ProcessFeatures
+from src.descriptors import ProcessDescriptors
 
 ## helper to load network data
 def _load_network_data(url: str, cols: list[str], error_msg: str, dtype: dict[str, str] | None = None) -> pd.DataFrame:
@@ -182,12 +182,12 @@ class CropProcessor:
         self.invariants = GraphInvariants(graph).all()
         return self
 
-    def process_features(self):
-        """Computes process features over the daily event counts."""
+    def process_descriptors(self):
+        """Computes process descriptors over the daily event counts."""
         if self.events is None:
             self.process_events()
 
-        self.features = ProcessFeatures(
+        self.features = ProcessDescriptors(
             data = self.events.copy(),
             sort_by = ["date"],
             target = "target"
@@ -209,7 +209,7 @@ class CropProcessor:
     def run(self):
         """Executes the pipeline and returns the final result."""
         self.process_network()
-        self.process_features()
+        self.process_descriptors()
         self.process_events()
         return {
             "invariants": self.invariants,

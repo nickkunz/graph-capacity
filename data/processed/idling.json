@@ -21,6 +21,13 @@
     "random_walk_fourth_moment": 0.33946568483525635,
     "adjacency_fourth_moment_per_node": 7.4926780563567785
   },
+  "features": {
+    "mean_count": 395.62264150943395,
+    "lag1_autocorr": 0.3608601309373085,
+    "coef_variation": 0.45982255397397925,
+    "fano_factor": 83.64917786810649,
+    "norm_succ_diff": 0.3993218604173382
+  },
   "events": [
     {
       "date": "2025-06-02",

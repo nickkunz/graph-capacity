@@ -21,6 +21,13 @@
     "random_walk_fourth_moment": 0.020342454999624705,
     "adjacency_fourth_moment_per_node": 130809884.23320268
   },
+  "features": {
+    "mean_count": 13724.966666666667,
+    "lag1_autocorr": 0.32018474157831894,
+    "coef_variation": 0.23570093570169015,
+    "fano_factor": 762.4895773881661,
+    "norm_succ_diff": 0.1590858709453139
+  },
   "events": [
     {
       "day": 0,

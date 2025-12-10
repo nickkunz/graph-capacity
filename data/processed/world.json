@@ -21,6 +21,13 @@
     "random_walk_fourth_moment": 0.0,
     "adjacency_fourth_moment_per_node": 55.125
   },
+  "features": {
+    "mean_count": 2.5352862849533953,
+    "lag1_autocorr": 0.24822316318563684,
+    "coef_variation": 0.77464493416454,
+    "fano_factor": 1.521361344537215,
+    "norm_succ_diff": 0.6610693277308317
+  },
   "events": [
     {
       "date": "2015-12-21",

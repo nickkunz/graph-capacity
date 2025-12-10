@@ -9,6 +9,7 @@ from io import BytesIO, StringIO
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from src.utils import _create_igraph_object, _aggregate_by_day, _request_with_retry
 from src.invariants import GraphInvariants
+from src.descriptors import ProcessDescriptors
 
 ## load amazon network
 def _decode_amazon_content(content_bytes: bytes) -> str:
@@ -145,6 +146,9 @@ class AmazonProcessor:
         self.name = name
         self.data_raw = None
         self.graph = None
+        self.invariants = None
+        self.features = None
+        self.events = None
 
     def load_data(self):
         """ Loads the raw data from source. """
@@ -158,6 +162,18 @@ class AmazonProcessor:
         nodes, edges = _build_network_amazon(data = self.data_raw)
         self.graph = _create_igraph_object(nodes = nodes, edges = edges)
         self.invariants = GraphInvariants(graph = self.graph).all()
+        return self
+
+    def process_descriptors(self):
+        """Computes process descriptors over the daily event counts."""
+        if self.events is None:
+            self.process_events()
+
+        self.features = ProcessDescriptors(
+            data = self.events.copy(),
+            sort_by = ["date"],
+            target = "target"
+        ).all()
         return self
 
     def process_events(self):
@@ -175,8 +191,10 @@ class AmazonProcessor:
     def run(self):
         """ Executes the pipeline and returns the final result. """
         self.process_network()
+        self.process_descriptors()
         self.process_events()
         return {
             "invariants": self.invariants,
+            "features": self.features,
             "events": self.events.to_dict(orient = "records")
         }

@@ -21,25 +21,24 @@
     "random_walk_fourth_moment": 0.203125,
     "adjacency_fourth_moment_per_node": 52.0
   },
+  "features": {
+    "mean_count": 1.421875,
+    "lag1_autocorr": 0.24343513998894825,
+    "coef_variation": 0.4686966310645488,
+    "fano_factor": 0.3123525688968518,
+    "norm_succ_diff": 0.324031988953227
+  },
   "events": [
-    {
-      "date": "2015-09-14",
-      "target": 1
-    },
     {
       "date": "2015-10-08",
       "target": 1
     },
     {
       "date": "2015-10-12",
-      "target": 2
-    },
-    {
-      "date": "2015-11-16",
       "target": 1
     },
     {
-      "date": "2015-12-26",
+      "date": "2015-11-16",
       "target": 1
     },
     {
@@ -48,10 +47,6 @@
     },
     {
       "date": "2016-12-17",
-      "target": 1
-    },
-    {
-      "date": "2017-01-04",
       "target": 1
     },
     {
@@ -75,10 +70,6 @@
       "target": 1
     },
     {
-      "date": "2017-06-08",
-      "target": 1
-    },
-    {
       "date": "2017-06-16",
       "target": 1
     },
@@ -95,27 +86,7 @@
       "target": 1
     },
     {
-      "date": "2017-07-29",
-      "target": 1
-    },
-    {
-      "date": "2017-08-09",
-      "target": 1
-    },
-    {
-      "date": "2017-08-14",
-      "target": 1
-    },
-    {
       "date": "2017-08-17",
-      "target": 1
-    },
-    {
-      "date": "2017-08-18",
-      "target": 1
-    },
-    {
-      "date": "2017-08-23",
       "target": 1
     },
     {

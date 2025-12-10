@@ -12,6 +12,7 @@ from typing import Optional, Dict, Any
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from src.utils import _aggregate_by_day
 from src.invariants import BipartiteInvariants
+from src.descriptors import ProcessDescriptors
 
 ## load mooc_actions from the snap tarball robustly (streaming, stdlib parsing)
 def _load_network_mooc(url: str) -> pd.DataFrame:
@@ -90,6 +91,7 @@ class MoocProcessor:
         self.url: str = url
         self.data: Optional[pd.DataFrame] = None
         self.invariants: Optional[Dict[str, Any]] = None
+        self.features: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
 
     def load_data(self):
@@ -105,6 +107,17 @@ class MoocProcessor:
         self.invariants = BipartiteInvariants(m = m, n = n).all()
         return self
 
+    def process_descriptors(self):
+        """Computes process descriptors over daily event counts."""
+        if self.events is None:
+            self.process_events()
+        self.features = ProcessDescriptors(
+            data = self.events.copy(),
+            sort_by = ["day"],
+            target = "target"
+        ).all()
+        return self
+ 
     def process_events(self):
         """ Processes the event data. """
         if self.data is None:
@@ -115,8 +128,10 @@ class MoocProcessor:
     def run(self):
         """ Executes the pipeline and returns the final result. """
         self.process_network()
+        self.process_descriptors()
         self.process_events()
         return {
             "invariants": self.invariants,
+            "features": self.features,
             "events": self.events.to_dict(orient = "records")
         }
