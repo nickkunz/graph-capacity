@@ -21,7 +21,7 @@
     "random_walk_fourth_moment": 0.01387892849679577,
     "adjacency_fourth_moment_per_node": 1949046.7207207207
   },
-  "features": {
+  "descriptors": {
     "mean_count": 20.11984171848502,
     "lag1_autocorr": 0.7119421732492771,
     "coef_variation": 1.1077961556381777,

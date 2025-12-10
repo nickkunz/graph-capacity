@@ -42,7 +42,7 @@ class WikiProcessor:
         self.data_events = None
         self.graph = None
         self.invariants = None
-        self.features = None
+        self.descriptors = None
         self.events = None
 
     def load_data(self):
@@ -75,7 +75,7 @@ class WikiProcessor:
         """Computes process descriptors over daily edit events."""
         if self.events is None:
             self.process_events()
-        self.features = ProcessDescriptors(
+        self.descriptors = ProcessDescriptors(
             data = self.events.copy(),
             sort_by = ["date"],
             target = "target"
@@ -89,6 +89,6 @@ class WikiProcessor:
         self.process_events()
         return {
             "invariants": self.invariants,
-            "features": self.features,
+            "descriptors": self.descriptors,
             "events": self.events.to_dict(orient = "records")
         }

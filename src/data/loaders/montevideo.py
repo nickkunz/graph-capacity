@@ -49,7 +49,7 @@ class MontevideoProcessor:
         self.dataset: Optional[DynamicGraphTemporalSignal] = None
         self.graph: Optional[ig.Graph] = None
         self.invariants: Optional[Dict[str, Any]] = None
-        self.features: Optional[Dict[str, Any]] = None
+        self.descriptors: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
 
     def load_data(self):
@@ -78,7 +78,7 @@ class MontevideoProcessor:
         """Computes process descriptors over daily high-activity events."""
         if self.events is None:
             self.process_events()
-        self.features = ProcessDescriptors(
+        self.descriptors = ProcessDescriptors(
             data = self.events.copy(),
             sort_by = ["day"],
             target = "target"
@@ -92,6 +92,6 @@ class MontevideoProcessor:
         self.process_events()
         return {
             "invariants": self.invariants,
-            "features": self.features,
+            "descriptors": self.descriptors,
             "events": self.events.to_dict(orient = "records")
         }

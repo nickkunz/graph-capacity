@@ -147,7 +147,7 @@ class AmazonProcessor:
         self.data_raw = None
         self.graph = None
         self.invariants = None
-        self.features = None
+        self.descriptors = None
         self.events = None
 
     def load_data(self):
@@ -169,7 +169,7 @@ class AmazonProcessor:
         if self.events is None:
             self.process_events()
 
-        self.features = ProcessDescriptors(
+        self.descriptors = ProcessDescriptors(
             data = self.events.copy(),
             sort_by = ["date"],
             target = "target"
@@ -195,6 +195,6 @@ class AmazonProcessor:
         self.process_events()
         return {
             "invariants": self.invariants,
-            "features": self.features,
+            "descriptors": self.descriptors,
             "events": self.events.to_dict(orient = "records")
         }
