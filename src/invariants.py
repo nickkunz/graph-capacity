@@ -36,7 +36,6 @@ class GraphInvariants:
         if not isinstance(graph, ig.Graph):
             raise TypeError("Input graph must be an igraph.Graph object")
         self.graph = graph
-        self._is_connected = None
         self._degree = None
 
     ## compute simple (linear-time) graph invariants
