@@ -10,7 +10,7 @@ from typing import Optional, Dict, Any
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from src.invariants import GraphInvariants
-from src.descriptors import ProcessDescriptors
+from src.signatures import ProcessSignatures
 
 ## extract street network graph
 def _load_network_idling(query, network_type = 'drive', simplify = False):
@@ -79,7 +79,7 @@ class IdlingProcessor:
         self.data_events: Optional[pd.DataFrame] = None
         self.graph: Optional[ig.Graph] = None
         self.invariants: Optional[Dict[str, Any]] = None
-        self.descriptors: Optional[Dict[str, Any]] = None
+        self.signatures: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
 
     def load_data(self):
@@ -103,11 +103,11 @@ class IdlingProcessor:
         self.events = _process_events_idling(data = self.data_events)
         return self
 
-    def process_descriptors(self):
-        """Computes process descriptors over daily idling events."""
+    def process_signatures(self):
+        """Computes process signatures over daily idling events."""
         if self.events is None:
             self.process_events()
-        self.descriptors = ProcessDescriptors(
+        self.signatures = ProcessSignatures(
             data = self.events.copy(),
             sort_by = ["date"],
             target = "target"
@@ -117,10 +117,10 @@ class IdlingProcessor:
     def run(self):
         """ Executes the pipeline and returns the final result. """
         self.process_network()
-        self.process_descriptors()
+        self.process_signatures()
         self.process_events()
         return {
             "invariants": self.invariants,
-            "descriptors": self.descriptors,
+            "signatures": self.signatures,
             "events": self.events.to_dict(orient = "records")
         }

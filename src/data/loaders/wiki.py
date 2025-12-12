@@ -10,7 +10,7 @@ from torch_geometric_temporal.dataset import WikiMathsDatasetLoader
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from src.utils import _build_network_pygt, _create_igraph_object, _load_network_pygt, _load_events_zip
 from src.invariants import GraphInvariants
-from src.descriptors import ProcessDescriptors
+from src.signatures import ProcessSignatures
 
 ## process wikimaths json to get daily event counts
 def process_events_wiki(data: dict) -> pd.DataFrame:
@@ -42,7 +42,7 @@ class WikiProcessor:
         self.data_events = None
         self.graph = None
         self.invariants = None
-        self.descriptors = None
+        self.signatures = None
         self.events = None
 
     def load_data(self):
@@ -71,11 +71,11 @@ class WikiProcessor:
         self.events = process_events_wiki(data = self.data_events)
         return self
 
-    def process_descriptors(self):
-        """Computes process descriptors over daily edit events."""
+    def process_signatures(self):
+        """Computes process signatures over daily edit events."""
         if self.events is None:
             self.process_events()
-        self.descriptors = ProcessDescriptors(
+        self.signatures = ProcessSignatures(
             data = self.events.copy(),
             sort_by = ["date"],
             target = "target"
@@ -85,10 +85,10 @@ class WikiProcessor:
     def run(self):
         """ Executes the pipeline and returns the final result. """
         self.process_network()
-        self.process_descriptors()
+        self.process_signatures()
         self.process_events()
         return {
             "invariants": self.invariants,
-            "descriptors": self.descriptors,
+            "signatures": self.signatures,
             "events": self.events.to_dict(orient = "records")
         }

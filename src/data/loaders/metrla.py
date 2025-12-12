@@ -13,7 +13,7 @@ from torch_geometric_temporal.signal import DynamicGraphTemporalSignal
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from src.utils import _load_network_pygt, _build_network_pygt, _create_igraph_object
 from src.invariants import GraphInvariants
-from src.descriptors import ProcessDescriptors
+from src.signatures import ProcessSignatures
 
 ## process metr-la dataset into daily event aggregates
 def _process_events_metrla(data: DynamicGraphTemporalSignal, sample_rate_minutes: int = 5, thres_percentile: int = 1, thres_min: float = 1e-6) -> pd.DataFrame:
@@ -60,7 +60,7 @@ class MetrLaProcessor:
         self.dataset: Optional[DynamicGraphTemporalSignal] = None
         self.graph: Optional[ig.Graph] = None
         self.invariants: Optional[Dict[str, Any]] = None
-        self.descriptors: Optional[Dict[str, Any]] = None
+        self.signatures: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
 
     def load_data(self):
@@ -85,11 +85,11 @@ class MetrLaProcessor:
         self.events = _process_events_metrla(data = self.dataset)
         return self
 
-    def process_descriptors(self):
-        """Computes process descriptors over daily congestion events."""
+    def process_signatures(self):
+        """Computes process signatures over daily congestion events."""
         if self.events is None:
             self.process_events()
-        self.descriptors = ProcessDescriptors(
+        self.signatures = ProcessSignatures(
             data = self.events.copy(),
             sort_by = ["date"],
             target = "target"
@@ -99,10 +99,10 @@ class MetrLaProcessor:
     def run(self):
         """ Executes the pipeline and returns the final result. """
         self.process_network()
-        self.process_descriptors()
+        self.process_signatures()
         self.process_events()
         return {
             "invariants": self.invariants,
-            "descriptors": self.descriptors,
+            "signatures": self.signatures,
             "events": self.events.to_dict(orient = "records")
         }

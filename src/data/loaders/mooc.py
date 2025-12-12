@@ -12,7 +12,7 @@ from typing import Optional, Dict, Any
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from src.utils import _aggregate_by_day
 from src.invariants import BipartiteInvariants
-from src.descriptors import ProcessDescriptors
+from src.signatures import ProcessSignatures
 
 ## load mooc_actions from the snap tarball robustly (streaming, stdlib parsing)
 def _load_network_mooc(url: str) -> pd.DataFrame:
@@ -91,7 +91,7 @@ class MoocProcessor:
         self.url: str = url
         self.data: Optional[pd.DataFrame] = None
         self.invariants: Optional[Dict[str, Any]] = None
-        self.descriptors: Optional[Dict[str, Any]] = None
+        self.signatures: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
 
     def load_data(self):
@@ -107,11 +107,11 @@ class MoocProcessor:
         self.invariants = BipartiteInvariants(m = m, n = n).all()
         return self
 
-    def process_descriptors(self):
-        """Computes process descriptors over daily event counts."""
+    def process_signatures(self):
+        """Computes process signatures over daily event counts."""
         if self.events is None:
             self.process_events()
-        self.descriptors = ProcessDescriptors(
+        self.signatures = ProcessSignatures(
             data = self.events.copy(),
             sort_by = ["day"],
             target = "target"
@@ -128,10 +128,10 @@ class MoocProcessor:
     def run(self):
         """ Executes the pipeline and returns the final result. """
         self.process_network()
-        self.process_descriptors()
+        self.process_signatures()
         self.process_events()
         return {
             "invariants": self.invariants,
-            "descriptors": self.descriptors,
+            "signatures": self.signatures,
             "events": self.events.to_dict(orient = "records")
         }

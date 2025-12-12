@@ -8,7 +8,7 @@ from typing import Optional, Dict, Any
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from src.utils import _aggregate_by_day, _load_network_snap, _compute_network_snap
 from src.invariants import BipartiteInvariants
-from src.descriptors import ProcessDescriptors
+from src.signatures import ProcessSignatures
 
 ## process email events
 def process_events_email(data: pd.DataFrame) -> pd.DataFrame:
@@ -23,7 +23,7 @@ class EmailProcessor:
         self.url = url
         self.data: Optional[pd.DataFrame] = None
         self.invariants: Optional[Dict[str, Any]] = None
-        self.descriptors: Optional[Dict[str, Any]] = None
+        self.signatures: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
 
     def load_data(self):
@@ -47,11 +47,11 @@ class EmailProcessor:
         self.events = process_events_email(data = self.data)
         return self
 
-    def process_descriptors(self):
-        """Computes process descriptors over daily email events."""
+    def process_signatures(self):
+        """Computes process signatures over daily email events."""
         if self.events is None:
             self.process_events()
-        self.descriptors = ProcessDescriptors(
+        self.signatures = ProcessSignatures(
             data = self.events.copy(),
             sort_by = ["day"],
             target = "target"
@@ -61,10 +61,10 @@ class EmailProcessor:
     def run(self):
         """ Executes the pipeline and returns the final result. """
         self.process_network()
-        self.process_descriptors()
+        self.process_signatures()
         self.process_events()
         return {
             "invariants": self.invariants,
-            "descriptors": self.descriptors,
+            "signatures": self.signatures,
             "events": self.events.to_dict(orient = "records")
         }
