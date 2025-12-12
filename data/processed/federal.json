@@ -21,12 +21,14 @@
     "random_walk_fourth_moment": 0.12343892524291099,
     "adjacency_fourth_moment_per_node": 64.07407407407408
   },
-  "descriptors": {
-    "mean_count": 1.4283995186522263,
+  "signatures": {
     "lag1_autocorr": 0.10466895889574626,
     "coef_variation": 0.749571940177883,
     "fano_factor": 0.8025578303097275,
-    "norm_succ_diff": 0.478250322265984
+    "norm_succ_diff": 0.478250322265984,
+    "hurst_exponent": 0.5673587160841956,
+    "trend_coeff": 0.1026765137799323,
+    "count_skewness": 6.4215330843788285
   },
   "events": [
     {

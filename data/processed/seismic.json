@@ -21,12 +21,14 @@
     "random_walk_fourth_moment": 0.010989026063100177,
     "adjacency_fourth_moment_per_node": 720990.0
   },
-  "descriptors": {
-    "mean_count": 378.739010989011,
-    "lag1_autocorr": 0.6534750120926924,
-    "coef_variation": 0.2125501973989304,
-    "fano_factor": 17.11051439743181,
-    "norm_succ_diff": 0.12923121770175192
+  "signatures": {
+    "lag1_autocorr": 0.6535951668812028,
+    "coef_variation": 0.2125502414851405,
+    "fano_factor": 17.11151440980411,
+    "norm_succ_diff": 0.12920917243136126,
+    "hurst_exponent": 0.6790219812827943,
+    "trend_coeff": -0.2081515737283545,
+    "count_skewness": 4.20665999447767
   },
   "events": [
     {
@@ -635,7 +637,7 @@
     },
     {
       "date": "2023-06-01",
-      "target": 395
+      "target": 398
     },
     {
       "date": "2023-06-02",
@@ -659,7 +661,7 @@
     },
     {
       "date": "2023-06-07",
-      "target": 468
+      "target": 469
     },
     {
       "date": "2023-06-08",
@@ -671,7 +673,7 @@
     },
     {
       "date": "2023-06-10",
-      "target": 421
+      "target": 422
     },
     {
       "date": "2023-06-11",
@@ -683,15 +685,15 @@
     },
     {
       "date": "2023-06-13",
-      "target": 452
+      "target": 453
     },
     {
       "date": "2023-06-14",
-      "target": 377
+      "target": 378
     },
     {
       "date": "2023-06-15",
-      "target": 257
+      "target": 258
     },
     {
       "date": "2023-06-16",
