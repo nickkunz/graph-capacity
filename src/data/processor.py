@@ -182,7 +182,7 @@ if __name__ == '__main__':
     else:
         logging.info(f"JODIE data already exists at {jodie_path}. Skipping data source.")
 
-    ## --- MathOverflow --- ##
+    ## --- mathoverflow --- ##
     overflow_path = os.path.join(PATH_OUT, f"{NAME_OVERFLOW}.json")
     if not os.path.exists(overflow_path):
         logging.info("Processing MathOverflow data...")
