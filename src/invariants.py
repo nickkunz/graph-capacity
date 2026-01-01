@@ -158,6 +158,12 @@ class GraphInvariants:
         else:
             features['degree_skewness'] = _ensure_finite(stats.skew(degrees, bias = False), 0.0)
 
+        ## degree kurtosis (fisher, bias-corrected)
+        if len(degrees) < 4 or len(set(degrees)) <= 1:
+            features['degree_kurtosis'] = 0.0
+        else:
+            features['degree_kurtosis'] = _ensure_finite(stats.kurtosis(degrees, fisher = True, bias = False), 0.0)
+
         return features
 
     ## compute spectral invariants (trace-polynomial, no eigendecomposition)
@@ -362,7 +368,8 @@ class BipartiteInvariants:
                 'degree_assortativity': 0.0,
                 'degree_entropy': 0.0,
                 'joint_degree_entropy': 0.0,
-                'degree_skewness': 0.0
+                'degree_skewness': 0.0,
+                'degree_kurtosis': 0.0
             }
         
         N = self.m + self.n
@@ -387,14 +394,22 @@ class BipartiteInvariants:
         ## degree skewness
         if self.m == self.n:
             skewness = 0.0
+            kurtosis = 0.0
         else:
             std_dev = np.sqrt(deg_var)
             if std_dev < 1e-9:
                 skewness = 0.0
+                kurtosis = 0.0
             else:
                 term_m = self.m * (self.n - mean_k)**3
                 term_n = self.n * (self.m - mean_k)**3
                 skewness = (term_m + term_n) / (N * std_dev**3)
+                
+                ## degree kurtosis (excess)
+                ## for a two-point distribution (Bernoulli-like), excess kurtosis is (1/(pq)) - 6
+                p = self.m / N
+                q = self.n / N
+                kurtosis = (1.0 / (p * q)) - 6.0
 
         return {
             'degree_variance': _ensure_finite(float(deg_var)),
@@ -402,7 +417,8 @@ class BipartiteInvariants:
             'degree_assortativity': _ensure_finite(assortativity),
             'degree_entropy': _ensure_finite(float(degree_entropy)),
             'joint_degree_entropy': _ensure_finite(float(joint_degree_entropy)),
-            'degree_skewness': _ensure_finite(float(skewness))
+            'degree_skewness': _ensure_finite(float(skewness)),
+            'degree_kurtosis': _ensure_finite(float(kurtosis))
         }
 
     ## compute spectral invariants (trace-polynomial, no eigendecomposition)
@@ -464,6 +480,7 @@ class BipartiteInvariants:
                 'degree_entropy': 0.0,
                 'joint_degree_entropy': 0.0,
                 'degree_skewness': 0.0,
+                'degree_kurtosis': 0.0,
                 'normalized_laplacian_second_moment': 0.0,
                 'normalized_laplacian_third_moment': 0.0,
                 'random_walk_triangle_weight': 0.0,
