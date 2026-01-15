@@ -21,7 +21,7 @@
     "random_walk_fourth_moment": 0.22228930095577978,
     "adjacency_fourth_moment_per_node": 1558.771822219262
   },
-  "features": {
+  "signatures": {
     "lag1_autocorr": 0.94729004191829,
     "coef_variation": 1.2116079262796684,
     "fano_factor": 263.4112780428363,
