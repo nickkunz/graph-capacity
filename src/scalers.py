@@ -4,8 +4,8 @@ import pandas as pd
 from typing import Sequence, Tuple
 from sklearn.preprocessing import StandardScaler
 
-## zero-centered standardization of invariants (z-scores)
-def _standardize_invariants(data: pd.DataFrame, feat: Sequence[str]) -> Tuple[pd.DataFrame, StandardScaler]:
+## zero-centered standardization
+def _standardizer(data: pd.DataFrame, feat: Sequence[str]) -> Tuple[pd.DataFrame, StandardScaler]:
 	if not feat:
 		raise ValueError("feat argument must contain at least one column name.")
 	data_copy = data.copy(deep = True)
@@ -13,8 +13,8 @@ def _standardize_invariants(data: pd.DataFrame, feat: Sequence[str]) -> Tuple[pd
 	data_copy[feat] = scaler.transform(data_copy[feat].astype(float))
 	return data_copy, scaler
 
-## log transform target values (tau)
-def _log_transform_target(target: pd.Series) -> pd.Series:
+## log transformation
+def _log_transformer(target: pd.Series) -> pd.Series:
 	series = pd.to_numeric(target, errors = 'coerce')
 	if series.empty or series.isna().all():
 		raise ValueError("target series must contain at least one numeric value")
