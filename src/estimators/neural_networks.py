@@ -1,10 +1,3 @@
-## libraries
-import numpy as np
-import torch
-import torch.nn as nn
-import torch.optim as optim
-from sklearn.base import BaseEstimator, RegressorMixin
-
 ## base neural network
 class TinyNet(nn.Module):
     """ Simple two-layer MLP with 8 hidden units. """
@@ -19,8 +12,9 @@ class TinyNet(nn.Module):
 ## sklearn wrapper for TinyNet
 class TinyNetRegressor(BaseEstimator, RegressorMixin):
     """ Scikit-learn compatible wrapper of TinyNet. """
-    def __init__(self, input_dim, lr = 0.01, weight_decay = 0.01, epochs = 2000, device = None):
+    def __init__(self, input_dim, quantile = 0.5, lr = 0.01, weight_decay = 0.01, epochs = 2000, device = None):
         self.input_dim = input_dim
+        self.quantile = quantile
         self.lr = lr
         self.weight_decay = weight_decay
         self.epochs = epochs
@@ -35,14 +29,14 @@ class TinyNetRegressor(BaseEstimator, RegressorMixin):
             lr = self.lr,
             weight_decay = self.weight_decay,
         )
-        loss_fn = nn.MSELoss()
         X_tensor = torch.from_numpy(X_arr).to(self.device_)
         y_tensor = torch.from_numpy(y_arr).to(self.device_)
         self.model_.train()
         for _ in range(self.epochs):
             optimizer.zero_grad()
             preds = self.model_(X_tensor)
-            loss = loss_fn(preds, y_tensor)
+            errors = y_tensor - preds
+            loss = torch.max((self.quantile - 1) * errors, self.quantile * errors).mean()
             loss.backward()
             optimizer.step()
         return self
@@ -55,3 +49,22 @@ class TinyNetRegressor(BaseEstimator, RegressorMixin):
         with torch.no_grad():
             preds = self.model_(X_tensor).cpu().numpy().ravel()
         return preds
+
+
+## neural network regressors wrapper
+class TinyNetRegressors(BaseEstimator):
+    def __init__(self, input_dim, quantile_c = 0.99, quantile_r = 0.5, **kwargs):
+        self.input_dim = input_dim
+        self.quantile_c = quantile_c
+        self.quantile_r = quantile_r
+        self.kwargs = kwargs
+        self.estimator_c = TinyNetRegressor(
+            input_dim = input_dim,
+            quantile = quantile_c,
+            **kwargs
+        )
+        self.estimator_r = TinyNetRegressor(
+            input_dim = input_dim,
+            quantile = quantile_r,
+            **kwargs
+        )
