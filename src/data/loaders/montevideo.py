@@ -10,9 +10,9 @@ from torch_geometric_temporal.signal import DynamicGraphTemporalSignal
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.utils import _load_network_pygt, _build_network_pygt, _create_igraph_object
-from src.invariants import GraphInvariants
-from src.signatures import ProcessSignatures
+from src.data.utilities import _load_network_pygt, _build_network_pygt, _create_igraph_object
+from src.vectorizers.invariants import GraphInvariants
+from src.vectorizers.signatures import ProcessSignatures
 
 ## process montevideo dataset into daily event aggregates
 def _process_events_montevideo(data, hours: int = 24, perc: int = 99) -> pd.DataFrame:

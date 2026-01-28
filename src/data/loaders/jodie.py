@@ -7,9 +7,9 @@ from typing import Optional, Dict, Any
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.utils import _create_igraph_object, _aggregate_by_day, _load_network_pyg, _build_network_pyg
-from src.invariants import GraphInvariants
-from src.signatures import ProcessSignatures
+from src.data.utilities import _create_igraph_object, _aggregate_by_day, _load_network_pyg, _build_network_pyg
+from src.vectorizers.invariants import GraphInvariants
+from src.vectorizers.signatures import ProcessSignatures
 
 ## load jodie wikipedia events from raw data
 def load_events_jodie(data: JODIEDataset) -> pd.DataFrame:

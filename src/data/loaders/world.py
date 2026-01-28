@@ -7,9 +7,9 @@ from typing import Optional, Dict, Any
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-from src.utils import _aggregate_by_day, _create_igraph_object, _request_with_retry
-from src.invariants import GraphInvariants
-from src.signatures import ProcessSignatures
+from src.data.utilities import _aggregate_by_day, _create_igraph_object, _request_with_retry
+from src.vectorizers.invariants import GraphInvariants
+from src.vectorizers.signatures import ProcessSignatures
 
 ## load world bank project data
 def load_network_worldbank(url: str, start_year: int, end_year: int) -> pd.DataFrame:

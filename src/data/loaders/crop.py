@@ -9,9 +9,9 @@ from typing import Optional, Dict, Any
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.utils import _aggregate_by_day, _create_igraph_object
-from src.invariants import GraphInvariants
-from src.signatures import ProcessSignatures
+from src.data.utilities import _aggregate_by_day, _create_igraph_object
+from src.vectorizers.invariants import GraphInvariants
+from src.vectorizers.signatures import ProcessSignatures
 
 ## helper to load network data
 def _load_network_data(url: str, cols: list[str], error_msg: str, dtype: dict[str, str] | None = None) -> pd.DataFrame:

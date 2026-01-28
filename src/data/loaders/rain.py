@@ -11,9 +11,9 @@ from scipy.spatial import Delaunay
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.utils import _create_igraph_object, _aggregate_by_day
-from src.invariants import GraphInvariants
-from src.signatures import ProcessSignatures
+from src.data.utilities import _create_igraph_object, _aggregate_by_day
+from src.vectorizers.invariants import GraphInvariants
+from src.vectorizers.signatures import ProcessSignatures
 
 ## load meteostat weather station data
 def _load_network_rain(start: pd.Timestamp, end: pd.Timestamp, country: str = None) -> pd.DataFrame:

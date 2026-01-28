@@ -8,9 +8,9 @@ from typing import Optional, Dict, Any
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.utils import _create_igraph_object
-from src.invariants import GraphInvariants
-from src.signatures import ProcessSignatures
+from src.data.utilities import _create_igraph_object
+from src.vectorizers.invariants import GraphInvariants
+from src.vectorizers.signatures import ProcessSignatures
 
 ## load caenorhabditis elegans network data
 def _load_network_celegans() -> pd.DataFrame:

@@ -9,8 +9,8 @@ from typing import Optional, Dict, Any
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.invariants import GraphInvariants
-from src.signatures import ProcessSignatures
+from src.vectorizers.invariants import GraphInvariants
+from src.vectorizers.signatures import ProcessSignatures
 
 ## extract street network graph
 def _load_network_idling(query, network_type = 'drive', simplify = False):

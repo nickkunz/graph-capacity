@@ -7,9 +7,9 @@ from io import BytesIO, StringIO
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.utils import _create_igraph_object, _aggregate_by_day, _request_with_retry
-from src.invariants import GraphInvariants
-from src.signatures import ProcessSignatures
+from src.data.utilities import _create_igraph_object, _aggregate_by_day, _request_with_retry
+from src.vectorizers.invariants import GraphInvariants
+from src.vectorizers.signatures import ProcessSignatures
 
 ## load amazon network
 def _decode_amazon_content(content_bytes: bytes) -> str:

@@ -6,9 +6,9 @@ from typing import Optional, Dict, Any
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.utils import _aggregate_by_day, _load_network_snap, _compute_network_snap
-from src.invariants import BipartiteInvariants
-from src.signatures import ProcessSignatures
+from src.data.utilities import _aggregate_by_day, _load_network_snap, _compute_network_snap
+from src.vectorizers.invariants import BipartiteInvariants
+from src.vectorizers.signatures import ProcessSignatures
 
 ## college message user-user network
 class CollegeProcessor:

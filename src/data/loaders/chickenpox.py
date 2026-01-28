@@ -8,9 +8,9 @@ from torch_geometric_temporal.dataset import ChickenpoxDatasetLoader
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.utils import _load_network_pygt, _build_network_pygt, _create_igraph_object, _load_events_zip
-from src.invariants import GraphInvariants
-from src.signatures import ProcessSignatures
+from src.data.utilities import _load_network_pygt, _build_network_pygt, _create_igraph_object, _load_events_zip
+from src.vectorizers.invariants import GraphInvariants
+from src.vectorizers.signatures import ProcessSignatures
 
 ## process chickenpox events data
 def _process_events_chickenpox(data: pd.DataFrame) -> pd.DataFrame:

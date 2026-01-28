@@ -8,9 +8,9 @@ from torch_geometric_temporal.dataset import WikiMathsDatasetLoader
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-from src.utils import _build_network_pygt, _create_igraph_object, _load_network_pygt, _load_events_zip
-from src.invariants import GraphInvariants
-from src.signatures import ProcessSignatures
+from src.data.utilities import _build_network_pygt, _create_igraph_object, _load_network_pygt, _load_events_zip
+from src.vectorizers.invariants import GraphInvariants
+from src.vectorizers.signatures import ProcessSignatures
 
 ## process wikimaths json to get daily event counts
 def process_events_wiki(data: dict) -> pd.DataFrame:

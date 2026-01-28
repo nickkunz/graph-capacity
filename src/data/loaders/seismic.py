@@ -10,9 +10,9 @@ import igraph as ig
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.utils import _create_igraph_object, _aggregate_by_day
-from src.invariants import GraphInvariants
-from src.signatures import ProcessSignatures
+from src.data.utilities import _create_igraph_object, _aggregate_by_day
+from src.vectorizers.invariants import GraphInvariants
+from src.vectorizers.signatures import ProcessSignatures
 
 ## xml data loader
 def _load_network_seismic(url: str, params: dict, namespace: dict, row_path: str, col_map: dict, timeout: int = 60) -> pd.DataFrame:
