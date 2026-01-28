@@ -9,7 +9,7 @@ if PROJECT_ROOT not in sys.path:
     sys.path.append(PROJECT_ROOT)
 
 ## modules
-from src.utils import _save_to_json
+from src.data.utilities import _save_to_json
 from src.data.loaders.federal import FederalProcessor
 from src.data.loaders.bitcoin import BitcoinProcessor
 from src.data.loaders.amazon import AmazonProcessor
