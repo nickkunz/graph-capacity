@@ -1,8 +1,11 @@
 ## libraries
 import numpy as np
-from sklearn.metrics import mean_squared_error
-from sklearn.metrics import mean_absolute_error, median_absolute_error
-from sklearn.metrics import mean_absolute_percentage_error, max_error
+from sklearn.metrics import (
+    mean_squared_error, 
+    max_error,
+    mean_absolute_error,
+    median_absolute_error
+)   
 
 ## violation rate
 def _violation_rate(y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -93,15 +96,14 @@ def frontier_metrics(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12)
     return metrics
 
 
-# ## standard regression metrics
-# def central_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
+## standard regression metrics
+def central_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
     
-#     """ Compute standard pointwise regression metrics of predicted values."""
+    """ Compute standard pointwise regression metrics of predicted values."""
 
-#     return {
-#         "mse": mean_squared_error(y_true = y_true, y_pred = y_pred),
-#         "mae": mean_absolute_error(y_true = y_true, y_pred = y_pred),
-#         "medae": median_absolute_error(y_true = y_true, y_pred = y_pred),
-#         "mape": mean_absolute_percentage_error(y_true = y_true, y_pred = y_pred),
-#         "mxe": max_error(y_true = y_true, y_pred = y_pred),
-#     }
+    return {
+        "mse": mean_squared_error(y_true = y_true, y_pred = y_pred),
+        "mae": mean_absolute_error(y_true = y_true, y_pred = y_pred),
+        "medae": median_absolute_error(y_true = y_true, y_pred = y_pred),
+        "mxe": max_error(y_true = y_true, y_pred = y_pred),
+    }
