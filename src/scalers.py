@@ -4,7 +4,7 @@ import pandas as pd
 from typing import Sequence, Tuple
 from sklearn.preprocessing import StandardScaler
 
-## zero-centered standardization
+## zero-mean standardization
 def _standardizer(data: pd.DataFrame, feat: Sequence[str]) -> Tuple[pd.DataFrame, StandardScaler]:
 	if not feat:
 		raise ValueError("feat argument must contain at least one column name.")
