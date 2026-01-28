@@ -6,15 +6,16 @@ import logging
 import sys
 import configparser
 
+## paths and config
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 DATA_DIR = os.path.join(PROJECT_ROOT, 'data')
 PROCESSED_DIR_DEFAULT = os.path.join(DATA_DIR, 'processed')
 OUTPUT_DIR_DEFAULT = os.path.join(PROJECT_ROOT, 'outputs', 'data')
-
 CONFIG_PATH = os.path.join(PROJECT_ROOT, 'conf', 'settings.ini')
 config = configparser.ConfigParser()
 config.read(CONFIG_PATH)
 
+## dataset name constants
 NAME_AMAZON = config['names']['NAME_AMAZON']
 NAME_BITCOIN = config['names']['NAME_BITCOIN']
 NAME_FEDERAL = config['names']['NAME_FEDERAL']
@@ -41,7 +42,7 @@ NAME_AUGER = config['names']['NAME_AUGER']
 NAME_SEISMIC = config['names']['NAME_SEISMIC']
 NAME_RAIN = config['names']['NAME_RAIN']
 
-# (name, domain, discipline)
+## dataset metadata mapping (name, discipline, domain)
 DATASET_METADATA = [
     (NAME_GWOSC, 'Earth & Physical Sciences', 'Cosmology'),
     (NAME_RIVER, 'Earth & Physical Sciences', 'Hydrology'),
@@ -70,7 +71,7 @@ DATASET_METADATA = [
     (NAME_MONTEVIDEO, 'Transportation & Infrastructure', 'Ridership'),
 ]
 
-# Configure logging
+## logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -119,7 +120,7 @@ def normalize_event_fields(events):
 
     return df_events, has_day, has_date
 
-def add_metadata_columns(df_events, dataset_name, meta_map, invariants, invariant_order, descriptors, descriptor_order):
+def add_metadata_columns(df_events, dataset_name, meta_map, invariants, invariant_order, signatures, descriptor_order):
     df_events = df_events.copy()
     df_events['name'] = dataset_name
     df_events['discipline'] = meta_map.get(dataset_name, {}).get('discipline', 'Unknown')
@@ -130,7 +131,7 @@ def add_metadata_columns(df_events, dataset_name, meta_map, invariants, invarian
         if key not in invariant_order:
             invariant_order.append(key)
 
-    for key, value in descriptors.items():
+    for key, value in signatures.items():
         df_events[key] = value
         if key not in descriptor_order:
             descriptor_order.append(key)
@@ -150,7 +151,7 @@ def process_dataset(file_path, dataset_name, meta_map, invariant_order, descript
         data = json.load(f)
 
     invariants = data.get('invariants', {})
-    descriptors = data.get('descriptors', {})
+    signatures = data.get('signatures', {})
     events = data.get('events', [])
 
     if not events:
@@ -169,7 +170,7 @@ def process_dataset(file_path, dataset_name, meta_map, invariant_order, descript
         meta_map,
         invariants,
         invariant_order,
-        descriptors,
+        signatures,
         descriptor_order
     )
     df_max, log_day, log_date = select_max_event(df_events, has_day, has_date)
@@ -213,11 +214,11 @@ def create_master_dataframe(processed_dir, output_all_path, output_max_path):
     Loads all intermediate .json objects from the processed directory into two CSV files:
 
     1. data_all.csv: one row per observed event across all datasets, retaining both day
-         and date information for each measurement. Invariants and process descriptors are
+         and date information for each measurement. Invariants and process signatures are
          appended as dataset-level columns alongside metadata.
     2. data_max.csv: one row per dataset capturing only the event with the largest target
          value. These rows omit the day and date columns while preserving invariants and
-         descriptors.
+         signatures.
     """
     meta_map = get_dataset_meta()
     all_data = []
