@@ -101,7 +101,7 @@ logging.basicConfig(
 )
 
 ## execute
-if __name__ == '__main__':
+def run_processor():
     
     ## --- federal contracts --- ##
     federal_path = os.path.join(PATH_OUT, f"{NAME_FEDERAL}.json")
@@ -410,3 +410,6 @@ if __name__ == '__main__':
         logging.info(f"Rain data saved to {path_rain}")
     else:
         logging.info(f"Rain data already exists at {path_rain}. Skipping data source.")
+
+if __name__ == '__main__':
+    run_processor()
