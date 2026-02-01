@@ -1,5 +1,6 @@
 ## libraries
 import numpy as np
+from scipy.stats import spearmanr, kendalltau, wasserstein_distance
 from sklearn.metrics import (
     mean_squared_error, 
     max_error,
@@ -106,4 +107,103 @@ def central_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
         "mae": mean_absolute_error(y_true = y_true, y_pred = y_pred),
         "medae": median_absolute_error(y_true = y_true, y_pred = y_pred),
         "mxe": max_error(y_true = y_true, y_pred = y_pred),
+    }
+
+
+## spearman rank correlation
+def _spearman_rho(y_a: np.ndarray, y_b: np.ndarray) -> float:
+
+    """ Global monotone agreement of predicted capacities. """
+
+    rho, _ = spearmanr(y_a, y_b)
+    return float(rho) if not np.isnan(rho) else 0.0
+
+
+## kendall rank correlation
+def _kendall_tau(y_a: np.ndarray, y_b: np.ndarray) -> float:
+
+    """ Pairwise ordering stability (probability of concordant pairs). """
+
+    tau, _ = kendalltau(y_a, y_b)
+    return float(tau) if not np.isnan(tau) else 0.0
+
+
+## rank-biased overlap
+def _rank_biased_overlap(y_a: np.ndarray, y_b: np.ndarray, p: float = 0.9) -> float:
+
+    """ Frontier-focused agreement; emphasizes the top of the ranking. """
+    
+    ## sort indices descending
+    s = np.argsort(y_a)[::-1]
+    t = np.argsort(y_b)[::-1]
+    n = len(s)
+    
+    score = 0.0
+    weight = 1.0
+    overlap = 0
+    seen_s = set()
+    seen_t = set()
+    
+    for d in range(1, n + 1):
+        idx_s = s[d-1]
+        idx_t = t[d-1]
+        
+        if idx_s == idx_t:
+            overlap += 1
+        else:
+            if idx_s in seen_t:
+                overlap += 1
+            if idx_t in seen_s:
+                overlap += 1
+        
+        seen_s.add(idx_s)
+        seen_t.add(idx_t)
+        
+        score += weight * (overlap / d)
+        weight *= p
+        
+        if weight < 1e-6:
+            break
+            
+    return float(score * (1.0 - p))
+
+
+## top-k rank overlap
+def _top_k_overlap(y_a: np.ndarray, y_b: np.ndarray, k: int = 10) -> float:
+
+    """ Discrete stability of which graphs define the frontier. """
+
+    ## indices of top k elements
+    top_a = set(np.argsort(y_a)[-k:])
+    top_b = set(np.argsort(y_b)[-k:])
+    
+    if not top_a or not top_b:
+        return 0.0
+
+    ## jaccard similarity
+    intersect = len(top_a.intersection(top_b))
+    union = len(top_a.union(top_b))
+    
+    return float(intersect / union)
+
+
+## wasserstein distance
+def _wasserstein_dist(y_a: np.ndarray, y_b: np.ndarray) -> float:
+
+    """ Distributional proximity of the predicted frontier envelopes. """
+
+    return float(wasserstein_distance(y_a, y_b))
+
+
+## combined convergence metrics
+def convergence_metrics(y_a: np.ndarray, y_b: np.ndarray, k: int = 10, p: float = 0.9) -> dict:
+
+    """ Compute all convergence metrics and return as a dictionary. """
+
+    return {
+        "rho": _spearman_rho(y_a, y_b),
+        "tau": _kendall_tau(y_a, y_b),
+        "rbo": _rank_biased_overlap(y_a, y_b, p = p),
+        "jaccard": _top_k_overlap(y_a, y_b, k = k),
+        "emd": _wasserstein_dist(y_a, y_b),
     }
