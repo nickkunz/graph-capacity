@@ -8,9 +8,12 @@ import configparser
 
 ## paths and config
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+if PROJECT_ROOT not in sys.path:
+    sys.path.append(PROJECT_ROOT)
+
 DATA_DIR = os.path.join(PROJECT_ROOT, 'data')
 PROCESSED_DIR_DEFAULT = os.path.join(DATA_DIR, 'processed')
-OUTPUT_DIR_DEFAULT = os.path.join(PROJECT_ROOT, 'outputs', 'data')
+OUTPUT_DIR_DEFAULT = DATA_DIR
 CONFIG_PATH = os.path.join(PROJECT_ROOT, 'conf', 'settings.ini')
 config = configparser.ConfigParser()
 config.read(CONFIG_PATH)
@@ -216,7 +219,7 @@ def create_master_dataframe(processed_dir, output_all_path, output_max_path):
     1. data_all.csv: one row per observed event across all datasets, retaining both day
          and date information for each measurement. Invariants and process signatures are
          appended as dataset-level columns alongside metadata.
-    2. data_max.csv: one row per dataset capturing only the event with the largest target
+    2. data.csv: one row per dataset capturing only the event with the largest target
          value. These rows omit the day and date columns while preserving invariants and
          signatures.
     """
@@ -248,21 +251,26 @@ def create_master_dataframe(processed_dir, output_all_path, output_max_path):
         logging.error("No data was processed. Exiting.")
         return
 
-    master_all_df = build_all_dataframe(all_data, invariant_order, descriptor_order)
     master_max_df = build_max_dataframe(max_data, invariant_order, descriptor_order)
-
-    # Save to CSV files
-    master_all_df.to_csv(output_all_path, index=False)
-    logging.info(f"All observations DataFrame saved to {output_all_path}")
-    logging.info(f"data_all shape: {master_all_df.shape}")
 
     master_max_df.to_csv(output_max_path, index=False)
     logging.info(f"Max observations DataFrame saved to {output_max_path}")
-    logging.info(f"data_max shape: {master_max_df.shape}")
+    logging.info(f"data.csv shape: {master_max_df.shape}")
 
-
+## main execution
 if __name__ == '__main__':
-    os.makedirs(OUTPUT_DIR_DEFAULT, exist_ok=True)
-    output_all_path = os.path.join(OUTPUT_DIR_DEFAULT, 'data_all.csv')
-    output_max_path = os.path.join(OUTPUT_DIR_DEFAULT, 'data_max.csv')
-    create_master_dataframe(PROCESSED_DIR_DEFAULT, output_all_path, output_max_path)
+    try:
+        from src.data.processor import run_processor
+        logging.info("Running data processor...")
+        run_processor()
+    except Exception as e:
+        logging.warning(f"Failed to run processor: {e}. Proceeding with existing data.")
+
+    os.makedirs(
+        name = DATA_DIR, 
+        exist_ok = True
+    )
+    
+    output_max_path = os.path.join(DATA_DIR, 'data.csv')
+    
+    create_master_dataframe(PROCESSED_DIR_DEFAULT, None, output_max_path)
