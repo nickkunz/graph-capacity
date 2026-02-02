@@ -97,45 +97,32 @@ def frontier_metrics(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12)
     return metrics
 
 
-## standard regression metrics
-def central_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
-    
-    """ Compute standard pointwise regression metrics of predicted values."""
-
-    return {
-        "mse": mean_squared_error(y_true = y_true, y_pred = y_pred),
-        "mae": mean_absolute_error(y_true = y_true, y_pred = y_pred),
-        "medae": median_absolute_error(y_true = y_true, y_pred = y_pred),
-        "mxe": max_error(y_true = y_true, y_pred = y_pred),
-    }
-
-
 ## spearman rank correlation
-def _spearman_rho(y_a: np.ndarray, y_b: np.ndarray) -> float:
+def _spearman_rho(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
     """ Global monotone agreement of predicted capacities. """
 
-    rho, _ = spearmanr(y_a, y_b)
+    rho, _ = spearmanr(y_true, y_pred)
     return float(rho) if not np.isnan(rho) else 0.0
 
 
 ## kendall rank correlation
-def _kendall_tau(y_a: np.ndarray, y_b: np.ndarray) -> float:
+def _kendall_tau(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
     """ Pairwise ordering stability (probability of concordant pairs). """
 
-    tau, _ = kendalltau(y_a, y_b)
+    tau, _ = kendalltau(y_true, y_pred)
     return float(tau) if not np.isnan(tau) else 0.0
 
 
 ## rank-biased overlap
-def _rank_biased_overlap(y_a: np.ndarray, y_b: np.ndarray, p: float = 0.9) -> float:
+def _rank_biased_overlap(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.9) -> float:
 
     """ Frontier-focused agreement; emphasizes the top of the ranking. """
     
     ## sort indices descending
-    s = np.argsort(y_a)[::-1]
-    t = np.argsort(y_b)[::-1]
+    s = np.argsort(y_true)[::-1]
+    t = np.argsort(y_pred)[::-1]
     n = len(s)
     
     score = 0.0
@@ -169,13 +156,13 @@ def _rank_biased_overlap(y_a: np.ndarray, y_b: np.ndarray, p: float = 0.9) -> fl
 
 
 ## top-k rank overlap
-def _top_k_overlap(y_a: np.ndarray, y_b: np.ndarray, k: int = 10) -> float:
+def _top_k_overlap(y_true: np.ndarray, y_pred: np.ndarray, k: int = 10) -> float:
 
     """ Discrete stability of which graphs define the frontier. """
 
     ## indices of top k elements
-    top_a = set(np.argsort(y_a)[-k:])
-    top_b = set(np.argsort(y_b)[-k:])
+    top_a = set(np.argsort(y_true)[-k:])
+    top_b = set(np.argsort(y_pred)[-k:])
     
     if not top_a or not top_b:
         return 0.0
@@ -188,22 +175,35 @@ def _top_k_overlap(y_a: np.ndarray, y_b: np.ndarray, k: int = 10) -> float:
 
 
 ## wasserstein distance
-def _wasserstein_dist(y_a: np.ndarray, y_b: np.ndarray) -> float:
+def _wasserstein_dist(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
     """ Distributional proximity of the predicted frontier envelopes. """
 
-    return float(wasserstein_distance(y_a, y_b))
+    return float(wasserstein_distance(y_true, y_pred))
 
 
 ## combined convergence metrics
-def convergence_metrics(y_a: np.ndarray, y_b: np.ndarray, k: int = 10, p: float = 0.9) -> dict:
+def convergence_metrics(y_true: np.ndarray, y_pred: np.ndarray, k: int = 10, p: float = 0.9) -> dict:
 
     """ Compute all convergence metrics and return as a dictionary. """
 
     return {
-        "rho": _spearman_rho(y_a, y_b),
-        "tau": _kendall_tau(y_a, y_b),
-        "rbo": _rank_biased_overlap(y_a, y_b, p = p),
-        "jaccard": _top_k_overlap(y_a, y_b, k = k),
-        "emd": _wasserstein_dist(y_a, y_b),
+        "rho": _spearman_rho(y_true, y_pred),
+        "tau": _kendall_tau(y_true, y_pred),
+        "rbo": _rank_biased_overlap(y_true, y_pred, p = p),
+        "jaccard": _top_k_overlap(y_true, y_pred, k = k),
+        "emd": _wasserstein_dist(y_true, y_pred),
+    }
+
+
+## standard regression metrics
+def central_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
+    
+    """ Compute standard pointwise regression metrics of predicted values."""
+
+    return {
+        "mse": mean_squared_error(y_true = y_true, y_pred = y_pred),
+        "mae": mean_absolute_error(y_true = y_true, y_pred = y_pred),
+        "medae": median_absolute_error(y_true = y_true, y_pred = y_pred),
+        "mxe": max_error(y_true = y_true, y_pred = y_pred),
     }
