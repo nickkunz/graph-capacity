@@ -2,7 +2,7 @@
 from sklearn.base import BaseEstimator
 from sklearn.linear_model import QuantileRegressor
 
-## linear quantile regressors wrapper
+## linear quantile sklearn regressors
 class LinearQuantile(BaseEstimator):
     def __init__(self, quantile_c = 0.99, quantile_r = 0.5, alpha = 0.1, solver = "highs"):
         self.quantile_c = quantile_c
