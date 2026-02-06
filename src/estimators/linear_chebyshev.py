@@ -6,11 +6,11 @@ from scipy.optimize import linprog
 ## chebyshev regression sklearn regressors
 class LinearChebyshev(BaseEstimator):
     def __init__(self):
-        self.estimator_c = ChebyshevBase(fit_intercept = True)
-        self.estimator_r = ChebyshevBase(fit_intercept = False)
+        self.estimator_c = BaseChebyshev(fit_intercept = True)
+        self.estimator_r = BaseChebyshev(fit_intercept = False)
 
 ## chebyshev regression sklearn framework
-class ChebyshevBase(BaseEstimator):
+class BaseChebyshev(BaseEstimator):
     def __init__(self, fit_intercept = True):
         self.fit_intercept = fit_intercept
 
