@@ -2,7 +2,7 @@
 from sklearn.base import BaseEstimator
 from sklearn.ensemble import GradientBoostingRegressor
 
-## gradient boosting estimators
+## gradient boosting sklearn regressors
 class GradientBoostingQuantile(BaseEstimator):
     def __init__(self, quantile_c = 0.99, quantile_r = 0.5, **kwargs):
         self.quantile_c = quantile_c
