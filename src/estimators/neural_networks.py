@@ -87,14 +87,25 @@ class NeuralBaseRegressor(BaseEstimator, RegressorMixin):
         y_train_t = torch.FloatTensor(y_train).to(self.device)
         
         ## init model
-        self.model_ = self.net_cls(self.input_dims, self.hidden_dims, dropout = self.dropout).to(self.device)
+        infer_dims = X_train.shape[1]
+        if (self.input_dims is None or self.input_dims != infer_dims):
+            input_dims = infer_dims
+        else:
+            input_dims = self.input_dims
+        self.model_ = self.net_cls(input_dims, self.hidden_dims, dropout = self.dropout).to(
+            self.device
+        )
         
         ## init bias to quantile of training data for faster convergence
         bias_init = np.quantile(y_train, self.quantile)
         self.model_.mlp.net[-1].bias.data.fill_(bias_init)
 
         ## init optimizer
-        optimizer = optim.AdamW(self.model_.parameters(), lr = self.lr, weight_decay = self.weight_decay)
+        optimizer = optim.AdamW(
+            params = self.model_.parameters(), 
+            lr = self.lr, 
+            weight_decay = self.weight_decay
+        )
         
         ## conduct training
         self.model_.train()
