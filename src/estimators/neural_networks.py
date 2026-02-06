@@ -8,16 +8,16 @@ from sklearn.base import BaseEstimator, RegressorMixin
 
 
 ## neural network sklearn regressors
-class NeuralQuantileRegressors:
+class NeuralQuantile:
     def __init__(self, quantile_c = 0.99, quantile_r = 0.5, input_dims = None, **kwargs):
-        self.estimator_c = NeuralBaseRegressor(
+        self.estimator_c = NeuralBase(
             net_cls = QuantileNet,
             loss_fn = quantile_loss,
             quantile = quantile_c,
             input_dims = input_dims,
             **kwargs
         )
-        self.estimator_r = NeuralBaseRegressor(
+        self.estimator_r = NeuralBase(
             net_cls = QuantileNet,
             loss_fn = quantile_loss,
             quantile = quantile_r,
@@ -25,16 +25,16 @@ class NeuralQuantileRegressors:
             **kwargs
         )
 
-class NeuralExpectileRegressors:
+class NeuralExpectile:
     def __init__(self, quantile_c = 0.99, quantile_r = 0.5, input_dims = None, **kwargs):
-        self.estimator_c = NeuralBaseRegressor(
+        self.estimator_c = NeuralBase(
             net_cls = ExpectileNet,
             loss_fn = expectile_loss,
             quantile = quantile_c,
             input_dims = input_dims,
             **kwargs
         )
-        self.estimator_r = NeuralBaseRegressor(
+        self.estimator_r = NeuralBase(
             net_cls = ExpectileNet,
             loss_fn = expectile_loss,
             quantile = quantile_r,
@@ -42,16 +42,16 @@ class NeuralExpectileRegressors:
             **kwargs
         )
 
-class NeuralConvexRegressors:
+class NeuralConvex:
     def __init__(self, quantile_c = 0.99, quantile_r = 0.5, input_dims = None, **kwargs):
-        self.estimator_c = NeuralBaseRegressor(
+        self.estimator_c = NeuralBase(
             net_cls = ConvexNet,
             loss_fn = quantile_loss,
             quantile = quantile_c,
             input_dims = input_dims,
             **kwargs
         )
-        self.estimator_r = NeuralBaseRegressor(
+        self.estimator_r = NeuralBase(
             net_cls = ConvexNet,
             loss_fn = quantile_loss,
             quantile = quantile_r,
@@ -61,7 +61,7 @@ class NeuralConvexRegressors:
 
 
 ## neural network sklearn framework
-class NeuralBaseRegressor(BaseEstimator, RegressorMixin):
+class NeuralBase(BaseEstimator, RegressorMixin):
     def __init__(self, net_cls, loss_fn, quantile, input_dims, hidden_dims = [8, 4], lr = 0.1, epochs = 5000, dropout = 0.1, weight_decay = 0.01):
         self.net_cls = net_cls
         self.loss_fn = loss_fn
