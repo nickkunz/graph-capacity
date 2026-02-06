@@ -9,53 +9,53 @@ from sklearn.base import BaseEstimator, RegressorMixin
 
 ## neural network sklearn regressors
 class NeuralQuantileRegressors:
-    def __init__(self, input_dims = None, quantile_c = 0.99, quantile_r = 0.5, **kwargs):
+    def __init__(self, quantile_c = 0.99, quantile_r = 0.5, input_dims = None, **kwargs):
         self.estimator_c = NeuralBaseRegressor(
             net_cls = QuantileNet,
             loss_fn = quantile_loss,
-            input_dims = input_dims,
             quantile = quantile_c,
+            input_dims = input_dims,
             **kwargs
         )
         self.estimator_r = NeuralBaseRegressor(
             net_cls = QuantileNet,
             loss_fn = quantile_loss,
-            input_dims = input_dims,
             quantile = quantile_r,
+            input_dims = input_dims,
             **kwargs
         )
 
 class NeuralExpectileRegressors:
-    def __init__(self, input_dims = None, quantile_c = 0.99, quantile_r = 0.5, **kwargs):
+    def __init__(self, quantile_c = 0.99, quantile_r = 0.5, input_dims = None, **kwargs):
         self.estimator_c = NeuralBaseRegressor(
             net_cls = ExpectileNet,
             loss_fn = expectile_loss,
-            input_dims = input_dims,
             quantile = quantile_c,
+            input_dims = input_dims,
             **kwargs
         )
         self.estimator_r = NeuralBaseRegressor(
             net_cls = ExpectileNet,
             loss_fn = expectile_loss,
-            input_dims = input_dims,
             quantile = quantile_r,
+            input_dims = input_dims,
             **kwargs
         )
 
 class NeuralConvexRegressors:
-    def __init__(self, input_dims = None, quantile_c = 0.99, quantile_r = 0.5, **kwargs):
+    def __init__(self, quantile_c = 0.99, quantile_r = 0.5, input_dims = None, **kwargs):
         self.estimator_c = NeuralBaseRegressor(
             net_cls = ConvexNet,
             loss_fn = quantile_loss,
-            input_dims = input_dims,
             quantile = quantile_c,
+            input_dims = input_dims,
             **kwargs
         )
         self.estimator_r = NeuralBaseRegressor(
             net_cls = ConvexNet,
             loss_fn = quantile_loss,
-            input_dims = input_dims,
             quantile = quantile_r,
+            input_dims = input_dims,
             **kwargs
         )
 
