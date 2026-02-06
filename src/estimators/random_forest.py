@@ -14,18 +14,19 @@ class ForestBase(BaseEstimator, RegressorMixin):
         self.quantile = quantile
         self.kwargs = kwargs
 
+    ## sklearn fit interface
     def fit(self, X, y):
-        # quantile(s) must be passed at construction time
         self.model_ = RandomForestQuantileRegressor(
-            q = [self.quantile],
+            q = [self.quantile],  ## quantile must be passed at construction time
             **self.kwargs
         )
         self.model_.fit(X, y)
         return self
 
+    ## sklearn predict interface
     def predict(self, X):
         preds = self.model_.predict(X)
         if preds.ndim == 1:
             return preds
-        return preds[:, 0]  # squeeze the single-quantile dimension
+        return preds[:, 0]  ## squeeze to single-quantile dimension
 
