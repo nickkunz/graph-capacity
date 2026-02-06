@@ -2,11 +2,13 @@
 from sklearn.base import BaseEstimator, RegressorMixin
 from sklearn_quantile import RandomForestQuantileRegressor
 
+## random forest sklearn regressors
 class ForestQuantile:
     def __init__(self, quantile_c = 0.99, quantile_r = 0.5, **kwargs):
         self.estimator_c = ForestBase(quantile = quantile_c, **kwargs)
         self.estimator_r = ForestBase(quantile = quantile_r, **kwargs)
 
+## random forest sklearn framework
 class ForestBase(BaseEstimator, RegressorMixin):
     def __init__(self, quantile, **kwargs):
         self.quantile = quantile
