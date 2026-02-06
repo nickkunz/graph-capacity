@@ -2,7 +2,7 @@
 from sklearn.base import BaseEstimator
 import xgboost as xgb
 
-## xgboost estimators
+## xgboost sklearn regressors
 class XGBoostQuantile(BaseEstimator):
     def __init__(self, quantile_c = 0.99, quantile_r = 0.5, **kwargs):
         self.quantile_c = quantile_c
