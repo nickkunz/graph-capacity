@@ -62,7 +62,7 @@ class NeuralConvexRegressors:
 
 ## sklearn framework for neural networks
 class NeuralBaseRegressor(BaseEstimator, RegressorMixin):
-    def __init__(self, net_cls, loss_fn, input_dims, hidden_dims = [8, 4], lr = 0.1, epochs = 5000, quantile = 0.5, dropout = 0.1, weight_decay = 0.01):
+    def __init__(self, net_cls, loss_fn, quantile, input_dims, hidden_dims = [8, 4], lr = 0.1, epochs = 5000, dropout = 0.1, weight_decay = 0.01):
         self.net_cls = net_cls
         self.loss_fn = loss_fn
         self.input_dims = input_dims
