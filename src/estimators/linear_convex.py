@@ -24,7 +24,7 @@ class BaseConvex(BaseEstimator, RegressorMixin):
     ## sklearn fit interfaces
     def fit(self, X, y):
         X = np.asarray(X)
-        y = np.asarray(y).reshape(-1)
+        y = np.asarray(y, dtype = float).reshape(-1)
         if X.size == 0:
             raise ValueError("Empty X passed to ConvexHullRegressors.fit")
 
@@ -39,11 +39,9 @@ class BaseConvex(BaseEstimator, RegressorMixin):
         # 1-d structural scores
         s = X @ self.beta_
 
-        # aggregate duplicate s values: take max y for each unique s
         uniq_s, inv = np.unique(s, return_inverse = True)
-        y_max = np.full(len(uniq_s), -np.inf, dtype=float)
-        for i, yi in enumerate(y):
-            y_max[inv[i]] = max(y_max[inv[i]], float(yi))
+        y_max = np.full(len(uniq_s), -np.inf, dtype = float)
+        np.maximum.at(y_max, inv, y)
 
         # compute concave upper envelope on aggregated points
         self.s_hull_, self.y_hull_ = _concave_upper_envelope(uniq_s, y_max)
@@ -62,8 +60,8 @@ class BaseConvex(BaseEstimator, RegressorMixin):
 
 ## compute concave upper envelope
 def _concave_upper_envelope(x, y):
-    x = np.asarray(x, dtype=float)
-    y = np.asarray(y, dtype=float)
+    x = np.asarray(x, dtype = float)
+    y = np.asarray(y, dtype = float)
 
     # filter non-finite
     mask = np.isfinite(x) & np.isfinite(y)
@@ -83,8 +81,8 @@ def _concave_upper_envelope(x, y):
     y = y[idx]
 
     ## compute upper envelope using a stack-based algorithm
-    x_hull = list()
-    y_hull = list()
+    x_hull = []
+    y_hull = []
     for xi, yi in zip(x, y):
         while len(x_hull) >= 2:
             x1, y1 = x_hull[-2], y_hull[-2]
