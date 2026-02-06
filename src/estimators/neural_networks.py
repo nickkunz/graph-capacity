@@ -76,7 +76,7 @@ class NeuralBaseRegressor(BaseEstimator, RegressorMixin):
         self.model_ = None
 
     ## sklearn fit interface
-    def fit(self, X, y, groups = None):
+    def fit(self, X, y):
 
         ## data prep
         X_train = np.array(X)
