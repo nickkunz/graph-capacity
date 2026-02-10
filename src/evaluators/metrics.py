@@ -1,12 +1,6 @@
 ## libraries
 import numpy as np
 from scipy.stats import spearmanr, kendalltau, wasserstein_distance
-from sklearn.metrics import (
-    mean_squared_error, 
-    max_error,
-    mean_absolute_error,
-    median_absolute_error
-)   
 
 ## violation rate
 def _violation_rate(y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -193,17 +187,4 @@ def convergence_metrics(y_true: np.ndarray, y_pred: np.ndarray, k: int = 10, p: 
         "rbo": _rank_biased_overlap(y_true, y_pred, p = p),
         "jaccard": _top_k_overlap(y_true, y_pred, k = k),
         "emd": _wasserstein_dist(y_true, y_pred),
-    }
-
-
-## standard regression metrics
-def central_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
-    
-    """ Compute standard pointwise regression metrics of predicted values."""
-
-    return {
-        "mse": mean_squared_error(y_true = y_true, y_pred = y_pred),
-        "mae": mean_absolute_error(y_true = y_true, y_pred = y_pred),
-        "medae": median_absolute_error(y_true = y_true, y_pred = y_pred),
-        "mxe": max_error(y_true = y_true, y_pred = y_pred),
     }
