@@ -110,7 +110,7 @@ def _kendall_tau(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
 
 ## rank-biased overlap
-def _rank_biased_overlap(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.9) -> float:
+def _rank_biased_overlap(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.99) -> float:
 
     """ Frontier-focused agreement; emphasizes the top of the ranking. """
     
@@ -149,42 +149,13 @@ def _rank_biased_overlap(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.9)
     return float(score * (1.0 - p))
 
 
-## top-k rank overlap
-def _top_k_overlap(y_true: np.ndarray, y_pred: np.ndarray, k: int = 10) -> float:
-
-    """ Discrete stability of which graphs define the frontier. """
-
-    ## indices of top k elements
-    top_a = set(np.argsort(y_true)[-k:])
-    top_b = set(np.argsort(y_pred)[-k:])
-    
-    if not top_a or not top_b:
-        return 0.0
-
-    ## jaccard similarity
-    intersect = len(top_a.intersection(top_b))
-    union = len(top_a.union(top_b))
-    
-    return float(intersect / union)
-
-
-## wasserstein distance
-def _wasserstein_dist(y_true: np.ndarray, y_pred: np.ndarray) -> float:
-
-    """ Distributional proximity of the predicted frontier envelopes. """
-
-    return float(wasserstein_distance(y_true, y_pred))
-
-
 ## combined convergence metrics
-def convergence_metrics(y_true: np.ndarray, y_pred: np.ndarray, k: int = 10, p: float = 0.9) -> dict:
+def convergence_metrics(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.9) -> dict:
 
     """ Compute all convergence metrics and return as a dictionary. """
 
     return {
         "rho": _spearman_rho(y_true, y_pred),
         "tau": _kendall_tau(y_true, y_pred),
-        "rbo": _rank_biased_overlap(y_true, y_pred, p = p),
-        "jaccard": _top_k_overlap(y_true, y_pred, k = k),
-        "emd": _wasserstein_dist(y_true, y_pred),
+        "rbo": _rank_biased_overlap(y_true, y_pred, p = p)
     }
