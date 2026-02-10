@@ -51,7 +51,7 @@ def logo_cross_valid(
 
         group_name = groups[test_idx][0]
 
-
+        ## standardize graph invariants
         X_train_scaled, x_scaler = _standardizer(X_train, feat_x)
         X_train_scaled = X_train_scaled[feat_x].values.astype(float)
         X_test_scaled = x_scaler.transform(X_test.astype(float))
@@ -60,12 +60,12 @@ def logo_cross_valid(
         model_c = clone(estimator_c)
         model_r = clone(estimator_r)
 
-        ## stage 1: graph invariants C(x')
+        ## train C on graph invariants
         model_c.fit(X_train_scaled, y_train)
         c_hat_train = model_c.predict(X_train_scaled).astype(float)
         c_hat_test = model_c.predict(X_test_scaled).astype(float)
 
-        ## stage 2: process signatures R(z')
+        ## standardize process signatures
         Z_train_scaled, z_scaler = _standardizer(Z_train, feat_z)
         Z_train_scaled = Z_train_scaled[feat_z].values.astype(float)
         Z_test_scaled = z_scaler.transform(Z_test.astype(float))
@@ -73,7 +73,7 @@ def logo_cross_valid(
         ## signed slack in log-space (interpretable as log R)
         slack_train = (y_train - c_hat_train).astype(float)
 
-        ## fit R on all observations
+        ## train R on process signatures and residualized target
         model_r.fit(Z_train_scaled, slack_train)
         r_hat_train = model_r.predict(Z_train_scaled).astype(float)
         r_hat_test = model_r.predict(Z_test_scaled).astype(float)
@@ -81,7 +81,7 @@ def logo_cross_valid(
         ## identifiability: force zero-mean log-factor
         r_hat_test = (r_hat_test - np.mean(r_hat_train)).astype(float)
 
-        ## final prediction (log-space): y* = log C + log R
+        ## final prediction: y* = log C + log R + epsilon
         y_pred_frontier = (c_hat_test + r_hat_test).astype(float)
         frontier = frontier_metrics(y_true = y_true, y_pred = y_pred_frontier)
         results.append({"group": group_name, **frontier})
@@ -131,6 +131,7 @@ def kfold_cross_valid(
         Z_test = Z.iloc[test_idx]
         y_true = y_star.iloc[test_idx].values.astype(float)
 
+        ## standardize graph invariants
         X_train_scaled, x_scaler = _standardizer(X_train, feat_x)
         X_train_scaled = X_train_scaled[feat_x].values.astype(float)
         X_test_scaled = x_scaler.transform(X_test.astype(float))
@@ -139,12 +140,12 @@ def kfold_cross_valid(
         model_c = clone(estimator_c)
         model_r = clone(estimator_r)
 
-        ## stage 1: graph invariants C(x')
+        ## train C on graph invariants
         model_c.fit(X_train_scaled, y_train)
         c_hat_train = model_c.predict(X_train_scaled).astype(float)
         c_hat_test = model_c.predict(X_test_scaled).astype(float)
 
-        ## stage 2: process signatures R(z')
+        ## train R on process signatures and residualized target
         Z_train_scaled, z_scaler = _standardizer(Z_train, feat_z)
         Z_train_scaled = Z_train_scaled[feat_z].values.astype(float)
         Z_test_scaled = z_scaler.transform(Z_test.astype(float))
@@ -152,7 +153,7 @@ def kfold_cross_valid(
         ## signed slack in log-space (interpretable as log R)
         slack_train = (y_train - c_hat_train).astype(float)
 
-        ## fit R on all observations
+        ## train R on all observations
         model_r.fit(Z_train_scaled, slack_train)
         r_hat_train = model_r.predict(Z_train_scaled).astype(float)
         r_hat_test = model_r.predict(Z_test_scaled).astype(float)
@@ -160,7 +161,7 @@ def kfold_cross_valid(
         ## identifiability: force zero-mean log-factor
         r_hat_test = (r_hat_test - np.mean(r_hat_train)).astype(float)
 
-        ## final prediction (log-space): y* = log C + log R
+        ## final prediction: y* = log C + log R + epsilon
         y_pred_frontier = (c_hat_test + r_hat_test).astype(float)
         frontier = frontier_metrics(y_true = y_true, y_pred = y_pred_frontier)
         results.append({"fold": fold_idx, **frontier})
