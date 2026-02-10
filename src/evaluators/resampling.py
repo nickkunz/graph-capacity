@@ -82,8 +82,8 @@ def logo_cross_valid(
         r_hat_test = (r_hat_test - np.mean(r_hat_train)).astype(float)
 
         ## final prediction: y* = log C + log R + epsilon
-        y_pred_frontier = (c_hat_test + r_hat_test).astype(float)
-        frontier = frontier_metrics(y_true = y_true, y_pred = y_pred_frontier)
+        y_pred = (c_hat_test + r_hat_test).astype(float)
+        frontier = frontier_metrics(y_true = y_true, y_pred = y_pred)
         results.append({"group": group_name, **frontier})
     return pd.DataFrame(results)
 
@@ -162,8 +162,8 @@ def kfold_cross_valid(
         r_hat_test = (r_hat_test - np.mean(r_hat_train)).astype(float)
 
         ## final prediction: y* = log C + log R + epsilon
-        y_pred_frontier = (c_hat_test + r_hat_test).astype(float)
-        frontier = frontier_metrics(y_true = y_true, y_pred = y_pred_frontier)
+        y_pred = (c_hat_test + r_hat_test).astype(float)
+        frontier = frontier_metrics(y_true = y_true, y_pred = y_pred)
         results.append({"fold": fold_idx, **frontier})
     return pd.DataFrame(results)
 
