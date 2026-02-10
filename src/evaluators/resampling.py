@@ -7,7 +7,7 @@ from sklearn.model_selection import LeaveOneGroupOut, KFold
 
 ## modules
 from src.vectorizers.scalers import _log_transformer, _standardizer
-from src.evaluators.metrics import frontier_metrics, central_metrics
+from src.evaluators.metrics import frontier_metrics
 
 ## ------------------------------------
 ## leave-one-group-out cross validation
