@@ -5,13 +5,13 @@ from sklearn.linear_model import QuantileRegressor
 
 ## convex hull sklearn regressors
 class LinearConvex(BaseEstimator):
-    def __init__(self, beta = None, quantile_c = 0.99, quantile_r = 0.5, alpha = 0.1):
-        self.estimator_c = BaseConvex(beta = beta, quantile = quantile_c, alpha = alpha)
-        self.estimator_r = BaseConvex(beta = beta, quantile = quantile_r, alpha = alpha)
+    def __init__(self, quantile_c = 0.99, quantile_r = 0.5, alpha = 0.1, beta = None):
+        self.estimator_c = BaseConvex(quantile = quantile_c, alpha = alpha, beta = beta)
+        self.estimator_r = BaseConvex(quantile = quantile_r, alpha = alpha, beta = beta)
 
 ## convex hull sklearn framework
 class BaseConvex(BaseEstimator, RegressorMixin):
-    def __init__(self, beta = None, quantile = 0.99, alpha = 0.1):
+    def __init__(self, quantile = 0.99, alpha = 0.1, beta = None):
         self.beta = beta
         self.quantile = quantile
         self.alpha = alpha
