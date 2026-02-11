@@ -1,6 +1,7 @@
 ## libraries
 import numpy as np
-from scipy.stats import spearmanr, kendalltau, wasserstein_distance
+from scipy.stats import spearmanr, kendalltau, pearsonr
+import dcor
 
 ## violation rate
 def _violation_rate(y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -91,6 +92,14 @@ def frontier_metrics(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12)
     return metrics
 
 
+## pearson correlation
+def _pearson_r(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+
+    """ Linear correlation of predicted capacities with true capacities. """
+
+    r, _ = pearsonr(y_true, y_pred)
+    return float(r) if not np.isnan(r) else 0.0
+
 ## spearman rank correlation
 def _spearman_rho(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
@@ -109,12 +118,22 @@ def _kendall_tau(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     return float(tau) if not np.isnan(tau) else 0.0
 
 
+## distance correlation
+def _distance_corr(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+
+    """ Non-linear dependence measured by distance correlation. """
+
+    try:
+        return float(dcor.distance_correlation(y_true, y_pred))
+    except Exception:
+        return 0.0
+
+
 ## rank-biased overlap
-def _rank_biased_overlap(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.99) -> float:
+def _rank_biased_overlap(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.5) -> float:
 
     """ Frontier-focused agreement; emphasizes the top of the ranking. """
     
-    ## sort indices descending
     s = np.argsort(y_true)[::-1]
     t = np.argsort(y_pred)[::-1]
     n = len(s)
@@ -155,7 +174,9 @@ def convergence_metrics(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.9) 
     """ Compute all convergence metrics and return as a dictionary. """
 
     return {
+        "r": _pearson_r(y_true, y_pred),
         "rho": _spearman_rho(y_true, y_pred),
         "tau": _kendall_tau(y_true, y_pred),
+        "dcr": _distance_corr(y_true, y_pred),
         "rbo": _rank_biased_overlap(y_true, y_pred, p = p)
     }
