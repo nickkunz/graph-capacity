@@ -11,7 +11,7 @@ class LinearConvex(BaseEstimator):
 
 ## convex hull sklearn framework
 class BaseConvex(BaseEstimator, RegressorMixin):
-    def __init__(self, quantile = 0.99, alpha = 0.1, beta = None):
+    def __init__(self, quantile, alpha, beta):
         self.beta = beta
         self.quantile = quantile
         self.alpha = alpha
@@ -23,7 +23,7 @@ class BaseConvex(BaseEstimator, RegressorMixin):
 
     ## sklearn fit interfaces
     def fit(self, X, y):
-        X = np.asarray(X)
+        X = np.asarray(X, dtype = float)
         y = np.asarray(y, dtype = float).reshape(-1)
         if X.size == 0:
             raise ValueError("Empty X passed to ConvexHullRegressors.fit")
@@ -51,7 +51,7 @@ class BaseConvex(BaseEstimator, RegressorMixin):
     def predict(self, X):
         if self.s_hull_ is None or self.y_hull_ is None:
             raise RuntimeError("ConvexHullRegressor must be fit before calling predict().")
-        X = np.asarray(X)
+        X = np.asarray(X, dtype = float)
         s = X @ self.beta_
         if self.s_hull_.size == 1:
             return np.full(len(s), float(self.y_hull_[0]))
