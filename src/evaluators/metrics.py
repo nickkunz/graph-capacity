@@ -1,7 +1,9 @@
 ## libraries
-import numpy as np
-from scipy.stats import spearmanr, kendalltau, pearsonr
 import dcor
+import numpy as np
+from itertools import combinations
+from scipy.stats import spearmanr, kendalltau, pearsonr
+from sklearn.decomposition import PCA
 
 ## violation rate
 def _violation_rate(y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -179,4 +181,135 @@ def convergence_metrics(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.9) 
         "tau": _kendall_tau(y_true, y_pred),
         "dcr": _distance_corr(y_true, y_pred),
         "rbo": _rank_biased_overlap(y_true, y_pred, p = p)
+    }
+
+
+## compute structural index via pca
+def compute_kappa(X_scaled, y_pred = None):
+
+    """ Compute the structural index kappa via PCA on the standardized graph invariants.
+    If y_pred is provided, the sign of kappa is adjusted to match the correlation. """
+
+    pca = PCA(n_components = 1)
+    kappa = pca.fit_transform(X_scaled).flatten()
+
+    ## safely fix sign indeterminacy
+    if y_pred is not None:
+        y_pred = np.asarray(y_pred)
+        if np.std(kappa) > 0 and np.std(y_pred) > 0:
+            corr = np.corrcoef(kappa, y_pred)[0,1]
+            if not np.isnan(corr) and corr < 0:
+                kappa = -kappa
+
+    return kappa
+
+
+## monotonic index for joint frontier
+def monotonic_index(kappa, y_pred):
+
+    """ Monotonicity index that evaluates the agreement of the predicted frontier 
+    with the structural ordering. Higher is better. """
+
+    kappa = np.asarray(kappa)
+    y_pred = np.asarray(y_pred)
+
+    n = len(kappa)
+    if n < 2:
+        return np.nan
+
+    total = 0
+    agree = 0
+    for i, j in combinations(range(n), 2):
+        if kappa[i] == kappa[j]:
+            continue
+        total += 1
+        if (kappa[i] - kappa[j]) * (y_pred[i] - y_pred[j]) >= 0:
+            agree += 1
+
+    return agree / total if total > 0 else np.nan
+
+## rank consistency across attainable frontier
+def rank_consistency(y_pred):
+
+    """ Rank consistency metrics that evaluate the stability of the ordering 
+    across different points on the attainable frontier. Higher is better. """
+
+    ## force array and check dimensions
+    ## expects shape (n_bootstraps, n_samples)
+    y_pred = np.asarray(y_pred)
+
+    if y_pred.ndim < 2 or y_pred.shape[0] < 2:
+        return {
+            "kendall_tau_mean" : np.nan,
+            "spearman_rho_mean" : np.nan,
+            "rbo_mean" : np.nan
+        }
+
+    taus = list()
+    rhos = list()
+    rbos = list()
+
+    ## define reference frontier (e.g., median or first estimate)
+    ref = y_pred[0]
+
+    ## compare all other realization to the reference
+    for y in y_pred[1:]:
+        tau, _ = kendalltau(ref, y)
+        rho, _ = spearmanr(ref, y)
+        rbo = _rank_biased_overlap(ref, y)
+
+        taus.append(tau)
+        rhos.append(rho)
+        rbos.append(rbo)
+
+    return {
+        "kendall_tau_mean" : np.mean(taus),
+        "spearman_rho_mean" : np.mean(rhos),
+        "rbo_mean" : np.mean(rbos)
+    }
+
+## isotonic feasibility consistency (joint frontier)
+def isotonic_feasibility(kappa, y_pred, y_true):
+
+    """ Isotonic feasibility consistency that evaluates the agreement of the 
+    predicted frontier with the structural ordering. Higher is better. """
+
+    kappa = np.asarray(kappa)
+    y_pred = np.asarray(y_pred)
+    y_true = np.asarray(y_true)
+
+    ## feasible region
+    mask = y_true <= y_pred
+
+    k_f = kappa[mask]
+    f_f = y_pred[mask]
+
+    n = len(k_f)
+
+    if n < 2:
+        return {
+            "isotonic_feasibility_score" : np.nan,
+            "feasible_pairs" : 0
+        }
+
+    total = 0
+    agree = 0
+
+    for i, j in combinations(range(n), 2):
+
+        ## skip structural ties
+        if k_f[i] == k_f[j]:
+            continue
+
+        total += 1
+
+        ## check ordering agreement
+        if (k_f[i] - k_f[j]) * (f_f[i] - f_f[j]) >= 0:
+            agree += 1
+
+    score = agree / total if total > 0 else np.nan
+
+    return {
+        "isotonic_feasibility_score" : score,
+        "feasible_pairs" : total
     }
