@@ -36,7 +36,8 @@ def logo_cross_valid(
 
     ## cross-validation
     logo = LeaveOneGroupOut()
-    results = list()
+    frontier_results = list()
+    y_pred_test = np.zeros(len(data))
     for train_idx, test_idx in logo.split(X = X.values, y = y_star.values, groups = groups):
 
         ## split training data
@@ -83,9 +84,13 @@ def logo_cross_valid(
 
         ## final prediction: y* = log C + log R + epsilon
         y_pred = (c_hat_test + r_hat_test).astype(float)
+        y_pred_test[test_idx] = y_pred
+
+        ## compute frontier metrics for this fold        
         frontier = frontier_metrics(y_true = y_true, y_pred = y_pred)
-        results.append({"group": group_name, **frontier})
-    return pd.DataFrame(results)
+        frontier_results.append({"group": group_name, **frontier})
+
+    return pd.DataFrame(frontier_results), y_pred_test
 
 
 ## -----------------------
@@ -118,7 +123,8 @@ def kfold_cross_valid(
 
     ## cross-validation
     kfold = KFold(n_splits = n_splits, shuffle = shuffle, random_state = random_state)
-    results = list()
+    frontier_results = list()
+    y_pred_test = np.zeros(len(data))
     for fold_idx, (train_idx, test_idx) in enumerate(kfold.split(X.values), start = 1):
 
         ## split training data
@@ -163,7 +169,11 @@ def kfold_cross_valid(
 
         ## final prediction: y* = log C + log R + epsilon
         y_pred = (c_hat_test + r_hat_test).astype(float)
+        y_pred_test[test_idx] = y_pred
+
+        ## compute frontier metrics for this fold
         frontier = frontier_metrics(y_true = y_true, y_pred = y_pred)
-        results.append({"fold": fold_idx, **frontier})
-    return pd.DataFrame(results)
+        frontier_results.append({"fold": fold_idx, **frontier})
+
+    return pd.DataFrame(frontier_results), y_pred_test
 
