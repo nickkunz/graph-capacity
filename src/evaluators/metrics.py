@@ -2,8 +2,9 @@
 import dcor
 import numpy as np
 from itertools import combinations
-from scipy.stats import spearmanr, kendalltau, pearsonr
 from sklearn.decomposition import PCA
+from sklearn.isotonic import IsotonicRegression
+from scipy.stats import spearmanr, kendalltau, pearsonr
 
 ## violation rate
 def _violation_rate(y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -15,7 +16,6 @@ def _violation_rate(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     
     ## violation rate is fraction with positive violation
     return float(np.mean(v > 0.0))
-
 
 ## mean violation magnitude
 def _mean_violation(y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -31,7 +31,6 @@ def _mean_violation(y_true: np.ndarray, y_pred: np.ndarray) -> float:
         return 0.0
     return float(v[mask].mean())
 
-
 ## mean slack
 def _mean_slack(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     
@@ -40,7 +39,6 @@ def _mean_slack(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     ## compute slack: frontier above true
     s = np.maximum(0.0, y_pred - y_true)
     return float(s.mean())
-
 
 ## excess area
 def _excess_area(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12) -> float:
@@ -52,7 +50,6 @@ def _excess_area(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12) -> 
     s = np.maximum(0.0, y_pred - y_true)
     denom = np.sum(y_true) + eps
     return float(np.sum(s) / denom)
-
 
 ## efficiency index
 def _efficiency_index(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12) -> float:
@@ -73,7 +70,6 @@ def _efficiency_index(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12
     ## geometric mean via log-space (numerically stable)
     log_ei = (np.log(minus_vr) + np.log(ea_score) + np.log(mv_score)) / 3.0
     return float(np.exp(log_ei))
-
 
 ## combined frontier metrics
 def frontier_metrics(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12) -> dict:
@@ -130,7 +126,6 @@ def _distance_corr(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     except Exception:
         return 0.0
 
-
 ## rank-biased overlap
 def _rank_biased_overlap(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.5) -> float:
 
@@ -169,7 +164,6 @@ def _rank_biased_overlap(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.5)
             
     return float(score * (1.0 - p))
 
-
 ## combined convergence metrics
 def convergence_metrics(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.9) -> dict:
 
@@ -185,13 +179,13 @@ def convergence_metrics(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.9) 
 
 
 ## compute structural index via pca
-def compute_kappa(X_scaled, y_pred = None):
+def compute_kappa(K_vect, y_pred = None):
 
     """ Compute the structural index kappa via PCA on the standardized graph invariants.
     If y_pred is provided, the sign of kappa is adjusted to match the correlation. """
 
     pca = PCA(n_components = 1)
-    kappa = pca.fit_transform(X_scaled).flatten()
+    kappa = pca.fit_transform(K_vect).flatten()
 
     ## safely fix sign indeterminacy
     if y_pred is not None:
@@ -202,7 +196,6 @@ def compute_kappa(X_scaled, y_pred = None):
                 kappa = -kappa
 
     return kappa
-
 
 ## monotonic index for joint frontier
 def monotonic_index(kappa, y_pred):
@@ -226,90 +219,127 @@ def monotonic_index(kappa, y_pred):
         if (kappa[i] - kappa[j]) * (y_pred[i] - y_pred[j]) >= 0:
             agree += 1
 
-    return agree / total if total > 0 else np.nan
+    return float(agree / total) if total > 0 else np.nan
 
-## rank consistency across attainable frontier
-def rank_consistency(y_pred):
+## structural violation magnitude
+def violation_magnitude(kappa, y_pred):
 
-    """ Rank consistency metrics that evaluate the stability of the ordering 
-    across different points on the attainable frontier. Higher is better. """
-
-    ## force array and check dimensions
-    ## expects shape (n_bootstraps, n_samples)
+    """ Structural violation magnitude that evaluates the degree of violation 
+    of the predicted frontier with the structural ordering. Lower is better. """
+    
+    kappa = np.asarray(kappa)
     y_pred = np.asarray(y_pred)
 
-    if y_pred.ndim < 2 or y_pred.shape[0] < 2:
-        return {
-            "kendall_tau_mean" : np.nan,
-            "spearman_rho_mean" : np.nan,
-            "rbo_mean" : np.nan
-        }
+    n = len(kappa)
+    if n < 2:
+        return np.nan
 
-    taus = list()
-    rhos = list()
-    rbos = list()
+    total = 0
+    violation = 0.0
+    for i, j in combinations(range(n), 2):
+        dk = kappa[i] - kappa[j]
+        dy = y_pred[i] - y_pred[j]
+        total += abs(dk * dy)
+        if dk * dy < 0:
+            violation += abs(dk * dy)
 
-    ## define reference frontier (e.g., median or first estimate)
-    ref = y_pred[0]
+    return float(violation / total) if total > 0 else np.nan
 
-    ## compare all other realization to the reference
-    for y in y_pred[1:]:
-        tau, _ = kendalltau(ref, y)
-        rho, _ = spearmanr(ref, y)
-        rbo = _rank_biased_overlap(ref, y)
+## structural association 
+def structural_association(kappa, y_pred):
 
-        taus.append(tau)
-        rhos.append(rho)
-        rbos.append(rbo)
-
-    return {
-        "kendall_tau_mean" : np.mean(taus),
-        "spearman_rho_mean" : np.mean(rhos),
-        "rbo_mean" : np.mean(rbos)
-    }
-
-## isotonic feasibility consistency (joint frontier)
-def isotonic_feasibility(kappa, y_pred, y_true):
-
-    """ Isotonic feasibility consistency that evaluates the agreement of the 
-    predicted frontier with the structural ordering. Higher is better. """
+    """ Structural association metrics between structural index and frontier.
+    Returns Spearman (monotonicity), Kendall (ordering), and Rank R^2 (strength). """
 
     kappa = np.asarray(kappa)
     y_pred = np.asarray(y_pred)
-    y_true = np.asarray(y_true)
 
-    ## feasible region
-    mask = y_true <= y_pred
-
-    k_f = kappa[mask]
-    f_f = y_pred[mask]
-
-    n = len(k_f)
-
-    if n < 2:
+    if len(kappa) < 2:
         return {
-            "isotonic_feasibility_score" : np.nan,
-            "feasible_pairs" : 0
+            "spearman_rho": np.nan,
+            "kendall_tau": np.nan,
+            "rank_r2": np.nan
         }
 
-    total = 0
-    agree = 0
-
-    for i, j in combinations(range(n), 2):
-
-        ## skip structural ties
-        if k_f[i] == k_f[j]:
-            continue
-
-        total += 1
-
-        ## check ordering agreement
-        if (k_f[i] - k_f[j]) * (f_f[i] - f_f[j]) >= 0:
-            agree += 1
-
-    score = agree / total if total > 0 else np.nan
+    rho, _ = spearmanr(kappa, y_pred)
+    tau, _ = kendalltau(kappa, y_pred)
+    
+    ## rank r2 is effectively rho^2
+    r2 = rho**2 if not np.isnan(rho) else np.nan
 
     return {
-        "isotonic_feasibility_score" : score,
-        "feasible_pairs" : total
+        "spearman_rho": float(rho) if not np.isnan(rho) else np.nan,
+        "kendall_tau": float(tau) if not np.isnan(tau) else np.nan,
+        "rank_r2": float(r2) if not np.isnan(r2) else np.nan
     }
+
+## combined structural ordering metrics
+def structural_ordering(kappa: np.ndarray, y_pred: np.ndarray) -> dict:
+
+    """ Compute all structural ordering metrics and return as a dictionary. """
+
+    ## handle list or array input
+    kappa = np.asarray(kappa)
+    y_pred = np.asarray(y_pred)
+
+    ## compute base metrics
+    results = {
+        "monotonic_index": monotonic_index(kappa, y_pred),
+        "violation_magnitude": violation_magnitude(kappa, y_pred)
+    }
+
+    ## add association metrics (spearman, kendall, rank_r2)
+    results.update(structural_association(kappa, y_pred))
+
+    return results
+
+
+# ## isotonic feasibility consistency
+# def isotonic_feasibility(kappa, y_pred, y_true):
+
+#     """ Isotonic feasibility consistency that evaluates the agreement of the 
+#     predicted frontier with the structural ordering. Higher is better. """
+
+#     kappa = np.asarray(kappa)
+#     y_pred = np.asarray(y_pred)
+#     y_true = np.asarray(y_true)
+
+#     ## feasible region
+#     mask = y_true <= y_pred
+
+#     k_f = kappa[mask]
+#     f_f = y_pred[mask]
+
+#     n = len(k_f)
+#     if n < 2:
+#         return {
+#             "isotonic_feasibility_score": np.nan,
+#             "isotonic_distortion": np.nan,
+#             "feasible_points": int(n)
+#         }
+
+#     ## sort by structural index
+#     order = np.argsort(k_f)
+#     k_sorted = k_f[order]
+#     f_sorted = f_f[order]
+
+#     ## isotonic projection
+#     iso = IsotonicRegression(increasing=True)
+#     f_iso = iso.fit_transform(k_sorted, f_sorted)
+
+#     ## measure distortion
+#     distortion = np.mean(np.abs(f_sorted - f_iso))
+
+#     ## convert to score (higher = better)
+#     scale = np.std(f_sorted)
+#     if scale == 0:
+#         score = 1.0
+#     else:
+#         score = 1 - distortion / scale
+#         score = max(0.0, min(1.0, score))
+
+#     return {
+#         "isotonic_feasibility_score": float(score),
+#         "isotonic_distortion": float(distortion),
+#         "feasible_points": int(n)
+#     }
