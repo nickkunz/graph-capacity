@@ -6,6 +6,9 @@ from sklearn.base import clone
 ## modules
 from src.vectorizers.scalers import _log_transformer, _standardizer
 
+## ------------------------------------
+## fit and predict frontier model
+## ------------------------------------
 def fit_predict_frontier(
     data: pd.DataFrame,
     feat_x: list[str],
