@@ -8,7 +8,7 @@ import numpy as np
 import scipy.stats as stats
 from scipy.sparse import csc_matrix, diags, eye
 
-## utilities
+## modules
 from src.data.utilities import _ensure_finite
 
 ## compute graph invariant vector
