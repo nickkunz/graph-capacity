@@ -127,7 +127,7 @@ def _distance_corr(y_true: np.ndarray, y_pred: np.ndarray) -> float:
         return 0.0
 
 ## rank-biased overlap
-def _rank_biased_overlap(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.5) -> float:
+def _rank_biased_overlap(y_true: np.ndarray, y_pred: np.ndarray, p: float) -> float:
 
     """ Frontier-focused agreement; emphasizes the top of the ranking. """
     
@@ -164,10 +164,10 @@ def _rank_biased_overlap(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.5)
             
     return float(score * (1.0 - p))
 
-## joint convergence metrics
-def convergence_metrics(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.9) -> dict:
+## joint consensus metrics
+def consensus_metrics(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.9) -> dict:
 
-    """ Compute all convergence metrics and return as a dictionary. """
+    """ Compute all consensus metrics and return as a dictionary. """
 
     return {
         "r": _pearson_r(y_true, y_pred),
