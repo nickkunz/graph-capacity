@@ -71,7 +71,7 @@ def _efficiency_index(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12
     log_ei = (np.log(minus_vr) + np.log(ea_score) + np.log(mv_score)) / 3.0
     return float(np.exp(log_ei))
 
-## combined frontier metrics
+## joint frontier metrics
 def frontier_metrics(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12) -> dict:
 
     """ Compute all frontier metrics and return as a dictionary. """
@@ -164,7 +164,7 @@ def _rank_biased_overlap(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.5)
             
     return float(score * (1.0 - p))
 
-## combined convergence metrics
+## joint convergence metrics
 def convergence_metrics(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.9) -> dict:
 
     """ Compute all convergence metrics and return as a dictionary. """
@@ -273,7 +273,7 @@ def structural_association(kappa, y_pred):
         "rank_r2": float(r2) if not np.isnan(r2) else np.nan
     }
 
-## combined structural ordering metrics
+## joint structural ordering metrics
 def structural_ordering(kappa: np.ndarray, y_pred: np.ndarray) -> dict:
 
     """ Compute all structural ordering metrics and return as a dictionary. """
