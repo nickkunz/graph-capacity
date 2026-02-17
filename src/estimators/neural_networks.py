@@ -86,7 +86,7 @@ class NeuralBase(BaseEstimator, RegressorMixin):
         X_train_t = torch.FloatTensor(X_train).to(self.device)
         y_train_t = torch.FloatTensor(y_train).to(self.device)
         
-        ## init model
+        ## init model input dimensions based on training data
         infer_dims = X_train.shape[1]
         if (self.input_dims is None or self.input_dims != infer_dims):
             input_dims = infer_dims
