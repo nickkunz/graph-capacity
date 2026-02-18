@@ -53,7 +53,6 @@ def _parse_amazon_text_reviews(content: str) -> pd.DataFrame:
 def _parse_amazon_csv_reviews(content: str) -> pd.DataFrame:
     def _read_csv(**kwargs):
         return pd.read_csv(StringIO(content), **kwargs)
-
     try:
         df = _read_csv()
     except Exception:
@@ -78,8 +77,6 @@ def _parse_amazon_reviews(content: str) -> pd.DataFrame:
     return _parse_amazon_csv_reviews(content = content)
 
 def _load_network_amazon(url: str, root_path: str, name: str, timeout: int = 30) -> pd.DataFrame:
-    
-    ## configure path
     file_name = os.path.basename(url)
     path_dir = os.path.join(root_path, name)
     path_local = os.path.join(path_dir, file_name)
