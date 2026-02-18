@@ -7,9 +7,13 @@ from io import BytesIO, StringIO
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.data.utilities import _create_igraph_object, _aggregate_by_day, _request_with_retry
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
+from src.data.utilities import (
+    _create_igraph_object, 
+    _aggregate_by_day,
+    _request_with_retry
+)
 
 ## load amazon network
 def _decode_amazon_content(content_bytes: bytes) -> str:
@@ -196,5 +200,6 @@ class AmazonProcessor:
         return {
             "invariants": self.invariants,
             "signatures": self.signatures,
+            "graph": self.graph,
             "events": self.events.to_dict(orient = "records")
         }

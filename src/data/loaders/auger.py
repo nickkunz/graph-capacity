@@ -154,7 +154,6 @@ class AugerProcessor:
             self.load_data()
         station_map = _process_network_auger(data=self.data_network)
         edges, nodes = _build_network_auger(station_map=station_map)
-        
         self.graph = _create_igraph_object(nodes=nodes, edges=edges)
         self.invariants = GraphInvariants(graph=self.graph).all()
         return self
@@ -191,5 +190,6 @@ class AugerProcessor:
         return {
             "invariants": self.invariants,
             "signatures": self.signatures,
+            "graph": self.graph,
             "events": self.events.to_dict(orient="records")
         }

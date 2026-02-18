@@ -161,6 +161,7 @@ class CropProcessor:
         self.url_field = url_field
         self.data_network: Optional[pd.DataFrame] = None
         self.data_events: Optional[pd.DataFrame] = None
+        self.graph: Optional[Any] = None
         self.invariants: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
         self.signatures: Optional[Dict[str, Any]] = None
@@ -178,8 +179,8 @@ class CropProcessor:
             self.load_data()
         data_network = _process_network_croppol(data = self.data_network)
         nodes, edges = build_network_croppol(data = data_network)
-        graph = _create_igraph_object(nodes = nodes, edges = edges)
-        self.invariants = GraphInvariants(graph).all()
+        self.graph = _create_igraph_object(nodes = nodes, edges = edges)
+        self.invariants = GraphInvariants(self.graph).all()
         return self
 
     def process_signatures(self):
@@ -214,5 +215,6 @@ class CropProcessor:
         return {
             "invariants": self.invariants,
             "signatures": self.signatures,
+            "graph": self.graph,
             "events": self.events.to_dict(orient = "records")
         }

@@ -4,13 +4,14 @@ import os
 import sys
 import ssl
 import tarfile
+import itertools
 import urllib.request
 import pandas as pd
 from typing import Optional, Dict, Any
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-from src.data.utilities import _aggregate_by_day
+from src.data.utilities import _create_igraph_object
 from src.vectorizers.invariants import BipartiteInvariants
 from src.vectorizers.signatures import ProcessSignatures
 
@@ -90,6 +91,7 @@ class MoocProcessor:
     def __init__(self, url: str):
         self.url: str = url
         self.data: Optional[pd.DataFrame] = None
+        self.graph: Optional[Any] = None
         self.invariants: Optional[Dict[str, Any]] = None
         self.signatures: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
@@ -100,11 +102,22 @@ class MoocProcessor:
         return self
 
     def process_network(self):
-        """ Builds the network and computes invariants. """
+        """ Builds the complete bipartite K_{m,n} graph and computes analytic invariants. """
         if self.data is None:
             self.load_data()
+
+        ## compute bipartite dimensions and invariants
         m, n = _compute_network_mooc(data = self.data)
         self.invariants = BipartiteInvariants(m = m, n = n).all()
+
+        ## build complete bipartite graph K_{m,n}
+        users = self.data['src'].dropna().unique()
+        items = self.data['dst'].dropna().unique()
+        user_nodes = [f"user::{str(u)}" for u in users]
+        item_nodes = [f"item::{str(i)}" for i in items]
+        nodes = user_nodes + item_nodes
+        edges = list(itertools.product(user_nodes, item_nodes))
+        self.graph = _create_igraph_object(nodes = nodes, edges = edges)
         return self
 
     def process_signatures(self):
@@ -133,5 +146,6 @@ class MoocProcessor:
         return {
             "invariants": self.invariants,
             "signatures": self.signatures,
+            "graph": self.graph,
             "events": self.events.to_dict(orient = "records")
         }
