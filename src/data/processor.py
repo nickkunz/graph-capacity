@@ -4,9 +4,10 @@ import sys
 import logging
 import configparser
 
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-if PROJECT_ROOT not in sys.path:
-    sys.path.append(PROJECT_ROOT)
+## project root
+root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+if root not in sys.path:
+    sys.path.append(root)
 
 ## modules
 from src.data.utilities import _save_to_json
@@ -36,11 +37,11 @@ from src.data.loaders.seismic import SeismicProcessor
 from src.data.loaders.rain import RainProcessor
 from src.data.loaders.chickenpox import ChickenpoxProcessor
 
-## config settings
+## configs
 config = configparser.ConfigParser()
-config.read(os.path.join(PROJECT_ROOT, 'conf', 'settings.ini'))
+config.read(os.path.join(root, 'conf', 'settings.ini'))
 
-## config constants
+## constants
 PATH_ROOT = config['paths']['PATH_ROOT'].strip('"')
 PATH_OUT = config['paths']['PATH_OUT'].strip('"')
 
@@ -101,7 +102,7 @@ logging.basicConfig(
 )
 
 ## execute
-def run_processor():
+def processor():
     
     ## --- federal contracts --- ##
     federal_path = os.path.join(PATH_OUT, f"{NAME_FEDERAL}.json")
@@ -412,4 +413,4 @@ def run_processor():
         logging.info(f"Rain data already exists at {path_rain}. Skipping data source.")
 
 if __name__ == '__main__':
-    run_processor()
+    processor()
