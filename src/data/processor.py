@@ -101,7 +101,7 @@ logging.basicConfig(
     stream = sys.stdout
 )
 
-## execute
+## main
 def processor():
     
     ## --- federal contracts --- ##
@@ -412,5 +412,6 @@ def processor():
     else:
         logging.info(f"Rain data already exists at {path_rain}. Skipping data source.")
 
+## execution
 if __name__ == '__main__':
     processor()
