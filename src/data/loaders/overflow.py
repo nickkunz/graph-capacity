@@ -1,9 +1,13 @@
 ## libraries
 import os
 import sys
+import logging
 import itertools
 import pandas as pd
 from typing import Optional, Dict, Any
+
+## logging
+logger = logging.getLogger(__name__)
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))

@@ -1,10 +1,14 @@
 ## libraries
 import os
 import sys
+import logging
 import numpy as np
 import pandas as pd
 import igraph as ig
 from typing import Optional, Dict, Any
+
+## logging
+logger = logging.getLogger(__name__)
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
@@ -150,7 +154,7 @@ class EpilepsyProcessor:
                     events['patient'] = i
                     all_events.append(events)
             except Exception as e:
-                print(f"Skipping {i}: {e}")
+                logger.warning(f"Skipping {i}: {e}")
                 continue
         
         if not all_events:

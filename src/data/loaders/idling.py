@@ -1,11 +1,15 @@
 ## libraries
 import os
 import sys
+import logging
 import pandas as pd
 import osmnx as ox
 import networkx as nx
 import igraph as ig
 from typing import Optional, Dict, Any
+
+## logging
+logger = logging.getLogger(__name__)
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
@@ -55,10 +59,10 @@ def _load_events_idling(path: str) -> pd.DataFrame:
             raise FileNotFoundError(f"No CSV files found in the directory: {path}")
         return pd.concat([pd.read_csv(os.path.join(path, f)) for f in files], ignore_index=True)
     except FileNotFoundError as e:
-        print(f"Error: {e}")
+        logger.error(f"Error: {e}")
         return pd.DataFrame()
     except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+        logger.error(f"An unexpected error occurred: {e}")
         return pd.DataFrame()
 
 ## process events data

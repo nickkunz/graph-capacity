@@ -1,12 +1,16 @@
 ## libraries
 import os
 import sys
+import logging
 import requests
 import pandas as pd
 import xml.etree.ElementTree as ET
 from typing import Optional, Dict, Any
 from io import StringIO
 import igraph as ig
+
+## logging
+logger = logging.getLogger(__name__)
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
@@ -114,7 +118,7 @@ def _load_events_seismic(params: dict, url: str = "https://earthquake.usgs.gov/f
                     if not chunk_data.empty:
                         all_data.append(chunk_data)
                 except requests.exceptions.RequestException as e:
-                    print(f"An error occurred for {chunk_params['starttime']} to {chunk_params['endtime']}: {e}")
+                    logger.error(f"An error occurred for {chunk_params['starttime']} to {chunk_params['endtime']}: {e}")
                 
                 ## move to next month
                 current_date = next_date
@@ -131,7 +135,7 @@ def _load_events_seismic(params: dict, url: str = "https://earthquake.usgs.gov/f
         response.raise_for_status()
         return pd.read_csv(StringIO(response.text))
     except requests.exceptions.RequestException as e:
-        print(f"An error occurred during the request: {e}")
+        logger.error(f"An error occurred during the request: {e}")
         return pd.DataFrame()
 
 ## process iris seismic events, convert time and magnitude
