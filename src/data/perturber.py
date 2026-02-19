@@ -12,8 +12,8 @@ if root not in sys.path:
     sys.path.append(root)
 
 ## modules
-from src.data.utilities import _save_to_json
-from src.evaluators.perturbate import network_perturb, process_perturb, temporal_perturb
+from src.data.utilities import _save_to_json, _extract_counts, _extract_timestamps, _to_datetime
+from src.evaluators.perturbate import network_perturb, network_perturb_analytical, ANALYTICAL_EDGE_THRESHOLD, process_perturb, temporal_perturb
 from src.vectorizers.invariants import GraphInvariants
 from src.data.loaders.federal import FederalProcessor
 from src.data.loaders.bitcoin import BitcoinProcessor
@@ -117,56 +117,6 @@ PROCESS_METHOD_PARAMS = {
 TEMPORAL_SCALES = ['2D', '3D', '7D', '14D', '30D']
 
 
-## helpers
-def _extract_counts(events):
-    """Extract aggregated count array from a processor's events DataFrame."""
-    if events is None or (isinstance(events, pd.DataFrame) and events.empty):
-        return None
-    if isinstance(events, pd.DataFrame):
-        for col in ('target', 'count'):
-            if col in events.columns:
-                return events[col].to_numpy()
-    return None
-
-
-def _extract_timestamps(proc, name):
-    """Extract raw event timestamps from processor internal state."""
-    ## bitcoin: PyG dataset needs a special loader
-    if name == NAME_BITCOIN:
-        try:
-            from src.data.loaders.bitcoin import load_events_bitcoin
-            index = getattr(proc, 'index', 10)
-            return load_events_bitcoin(proc.data_raw, index = index)['datetime']
-        except Exception:
-            pass
-
-    ## try common DataFrame attributes populated by load_data()
-    for attr in ('data', 'data_raw', 'data_events', 'data_events_raw'):
-        df = getattr(proc, attr, None)
-        if df is not None and isinstance(df, pd.DataFrame):
-            for col in ('timestamp', 'datetime'):
-                if col in df.columns:
-                    return df[col]
-
-    ## last resort: check events
-    events = getattr(proc, 'events', None)
-    if events is not None and isinstance(events, pd.DataFrame):
-        for col in ('timestamp', 'datetime'):
-            if col in events.columns:
-                return events[col]
-
-    return None
-
-
-def _to_datetime(values):
-    """Convert timestamp values to pandas datetime Series."""
-    if values is None or len(values) == 0:
-        return None
-    if pd.api.types.is_numeric_dtype(values):
-        return pd.to_datetime(values, unit = 's')
-    return pd.to_datetime(values)
-
-
 def _run_all_perturbations(proc, name):
     """Run network, process, and temporal perturbations for a given processor."""
     results = {}
@@ -176,10 +126,29 @@ def _run_all_perturbations(proc, name):
     if graph is not None:
         network_results = []
         base = GraphInvariants(graph).all()
+        use_analytical = graph.ecount() >= ANALYTICAL_EDGE_THRESHOLD
+        if use_analytical:
+            degrees = np.array(graph.degree(), dtype=float)
+            n_nodes = graph.vcount()
+            n_edges = graph.ecount()
+            logging.info(f"  Using analytical perturbation for {name} ({n_nodes:,} nodes, {n_edges:,} edges)")
         for method in NETWORK_METHODS:
             for intensity in NETWORK_INTENSITIES:
                 if intensity == 0:
                     features = base
+                elif use_analytical:
+                    try:
+                        features = network_perturb_analytical(
+                            base_invariants = base,
+                            degrees = degrees,
+                            n_nodes = n_nodes,
+                            n_edges = n_edges,
+                            method = method,
+                            intensity = float(intensity),
+                        )
+                    except Exception as exc:
+                        logging.warning(f"Analytical {method} @ {intensity:.2f} failed for {name}: {exc}")
+                        continue
                 else:
                     try:
                         features = network_perturb(graph, method = method, intensity = float(intensity))
@@ -250,6 +219,8 @@ def _run_all_perturbations(proc, name):
 
 ## execute
 def perturber():
+
+    ## ensure perturbation directory exists
     os.makedirs(PATH_PERT, exist_ok = True)
 
     ## --- federal contracts --- ##
