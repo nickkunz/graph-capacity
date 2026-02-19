@@ -43,7 +43,7 @@ config.read(os.path.join(root, 'conf', 'settings.ini'))
 
 ## constants
 PATH_ROOT = config['paths']['PATH_ROOT'].strip('"')
-PATH_OUT = config['paths']['PATH_OUT'].strip('"')
+PATH_PROC = config['paths']['PATH_PROC'].strip('"')
 
 NAME_AMAZON = config['names']['NAME_AMAZON']
 NAME_BITCOIN = config['names']['NAME_BITCOIN']
@@ -103,9 +103,12 @@ logging.basicConfig(
 
 ## main
 def processor():
+
+    ## ensure processed directory exists
+    os.makedirs(PATH_PROC, exist_ok = True)
     
     ## --- federal contracts --- ##
-    federal_path = os.path.join(PATH_OUT, f"{NAME_FEDERAL}.json")
+    federal_path = os.path.join(PATH_PROC, f"{NAME_FEDERAL}.json")
     if not os.path.exists(federal_path):
         logging.info("Processing Federal data...")
         data_federal = FederalProcessor(
@@ -119,7 +122,7 @@ def processor():
         logging.info(f"Federal data already exists at {federal_path}. Skipping data source.")
 
     ## --- mooc students --- ##
-    mooc_path = os.path.join(PATH_OUT, f"{NAME_MOOC}.json")
+    mooc_path = os.path.join(PATH_PROC, f"{NAME_MOOC}.json")
     if not os.path.exists(mooc_path):
         logging.info("Processing MOOC data...")
         data_mooc = MoocProcessor(url = URL_MOOC).run()
@@ -129,7 +132,7 @@ def processor():
         logging.info(f"MOOC data already exists at {mooc_path}. Skipping data source.")
 
     ## --- bitcoin trust --- ##
-    bitcoin_path = os.path.join(PATH_OUT, f"{NAME_BITCOIN}.json")
+    bitcoin_path = os.path.join(PATH_PROC, f"{NAME_BITCOIN}.json")
     if not os.path.exists(bitcoin_path):
         logging.info("Processing Bitcoin data...")
         data_bitcoin = BitcoinProcessor(root_path = PATH_ROOT, name = NAME_BITCOIN).run()
@@ -139,7 +142,7 @@ def processor():
         logging.info(f"Bitcoin data already exists at {bitcoin_path}. Skipping data source.")
 
     ## --- amazon reviews --- ##
-    amazon_path = os.path.join(PATH_OUT, f"{NAME_AMAZON}.json")
+    amazon_path = os.path.join(PATH_PROC, f"{NAME_AMAZON}.json")
     if not os.path.exists(amazon_path):
         logging.info("Processing Amazon data...")
         data_amazon = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON).run()
@@ -149,7 +152,7 @@ def processor():
         logging.info(f"Amazon data already exists at {amazon_path}. Skipping data source.")
 
     ## --- world bank --- ##
-    world_path = os.path.join(PATH_OUT, f"{NAME_WORLD}.json")
+    world_path = os.path.join(PATH_PROC, f"{NAME_WORLD}.json")
     if not os.path.exists(world_path):
         logging.info("Processing World Bank data...")
         data_world = WorldBankProcessor(
@@ -164,7 +167,7 @@ def processor():
         logging.info(f"World Bank data already exists at {world_path}. Skipping data source.")
 
     ## --- math wiki --- ##
-    wiki_path = os.path.join(PATH_OUT, f"{NAME_WIKI}.json")
+    wiki_path = os.path.join(PATH_PROC, f"{NAME_WIKI}.json")
     if not os.path.exists(wiki_path):
         logging.info("Processing Wiki data...")
         data_wiki = WikiProcessor(url = URL_WIKI, name = "wikivital_mathematics.json").run()
@@ -174,7 +177,7 @@ def processor():
         logging.info(f"Wiki data already exists at {wiki_path}. Skipping data source.")
 
     ## --- jodie wiki --- ##
-    jodie_path = os.path.join(PATH_OUT, f"{NAME_JODIE}.json")
+    jodie_path = os.path.join(PATH_PROC, f"{NAME_JODIE}.json")
     if not os.path.exists(jodie_path):
         logging.info("Processing JODIE data...")
         data_jodie = JodieProcessor(root_path = PATH_ROOT, name = "wikipedia").run() ## name required
@@ -184,7 +187,7 @@ def processor():
         logging.info(f"JODIE data already exists at {jodie_path}. Skipping data source.")
 
     ## --- mathoverflow --- ##
-    overflow_path = os.path.join(PATH_OUT, f"{NAME_OVERFLOW}.json")
+    overflow_path = os.path.join(PATH_PROC, f"{NAME_OVERFLOW}.json")
     if not os.path.exists(overflow_path):
         logging.info("Processing MathOverflow data...")
         data_overflow = OverflowProcessor(url = URL_OVERFLOW).run()
@@ -194,7 +197,7 @@ def processor():
         logging.info(f"MathOverflow data already exists at {overflow_path}. Skipping data source.")
 
     ## --- eu-core email --- ##
-    email_path = os.path.join(PATH_OUT, f"{NAME_EMAIL}.json")
+    email_path = os.path.join(PATH_PROC, f"{NAME_EMAIL}.json")
     if not os.path.exists(email_path):
         logging.info("Processing EU-Core Email data...")
         data_email = EmailProcessor(url = URL_EMAIL).run()
@@ -204,7 +207,7 @@ def processor():
         logging.info(f"EU-Core Email data already exists at {email_path}. Skipping data source.")
 
     ## --- college --- ##
-    college_path = os.path.join(PATH_OUT, f"{NAME_COLLEGE}.json")
+    college_path = os.path.join(PATH_PROC, f"{NAME_COLLEGE}.json")
     if not os.path.exists(college_path):
         logging.info("Processing UC Irvine College Message data...")
         data_college = CollegeProcessor(url = URL_COLLEGE).run()
@@ -214,7 +217,7 @@ def processor():
         logging.info(f"UC Irvine College Message data already exists at {college_path}. Skipping data source.")
 
     ## --- idling --- ##
-    idling_path = os.path.join(PATH_OUT, f"{NAME_IDLING}.json")
+    idling_path = os.path.join(PATH_PROC, f"{NAME_IDLING}.json")
     if not os.path.exists(idling_path):
         logging.info("Processing Halifax idling data...")
         data_idling = IdlingProcessor(path_events = PATH_ROOT + "idling/").run()
@@ -224,7 +227,7 @@ def processor():
         logging.info(f"Halifax idling data already exists at {idling_path}. Skipping data source.")
 
     ## --- windmill --- ##
-    windmill_path = os.path.join(PATH_OUT, f"{NAME_WINDMILL}.json")
+    windmill_path = os.path.join(PATH_PROC, f"{NAME_WINDMILL}.json")
     if not os.path.exists(windmill_path):
         logging.info("Processing Windmill data...")
         data_windmill = WindmillProcessor(raw_data_dir = os.path.join(PATH_ROOT, NAME_WINDMILL)).run()
@@ -234,7 +237,7 @@ def processor():
         logging.info(f"Windmill data already exists at {windmill_path}. Skipping data source.")
 
     ## --- metr-la --- ##
-    metrla_path = os.path.join(PATH_OUT, f"{NAME_METRLA}.json")
+    metrla_path = os.path.join(PATH_PROC, f"{NAME_METRLA}.json")
     if not os.path.exists(metrla_path):
         logging.info("Processing METR-LA data...")
         data_metrla = MetrLaProcessor(raw_data_dir = os.path.join(PATH_ROOT, NAME_METRLA)).run()
@@ -244,7 +247,7 @@ def processor():
         logging.info(f"METR-LA data already exists at {metrla_path}. Skipping data source.")
 
     ## --- pems-bay --- ##
-    pemsbay_path = os.path.join(PATH_OUT, f"{NAME_PEMSBAY}.json")
+    pemsbay_path = os.path.join(PATH_PROC, f"{NAME_PEMSBAY}.json")
     if not os.path.exists(pemsbay_path):
         logging.info("Processing PEMS-BAY data...")
         data_pemsbay = PemsBayProcessor(raw_data_dir = os.path.join(PATH_ROOT, NAME_PEMSBAY)).run()
@@ -254,7 +257,7 @@ def processor():
         logging.info(f"PEMS-BAY data already exists at {pemsbay_path}. Skipping data source.")
 
     ## --- montevideo --- ##
-    path_montevideo = os.path.join(PATH_OUT, f"{NAME_MONTEVIDEO}.json")
+    path_montevideo = os.path.join(PATH_PROC, f"{NAME_MONTEVIDEO}.json")
     if not os.path.exists(path_montevideo):
         logging.info("Processing Montevideo data...")
         data_montevideo = MontevideoProcessor().run()
@@ -264,7 +267,7 @@ def processor():
         logging.info(f"Montevideo data already exists at {path_montevideo}. Skipping data source.")
 
     ## --- crop pollinator --- ##
-    path_crop = os.path.join(PATH_OUT, f"{NAME_CROP}.json")
+    path_crop = os.path.join(PATH_PROC, f"{NAME_CROP}.json")
     if not os.path.exists(path_crop):
         logging.info("Processing CropPol data...")
         data_crop = CropProcessor(url_sampling = URL_CROP_SAMPLING, url_field = URL_CROP_FIELD).run()
@@ -274,7 +277,7 @@ def processor():
         logging.info(f"CropPol data already exists at {path_crop}. Skipping data source.")
 
     ## --- faers --- ##
-    path_faers = os.path.join(PATH_OUT, f"{NAME_FAERS}.json")
+    path_faers = os.path.join(PATH_PROC, f"{NAME_FAERS}.json")
     if not os.path.exists(path_faers):
         logging.info("Processing FAERS data...")
         data_faers = FaersProcessor(id = "IMATINIB", url = URL_FAERS).run()
@@ -284,7 +287,7 @@ def processor():
         logging.info(f"FAERS data already exists at {path_faers}. Skipping data source.")
 
     ## --- c. elegans --- ##
-    path_celegans = os.path.join(PATH_OUT, f"{NAME_CELEGANS}.json")
+    path_celegans = os.path.join(PATH_PROC, f"{NAME_CELEGANS}.json")
     if not os.path.exists(path_celegans):
         logging.info("Processing C. Elegans data...")
         data_celegans = CelegansProcessor().run()
@@ -294,7 +297,7 @@ def processor():
         logging.info(f"C. Elegans data already exists at {path_celegans}. Skipping data source.")
 
     ## --- epilepsy --- ##
-    path_epilepsy = os.path.join(PATH_OUT, f"{NAME_EPILEPSY}.json")
+    path_epilepsy = os.path.join(PATH_PROC, f"{NAME_EPILEPSY}.json")
     if not os.path.exists(path_epilepsy):
         logging.info("Processing Epilepsy data...")
         ids = [f'chb{i:02d}' for i in range(1, 25)]
@@ -305,7 +308,7 @@ def processor():
         logging.info(f"Epilepsy data already exists at {path_epilepsy}. Skipping data source.")
 
     ## --- chickenpox --- ##
-    path_chickenpox = os.path.join(PATH_OUT, f"{NAME_CHICKENPOX}.json")
+    path_chickenpox = os.path.join(PATH_PROC, f"{NAME_CHICKENPOX}.json")
     if not os.path.exists(path_chickenpox):
         logging.info("Processing Chickenpox data...")
         data_chickenpox = ChickenpoxProcessor(
@@ -318,7 +321,7 @@ def processor():
         logging.info(f"Chickenpox data already exists at {path_chickenpox}. Skipping data source.")
 
     ## --- gwosc --- ##
-    path_gwosc = os.path.join(PATH_OUT, f"{NAME_GWOSC}.json")
+    path_gwosc = os.path.join(PATH_PROC, f"{NAME_GWOSC}.json")
     if not os.path.exists(path_gwosc):
         logging.info("Processing GWOSC data...")
         data_gwosc = GwoscProcessor(url = URL_GWOSC).run()
@@ -328,7 +331,7 @@ def processor():
         logging.info(f"GWOSC data already exists at {path_gwosc}. Skipping data source.")
 
     ## --- nwis --- ##
-    path_nwis = os.path.join(PATH_OUT, f"{NAME_RIVER}.json")
+    path_nwis = os.path.join(PATH_PROC, f"{NAME_RIVER}.json")
     if not os.path.exists(path_nwis):
         logging.info("Processing NWIS river data...")
         params = {
@@ -353,7 +356,7 @@ def processor():
         logging.info(f"NWIS river data already exists at {path_nwis}. Skipping data source.")
 
     ## --- auger --- ##
-    path_auger = os.path.join(PATH_OUT, f"{NAME_AUGER}.json")
+    path_auger = os.path.join(PATH_PROC, f"{NAME_AUGER}.json")
     if not os.path.exists(path_auger):
         logging.info("Processing Auger data...")
         data_auger = AugerProcessor(
@@ -366,7 +369,7 @@ def processor():
         logging.info(f"Auger data already exists at {path_auger}. Skipping data source.")
 
     ## --- seismic --- ##
-    path_seismic = os.path.join(PATH_OUT, f"{NAME_SEISMIC}.json")
+    path_seismic = os.path.join(PATH_PROC, f"{NAME_SEISMIC}.json")
     if not os.path.exists(path_seismic):
         logging.info("Processing Seismic data...")
         
@@ -399,7 +402,7 @@ def processor():
         logging.info(f"Seismic data already exists at {path_seismic}. Skipping data source.")
 
     ## --- rain --- ##
-    path_rain = os.path.join(PATH_OUT, f"{NAME_RAIN}.json")
+    path_rain = os.path.join(PATH_PROC, f"{NAME_RAIN}.json")
     if not os.path.exists(path_rain):
         logging.info("Processing Rain data...")
         data_rain = RainProcessor(
