@@ -234,3 +234,51 @@ def _build_network_pyg(data: object) -> tuple[list[str], list[tuple]]:
     edge_list = [tuple(map(str, edge)) for edge in edges_unique.t().cpu().numpy()]
 
     return nodes, edge_list
+
+## extract event counts from events dataframe
+def _extract_counts(events: pd.DataFrame | None):
+    if events is None or (isinstance(events, pd.DataFrame) and events.empty):
+        return None
+    if isinstance(events, pd.DataFrame):
+        for col in ('target', 'count'):
+            if col in events.columns:
+                return events[col].to_numpy()
+    return None
+
+## extract timestamps from processor object
+def _extract_timestamps(proc, name: str | None = None):
+    try:
+        from src.data.loaders.bitcoin import load_events_bitcoin
+        if hasattr(proc, 'data_raw') and proc.data_raw is not None:
+            index = getattr(proc, 'index', 10)
+            res = load_events_bitcoin(proc.data_raw, index = index)
+            if isinstance(res, dict) and 'datetime' in res:
+                return res['datetime']
+            if isinstance(res, pd.DataFrame) and 'datetime' in res.columns:
+                return res['datetime']
+    except Exception:
+        pass  ## fail silently and fall back to generic checks
+
+    ## check for common timestamp/datetime columns in data attributes
+    for attr in ('data', 'data_raw', 'data_events', 'data_events_raw'):
+        df = getattr(proc, attr, None)
+        if df is not None and isinstance(df, pd.DataFrame):
+            for col in ('timestamp', 'datetime'):
+                if col in df.columns:
+                    return df[col]
+
+    ## check events attribute as final fallback
+    events = getattr(proc, 'events', None)
+    if events is not None and isinstance(events, pd.DataFrame):
+        for col in ('timestamp', 'datetime'):
+            if col in events.columns:
+                return events[col]
+    return None
+
+## convert unix timestamps to datetime
+def _to_datetime(values):
+    if values is None or len(values) == 0:
+        return None
+    if pd.api.types.is_numeric_dtype(values):
+        return pd.to_datetime(values, unit = 's')
+    return pd.to_datetime(values)
