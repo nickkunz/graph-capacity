@@ -92,7 +92,6 @@ def logo_cross_valid(
 
     return pd.DataFrame(frontier_results), y_pred_test
 
-
 ## -----------------------
 ## k-fold cross validation
 ## -----------------------
@@ -176,4 +175,3 @@ def kfold_cross_valid(
         frontier_results.append({"fold": fold_idx, **frontier})
 
     return pd.DataFrame(frontier_results), y_pred_test
-
