@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 
 ## modules
-from src.data.utilities import _ensure_finite
+from src.data.helpers import _force_finite
 
 ## process signatures class
 class ProcessSignatures:
@@ -75,7 +75,7 @@ class ProcessSignatures:
         num = np.sum(x_center[:-1] * x_center[1:])
         den = np.sum(x_center**2)
         val = num / den if den > 1e-12 else 0.0
-        return _ensure_finite(val, 0.0)
+        return _force_finite(val, 0.0)
 
     ## compute coefficient of variation (scale-free dispersion)
     def _coef_variation(self):
@@ -84,7 +84,7 @@ class ProcessSignatures:
             return 0.0
         sd = float(np.std(self.counts, ddof = 1))
         cv = sd / (m + 1e-12)
-        return _ensure_finite(cv, 0.0)
+        return _force_finite(cv, 0.0)
 
     ## compute overdispersion relative to mean (fano factor)
     def _fano_factor(self):
@@ -93,7 +93,7 @@ class ProcessSignatures:
             return 0.0
         var = float(np.var(self.counts, ddof = 1))
         fano = var / (m + 1e-12)
-        return _ensure_finite(fano, 0.0)
+        return _force_finite(fano, 0.0)
 
     ## compute normalized mean absolute successive difference (local roughness)
     def _norm_succ_diff(self):
@@ -104,7 +104,7 @@ class ProcessSignatures:
         if len(diffs) == 0:
             return 0.0
         b = float(np.mean(diffs)) / (m + 1e-12)
-        return _ensure_finite(b, 0.0)
+        return _force_finite(b, 0.0)
 
     ## recurrence times helper
     def _recurrence_times(self):
@@ -132,7 +132,7 @@ class ProcessSignatures:
         rs = r / s
         h = np.log(rs) / np.log(float(n))
         h = max(0.0, min(1.0, h))
-        return _ensure_finite(h, 0.5)
+        return _force_finite(h, 0.5)
 
     ## compute correlation between counts and time index (dimensionless trend)
     def _trend_coeff(self):
@@ -147,7 +147,7 @@ class ProcessSignatures:
         den = np.sqrt(np.sum(xc**2) * np.sum(tc**2))
 
         beta = num / den if den > 1e-12 else 0.0
-        return _ensure_finite(float(beta), 0.0)
+        return _force_finite(float(beta), 0.0)
 
     ## compute skewness of counts distribution
     def _count_skewness(self):
@@ -165,7 +165,7 @@ class ProcessSignatures:
         x_std = (x - m) / sd
         skew = float(np.mean(x_std**3))
         
-        return _ensure_finite(skew, 0.0)
+        return _force_finite(skew, 0.0)
 
     ## compute all signatures and ensure they are finite
     def all(self):

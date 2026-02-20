@@ -9,7 +9,7 @@ import scipy.stats as stats
 from scipy.sparse import csc_matrix, diags, eye
 
 ## modules
-from src.data.utilities import _ensure_finite
+from src.data.helpers import _force_finite
 
 ## compute graph invariant vector
 class GraphInvariants:
@@ -76,7 +76,7 @@ class GraphInvariants:
         ## diameter (longest shortest-path distance among all vertex pairs)
         try:
             diam = H.diameter(directed = False, unconn = False)
-            features['diameter'] = _ensure_finite(float(diam), 0.0)
+            features['diameter'] = _force_finite(float(diam), 0.0)
         except ig.InternalError:
             features['diameter'] = 0.0
         
@@ -84,7 +84,7 @@ class GraphInvariants:
         try:
             ecc = np.array(H.eccentricity())
             finite_ecc = ecc[np.isfinite(ecc)]
-            features['radius'] = _ensure_finite(float(finite_ecc.min()), 0.0) if finite_ecc.size > 0 else 0.0
+            features['radius'] = _force_finite(float(finite_ecc.min()), 0.0) if finite_ecc.size > 0 else 0.0
         except ig.InternalError:
             features['radius'] = 0.0
 
@@ -126,11 +126,11 @@ class GraphInvariants:
 
         ## global clustering coefficient (fraction of triangles among connected triples)
         clustering = graph.transitivity_undirected()
-        features['global_clustering'] = _ensure_finite(clustering, 0.0)
+        features['global_clustering'] = _force_finite(clustering, 0.0)
 
         ## degree assortativity (correlation of connected node degrees)
         assortativity = graph.assortativity_degree(directed = False)
-        features['degree_assortativity'] = _ensure_finite(assortativity, 0.0)
+        features['degree_assortativity'] = _force_finite(assortativity, 0.0)
 
         ## shannon entropy of degree sequence
         if len(degrees) > 0:
@@ -156,13 +156,13 @@ class GraphInvariants:
         if len(degrees) < 3 or len(set(degrees)) <= 1:
             features['degree_skewness'] = 0.0
         else:
-            features['degree_skewness'] = _ensure_finite(stats.skew(degrees, bias = False), 0.0)
+            features['degree_skewness'] = _force_finite(stats.skew(degrees, bias = False), 0.0)
 
         ## degree kurtosis (fisher, bias-corrected)
         if len(degrees) < 4 or len(set(degrees)) <= 1:
             features['degree_kurtosis'] = 0.0
         else:
-            features['degree_kurtosis'] = _ensure_finite(stats.kurtosis(degrees, fisher = True, bias = False), 0.0)
+            features['degree_kurtosis'] = _force_finite(stats.kurtosis(degrees, fisher = True, bias = False), 0.0)
 
         return features
 
@@ -196,7 +196,7 @@ class GraphInvariants:
             sum_inv = np.sum(
                 1.0 / (degrees[edge_array[:, 0]] * degrees[edge_array[:, 1]])
             )
-            features['normalized_laplacian_second_moment'] = _ensure_finite(
+            features['normalized_laplacian_second_moment'] = _force_finite(
                 1.0 + (2.0 / n_nodes) * sum_inv, 0.0
             )
         else:
@@ -219,7 +219,7 @@ class GraphInvariants:
             
             L3 = L2 @ L_norm
             trace_L3 = L3.diagonal().sum()
-            features['normalized_laplacian_third_moment'] = _ensure_finite(
+            features['normalized_laplacian_third_moment'] = _force_finite(
                 trace_L3 / n_nodes, 0.0
             )
         else:
@@ -237,14 +237,14 @@ class GraphInvariants:
             ## random walk triangle weight: tr(P³)/n
             P3 = P2 @ P
             trace_P3 = P3.diagonal().sum()
-            features['random_walk_triangle_weight'] = _ensure_finite(
+            features['random_walk_triangle_weight'] = _force_finite(
                 trace_P3 / n_nodes, 0.0
             )
             
             ## random walk fourth moment: tr(P⁴)/n
             P4 = P2 @ P2
             trace_P4 = P4.diagonal().sum()
-            features['random_walk_fourth_moment'] = _ensure_finite(
+            features['random_walk_fourth_moment'] = _force_finite(
                 trace_P4 / n_nodes, 0.0
             )
         else:
@@ -260,7 +260,7 @@ class GraphInvariants:
         
         A4 = A2 @ A2
         trace_A4 = A4.diagonal().sum()
-        features['adjacency_fourth_moment_per_node'] = _ensure_finite(
+        features['adjacency_fourth_moment_per_node'] = _force_finite(
             trace_A4 / n_nodes, 0.0
         )
         
@@ -412,13 +412,13 @@ class BipartiteInvariants:
                 kurtosis = (1.0 / (p * q)) - 6.0
 
         return {
-            'degree_variance': _ensure_finite(float(deg_var)),
+            'degree_variance': _force_finite(float(deg_var)),
             'global_clustering': 0.0,
-            'degree_assortativity': _ensure_finite(assortativity),
-            'degree_entropy': _ensure_finite(float(degree_entropy)),
-            'joint_degree_entropy': _ensure_finite(float(joint_degree_entropy)),
-            'degree_skewness': _ensure_finite(float(skewness)),
-            'degree_kurtosis': _ensure_finite(float(kurtosis))
+            'degree_assortativity': _force_finite(assortativity),
+            'degree_entropy': _force_finite(float(degree_entropy)),
+            'joint_degree_entropy': _force_finite(float(joint_degree_entropy)),
+            'degree_skewness': _force_finite(float(skewness)),
+            'degree_kurtosis': _force_finite(float(kurtosis))
         }
 
     ## compute spectral invariants (trace-polynomial, no eigendecomposition)
@@ -454,11 +454,11 @@ class BipartiteInvariants:
         a4 = 2.0 * (m**2) * (n**2) / N
 
         return {
-            'normalized_laplacian_second_moment': _ensure_finite(float(nl2), 0.0),
-            'normalized_laplacian_third_moment': _ensure_finite(float(nl3), 0.0),
-            'random_walk_triangle_weight': _ensure_finite(float(rw3), 0.0),
-            'random_walk_fourth_moment': _ensure_finite(float(rw4), 0.0),
-            'adjacency_fourth_moment_per_node': _ensure_finite(float(a4), 0.0),
+            'normalized_laplacian_second_moment': _force_finite(float(nl2), 0.0),
+            'normalized_laplacian_third_moment': _force_finite(float(nl3), 0.0),
+            'random_walk_triangle_weight': _force_finite(float(rw3), 0.0),
+            'random_walk_fourth_moment': _force_finite(float(rw4), 0.0),
+            'adjacency_fourth_moment_per_node': _force_finite(float(a4), 0.0),
         }
 
     ## compute all bipartite invariants
