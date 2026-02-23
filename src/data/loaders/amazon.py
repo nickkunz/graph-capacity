@@ -9,7 +9,7 @@ from io import BytesIO, StringIO
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
-from src.data.utilities import (
+from src.data.helpers import (
     _create_igraph_object, 
     _aggregate_by_day,
     _request_with_retry

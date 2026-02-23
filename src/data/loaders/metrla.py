@@ -11,7 +11,7 @@ from torch_geometric_temporal.signal import DynamicGraphTemporalSignal
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.data.utilities import _load_network_pygt, _build_network_pygt, _create_igraph_object
+from src.data.helpers import _load_network_pygt, _build_network_pygt, _create_igraph_object
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
 

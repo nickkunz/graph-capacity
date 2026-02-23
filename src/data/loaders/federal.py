@@ -9,7 +9,7 @@ from typing import Optional, Dict, Any, Iterator
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-from src.data.utilities import _create_igraph_object, _aggregate_by_day, _request_with_retry
+from src.data.helpers import _create_igraph_object, _aggregate_by_day, _request_with_retry
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
 

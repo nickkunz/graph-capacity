@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 ## modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-from src.data.utilities import _request_with_retry, _create_igraph_object
+from src.data.helpers import _request_with_retry, _create_igraph_object
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
 

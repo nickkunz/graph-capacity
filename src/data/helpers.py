@@ -12,6 +12,7 @@ import numpy as np
 import pandas as pd
 import igraph as ig
 import urllib.request
+from typing import Dict
 from torch_geometric_temporal.signal import DynamicGraphTemporalSignal
 
 ## daily aggregation
@@ -31,11 +32,24 @@ def _create_igraph_object(nodes: list[str], edges: list[tuple]) -> ig.Graph:
     return g
 
 ## finite value guarantee
-def _ensure_finite(value, default = 0.0) -> float:
+def _force_finite(value, default = 0.0) -> float:
     ## convert inf, -inf, nan to default value
     if not np.isfinite(value):
         return default
     return value
+
+## finite feature guarantee for dictionary of features
+def _force_finite_dict(features: Dict[str, float], default: float = 0.0) -> Dict[str, float]:
+    return {k: _force_finite(v, default = default) for k, v in features.items()}
+
+## clip scalar unit interval zero to one [0, 1]
+def _clip_unit_interval(value: float) -> float:
+    try:
+        value = float(value)
+    except (TypeError, ValueError):
+        return 0.0
+    value = _force_finite(value, default = 0.0)  ## force finite
+    return max(0.0, min(1.0, value))
 
 ## save dictionary to json
 def _save_to_json(data: dict, path: str) -> None:
