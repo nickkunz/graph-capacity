@@ -267,7 +267,21 @@ class GraphInvariants:
         return features
 
     ## compute all invariants and ensure all are finite
-    def all(self):
+    def all(self, analytical: bool = False):
+        if analytical:
+            bipartite, types = self.graph.is_bipartite(return_types = True)
+            if not bipartite or types is None:
+                raise ValueError("Analytical mode requires a bipartite graph")
+            
+            ## count nodes in each partition
+            n1 = sum(types)
+            n2 = len(types) - n1
+            
+            ## quality check: ensure it's fully connected bipartite
+            if self.graph.ecount() != n1 * n2:
+                raise ValueError("Analytical mode expects a fully connected bipartite graph")
+            return BipartiteInvariants(n1, n2).all()
+
         features = {}
         features.update(self.simple())
         features.update(self.cohesion())
