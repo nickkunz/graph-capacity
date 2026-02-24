@@ -1,2 +1,2 @@
 # graph-capacity
-Event Capacity of Complex Networks
+A Universal Capacity Frontier of Observation Rates in Complex Networks
