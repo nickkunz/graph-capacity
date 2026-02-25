@@ -11,6 +11,8 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..
 if PROJECT_ROOT not in sys.path:
     sys.path.append(PROJECT_ROOT)
 
+from src.data.processors import processor
+
 DATA_DIR = os.path.join(PROJECT_ROOT, 'data')
 PROCESSED_DIR_DEFAULT = os.path.join(DATA_DIR, 'processed')
 OUTPUT_DIR_DEFAULT = DATA_DIR
@@ -260,16 +262,12 @@ def create_master_dataframe(processed_dir, output_all_path, output_max_path):
 ## main execution
 if __name__ == '__main__':
     try:
-        from src.data.processor import run_processor
         logging.info("Running data processor...")
-        run_processor()
+        processor()
     except Exception as e:
         logging.warning(f"Failed to run processor: {e}. Proceeding with existing data.")
 
-    os.makedirs(
-        name = DATA_DIR, 
-        exist_ok = True
-    )
+    os.makedirs(name = DATA_DIR, exist_ok = True)
     
     output_max_path = os.path.join(DATA_DIR, 'data.csv')
     
