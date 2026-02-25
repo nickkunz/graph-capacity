@@ -10,7 +10,7 @@ if root not in sys.path:
     sys.path.append(root)
 
 ## modules
-from src.data.utilities import _save_to_json
+from src.data.helpers import _save_to_json
 from src.data.loaders.federal import FederalProcessor
 from src.data.loaders.bitcoin import BitcoinProcessor
 from src.data.loaders.amazon import AmazonProcessor
