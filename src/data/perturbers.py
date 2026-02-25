@@ -6,15 +6,16 @@ import configparser
 import numpy as np
 import pandas as pd
 
-## project root
+## directory
 root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 if root not in sys.path:
     sys.path.append(root)
 
 ## modules
-from src.data.utilities import _save_to_json, _extract_counts, _extract_timestamps, _to_datetime
-from src.evaluators.perturbate import network_perturb, network_perturb_analytical, ANALYTICAL_EDGE_THRESHOLD, process_perturb, temporal_perturb
+from src.data.helpers import _save_to_json, _extract_counts
+from src.evaluators.perturbing import network_perturb, analytical_perturb, process_perturb, invariant_perturb
 from src.vectorizers.invariants import GraphInvariants
+from src.vectorizers.signatures import ProcessSignatures
 from src.data.loaders.federal import FederalProcessor
 from src.data.loaders.bitcoin import BitcoinProcessor
 from src.data.loaders.amazon import AmazonProcessor
@@ -41,11 +42,11 @@ from src.data.loaders.seismic import SeismicProcessor
 from src.data.loaders.rain import RainProcessor
 from src.data.loaders.chickenpox import ChickenpoxProcessor
 
-## config settings
+## configs
 config = configparser.ConfigParser()
 config.read(os.path.join(root, 'conf', 'settings.ini'))
 
-## config constants
+## constants
 PATH_ROOT = config['paths']['PATH_ROOT'].strip('"')
 PATH_PERT = config['paths']['PATH_PERT'].strip('"')
 
@@ -105,17 +106,60 @@ logging.basicConfig(
     stream = sys.stdout
 )
 
-## perturbation grids
-NETWORK_METHODS = ['rewire', 'sparsify']
-NETWORK_INTENSITIES = np.linspace(0.0, 0.5, 11).tolist()
-
-PROCESS_METHOD_PARAMS = {
-    'scaling': np.linspace(0.5, 2.0, 10).tolist(),
-    'smoothing': list(range(1, 11)),
+## ----------------------------
+## network perturbation (G space)
+## ----------------------------
+NETWORK_METHODS = {
+    'rewire':      (0.01, 0.05, 0.15, 0.30, 0.50),
+    'sparsify':    (0.01, 0.05, 0.15, 0.30, 0.50),
+    'node_sample': (0.01, 0.05, 0.15, 0.30, 0.50),
 }
 
-TEMPORAL_SCALES = ['2D', '3D', '7D', '14D', '30D']
+## --------------------------------
+## invariant perturbation (x encoding)
+## --------------------------------
+INVARIANT_METHODS = {
+    'noise':  (0.01, 0.05, 0.10, 0.15, 0.25),   ## additive gaussian
+    'jitter': (0.01, 0.05, 0.10, 0.15, 0.25),   ## multiplicative
+    'subset': (0.90, 0.80, 0.70, 0.60, 0.50),   ## retain fraction
+}
 
+## ------------------------------
+## process perturbation (S space)
+## ------------------------------
+PROCESS_METHODS = {
+    'scaling': (0.75, 0.90, 1.10, 1.25, 1.50),        ## symmetric deformation
+    'smoothing': (2, 3, 5, 7, 10),                    ## bounded smoothing window
+    'bootstrapping': (0.10, 0.20, 0.30, 0.40, 0.50),  ## partial temporal destruction
+}
+
+## --------------------------------------
+## signature-level perturbation (z encoding)
+## --------------------------------------
+SIGNATURE_METHODS = {
+    'noise':  (0.005, 0.01, 0.025, 0.05, 0.10),
+    'jitter': (0.005, 0.01, 0.025, 0.05, 0.10),
+    'subset': (0.95, 0.90, 0.85, 0.80, 0.70),
+}
+
+## ----------------------
+## temporal resolution
+## ----------------------
+TEMPORAL_SCALES = ('2D', '3D', '7D', '14D', '30D')
+
+
+
+## helper functions
+def _is_fully_connected_bipartite(graph) -> bool:
+    """Check if a graph is a fully connected bipartite graph."""
+    if graph.vcount() == 0 or graph.ecount() == 0:
+        return False
+    is_bip, types = graph.is_bipartite(return_types=True)
+    if not is_bip or types is None:
+        return False
+    n1 = sum(types)
+    n2 = len(types) - n1
+    return graph.ecount() == n1 * n2
 
 def _run_all_perturbations(proc, name):
     """Run network, process, and temporal perturbations for a given processor."""
@@ -124,26 +168,29 @@ def _run_all_perturbations(proc, name):
     ## --- network perturbation --- ##
     graph = getattr(proc, 'graph', None)
     if graph is not None:
+        
+        ## ensure simple undirected graph (remove multi-edges and self-loops)
+        graph.simplify()
+
+        ## check for fully connected bipartite structure to determine if analytical perturbation can be used
         network_results = []
-        base = GraphInvariants(graph).all()
-        use_analytical = graph.ecount() >= ANALYTICAL_EDGE_THRESHOLD
-        if use_analytical:
+        analytical = _is_fully_connected_bipartite(graph)
+        if analytical:
             degrees = np.array(graph.degree(), dtype=float)
             n_nodes = graph.vcount()
             n_edges = graph.ecount()
             logging.info(f"  Using analytical perturbation for {name} ({n_nodes:,} nodes, {n_edges:,} edges)")
-        for method in NETWORK_METHODS:
-            for intensity in NETWORK_INTENSITIES:
-                if intensity == 0:
-                    features = base
-                elif use_analytical:
+        invariants = GraphInvariants(graph).all(analytical = analytical)
+        for method, intensities in NETWORK_METHODS.items():
+            for intensity in intensities:
+                if analytical:
                     try:
-                        features = network_perturb_analytical(
-                            base_invariants = base,
+                        features = analytical_perturb(
+                            invariants = invariants,
                             degrees = degrees,
                             n_nodes = n_nodes,
                             n_edges = n_edges,
-                            method = method,
+                            method = {"rewire": "degree_preserving_rewire", "sparsify": "bernoulli_edge_thinning", "node_sample": "uniform_node_sampling"}[method],
                             intensity = float(intensity),
                         )
                     except Exception as exc:
@@ -156,23 +203,48 @@ def _run_all_perturbations(proc, name):
                         logging.warning(f"Network {method} @ {intensity:.2f} failed for {name}: {exc}")
                         continue
                 network_results.append({
-                    **features,
-                    'perturbation_layer': 'network',
                     'method': method,
                     'intensity': float(intensity),
-                    'dataset': name,
+                    'invariants': features
                 })
-        results['network'] = network_results
+        results['network_perturbed'] = network_results
         logging.info(f"  Network perturbation: {len(network_results)} records")
     else:
         logging.warning(f"  No graph object for {name}, skipping network perturbation.")
 
+    ## --- invariant perturbation --- ##
+    if graph is not None:
+        base_inv = GraphInvariants(graph).all(analytical = analytical)
+        base_df = pd.DataFrame([base_inv])
+        invariant_pert_results = []
+        for method, params in INVARIANT_METHODS.items():
+            for param in params:
+                try:
+                    perturbed_df = invariant_perturb(
+                        base_df.copy(),
+                        method = method,
+                        noise = float(param) if method != 'subset' else 0.05,
+                        subset = float(param) if method == 'subset' else 0.8,
+                    )
+                    row = perturbed_df.iloc[0].to_dict()
+                except Exception as exc:
+                    logging.warning(f"Invariant {method} @ {param:.3f} failed for {name}: {exc}")
+                    continue
+                invariant_pert_results.append({
+                    'method': method,
+                    'intensity': float(param),
+                    'invariants': row
+                })
+        results['invariants_perturbed'] = invariant_pert_results
+        logging.info(f"  Invariant perturbation: {len(invariant_pert_results)} records")
+
     ## --- process perturbation --- ##
     events = getattr(proc, 'events', None)
     counts = _extract_counts(events)
+
     if counts is not None and len(counts) > 0:
         process_results = []
-        for method, params in PROCESS_METHOD_PARAMS.items():
+        for method, params in PROCESS_METHODS.items():
             for param in params:
                 try:
                     sigs = process_perturb(counts, method = method, param = float(param))
@@ -180,39 +252,70 @@ def _run_all_perturbations(proc, name):
                     logging.warning(f"Process {method} @ {param} failed for {name}: {exc}")
                     continue
                 process_results.append({
-                    **sigs,
-                    'perturbation_layer': 'process',
                     'method': method,
-                    'param': float(param),
-                    'dataset': name,
+                    'intensity': float(param),
+                    'signatures': sigs
                 })
-        results['process'] = process_results
+        results['process_perturbed'] = process_results
         logging.info(f"  Process perturbation: {len(process_results)} records")
     else:
         logging.warning(f"  No count series for {name}, skipping process perturbation.")
 
-    ## --- temporal perturbation --- ##
-    raw_ts = _extract_timestamps(proc, name)
-    ts = _to_datetime(raw_ts) if raw_ts is not None else None
-    if ts is not None and len(ts) > 0:
-        temporal_results = []
-        for scale in TEMPORAL_SCALES:
-            try:
-                y_val, sigs = temporal_perturb(ts, scale = scale)
-            except Exception as exc:
-                logging.warning(f"Temporal {scale} failed for {name}: {exc}")
-                continue
-            temporal_results.append({
-                **sigs,
-                'y_max_rate': y_val,
-                'perturbation_layer': 'temporal',
-                'scale': scale,
-                'dataset': name,
-            })
-        results['temporal'] = temporal_results
-        logging.info(f"  Temporal perturbation: {len(temporal_results)} records")
+    ## --- signature perturbation (z -> z') --- ##
+    if counts is not None and len(counts) > 0:
+        data_temp = pd.DataFrame({"counts": counts, "idx": range(len(counts))})
+        base_sigs = ProcessSignatures(data_temp, sort_by = ["idx"], target = "counts").all()
+        base_sig_df = pd.DataFrame([base_sigs])
+        sig_pert_results = []
+        for method, params in SIGNATURE_METHODS.items():
+            for param in params:
+                try:
+                    perturbed_df = invariant_perturb(
+                        base_sig_df.copy(),
+                        method = method,
+                        noise = float(param) if method != 'subset' else 0.05,
+                        subset = float(param) if method == 'subset' else 0.8,
+                    )
+                    row = perturbed_df.iloc[0].to_dict()
+                except Exception as exc:
+                    logging.warning(f"Signature {method} @ {param:.3f} failed for {name}: {exc}")
+                    continue
+                sig_pert_results.append({
+                    'method': method,
+                    'intensity': float(param),
+                    'signatures': row
+                })
+        results['signatures_perturbed'] = sig_pert_results
+        logging.info(f"  Signature perturbation: {len(sig_pert_results)} records")
+
+    ## --- temporal aggregation --- ##
+    if events is not None and isinstance(events, pd.DataFrame) and not events.empty:
+        date_col = next((c for c in ('date', 'datetime', 'timestamp') if c in events.columns), None)
+        target_col = next((c for c in ('target', 'count') if c in events.columns), None)
+
+        if date_col is not None and target_col is not None:
+            temporal_results = []
+            df_temp = events[[date_col, target_col]].copy()
+            df_temp[date_col] = pd.to_datetime(df_temp[date_col])
+            df_temp = df_temp.set_index(date_col).sort_index()
+
+            for scale in TEMPORAL_SCALES:
+                resampled = df_temp[target_col].resample(scale).sum()
+                records = [
+                    {'date': str(dt.date()), 'target': int(val)}
+                    for dt, val in resampled.items()
+                ]
+                temporal_results.append({
+                    'scale': scale,
+                    'events': records
+                })
+
+            results['temporal_aggregated'] = temporal_results
+            logging.info(f"  Temporal aggregation: {len(temporal_results)} scales")
+        else:
+            logging.warning(f"  No date/target columns for {name}, skipping temporal aggregation.")
     else:
-        logging.warning(f"  No timestamps for {name}, skipping temporal perturbation.")
+        logging.warning(f"  No events for {name}, skipping temporal aggregation.")
 
     return results
 
@@ -221,7 +324,7 @@ def _run_all_perturbations(proc, name):
 def perturber():
 
     ## ensure perturbation directory exists
-    os.makedirs(PATH_PERT, exist_ok = True)
+    os.makedirs(name = PATH_PERT, exist_ok = True)
 
     ## --- federal contracts --- ##
     federal_path = os.path.join(PATH_PERT, f"{NAME_FEDERAL}.json")
@@ -264,16 +367,16 @@ def perturber():
         logging.info(f"Bitcoin perturbations already exist at {bitcoin_path}. Skipping.")
 
     ## --- amazon reviews --- ##
-    amazon_path = os.path.join(PATH_PERT, f"{NAME_AMAZON}.json")
-    if not os.path.exists(amazon_path):
-        logging.info("Perturbing Amazon data...")
-        proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
-        proc.run()
-        results = _run_all_perturbations(proc, NAME_AMAZON)
-        _save_to_json(data = results, path = amazon_path)
-        logging.info(f"Amazon perturbations saved to {amazon_path}")
-    else:
-        logging.info(f"Amazon perturbations already exist at {amazon_path}. Skipping.")
+    # amazon_path = os.path.join(PATH_PERT, f"{NAME_AMAZON}.json")
+    # if not os.path.exists(amazon_path):
+    #     logging.info("Perturbing Amazon data...")
+    #     proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
+    #     proc.run()
+    #     results = _run_all_perturbations(proc, NAME_AMAZON)
+    #     _save_to_json(data = results, path = amazon_path)
+    #     logging.info(f"Amazon perturbations saved to {amazon_path}")
+    # else:
+    #     logging.info(f"Amazon perturbations already exist at {amazon_path}. Skipping.")
 
     ## --- world bank --- ##
     world_path = os.path.join(PATH_PERT, f"{NAME_WORLD}.json")
