@@ -52,7 +52,7 @@ def _parse_amazon_text_reviews(content: str) -> pd.DataFrame:
 
 def _parse_amazon_csv_reviews(content: str) -> pd.DataFrame:
     def _read_csv(**kwargs):
-        return pd.read_csv(StringIO(content), **kwargs)
+        return pd.read_csv(StringIO(content), on_bad_lines = 'skip', low_memory = False, dtype = str, **kwargs)
     try:
         df = _read_csv()
     except Exception:
@@ -121,8 +121,8 @@ def _build_network_amazon(data: pd.DataFrame) -> tuple[list[str], list[tuple[str
     ## create edges from unique user-product pairs
     edge_pairs = data[['user_id', 'product_id']].drop_duplicates()
     edges = [
-        (f"user::{row['user_id']}", f"product::{row['product_id']}")
-        for _, row in edge_pairs.iterrows()
+        (f"user::{row.user_id}", f"product::{row.product_id}")
+        for row in edge_pairs.itertuples(index=False)
     ]
     
     return nodes, edges
