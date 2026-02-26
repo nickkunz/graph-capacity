@@ -100,7 +100,6 @@ URL_FAERS = config['urls']['URL_FAERS'].strip('"')
 URL_EPILEPSY = config['urls']['URL_EPILEPSY'].strip('"')
 URL_CHICKENPOX_EVENTS = config['urls']['URL_CHICKENPOX_EVENTS'].strip('"')
 URL_GWOSC = config['urls']['URL_GWOSC'].strip('"')
-URL_RIVER_INVENTORY = config['urls']['URL_RIVER_INVENTORY'].strip('"')
 URL_RIVER_SITE = config['urls']['URL_RIVER_SITE'].strip('"')
 URL_RIVER_IV = config['urls']['URL_RIVER_IV'].strip('"')
 URL_AUGER_NETWORK = config['urls']['URL_AUGER_NETWORK'].strip('"')
@@ -671,14 +670,12 @@ def perturber():
         logging.info("Perturbing NWIS river data...")
         params = {
             "format": "rdb",
-            "group_key": "huc_cd",
-            "huc_cd": "1501",
+            "huc": "15",
             "siteType": "ST",
-            "agency_cd": "USGS",
             "siteStatus": "active",
         }
         proc = NwisProcessor(
-            url_inventory = URL_RIVER_INVENTORY,
+            url_inventory = URL_RIVER_SITE,
             url_site = URL_RIVER_SITE,
             url_iv = URL_RIVER_IV,
             params = params,
