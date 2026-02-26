@@ -1,19 +1,13 @@
 ## libraries
+import os
+import sys
 import requests
 import numpy as np
 import pandas as pd
-from tqdm.auto import tqdm
-from io import StringIO
-from concurrent.futures import ThreadPoolExecutor, as_completed
-
-## libraries
-import os
-import sys
-import certifi
-import itertools
-import pandas as pd
 import igraph as ig
-import gwosc.datasets as gw
+from io import StringIO
+from tqdm.auto import tqdm
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Optional, Dict, Any
 
 ## path
@@ -21,8 +15,11 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.
 
 ## modules
 from src.vectorizers.invariants import GraphInvariants
-from src.data.helpers import _create_igraph_object, _aggregate_by_day, _request_with_retry
 from src.vectorizers.signatures import ProcessSignatures
+from src.data.helpers import (
+    _create_igraph_object, 
+    _aggregate_by_day
+)
 
 ## create a requests session with a connection pool
 def _create_session(max_workers: int, max_retries: int) -> requests.Session:
@@ -44,7 +41,7 @@ def _load_network_nwis(
     ) -> pd.DataFrame:
 
     ## load data
-    response = session.get(url = url, params = params, timeout = timeout)
+    response = session.get(url = url, params = dict(params), timeout = timeout)
     response.raise_for_status()
 
     ## parse response
@@ -303,8 +300,7 @@ def _execute_events_nwis(
 
 ## usgs nwis network
 class NwisProcessor:
-    def __init__(self, url_inventory: str, url_site: str, url_iv: str, params: dict, start_date: str, end_date: str, max_workers: int = 20, max_retries: int = 3):
-        self.url_inventory = url_inventory
+    def __init__(self, url_site: str, url_iv: str, params: dict, start_date: str, end_date: str, max_workers: int = 20, max_retries: int = 3):
         self.url_site = url_site
         self.url_iv = url_iv
         self.params = params
@@ -323,7 +319,7 @@ class NwisProcessor:
         """ Loads the raw data from source. """
         self.station_ids = _load_network_nwis(
             session=self.session,
-            url=self.url_inventory,
+            url=self.url_site,
             params=self.params
         )
         self.station_metadata = _execute_network_nwis(
