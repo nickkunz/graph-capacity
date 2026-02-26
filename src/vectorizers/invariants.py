@@ -268,6 +268,9 @@ class GraphInvariants:
 
     ## compute all invariants and ensure all are finite
     def all(self, analytical: bool = False):
+
+        ## compute invariants analytically for fully connected bipartite graphs
+        ## (much faster than numerical computation for large dense bipartite graphs)
         if analytical:
             bipartite, types = self.graph.is_bipartite(return_types = True)
             if not bipartite or types is None:
@@ -281,14 +284,16 @@ class GraphInvariants:
             if self.graph.ecount() != n1 * n2:
                 raise ValueError("Analytical mode expects a fully connected bipartite graph")
             return BipartiteInvariants(n1, n2).all()
-
-        features = {}
-        features.update(self.simple())
-        features.update(self.cohesion())
-        features.update(self.extremal())
-        features.update(self.statistical())
-        features.update(self.spectral())
         
+        ## compute all invariants numerically
+        else:
+            features = dict()
+            features.update(self.simple())
+            features.update(self.cohesion())
+            features.update(self.extremal())
+            features.update(self.statistical())
+            features.update(self.spectral())
+            
         ## final results check - should never trigger with proper implementation
         for key, value in features.items():
             if not np.isfinite(value):
