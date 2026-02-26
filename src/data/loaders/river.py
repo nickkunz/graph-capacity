@@ -48,7 +48,6 @@ def _load_network_nwis(
     response.raise_for_status()
 
     ## parse response
-    raw = response.text.strip()
     if response.text.strip().lower().startswith("<!doctype html") or response.text.strip().lower().startswith("<html"):
         raise ValueError(
             "NWIS inventory endpoint returned HTML (likely deprecated/redirected endpoint or invalid params)."
