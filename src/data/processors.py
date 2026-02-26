@@ -335,14 +335,12 @@ def processor():
         logging.info("Processing NWIS river data...")
         params = {
             "format": "rdb",
-            "group_key": "huc_cd",
-            "huc_cd": "1501",
+            "huc": "15010001,15010002,15010005",
             "siteType": "ST",
-            "agency_cd": "USGS",
-            "siteStatus": "active",
+            "agencyCd": "USGS",
+            "siteStatus": "all",
         }
         data_nwis = NwisProcessor(
-            url_inventory = URL_RIVER_INVENTORY,
             url_site = URL_RIVER_SITE,
             url_iv = URL_RIVER_IV,
             params = params,

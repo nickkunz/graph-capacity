@@ -670,12 +670,12 @@ def perturber():
         logging.info("Perturbing NWIS river data...")
         params = {
             "format": "rdb",
-            "huc": "15",
+            "huc": "15010001,15010002,15010005",
             "siteType": "ST",
-            "siteStatus": "active",
+            "agencyCd": "USGS",
+            "siteStatus": "all",
         }
         proc = NwisProcessor(
-            url_inventory = URL_RIVER_SITE,
             url_site = URL_RIVER_SITE,
             url_iv = URL_RIVER_IV,
             params = params,
