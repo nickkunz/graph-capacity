@@ -1,9 +1,9 @@
 ## libraries
 import os
 import io
-import ssl
 import time
 import json
+import hashlib
 import torch
 import zipfile
 import requests
@@ -11,8 +11,8 @@ import importlib
 import numpy as np
 import pandas as pd
 import igraph as ig
-import urllib.request
 from typing import Dict
+from pathlib import Path
 from torch_geometric_temporal.signal import DynamicGraphTemporalSignal
 
 ## daily aggregation
@@ -57,6 +57,30 @@ def _save_to_json(data: dict, path: str) -> None:
     with open(path, 'w') as fp:
         json.dump(obj = data, fp = fp, indent = 2, default = str)
 
+def _cache_dir(namespace: str = "http") -> str:
+    path = Path(__file__).resolve().parents[2] / "cache" / namespace
+    path.mkdir(parents = True, exist_ok = True)
+    return str(path)
+
+def _cache_key(url: str, method: str = "GET", params: dict = None, payload: dict = None) -> str:
+    payload = {
+        "url": str(url),
+        "method": str(method).upper(),
+        "params": params or {},
+        "payload": payload or {},
+    }
+    canonical = json.dumps(payload, sort_keys = True, default = str)
+    return hashlib.sha1(canonical.encode("utf-8")).hexdigest()
+
+def _cache_response(content: bytes, url: str, status_code: int = 200) -> requests.Response:
+    response = requests.Response()
+    response._content = content
+    response.status_code = status_code
+    response.url = url
+    response.encoding = "utf-8"
+    response.headers["X-Cache"] = "HIT"
+    return response
+
 ## make get request with retries
 def _request_with_retry(
     url: str, 
@@ -65,8 +89,23 @@ def _request_with_retry(
     json: dict = None,
     retries: int = 3, 
     timeout: int = 60, 
-    sleep: float = 0.5
+    sleep: float = 0.5,
+    use_cache: bool = True,
+    cache_namespace: str = "http",
+    force_refresh: bool = False,
     ) -> requests.Response:
+    
+    ## caching layer
+    key = _cache_key(url = url, method = method, params = params, payload = json)
+    cache_path = os.path.join(_cache_dir(cache_namespace), f"{key}.bin")
+    if use_cache and (not force_refresh) and os.path.exists(cache_path):
+        try:
+            with open(cache_path, "rb") as fp:
+                return _cache_response(content = fp.read(), url = url)
+        except Exception:
+            pass
+
+    ## retry logic
     for attempt in range(retries):
         try:
             if method.upper() == 'GET':
@@ -84,7 +123,17 @@ def _request_with_retry(
             else:
                 raise ValueError(f"Unsupported request method: {method}")
             response.raise_for_status()
+
+            ## save to cache if enabled
+            if use_cache:
+                try:
+                    with open(cache_path, "wb") as fp:
+                        fp.write(response.content)
+                except Exception:
+                    pass
             return response
+        
+        ## catch specific request exceptions and retry
         except requests.RequestException as e:
             if attempt < retries - 1:
                 time.sleep(sleep * (2 ** attempt))
@@ -94,22 +143,16 @@ def _request_with_retry(
 ## load generic snap temporal dataset
 def _load_network_snap(url: str) -> pd.DataFrame:
     try:
-        ## create ssl context that does not verify certificates
-        context = ssl.create_default_context()
-        context.check_hostname = False
-        context.verify_mode = ssl.CERT_NONE
-
-        ## open url with ssl context
-        with urllib.request.urlopen(url = url, context = context) as response:
-            data = pd.read_csv(
-                filepath_or_buffer = response,
-                sep = r'\s+',
-                header = None,
-                names = ["src", "dst", "timestamp"],
-                comment = '#',
-                compression = 'gzip',
-                engine = 'python'  # engine for regex separator
-            )
+        response = _request_with_retry(url = url, timeout = 60, use_cache = True)
+        data = pd.read_csv(
+            filepath_or_buffer = io.BytesIO(response.content),
+            sep = r'\s+',
+            header = None,
+            names = ["src", "dst", "timestamp"],
+            comment = '#',
+            compression = 'gzip',
+            engine = 'python'
+        )
     except Exception as e:
         raise RuntimeError(f"Failed to load data from {url} with pandas: {e}")
     if data.empty:
@@ -174,8 +217,7 @@ def _build_network_pygt(dataset: DynamicGraphTemporalSignal) -> tuple[list[str],
 ## load data from zipfile from endpoint
 def _load_events_zip(url: str, name: str, timeout: int = 30) -> pd.DataFrame:
     try:
-        response = requests.get(url = url, timeout = timeout)
-        response.raise_for_status()
+        response = _request_with_retry(url = url, timeout = timeout, use_cache = True)
         file = io.BytesIO(initial_bytes = response.content)
         
         ## split name by '/' to handle nested paths
