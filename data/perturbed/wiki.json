@@ -1,0 +1,4409 @@
+{
+  "network_perturbed": [
+    {
+      "method": "rewire",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 1068,
+        "n_edges": 27079,
+        "n_articulation_points": 2,
+        "n_bridges": 2,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 51,
+        "k_core_size": 58,
+        "maximum_degree": 533,
+        "degree_variance": 1848.2191186578577,
+        "global_clustering": 0.31161930854992137,
+        "degree_assortativity": -0.0029107005666796936,
+        "degree_entropy": 4.714588369202875,
+        "joint_degree_entropy": 8.922423891047933,
+        "degree_skewness": 2.7669500062062657,
+        "degree_kurtosis": 18.066523076729634,
+        "normalized_laplacian_second_moment": 1.022674807131736,
+        "normalized_laplacian_third_moment": 1.0628201173410399,
+        "random_walk_triangle_weight": 0.005204304054168112,
+        "random_walk_fourth_moment": 0.004203324663454731,
+        "adjacency_fourth_moment_per_node": 96868.89325842696
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.03,
+      "invariants": {
+        "n_nodes": 1068,
+        "n_edges": 27079,
+        "n_articulation_points": 2,
+        "n_bridges": 2,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 50,
+        "k_core_size": 62,
+        "maximum_degree": 533,
+        "degree_variance": 1848.2191186578577,
+        "global_clustering": 0.29393207743205324,
+        "degree_assortativity": -0.005744048008608205,
+        "degree_entropy": 4.714588369202875,
+        "joint_degree_entropy": 8.924239857920309,
+        "degree_skewness": 2.7669500062062657,
+        "degree_kurtosis": 18.066523076729634,
+        "normalized_laplacian_second_moment": 1.0226731710362076,
+        "normalized_laplacian_third_moment": 1.063208200658543,
+        "random_walk_triangle_weight": 0.0048113124500794155,
+        "random_walk_fourth_moment": 0.003940779945042025,
+        "adjacency_fourth_moment_per_node": 92142.03932584269
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 1068,
+        "n_edges": 27079,
+        "n_articulation_points": 2,
+        "n_bridges": 2,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 44,
+        "k_core_size": 65,
+        "maximum_degree": 533,
+        "degree_variance": 1848.2191186578577,
+        "global_clustering": 0.24359515636043805,
+        "degree_assortativity": -0.016762571470711116,
+        "degree_entropy": 4.714588369202875,
+        "joint_degree_entropy": 8.934225863814003,
+        "degree_skewness": 2.7669500062062657,
+        "degree_kurtosis": 18.066523076729634,
+        "normalized_laplacian_second_moment": 1.0223903932105358,
+        "normalized_laplacian_third_moment": 1.063622994807834,
+        "random_walk_triangle_weight": 0.003548184823773355,
+        "random_walk_fourth_moment": 0.0031120821420977576,
+        "adjacency_fourth_moment_per_node": 79200.7808988764
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 1068,
+        "n_edges": 27079,
+        "n_articulation_points": 2,
+        "n_bridges": 2,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 40,
+        "k_core_size": 70,
+        "maximum_degree": 533,
+        "degree_variance": 1848.2191186578577,
+        "global_clustering": 0.19754534750597827,
+        "degree_assortativity": -0.03012353849547297,
+        "degree_entropy": 4.714588369202875,
+        "joint_degree_entropy": 8.944852846005297,
+        "degree_skewness": 2.7669500062062657,
+        "degree_kurtosis": 18.066523076729634,
+        "normalized_laplacian_second_moment": 1.0212646621896568,
+        "normalized_laplacian_third_moment": 1.0614635217982424,
+        "random_walk_triangle_weight": 0.002330464770727837,
+        "random_walk_fourth_moment": 0.002327786414164909,
+        "adjacency_fourth_moment_per_node": 68355.27528089887
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 1068,
+        "n_edges": 27079,
+        "n_articulation_points": 2,
+        "n_bridges": 2,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 39,
+        "k_core_size": 229,
+        "maximum_degree": 533,
+        "degree_variance": 1848.2191186578577,
+        "global_clustering": 0.15886103918537153,
+        "degree_assortativity": -0.03848632847699239,
+        "degree_entropy": 4.714588369202875,
+        "joint_degree_entropy": 8.96063714952501,
+        "degree_skewness": 2.7669500062062657,
+        "degree_kurtosis": 18.066523076729634,
+        "normalized_laplacian_second_moment": 1.0207638676781499,
+        "normalized_laplacian_third_moment": 1.060741438383606,
+        "random_walk_triangle_weight": 0.001550164650843602,
+        "random_walk_fourth_moment": 0.0019445617440396296,
+        "adjacency_fourth_moment_per_node": 60456.106741573036
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 1068,
+        "n_edges": 26809,
+        "n_articulation_points": 2,
+        "n_bridges": 2,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 52,
+        "k_core_size": 57,
+        "maximum_degree": 529,
+        "degree_variance": 1816.302904375149,
+        "global_clustering": 0.3186120342382479,
+        "degree_assortativity": -0.002262908872236666,
+        "degree_entropy": 4.692939509110434,
+        "joint_degree_entropy": 8.842722261024374,
+        "degree_skewness": 2.7736757598107378,
+        "degree_kurtosis": 18.16563712512742,
+        "normalized_laplacian_second_moment": 1.0231359333085517,
+        "normalized_laplacian_third_moment": 1.0639615454496454,
+        "random_walk_triangle_weight": 0.0054462544760095965,
+        "random_walk_fourth_moment": 0.004423613926931696,
+        "adjacency_fourth_moment_per_node": 96292.71722846442
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.03,
+      "invariants": {
+        "n_nodes": 1068,
+        "n_edges": 26267,
+        "n_articulation_points": 2,
+        "n_bridges": 2,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 50,
+        "k_core_size": 75,
+        "maximum_degree": 525,
+        "degree_variance": 1754.4136648010212,
+        "global_clustering": 0.31124590888846615,
+        "degree_assortativity": -0.003293732141800257,
+        "degree_entropy": 4.668375854602521,
+        "joint_degree_entropy": 8.811471062206234,
+        "degree_skewness": 2.8225153485590813,
+        "degree_kurtosis": 18.880585547733265,
+        "normalized_laplacian_second_moment": 1.0237512185420408,
+        "normalized_laplacian_third_moment": 1.0658086776277749,
+        "random_walk_triangle_weight": 0.0054449779983472835,
+        "random_walk_fourth_moment": 0.004510214734110611,
+        "adjacency_fourth_moment_per_node": 89090.24906367042
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.07,
+      "invariants": {
+        "n_nodes": 1068,
+        "n_edges": 25184,
+        "n_articulation_points": 1,
+        "n_bridges": 1,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 48,
+        "k_core_size": 57,
+        "maximum_degree": 494,
+        "degree_variance": 1595.305523993884,
+        "global_clustering": 0.29830178816359904,
+        "degree_assortativity": 0.0010141487651577998,
+        "degree_entropy": 4.656027694184312,
+        "joint_degree_entropy": 8.816781504295104,
+        "degree_skewness": 2.7600670302328125,
+        "degree_kurtosis": 17.934547263527755,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 75318.29588014982
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 1068,
+        "n_edges": 23018,
+        "n_articulation_points": 1,
+        "n_bridges": 1,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 42,
+        "k_core_size": 59,
+        "maximum_degree": 456,
+        "degree_variance": 1343.5302010127791,
+        "global_clustering": 0.2727599363221601,
+        "degree_assortativity": -0.004281483047000307,
+        "degree_entropy": 4.584681480117459,
+        "joint_degree_entropy": 8.703780737063175,
+        "degree_skewness": 2.796617611915451,
+        "degree_kurtosis": 18.354822379361053,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 53553.737827715355
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 1068,
+        "n_edges": 20310,
+        "n_articulation_points": 3,
+        "n_bridges": 3,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 37,
+        "k_core_size": 75,
+        "maximum_degree": 415,
+        "degree_variance": 1042.2872532929343,
+        "global_clustering": 0.24151089295320066,
+        "degree_assortativity": -0.00598939468936065,
+        "degree_entropy": 4.464853266965484,
+        "joint_degree_entropy": 8.484434323919213,
+        "degree_skewness": 2.852109936190216,
+        "degree_kurtosis": 20.120043332100497,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 33509.636704119854
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 1058,
+        "n_edges": 26602,
+        "n_articulation_points": 2,
+        "n_bridges": 2,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 54,
+        "k_core_size": 55,
+        "maximum_degree": 525,
+        "degree_variance": 1817.272826354966,
+        "global_clustering": 0.3219488496923404,
+        "degree_assortativity": -0.0018996007860803724,
+        "degree_entropy": 4.713671542712434,
+        "joint_degree_entropy": 8.907831916974395,
+        "degree_skewness": 2.7439749877644295,
+        "degree_kurtosis": 17.736460932752,
+        "normalized_laplacian_second_moment": 1.0230787920332034,
+        "normalized_laplacian_third_moment": 1.063742683979794,
+        "random_walk_triangle_weight": 0.005493692119816098,
+        "random_walk_fourth_moment": 0.004439605954439766,
+        "adjacency_fourth_moment_per_node": 97543.61436672969
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.02,
+      "invariants": {
+        "n_nodes": 1047,
+        "n_edges": 25820,
+        "n_articulation_points": 2,
+        "n_bridges": 2,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 53,
+        "k_core_size": 54,
+        "maximum_degree": 519,
+        "degree_variance": 1735.5802570495225,
+        "global_clustering": 0.3210759249752,
+        "degree_assortativity": -0.0013367898912562347,
+        "degree_entropy": 4.681189552928695,
+        "joint_degree_entropy": 8.854497592867208,
+        "degree_skewness": 2.804405519868352,
+        "degree_kurtosis": 18.690859973160112,
+        "normalized_laplacian_second_moment": 1.0233928713027134,
+        "normalized_laplacian_third_moment": 1.0646240361712958,
+        "random_walk_triangle_weight": 0.005554577736844554,
+        "random_walk_fourth_moment": 0.004507257020169328,
+        "adjacency_fourth_moment_per_node": 90987.72492836676
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 1015,
+        "n_edges": 24477,
+        "n_articulation_points": 2,
+        "n_bridges": 2,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 49,
+        "k_core_size": 50,
+        "maximum_degree": 510,
+        "degree_variance": 1696.3271460117937,
+        "global_clustering": 0.3156506761701343,
+        "degree_assortativity": -0.005456583609752644,
+        "degree_entropy": 4.660598796977776,
+        "joint_degree_entropy": 8.821258270519989,
+        "degree_skewness": 2.8418258215926304,
+        "degree_kurtosis": 18.82020457210102,
+        "normalized_laplacian_second_moment": 1.0239022765804384,
+        "normalized_laplacian_third_moment": 1.0660860318429768,
+        "random_walk_triangle_weight": 0.0056207978983384334,
+        "random_walk_fourth_moment": 0.004569494845044336,
+        "adjacency_fourth_moment_per_node": 85131.50935960592
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 962,
+        "n_edges": 22056,
+        "n_articulation_points": 3,
+        "n_bridges": 3,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 50,
+        "k_core_size": 51,
+        "maximum_degree": 482,
+        "degree_variance": 1544.1243511222717,
+        "global_clustering": 0.32052950461711494,
+        "degree_assortativity": -0.005199572979106102,
+        "degree_entropy": 4.627120610432429,
+        "joint_degree_entropy": 8.727270276648554,
+        "degree_skewness": 2.8134087215873773,
+        "degree_kurtosis": 18.755797286368892,
+        "normalized_laplacian_second_moment": 1.025189662342262,
+        "normalized_laplacian_third_moment": 1.0696233909082573,
+        "random_walk_triangle_weight": 0.00594559611852877,
+        "random_walk_fourth_moment": 0.004910391145750128,
+        "adjacency_fourth_moment_per_node": 75664.78170478171
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 855,
+        "n_edges": 17218,
+        "n_articulation_points": 1,
+        "n_bridges": 1,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 41,
+        "k_core_size": 42,
+        "maximum_degree": 433,
+        "degree_variance": 1210.7050976368798,
+        "global_clustering": 0.3040329828928885,
+        "degree_assortativity": -0.015371225990026676,
+        "degree_entropy": 4.489313113033457,
+        "joint_degree_entropy": 8.474033716188035,
+        "degree_skewness": 3.0487632110400984,
+        "degree_kurtosis": 21.609759748146924,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 48657.562573099414
+      }
+    }
+  ],
+  "invariants_perturbed": [
+    {
+      "method": "noise",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 1072.0602588778602,
+        "n_edges": 27267.175463214997,
+        "n_articulation_points": 2.0061551491568124,
+        "n_bridges": 1.9968921828648982,
+        "diameter": 4.04727343796222,
+        "radius": 2.960387359146809,
+        "degeneracy": 53.11029591073774,
+        "k_core_size": 55.09713316583821,
+        "maximum_degree": 526.5279023221049,
+        "degree_variance": 1842.5078217782768,
+        "global_clustering": 0.31944564081432525,
+        "degree_assortativity": -0.002111718466556402,
+        "degree_entropy": 4.767508232353721,
+        "joint_degree_entropy": 8.848332740961784,
+        "degree_skewness": 2.738042229201721,
+        "degree_kurtosis": 17.842320423686978,
+        "normalized_laplacian_second_moment": 1.0252531377473542,
+        "normalized_laplacian_third_moment": 1.0711398156486114,
+        "random_walk_triangle_weight": 0.005332016843480475,
+        "random_walk_fourth_moment": 0.00447313384526013,
+        "adjacency_fourth_moment_per_node": 97577.90833035266
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.02,
+      "invariants": {
+        "n_nodes": 1085.9133304982988,
+        "n_edges": 28084.032414398254,
+        "n_articulation_points": 1.9504701556681974,
+        "n_bridges": 1.9757855356085494,
+        "diameter": 4.034351285680955,
+        "radius": 3.092804811906963,
+        "degeneracy": 54.584494815562934,
+        "k_core_size": 56.95463755656586,
+        "maximum_degree": 530.7039387397765,
+        "degree_variance": 1854.817335601162,
+        "global_clustering": 0.32687610186786537,
+        "degree_assortativity": -0.002171986370564153,
+        "degree_entropy": 4.55940295979084,
+        "joint_degree_entropy": 9.047840000789499,
+        "degree_skewness": 2.7356090884851785,
+        "degree_kurtosis": 18.510128219610582,
+        "normalized_laplacian_second_moment": 1.065527772770768,
+        "normalized_laplacian_third_moment": 1.0820594575086095,
+        "random_walk_triangle_weight": 0.005442999676198123,
+        "random_walk_fourth_moment": 0.004465340599150446,
+        "adjacency_fourth_moment_per_node": 96514.11508755512
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 1147.4895913265184,
+        "n_edges": 24120.01683679859,
+        "n_articulation_points": 1.9632647541825021,
+        "n_bridges": 2.09264491603541,
+        "diameter": 3.87249547905848,
+        "radius": 3.333239908809451,
+        "degeneracy": 58.79032060909752,
+        "k_core_size": 57.23051731545412,
+        "maximum_degree": 521.41788139494,
+        "degree_variance": 1746.512642415063,
+        "global_clustering": 0.30691140816533513,
+        "degree_assortativity": -0.0023522545886903753,
+        "degree_entropy": 4.819108245203642,
+        "joint_degree_entropy": 9.826956911817186,
+        "degree_skewness": 2.5516168849723235,
+        "degree_kurtosis": 16.753216096452924,
+        "normalized_laplacian_second_moment": 0.959358710917002,
+        "normalized_laplacian_third_moment": 1.045681941364832,
+        "random_walk_triangle_weight": 0.005280632988246045,
+        "random_walk_fourth_moment": 0.004528848170604314,
+        "adjacency_fourth_moment_per_node": 93518.95902800508
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 1041.461964106122,
+        "n_edges": 28186.24923555508,
+        "n_articulation_points": 2.091887771257215,
+        "n_bridges": 2.504321629816246,
+        "diameter": 4.314538890865829,
+        "radius": 2.973800554199216,
+        "degeneracy": 54.915696921637725,
+        "k_core_size": 53.288788506508645,
+        "maximum_degree": 467.7523907487404,
+        "degree_variance": 2126.2395476096704,
+        "global_clustering": 0.35723477469984066,
+        "degree_assortativity": -0.002232264425921041,
+        "degree_entropy": 5.653972978995617,
+        "joint_degree_entropy": 7.946711891679196,
+        "degree_skewness": 3.377824318395678,
+        "degree_kurtosis": 16.751144147647032,
+        "normalized_laplacian_second_moment": 0.8753746263266783,
+        "normalized_laplacian_third_moment": 1.1047549322326418,
+        "random_walk_triangle_weight": 0.005800354790919069,
+        "random_walk_fourth_moment": 0.004503567493278364,
+        "adjacency_fourth_moment_per_node": 104969.62502731521
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 1008.8727840939525,
+        "n_edges": 25957.460966358532,
+        "n_articulation_points": 2.535045396578539,
+        "n_bridges": 2.370743998642287,
+        "diameter": 4.088910133300157,
+        "radius": 2.610445289508111,
+        "degeneracy": 49.34852979704201,
+        "k_core_size": 50.54769679561594,
+        "maximum_degree": 508.109223096047,
+        "degree_variance": 2522.8783129869144,
+        "global_clustering": 0.36980307075173724,
+        "degree_assortativity": -0.0023323886952763572,
+        "degree_entropy": 4.236143625682783,
+        "joint_degree_entropy": 10.712384884082162,
+        "degree_skewness": 3.8015749935836,
+        "degree_kurtosis": 17.67389394213104,
+        "normalized_laplacian_second_moment": 0.9119699923410026,
+        "normalized_laplacian_third_moment": 1.2194297877654596,
+        "random_walk_triangle_weight": 0.005075774534501955,
+        "random_walk_fourth_moment": 0.004766044369460613,
+        "adjacency_fourth_moment_per_node": 67927.64425463593
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 1072.1628006909693,
+        "n_edges": 26891.771159074848,
+        "n_articulation_points": 1.9960029163722923,
+        "n_bridges": 2.01745216049666,
+        "diameter": 4.002259596943915,
+        "radius": 3.027050877378846,
+        "degeneracy": 54.4579653684766,
+        "k_core_size": 53.99491224432422,
+        "maximum_degree": 532.839492652097,
+        "degree_variance": 1874.884248291728,
+        "global_clustering": 0.32048760660493864,
+        "degree_assortativity": -0.0021262563845930718,
+        "degree_entropy": 4.717920700568436,
+        "joint_degree_entropy": 8.94399354817878,
+        "degree_skewness": 2.771924165324551,
+        "degree_kurtosis": 18.131026413421875,
+        "normalized_laplacian_second_moment": 1.022204399715767,
+        "normalized_laplacian_third_moment": 1.056404329793624,
+        "random_walk_triangle_weight": 0.005496764695976648,
+        "random_walk_fourth_moment": 0.004427815666124084,
+        "adjacency_fourth_moment_per_node": 99613.82829740232
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.02,
+      "invariants": {
+        "n_nodes": 1085.582036963609,
+        "n_edges": 26941.399319200635,
+        "n_articulation_points": 2.041951124495137,
+        "n_bridges": 1.9803340523073902,
+        "diameter": 3.9447518240023385,
+        "radius": 3.1040479621530546,
+        "degeneracy": 54.6228200812426,
+        "k_core_size": 57.85876933155304,
+        "maximum_degree": 544.594191725772,
+        "degree_variance": 1777.6411647618547,
+        "global_clustering": 0.320942751958488,
+        "degree_assortativity": -0.0022113286175689546,
+        "degree_entropy": 4.652476545830745,
+        "joint_degree_entropy": 9.14124598518131,
+        "degree_skewness": 2.645295776379261,
+        "degree_kurtosis": 18.22760136082335,
+        "normalized_laplacian_second_moment": 1.0202408950893276,
+        "normalized_laplacian_third_moment": 1.045301946574901,
+        "random_walk_triangle_weight": 0.00545914215852126,
+        "random_walk_fourth_moment": 0.004231815647770099,
+        "adjacency_fourth_moment_per_node": 99142.63032031948
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 1160.5538715402379,
+        "n_edges": 26263.077707318564,
+        "n_articulation_points": 2.0426151237493264,
+        "n_bridges": 2.104262114858966,
+        "diameter": 3.7793865600788252,
+        "radius": 3.119385875041571,
+        "degeneracy": 53.20589739281144,
+        "k_core_size": 54.90066862826667,
+        "maximum_degree": 537.6908665572415,
+        "degree_variance": 1721.354159433702,
+        "global_clustering": 0.33112509605450624,
+        "degree_assortativity": -0.002119659758185082,
+        "degree_entropy": 4.484668173000675,
+        "joint_degree_entropy": 8.44961884754237,
+        "degree_skewness": 2.863124255486096,
+        "degree_kurtosis": 17.27024709830116,
+        "normalized_laplacian_second_moment": 1.047487144722137,
+        "normalized_laplacian_third_moment": 1.0635410267069145,
+        "random_walk_triangle_weight": 0.005670066375541445,
+        "random_walk_fourth_moment": 0.004690406431958399,
+        "adjacency_fourth_moment_per_node": 94041.10841506235
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 1051.849150514686,
+        "n_edges": 27835.77647383875,
+        "n_articulation_points": 1.7065064235840985,
+        "n_bridges": 1.8668240753131609,
+        "diameter": 4.343398955428269,
+        "radius": 2.9053367181378773,
+        "degeneracy": 54.83209437876425,
+        "k_core_size": 52.992282822304844,
+        "maximum_degree": 536.1692906081374,
+        "degree_variance": 1677.9730830721455,
+        "global_clustering": 0.31109082496368345,
+        "degree_assortativity": -0.001784394344833418,
+        "degree_entropy": 4.7001009170930175,
+        "joint_degree_entropy": 9.957796908692716,
+        "degree_skewness": 2.6476004549863936,
+        "degree_kurtosis": 16.997255687292594,
+        "normalized_laplacian_second_moment": 1.0684177618707171,
+        "normalized_laplacian_third_moment": 0.8477264912580601,
+        "random_walk_triangle_weight": 0.006153159097770264,
+        "random_walk_fourth_moment": 0.004926684550571056,
+        "adjacency_fourth_moment_per_node": 99046.35385219498
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 745.5958120547311,
+        "n_edges": 26904.289377362125,
+        "n_articulation_points": 2.967231754018,
+        "n_bridges": 2.390236825761476,
+        "diameter": 4.710345379378625,
+        "radius": 3.0842959016315907,
+        "degeneracy": 47.40236125175285,
+        "k_core_size": 60.25332347033346,
+        "maximum_degree": 420.93611815814967,
+        "degree_variance": 1357.7226723763786,
+        "global_clustering": 0.3062831096904602,
+        "degree_assortativity": -0.0016478563365353142,
+        "degree_entropy": 5.007714224988364,
+        "joint_degree_entropy": 13.18682156519727,
+        "degree_skewness": 2.272986299033306,
+        "degree_kurtosis": 17.46512044192537,
+        "normalized_laplacian_second_moment": 1.183080478419585,
+        "normalized_laplacian_third_moment": 0.7960060741358405,
+        "random_walk_triangle_weight": 0.005484803009805565,
+        "random_walk_fourth_moment": 0.0054581167126979266,
+        "adjacency_fourth_moment_per_node": 88089.82285459698
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.95,
+      "invariants": {
+        "n_nodes": 1068.0,
+        "n_edges": 27079.0,
+        "n_articulation_points": 2.0,
+        "n_bridges": 2.0,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 54.0,
+        "k_core_size": 55.0,
+        "maximum_degree": 533.0,
+        "degree_variance": 1848.2191186578577,
+        "global_clustering": 0.3213045302714614,
+        "degree_assortativity": -0.0021167647125431097,
+        "degree_entropy": 4.714588369202875,
+        "joint_degree_entropy": 8.91968176538676,
+        "degree_skewness": 2.7669500062062657,
+        "degree_kurtosis": 18.066523076729634,
+        "normalized_laplacian_second_moment": 1.0228616127401164,
+        "normalized_laplacian_third_moment": 1.0631326355803286,
+        "random_walk_triangle_weight": 0.005452202640020975,
+        "random_walk_fourth_moment": 0.004402877954404027,
+        "adjacency_fourth_moment_per_node": 99612.03932584269
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.9,
+      "invariants": {
+        "n_nodes": 1068.0,
+        "n_edges": 27079.0,
+        "n_articulation_points": 2.0,
+        "n_bridges": 2.0,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 54.0,
+        "k_core_size": 55.0,
+        "maximum_degree": 533.0,
+        "degree_variance": 1848.2191186578577,
+        "global_clustering": 0.3213045302714614,
+        "degree_assortativity": -0.0021167647125431097,
+        "degree_entropy": 4.714588369202875,
+        "joint_degree_entropy": 8.91968176538676,
+        "degree_skewness": 2.7669500062062657,
+        "degree_kurtosis": 18.066523076729634,
+        "normalized_laplacian_second_moment": 1.0228616127401164,
+        "normalized_laplacian_third_moment": 1.0631326355803286,
+        "random_walk_triangle_weight": 0.005452202640020975,
+        "random_walk_fourth_moment": 0.004402877954404027,
+        "adjacency_fourth_moment_per_node": 99612.03932584269
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.8,
+      "invariants": {
+        "n_nodes": 1068.0,
+        "n_edges": 27079.0,
+        "n_articulation_points": 2.0,
+        "n_bridges": 2.0,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 54.0,
+        "k_core_size": 55.0,
+        "maximum_degree": 533.0,
+        "degree_variance": 1848.2191186578577,
+        "global_clustering": 0.3213045302714614,
+        "degree_assortativity": -0.0021167647125431097,
+        "degree_entropy": 4.714588369202875,
+        "joint_degree_entropy": 8.91968176538676,
+        "degree_skewness": 2.7669500062062657,
+        "degree_kurtosis": 18.066523076729634,
+        "normalized_laplacian_second_moment": 1.0228616127401164,
+        "normalized_laplacian_third_moment": 1.0631326355803286,
+        "random_walk_triangle_weight": 0.005452202640020975,
+        "random_walk_fourth_moment": 0.004402877954404027,
+        "adjacency_fourth_moment_per_node": 99612.03932584269
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.7,
+      "invariants": {
+        "n_nodes": 1068.0,
+        "n_edges": 27079.0,
+        "n_articulation_points": 2.0,
+        "n_bridges": 2.0,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 54.0,
+        "k_core_size": 55.0,
+        "maximum_degree": 533.0,
+        "degree_variance": 1848.2191186578577,
+        "global_clustering": 0.3213045302714614,
+        "degree_assortativity": -0.0021167647125431097,
+        "degree_entropy": 4.714588369202875,
+        "joint_degree_entropy": 8.91968176538676,
+        "degree_skewness": 2.7669500062062657,
+        "degree_kurtosis": 18.066523076729634,
+        "normalized_laplacian_second_moment": 1.0228616127401164,
+        "normalized_laplacian_third_moment": 1.0631326355803286,
+        "random_walk_triangle_weight": 0.005452202640020975,
+        "random_walk_fourth_moment": 0.004402877954404027,
+        "adjacency_fourth_moment_per_node": 99612.03932584269
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.6,
+      "invariants": {
+        "n_nodes": 1068.0,
+        "n_edges": 27079.0,
+        "n_articulation_points": 2.0,
+        "n_bridges": 2.0,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 54.0,
+        "k_core_size": 55.0,
+        "maximum_degree": 533.0,
+        "degree_variance": 1848.2191186578577,
+        "global_clustering": 0.3213045302714614,
+        "degree_assortativity": -0.0021167647125431097,
+        "degree_entropy": 4.714588369202875,
+        "joint_degree_entropy": 8.91968176538676,
+        "degree_skewness": 2.7669500062062657,
+        "degree_kurtosis": 18.066523076729634,
+        "normalized_laplacian_second_moment": 1.0228616127401164,
+        "normalized_laplacian_third_moment": 1.0631326355803286,
+        "random_walk_triangle_weight": 0.005452202640020975,
+        "random_walk_fourth_moment": 0.004402877954404027,
+        "adjacency_fourth_moment_per_node": 99612.03932584269
+      }
+    }
+  ],
+  "process_perturbed": [
+    {
+      "method": "scaling",
+      "intensity": 0.5,
+      "signatures": {
+        "lag1_autocorr": 0.6994853281874901,
+        "coef_variation": 0.21568240077596718,
+        "fano_factor": 0.04651889800453144,
+        "norm_succ_diff": 0.1169155258569009,
+        "hurst_exponent": 0.7168368590126997,
+        "trend_coeff": 0.09548583220207006,
+        "count_skewness": 0.2859559841175399
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 0.75,
+      "signatures": {
+        "lag1_autocorr": 0.6994853281874901,
+        "coef_variation": 0.21568240077596718,
+        "fano_factor": 0.04651889800453144,
+        "norm_succ_diff": 0.1169155258569009,
+        "hurst_exponent": 0.7168368590126997,
+        "trend_coeff": 0.09548583220207006,
+        "count_skewness": 0.2859559841175399
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 1.0,
+      "signatures": {
+        "lag1_autocorr": 0.6994853281874901,
+        "coef_variation": 0.21568240077596718,
+        "fano_factor": 0.04651889800453144,
+        "norm_succ_diff": 0.1169155258569009,
+        "hurst_exponent": 0.7168368590126997,
+        "trend_coeff": 0.09548583220207006,
+        "count_skewness": 0.2859559841175399
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 1.5,
+      "signatures": {
+        "lag1_autocorr": 0.6994853281874901,
+        "coef_variation": 0.21568240077596718,
+        "fano_factor": 0.04651889800453144,
+        "norm_succ_diff": 0.1169155258569009,
+        "hurst_exponent": 0.7168368590126997,
+        "trend_coeff": 0.09548583220207006,
+        "count_skewness": 0.2859559841175399
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 2.0,
+      "signatures": {
+        "lag1_autocorr": 0.6994853281874901,
+        "coef_variation": 0.21568240077596718,
+        "fano_factor": 0.04651889800453144,
+        "norm_succ_diff": 0.1169155258569009,
+        "hurst_exponent": 0.7168368590126997,
+        "trend_coeff": 0.09548583220207006,
+        "count_skewness": 0.2859559841175399
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 1.0,
+      "signatures": {
+        "lag1_autocorr": 0.6994853281874901,
+        "coef_variation": 0.21568240077618284,
+        "fano_factor": 30220.392124737857,
+        "norm_succ_diff": 0.11691552585701784,
+        "hurst_exponent": 0.7168368590127002,
+        "trend_coeff": 0.09548583220207008,
+        "count_skewness": 0.28595598411754014
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 2.0,
+      "signatures": {
+        "lag1_autocorr": 0.7964219859423781,
+        "coef_variation": 0.19889893676803563,
+        "fano_factor": 25692.00382012089,
+        "norm_succ_diff": 0.1004433906385926,
+        "hurst_exponent": 0.7279896313636619,
+        "trend_coeff": 0.10297599745426966,
+        "count_skewness": 0.1306979980261007
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 4.0,
+      "signatures": {
+        "lag1_autocorr": 0.9056154766071833,
+        "coef_variation": 0.167826905119008,
+        "fano_factor": 18286.940340871413,
+        "norm_succ_diff": 0.059516764046623136,
+        "hurst_exponent": 0.7520873492617732,
+        "trend_coeff": 0.122586726697874,
+        "count_skewness": -0.08294393049185748
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 8.0,
+      "signatures": {
+        "lag1_autocorr": 0.9832002440366516,
+        "coef_variation": 0.1458232476689023,
+        "fano_factor": 13801.415826606906,
+        "norm_succ_diff": 0.018163607175989343,
+        "hurst_exponent": 0.770823237497127,
+        "trend_coeff": 0.13557808683456588,
+        "count_skewness": -0.5006384047053173
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 16.0,
+      "signatures": {
+        "lag1_autocorr": 0.9885790870727547,
+        "coef_variation": 0.13841660397341807,
+        "fano_factor": 12428.982889123417,
+        "norm_succ_diff": 0.014827673585953216,
+        "hurst_exponent": 0.7761031020680829,
+        "trend_coeff": 0.12550127982506326,
+        "count_skewness": -0.4690297265342708
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.0,
+      "signatures": {
+        "lag1_autocorr": 0.0,
+        "coef_variation": 0.0,
+        "fano_factor": 0.0,
+        "norm_succ_diff": 0.0,
+        "hurst_exponent": 0.5,
+        "trend_coeff": 0.0,
+        "count_skewness": 0.0
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": 0.04844074722026087,
+        "coef_variation": 0.25565121505374777,
+        "fano_factor": 42051.66432733632,
+        "norm_succ_diff": 0.2616484666670428,
+        "hurst_exponent": 0.5214694524862129,
+        "trend_coeff": -0.03558346422049272,
+        "count_skewness": 1.5135779160623941
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.2,
+      "signatures": {
+        "lag1_autocorr": 0.038638875166005185,
+        "coef_variation": 0.24134180367308927,
+        "fano_factor": 37173.07084178285,
+        "norm_succ_diff": 0.2659368767022082,
+        "hurst_exponent": 0.5209728402865775,
+        "trend_coeff": -0.04121952002659567,
+        "count_skewness": 0.5143500420558983
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.35,
+      "signatures": {
+        "lag1_autocorr": 0.044420690779529856,
+        "coef_variation": 0.23936916279759837,
+        "fano_factor": 36659.80336629167,
+        "norm_succ_diff": 0.25720118224533095,
+        "hurst_exponent": 0.5545295564114323,
+        "trend_coeff": 0.020563267117032533,
+        "count_skewness": 0.6531023829564075
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.5,
+      "signatures": {
+        "lag1_autocorr": 0.00647748090084786,
+        "coef_variation": 0.22018126660122195,
+        "fano_factor": 32134.06238445306,
+        "norm_succ_diff": 0.24846322348065467,
+        "hurst_exponent": 0.5492237985642773,
+        "trend_coeff": 0.018404083553237218,
+        "count_skewness": 0.302602382298462
+      }
+    }
+  ],
+  "signatures_perturbed": [
+    {
+      "method": "noise",
+      "intensity": 0.01,
+      "signatures": {
+        "lag1_autocorr": 0.6979885267701549,
+        "coef_variation": 0.21868061909643904,
+        "fano_factor": 30222.605642314877,
+        "norm_succ_diff": 0.11460662382381032,
+        "hurst_exponent": 0.7109887157686567,
+        "trend_coeff": 0.09644435458495085,
+        "count_skewness": 0.28174180876252974
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.02,
+      "signatures": {
+        "lag1_autocorr": 0.7031748370187705,
+        "coef_variation": 0.21877807887102946,
+        "fano_factor": 29340.006743174075,
+        "norm_succ_diff": 0.1182972504496098,
+        "hurst_exponent": 0.7348604280055158,
+        "trend_coeff": 0.09546255557857392,
+        "count_skewness": 0.2835972110413433
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.05,
+      "signatures": {
+        "lag1_autocorr": 0.6581189304903343,
+        "coef_variation": 0.20669927512923084,
+        "fano_factor": 29792.867262309377,
+        "norm_succ_diff": 0.1196373401956525,
+        "hurst_exponent": 0.7556101963550298,
+        "trend_coeff": 0.0959100787362803,
+        "count_skewness": 0.29227580199908904
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": 0.7387913336512811,
+        "coef_variation": 0.2079187759299234,
+        "fano_factor": 31042.165822844792,
+        "norm_succ_diff": 0.13451283357775887,
+        "hurst_exponent": 0.7164176266262337,
+        "trend_coeff": 0.09507554185566892,
+        "count_skewness": 0.22537944637200683
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.2,
+      "signatures": {
+        "lag1_autocorr": 0.8092717930738599,
+        "coef_variation": 0.197795700942227,
+        "fano_factor": 26238.29449518729,
+        "norm_succ_diff": 0.1341357712691784,
+        "hurst_exponent": 0.7204477492479701,
+        "trend_coeff": 0.07062265308202194,
+        "count_skewness": 0.22395181706522752
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.01,
+      "signatures": {
+        "lag1_autocorr": 0.7079064295037765,
+        "coef_variation": 0.21448273381325658,
+        "fano_factor": 29761.259660335796,
+        "norm_succ_diff": 0.11798045947238045,
+        "hurst_exponent": 0.7160196116650382,
+        "trend_coeff": 0.09534668662228271,
+        "count_skewness": 0.2871156877107906
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.02,
+      "signatures": {
+        "lag1_autocorr": 0.6744905719985037,
+        "coef_variation": 0.2061155320034069,
+        "fano_factor": 30161.77683042562,
+        "norm_succ_diff": 0.11719387793433624,
+        "hurst_exponent": 0.7155329635368309,
+        "trend_coeff": 0.09659532891864843,
+        "count_skewness": 0.28568506249759873
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.05,
+      "signatures": {
+        "lag1_autocorr": 0.7243116285899788,
+        "coef_variation": 0.20502681870693495,
+        "fano_factor": 31350.512254766767,
+        "norm_succ_diff": 0.11719296330704972,
+        "hurst_exponent": 0.7192726209363683,
+        "trend_coeff": 0.09622374124770366,
+        "count_skewness": 0.2988086820683163
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": 0.6703170923718687,
+        "coef_variation": 0.24700469567035213,
+        "fano_factor": 31772.808668663707,
+        "norm_succ_diff": 0.11926735911080008,
+        "hurst_exponent": 0.6295623657682146,
+        "trend_coeff": 0.08998579148236617,
+        "count_skewness": 0.28836009501171134
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.2,
+      "signatures": {
+        "lag1_autocorr": 0.5936894277919906,
+        "coef_variation": 0.1864849155767351,
+        "fano_factor": 16629.19978736188,
+        "norm_succ_diff": 0.11525966026916082,
+        "hurst_exponent": 0.7748337717579056,
+        "trend_coeff": 0.1135453424590577,
+        "count_skewness": 0.2828486339641045
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.95,
+      "signatures": {
+        "lag1_autocorr": 0.6994853281874901,
+        "coef_variation": 0.21568240077618284,
+        "fano_factor": 30220.392124737857,
+        "norm_succ_diff": 0.11691552585701784,
+        "hurst_exponent": 0.7168368590127002,
+        "trend_coeff": 0.09548583220207008,
+        "count_skewness": 0.28595598411754014
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.9,
+      "signatures": {
+        "lag1_autocorr": 0.6994853281874901,
+        "coef_variation": 0.21568240077618284,
+        "fano_factor": 30220.392124737857,
+        "norm_succ_diff": 0.11691552585701784,
+        "hurst_exponent": 0.7168368590127002,
+        "trend_coeff": 0.09548583220207008,
+        "count_skewness": 0.28595598411754014
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.8,
+      "signatures": {
+        "lag1_autocorr": 0.6994853281874901,
+        "coef_variation": 0.21568240077618284,
+        "fano_factor": 30220.392124737857,
+        "norm_succ_diff": 0.11691552585701784,
+        "hurst_exponent": 0.7168368590127002,
+        "trend_coeff": 0.09548583220207008,
+        "count_skewness": 0.28595598411754014
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.7,
+      "signatures": {
+        "lag1_autocorr": 0.6994853281874901,
+        "coef_variation": 0.21568240077618284,
+        "fano_factor": 30220.392124737857,
+        "norm_succ_diff": 0.11691552585701784,
+        "hurst_exponent": 0.7168368590127002,
+        "trend_coeff": 0.09548583220207008,
+        "count_skewness": 0.28595598411754014
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.6,
+      "signatures": {
+        "lag1_autocorr": 0.6994853281874901,
+        "coef_variation": 0.21568240077618284,
+        "fano_factor": 30220.392124737857,
+        "norm_succ_diff": 0.11691552585701784,
+        "hurst_exponent": 0.7168368590127002,
+        "trend_coeff": 0.09548583220207008,
+        "count_skewness": 0.28595598411754014
+      }
+    }
+  ],
+  "temporal_aggregated": [
+    {
+      "scale": "2D",
+      "events": [
+        {
+          "date": "2019-03-16",
+          "target": 1124676
+        },
+        {
+          "date": "2019-03-18",
+          "target": 1625075
+        },
+        {
+          "date": "2019-03-20",
+          "target": 1588973
+        },
+        {
+          "date": "2019-03-22",
+          "target": 1196068
+        },
+        {
+          "date": "2019-03-24",
+          "target": 1378082
+        },
+        {
+          "date": "2019-03-26",
+          "target": 2340611
+        },
+        {
+          "date": "2019-03-28",
+          "target": 1488383
+        },
+        {
+          "date": "2019-03-30",
+          "target": 1061652
+        },
+        {
+          "date": "2019-04-01",
+          "target": 1619670
+        },
+        {
+          "date": "2019-04-03",
+          "target": 1648957
+        },
+        {
+          "date": "2019-04-05",
+          "target": 1205529
+        },
+        {
+          "date": "2019-04-07",
+          "target": 1447439
+        },
+        {
+          "date": "2019-04-09",
+          "target": 1693880
+        },
+        {
+          "date": "2019-04-11",
+          "target": 1515086
+        },
+        {
+          "date": "2019-04-13",
+          "target": 1067514
+        },
+        {
+          "date": "2019-04-15",
+          "target": 1547134
+        },
+        {
+          "date": "2019-04-17",
+          "target": 1458855
+        },
+        {
+          "date": "2019-04-19",
+          "target": 1041882
+        },
+        {
+          "date": "2019-04-21",
+          "target": 1224864
+        },
+        {
+          "date": "2019-04-23",
+          "target": 2027976
+        },
+        {
+          "date": "2019-04-25",
+          "target": 1465816
+        },
+        {
+          "date": "2019-04-27",
+          "target": 1063880
+        },
+        {
+          "date": "2019-04-29",
+          "target": 1522108
+        },
+        {
+          "date": "2019-05-01",
+          "target": 1515584
+        },
+        {
+          "date": "2019-05-03",
+          "target": 1202389
+        },
+        {
+          "date": "2019-05-05",
+          "target": 1332008
+        },
+        {
+          "date": "2019-05-07",
+          "target": 1597398
+        },
+        {
+          "date": "2019-05-09",
+          "target": 1434156
+        },
+        {
+          "date": "2019-05-11",
+          "target": 1083586
+        },
+        {
+          "date": "2019-05-13",
+          "target": 1595661
+        },
+        {
+          "date": "2019-05-15",
+          "target": 1541906
+        },
+        {
+          "date": "2019-05-17",
+          "target": 1125077
+        },
+        {
+          "date": "2019-05-19",
+          "target": 1264399
+        },
+        {
+          "date": "2019-05-21",
+          "target": 1483033
+        },
+        {
+          "date": "2019-05-23",
+          "target": 1282165
+        },
+        {
+          "date": "2019-05-25",
+          "target": 989377
+        },
+        {
+          "date": "2019-05-27",
+          "target": 1315522
+        },
+        {
+          "date": "2019-05-29",
+          "target": 1322646
+        },
+        {
+          "date": "2019-05-31",
+          "target": 990004
+        },
+        {
+          "date": "2019-06-02",
+          "target": 1181602
+        },
+        {
+          "date": "2019-06-04",
+          "target": 1359548
+        },
+        {
+          "date": "2019-06-06",
+          "target": 1218285
+        },
+        {
+          "date": "2019-06-08",
+          "target": 927060
+        },
+        {
+          "date": "2019-06-10",
+          "target": 1341246
+        },
+        {
+          "date": "2019-06-12",
+          "target": 1948270
+        },
+        {
+          "date": "2019-06-14",
+          "target": 976668
+        },
+        {
+          "date": "2019-06-16",
+          "target": 1116675
+        },
+        {
+          "date": "2019-06-18",
+          "target": 1297719
+        },
+        {
+          "date": "2019-06-20",
+          "target": 1139570
+        },
+        {
+          "date": "2019-06-22",
+          "target": 855038
+        },
+        {
+          "date": "2019-06-24",
+          "target": 1210789
+        },
+        {
+          "date": "2019-06-26",
+          "target": 1147483
+        },
+        {
+          "date": "2019-06-28",
+          "target": 872182
+        },
+        {
+          "date": "2019-06-30",
+          "target": 951889
+        },
+        {
+          "date": "2019-07-02",
+          "target": 1126652
+        },
+        {
+          "date": "2019-07-04",
+          "target": 956278
+        },
+        {
+          "date": "2019-07-06",
+          "target": 789966
+        },
+        {
+          "date": "2019-07-08",
+          "target": 1129490
+        },
+        {
+          "date": "2019-07-10",
+          "target": 1107342
+        },
+        {
+          "date": "2019-07-12",
+          "target": 871225
+        },
+        {
+          "date": "2019-07-14",
+          "target": 1002009
+        },
+        {
+          "date": "2019-07-16",
+          "target": 1169557
+        },
+        {
+          "date": "2019-07-18",
+          "target": 1047450
+        },
+        {
+          "date": "2019-07-20",
+          "target": 809100
+        },
+        {
+          "date": "2019-07-22",
+          "target": 1118829
+        },
+        {
+          "date": "2019-07-24",
+          "target": 1111378
+        },
+        {
+          "date": "2019-07-26",
+          "target": 885459
+        },
+        {
+          "date": "2019-07-28",
+          "target": 975096
+        },
+        {
+          "date": "2019-07-30",
+          "target": 1130870
+        },
+        {
+          "date": "2019-08-01",
+          "target": 1087113
+        },
+        {
+          "date": "2019-08-03",
+          "target": 848797
+        },
+        {
+          "date": "2019-08-05",
+          "target": 1112216
+        },
+        {
+          "date": "2019-08-07",
+          "target": 1143581
+        },
+        {
+          "date": "2019-08-09",
+          "target": 854679
+        },
+        {
+          "date": "2019-08-11",
+          "target": 932141
+        },
+        {
+          "date": "2019-08-13",
+          "target": 1121191
+        },
+        {
+          "date": "2019-08-15",
+          "target": 1023762
+        },
+        {
+          "date": "2019-08-17",
+          "target": 835655
+        },
+        {
+          "date": "2019-08-19",
+          "target": 1205788
+        },
+        {
+          "date": "2019-08-21",
+          "target": 1217891
+        },
+        {
+          "date": "2019-08-23",
+          "target": 933579
+        },
+        {
+          "date": "2019-08-25",
+          "target": 1075799
+        },
+        {
+          "date": "2019-08-27",
+          "target": 1306344
+        },
+        {
+          "date": "2019-08-29",
+          "target": 1407317
+        },
+        {
+          "date": "2019-08-31",
+          "target": 876124
+        },
+        {
+          "date": "2019-09-02",
+          "target": 1310992
+        },
+        {
+          "date": "2019-09-04",
+          "target": 1416462
+        },
+        {
+          "date": "2019-09-06",
+          "target": 1039150
+        },
+        {
+          "date": "2019-09-08",
+          "target": 1268190
+        },
+        {
+          "date": "2019-09-10",
+          "target": 1582245
+        },
+        {
+          "date": "2019-09-12",
+          "target": 1439984
+        },
+        {
+          "date": "2019-09-14",
+          "target": 1050750
+        },
+        {
+          "date": "2019-09-16",
+          "target": 1560099
+        },
+        {
+          "date": "2019-09-18",
+          "target": 1559928
+        },
+        {
+          "date": "2019-09-20",
+          "target": 1147624
+        },
+        {
+          "date": "2019-09-22",
+          "target": 1388377
+        },
+        {
+          "date": "2019-09-24",
+          "target": 1627982
+        },
+        {
+          "date": "2019-09-26",
+          "target": 1481969
+        },
+        {
+          "date": "2019-09-28",
+          "target": 1108604
+        },
+        {
+          "date": "2019-09-30",
+          "target": 1578530
+        },
+        {
+          "date": "2019-10-02",
+          "target": 1588041
+        },
+        {
+          "date": "2019-10-04",
+          "target": 1195938
+        },
+        {
+          "date": "2019-10-06",
+          "target": 1378989
+        },
+        {
+          "date": "2019-10-08",
+          "target": 1665542
+        },
+        {
+          "date": "2019-10-10",
+          "target": 1526238
+        },
+        {
+          "date": "2019-10-12",
+          "target": 1130732
+        },
+        {
+          "date": "2019-10-14",
+          "target": 1642978
+        },
+        {
+          "date": "2019-10-16",
+          "target": 1678005
+        },
+        {
+          "date": "2019-10-18",
+          "target": 1266828
+        },
+        {
+          "date": "2019-10-20",
+          "target": 1481107
+        },
+        {
+          "date": "2019-10-22",
+          "target": 1712748
+        },
+        {
+          "date": "2019-10-24",
+          "target": 1497420
+        },
+        {
+          "date": "2019-10-26",
+          "target": 1073800
+        },
+        {
+          "date": "2019-10-28",
+          "target": 1595978
+        },
+        {
+          "date": "2019-10-30",
+          "target": 1553381
+        },
+        {
+          "date": "2019-11-01",
+          "target": 1158704
+        },
+        {
+          "date": "2019-11-03",
+          "target": 1433481
+        },
+        {
+          "date": "2019-11-05",
+          "target": 1710543
+        },
+        {
+          "date": "2019-11-07",
+          "target": 1524930
+        },
+        {
+          "date": "2019-11-09",
+          "target": 1118052
+        },
+        {
+          "date": "2019-11-11",
+          "target": 1818916
+        },
+        {
+          "date": "2019-11-13",
+          "target": 1887555
+        },
+        {
+          "date": "2019-11-15",
+          "target": 1234987
+        },
+        {
+          "date": "2019-11-17",
+          "target": 1426492
+        },
+        {
+          "date": "2019-11-19",
+          "target": 1682576
+        },
+        {
+          "date": "2019-11-21",
+          "target": 1501816
+        },
+        {
+          "date": "2019-11-23",
+          "target": 1126296
+        },
+        {
+          "date": "2019-11-25",
+          "target": 1571604
+        },
+        {
+          "date": "2019-11-27",
+          "target": 1366516
+        },
+        {
+          "date": "2019-11-29",
+          "target": 1083139
+        },
+        {
+          "date": "2019-12-01",
+          "target": 1332163
+        },
+        {
+          "date": "2019-12-03",
+          "target": 1589830
+        },
+        {
+          "date": "2019-12-05",
+          "target": 1461447
+        },
+        {
+          "date": "2019-12-07",
+          "target": 1164513
+        },
+        {
+          "date": "2019-12-09",
+          "target": 1625731
+        },
+        {
+          "date": "2019-12-11",
+          "target": 1555519
+        },
+        {
+          "date": "2019-12-13",
+          "target": 1118837
+        },
+        {
+          "date": "2019-12-15",
+          "target": 1245058
+        },
+        {
+          "date": "2019-12-17",
+          "target": 1590967
+        },
+        {
+          "date": "2019-12-19",
+          "target": 1063194
+        },
+        {
+          "date": "2019-12-21",
+          "target": 726950
+        },
+        {
+          "date": "2019-12-23",
+          "target": 789608
+        },
+        {
+          "date": "2019-12-25",
+          "target": 733840
+        },
+        {
+          "date": "2019-12-27",
+          "target": 777058
+        },
+        {
+          "date": "2019-12-29",
+          "target": 829875
+        },
+        {
+          "date": "2019-12-31",
+          "target": 833802
+        },
+        {
+          "date": "2020-01-02",
+          "target": 992676
+        },
+        {
+          "date": "2020-01-04",
+          "target": 899744
+        },
+        {
+          "date": "2020-01-06",
+          "target": 1258245
+        },
+        {
+          "date": "2020-01-08",
+          "target": 1331593
+        },
+        {
+          "date": "2020-01-10",
+          "target": 1165221
+        },
+        {
+          "date": "2020-01-12",
+          "target": 1225741
+        },
+        {
+          "date": "2020-01-14",
+          "target": 1396161
+        },
+        {
+          "date": "2020-01-16",
+          "target": 1366860
+        },
+        {
+          "date": "2020-01-18",
+          "target": 1023635
+        },
+        {
+          "date": "2020-01-20",
+          "target": 1444911
+        },
+        {
+          "date": "2020-01-22",
+          "target": 1491805
+        },
+        {
+          "date": "2020-01-24",
+          "target": 1113437
+        },
+        {
+          "date": "2020-01-26",
+          "target": 1240979
+        },
+        {
+          "date": "2020-01-28",
+          "target": 1545433
+        },
+        {
+          "date": "2020-01-30",
+          "target": 1403785
+        },
+        {
+          "date": "2020-02-01",
+          "target": 1054901
+        },
+        {
+          "date": "2020-02-03",
+          "target": 1521521
+        },
+        {
+          "date": "2020-02-05",
+          "target": 1555347
+        },
+        {
+          "date": "2020-02-07",
+          "target": 1154739
+        },
+        {
+          "date": "2020-02-09",
+          "target": 1311637
+        },
+        {
+          "date": "2020-02-11",
+          "target": 1539859
+        },
+        {
+          "date": "2020-02-13",
+          "target": 1361893
+        },
+        {
+          "date": "2020-02-15",
+          "target": 1016459
+        },
+        {
+          "date": "2020-02-17",
+          "target": 1480698
+        },
+        {
+          "date": "2020-02-19",
+          "target": 1484684
+        },
+        {
+          "date": "2020-02-21",
+          "target": 1119096
+        },
+        {
+          "date": "2020-02-23",
+          "target": 1276627
+        },
+        {
+          "date": "2020-02-25",
+          "target": 1556685
+        },
+        {
+          "date": "2020-02-27",
+          "target": 1389288
+        },
+        {
+          "date": "2020-02-29",
+          "target": 1090996
+        },
+        {
+          "date": "2020-03-02",
+          "target": 1486919
+        },
+        {
+          "date": "2020-03-04",
+          "target": 1479060
+        },
+        {
+          "date": "2020-03-06",
+          "target": 1111273
+        },
+        {
+          "date": "2020-03-08",
+          "target": 1224203
+        },
+        {
+          "date": "2020-03-10",
+          "target": 1411564
+        },
+        {
+          "date": "2020-03-12",
+          "target": 1214059
+        },
+        {
+          "date": "2020-03-14",
+          "target": 1002656
+        },
+        {
+          "date": "2020-03-16",
+          "target": 1224405
+        },
+        {
+          "date": "2020-03-18",
+          "target": 1226762
+        },
+        {
+          "date": "2020-03-20",
+          "target": 1025335
+        },
+        {
+          "date": "2020-03-22",
+          "target": 1161618
+        },
+        {
+          "date": "2020-03-24",
+          "target": 1318890
+        },
+        {
+          "date": "2020-03-26",
+          "target": 1305090
+        },
+        {
+          "date": "2020-03-28",
+          "target": 1142673
+        },
+        {
+          "date": "2020-03-30",
+          "target": 1704620
+        },
+        {
+          "date": "2020-04-01",
+          "target": 1485416
+        },
+        {
+          "date": "2020-04-03",
+          "target": 1352461
+        },
+        {
+          "date": "2020-04-05",
+          "target": 1360831
+        },
+        {
+          "date": "2020-04-07",
+          "target": 1522172
+        },
+        {
+          "date": "2020-04-09",
+          "target": 1431621
+        },
+        {
+          "date": "2020-04-11",
+          "target": 1193444
+        },
+        {
+          "date": "2020-04-13",
+          "target": 1546643
+        },
+        {
+          "date": "2020-04-15",
+          "target": 1567937
+        },
+        {
+          "date": "2020-04-17",
+          "target": 1373137
+        },
+        {
+          "date": "2020-04-19",
+          "target": 1459151
+        },
+        {
+          "date": "2020-04-21",
+          "target": 1634983
+        },
+        {
+          "date": "2020-04-23",
+          "target": 1647045
+        },
+        {
+          "date": "2020-04-25",
+          "target": 1247680
+        },
+        {
+          "date": "2020-04-27",
+          "target": 1641400
+        },
+        {
+          "date": "2020-04-29",
+          "target": 1592059
+        },
+        {
+          "date": "2020-05-01",
+          "target": 1274743
+        },
+        {
+          "date": "2020-05-03",
+          "target": 1385952
+        },
+        {
+          "date": "2020-05-05",
+          "target": 1571618
+        },
+        {
+          "date": "2020-05-07",
+          "target": 1449939
+        },
+        {
+          "date": "2020-05-09",
+          "target": 1187120
+        },
+        {
+          "date": "2020-05-11",
+          "target": 1550602
+        },
+        {
+          "date": "2020-05-13",
+          "target": 1535672
+        },
+        {
+          "date": "2020-05-15",
+          "target": 1249148
+        },
+        {
+          "date": "2020-05-17",
+          "target": 1298782
+        },
+        {
+          "date": "2020-05-19",
+          "target": 1426598
+        },
+        {
+          "date": "2020-05-21",
+          "target": 1296162
+        },
+        {
+          "date": "2020-05-23",
+          "target": 1024048
+        },
+        {
+          "date": "2020-05-25",
+          "target": 1298415
+        },
+        {
+          "date": "2020-05-27",
+          "target": 1332099
+        },
+        {
+          "date": "2020-05-29",
+          "target": 1100137
+        },
+        {
+          "date": "2020-05-31",
+          "target": 1127846
+        },
+        {
+          "date": "2020-06-02",
+          "target": 1291058
+        },
+        {
+          "date": "2020-06-04",
+          "target": 1249112
+        },
+        {
+          "date": "2020-06-06",
+          "target": 1012567
+        },
+        {
+          "date": "2020-06-08",
+          "target": 1307250
+        },
+        {
+          "date": "2020-06-10",
+          "target": 1276783
+        },
+        {
+          "date": "2020-06-12",
+          "target": 1038783
+        },
+        {
+          "date": "2020-06-14",
+          "target": 1105604
+        },
+        {
+          "date": "2020-06-16",
+          "target": 1237566
+        },
+        {
+          "date": "2020-06-18",
+          "target": 1132458
+        },
+        {
+          "date": "2020-06-20",
+          "target": 903674
+        },
+        {
+          "date": "2020-06-22",
+          "target": 1181577
+        },
+        {
+          "date": "2020-06-24",
+          "target": 1151324
+        },
+        {
+          "date": "2020-06-26",
+          "target": 957777
+        },
+        {
+          "date": "2020-06-28",
+          "target": 1021754
+        },
+        {
+          "date": "2020-06-30",
+          "target": 1091726
+        },
+        {
+          "date": "2020-07-02",
+          "target": 1014182
+        },
+        {
+          "date": "2020-07-04",
+          "target": 858966
+        },
+        {
+          "date": "2020-07-06",
+          "target": 1133638
+        },
+        {
+          "date": "2020-07-08",
+          "target": 1115188
+        },
+        {
+          "date": "2020-07-10",
+          "target": 930084
+        },
+        {
+          "date": "2020-07-12",
+          "target": 984958
+        },
+        {
+          "date": "2020-07-14",
+          "target": 1113834
+        },
+        {
+          "date": "2020-07-16",
+          "target": 1065630
+        },
+        {
+          "date": "2020-07-18",
+          "target": 871281
+        },
+        {
+          "date": "2020-07-20",
+          "target": 1108839
+        },
+        {
+          "date": "2020-07-22",
+          "target": 1100587
+        },
+        {
+          "date": "2020-07-24",
+          "target": 916040
+        },
+        {
+          "date": "2020-07-26",
+          "target": 963886
+        },
+        {
+          "date": "2020-07-28",
+          "target": 1074382
+        },
+        {
+          "date": "2020-07-30",
+          "target": 986896
+        },
+        {
+          "date": "2020-08-01",
+          "target": 794607
+        },
+        {
+          "date": "2020-08-03",
+          "target": 1124816
+        },
+        {
+          "date": "2020-08-05",
+          "target": 1055919
+        },
+        {
+          "date": "2020-08-07",
+          "target": 897669
+        },
+        {
+          "date": "2020-08-09",
+          "target": 980133
+        },
+        {
+          "date": "2020-08-11",
+          "target": 1090236
+        },
+        {
+          "date": "2020-08-13",
+          "target": 1053872
+        },
+        {
+          "date": "2020-08-15",
+          "target": 850486
+        },
+        {
+          "date": "2020-08-17",
+          "target": 1138696
+        },
+        {
+          "date": "2020-08-19",
+          "target": 1167419
+        },
+        {
+          "date": "2020-08-21",
+          "target": 970544
+        },
+        {
+          "date": "2020-08-23",
+          "target": 1068756
+        },
+        {
+          "date": "2020-08-25",
+          "target": 1259303
+        },
+        {
+          "date": "2020-08-27",
+          "target": 1223379
+        },
+        {
+          "date": "2020-08-29",
+          "target": 949587
+        },
+        {
+          "date": "2020-08-31",
+          "target": 1322356
+        },
+        {
+          "date": "2020-09-02",
+          "target": 1400989
+        },
+        {
+          "date": "2020-09-04",
+          "target": 1113009
+        },
+        {
+          "date": "2020-09-06",
+          "target": 1191789
+        },
+        {
+          "date": "2020-09-08",
+          "target": 1492778
+        },
+        {
+          "date": "2020-09-10",
+          "target": 1465620
+        },
+        {
+          "date": "2020-09-12",
+          "target": 1085321
+        },
+        {
+          "date": "2020-09-14",
+          "target": 1586212
+        },
+        {
+          "date": "2020-09-16",
+          "target": 1567882
+        },
+        {
+          "date": "2020-09-18",
+          "target": 1242756
+        },
+        {
+          "date": "2020-09-20",
+          "target": 1360620
+        },
+        {
+          "date": "2020-09-22",
+          "target": 1615542
+        },
+        {
+          "date": "2020-09-24",
+          "target": 1524361
+        },
+        {
+          "date": "2020-09-26",
+          "target": 1118554
+        },
+        {
+          "date": "2020-09-28",
+          "target": 1581343
+        },
+        {
+          "date": "2020-09-30",
+          "target": 1527154
+        },
+        {
+          "date": "2020-10-02",
+          "target": 1232592
+        },
+        {
+          "date": "2020-10-04",
+          "target": 1402270
+        },
+        {
+          "date": "2020-10-06",
+          "target": 1743567
+        },
+        {
+          "date": "2020-10-08",
+          "target": 1704522
+        },
+        {
+          "date": "2020-10-10",
+          "target": 1242516
+        },
+        {
+          "date": "2020-10-12",
+          "target": 1777288
+        },
+        {
+          "date": "2020-10-14",
+          "target": 1770919
+        },
+        {
+          "date": "2020-10-16",
+          "target": 1417571
+        },
+        {
+          "date": "2020-10-18",
+          "target": 1552417
+        },
+        {
+          "date": "2020-10-20",
+          "target": 1786781
+        },
+        {
+          "date": "2020-10-22",
+          "target": 1635527
+        },
+        {
+          "date": "2020-10-24",
+          "target": 1187383
+        },
+        {
+          "date": "2020-10-26",
+          "target": 1694158
+        },
+        {
+          "date": "2020-10-28",
+          "target": 1669523
+        },
+        {
+          "date": "2020-10-30",
+          "target": 1287259
+        },
+        {
+          "date": "2020-11-01",
+          "target": 1425357
+        },
+        {
+          "date": "2020-11-03",
+          "target": 1616564
+        },
+        {
+          "date": "2020-11-05",
+          "target": 1581987
+        },
+        {
+          "date": "2020-11-07",
+          "target": 1209304
+        },
+        {
+          "date": "2020-11-09",
+          "target": 1706852
+        },
+        {
+          "date": "2020-11-11",
+          "target": 1637822
+        },
+        {
+          "date": "2020-11-13",
+          "target": 1277455
+        },
+        {
+          "date": "2020-11-15",
+          "target": 1450017
+        },
+        {
+          "date": "2020-11-17",
+          "target": 1698674
+        },
+        {
+          "date": "2020-11-19",
+          "target": 1716913
+        },
+        {
+          "date": "2020-11-21",
+          "target": 1252440
+        },
+        {
+          "date": "2020-11-23",
+          "target": 1676321
+        },
+        {
+          "date": "2020-11-25",
+          "target": 1480750
+        },
+        {
+          "date": "2020-11-27",
+          "target": 1217224
+        },
+        {
+          "date": "2020-11-29",
+          "target": 1393713
+        },
+        {
+          "date": "2020-12-01",
+          "target": 1678587
+        },
+        {
+          "date": "2020-12-03",
+          "target": 1616198
+        },
+        {
+          "date": "2020-12-05",
+          "target": 1217443
+        },
+        {
+          "date": "2020-12-07",
+          "target": 1656199
+        },
+        {
+          "date": "2020-12-09",
+          "target": 1670994
+        },
+        {
+          "date": "2020-12-11",
+          "target": 1356656
+        },
+        {
+          "date": "2020-12-13",
+          "target": 1507662
+        },
+        {
+          "date": "2020-12-15",
+          "target": 1648200
+        },
+        {
+          "date": "2020-12-17",
+          "target": 1457541
+        },
+        {
+          "date": "2020-12-19",
+          "target": 1032896
+        },
+        {
+          "date": "2020-12-21",
+          "target": 1222598
+        },
+        {
+          "date": "2020-12-23",
+          "target": 984245
+        },
+        {
+          "date": "2020-12-25",
+          "target": 808607
+        },
+        {
+          "date": "2020-12-27",
+          "target": 1016695
+        },
+        {
+          "date": "2020-12-29",
+          "target": 1094577
+        },
+        {
+          "date": "2020-12-31",
+          "target": 828698
+        },
+        {
+          "date": "2021-01-02",
+          "target": 1038371
+        },
+        {
+          "date": "2021-01-04",
+          "target": 1398076
+        },
+        {
+          "date": "2021-01-06",
+          "target": 1389568
+        },
+        {
+          "date": "2021-01-08",
+          "target": 1209552
+        },
+        {
+          "date": "2021-01-10",
+          "target": 1303233
+        },
+        {
+          "date": "2021-01-12",
+          "target": 1504916
+        },
+        {
+          "date": "2021-01-14",
+          "target": 1373100
+        },
+        {
+          "date": "2021-01-16",
+          "target": 1003673
+        },
+        {
+          "date": "2021-01-18",
+          "target": 1384591
+        },
+        {
+          "date": "2021-01-20",
+          "target": 1435393
+        },
+        {
+          "date": "2021-01-22",
+          "target": 1234050
+        },
+        {
+          "date": "2021-01-24",
+          "target": 1319531
+        },
+        {
+          "date": "2021-01-26",
+          "target": 1499687
+        },
+        {
+          "date": "2021-01-28",
+          "target": 1423801
+        },
+        {
+          "date": "2021-01-30",
+          "target": 1096883
+        },
+        {
+          "date": "2021-02-01",
+          "target": 1522163
+        },
+        {
+          "date": "2021-02-03",
+          "target": 1550711
+        },
+        {
+          "date": "2021-02-05",
+          "target": 1232629
+        },
+        {
+          "date": "2021-02-07",
+          "target": 1354390
+        },
+        {
+          "date": "2021-02-09",
+          "target": 1561236
+        },
+        {
+          "date": "2021-02-11",
+          "target": 1410020
+        },
+        {
+          "date": "2021-02-13",
+          "target": 1054169
+        },
+        {
+          "date": "2021-02-15",
+          "target": 1435542
+        },
+        {
+          "date": "2021-02-17",
+          "target": 1478828
+        },
+        {
+          "date": "2021-02-19",
+          "target": 1251836
+        },
+        {
+          "date": "2021-02-21",
+          "target": 1379075
+        },
+        {
+          "date": "2021-02-23",
+          "target": 1660348
+        },
+        {
+          "date": "2021-02-25",
+          "target": 1575399
+        },
+        {
+          "date": "2021-02-27",
+          "target": 1184491
+        },
+        {
+          "date": "2021-03-01",
+          "target": 1682345
+        },
+        {
+          "date": "2021-03-03",
+          "target": 1696778
+        },
+        {
+          "date": "2021-03-05",
+          "target": 1340755
+        },
+        {
+          "date": "2021-03-07",
+          "target": 1441571
+        },
+        {
+          "date": "2021-03-09",
+          "target": 1685343
+        },
+        {
+          "date": "2021-03-11",
+          "target": 1563586
+        },
+        {
+          "date": "2021-03-13",
+          "target": 1276779
+        },
+        {
+          "date": "2021-03-15",
+          "target": 832575
+        }
+      ]
+    },
+    {
+      "scale": "3D",
+      "events": [
+        {
+          "date": "2019-03-16",
+          "target": 1925632
+        },
+        {
+          "date": "2019-03-19",
+          "target": 2413092
+        },
+        {
+          "date": "2019-03-22",
+          "target": 1766396
+        },
+        {
+          "date": "2019-03-25",
+          "target": 3148365
+        },
+        {
+          "date": "2019-03-28",
+          "target": 1987164
+        },
+        {
+          "date": "2019-03-31",
+          "target": 2182541
+        },
+        {
+          "date": "2019-04-03",
+          "target": 2341365
+        },
+        {
+          "date": "2019-04-06",
+          "target": 1960560
+        },
+        {
+          "date": "2019-04-09",
+          "target": 2503469
+        },
+        {
+          "date": "2019-04-12",
+          "target": 1773011
+        },
+        {
+          "date": "2019-04-15",
+          "target": 2312785
+        },
+        {
+          "date": "2019-04-18",
+          "target": 1735086
+        },
+        {
+          "date": "2019-04-21",
+          "target": 2454249
+        },
+        {
+          "date": "2019-04-24",
+          "target": 2264407
+        },
+        {
+          "date": "2019-04-27",
+          "target": 1828196
+        },
+        {
+          "date": "2019-04-30",
+          "target": 2273376
+        },
+        {
+          "date": "2019-05-03",
+          "target": 1773220
+        },
+        {
+          "date": "2019-05-06",
+          "target": 2358575
+        },
+        {
+          "date": "2019-05-09",
+          "target": 1968033
+        },
+        {
+          "date": "2019-05-12",
+          "target": 2145370
+        },
+        {
+          "date": "2019-05-15",
+          "target": 2189035
+        },
+        {
+          "date": "2019-05-18",
+          "target": 1742347
+        },
+        {
+          "date": "2019-05-21",
+          "target": 2169459
+        },
+        {
+          "date": "2019-05-24",
+          "target": 1585116
+        },
+        {
+          "date": "2019-05-27",
+          "target": 1999374
+        },
+        {
+          "date": "2019-05-30",
+          "target": 1628798
+        },
+        {
+          "date": "2019-06-02",
+          "target": 1845844
+        },
+        {
+          "date": "2019-06-05",
+          "target": 1913591
+        },
+        {
+          "date": "2019-06-08",
+          "target": 1592127
+        },
+        {
+          "date": "2019-06-11",
+          "target": 2624449
+        },
+        {
+          "date": "2019-06-14",
+          "target": 1448469
+        },
+        {
+          "date": "2019-06-17",
+          "target": 1942593
+        },
+        {
+          "date": "2019-06-20",
+          "target": 1545575
+        },
+        {
+          "date": "2019-06-23",
+          "target": 1659822
+        },
+        {
+          "date": "2019-06-26",
+          "target": 1639186
+        },
+        {
+          "date": "2019-06-29",
+          "target": 1332368
+        },
+        {
+          "date": "2019-07-02",
+          "target": 1618038
+        },
+        {
+          "date": "2019-07-05",
+          "target": 1254858
+        },
+        {
+          "date": "2019-07-08",
+          "target": 1682623
+        },
+        {
+          "date": "2019-07-11",
+          "target": 1425434
+        },
+        {
+          "date": "2019-07-14",
+          "target": 1592356
+        },
+        {
+          "date": "2019-07-17",
+          "target": 1626660
+        },
+        {
+          "date": "2019-07-20",
+          "target": 1365752
+        },
+        {
+          "date": "2019-07-23",
+          "target": 1673555
+        },
+        {
+          "date": "2019-07-26",
+          "target": 1306516
+        },
+        {
+          "date": "2019-07-29",
+          "target": 1684909
+        },
+        {
+          "date": "2019-08-01",
+          "target": 1506982
+        },
+        {
+          "date": "2019-08-04",
+          "target": 1541144
+        },
+        {
+          "date": "2019-08-07",
+          "target": 1624831
+        },
+        {
+          "date": "2019-08-10",
+          "target": 1305570
+        },
+        {
+          "date": "2019-08-13",
+          "target": 1643623
+        },
+        {
+          "date": "2019-08-16",
+          "target": 1336985
+        },
+        {
+          "date": "2019-08-19",
+          "target": 1825174
+        },
+        {
+          "date": "2019-08-22",
+          "target": 1532084
+        },
+        {
+          "date": "2019-08-25",
+          "target": 1721599
+        },
+        {
+          "date": "2019-08-28",
+          "target": 2067861
+        },
+        {
+          "date": "2019-08-31",
+          "target": 1462412
+        },
+        {
+          "date": "2019-09-03",
+          "target": 2141166
+        },
+        {
+          "date": "2019-09-06",
+          "target": 1576778
+        },
+        {
+          "date": "2019-09-09",
+          "target": 2312807
+        },
+        {
+          "date": "2019-09-12",
+          "target": 1927403
+        },
+        {
+          "date": "2019-09-15",
+          "target": 2123430
+        },
+        {
+          "date": "2019-09-18",
+          "target": 2214117
+        },
+        {
+          "date": "2019-09-21",
+          "target": 1881812
+        },
+        {
+          "date": "2019-09-24",
+          "target": 2419262
+        },
+        {
+          "date": "2019-09-27",
+          "target": 1799293
+        },
+        {
+          "date": "2019-09-30",
+          "target": 2384276
+        },
+        {
+          "date": "2019-10-03",
+          "target": 1978233
+        },
+        {
+          "date": "2019-10-06",
+          "target": 2206026
+        },
+        {
+          "date": "2019-10-09",
+          "target": 2364743
+        },
+        {
+          "date": "2019-10-12",
+          "target": 1929861
+        },
+        {
+          "date": "2019-10-15",
+          "target": 2521854
+        },
+        {
+          "date": "2019-10-18",
+          "target": 1901600
+        },
+        {
+          "date": "2019-10-21",
+          "target": 2559083
+        },
+        {
+          "date": "2019-10-24",
+          "target": 2010623
+        },
+        {
+          "date": "2019-10-27",
+          "target": 2156575
+        },
+        {
+          "date": "2019-10-30",
+          "target": 2195054
+        },
+        {
+          "date": "2019-11-02",
+          "target": 1950512
+        },
+        {
+          "date": "2019-11-05",
+          "target": 2528079
+        },
+        {
+          "date": "2019-11-08",
+          "target": 1825446
+        },
+        {
+          "date": "2019-11-11",
+          "target": 2823372
+        },
+        {
+          "date": "2019-11-14",
+          "target": 2118086
+        },
+        {
+          "date": "2019-11-17",
+          "target": 2271906
+        },
+        {
+          "date": "2019-11-20",
+          "target": 2338978
+        },
+        {
+          "date": "2019-11-23",
+          "target": 1926718
+        },
+        {
+          "date": "2019-11-26",
+          "target": 2137698
+        },
+        {
+          "date": "2019-11-29",
+          "target": 1656015
+        },
+        {
+          "date": "2019-12-02",
+          "target": 2349117
+        },
+        {
+          "date": "2019-12-05",
+          "target": 2012523
+        },
+        {
+          "date": "2019-12-08",
+          "target": 2239168
+        },
+        {
+          "date": "2019-12-11",
+          "target": 2188440
+        },
+        {
+          "date": "2019-12-14",
+          "target": 1730974
+        },
+        {
+          "date": "2019-12-17",
+          "target": 2188123
+        },
+        {
+          "date": "2019-12-20",
+          "target": 1192988
+        },
+        {
+          "date": "2019-12-23",
+          "target": 1129353
+        },
+        {
+          "date": "2019-12-26",
+          "target": 1171153
+        },
+        {
+          "date": "2019-12-29",
+          "target": 1290113
+        },
+        {
+          "date": "2020-01-01",
+          "target": 1366240
+        },
+        {
+          "date": "2020-01-04",
+          "target": 1501889
+        },
+        {
+          "date": "2020-01-07",
+          "target": 1987693
+        },
+        {
+          "date": "2020-01-10",
+          "target": 1680530
+        },
+        {
+          "date": "2020-01-13",
+          "target": 2106593
+        },
+        {
+          "date": "2020-01-16",
+          "target": 1845903
+        },
+        {
+          "date": "2020-01-19",
+          "target": 1989503
+        },
+        {
+          "date": "2020-01-22",
+          "target": 2129663
+        },
+        {
+          "date": "2020-01-25",
+          "target": 1716558
+        },
+        {
+          "date": "2020-01-28",
+          "target": 2297339
+        },
+        {
+          "date": "2020-01-31",
+          "target": 1706780
+        },
+        {
+          "date": "2020-02-03",
+          "target": 2315930
+        },
+        {
+          "date": "2020-02-06",
+          "target": 1915677
+        },
+        {
+          "date": "2020-02-09",
+          "target": 2082797
+        },
+        {
+          "date": "2020-02-12",
+          "target": 2130592
+        },
+        {
+          "date": "2020-02-15",
+          "target": 1729719
+        },
+        {
+          "date": "2020-02-18",
+          "target": 2252122
+        },
+        {
+          "date": "2020-02-21",
+          "target": 1661967
+        },
+        {
+          "date": "2020-02-24",
+          "target": 2290441
+        },
+        {
+          "date": "2020-02-27",
+          "target": 1909572
+        },
+        {
+          "date": "2020-03-01",
+          "target": 2057631
+        },
+        {
+          "date": "2020-03-04",
+          "target": 2112748
+        },
+        {
+          "date": "2020-03-07",
+          "target": 1701788
+        },
+        {
+          "date": "2020-03-10",
+          "target": 2064211
+        },
+        {
+          "date": "2020-03-13",
+          "target": 1564068
+        },
+        {
+          "date": "2020-03-16",
+          "target": 1826683
+        },
+        {
+          "date": "2020-03-19",
+          "target": 1649819
+        },
+        {
+          "date": "2020-03-22",
+          "target": 1816987
+        },
+        {
+          "date": "2020-03-25",
+          "target": 1968611
+        },
+        {
+          "date": "2020-03-28",
+          "target": 1878119
+        },
+        {
+          "date": "2020-03-31",
+          "target": 2454590
+        },
+        {
+          "date": "2020-04-03",
+          "target": 1964299
+        },
+        {
+          "date": "2020-04-06",
+          "target": 2271165
+        },
+        {
+          "date": "2020-04-09",
+          "target": 2023833
+        },
+        {
+          "date": "2020-04-12",
+          "target": 2147875
+        },
+        {
+          "date": "2020-04-15",
+          "target": 2320016
+        },
+        {
+          "date": "2020-04-18",
+          "target": 2080209
+        },
+        {
+          "date": "2020-04-21",
+          "target": 2444363
+        },
+        {
+          "date": "2020-04-24",
+          "target": 2085345
+        },
+        {
+          "date": "2020-04-27",
+          "target": 2459649
+        },
+        {
+          "date": "2020-04-30",
+          "target": 2048553
+        },
+        {
+          "date": "2020-05-03",
+          "target": 2170854
+        },
+        {
+          "date": "2020-05-06",
+          "target": 2236655
+        },
+        {
+          "date": "2020-05-09",
+          "target": 1949487
+        },
+        {
+          "date": "2020-05-12",
+          "target": 2323907
+        },
+        {
+          "date": "2020-05-15",
+          "target": 1823233
+        },
+        {
+          "date": "2020-05-18",
+          "target": 2151295
+        },
+        {
+          "date": "2020-05-21",
+          "target": 1802795
+        },
+        {
+          "date": "2020-05-24",
+          "target": 1815830
+        },
+        {
+          "date": "2020-05-27",
+          "target": 1936858
+        },
+        {
+          "date": "2020-05-30",
+          "target": 1623224
+        },
+        {
+          "date": "2020-06-02",
+          "target": 1940094
+        },
+        {
+          "date": "2020-06-05",
+          "target": 1612643
+        },
+        {
+          "date": "2020-06-08",
+          "target": 1954090
+        },
+        {
+          "date": "2020-06-11",
+          "target": 1668726
+        },
+        {
+          "date": "2020-06-14",
+          "target": 1736089
+        },
+        {
+          "date": "2020-06-17",
+          "target": 1739539
+        },
+        {
+          "date": "2020-06-20",
+          "target": 1494894
+        },
+        {
+          "date": "2020-06-23",
+          "target": 1741681
+        },
+        {
+          "date": "2020-06-26",
+          "target": 1414513
+        },
+        {
+          "date": "2020-06-29",
+          "target": 1656744
+        },
+        {
+          "date": "2020-07-02",
+          "target": 1437814
+        },
+        {
+          "date": "2020-07-05",
+          "target": 1568972
+        },
+        {
+          "date": "2020-07-08",
+          "target": 1624211
+        },
+        {
+          "date": "2020-07-11",
+          "target": 1406019
+        },
+        {
+          "date": "2020-07-14",
+          "target": 1666761
+        },
+        {
+          "date": "2020-07-17",
+          "target": 1383984
+        },
+        {
+          "date": "2020-07-20",
+          "target": 1667786
+        },
+        {
+          "date": "2020-07-23",
+          "target": 1457680
+        },
+        {
+          "date": "2020-07-26",
+          "target": 1501072
+        },
+        {
+          "date": "2020-07-29",
+          "target": 1524092
+        },
+        {
+          "date": "2020-08-01",
+          "target": 1288727
+        },
+        {
+          "date": "2020-08-04",
+          "target": 1686615
+        },
+        {
+          "date": "2020-08-07",
+          "target": 1332047
+        },
+        {
+          "date": "2020-08-10",
+          "target": 1635991
+        },
+        {
+          "date": "2020-08-13",
+          "target": 1466050
+        },
+        {
+          "date": "2020-08-16",
+          "target": 1577004
+        },
+        {
+          "date": "2020-08-19",
+          "target": 1709999
+        },
+        {
+          "date": "2020-08-22",
+          "target": 1496720
+        },
+        {
+          "date": "2020-08-25",
+          "target": 1896237
+        },
+        {
+          "date": "2020-08-28",
+          "target": 1536032
+        },
+        {
+          "date": "2020-08-31",
+          "target": 2023681
+        },
+        {
+          "date": "2020-09-03",
+          "target": 1812673
+        },
+        {
+          "date": "2020-09-06",
+          "target": 1929802
+        },
+        {
+          "date": "2020-09-09",
+          "target": 2220385
+        },
+        {
+          "date": "2020-09-12",
+          "target": 1874510
+        },
+        {
+          "date": "2020-09-15",
+          "target": 2364905
+        },
+        {
+          "date": "2020-09-18",
+          "target": 1809744
+        },
+        {
+          "date": "2020-09-21",
+          "target": 2409174
+        },
+        {
+          "date": "2020-09-24",
+          "target": 2071875
+        },
+        {
+          "date": "2020-09-27",
+          "target": 2152383
+        },
+        {
+          "date": "2020-09-30",
+          "target": 2213886
+        },
+        {
+          "date": "2020-10-03",
+          "target": 1948130
+        },
+        {
+          "date": "2020-10-06",
+          "target": 2648295
+        },
+        {
+          "date": "2020-10-09",
+          "target": 2042310
+        },
+        {
+          "date": "2020-10-12",
+          "target": 2671952
+        },
+        {
+          "date": "2020-10-15",
+          "target": 2293826
+        },
+        {
+          "date": "2020-10-18",
+          "target": 2453351
+        },
+        {
+          "date": "2020-10-21",
+          "target": 2521374
+        },
+        {
+          "date": "2020-10-24",
+          "target": 2018381
+        },
+        {
+          "date": "2020-10-27",
+          "target": 2532683
+        },
+        {
+          "date": "2020-10-30",
+          "target": 1882605
+        },
+        {
+          "date": "2020-11-02",
+          "target": 2446575
+        },
+        {
+          "date": "2020-11-05",
+          "target": 2165032
+        },
+        {
+          "date": "2020-11-08",
+          "target": 2333111
+        },
+        {
+          "date": "2020-11-11",
+          "target": 2362997
+        },
+        {
+          "date": "2020-11-14",
+          "target": 2002297
+        },
+        {
+          "date": "2020-11-17",
+          "target": 2539794
+        },
+        {
+          "date": "2020-11-20",
+          "target": 2128233
+        },
+        {
+          "date": "2020-11-23",
+          "target": 2449748
+        },
+        {
+          "date": "2020-11-26",
+          "target": 1924547
+        },
+        {
+          "date": "2020-11-29",
+          "target": 2234881
+        },
+        {
+          "date": "2020-12-02",
+          "target": 2453617
+        },
+        {
+          "date": "2020-12-05",
+          "target": 2048134
+        },
+        {
+          "date": "2020-12-08",
+          "target": 2496502
+        },
+        {
+          "date": "2020-12-11",
+          "target": 2017220
+        },
+        {
+          "date": "2020-12-14",
+          "target": 2495298
+        },
+        {
+          "date": "2020-12-17",
+          "target": 1989545
+        },
+        {
+          "date": "2020-12-20",
+          "target": 1723490
+        },
+        {
+          "date": "2020-12-23",
+          "target": 1349416
+        },
+        {
+          "date": "2020-12-26",
+          "target": 1460131
+        },
+        {
+          "date": "2020-12-29",
+          "target": 1528105
+        },
+        {
+          "date": "2021-01-01",
+          "target": 1433541
+        },
+        {
+          "date": "2021-01-04",
+          "target": 2099757
+        },
+        {
+          "date": "2021-01-07",
+          "target": 1897439
+        },
+        {
+          "date": "2021-01-10",
+          "target": 2064506
+        },
+        {
+          "date": "2021-01-13",
+          "target": 2116743
+        },
+        {
+          "date": "2021-01-16",
+          "target": 1669744
+        },
+        {
+          "date": "2021-01-19",
+          "target": 2153913
+        },
+        {
+          "date": "2021-01-22",
+          "target": 1801863
+        },
+        {
+          "date": "2021-01-25",
+          "target": 2251405
+        },
+        {
+          "date": "2021-01-28",
+          "target": 1963966
+        },
+        {
+          "date": "2021-01-31",
+          "target": 2078881
+        },
+        {
+          "date": "2021-02-03",
+          "target": 2246058
+        },
+        {
+          "date": "2021-02-06",
+          "target": 1891672
+        },
+        {
+          "date": "2021-02-09",
+          "target": 2303189
+        },
+        {
+          "date": "2021-02-12",
+          "target": 1722236
+        },
+        {
+          "date": "2021-02-15",
+          "target": 2176041
+        },
+        {
+          "date": "2021-02-18",
+          "target": 1990165
+        },
+        {
+          "date": "2021-02-21",
+          "target": 2196263
+        },
+        {
+          "date": "2021-02-24",
+          "target": 2418559
+        },
+        {
+          "date": "2021-02-27",
+          "target": 2019639
+        },
+        {
+          "date": "2021-03-02",
+          "target": 2543975
+        },
+        {
+          "date": "2021-03-05",
+          "target": 1962444
+        },
+        {
+          "date": "2021-03-08",
+          "target": 2505225
+        },
+        {
+          "date": "2021-03-11",
+          "target": 2147966
+        },
+        {
+          "date": "2021-03-14",
+          "target": 1524974
+        }
+      ]
+    },
+    {
+      "scale": "7D",
+      "events": [
+        {
+          "date": "2019-03-16",
+          "target": 5029972
+        },
+        {
+          "date": "2019-03-23",
+          "target": 5711896
+        },
+        {
+          "date": "2019-03-30",
+          "target": 5022687
+        },
+        {
+          "date": "2019-04-06",
+          "target": 5169526
+        },
+        {
+          "date": "2019-04-13",
+          "target": 4634011
+        },
+        {
+          "date": "2019-04-20",
+          "target": 5200030
+        },
+        {
+          "date": "2019-04-27",
+          "target": 4786091
+        },
+        {
+          "date": "2019-05-04",
+          "target": 4881432
+        },
+        {
+          "date": "2019-05-11",
+          "target": 4868282
+        },
+        {
+          "date": "2019-05-18",
+          "target": 4507545
+        },
+        {
+          "date": "2019-05-25",
+          "target": 4194995
+        },
+        {
+          "date": "2019-06-01",
+          "target": 4181989
+        },
+        {
+          "date": "2019-06-08",
+          "target": 4761305
+        },
+        {
+          "date": "2019-06-15",
+          "target": 3985903
+        },
+        {
+          "date": "2019-06-22",
+          "target": 3705013
+        },
+        {
+          "date": "2019-06-29",
+          "target": 3415298
+        },
+        {
+          "date": "2019-07-06",
+          "target": 3512592
+        },
+        {
+          "date": "2019-07-13",
+          "target": 3604447
+        },
+        {
+          "date": "2019-07-20",
+          "target": 3526710
+        },
+        {
+          "date": "2019-07-27",
+          "target": 3591135
+        },
+        {
+          "date": "2019-08-03",
+          "target": 3585844
+        },
+        {
+          "date": "2019-08-10",
+          "target": 3450523
+        },
+        {
+          "date": "2019-08-17",
+          "target": 3782945
+        },
+        {
+          "date": "2019-08-24",
+          "target": 4199428
+        },
+        {
+          "date": "2019-08-31",
+          "target": 4194614
+        },
+        {
+          "date": "2019-09-07",
+          "target": 4738533
+        },
+        {
+          "date": "2019-09-14",
+          "target": 4824966
+        },
+        {
+          "date": "2019-09-21",
+          "target": 4991763
+        },
+        {
+          "date": "2019-09-28",
+          "target": 4952966
+        },
+        {
+          "date": "2019-10-05",
+          "target": 5088916
+        },
+        {
+          "date": "2019-10-12",
+          "target": 5166072
+        },
+        {
+          "date": "2019-10-19",
+          "target": 5243746
+        },
+        {
+          "date": "2019-10-26",
+          "target": 4864832
+        },
+        {
+          "date": "2019-11-02",
+          "target": 5185985
+        },
+        {
+          "date": "2019-11-09",
+          "target": 5524102
+        },
+        {
+          "date": "2019-11-16",
+          "target": 5146292
+        },
+        {
+          "date": "2019-11-23",
+          "target": 4642561
+        },
+        {
+          "date": "2019-11-30",
+          "target": 4888434
+        },
+        {
+          "date": "2019-12-07",
+          "target": 4978684
+        },
+        {
+          "date": "2019-12-14",
+          "target": 4385135
+        },
+        {
+          "date": "2019-12-21",
+          "target": 2653451
+        },
+        {
+          "date": "2019-12-28",
+          "target": 3030358
+        },
+        {
+          "date": "2020-01-04",
+          "target": 4154853
+        },
+        {
+          "date": "2020-01-11",
+          "target": 4488712
+        },
+        {
+          "date": "2020-01-18",
+          "target": 4598209
+        },
+        {
+          "date": "2020-01-25",
+          "target": 4665776
+        },
+        {
+          "date": "2020-02-01",
+          "target": 4790842
+        },
+        {
+          "date": "2020-02-08",
+          "target": 4709055
+        },
+        {
+          "date": "2020-02-15",
+          "target": 4615159
+        },
+        {
+          "date": "2020-02-22",
+          "target": 4708378
+        },
+        {
+          "date": "2020-02-29",
+          "target": 4690663
+        },
+        {
+          "date": "2020-03-07",
+          "target": 4327411
+        },
+        {
+          "date": "2020-03-14",
+          "target": 4009305
+        },
+        {
+          "date": "2020-03-21",
+          "target": 4255451
+        },
+        {
+          "date": "2020-03-28",
+          "target": 5081377
+        },
+        {
+          "date": "2020-04-04",
+          "target": 4918417
+        },
+        {
+          "date": "2020-04-11",
+          "target": 5060103
+        },
+        {
+          "date": "2020-04-18",
+          "target": 5362237
+        },
+        {
+          "date": "2020-04-25",
+          "target": 5170014
+        },
+        {
+          "date": "2020-05-02",
+          "target": 4993377
+        },
+        {
+          "date": "2020-05-09",
+          "target": 4966770
+        },
+        {
+          "date": "2020-05-16",
+          "target": 4577314
+        },
+        {
+          "date": "2020-05-23",
+          "target": 4259321
+        },
+        {
+          "date": "2020-05-30",
+          "target": 4163394
+        },
+        {
+          "date": "2020-06-06",
+          "target": 4168576
+        },
+        {
+          "date": "2020-06-13",
+          "target": 3942435
+        },
+        {
+          "date": "2020-06-20",
+          "target": 3758304
+        },
+        {
+          "date": "2020-06-27",
+          "target": 3563710
+        },
+        {
+          "date": "2020-07-04",
+          "target": 3616815
+        },
+        {
+          "date": "2020-07-11",
+          "target": 3585483
+        },
+        {
+          "date": "2020-07-18",
+          "target": 3577100
+        },
+        {
+          "date": "2020-07-25",
+          "target": 3444811
+        },
+        {
+          "date": "2020-08-01",
+          "target": 3462792
+        },
+        {
+          "date": "2020-08-08",
+          "target": 3534460
+        },
+        {
+          "date": "2020-08-15",
+          "target": 3699181
+        },
+        {
+          "date": "2020-08-22",
+          "target": 3979402
+        },
+        {
+          "date": "2020-08-29",
+          "target": 4307012
+        },
+        {
+          "date": "2020-09-05",
+          "target": 4629116
+        },
+        {
+          "date": "2020-09-12",
+          "target": 4950979
+        },
+        {
+          "date": "2020-09-19",
+          "target": 5031715
+        },
+        {
+          "date": "2020-09-26",
+          "target": 4913783
+        },
+        {
+          "date": "2020-10-03",
+          "target": 5396219
+        },
+        {
+          "date": "2020-10-10",
+          "target": 5596074
+        },
+        {
+          "date": "2020-10-17",
+          "target": 5586945
+        },
+        {
+          "date": "2020-10-24",
+          "target": 5282273
+        },
+        {
+          "date": "2020-10-31",
+          "target": 5179958
+        },
+        {
+          "date": "2020-11-07",
+          "target": 5279153
+        },
+        {
+          "date": "2020-11-14",
+          "target": 5417884
+        },
+        {
+          "date": "2020-11-21",
+          "target": 5052471
+        },
+        {
+          "date": "2020-11-28",
+          "target": 5262762
+        },
+        {
+          "date": "2020-12-05",
+          "target": 5302120
+        },
+        {
+          "date": "2020-12-12",
+          "target": 5212575
+        },
+        {
+          "date": "2020-12-19",
+          "target": 3604910
+        },
+        {
+          "date": "2020-12-26",
+          "target": 3383406
+        },
+        {
+          "date": "2021-01-02",
+          "target": 4486861
+        },
+        {
+          "date": "2021-01-09",
+          "target": 4729955
+        },
+        {
+          "date": "2021-01-16",
+          "target": 4513511
+        },
+        {
+          "date": "2021-01-23",
+          "target": 4787215
+        },
+        {
+          "date": "2021-01-30",
+          "target": 4865104
+        },
+        {
+          "date": "2021-02-06",
+          "target": 4862928
+        },
+        {
+          "date": "2021-02-13",
+          "target": 4665921
+        },
+        {
+          "date": "2021-02-20",
+          "target": 5169276
+        },
+        {
+          "date": "2021-02-27",
+          "target": 5323227
+        },
+        {
+          "date": "2021-03-06",
+          "target": 5271642
+        },
+        {
+          "date": "2021-03-13",
+          "target": 2109354
+        }
+      ]
+    },
+    {
+      "scale": "14D",
+      "events": [
+        {
+          "date": "2019-03-16",
+          "target": 10741868
+        },
+        {
+          "date": "2019-03-30",
+          "target": 10192213
+        },
+        {
+          "date": "2019-04-13",
+          "target": 9834041
+        },
+        {
+          "date": "2019-04-27",
+          "target": 9667523
+        },
+        {
+          "date": "2019-05-11",
+          "target": 9375827
+        },
+        {
+          "date": "2019-05-25",
+          "target": 8376984
+        },
+        {
+          "date": "2019-06-08",
+          "target": 8747208
+        },
+        {
+          "date": "2019-06-22",
+          "target": 7120311
+        },
+        {
+          "date": "2019-07-06",
+          "target": 7117039
+        },
+        {
+          "date": "2019-07-20",
+          "target": 7117845
+        },
+        {
+          "date": "2019-08-03",
+          "target": 7036367
+        },
+        {
+          "date": "2019-08-17",
+          "target": 7982373
+        },
+        {
+          "date": "2019-08-31",
+          "target": 8933147
+        },
+        {
+          "date": "2019-09-14",
+          "target": 9816729
+        },
+        {
+          "date": "2019-09-28",
+          "target": 10041882
+        },
+        {
+          "date": "2019-10-12",
+          "target": 10409818
+        },
+        {
+          "date": "2019-10-26",
+          "target": 10050817
+        },
+        {
+          "date": "2019-11-09",
+          "target": 10670394
+        },
+        {
+          "date": "2019-11-23",
+          "target": 9530995
+        },
+        {
+          "date": "2019-12-07",
+          "target": 9363819
+        },
+        {
+          "date": "2019-12-21",
+          "target": 5683809
+        },
+        {
+          "date": "2020-01-04",
+          "target": 8643565
+        },
+        {
+          "date": "2020-01-18",
+          "target": 9263985
+        },
+        {
+          "date": "2020-02-01",
+          "target": 9499897
+        },
+        {
+          "date": "2020-02-15",
+          "target": 9323537
+        },
+        {
+          "date": "2020-02-29",
+          "target": 9018074
+        },
+        {
+          "date": "2020-03-14",
+          "target": 8264756
+        },
+        {
+          "date": "2020-03-28",
+          "target": 9999794
+        },
+        {
+          "date": "2020-04-11",
+          "target": 10422340
+        },
+        {
+          "date": "2020-04-25",
+          "target": 10163391
+        },
+        {
+          "date": "2020-05-09",
+          "target": 9544084
+        },
+        {
+          "date": "2020-05-23",
+          "target": 8422715
+        },
+        {
+          "date": "2020-06-06",
+          "target": 8111011
+        },
+        {
+          "date": "2020-06-20",
+          "target": 7322014
+        },
+        {
+          "date": "2020-07-04",
+          "target": 7202298
+        },
+        {
+          "date": "2020-07-18",
+          "target": 7021911
+        },
+        {
+          "date": "2020-08-01",
+          "target": 6997252
+        },
+        {
+          "date": "2020-08-15",
+          "target": 7678583
+        },
+        {
+          "date": "2020-08-29",
+          "target": 8936128
+        },
+        {
+          "date": "2020-09-12",
+          "target": 9982694
+        },
+        {
+          "date": "2020-09-26",
+          "target": 10310002
+        },
+        {
+          "date": "2020-10-10",
+          "target": 11183019
+        },
+        {
+          "date": "2020-10-24",
+          "target": 10462231
+        },
+        {
+          "date": "2020-11-07",
+          "target": 10697037
+        },
+        {
+          "date": "2020-11-21",
+          "target": 10315233
+        },
+        {
+          "date": "2020-12-05",
+          "target": 10514695
+        },
+        {
+          "date": "2020-12-19",
+          "target": 6988316
+        },
+        {
+          "date": "2021-01-02",
+          "target": 9216816
+        },
+        {
+          "date": "2021-01-16",
+          "target": 9300726
+        },
+        {
+          "date": "2021-01-30",
+          "target": 9728032
+        },
+        {
+          "date": "2021-02-13",
+          "target": 9835197
+        },
+        {
+          "date": "2021-02-27",
+          "target": 10594869
+        },
+        {
+          "date": "2021-03-13",
+          "target": 2109354
+        }
+      ]
+    },
+    {
+      "scale": "30D",
+      "events": [
+        {
+          "date": "2019-03-16",
+          "target": 22001595
+        },
+        {
+          "date": "2019-04-15",
+          "target": 21113297
+        },
+        {
+          "date": "2019-05-15",
+          "target": 19290140
+        },
+        {
+          "date": "2019-06-14",
+          "target": 15548966
+        },
+        {
+          "date": "2019-07-14",
+          "target": 15228275
+        },
+        {
+          "date": "2019-08-13",
+          "target": 17620489
+        },
+        {
+          "date": "2019-09-12",
+          "target": 21298595
+        },
+        {
+          "date": "2019-10-12",
+          "target": 21578687
+        },
+        {
+          "date": "2019-11-11",
+          "target": 21873581
+        },
+        {
+          "date": "2019-12-11",
+          "target": 15746966
+        },
+        {
+          "date": "2020-01-10",
+          "target": 19704476
+        },
+        {
+          "date": "2020-02-09",
+          "target": 19929377
+        },
+        {
+          "date": "2020-03-10",
+          "target": 19458552
+        },
+        {
+          "date": "2020-04-09",
+          "target": 22017352
+        },
+        {
+          "date": "2020-05-09",
+          "target": 18979366
+        },
+        {
+          "date": "2020-06-08",
+          "target": 16413062
+        },
+        {
+          "date": "2020-07-08",
+          "target": 15206947
+        },
+        {
+          "date": "2020-08-07",
+          "target": 16486434
+        },
+        {
+          "date": "2020-09-06",
+          "target": 20994794
+        },
+        {
+          "date": "2020-10-06",
+          "target": 23511352
+        },
+        {
+          "date": "2020-11-05",
+          "target": 22594257
+        },
+        {
+          "date": "2020-12-05",
+          "target": 18541382
+        },
+        {
+          "date": "2021-01-04",
+          "target": 20098217
+        },
+        {
+          "date": "2021-02-03",
+          "target": 21507797
+        },
+        {
+          "date": "2021-03-05",
+          "target": 8140609
+        }
+      ]
+    }
+  ]
+}

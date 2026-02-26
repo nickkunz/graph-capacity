@@ -1,0 +1,2817 @@
+{
+  "network_perturbed": [
+    {
+      "method": "rewire",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 91,
+        "n_edges": 4095,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 90,
+        "k_core_size": 91,
+        "maximum_degree": 90,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.011111111111111,
+        "normalized_laplacian_third_moment": 1.0223456790123424,
+        "random_walk_triangle_weight": 0.0109876543209877,
+        "random_walk_fourth_moment": 0.010989026063100177,
+        "adjacency_fourth_moment_per_node": 720990.0
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.03,
+      "invariants": {
+        "n_nodes": 91,
+        "n_edges": 4095,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 90,
+        "k_core_size": 91,
+        "maximum_degree": 90,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.011111111111111,
+        "normalized_laplacian_third_moment": 1.0223456790123424,
+        "random_walk_triangle_weight": 0.0109876543209877,
+        "random_walk_fourth_moment": 0.010989026063100177,
+        "adjacency_fourth_moment_per_node": 720990.0
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 91,
+        "n_edges": 4095,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 90,
+        "k_core_size": 91,
+        "maximum_degree": 90,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.011111111111111,
+        "normalized_laplacian_third_moment": 1.0223456790123424,
+        "random_walk_triangle_weight": 0.0109876543209877,
+        "random_walk_fourth_moment": 0.010989026063100177,
+        "adjacency_fourth_moment_per_node": 720990.0
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 91,
+        "n_edges": 4095,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 90,
+        "k_core_size": 91,
+        "maximum_degree": 90,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.011111111111111,
+        "normalized_laplacian_third_moment": 1.0223456790123424,
+        "random_walk_triangle_weight": 0.0109876543209877,
+        "random_walk_fourth_moment": 0.010989026063100177,
+        "adjacency_fourth_moment_per_node": 720990.0
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 91,
+        "n_edges": 4095,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 90,
+        "k_core_size": 91,
+        "maximum_degree": 90,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.011111111111111,
+        "normalized_laplacian_third_moment": 1.0223456790123424,
+        "random_walk_triangle_weight": 0.0109876543209877,
+        "random_walk_fourth_moment": 0.010989026063100177,
+        "adjacency_fourth_moment_per_node": 720990.0
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 91,
+        "n_edges": 4055,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 86,
+        "k_core_size": 91,
+        "maximum_degree": 90,
+        "degree_variance": 0.9414321941794471,
+        "global_clustering": 0.9902510822026287,
+        "degree_assortativity": -0.02388235141902704,
+        "degree_entropy": 1.2398625009249757,
+        "joint_degree_entropy": 1.9988761169603453,
+        "degree_skewness": -1.128209456069415,
+        "degree_kurtosis": 1.0403219680566265,
+        "normalized_laplacian_second_moment": 1.0112206830038368,
+        "normalized_laplacian_third_moment": 1.0226780253560535,
+        "random_walk_triangle_weight": 0.010984023655457531,
+        "random_walk_fourth_moment": 0.010989146034810758,
+        "adjacency_fourth_moment_per_node": 693557.9120879121
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.03,
+      "invariants": {
+        "n_nodes": 91,
+        "n_edges": 3973,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 83,
+        "k_core_size": 90,
+        "maximum_degree": 90,
+        "degree_variance": 2.766574085255404,
+        "global_clustering": 0.970271373189145,
+        "degree_assortativity": -0.02308974292861302,
+        "degree_entropy": 1.8567761060075068,
+        "joint_degree_entropy": 3.1272959003680376,
+        "degree_skewness": -0.419209658595801,
+        "degree_kurtosis": 0.18004734057315996,
+        "normalized_laplacian_second_moment": 1.0114522057967235,
+        "normalized_laplacian_third_moment": 1.0233800562948796,
+        "random_walk_triangle_weight": 0.010976561095290226,
+        "random_walk_fourth_moment": 0.010989559194391804,
+        "adjacency_fourth_moment_per_node": 639770.3956043957
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.07,
+      "invariants": {
+        "n_nodes": 91,
+        "n_edges": 3809,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 78,
+        "k_core_size": 90,
+        "maximum_degree": 88,
+        "degree_variance": 5.764521193092621,
+        "global_clustering": 0.9302234865422855,
+        "degree_assortativity": -0.025414584814239062,
+        "degree_entropy": 2.1927866635807964,
+        "joint_degree_entropy": 3.756506887833735,
+        "degree_skewness": -0.6638452910878209,
+        "degree_kurtosis": 0.6671537717545779,
+        "normalized_laplacian_second_moment": 1.011945140370859,
+        "normalized_laplacian_third_moment": 1.0248743481928921,
+        "random_walk_triangle_weight": 0.010961072919685268,
+        "random_walk_fourth_moment": 0.010991086601334377,
+        "adjacency_fourth_moment_per_node": 541538.0
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 91,
+        "n_edges": 3481,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 70,
+        "k_core_size": 91,
+        "maximum_degree": 82,
+        "degree_variance": 7.986233546673107,
+        "global_clustering": 0.8489768159332517,
+        "degree_assortativity": -0.01590439746928926,
+        "degree_entropy": 2.3924878869325905,
+        "joint_degree_entropy": 4.144610487165571,
+        "degree_skewness": 0.014925262318167423,
+        "degree_kurtosis": -0.7658562956247104,
+        "normalized_laplacian_second_moment": 1.0130706625331716,
+        "normalized_laplacian_third_moment": 1.0282905888024236,
+        "random_walk_triangle_weight": 0.010921398797091152,
+        "random_walk_fourth_moment": 0.010998579289330969,
+        "adjacency_fourth_moment_per_node": 378814.35164835164
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 91,
+        "n_edges": 3072,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 59,
+        "k_core_size": 91,
+        "maximum_degree": 78,
+        "degree_variance": 15.568409612365656,
+        "global_clustering": 0.7495647339390481,
+        "degree_assortativity": -0.01832105766876228,
+        "degree_entropy": 2.6987474360583925,
+        "joint_degree_entropy": 4.747964144008912,
+        "degree_skewness": 0.1646814691844698,
+        "degree_kurtosis": -0.19006794853890208,
+        "normalized_laplacian_second_moment": 1.0148103108165256,
+        "normalized_laplacian_third_moment": 1.0335689538011141,
+        "random_walk_triangle_weight": 0.010861978648462204,
+        "random_walk_fourth_moment": 0.011019859560387528,
+        "adjacency_fourth_moment_per_node": 232044.96703296702
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 91,
+        "n_edges": 4095,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 90,
+        "k_core_size": 91,
+        "maximum_degree": 90,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.011111111111111,
+        "normalized_laplacian_third_moment": 1.0223456790123424,
+        "random_walk_triangle_weight": 0.0109876543209877,
+        "random_walk_fourth_moment": 0.010989026063100177,
+        "adjacency_fourth_moment_per_node": 720990.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.02,
+      "invariants": {
+        "n_nodes": 90,
+        "n_edges": 4005,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 89,
+        "k_core_size": 90,
+        "maximum_degree": 89,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0112359550561798,
+        "normalized_laplacian_third_moment": 1.022598156798384,
+        "random_walk_triangle_weight": 0.011109708370155267,
+        "random_walk_fourth_moment": 0.01111112687224544,
+        "adjacency_fourth_moment_per_node": 697137.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 87,
+        "n_edges": 3741,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 86,
+        "k_core_size": 87,
+        "maximum_degree": 86,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0116279069767442,
+        "normalized_laplacian_third_moment": 1.0233910221741522,
+        "random_walk_triangle_weight": 0.011492698756084373,
+        "random_walk_fourth_moment": 0.011494270944696707,
+        "adjacency_fourth_moment_per_node": 628746.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 82,
+        "n_edges": 3321,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 81,
+        "k_core_size": 82,
+        "maximum_degree": 81,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0123456790123457,
+        "normalized_laplacian_third_moment": 1.0248437738149692,
+        "random_walk_triangle_weight": 0.012193263222069777,
+        "random_walk_fourth_moment": 0.012195144898492953,
+        "adjacency_fourth_moment_per_node": 524961.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 73,
+        "n_edges": 2628,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 72,
+        "k_core_size": 73,
+        "maximum_degree": 72,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0138888888888888,
+        "normalized_laplacian_third_moment": 1.0279706790123417,
+        "random_walk_triangle_weight": 0.013695987654320965,
+        "random_walk_fourth_moment": 0.013698666838134364,
+        "adjacency_fourth_moment_per_node": 368136.0
+      }
+    }
+  ],
+  "invariants_perturbed": [
+    {
+      "method": "noise",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 91.45032124453195,
+        "n_edges": 4069.479091583465,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0049383027302836,
+        "radius": 1.0201936600378037,
+        "degeneracy": 90.24623001719544,
+        "k_core_size": 90.42252109397607,
+        "maximum_degree": 91.1486790174193,
+        "degree_variance": 0.0,
+        "global_clustering": 0.9996481719997936,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0075554566172147,
+        "normalized_laplacian_third_moment": 1.0173830135174806,
+        "random_walk_triangle_weight": 0.011013547544634522,
+        "random_walk_fourth_moment": 0.01108046621508849,
+        "adjacency_fourth_moment_per_node": 713400.0040945383
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.02,
+      "invariants": {
+        "n_nodes": 93.48117309774327,
+        "n_edges": 4135.519458696316,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.9711598582752768,
+        "radius": 1.023838330268251,
+        "degeneracy": 89.5893457820528,
+        "k_core_size": 89.19475462142766,
+        "maximum_degree": 89.13852640176506,
+        "degree_variance": 0.0,
+        "global_clustering": 0.9883808282307972,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 0.9837416598251786,
+        "normalized_laplacian_third_moment": 1.0080570747232878,
+        "random_walk_triangle_weight": 0.011134995620071055,
+        "random_walk_fourth_moment": 0.010931777984167232,
+        "adjacency_fourth_moment_per_node": 742540.1823658337
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 88.93226550042472,
+        "n_edges": 3983.5062635047193,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.9639660286128988,
+        "radius": 0.9679238785051983,
+        "degeneracy": 82.69544693909324,
+        "k_core_size": 100.4234210434287,
+        "maximum_degree": 92.51155887696635,
+        "degree_variance": 0.0,
+        "global_clustering": 0.9719979561778012,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0730533882281357,
+        "normalized_laplacian_third_moment": 1.026660884995173,
+        "random_walk_triangle_weight": 0.011058633614104293,
+        "random_walk_fourth_moment": 0.011599858457034134,
+        "adjacency_fourth_moment_per_node": 705161.4462659237
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 90.01407451612234,
+        "n_edges": 4222.618152794944,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.8643058345144169,
+        "radius": 1.0554912043364535,
+        "degeneracy": 81.44015475888631,
+        "k_core_size": 88.68071896205133,
+        "maximum_degree": 79.42084782220198,
+        "degree_variance": 0.0,
+        "global_clustering": 0.9244332139984371,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.035803943525712,
+        "normalized_laplacian_third_moment": 0.9610250620394596,
+        "random_walk_triangle_weight": 0.010886288914324223,
+        "random_walk_fourth_moment": 0.009488135493938957,
+        "adjacency_fourth_moment_per_node": 793398.7403571414
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 76.5371413035828,
+        "n_edges": 4664.892607231168,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.1018281252692943,
+        "radius": 1.0922775700261893,
+        "degeneracy": 80.72595550079114,
+        "k_core_size": 135.45171389739812,
+        "maximum_degree": 91.50678501148447,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0331725308837665,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 0.8355728599616364,
+        "normalized_laplacian_third_moment": 1.0342725178060452,
+        "random_walk_triangle_weight": 0.013343847237743046,
+        "random_walk_fourth_moment": 0.013847359337458518,
+        "adjacency_fourth_moment_per_node": 617486.993167737
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 90.8285399130888,
+        "n_edges": 4085.59610755013,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.9890618574021692,
+        "radius": 1.024622160221392,
+        "degeneracy": 89.5313117850837,
+        "k_core_size": 91.00180703477716,
+        "maximum_degree": 90.76602685093243,
+        "degree_variance": 0.0,
+        "global_clustering": 0.9977577146193365,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0345095983227064,
+        "normalized_laplacian_third_moment": 1.0091462357772614,
+        "random_walk_triangle_weight": 0.01095581620951615,
+        "random_walk_fourth_moment": 0.010908740053670688,
+        "adjacency_fourth_moment_per_node": 722732.4353213412
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.02,
+      "invariants": {
+        "n_nodes": 91.84617556885037,
+        "n_edges": 4088.647360534205,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0133894017828549,
+        "radius": 1.0151500072640698,
+        "degeneracy": 89.61093725742286,
+        "k_core_size": 94.02103054379849,
+        "maximum_degree": 91.46892588825044,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0093449310863138,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0118722952279773,
+        "normalized_laplacian_third_moment": 1.0395168671856954,
+        "random_walk_triangle_weight": 0.010807165198694433,
+        "random_walk_fourth_moment": 0.011060148086956665,
+        "adjacency_fourth_moment_per_node": 727237.9689946468
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 86.20096509861,
+        "n_edges": 4060.8692213987933,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.9205294166761826,
+        "radius": 0.9439088594309297,
+        "degeneracy": 93.046964747014,
+        "k_core_size": 98.23183997775655,
+        "maximum_degree": 90.08806192257394,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0576918782684803,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 0.9724802031291663,
+        "normalized_laplacian_third_moment": 0.99089186147538,
+        "random_walk_triangle_weight": 0.011439473326435719,
+        "random_walk_fourth_moment": 0.011040662250131913,
+        "adjacency_fourth_moment_per_node": 751643.7873597499
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 96.51738633538821,
+        "n_edges": 3980.4864493863834,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.9136644728112041,
+        "radius": 1.0136880734391074,
+        "degeneracy": 88.76444650260594,
+        "k_core_size": 92.73353032890932,
+        "maximum_degree": 89.85425479892744,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0303801570038158,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.1185741876370228,
+        "normalized_laplacian_third_moment": 0.8578647224746225,
+        "random_walk_triangle_weight": 0.011556808374619745,
+        "random_walk_fourth_moment": 0.011240798823246276,
+        "adjacency_fourth_moment_per_node": 515245.4968451654
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 96.37209745526208,
+        "n_edges": 4499.910084824081,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.203291903762724,
+        "radius": 0.8790003357944525,
+        "degeneracy": 69.58814484418694,
+        "k_core_size": 92.29027811796108,
+        "maximum_degree": 98.47560450091068,
+        "degree_variance": 0.0,
+        "global_clustering": 0.7715671367289192,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 0.9739794800877959,
+        "normalized_laplacian_third_moment": 1.2434837029013597,
+        "random_walk_triangle_weight": 0.018509180768145905,
+        "random_walk_fourth_moment": 0.010895140842570894,
+        "adjacency_fourth_moment_per_node": 683145.7641355277
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.95,
+      "invariants": {
+        "n_nodes": 91.0,
+        "n_edges": 4095.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 90.0,
+        "k_core_size": 91.0,
+        "maximum_degree": 90.0,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.011111111111111,
+        "normalized_laplacian_third_moment": 1.0223456790123424,
+        "random_walk_triangle_weight": 0.0109876543209877,
+        "random_walk_fourth_moment": 0.010989026063100177,
+        "adjacency_fourth_moment_per_node": 720990.0
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.9,
+      "invariants": {
+        "n_nodes": 91.0,
+        "n_edges": 4095.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 90.0,
+        "k_core_size": 91.0,
+        "maximum_degree": 90.0,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.011111111111111,
+        "normalized_laplacian_third_moment": 1.0223456790123424,
+        "random_walk_triangle_weight": 0.0109876543209877,
+        "random_walk_fourth_moment": 0.010989026063100177,
+        "adjacency_fourth_moment_per_node": 720990.0
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.8,
+      "invariants": {
+        "n_nodes": 91.0,
+        "n_edges": 4095.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 90.0,
+        "k_core_size": 91.0,
+        "maximum_degree": 90.0,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.011111111111111,
+        "normalized_laplacian_third_moment": 1.0223456790123424,
+        "random_walk_triangle_weight": 0.0109876543209877,
+        "random_walk_fourth_moment": 0.010989026063100177,
+        "adjacency_fourth_moment_per_node": 720990.0
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.7,
+      "invariants": {
+        "n_nodes": 91.0,
+        "n_edges": 4095.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 90.0,
+        "k_core_size": 91.0,
+        "maximum_degree": 90.0,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.011111111111111,
+        "normalized_laplacian_third_moment": 1.0223456790123424,
+        "random_walk_triangle_weight": 0.0109876543209877,
+        "random_walk_fourth_moment": 0.010989026063100177,
+        "adjacency_fourth_moment_per_node": 720990.0
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.6,
+      "invariants": {
+        "n_nodes": 91.0,
+        "n_edges": 4095.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 90.0,
+        "k_core_size": 91.0,
+        "maximum_degree": 90.0,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.011111111111111,
+        "normalized_laplacian_third_moment": 1.0223456790123424,
+        "random_walk_triangle_weight": 0.0109876543209877,
+        "random_walk_fourth_moment": 0.010989026063100177,
+        "adjacency_fourth_moment_per_node": 720990.0
+      }
+    }
+  ],
+  "process_perturbed": [
+    {
+      "method": "scaling",
+      "intensity": 0.5,
+      "signatures": {
+        "lag1_autocorr": 0.653406969419805,
+        "coef_variation": 0.2125000028446873,
+        "fano_factor": 0.04515625120903728,
+        "norm_succ_diff": 0.12921202356255262,
+        "hurst_exponent": 0.6790660405926,
+        "trend_coeff": -0.20853413585967806,
+        "count_skewness": 4.205119203664947
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 0.75,
+      "signatures": {
+        "lag1_autocorr": 0.6534069694198049,
+        "coef_variation": 0.21250000284468734,
+        "fano_factor": 0.04515625120903729,
+        "norm_succ_diff": 0.12921202356255262,
+        "hurst_exponent": 0.6790660405926,
+        "trend_coeff": -0.20853413585967803,
+        "count_skewness": 4.205119203664947
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 1.0,
+      "signatures": {
+        "lag1_autocorr": 0.653406969419805,
+        "coef_variation": 0.2125000028446873,
+        "fano_factor": 0.04515625120903728,
+        "norm_succ_diff": 0.12921202356255262,
+        "hurst_exponent": 0.6790660405926,
+        "trend_coeff": -0.20853413585967806,
+        "count_skewness": 4.205119203664947
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 1.5,
+      "signatures": {
+        "lag1_autocorr": 0.6534069694198049,
+        "coef_variation": 0.21250000284468734,
+        "fano_factor": 0.04515625120903729,
+        "norm_succ_diff": 0.12921202356255262,
+        "hurst_exponent": 0.6790660405926,
+        "trend_coeff": -0.20853413585967803,
+        "count_skewness": 4.205119203664947
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 2.0,
+      "signatures": {
+        "lag1_autocorr": 0.653406969419805,
+        "coef_variation": 0.2125000028446873,
+        "fano_factor": 0.04515625120903728,
+        "norm_succ_diff": 0.12921202356255262,
+        "hurst_exponent": 0.6790660405926,
+        "trend_coeff": -0.20853413585967806,
+        "count_skewness": 4.205119203664947
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 1.0,
+      "signatures": {
+        "lag1_autocorr": 0.6534069694198049,
+        "coef_variation": 0.21250000284489928,
+        "fano_factor": 17.106899925766,
+        "norm_succ_diff": 0.1292120235626815,
+        "hurst_exponent": 0.6790660405925996,
+        "trend_coeff": -0.20853413585967806,
+        "count_skewness": 4.205119203664944
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 2.0,
+      "signatures": {
+        "lag1_autocorr": 0.821079328526776,
+        "coef_variation": 0.1932966017678878,
+        "fano_factor": 14.148426414554708,
+        "norm_succ_diff": 0.07695870710577615,
+        "hurst_exponent": 0.6960987422331765,
+        "trend_coeff": -0.23044930984177991,
+        "count_skewness": 4.702537073305337
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 4.0,
+      "signatures": {
+        "lag1_autocorr": 0.9176822414369427,
+        "coef_variation": 0.1692935213517433,
+        "fano_factor": 10.851642503611181,
+        "norm_succ_diff": 0.042335848893585375,
+        "hurst_exponent": 0.716646313896348,
+        "trend_coeff": -0.264734388423973,
+        "count_skewness": 4.6330323866097265
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 8.0,
+      "signatures": {
+        "lag1_autocorr": 0.9616018219192302,
+        "coef_variation": 0.13889284126558019,
+        "fano_factor": 7.309122755729079,
+        "norm_succ_diff": 0.024050560973994627,
+        "hurst_exponent": 0.7433103928682281,
+        "trend_coeff": -0.3186201195778273,
+        "count_skewness": 3.765115100192679
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 16.0,
+      "signatures": {
+        "lag1_autocorr": 0.9779601610737813,
+        "coef_variation": 0.1049449264081292,
+        "fano_factor": 4.178802840815588,
+        "norm_succ_diff": 0.012054182918468319,
+        "hurst_exponent": 0.7795635165464426,
+        "trend_coeff": -0.3995598631842843,
+        "count_skewness": 2.426530504902235
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.0,
+      "signatures": {
+        "lag1_autocorr": 0.0,
+        "coef_variation": 0.0,
+        "fano_factor": 0.0,
+        "norm_succ_diff": 0.0,
+        "hurst_exponent": 0.5,
+        "trend_coeff": 0.0,
+        "count_skewness": 0.0
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": 0.006973950325155461,
+        "coef_variation": 0.13820797297668277,
+        "fano_factor": 7.168184119277488,
+        "norm_succ_diff": 0.15644966063779556,
+        "hurst_exponent": 0.576471886108156,
+        "trend_coeff": 0.05642341699335278,
+        "count_skewness": 0.3066477466052426
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.2,
+      "signatures": {
+        "lag1_autocorr": 0.057017605195169165,
+        "coef_variation": 0.17031615935958272,
+        "fano_factor": 10.85481704743729,
+        "norm_succ_diff": 0.16748039568249612,
+        "hurst_exponent": 0.5832402972057456,
+        "trend_coeff": 0.014957081631274382,
+        "count_skewness": 2.4869591816670362
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.35,
+      "signatures": {
+        "lag1_autocorr": 0.057410108897383454,
+        "coef_variation": 0.2021898730609196,
+        "fano_factor": 15.41170384846824,
+        "norm_succ_diff": 0.17460246814691194,
+        "hurst_exponent": 0.5026736883896049,
+        "trend_coeff": -0.04944207945263394,
+        "count_skewness": 4.131133373246196
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.5,
+      "signatures": {
+        "lag1_autocorr": -0.035271464399333964,
+        "coef_variation": 0.14521342916769506,
+        "fano_factor": 7.891845230136362,
+        "norm_succ_diff": 0.16468445260016565,
+        "hurst_exponent": 0.5123064843143446,
+        "trend_coeff": 0.05562200615706032,
+        "count_skewness": 0.6112746468021037
+      }
+    }
+  ],
+  "signatures_perturbed": [
+    {
+      "method": "noise",
+      "intensity": 0.01,
+      "signatures": {
+        "lag1_autocorr": 0.6509064246997824,
+        "coef_variation": 0.21277293306279665,
+        "fano_factor": 17.138576762190535,
+        "norm_succ_diff": 0.12813271709905272,
+        "hurst_exponent": 0.6814740448336867,
+        "trend_coeff": -0.20710443641671517,
+        "count_skewness": 4.15451567546563
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.02,
+      "signatures": {
+        "lag1_autocorr": 0.6679664094072619,
+        "coef_variation": 0.2118747071141092,
+        "fano_factor": 17.376352921893304,
+        "norm_succ_diff": 0.1273095667857715,
+        "hurst_exponent": 0.6890481413352273,
+        "trend_coeff": -0.2032606018949016,
+        "count_skewness": 4.195529284575769
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.05,
+      "signatures": {
+        "lag1_autocorr": 0.6379777303666382,
+        "coef_variation": 0.2221863533010164,
+        "fano_factor": 17.654049322043218,
+        "norm_succ_diff": 0.13664241520510437,
+        "hurst_exponent": 0.7125682212240697,
+        "trend_coeff": -0.2133992072982493,
+        "count_skewness": 4.355819993179561
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": 0.688821408008218,
+        "coef_variation": 0.19572726132180182,
+        "fano_factor": 14.399137120064452,
+        "norm_succ_diff": 0.14081745512205826,
+        "hurst_exponent": 0.7043185128054872,
+        "trend_coeff": -0.22732712789196002,
+        "count_skewness": 4.65937628744907
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.2,
+      "signatures": {
+        "lag1_autocorr": 0.7352085476545718,
+        "coef_variation": 0.2588035501037475,
+        "fano_factor": 14.252449680940455,
+        "norm_succ_diff": 0.1443693827711854,
+        "hurst_exponent": 0.630303645032645,
+        "trend_coeff": -0.15196556740441125,
+        "count_skewness": 3.0168860841253475
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.01,
+      "signatures": {
+        "lag1_autocorr": 0.6549444517528211,
+        "coef_variation": 0.2103263924625518,
+        "fano_factor": 16.97617364185993,
+        "norm_succ_diff": 0.12823426163924928,
+        "hurst_exponent": 0.6694513741680502,
+        "trend_coeff": -0.2063429167870839,
+        "count_skewness": 4.231014366619906
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.02,
+      "signatures": {
+        "lag1_autocorr": 0.6466369508383804,
+        "coef_variation": 0.20558472730826305,
+        "fano_factor": 17.17526316177898,
+        "norm_succ_diff": 0.12952069038832376,
+        "hurst_exponent": 0.6759687731295121,
+        "trend_coeff": -0.20508409115785242,
+        "count_skewness": 4.256211865278182
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.05,
+      "signatures": {
+        "lag1_autocorr": 0.6365697032229684,
+        "coef_variation": 0.2260800351129939,
+        "fano_factor": 17.5277832293571,
+        "norm_succ_diff": 0.13949090767634353,
+        "hurst_exponent": 0.7124430215296254,
+        "trend_coeff": -0.19648037433476487,
+        "count_skewness": 4.317652540494503
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": 0.7216363631822591,
+        "coef_variation": 0.23902841145341136,
+        "fano_factor": 14.803170775981023,
+        "norm_succ_diff": 0.14047874277293937,
+        "hurst_exponent": 0.5579029040268704,
+        "trend_coeff": -0.1703183053351706,
+        "count_skewness": 3.7724220474516765
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.2,
+      "signatures": {
+        "lag1_autocorr": 0.8223278722123485,
+        "coef_variation": 0.19096119084978094,
+        "fano_factor": 17.817926983141522,
+        "norm_succ_diff": 0.1291716551212073,
+        "hurst_exponent": 0.7587260598327242,
+        "trend_coeff": -0.269733721787136,
+        "count_skewness": 5.10305424780359
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.95,
+      "signatures": {
+        "lag1_autocorr": 0.6534069694198049,
+        "coef_variation": 0.21250000284489928,
+        "fano_factor": 17.106899925766,
+        "norm_succ_diff": 0.1292120235626815,
+        "hurst_exponent": 0.6790660405925996,
+        "trend_coeff": -0.20853413585967806,
+        "count_skewness": 4.205119203664944
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.9,
+      "signatures": {
+        "lag1_autocorr": 0.6534069694198049,
+        "coef_variation": 0.21250000284489928,
+        "fano_factor": 17.106899925766,
+        "norm_succ_diff": 0.1292120235626815,
+        "hurst_exponent": 0.6790660405925996,
+        "trend_coeff": -0.20853413585967806,
+        "count_skewness": 4.205119203664944
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.8,
+      "signatures": {
+        "lag1_autocorr": 0.6534069694198049,
+        "coef_variation": 0.21250000284489928,
+        "fano_factor": 17.106899925766,
+        "norm_succ_diff": 0.1292120235626815,
+        "hurst_exponent": 0.6790660405925996,
+        "trend_coeff": -0.20853413585967806,
+        "count_skewness": 4.205119203664944
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.7,
+      "signatures": {
+        "lag1_autocorr": 0.6534069694198049,
+        "coef_variation": 0.21250000284489928,
+        "fano_factor": 17.106899925766,
+        "norm_succ_diff": 0.1292120235626815,
+        "hurst_exponent": 0.6790660405925996,
+        "trend_coeff": -0.20853413585967806,
+        "count_skewness": 4.205119203664944
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.6,
+      "signatures": {
+        "lag1_autocorr": 0.6534069694198049,
+        "coef_variation": 0.21250000284489928,
+        "fano_factor": 17.106899925766,
+        "norm_succ_diff": 0.1292120235626815,
+        "hurst_exponent": 0.6790660405925996,
+        "trend_coeff": -0.20853413585967806,
+        "count_skewness": 4.205119203664944
+      }
+    }
+  ],
+  "temporal_aggregated": [
+    {
+      "scale": "2D",
+      "events": [
+        {
+          "date": "2023-01-01",
+          "target": 780
+        },
+        {
+          "date": "2023-01-03",
+          "target": 806
+        },
+        {
+          "date": "2023-01-05",
+          "target": 712
+        },
+        {
+          "date": "2023-01-07",
+          "target": 752
+        },
+        {
+          "date": "2023-01-09",
+          "target": 740
+        },
+        {
+          "date": "2023-01-11",
+          "target": 675
+        },
+        {
+          "date": "2023-01-13",
+          "target": 674
+        },
+        {
+          "date": "2023-01-15",
+          "target": 687
+        },
+        {
+          "date": "2023-01-17",
+          "target": 664
+        },
+        {
+          "date": "2023-01-19",
+          "target": 728
+        },
+        {
+          "date": "2023-01-21",
+          "target": 698
+        },
+        {
+          "date": "2023-01-23",
+          "target": 675
+        },
+        {
+          "date": "2023-01-25",
+          "target": 678
+        },
+        {
+          "date": "2023-01-27",
+          "target": 736
+        },
+        {
+          "date": "2023-01-29",
+          "target": 683
+        },
+        {
+          "date": "2023-01-31",
+          "target": 727
+        },
+        {
+          "date": "2023-02-02",
+          "target": 883
+        },
+        {
+          "date": "2023-02-04",
+          "target": 671
+        },
+        {
+          "date": "2023-02-06",
+          "target": 895
+        },
+        {
+          "date": "2023-02-08",
+          "target": 850
+        },
+        {
+          "date": "2023-02-10",
+          "target": 683
+        },
+        {
+          "date": "2023-02-12",
+          "target": 673
+        },
+        {
+          "date": "2023-02-14",
+          "target": 638
+        },
+        {
+          "date": "2023-02-16",
+          "target": 867
+        },
+        {
+          "date": "2023-02-18",
+          "target": 796
+        },
+        {
+          "date": "2023-02-20",
+          "target": 752
+        },
+        {
+          "date": "2023-02-22",
+          "target": 719
+        },
+        {
+          "date": "2023-02-24",
+          "target": 803
+        },
+        {
+          "date": "2023-02-26",
+          "target": 655
+        },
+        {
+          "date": "2023-02-28",
+          "target": 848
+        },
+        {
+          "date": "2023-03-02",
+          "target": 626
+        },
+        {
+          "date": "2023-03-04",
+          "target": 661
+        },
+        {
+          "date": "2023-03-06",
+          "target": 700
+        },
+        {
+          "date": "2023-03-08",
+          "target": 1869
+        },
+        {
+          "date": "2023-03-10",
+          "target": 1741
+        },
+        {
+          "date": "2023-03-12",
+          "target": 1279
+        },
+        {
+          "date": "2023-03-14",
+          "target": 936
+        },
+        {
+          "date": "2023-03-16",
+          "target": 847
+        },
+        {
+          "date": "2023-03-18",
+          "target": 794
+        },
+        {
+          "date": "2023-03-20",
+          "target": 710
+        },
+        {
+          "date": "2023-03-22",
+          "target": 678
+        },
+        {
+          "date": "2023-03-24",
+          "target": 775
+        },
+        {
+          "date": "2023-03-26",
+          "target": 809
+        },
+        {
+          "date": "2023-03-28",
+          "target": 923
+        },
+        {
+          "date": "2023-03-30",
+          "target": 811
+        },
+        {
+          "date": "2023-04-01",
+          "target": 804
+        },
+        {
+          "date": "2023-04-03",
+          "target": 739
+        },
+        {
+          "date": "2023-04-05",
+          "target": 935
+        },
+        {
+          "date": "2023-04-07",
+          "target": 702
+        },
+        {
+          "date": "2023-04-09",
+          "target": 861
+        },
+        {
+          "date": "2023-04-11",
+          "target": 922
+        },
+        {
+          "date": "2023-04-13",
+          "target": 775
+        },
+        {
+          "date": "2023-04-15",
+          "target": 741
+        },
+        {
+          "date": "2023-04-17",
+          "target": 692
+        },
+        {
+          "date": "2023-04-19",
+          "target": 760
+        },
+        {
+          "date": "2023-04-21",
+          "target": 743
+        },
+        {
+          "date": "2023-04-23",
+          "target": 750
+        },
+        {
+          "date": "2023-04-25",
+          "target": 764
+        },
+        {
+          "date": "2023-04-27",
+          "target": 876
+        },
+        {
+          "date": "2023-04-29",
+          "target": 1001
+        },
+        {
+          "date": "2023-05-01",
+          "target": 600
+        },
+        {
+          "date": "2023-05-03",
+          "target": 777
+        },
+        {
+          "date": "2023-05-05",
+          "target": 824
+        },
+        {
+          "date": "2023-05-07",
+          "target": 799
+        },
+        {
+          "date": "2023-05-09",
+          "target": 792
+        },
+        {
+          "date": "2023-05-11",
+          "target": 815
+        },
+        {
+          "date": "2023-05-13",
+          "target": 599
+        },
+        {
+          "date": "2023-05-15",
+          "target": 593
+        },
+        {
+          "date": "2023-05-17",
+          "target": 705
+        },
+        {
+          "date": "2023-05-19",
+          "target": 865
+        },
+        {
+          "date": "2023-05-21",
+          "target": 844
+        },
+        {
+          "date": "2023-05-23",
+          "target": 755
+        },
+        {
+          "date": "2023-05-25",
+          "target": 754
+        },
+        {
+          "date": "2023-05-27",
+          "target": 638
+        },
+        {
+          "date": "2023-05-29",
+          "target": 724
+        },
+        {
+          "date": "2023-05-31",
+          "target": 840
+        },
+        {
+          "date": "2023-06-02",
+          "target": 983
+        },
+        {
+          "date": "2023-06-04",
+          "target": 743
+        },
+        {
+          "date": "2023-06-06",
+          "target": 905
+        },
+        {
+          "date": "2023-06-08",
+          "target": 822
+        },
+        {
+          "date": "2023-06-10",
+          "target": 727
+        },
+        {
+          "date": "2023-06-12",
+          "target": 796
+        },
+        {
+          "date": "2023-06-14",
+          "target": 636
+        },
+        {
+          "date": "2023-06-16",
+          "target": 707
+        },
+        {
+          "date": "2023-06-18",
+          "target": 726
+        },
+        {
+          "date": "2023-06-20",
+          "target": 719
+        },
+        {
+          "date": "2023-06-22",
+          "target": 751
+        },
+        {
+          "date": "2023-06-24",
+          "target": 707
+        },
+        {
+          "date": "2023-06-26",
+          "target": 694
+        },
+        {
+          "date": "2023-06-28",
+          "target": 796
+        },
+        {
+          "date": "2023-06-30",
+          "target": 787
+        },
+        {
+          "date": "2023-07-02",
+          "target": 803
+        },
+        {
+          "date": "2023-07-04",
+          "target": 658
+        },
+        {
+          "date": "2023-07-06",
+          "target": 782
+        },
+        {
+          "date": "2023-07-08",
+          "target": 689
+        },
+        {
+          "date": "2023-07-10",
+          "target": 840
+        },
+        {
+          "date": "2023-07-12",
+          "target": 845
+        },
+        {
+          "date": "2023-07-14",
+          "target": 751
+        },
+        {
+          "date": "2023-07-16",
+          "target": 970
+        },
+        {
+          "date": "2023-07-18",
+          "target": 778
+        },
+        {
+          "date": "2023-07-20",
+          "target": 758
+        },
+        {
+          "date": "2023-07-22",
+          "target": 773
+        },
+        {
+          "date": "2023-07-24",
+          "target": 736
+        },
+        {
+          "date": "2023-07-26",
+          "target": 800
+        },
+        {
+          "date": "2023-07-28",
+          "target": 751
+        },
+        {
+          "date": "2023-07-30",
+          "target": 762
+        },
+        {
+          "date": "2023-08-01",
+          "target": 840
+        },
+        {
+          "date": "2023-08-03",
+          "target": 678
+        },
+        {
+          "date": "2023-08-05",
+          "target": 657
+        },
+        {
+          "date": "2023-08-07",
+          "target": 774
+        },
+        {
+          "date": "2023-08-09",
+          "target": 681
+        },
+        {
+          "date": "2023-08-11",
+          "target": 720
+        },
+        {
+          "date": "2023-08-13",
+          "target": 751
+        },
+        {
+          "date": "2023-08-15",
+          "target": 1042
+        },
+        {
+          "date": "2023-08-17",
+          "target": 733
+        },
+        {
+          "date": "2023-08-19",
+          "target": 780
+        },
+        {
+          "date": "2023-08-21",
+          "target": 951
+        },
+        {
+          "date": "2023-08-23",
+          "target": 853
+        },
+        {
+          "date": "2023-08-25",
+          "target": 692
+        },
+        {
+          "date": "2023-08-27",
+          "target": 741
+        },
+        {
+          "date": "2023-08-29",
+          "target": 684
+        },
+        {
+          "date": "2023-08-31",
+          "target": 663
+        },
+        {
+          "date": "2023-09-02",
+          "target": 627
+        },
+        {
+          "date": "2023-09-04",
+          "target": 779
+        },
+        {
+          "date": "2023-09-06",
+          "target": 683
+        },
+        {
+          "date": "2023-09-08",
+          "target": 734
+        },
+        {
+          "date": "2023-09-10",
+          "target": 734
+        },
+        {
+          "date": "2023-09-12",
+          "target": 652
+        },
+        {
+          "date": "2023-09-14",
+          "target": 714
+        },
+        {
+          "date": "2023-09-16",
+          "target": 572
+        },
+        {
+          "date": "2023-09-18",
+          "target": 717
+        },
+        {
+          "date": "2023-09-20",
+          "target": 693
+        },
+        {
+          "date": "2023-09-22",
+          "target": 780
+        },
+        {
+          "date": "2023-09-24",
+          "target": 713
+        },
+        {
+          "date": "2023-09-26",
+          "target": 647
+        },
+        {
+          "date": "2023-09-28",
+          "target": 737
+        },
+        {
+          "date": "2023-09-30",
+          "target": 628
+        },
+        {
+          "date": "2023-10-02",
+          "target": 713
+        },
+        {
+          "date": "2023-10-04",
+          "target": 742
+        },
+        {
+          "date": "2023-10-06",
+          "target": 731
+        },
+        {
+          "date": "2023-10-08",
+          "target": 738
+        },
+        {
+          "date": "2023-10-10",
+          "target": 670
+        },
+        {
+          "date": "2023-10-12",
+          "target": 617
+        },
+        {
+          "date": "2023-10-14",
+          "target": 624
+        },
+        {
+          "date": "2023-10-16",
+          "target": 598
+        },
+        {
+          "date": "2023-10-18",
+          "target": 616
+        },
+        {
+          "date": "2023-10-20",
+          "target": 672
+        },
+        {
+          "date": "2023-10-22",
+          "target": 773
+        },
+        {
+          "date": "2023-10-24",
+          "target": 707
+        },
+        {
+          "date": "2023-10-26",
+          "target": 807
+        },
+        {
+          "date": "2023-10-28",
+          "target": 820
+        },
+        {
+          "date": "2023-10-30",
+          "target": 723
+        },
+        {
+          "date": "2023-11-01",
+          "target": 770
+        },
+        {
+          "date": "2023-11-03",
+          "target": 728
+        },
+        {
+          "date": "2023-11-05",
+          "target": 662
+        },
+        {
+          "date": "2023-11-07",
+          "target": 734
+        },
+        {
+          "date": "2023-11-09",
+          "target": 757
+        },
+        {
+          "date": "2023-11-11",
+          "target": 682
+        },
+        {
+          "date": "2023-11-13",
+          "target": 668
+        },
+        {
+          "date": "2023-11-15",
+          "target": 561
+        },
+        {
+          "date": "2023-11-17",
+          "target": 623
+        },
+        {
+          "date": "2023-11-19",
+          "target": 635
+        },
+        {
+          "date": "2023-11-21",
+          "target": 713
+        },
+        {
+          "date": "2023-11-23",
+          "target": 657
+        },
+        {
+          "date": "2023-11-25",
+          "target": 727
+        },
+        {
+          "date": "2023-11-27",
+          "target": 686
+        },
+        {
+          "date": "2023-11-29",
+          "target": 658
+        },
+        {
+          "date": "2023-12-01",
+          "target": 876
+        },
+        {
+          "date": "2023-12-03",
+          "target": 908
+        },
+        {
+          "date": "2023-12-05",
+          "target": 735
+        },
+        {
+          "date": "2023-12-07",
+          "target": 777
+        },
+        {
+          "date": "2023-12-09",
+          "target": 761
+        },
+        {
+          "date": "2023-12-11",
+          "target": 740
+        },
+        {
+          "date": "2023-12-13",
+          "target": 714
+        },
+        {
+          "date": "2023-12-15",
+          "target": 627
+        },
+        {
+          "date": "2023-12-17",
+          "target": 665
+        },
+        {
+          "date": "2023-12-19",
+          "target": 663
+        },
+        {
+          "date": "2023-12-21",
+          "target": 676
+        },
+        {
+          "date": "2023-12-23",
+          "target": 618
+        },
+        {
+          "date": "2023-12-25",
+          "target": 673
+        },
+        {
+          "date": "2023-12-27",
+          "target": 674
+        },
+        {
+          "date": "2023-12-29",
+          "target": 837
+        }
+      ]
+    },
+    {
+      "scale": "3D",
+      "events": [
+        {
+          "date": "2023-01-01",
+          "target": 1245
+        },
+        {
+          "date": "2023-01-04",
+          "target": 1053
+        },
+        {
+          "date": "2023-01-07",
+          "target": 1105
+        },
+        {
+          "date": "2023-01-10",
+          "target": 1062
+        },
+        {
+          "date": "2023-01-13",
+          "target": 1023
+        },
+        {
+          "date": "2023-01-16",
+          "target": 1002
+        },
+        {
+          "date": "2023-01-19",
+          "target": 1109
+        },
+        {
+          "date": "2023-01-22",
+          "target": 992
+        },
+        {
+          "date": "2023-01-25",
+          "target": 1055
+        },
+        {
+          "date": "2023-01-28",
+          "target": 1042
+        },
+        {
+          "date": "2023-01-31",
+          "target": 1157
+        },
+        {
+          "date": "2023-02-03",
+          "target": 1124
+        },
+        {
+          "date": "2023-02-06",
+          "target": 1320
+        },
+        {
+          "date": "2023-02-09",
+          "target": 1108
+        },
+        {
+          "date": "2023-02-12",
+          "target": 998
+        },
+        {
+          "date": "2023-02-15",
+          "target": 1180
+        },
+        {
+          "date": "2023-02-18",
+          "target": 1166
+        },
+        {
+          "date": "2023-02-21",
+          "target": 1101
+        },
+        {
+          "date": "2023-02-24",
+          "target": 1121
+        },
+        {
+          "date": "2023-02-27",
+          "target": 1185
+        },
+        {
+          "date": "2023-03-02",
+          "target": 965
+        },
+        {
+          "date": "2023-03-05",
+          "target": 1022
+        },
+        {
+          "date": "2023-03-08",
+          "target": 2844
+        },
+        {
+          "date": "2023-03-11",
+          "target": 2045
+        },
+        {
+          "date": "2023-03-14",
+          "target": 1329
+        },
+        {
+          "date": "2023-03-17",
+          "target": 1248
+        },
+        {
+          "date": "2023-03-20",
+          "target": 1007
+        },
+        {
+          "date": "2023-03-23",
+          "target": 1156
+        },
+        {
+          "date": "2023-03-26",
+          "target": 1216
+        },
+        {
+          "date": "2023-03-29",
+          "target": 1327
+        },
+        {
+          "date": "2023-04-01",
+          "target": 1145
+        },
+        {
+          "date": "2023-04-04",
+          "target": 1333
+        },
+        {
+          "date": "2023-04-07",
+          "target": 1092
+        },
+        {
+          "date": "2023-04-10",
+          "target": 1393
+        },
+        {
+          "date": "2023-04-13",
+          "target": 1161
+        },
+        {
+          "date": "2023-04-16",
+          "target": 1047
+        },
+        {
+          "date": "2023-04-19",
+          "target": 1138
+        },
+        {
+          "date": "2023-04-22",
+          "target": 1115
+        },
+        {
+          "date": "2023-04-25",
+          "target": 1182
+        },
+        {
+          "date": "2023-04-28",
+          "target": 1459
+        },
+        {
+          "date": "2023-05-01",
+          "target": 1015
+        },
+        {
+          "date": "2023-05-04",
+          "target": 1186
+        },
+        {
+          "date": "2023-05-07",
+          "target": 1209
+        },
+        {
+          "date": "2023-05-10",
+          "target": 1197
+        },
+        {
+          "date": "2023-05-13",
+          "target": 927
+        },
+        {
+          "date": "2023-05-16",
+          "target": 970
+        },
+        {
+          "date": "2023-05-19",
+          "target": 1317
+        },
+        {
+          "date": "2023-05-22",
+          "target": 1147
+        },
+        {
+          "date": "2023-05-25",
+          "target": 1075
+        },
+        {
+          "date": "2023-05-28",
+          "target": 1041
+        },
+        {
+          "date": "2023-05-31",
+          "target": 1329
+        },
+        {
+          "date": "2023-06-03",
+          "target": 1237
+        },
+        {
+          "date": "2023-06-06",
+          "target": 1349
+        },
+        {
+          "date": "2023-06-09",
+          "target": 1105
+        },
+        {
+          "date": "2023-06-12",
+          "target": 1174
+        },
+        {
+          "date": "2023-06-15",
+          "target": 965
+        },
+        {
+          "date": "2023-06-18",
+          "target": 1065
+        },
+        {
+          "date": "2023-06-21",
+          "target": 1131
+        },
+        {
+          "date": "2023-06-24",
+          "target": 1070
+        },
+        {
+          "date": "2023-06-27",
+          "target": 1127
+        },
+        {
+          "date": "2023-06-30",
+          "target": 1200
+        },
+        {
+          "date": "2023-07-03",
+          "target": 1048
+        },
+        {
+          "date": "2023-07-06",
+          "target": 1112
+        },
+        {
+          "date": "2023-07-09",
+          "target": 1199
+        },
+        {
+          "date": "2023-07-12",
+          "target": 1233
+        },
+        {
+          "date": "2023-07-15",
+          "target": 1333
+        },
+        {
+          "date": "2023-07-18",
+          "target": 1164
+        },
+        {
+          "date": "2023-07-21",
+          "target": 1145
+        },
+        {
+          "date": "2023-07-24",
+          "target": 1157
+        },
+        {
+          "date": "2023-07-27",
+          "target": 1130
+        },
+        {
+          "date": "2023-07-30",
+          "target": 1213
+        },
+        {
+          "date": "2023-08-02",
+          "target": 1067
+        },
+        {
+          "date": "2023-08-05",
+          "target": 1025
+        },
+        {
+          "date": "2023-08-08",
+          "target": 1087
+        },
+        {
+          "date": "2023-08-11",
+          "target": 1078
+        },
+        {
+          "date": "2023-08-14",
+          "target": 1435
+        },
+        {
+          "date": "2023-08-17",
+          "target": 1089
+        },
+        {
+          "date": "2023-08-20",
+          "target": 1375
+        },
+        {
+          "date": "2023-08-23",
+          "target": 1231
+        },
+        {
+          "date": "2023-08-26",
+          "target": 1055
+        },
+        {
+          "date": "2023-08-29",
+          "target": 1052
+        },
+        {
+          "date": "2023-09-01",
+          "target": 922
+        },
+        {
+          "date": "2023-09-04",
+          "target": 1128
+        },
+        {
+          "date": "2023-09-07",
+          "target": 1068
+        },
+        {
+          "date": "2023-09-10",
+          "target": 1042
+        },
+        {
+          "date": "2023-09-13",
+          "target": 1058
+        },
+        {
+          "date": "2023-09-16",
+          "target": 926
+        },
+        {
+          "date": "2023-09-19",
+          "target": 1056
+        },
+        {
+          "date": "2023-09-22",
+          "target": 1136
+        },
+        {
+          "date": "2023-09-25",
+          "target": 1004
+        },
+        {
+          "date": "2023-09-28",
+          "target": 1032
+        },
+        {
+          "date": "2023-10-01",
+          "target": 1046
+        },
+        {
+          "date": "2023-10-04",
+          "target": 1096
+        },
+        {
+          "date": "2023-10-07",
+          "target": 1115
+        },
+        {
+          "date": "2023-10-10",
+          "target": 965
+        },
+        {
+          "date": "2023-10-13",
+          "target": 946
+        },
+        {
+          "date": "2023-10-16",
+          "target": 880
+        },
+        {
+          "date": "2023-10-19",
+          "target": 1006
+        },
+        {
+          "date": "2023-10-22",
+          "target": 1135
+        },
+        {
+          "date": "2023-10-25",
+          "target": 1152
+        },
+        {
+          "date": "2023-10-28",
+          "target": 1159
+        },
+        {
+          "date": "2023-10-31",
+          "target": 1154
+        },
+        {
+          "date": "2023-11-03",
+          "target": 1063
+        },
+        {
+          "date": "2023-11-06",
+          "target": 1061
+        },
+        {
+          "date": "2023-11-09",
+          "target": 1079
+        },
+        {
+          "date": "2023-11-12",
+          "target": 1028
+        },
+        {
+          "date": "2023-11-15",
+          "target": 862
+        },
+        {
+          "date": "2023-11-18",
+          "target": 957
+        },
+        {
+          "date": "2023-11-21",
+          "target": 971
+        },
+        {
+          "date": "2023-11-24",
+          "target": 1126
+        },
+        {
+          "date": "2023-11-27",
+          "target": 1017
+        },
+        {
+          "date": "2023-11-30",
+          "target": 1203
+        },
+        {
+          "date": "2023-12-03",
+          "target": 1327
+        },
+        {
+          "date": "2023-12-06",
+          "target": 1093
+        },
+        {
+          "date": "2023-12-09",
+          "target": 1093
+        },
+        {
+          "date": "2023-12-12",
+          "target": 1122
+        },
+        {
+          "date": "2023-12-15",
+          "target": 946
+        },
+        {
+          "date": "2023-12-18",
+          "target": 1009
+        },
+        {
+          "date": "2023-12-21",
+          "target": 989
+        },
+        {
+          "date": "2023-12-24",
+          "target": 978
+        },
+        {
+          "date": "2023-12-27",
+          "target": 1054
+        },
+        {
+          "date": "2023-12-30",
+          "target": 457
+        }
+      ]
+    },
+    {
+      "scale": "7D",
+      "events": [
+        {
+          "date": "2023-01-01",
+          "target": 2703
+        },
+        {
+          "date": "2023-01-08",
+          "target": 2436
+        },
+        {
+          "date": "2023-01-15",
+          "target": 2460
+        },
+        {
+          "date": "2023-01-22",
+          "target": 2406
+        },
+        {
+          "date": "2023-01-29",
+          "target": 2635
+        },
+        {
+          "date": "2023-02-05",
+          "target": 2757
+        },
+        {
+          "date": "2023-02-12",
+          "target": 2562
+        },
+        {
+          "date": "2023-02-19",
+          "target": 2686
+        },
+        {
+          "date": "2023-02-26",
+          "target": 2468
+        },
+        {
+          "date": "2023-03-05",
+          "target": 4632
+        },
+        {
+          "date": "2023-03-12",
+          "target": 3472
+        },
+        {
+          "date": "2023-03-19",
+          "target": 2547
+        },
+        {
+          "date": "2023-03-26",
+          "target": 2905
+        },
+        {
+          "date": "2023-04-02",
+          "target": 2818
+        },
+        {
+          "date": "2023-04-09",
+          "target": 2944
+        },
+        {
+          "date": "2023-04-16",
+          "target": 2550
+        },
+        {
+          "date": "2023-04-23",
+          "target": 2960
+        },
+        {
+          "date": "2023-04-30",
+          "target": 2632
+        },
+        {
+          "date": "2023-05-07",
+          "target": 2693
+        },
+        {
+          "date": "2023-05-14",
+          "target": 2475
+        },
+        {
+          "date": "2023-05-21",
+          "target": 2674
+        },
+        {
+          "date": "2023-05-28",
+          "target": 2864
+        },
+        {
+          "date": "2023-06-04",
+          "target": 2892
+        },
+        {
+          "date": "2023-06-11",
+          "target": 2444
+        },
+        {
+          "date": "2023-06-18",
+          "target": 2545
+        },
+        {
+          "date": "2023-06-25",
+          "target": 2635
+        },
+        {
+          "date": "2023-07-02",
+          "target": 2573
+        },
+        {
+          "date": "2023-07-09",
+          "target": 2795
+        },
+        {
+          "date": "2023-07-16",
+          "target": 2905
+        },
+        {
+          "date": "2023-07-23",
+          "target": 2661
+        },
+        {
+          "date": "2023-07-30",
+          "target": 2587
+        },
+        {
+          "date": "2023-08-06",
+          "target": 2525
+        },
+        {
+          "date": "2023-08-13",
+          "target": 2882
+        },
+        {
+          "date": "2023-08-20",
+          "target": 2920
+        },
+        {
+          "date": "2023-08-27",
+          "target": 2365
+        },
+        {
+          "date": "2023-09-03",
+          "target": 2546
+        },
+        {
+          "date": "2023-09-10",
+          "target": 2407
+        },
+        {
+          "date": "2023-09-17",
+          "target": 2455
+        },
+        {
+          "date": "2023-09-24",
+          "target": 2392
+        },
+        {
+          "date": "2023-10-01",
+          "target": 2519
+        },
+        {
+          "date": "2023-10-08",
+          "target": 2346
+        },
+        {
+          "date": "2023-10-15",
+          "target": 2189
+        },
+        {
+          "date": "2023-10-22",
+          "target": 2740
+        },
+        {
+          "date": "2023-10-29",
+          "target": 2588
+        },
+        {
+          "date": "2023-11-05",
+          "target": 2475
+        },
+        {
+          "date": "2023-11-12",
+          "target": 2212
+        },
+        {
+          "date": "2023-11-19",
+          "target": 2385
+        },
+        {
+          "date": "2023-11-26",
+          "target": 2567
+        },
+        {
+          "date": "2023-12-03",
+          "target": 2859
+        },
+        {
+          "date": "2023-12-10",
+          "target": 2403
+        },
+        {
+          "date": "2023-12-17",
+          "target": 2317
+        },
+        {
+          "date": "2023-12-24",
+          "target": 2489
+        }
+      ]
+    },
+    {
+      "scale": "14D",
+      "events": [
+        {
+          "date": "2023-01-01",
+          "target": 5139
+        },
+        {
+          "date": "2023-01-15",
+          "target": 4866
+        },
+        {
+          "date": "2023-01-29",
+          "target": 5392
+        },
+        {
+          "date": "2023-02-12",
+          "target": 5248
+        },
+        {
+          "date": "2023-02-26",
+          "target": 7100
+        },
+        {
+          "date": "2023-03-12",
+          "target": 6019
+        },
+        {
+          "date": "2023-03-26",
+          "target": 5723
+        },
+        {
+          "date": "2023-04-09",
+          "target": 5494
+        },
+        {
+          "date": "2023-04-23",
+          "target": 5592
+        },
+        {
+          "date": "2023-05-07",
+          "target": 5168
+        },
+        {
+          "date": "2023-05-21",
+          "target": 5538
+        },
+        {
+          "date": "2023-06-04",
+          "target": 5336
+        },
+        {
+          "date": "2023-06-18",
+          "target": 5180
+        },
+        {
+          "date": "2023-07-02",
+          "target": 5368
+        },
+        {
+          "date": "2023-07-16",
+          "target": 5566
+        },
+        {
+          "date": "2023-07-30",
+          "target": 5112
+        },
+        {
+          "date": "2023-08-13",
+          "target": 5802
+        },
+        {
+          "date": "2023-08-27",
+          "target": 4911
+        },
+        {
+          "date": "2023-09-10",
+          "target": 4862
+        },
+        {
+          "date": "2023-09-24",
+          "target": 4911
+        },
+        {
+          "date": "2023-10-08",
+          "target": 4535
+        },
+        {
+          "date": "2023-10-22",
+          "target": 5328
+        },
+        {
+          "date": "2023-11-05",
+          "target": 4687
+        },
+        {
+          "date": "2023-11-19",
+          "target": 4952
+        },
+        {
+          "date": "2023-12-03",
+          "target": 5262
+        },
+        {
+          "date": "2023-12-17",
+          "target": 4806
+        }
+      ]
+    },
+    {
+      "scale": "30D",
+      "events": [
+        {
+          "date": "2023-01-01",
+          "target": 10688
+        },
+        {
+          "date": "2023-01-31",
+          "target": 11460
+        },
+        {
+          "date": "2023-03-02",
+          "target": 14159
+        },
+        {
+          "date": "2023-04-01",
+          "target": 12065
+        },
+        {
+          "date": "2023-05-01",
+          "target": 11084
+        },
+        {
+          "date": "2023-05-31",
+          "target": 11552
+        },
+        {
+          "date": "2023-06-30",
+          "target": 11721
+        },
+        {
+          "date": "2023-07-30",
+          "target": 11655
+        },
+        {
+          "date": "2023-08-29",
+          "target": 10392
+        },
+        {
+          "date": "2023-09-28",
+          "target": 10373
+        },
+        {
+          "date": "2023-10-28",
+          "target": 10460
+        },
+        {
+          "date": "2023-11-27",
+          "target": 10777
+        },
+        {
+          "date": "2023-12-27",
+          "target": 1511
+        }
+      ]
+    }
+  ]
+}

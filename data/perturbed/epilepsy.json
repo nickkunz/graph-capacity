@@ -1,0 +1,2865 @@
+{
+  "network_perturbed": [
+    {
+      "method": "rewire",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 31,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 19,
+        "maximum_degree": 5,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.11688311688311688,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9482456140350877,
+        "random_walk_triangle_weight": 0.014473684210526317,
+        "random_walk_fourth_moment": 0.19331444931773878,
+        "adjacency_fourth_moment_per_node": 24.105263157894736
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.03,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 31,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 19,
+        "maximum_degree": 5,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.1948051948051948,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "random_walk_triangle_weight": 0.025,
+        "random_walk_fourth_moment": 0.19333272417153993,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 31,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 19,
+        "maximum_degree": 5,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.15584415584415584,
+        "degree_assortativity": 0.4696734059097976,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.754925721288917,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.3187134502923976,
+        "normalized_laplacian_third_moment": 1.9350877192982452,
+        "random_walk_triangle_weight": 0.021052631578947368,
+        "random_walk_fourth_moment": 0.1806367771280052,
+        "adjacency_fourth_moment_per_node": 22.0
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 31,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 19,
+        "maximum_degree": 5,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.15584415584415584,
+        "degree_assortativity": 0.276827371695179,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.8200541537479888,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.3130116959064329,
+        "normalized_laplacian_third_moment": 1.9179824561403511,
+        "random_walk_triangle_weight": 0.021052631578947368,
+        "random_walk_fourth_moment": 0.17830592105263157,
+        "adjacency_fourth_moment_per_node": 22.0
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 31,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 19,
+        "maximum_degree": 5,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.23376623376623376,
+        "degree_assortativity": 0.276827371695179,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.7805329712345106,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.3121345029239766,
+        "normalized_laplacian_third_moment": 1.8960526315789472,
+        "random_walk_triangle_weight": 0.04035087719298246,
+        "random_walk_fourth_moment": 0.17301717836257308,
+        "adjacency_fourth_moment_per_node": 21.57894736842105
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 31,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 19,
+        "maximum_degree": 5,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.1948051948051948,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "random_walk_triangle_weight": 0.025,
+        "random_walk_fourth_moment": 0.19333272417153993,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.03,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 31,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 19,
+        "maximum_degree": 5,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.1948051948051948,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "random_walk_triangle_weight": 0.025,
+        "random_walk_fourth_moment": 0.19333272417153993,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.07,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 29,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 19,
+        "maximum_degree": 5,
+        "degree_variance": 0.6814404432132964,
+        "global_clustering": 0.13636363636363635,
+        "degree_assortativity": 0.32669983416251885,
+        "degree_entropy": 1.1882606527098063,
+        "joint_degree_entropy": 1.8752992871563547,
+        "degree_skewness": 0.5041142633097943,
+        "degree_kurtosis": -0.011967666305071845,
+        "normalized_laplacian_second_moment": 1.3366959064327486,
+        "normalized_laplacian_third_moment": 1.9942982456140346,
+        "random_walk_triangle_weight": 0.015789473684210527,
+        "random_walk_fourth_moment": 0.20740720435347626,
+        "adjacency_fourth_moment_per_node": 19.894736842105264
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 27,
+        "n_articulation_points": 3,
+        "n_bridges": 3,
+        "diameter": 7.0,
+        "radius": 4.0,
+        "degeneracy": 2,
+        "k_core_size": 16,
+        "maximum_degree": 4,
+        "degree_variance": 0.7645429362880887,
+        "global_clustering": 0.15789473684210525,
+        "degree_assortativity": 0.45454545454545425,
+        "degree_entropy": 1.1942726843483222,
+        "joint_degree_entropy": 1.6198528719321597,
+        "degree_skewness": -0.6889649375530055,
+        "degree_kurtosis": 0.2083703991993766,
+        "normalized_laplacian_second_moment": 1.368421052631579,
+        "normalized_laplacian_third_moment": 2.084978070175439,
+        "random_walk_triangle_weight": 0.020285087719298243,
+        "random_walk_fourth_moment": 0.23561362897985702,
+        "adjacency_fourth_moment_per_node": 16.94736842105263
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 24,
+        "n_articulation_points": 3,
+        "n_bridges": 4,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 15,
+        "maximum_degree": 4,
+        "degree_variance": 1.0914127423822715,
+        "global_clustering": 0.0,
+        "degree_assortativity": 0.04572564612325825,
+        "degree_entropy": 1.3713810177718107,
+        "joint_degree_entropy": 1.9456660291127656,
+        "degree_skewness": -0.07594731796526749,
+        "degree_kurtosis": -1.1606434529285958,
+        "normalized_laplacian_second_moment": 1.3837719298245614,
+        "normalized_laplacian_third_moment": 2.151315789473684,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.2577312784275502,
+        "adjacency_fourth_moment_per_node": 14.526315789473685
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 31,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 19,
+        "maximum_degree": 5,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.1948051948051948,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "random_walk_triangle_weight": 0.025,
+        "random_walk_fourth_moment": 0.19333272417153993,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.02,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 31,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 19,
+        "maximum_degree": 5,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.1948051948051948,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "random_walk_triangle_weight": 0.025,
+        "random_walk_fourth_moment": 0.19333272417153993,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 31,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 19,
+        "maximum_degree": 5,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.1948051948051948,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "random_walk_triangle_weight": 0.025,
+        "random_walk_fourth_moment": 0.19333272417153993,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 18,
+        "n_edges": 27,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 18,
+        "maximum_degree": 4,
+        "degree_variance": 0.5555555555555556,
+        "global_clustering": 0.1016949152542373,
+        "degree_assortativity": 0.43157894736842145,
+        "degree_entropy": 1.0720433435750705,
+        "joint_degree_entropy": 1.4900935655199308,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": -1.1900000000000002,
+        "normalized_laplacian_second_moment": 1.3433641975308643,
+        "normalized_laplacian_third_moment": 2.0138888888888893,
+        "random_walk_triangle_weight": 0.016203703703703703,
+        "random_walk_fourth_moment": 0.2160761745541838,
+        "adjacency_fourth_moment_per_node": 19.22222222222222
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 16,
+        "n_edges": 22,
+        "n_articulation_points": 3,
+        "n_bridges": 3,
+        "diameter": 7.0,
+        "radius": 4.0,
+        "degeneracy": 2,
+        "k_core_size": 13,
+        "maximum_degree": 4,
+        "degree_variance": 0.9375,
+        "global_clustering": 0.13043478260869565,
+        "degree_assortativity": 0.24137931034482724,
+        "degree_entropy": 1.3208883431493217,
+        "joint_degree_entropy": 1.771721769306378,
+        "degree_skewness": -0.3428571428571429,
+        "degree_kurtosis": -0.7384615384615385,
+        "normalized_laplacian_second_moment": 1.375,
+        "normalized_laplacian_third_moment": 2.1067708333333335,
+        "random_walk_triangle_weight": 0.018229166666666664,
+        "random_walk_fourth_moment": 0.25641396604938266,
+        "adjacency_fourth_moment_per_node": 17.25
+      }
+    }
+  ],
+  "invariants_perturbed": [
+    {
+      "method": "noise",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 18.69031857939448,
+        "n_edges": 30.872913752982075,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.091520930439272,
+        "radius": 3.0294078367474433,
+        "degeneracy": 1.993674614239097,
+        "k_core_size": 19.05447824872419,
+        "maximum_degree": 4.95244908494671,
+        "degree_variance": 0.7230130584440431,
+        "global_clustering": 0.19727271404805574,
+        "degree_assortativity": 0.5691531476591406,
+        "degree_entropy": 1.2177606554726335,
+        "joint_degree_entropy": 1.684049491039628,
+        "degree_skewness": -0.013750917705544166,
+        "degree_kurtosis": -0.6999471860173448,
+        "normalized_laplacian_second_moment": 1.3167422920481153,
+        "normalized_laplacian_third_moment": 1.9239363429913037,
+        "random_walk_triangle_weight": 0.024859838138033837,
+        "random_walk_fourth_moment": 0.19247757040828942,
+        "adjacency_fourth_moment_per_node": 23.565663490399725
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.02,
+      "invariants": {
+        "n_nodes": 18.96672843702397,
+        "n_edges": 30.589171755188268,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.22064246745002,
+        "radius": 2.9989397523661587,
+        "degeneracy": 1.943223549352917,
+        "k_core_size": 18.89288445649664,
+        "maximum_degree": 4.748202308650854,
+        "degree_variance": 0.7400829537779247,
+        "global_clustering": 0.19691534334418495,
+        "degree_assortativity": 0.5759408681980668,
+        "degree_entropy": 1.2007681674638806,
+        "joint_degree_entropy": 1.73012473758382,
+        "degree_skewness": -0.013910822847959746,
+        "degree_kurtosis": -0.6993649571441364,
+        "normalized_laplacian_second_moment": 1.301330701865804,
+        "normalized_laplacian_third_moment": 1.9013099655262804,
+        "random_walk_triangle_weight": 0.02573986081340489,
+        "random_walk_fourth_moment": 0.19472289802901638,
+        "adjacency_fourth_moment_per_node": 23.866135962317017
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 18.886244657353082,
+        "n_edges": 32.69684491237575,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.454577506411232,
+        "radius": 2.9314043738922937,
+        "degeneracy": 2.040772134998518,
+        "k_core_size": 19.008117513911465,
+        "maximum_degree": 5.169823310855988,
+        "degree_variance": 0.738723683960473,
+        "global_clustering": 0.19245813502923348,
+        "degree_assortativity": 0.5203651070931484,
+        "degree_entropy": 1.2138995382630628,
+        "joint_degree_entropy": 1.615559916651915,
+        "degree_skewness": -0.012980260970641398,
+        "degree_kurtosis": -0.7005067413413351,
+        "normalized_laplacian_second_moment": 1.325014096886264,
+        "normalized_laplacian_third_moment": 1.9857726598855983,
+        "random_walk_triangle_weight": 0.02671087227224888,
+        "random_walk_fourth_moment": 0.19919795871622875,
+        "adjacency_fourth_moment_per_node": 23.52188915492703
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 16.953476521024815,
+        "n_edges": 34.29043280396632,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 5.872695000871532,
+        "radius": 2.5935880389894197,
+        "degeneracy": 1.9693525761994217,
+        "k_core_size": 22.8758839279118,
+        "maximum_degree": 4.582295484136765,
+        "degree_variance": 0.5847141677973793,
+        "global_clustering": 0.14577879201608518,
+        "degree_assortativity": 0.6022094682267308,
+        "degree_entropy": 1.2567827706865327,
+        "joint_degree_entropy": 1.9820094993352475,
+        "degree_skewness": -0.01316985936150141,
+        "degree_kurtosis": -0.6868293473617457,
+        "normalized_laplacian_second_moment": 1.505260084530225,
+        "normalized_laplacian_third_moment": 2.1679590487291915,
+        "random_walk_triangle_weight": 0.027406123533109256,
+        "random_walk_fourth_moment": 0.17834943105121476,
+        "adjacency_fourth_moment_per_node": 24.651954539396343
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 12.611728022046101,
+        "n_edges": 31.67345676724636,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 4.182771134262536,
+        "radius": 3.0584912258391914,
+        "degeneracy": 1.2030548582114204,
+        "k_core_size": 18.348223990421317,
+        "maximum_degree": 4.335900202484122,
+        "degree_variance": 0.6516037275095315,
+        "global_clustering": 0.15469073824783902,
+        "degree_assortativity": 0.6475680420528229,
+        "degree_entropy": 1.4221178877486034,
+        "joint_degree_entropy": 1.8297154226803136,
+        "degree_skewness": -0.016968174087365083,
+        "degree_kurtosis": -0.6305437671731795,
+        "normalized_laplacian_second_moment": 1.739093057051948,
+        "normalized_laplacian_third_moment": 2.1012988248827895,
+        "random_walk_triangle_weight": 0.022041335309458347,
+        "random_walk_fourth_moment": 0.2379178645627935,
+        "adjacency_fourth_moment_per_node": 22.968897808813846
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 18.6865106493876,
+        "n_edges": 31.02574080576343,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.0415937813540905,
+        "radius": 3.004399434784526,
+        "degeneracy": 2.008076202637048,
+        "k_core_size": 19.270310087966138,
+        "maximum_degree": 4.994116276726116,
+        "degree_variance": 0.7130445650316954,
+        "global_clustering": 0.1933335425417332,
+        "degree_assortativity": 0.5558094590145498,
+        "degree_entropy": 1.2339576261213332,
+        "joint_degree_entropy": 1.701256043386648,
+        "degree_skewness": -0.014014933880873185,
+        "degree_kurtosis": -0.6996889414018425,
+        "normalized_laplacian_second_moment": 1.303380241054064,
+        "normalized_laplacian_third_moment": 1.9261901432847324,
+        "random_walk_triangle_weight": 0.02503543644955017,
+        "random_walk_fourth_moment": 0.19575524757906104,
+        "adjacency_fourth_moment_per_node": 23.41185707775807
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.02,
+      "invariants": {
+        "n_nodes": 19.009296161251424,
+        "n_edges": 31.246849897749144,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.0740737126324085,
+        "radius": 2.9757920863631586,
+        "degeneracy": 2.0706321948950275,
+        "k_core_size": 18.79871609444224,
+        "maximum_degree": 4.933026104774119,
+        "degree_variance": 0.710089053371136,
+        "global_clustering": 0.1845467188557379,
+        "degree_assortativity": 0.5775710340191176,
+        "degree_entropy": 1.1992923440799512,
+        "joint_degree_entropy": 1.6262171982162499,
+        "degree_skewness": -0.014079555988000586,
+        "degree_kurtosis": -0.7095144486701721,
+        "normalized_laplacian_second_moment": 1.356574467924796,
+        "normalized_laplacian_third_moment": 1.987988477259796,
+        "random_walk_triangle_weight": 0.025041077390687234,
+        "random_walk_fourth_moment": 0.19750737634527435,
+        "adjacency_fourth_moment_per_node": 24.717878210685242
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 19.989468346331147,
+        "n_edges": 30.077055752581007,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 5.8867013777285,
+        "radius": 3.220481485759305,
+        "degeneracy": 1.9986223701474002,
+        "k_core_size": 17.921578242383507,
+        "maximum_degree": 5.777827649648875,
+        "degree_variance": 0.7447632732933916,
+        "global_clustering": 0.20788007496585836,
+        "degree_assortativity": 0.545078191304631,
+        "degree_entropy": 1.176411736347312,
+        "joint_degree_entropy": 1.6746889919396843,
+        "degree_skewness": -0.013809892114338668,
+        "degree_kurtosis": -0.7329329035008785,
+        "normalized_laplacian_second_moment": 1.5124598125832402,
+        "normalized_laplacian_third_moment": 1.835165058635872,
+        "random_walk_triangle_weight": 0.025576066966625906,
+        "random_walk_fourth_moment": 0.17766577372974632,
+        "adjacency_fourth_moment_per_node": 22.91518642397918
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 19.660344671265662,
+        "n_edges": 30.129312761861165,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 5.887429787032781,
+        "radius": 3.356868925855505,
+        "degeneracy": 1.7085427628594545,
+        "k_core_size": 18.763627056448335,
+        "maximum_degree": 4.48260439805792,
+        "degree_variance": 0.6978607981328709,
+        "global_clustering": 0.17589760392602655,
+        "degree_assortativity": 0.6385400086650794,
+        "degree_entropy": 1.2032493982450485,
+        "joint_degree_entropy": 1.7205308364519103,
+        "degree_skewness": -0.015180651659318537,
+        "degree_kurtosis": -0.7087688066537906,
+        "normalized_laplacian_second_moment": 1.3988296289240303,
+        "normalized_laplacian_third_moment": 1.7421128091803855,
+        "random_walk_triangle_weight": 0.02504036689021725,
+        "random_walk_fourth_moment": 0.18184064425060478,
+        "adjacency_fourth_moment_per_node": 20.90721172644266
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 13.647971558399426,
+        "n_edges": 25.612364411075863,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.223203898557348,
+        "radius": 2.999765029721969,
+        "degeneracy": 1.2518563050592306,
+        "k_core_size": 17.59715456880179,
+        "maximum_degree": 3.785655292980871,
+        "degree_variance": 1.0945131808888666,
+        "global_clustering": 0.10351005211681603,
+        "degree_assortativity": 0.585115003367577,
+        "degree_entropy": 1.208786098690008,
+        "joint_degree_entropy": 2.0986065693620737,
+        "degree_skewness": -0.01020870801520133,
+        "degree_kurtosis": -0.5003681505393601,
+        "normalized_laplacian_second_moment": 1.495160653704422,
+        "normalized_laplacian_third_moment": 1.709494256818944,
+        "random_walk_triangle_weight": 0.023219600518933292,
+        "random_walk_fourth_moment": 0.16690198762979705,
+        "adjacency_fourth_moment_per_node": 18.667700660363735
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.95,
+      "invariants": {
+        "n_nodes": 19.0,
+        "n_edges": 31.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2.0,
+        "k_core_size": 19.0,
+        "maximum_degree": 5.0,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.1948051948051948,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "random_walk_triangle_weight": 0.025,
+        "random_walk_fourth_moment": 0.19333272417153993,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.9,
+      "invariants": {
+        "n_nodes": 19.0,
+        "n_edges": 31.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2.0,
+        "k_core_size": 19.0,
+        "maximum_degree": 5.0,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.1948051948051948,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "random_walk_triangle_weight": 0.025,
+        "random_walk_fourth_moment": 0.19333272417153993,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.8,
+      "invariants": {
+        "n_nodes": 19.0,
+        "n_edges": 31.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2.0,
+        "k_core_size": 19.0,
+        "maximum_degree": 5.0,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.1948051948051948,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "random_walk_triangle_weight": 0.025,
+        "random_walk_fourth_moment": 0.19333272417153993,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.7,
+      "invariants": {
+        "n_nodes": 19.0,
+        "n_edges": 31.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2.0,
+        "k_core_size": 19.0,
+        "maximum_degree": 5.0,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.1948051948051948,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "random_walk_triangle_weight": 0.025,
+        "random_walk_fourth_moment": 0.19333272417153993,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.6,
+      "invariants": {
+        "n_nodes": 19.0,
+        "n_edges": 31.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2.0,
+        "k_core_size": 19.0,
+        "maximum_degree": 5.0,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.1948051948051948,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "random_walk_triangle_weight": 0.025,
+        "random_walk_fourth_moment": 0.19333272417153993,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
+      }
+    }
+  ],
+  "process_perturbed": [
+    {
+      "method": "scaling",
+      "intensity": 0.5,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959715,
+        "coef_variation": 0.9857823026288701,
+        "fano_factor": 0.9717667481772491,
+        "norm_succ_diff": 0.9122754038946032,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 0.75,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959706,
+        "coef_variation": 0.9857823026288702,
+        "fano_factor": 0.9717667481772491,
+        "norm_succ_diff": 0.9122754038946034,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162595,
+        "count_skewness": 2.704133699273787
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 1.0,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959715,
+        "coef_variation": 0.9857823026288701,
+        "fano_factor": 0.9717667481772491,
+        "norm_succ_diff": 0.9122754038946032,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 1.5,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959706,
+        "coef_variation": 0.9857823026288702,
+        "fano_factor": 0.9717667481772491,
+        "norm_succ_diff": 0.9122754038946034,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162595,
+        "count_skewness": 2.704133699273787
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 2.0,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959715,
+        "coef_variation": 0.9857823026288701,
+        "fano_factor": 0.9717667481772491,
+        "norm_succ_diff": 0.9122754038946032,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 1.0,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959709,
+        "coef_variation": 0.9857823026296467,
+        "fano_factor": 4.577532840101701,
+        "norm_succ_diff": 0.912275403895322,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 2.0,
+      "signatures": {
+        "lag1_autocorr": 0.41625642922834877,
+        "coef_variation": 0.7165142735678395,
+        "fano_factor": 2.4521256793978936,
+        "norm_succ_diff": 0.5007817735089415,
+        "hurst_exponent": 0.5913126697231557,
+        "trend_coeff": -0.1622025599890861,
+        "count_skewness": 2.722746955572826
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 4.0,
+      "signatures": {
+        "lag1_autocorr": 0.7220133511767637,
+        "coef_variation": 0.45347717238311025,
+        "fano_factor": 0.9903263919655306,
+        "norm_succ_diff": 0.22027765470383845,
+        "hurst_exponent": 0.6717528742322768,
+        "trend_coeff": -0.1998970232784166,
+        "count_skewness": 1.729909986470171
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 8.0,
+      "signatures": {
+        "lag1_autocorr": 0.8025622335242585,
+        "coef_variation": 0.3334716908905232,
+        "fano_factor": 0.5376118495039797,
+        "norm_succ_diff": 0.13307286562984735,
+        "hurst_exponent": 0.7324871012261611,
+        "trend_coeff": -0.1504519644913334,
+        "count_skewness": 0.9094099550045056
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 16.0,
+      "signatures": {
+        "lag1_autocorr": 0.8000686220609484,
+        "coef_variation": 0.21848928152278843,
+        "fano_factor": 0.23337243318057369,
+        "norm_succ_diff": 0.07419407346068038,
+        "hurst_exponent": 0.7766961158631425,
+        "trend_coeff": 0.17505444844525983,
+        "count_skewness": 0.12164132102241688
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.0,
+      "signatures": {
+        "lag1_autocorr": 0.0,
+        "coef_variation": 0.0,
+        "fano_factor": 0.0,
+        "norm_succ_diff": 0.0,
+        "hurst_exponent": 0.5,
+        "trend_coeff": 0.0,
+        "count_skewness": 0.0
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": 0.01972048187286247,
+        "coef_variation": 1.0047698429709924,
+        "fano_factor": 5.154081916967506,
+        "norm_succ_diff": 0.9105600445804847,
+        "hurst_exponent": 0.564980123026986,
+        "trend_coeff": 0.03840299457682408,
+        "count_skewness": 1.0544836269613875
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.2,
+      "signatures": {
+        "lag1_autocorr": 0.06027510089778436,
+        "coef_variation": 0.9390668991347775,
+        "fano_factor": 2.8311918475844076,
+        "norm_succ_diff": 0.9260079751880145,
+        "hurst_exponent": 0.5135814448450234,
+        "trend_coeff": -0.09437954782866954,
+        "count_skewness": 1.3590229927747248
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.35,
+      "signatures": {
+        "lag1_autocorr": 0.24261840002243218,
+        "coef_variation": 0.6416772527056877,
+        "fano_factor": 1.657834304892717,
+        "norm_succ_diff": 0.6041335453098658,
+        "hurst_exponent": 0.5149393784990222,
+        "trend_coeff": -0.012707908744383102,
+        "count_skewness": 0.7957899225344458
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.5,
+      "signatures": {
+        "lag1_autocorr": 0.029573842046805278,
+        "coef_variation": 0.6968696104347444,
+        "fano_factor": 2.1597633136089813,
+        "norm_succ_diff": 0.7657124580199781,
+        "hurst_exponent": 0.4931023646665186,
+        "trend_coeff": 0.16047355567707594,
+        "count_skewness": 0.5079647975229405
+      }
+    }
+  ],
+  "signatures_perturbed": [
+    {
+      "method": "noise",
+      "intensity": 0.01,
+      "signatures": {
+        "lag1_autocorr": 0.09173098633090006,
+        "coef_variation": 0.9983741629042525,
+        "fano_factor": 4.572267785772074,
+        "norm_succ_diff": 0.911499552644408,
+        "hurst_exponent": 0.5437286240976167,
+        "trend_coeff": -0.1304663477123667,
+        "count_skewness": 2.726245585302043
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.02,
+      "signatures": {
+        "lag1_autocorr": 0.08982157427502128,
+        "coef_variation": 0.9673826972228068,
+        "fano_factor": 4.593258200128539,
+        "norm_succ_diff": 0.9044507417628105,
+        "hurst_exponent": 0.5356956638132739,
+        "trend_coeff": -0.1299035862719165,
+        "count_skewness": 2.761387704749618
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.05,
+      "signatures": {
+        "lag1_autocorr": 0.0948055202302455,
+        "coef_variation": 0.920390014847549,
+        "fano_factor": 4.4482192635755915,
+        "norm_succ_diff": 0.9916833096966317,
+        "hurst_exponent": 0.5220406653578593,
+        "trend_coeff": -0.13934262506097386,
+        "count_skewness": 2.597725327016204
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": 0.09250677778749708,
+        "coef_variation": 1.057804168414727,
+        "fano_factor": 4.607837504880621,
+        "norm_succ_diff": 0.8697418253747972,
+        "hurst_exponent": 0.5333019767159854,
+        "trend_coeff": -0.13749299444860266,
+        "count_skewness": 3.0589029332723743
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.2,
+      "signatures": {
+        "lag1_autocorr": 0.08885018700669674,
+        "coef_variation": 1.306355091478637,
+        "fano_factor": 4.700327531639912,
+        "norm_succ_diff": 0.7148368642479216,
+        "hurst_exponent": 0.3607813759281024,
+        "trend_coeff": -0.15641902247909997,
+        "count_skewness": 1.7749233290905586
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.01,
+      "signatures": {
+        "lag1_autocorr": 0.09175987164934225,
+        "coef_variation": 0.9860293071441492,
+        "fano_factor": 4.603198659816775,
+        "norm_succ_diff": 0.9122956672797087,
+        "hurst_exponent": 0.5434469090011347,
+        "trend_coeff": -0.13252420952137442,
+        "count_skewness": 2.6863776169972056
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.02,
+      "signatures": {
+        "lag1_autocorr": 0.09197409039524924,
+        "coef_variation": 0.9893557358609554,
+        "fano_factor": 4.566021843421064,
+        "norm_succ_diff": 0.8994957906628936,
+        "hurst_exponent": 0.526699807118457,
+        "trend_coeff": -0.13224281386938122,
+        "count_skewness": 2.7658863298806087
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.05,
+      "signatures": {
+        "lag1_autocorr": 0.09733712926321489,
+        "coef_variation": 0.8502809856734386,
+        "fano_factor": 4.865847225989296,
+        "norm_succ_diff": 0.8743424259143127,
+        "hurst_exponent": 0.5263853978297637,
+        "trend_coeff": -0.13358664192674566,
+        "count_skewness": 2.608911670061963
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": 0.09405424427795303,
+        "coef_variation": 1.1051822573592323,
+        "fano_factor": 3.858868378039965,
+        "norm_succ_diff": 0.7739455912526096,
+        "hurst_exponent": 0.5012555232921483,
+        "trend_coeff": -0.11696076264695782,
+        "count_skewness": 2.365824746897446
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.2,
+      "signatures": {
+        "lag1_autocorr": 0.11018171721578653,
+        "coef_variation": 0.7175792147847863,
+        "fano_factor": 5.130387797907053,
+        "norm_succ_diff": 0.9134354819141373,
+        "hurst_exponent": 0.50968099233428,
+        "trend_coeff": -0.16989654654406808,
+        "count_skewness": 3.0368069055023375
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.95,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959709,
+        "coef_variation": 0.9857823026296467,
+        "fano_factor": 4.577532840101701,
+        "norm_succ_diff": 0.912275403895322,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.9,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959709,
+        "coef_variation": 0.9857823026296467,
+        "fano_factor": 4.577532840101701,
+        "norm_succ_diff": 0.912275403895322,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.8,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959709,
+        "coef_variation": 0.9857823026296467,
+        "fano_factor": 4.577532840101701,
+        "norm_succ_diff": 0.912275403895322,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.7,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959709,
+        "coef_variation": 0.9857823026296467,
+        "fano_factor": 4.577532840101701,
+        "norm_succ_diff": 0.912275403895322,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.6,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959709,
+        "coef_variation": 0.9857823026296467,
+        "fano_factor": 4.577532840101701,
+        "norm_succ_diff": 0.912275403895322,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    }
+  ],
+  "temporal_aggregated": [
+    {
+      "scale": "2D",
+      "events": [
+        {
+          "date": "2010-02-19",
+          "target": 7
+        },
+        {
+          "date": "2010-02-21",
+          "target": 0
+        },
+        {
+          "date": "2010-02-23",
+          "target": 0
+        },
+        {
+          "date": "2010-02-25",
+          "target": 0
+        },
+        {
+          "date": "2010-02-27",
+          "target": 0
+        },
+        {
+          "date": "2010-03-01",
+          "target": 0
+        },
+        {
+          "date": "2010-03-03",
+          "target": 0
+        },
+        {
+          "date": "2010-03-05",
+          "target": 0
+        },
+        {
+          "date": "2010-03-07",
+          "target": 5
+        },
+        {
+          "date": "2010-03-09",
+          "target": 0
+        },
+        {
+          "date": "2010-03-11",
+          "target": 7
+        },
+        {
+          "date": "2010-03-13",
+          "target": 0
+        },
+        {
+          "date": "2010-03-15",
+          "target": 4
+        },
+        {
+          "date": "2010-03-17",
+          "target": 0
+        },
+        {
+          "date": "2010-03-19",
+          "target": 10
+        },
+        {
+          "date": "2010-03-21",
+          "target": 0
+        },
+        {
+          "date": "2010-03-23",
+          "target": 0
+        },
+        {
+          "date": "2010-03-25",
+          "target": 0
+        },
+        {
+          "date": "2010-03-27",
+          "target": 0
+        },
+        {
+          "date": "2010-03-29",
+          "target": 0
+        },
+        {
+          "date": "2010-03-31",
+          "target": 3
+        },
+        {
+          "date": "2010-04-02",
+          "target": 0
+        },
+        {
+          "date": "2010-04-04",
+          "target": 5
+        },
+        {
+          "date": "2010-04-06",
+          "target": 0
+        },
+        {
+          "date": "2010-04-08",
+          "target": 0
+        },
+        {
+          "date": "2010-04-10",
+          "target": 0
+        },
+        {
+          "date": "2010-04-12",
+          "target": 0
+        },
+        {
+          "date": "2010-04-14",
+          "target": 0
+        },
+        {
+          "date": "2010-04-16",
+          "target": 0
+        },
+        {
+          "date": "2010-04-18",
+          "target": 0
+        },
+        {
+          "date": "2010-04-20",
+          "target": 0
+        },
+        {
+          "date": "2010-04-22",
+          "target": 0
+        },
+        {
+          "date": "2010-04-24",
+          "target": 0
+        },
+        {
+          "date": "2010-04-26",
+          "target": 0
+        },
+        {
+          "date": "2010-04-28",
+          "target": 0
+        },
+        {
+          "date": "2010-04-30",
+          "target": 0
+        },
+        {
+          "date": "2010-05-02",
+          "target": 0
+        },
+        {
+          "date": "2010-05-04",
+          "target": 3
+        },
+        {
+          "date": "2010-05-06",
+          "target": 0
+        },
+        {
+          "date": "2010-05-08",
+          "target": 0
+        },
+        {
+          "date": "2010-05-10",
+          "target": 40
+        },
+        {
+          "date": "2010-05-12",
+          "target": 0
+        },
+        {
+          "date": "2010-05-14",
+          "target": 0
+        },
+        {
+          "date": "2010-05-16",
+          "target": 0
+        },
+        {
+          "date": "2010-05-18",
+          "target": 0
+        },
+        {
+          "date": "2010-05-20",
+          "target": 0
+        },
+        {
+          "date": "2010-05-22",
+          "target": 0
+        },
+        {
+          "date": "2010-05-24",
+          "target": 0
+        },
+        {
+          "date": "2010-05-26",
+          "target": 0
+        },
+        {
+          "date": "2010-05-28",
+          "target": 0
+        },
+        {
+          "date": "2010-05-30",
+          "target": 0
+        },
+        {
+          "date": "2010-06-01",
+          "target": 4
+        },
+        {
+          "date": "2010-06-03",
+          "target": 8
+        },
+        {
+          "date": "2010-06-05",
+          "target": 0
+        },
+        {
+          "date": "2010-06-07",
+          "target": 0
+        },
+        {
+          "date": "2010-06-09",
+          "target": 7
+        },
+        {
+          "date": "2010-06-11",
+          "target": 1
+        },
+        {
+          "date": "2010-06-13",
+          "target": 0
+        },
+        {
+          "date": "2010-06-15",
+          "target": 0
+        },
+        {
+          "date": "2010-06-17",
+          "target": 0
+        },
+        {
+          "date": "2010-06-19",
+          "target": 0
+        },
+        {
+          "date": "2010-06-21",
+          "target": 0
+        },
+        {
+          "date": "2010-06-23",
+          "target": 0
+        },
+        {
+          "date": "2010-06-25",
+          "target": 0
+        },
+        {
+          "date": "2010-06-27",
+          "target": 0
+        },
+        {
+          "date": "2010-06-29",
+          "target": 0
+        },
+        {
+          "date": "2010-07-01",
+          "target": 12
+        },
+        {
+          "date": "2010-07-03",
+          "target": 8
+        },
+        {
+          "date": "2010-07-05",
+          "target": 0
+        },
+        {
+          "date": "2010-07-07",
+          "target": 0
+        },
+        {
+          "date": "2010-07-09",
+          "target": 0
+        },
+        {
+          "date": "2010-07-11",
+          "target": 0
+        },
+        {
+          "date": "2010-07-13",
+          "target": 0
+        },
+        {
+          "date": "2010-07-15",
+          "target": 10
+        },
+        {
+          "date": "2010-07-17",
+          "target": 0
+        },
+        {
+          "date": "2010-07-19",
+          "target": 0
+        },
+        {
+          "date": "2010-07-21",
+          "target": 0
+        },
+        {
+          "date": "2010-07-23",
+          "target": 0
+        },
+        {
+          "date": "2010-07-25",
+          "target": 0
+        },
+        {
+          "date": "2010-07-27",
+          "target": 0
+        },
+        {
+          "date": "2010-07-29",
+          "target": 0
+        },
+        {
+          "date": "2010-07-31",
+          "target": 2
+        },
+        {
+          "date": "2010-08-02",
+          "target": 1
+        },
+        {
+          "date": "2010-08-04",
+          "target": 0
+        },
+        {
+          "date": "2010-08-06",
+          "target": 0
+        },
+        {
+          "date": "2010-08-08",
+          "target": 0
+        },
+        {
+          "date": "2010-08-10",
+          "target": 0
+        },
+        {
+          "date": "2010-08-12",
+          "target": 0
+        },
+        {
+          "date": "2010-08-14",
+          "target": 0
+        },
+        {
+          "date": "2010-08-16",
+          "target": 6
+        },
+        {
+          "date": "2010-08-18",
+          "target": 0
+        },
+        {
+          "date": "2010-08-20",
+          "target": 0
+        },
+        {
+          "date": "2010-08-22",
+          "target": 0
+        },
+        {
+          "date": "2010-08-24",
+          "target": 0
+        },
+        {
+          "date": "2010-08-26",
+          "target": 0
+        },
+        {
+          "date": "2010-08-28",
+          "target": 0
+        },
+        {
+          "date": "2010-08-30",
+          "target": 0
+        },
+        {
+          "date": "2010-09-01",
+          "target": 3
+        },
+        {
+          "date": "2010-09-03",
+          "target": 0
+        },
+        {
+          "date": "2010-09-05",
+          "target": 0
+        },
+        {
+          "date": "2010-09-07",
+          "target": 0
+        },
+        {
+          "date": "2010-09-09",
+          "target": 0
+        },
+        {
+          "date": "2010-09-11",
+          "target": 0
+        },
+        {
+          "date": "2010-09-13",
+          "target": 0
+        },
+        {
+          "date": "2010-09-15",
+          "target": 7
+        },
+        {
+          "date": "2010-09-17",
+          "target": 1
+        },
+        {
+          "date": "2010-09-19",
+          "target": 0
+        },
+        {
+          "date": "2010-09-21",
+          "target": 0
+        },
+        {
+          "date": "2010-09-23",
+          "target": 0
+        },
+        {
+          "date": "2010-09-25",
+          "target": 0
+        },
+        {
+          "date": "2010-09-27",
+          "target": 0
+        },
+        {
+          "date": "2010-09-29",
+          "target": 0
+        },
+        {
+          "date": "2010-10-01",
+          "target": 4
+        },
+        {
+          "date": "2010-10-03",
+          "target": 0
+        },
+        {
+          "date": "2010-10-05",
+          "target": 0
+        },
+        {
+          "date": "2010-10-07",
+          "target": 0
+        },
+        {
+          "date": "2010-10-09",
+          "target": 0
+        },
+        {
+          "date": "2010-10-11",
+          "target": 0
+        },
+        {
+          "date": "2010-10-13",
+          "target": 0
+        },
+        {
+          "date": "2010-10-15",
+          "target": 3
+        },
+        {
+          "date": "2010-10-17",
+          "target": 0
+        },
+        {
+          "date": "2010-10-19",
+          "target": 0
+        },
+        {
+          "date": "2010-10-21",
+          "target": 0
+        },
+        {
+          "date": "2010-10-23",
+          "target": 0
+        },
+        {
+          "date": "2010-10-25",
+          "target": 0
+        },
+        {
+          "date": "2010-10-27",
+          "target": 0
+        },
+        {
+          "date": "2010-10-29",
+          "target": 0
+        },
+        {
+          "date": "2010-10-31",
+          "target": 7
+        },
+        {
+          "date": "2010-11-02",
+          "target": 0
+        },
+        {
+          "date": "2010-11-04",
+          "target": 0
+        },
+        {
+          "date": "2010-11-06",
+          "target": 0
+        },
+        {
+          "date": "2010-11-08",
+          "target": 0
+        },
+        {
+          "date": "2010-11-10",
+          "target": 0
+        },
+        {
+          "date": "2010-11-12",
+          "target": 0
+        },
+        {
+          "date": "2010-11-14",
+          "target": 0
+        },
+        {
+          "date": "2010-11-16",
+          "target": 0
+        },
+        {
+          "date": "2010-11-18",
+          "target": 0
+        },
+        {
+          "date": "2010-11-20",
+          "target": 0
+        },
+        {
+          "date": "2010-11-22",
+          "target": 0
+        },
+        {
+          "date": "2010-11-24",
+          "target": 0
+        },
+        {
+          "date": "2010-11-26",
+          "target": 0
+        },
+        {
+          "date": "2010-11-28",
+          "target": 0
+        },
+        {
+          "date": "2010-11-30",
+          "target": 0
+        },
+        {
+          "date": "2010-12-02",
+          "target": 0
+        },
+        {
+          "date": "2010-12-04",
+          "target": 0
+        },
+        {
+          "date": "2010-12-06",
+          "target": 0
+        },
+        {
+          "date": "2010-12-08",
+          "target": 0
+        },
+        {
+          "date": "2010-12-10",
+          "target": 0
+        },
+        {
+          "date": "2010-12-12",
+          "target": 0
+        },
+        {
+          "date": "2010-12-14",
+          "target": 0
+        },
+        {
+          "date": "2010-12-16",
+          "target": 4
+        },
+        {
+          "date": "2010-12-18",
+          "target": 0
+        },
+        {
+          "date": "2010-12-20",
+          "target": 0
+        },
+        {
+          "date": "2010-12-22",
+          "target": 0
+        },
+        {
+          "date": "2010-12-24",
+          "target": 0
+        },
+        {
+          "date": "2010-12-26",
+          "target": 0
+        },
+        {
+          "date": "2010-12-28",
+          "target": 0
+        },
+        {
+          "date": "2010-12-30",
+          "target": 0
+        },
+        {
+          "date": "2011-01-01",
+          "target": 0
+        },
+        {
+          "date": "2011-01-03",
+          "target": 0
+        },
+        {
+          "date": "2011-01-05",
+          "target": 0
+        },
+        {
+          "date": "2011-01-07",
+          "target": 0
+        },
+        {
+          "date": "2011-01-09",
+          "target": 0
+        },
+        {
+          "date": "2011-01-11",
+          "target": 0
+        },
+        {
+          "date": "2011-01-13",
+          "target": 0
+        },
+        {
+          "date": "2011-01-15",
+          "target": 0
+        },
+        {
+          "date": "2011-01-17",
+          "target": 0
+        },
+        {
+          "date": "2011-01-19",
+          "target": 0
+        },
+        {
+          "date": "2011-01-21",
+          "target": 0
+        },
+        {
+          "date": "2011-01-23",
+          "target": 0
+        },
+        {
+          "date": "2011-01-25",
+          "target": 0
+        },
+        {
+          "date": "2011-01-27",
+          "target": 0
+        },
+        {
+          "date": "2011-01-29",
+          "target": 0
+        },
+        {
+          "date": "2011-01-31",
+          "target": 0
+        },
+        {
+          "date": "2011-02-02",
+          "target": 0
+        },
+        {
+          "date": "2011-02-04",
+          "target": 0
+        },
+        {
+          "date": "2011-02-06",
+          "target": 0
+        },
+        {
+          "date": "2011-02-08",
+          "target": 0
+        },
+        {
+          "date": "2011-02-10",
+          "target": 0
+        },
+        {
+          "date": "2011-02-12",
+          "target": 0
+        },
+        {
+          "date": "2011-02-14",
+          "target": 0
+        },
+        {
+          "date": "2011-02-16",
+          "target": 0
+        },
+        {
+          "date": "2011-02-18",
+          "target": 0
+        },
+        {
+          "date": "2011-02-20",
+          "target": 0
+        },
+        {
+          "date": "2011-02-22",
+          "target": 0
+        },
+        {
+          "date": "2011-02-24",
+          "target": 2
+        },
+        {
+          "date": "2011-02-26",
+          "target": 4
+        },
+        {
+          "date": "2011-02-28",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "scale": "3D",
+      "events": [
+        {
+          "date": "2010-02-19",
+          "target": 7
+        },
+        {
+          "date": "2010-02-22",
+          "target": 0
+        },
+        {
+          "date": "2010-02-25",
+          "target": 0
+        },
+        {
+          "date": "2010-02-28",
+          "target": 0
+        },
+        {
+          "date": "2010-03-03",
+          "target": 0
+        },
+        {
+          "date": "2010-03-06",
+          "target": 5
+        },
+        {
+          "date": "2010-03-09",
+          "target": 4
+        },
+        {
+          "date": "2010-03-12",
+          "target": 3
+        },
+        {
+          "date": "2010-03-15",
+          "target": 4
+        },
+        {
+          "date": "2010-03-18",
+          "target": 10
+        },
+        {
+          "date": "2010-03-21",
+          "target": 0
+        },
+        {
+          "date": "2010-03-24",
+          "target": 0
+        },
+        {
+          "date": "2010-03-27",
+          "target": 0
+        },
+        {
+          "date": "2010-03-30",
+          "target": 3
+        },
+        {
+          "date": "2010-04-02",
+          "target": 0
+        },
+        {
+          "date": "2010-04-05",
+          "target": 5
+        },
+        {
+          "date": "2010-04-08",
+          "target": 0
+        },
+        {
+          "date": "2010-04-11",
+          "target": 0
+        },
+        {
+          "date": "2010-04-14",
+          "target": 0
+        },
+        {
+          "date": "2010-04-17",
+          "target": 0
+        },
+        {
+          "date": "2010-04-20",
+          "target": 0
+        },
+        {
+          "date": "2010-04-23",
+          "target": 0
+        },
+        {
+          "date": "2010-04-26",
+          "target": 0
+        },
+        {
+          "date": "2010-04-29",
+          "target": 0
+        },
+        {
+          "date": "2010-05-02",
+          "target": 2
+        },
+        {
+          "date": "2010-05-05",
+          "target": 1
+        },
+        {
+          "date": "2010-05-08",
+          "target": 14
+        },
+        {
+          "date": "2010-05-11",
+          "target": 26
+        },
+        {
+          "date": "2010-05-14",
+          "target": 0
+        },
+        {
+          "date": "2010-05-17",
+          "target": 0
+        },
+        {
+          "date": "2010-05-20",
+          "target": 0
+        },
+        {
+          "date": "2010-05-23",
+          "target": 0
+        },
+        {
+          "date": "2010-05-26",
+          "target": 0
+        },
+        {
+          "date": "2010-05-29",
+          "target": 0
+        },
+        {
+          "date": "2010-06-01",
+          "target": 12
+        },
+        {
+          "date": "2010-06-04",
+          "target": 0
+        },
+        {
+          "date": "2010-06-07",
+          "target": 0
+        },
+        {
+          "date": "2010-06-10",
+          "target": 8
+        },
+        {
+          "date": "2010-06-13",
+          "target": 0
+        },
+        {
+          "date": "2010-06-16",
+          "target": 0
+        },
+        {
+          "date": "2010-06-19",
+          "target": 0
+        },
+        {
+          "date": "2010-06-22",
+          "target": 0
+        },
+        {
+          "date": "2010-06-25",
+          "target": 0
+        },
+        {
+          "date": "2010-06-28",
+          "target": 0
+        },
+        {
+          "date": "2010-07-01",
+          "target": 17
+        },
+        {
+          "date": "2010-07-04",
+          "target": 3
+        },
+        {
+          "date": "2010-07-07",
+          "target": 0
+        },
+        {
+          "date": "2010-07-10",
+          "target": 0
+        },
+        {
+          "date": "2010-07-13",
+          "target": 10
+        },
+        {
+          "date": "2010-07-16",
+          "target": 0
+        },
+        {
+          "date": "2010-07-19",
+          "target": 0
+        },
+        {
+          "date": "2010-07-22",
+          "target": 0
+        },
+        {
+          "date": "2010-07-25",
+          "target": 0
+        },
+        {
+          "date": "2010-07-28",
+          "target": 0
+        },
+        {
+          "date": "2010-07-31",
+          "target": 2
+        },
+        {
+          "date": "2010-08-03",
+          "target": 1
+        },
+        {
+          "date": "2010-08-06",
+          "target": 0
+        },
+        {
+          "date": "2010-08-09",
+          "target": 0
+        },
+        {
+          "date": "2010-08-12",
+          "target": 0
+        },
+        {
+          "date": "2010-08-15",
+          "target": 6
+        },
+        {
+          "date": "2010-08-18",
+          "target": 0
+        },
+        {
+          "date": "2010-08-21",
+          "target": 0
+        },
+        {
+          "date": "2010-08-24",
+          "target": 0
+        },
+        {
+          "date": "2010-08-27",
+          "target": 0
+        },
+        {
+          "date": "2010-08-30",
+          "target": 0
+        },
+        {
+          "date": "2010-09-02",
+          "target": 3
+        },
+        {
+          "date": "2010-09-05",
+          "target": 0
+        },
+        {
+          "date": "2010-09-08",
+          "target": 0
+        },
+        {
+          "date": "2010-09-11",
+          "target": 0
+        },
+        {
+          "date": "2010-09-14",
+          "target": 7
+        },
+        {
+          "date": "2010-09-17",
+          "target": 1
+        },
+        {
+          "date": "2010-09-20",
+          "target": 0
+        },
+        {
+          "date": "2010-09-23",
+          "target": 0
+        },
+        {
+          "date": "2010-09-26",
+          "target": 0
+        },
+        {
+          "date": "2010-09-29",
+          "target": 4
+        },
+        {
+          "date": "2010-10-02",
+          "target": 0
+        },
+        {
+          "date": "2010-10-05",
+          "target": 0
+        },
+        {
+          "date": "2010-10-08",
+          "target": 0
+        },
+        {
+          "date": "2010-10-11",
+          "target": 0
+        },
+        {
+          "date": "2010-10-14",
+          "target": 3
+        },
+        {
+          "date": "2010-10-17",
+          "target": 0
+        },
+        {
+          "date": "2010-10-20",
+          "target": 0
+        },
+        {
+          "date": "2010-10-23",
+          "target": 0
+        },
+        {
+          "date": "2010-10-26",
+          "target": 0
+        },
+        {
+          "date": "2010-10-29",
+          "target": 0
+        },
+        {
+          "date": "2010-11-01",
+          "target": 7
+        },
+        {
+          "date": "2010-11-04",
+          "target": 0
+        },
+        {
+          "date": "2010-11-07",
+          "target": 0
+        },
+        {
+          "date": "2010-11-10",
+          "target": 0
+        },
+        {
+          "date": "2010-11-13",
+          "target": 0
+        },
+        {
+          "date": "2010-11-16",
+          "target": 0
+        },
+        {
+          "date": "2010-11-19",
+          "target": 0
+        },
+        {
+          "date": "2010-11-22",
+          "target": 0
+        },
+        {
+          "date": "2010-11-25",
+          "target": 0
+        },
+        {
+          "date": "2010-11-28",
+          "target": 0
+        },
+        {
+          "date": "2010-12-01",
+          "target": 0
+        },
+        {
+          "date": "2010-12-04",
+          "target": 0
+        },
+        {
+          "date": "2010-12-07",
+          "target": 0
+        },
+        {
+          "date": "2010-12-10",
+          "target": 0
+        },
+        {
+          "date": "2010-12-13",
+          "target": 0
+        },
+        {
+          "date": "2010-12-16",
+          "target": 4
+        },
+        {
+          "date": "2010-12-19",
+          "target": 0
+        },
+        {
+          "date": "2010-12-22",
+          "target": 0
+        },
+        {
+          "date": "2010-12-25",
+          "target": 0
+        },
+        {
+          "date": "2010-12-28",
+          "target": 0
+        },
+        {
+          "date": "2010-12-31",
+          "target": 0
+        },
+        {
+          "date": "2011-01-03",
+          "target": 0
+        },
+        {
+          "date": "2011-01-06",
+          "target": 0
+        },
+        {
+          "date": "2011-01-09",
+          "target": 0
+        },
+        {
+          "date": "2011-01-12",
+          "target": 0
+        },
+        {
+          "date": "2011-01-15",
+          "target": 0
+        },
+        {
+          "date": "2011-01-18",
+          "target": 0
+        },
+        {
+          "date": "2011-01-21",
+          "target": 0
+        },
+        {
+          "date": "2011-01-24",
+          "target": 0
+        },
+        {
+          "date": "2011-01-27",
+          "target": 0
+        },
+        {
+          "date": "2011-01-30",
+          "target": 0
+        },
+        {
+          "date": "2011-02-02",
+          "target": 0
+        },
+        {
+          "date": "2011-02-05",
+          "target": 0
+        },
+        {
+          "date": "2011-02-08",
+          "target": 0
+        },
+        {
+          "date": "2011-02-11",
+          "target": 0
+        },
+        {
+          "date": "2011-02-14",
+          "target": 0
+        },
+        {
+          "date": "2011-02-17",
+          "target": 0
+        },
+        {
+          "date": "2011-02-20",
+          "target": 0
+        },
+        {
+          "date": "2011-02-23",
+          "target": 2
+        },
+        {
+          "date": "2011-02-26",
+          "target": 5
+        }
+      ]
+    },
+    {
+      "scale": "7D",
+      "events": [
+        {
+          "date": "2010-02-19",
+          "target": 7
+        },
+        {
+          "date": "2010-02-26",
+          "target": 0
+        },
+        {
+          "date": "2010-03-05",
+          "target": 9
+        },
+        {
+          "date": "2010-03-12",
+          "target": 7
+        },
+        {
+          "date": "2010-03-19",
+          "target": 10
+        },
+        {
+          "date": "2010-03-26",
+          "target": 3
+        },
+        {
+          "date": "2010-04-02",
+          "target": 5
+        },
+        {
+          "date": "2010-04-09",
+          "target": 0
+        },
+        {
+          "date": "2010-04-16",
+          "target": 0
+        },
+        {
+          "date": "2010-04-23",
+          "target": 0
+        },
+        {
+          "date": "2010-04-30",
+          "target": 3
+        },
+        {
+          "date": "2010-05-07",
+          "target": 40
+        },
+        {
+          "date": "2010-05-14",
+          "target": 0
+        },
+        {
+          "date": "2010-05-21",
+          "target": 0
+        },
+        {
+          "date": "2010-05-28",
+          "target": 12
+        },
+        {
+          "date": "2010-06-04",
+          "target": 7
+        },
+        {
+          "date": "2010-06-11",
+          "target": 1
+        },
+        {
+          "date": "2010-06-18",
+          "target": 0
+        },
+        {
+          "date": "2010-06-25",
+          "target": 6
+        },
+        {
+          "date": "2010-07-02",
+          "target": 14
+        },
+        {
+          "date": "2010-07-09",
+          "target": 10
+        },
+        {
+          "date": "2010-07-16",
+          "target": 0
+        },
+        {
+          "date": "2010-07-23",
+          "target": 0
+        },
+        {
+          "date": "2010-07-30",
+          "target": 3
+        },
+        {
+          "date": "2010-08-06",
+          "target": 0
+        },
+        {
+          "date": "2010-08-13",
+          "target": 6
+        },
+        {
+          "date": "2010-08-20",
+          "target": 0
+        },
+        {
+          "date": "2010-08-27",
+          "target": 3
+        },
+        {
+          "date": "2010-09-03",
+          "target": 0
+        },
+        {
+          "date": "2010-09-10",
+          "target": 7
+        },
+        {
+          "date": "2010-09-17",
+          "target": 1
+        },
+        {
+          "date": "2010-09-24",
+          "target": 0
+        },
+        {
+          "date": "2010-10-01",
+          "target": 4
+        },
+        {
+          "date": "2010-10-08",
+          "target": 0
+        },
+        {
+          "date": "2010-10-15",
+          "target": 3
+        },
+        {
+          "date": "2010-10-22",
+          "target": 0
+        },
+        {
+          "date": "2010-10-29",
+          "target": 7
+        },
+        {
+          "date": "2010-11-05",
+          "target": 0
+        },
+        {
+          "date": "2010-11-12",
+          "target": 0
+        },
+        {
+          "date": "2010-11-19",
+          "target": 0
+        },
+        {
+          "date": "2010-11-26",
+          "target": 0
+        },
+        {
+          "date": "2010-12-03",
+          "target": 0
+        },
+        {
+          "date": "2010-12-10",
+          "target": 4
+        },
+        {
+          "date": "2010-12-17",
+          "target": 0
+        },
+        {
+          "date": "2010-12-24",
+          "target": 0
+        },
+        {
+          "date": "2010-12-31",
+          "target": 0
+        },
+        {
+          "date": "2011-01-07",
+          "target": 0
+        },
+        {
+          "date": "2011-01-14",
+          "target": 0
+        },
+        {
+          "date": "2011-01-21",
+          "target": 0
+        },
+        {
+          "date": "2011-01-28",
+          "target": 0
+        },
+        {
+          "date": "2011-02-04",
+          "target": 0
+        },
+        {
+          "date": "2011-02-11",
+          "target": 0
+        },
+        {
+          "date": "2011-02-18",
+          "target": 0
+        },
+        {
+          "date": "2011-02-25",
+          "target": 7
+        }
+      ]
+    },
+    {
+      "scale": "14D",
+      "events": [
+        {
+          "date": "2010-02-19",
+          "target": 7
+        },
+        {
+          "date": "2010-03-05",
+          "target": 16
+        },
+        {
+          "date": "2010-03-19",
+          "target": 13
+        },
+        {
+          "date": "2010-04-02",
+          "target": 5
+        },
+        {
+          "date": "2010-04-16",
+          "target": 0
+        },
+        {
+          "date": "2010-04-30",
+          "target": 43
+        },
+        {
+          "date": "2010-05-14",
+          "target": 0
+        },
+        {
+          "date": "2010-05-28",
+          "target": 19
+        },
+        {
+          "date": "2010-06-11",
+          "target": 1
+        },
+        {
+          "date": "2010-06-25",
+          "target": 20
+        },
+        {
+          "date": "2010-07-09",
+          "target": 10
+        },
+        {
+          "date": "2010-07-23",
+          "target": 3
+        },
+        {
+          "date": "2010-08-06",
+          "target": 6
+        },
+        {
+          "date": "2010-08-20",
+          "target": 3
+        },
+        {
+          "date": "2010-09-03",
+          "target": 7
+        },
+        {
+          "date": "2010-09-17",
+          "target": 1
+        },
+        {
+          "date": "2010-10-01",
+          "target": 4
+        },
+        {
+          "date": "2010-10-15",
+          "target": 3
+        },
+        {
+          "date": "2010-10-29",
+          "target": 7
+        },
+        {
+          "date": "2010-11-12",
+          "target": 0
+        },
+        {
+          "date": "2010-11-26",
+          "target": 0
+        },
+        {
+          "date": "2010-12-10",
+          "target": 4
+        },
+        {
+          "date": "2010-12-24",
+          "target": 0
+        },
+        {
+          "date": "2011-01-07",
+          "target": 0
+        },
+        {
+          "date": "2011-01-21",
+          "target": 0
+        },
+        {
+          "date": "2011-02-04",
+          "target": 0
+        },
+        {
+          "date": "2011-02-18",
+          "target": 7
+        }
+      ]
+    },
+    {
+      "scale": "30D",
+      "events": [
+        {
+          "date": "2010-02-19",
+          "target": 33
+        },
+        {
+          "date": "2010-03-21",
+          "target": 8
+        },
+        {
+          "date": "2010-04-20",
+          "target": 43
+        },
+        {
+          "date": "2010-05-20",
+          "target": 20
+        },
+        {
+          "date": "2010-06-19",
+          "target": 30
+        },
+        {
+          "date": "2010-07-19",
+          "target": 9
+        },
+        {
+          "date": "2010-08-18",
+          "target": 10
+        },
+        {
+          "date": "2010-09-17",
+          "target": 8
+        },
+        {
+          "date": "2010-10-17",
+          "target": 7
+        },
+        {
+          "date": "2010-11-16",
+          "target": 0
+        },
+        {
+          "date": "2010-12-16",
+          "target": 4
+        },
+        {
+          "date": "2011-01-15",
+          "target": 0
+        },
+        {
+          "date": "2011-02-14",
+          "target": 7
+        }
+      ]
+    }
+  ]
+}

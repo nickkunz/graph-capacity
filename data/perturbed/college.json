@@ -1,0 +1,2085 @@
+{
+  "network_perturbed": [
+    {
+      "method": "rewire",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 2094.0,
+        "n_edges": 370305.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0,
+        "radius": 1.9801,
+        "degeneracy": 208.24518147841133,
+        "k_core_size": 2056.2099000000003,
+        "maximum_degree": 1899.0,
+        "degree_variance": 245214.07935895436,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.9801,
+        "degree_entropy": 0.3097048480911978,
+        "joint_degree_entropy": 0.027587257786285853,
+        "degree_skewness": 2.800244796480087,
+        "degree_kurtosis": 5.84148232168399,
+        "normalized_laplacian_second_moment": 1.0009923683926774,
+        "normalized_laplacian_third_moment": 10877.059248806127,
+        "random_walk_triangle_weight": 102.3258814324119,
+        "random_walk_fourth_moment": 0.11698821934749147,
+        "adjacency_fourth_moment_per_node": 132228964.00509241
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 2094.0,
+        "n_edges": 370305.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0,
+        "radius": 1.9024999999999999,
+        "degeneracy": 259.89473337412574,
+        "k_core_size": 1908.8475,
+        "maximum_degree": 1899.0,
+        "degree_variance": 245214.07935895436,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.9025,
+        "degree_entropy": 0.3097048480911978,
+        "joint_degree_entropy": 0.13516370020918933,
+        "degree_skewness": 2.800400595174772,
+        "degree_kurtosis": 5.842789274180543,
+        "normalized_laplacian_second_moment": 1.0011376580344653,
+        "normalized_laplacian_third_moment": 53288.213789398294,
+        "random_walk_triangle_weight": 501.34539897789693,
+        "random_walk_fourth_moment": 0.5365306418305611,
+        "adjacency_fourth_moment_per_node": 137137534.82358527
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 2094.0,
+        "n_edges": 370305.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0,
+        "radius": 1.7225,
+        "degeneracy": 379.7003949878964,
+        "k_core_size": 1567.0274999999997,
+        "maximum_degree": 1899.0,
+        "degree_variance": 245214.07935895433,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.7224999999999999,
+        "degree_entropy": 0.30970484809119775,
+        "joint_degree_entropy": 0.3846966852107696,
+        "degree_skewness": 2.800761983899556,
+        "degree_kurtosis": 5.845820865023063,
+        "normalized_laplacian_second_moment": 1.0014746700901591,
+        "normalized_laplacian_third_moment": 151664.6031876791,
+        "random_walk_triangle_weight": 1426.906135552476,
+        "random_walk_fourth_moment": 1.5096960548067537,
+        "adjacency_fourth_moment_per_node": 148523394.9695738
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 2094.0,
+        "n_edges": 370305.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0,
+        "radius": 1.49,
+        "degeneracy": 534.44937457235,
+        "k_core_size": 1125.51,
+        "maximum_degree": 1899.0,
+        "degree_variance": 245214.07935895436,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.49,
+        "degree_entropy": 0.3097048480911977,
+        "joint_degree_entropy": 0.707010124171144,
+        "degree_skewness": 2.8012287776690696,
+        "degree_kurtosis": 5.849736669861318,
+        "normalized_laplacian_second_moment": 1.0019099773287636,
+        "normalized_laplacian_third_moment": 278734.1061604584,
+        "random_walk_triangle_weight": 2622.4220869613064,
+        "random_walk_fourth_moment": 2.7667013799010016,
+        "adjacency_fourth_moment_per_node": 163230130.99147567
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.5,
+      "invariants": {
+        "n_nodes": 2094.0,
+        "n_edges": 370305.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0,
+        "radius": 1.25,
+        "degeneracy": 694.1902567240442,
+        "k_core_size": 669.75,
+        "maximum_degree": 1899.0,
+        "degree_variance": 245214.07935895436,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.25,
+        "degree_entropy": 0.30970484809119764,
+        "joint_degree_entropy": 1.0397207708399177,
+        "degree_skewness": 2.8017106293021152,
+        "degree_kurtosis": 5.853778790984677,
+        "normalized_laplacian_second_moment": 1.002359326736355,
+        "normalized_laplacian_third_moment": 409902.6253581662,
+        "random_walk_triangle_weight": 3856.5030690607446,
+        "random_walk_fourth_moment": 4.064255263869258,
+        "adjacency_fourth_moment_per_node": 178411277.85279372
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 2094.0,
+        "n_edges": 366601.95,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 856.2732624577274,
+        "maximum_degree": 1880.01,
+        "degree_variance": 240334.31917971122,
+        "degree_entropy": 0.3097048480911976,
+        "joint_degree_entropy": 1.3862943450271068,
+        "normalized_laplacian_second_moment": 1.0028559586221513,
+        "normalized_laplacian_third_moment": 530288.4857179449,
+        "random_walk_triangle_weight": 5090.485734157037,
+        "random_walk_fourth_moment": 5.410826421404531,
+        "adjacency_fourth_moment_per_node": 188459925.95108244,
+        "k_core_size": 195.0,
+        "degree_skewness": 2.8022125580865365,
+        "degree_kurtosis": 5.857989333821504,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 2094.0,
+        "n_edges": 351789.75,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 838.7964592199945,
+        "maximum_degree": 1804.05,
+        "degree_variance": 221305.7066214563,
+        "degree_entropy": 0.3097048480911976,
+        "joint_degree_entropy": 1.3862939237207565,
+        "normalized_laplacian_second_moment": 1.0029762095115051,
+        "normalized_laplacian_third_moment": 468516.14395994524,
+        "random_walk_triangle_weight": 4884.412312455243,
+        "random_walk_fourth_moment": 5.390626540990531,
+        "adjacency_fourth_moment_per_node": 166540345.8103125,
+        "k_core_size": 195.0,
+        "degree_skewness": 2.8022125580865387,
+        "degree_kurtosis": 5.857989333821514,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 2094.0,
+        "n_edges": 314759.25,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 793.4220188525146,
+        "maximum_degree": 1614.1499999999999,
+        "degree_variance": 177167.17233684455,
+        "degree_entropy": 0.3097048480911976,
+        "joint_degree_entropy": 1.3862937210466728,
+        "normalized_laplacian_second_moment": 1.0033263518069764,
+        "normalized_laplacian_third_moment": 335472.2643349451,
+        "random_walk_triangle_weight": 4369.228840504456,
+        "random_walk_fourth_moment": 5.340044536255643,
+        "adjacency_fourth_moment_per_node": 119318543.0409375,
+        "k_core_size": 195.0,
+        "degree_skewness": 2.802212558086537,
+        "degree_kurtosis": 5.857989333821504,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 2094.0,
+        "n_edges": 259213.49999999997,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 720.0187497558657,
+        "maximum_degree": 1329.3,
+        "degree_variance": 120154.89888588767,
+        "degree_entropy": 0.3097048480911976,
+        "joint_degree_entropy": 1.3862913958045917,
+        "normalized_laplacian_second_moment": 1.0040391414798997,
+        "normalized_laplacian_third_moment": 187232.34802244502,
+        "random_walk_triangle_weight": 3596.4539443665217,
+        "random_walk_fourth_moment": 5.263859740902475,
+        "adjacency_fourth_moment_per_node": 66673600.40249997,
+        "k_core_size": 195.0,
+        "degree_skewness": 2.802212558086537,
+        "degree_kurtosis": 5.857989333821504,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.5,
+      "invariants": {
+        "n_nodes": 2094.0,
+        "n_edges": 185152.5,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 608.526909840477,
+        "maximum_degree": 949.5,
+        "degree_variance": 61303.51983973859,
+        "degree_entropy": 0.3097048480911976,
+        "joint_degree_entropy": 1.3862890972149717,
+        "normalized_laplacian_second_moment": 1.0056547980718598,
+        "normalized_laplacian_third_moment": 68122.18702244508,
+        "random_walk_triangle_weight": 2566.0885219916104,
+        "random_walk_fourth_moment": 5.16117420476863,
+        "adjacency_fourth_moment_per_node": 24324409.687500004,
+        "k_core_size": 195.0,
+        "degree_skewness": 2.802212558086538,
+        "degree_kurtosis": 5.857989333821511,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 2073.0,
+        "n_edges": 362935.9305,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 851.9811388757382,
+        "maximum_degree": 1880.01,
+        "degree_variance": 240334.31917971122,
+        "degree_entropy": 0.3026608498254031,
+        "joint_degree_entropy": 1.3862943450271068,
+        "normalized_laplacian_second_moment": 1.0027990440312715,
+        "normalized_laplacian_third_moment": 535660.428409733,
+        "random_walk_triangle_weight": 5090.485734157037,
+        "random_walk_fourth_moment": 5.465639424226286,
+        "adjacency_fourth_moment_per_node": 190369071.36592698,
+        "k_core_size": 195.0,
+        "degree_skewness": 2.8022125580865365,
+        "degree_kurtosis": 5.857989333821504,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 1989.0,
+        "n_edges": 334200.2625,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 817.5576585171226,
+        "maximum_degree": 1804.05,
+        "degree_variance": 221305.7066214563,
+        "degree_entropy": 0.2718944093352216,
+        "joint_degree_entropy": 1.3862939237207565,
+        "normalized_laplacian_second_moment": 1.0026856240126383,
+        "normalized_laplacian_third_moment": 493249.2209412395,
+        "random_walk_triangle_weight": 4884.412312455243,
+        "random_walk_fourth_moment": 5.6751995861408595,
+        "adjacency_fourth_moment_per_node": 175332068.43981618,
+        "k_core_size": 195.0,
+        "degree_skewness": 2.8022125580865387,
+        "degree_kurtosis": 5.857989333821514,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 1780.0,
+        "n_edges": 267545.3625,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 731.4989576205834,
+        "maximum_degree": 1614.1499999999999,
+        "degree_variance": 177167.17233684455,
+        "degree_entropy": 0.17321626813971705,
+        "joint_degree_entropy": 1.3862937210466728,
+        "normalized_laplacian_second_moment": 1.002403424204372,
+        "normalized_laplacian_third_moment": 394650.90309964895,
+        "random_walk_triangle_weight": 4369.228840504456,
+        "random_walk_fourth_moment": 6.282052392651302,
+        "adjacency_fourth_moment_per_node": 140366870.29647365,
+        "k_core_size": 195.0,
+        "degree_skewness": 2.802212558086537,
+        "degree_kurtosis": 5.857989333821504,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 1466.0,
+        "n_edges": 181449.44999999998,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 602.4109062757746,
+        "maximum_degree": 1329.3,
+        "degree_variance": 120154.89888588767,
+        "degree_entropy": -0.06689610225735887,
+        "joint_degree_entropy": 1.3862913958045917,
+        "normalized_laplacian_second_moment": 1.0019794493728142,
+        "normalized_laplacian_third_moment": 267437.8640920872,
+        "random_walk_triangle_weight": 3596.4539443665217,
+        "random_walk_fourth_moment": 7.518773736323182,
+        "adjacency_fourth_moment_per_node": 95235006.30479872,
+        "k_core_size": 195.0,
+        "degree_skewness": 2.802212558086537,
+        "degree_kurtosis": 5.857989333821504,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.5,
+      "invariants": {
+        "n_nodes": 1047.0,
+        "n_edges": 92576.25,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 430.2935044826961,
+        "maximum_degree": 949.5,
+        "degree_variance": 61303.51983973859,
+        "degree_entropy": -0.766884664937495,
+        "joint_degree_entropy": 1.3862890972149717,
+        "normalized_laplacian_second_moment": 1.001413699517965,
+        "normalized_laplacian_third_moment": 136243.37404489017,
+        "random_walk_triangle_weight": 2566.0885219916104,
+        "random_walk_fourth_moment": 10.32234840953726,
+        "adjacency_fourth_moment_per_node": 48648819.37500001,
+        "k_core_size": 195.0,
+        "degree_skewness": 2.802212558086538,
+        "degree_kurtosis": 5.857989333821511,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0
+      }
+    }
+  ],
+  "invariants_perturbed": [
+    {
+      "method": "noise",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 2080.6777206361803,
+        "n_edges": 372845.1143081307,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.9863656690390903,
+        "radius": 1.9721772927346422,
+        "degeneracy": 195.6057864139821,
+        "k_core_size": 2106.4485981039084,
+        "maximum_degree": 1900.5490907473375,
+        "degree_variance": 244042.046294888,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.998120471871173,
+        "degree_entropy": 0.30926620129245064,
+        "joint_degree_entropy": 0.0,
+        "degree_skewness": 2.8025417969927333,
+        "degree_kurtosis": 5.8077106495058635,
+        "normalized_laplacian_second_moment": 0.9994636391893365,
+        "normalized_laplacian_third_moment": 1.0081189124024617,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.009498874687136873,
+        "adjacency_fourth_moment_per_node": 131579055.50178777
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 2064.918206980049,
+        "n_edges": 361688.3625981827,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.8306813903457881,
+        "radius": 1.953222661898276,
+        "degeneracy": 186.57558939687544,
+        "k_core_size": 1942.886185455521,
+        "maximum_degree": 1841.4376101360413,
+        "degree_variance": 267142.31886990694,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.1166193565840257,
+        "degree_entropy": 0.30677770024804046,
+        "joint_degree_entropy": 0.0,
+        "degree_skewness": 2.7935311862453043,
+        "degree_kurtosis": 5.682992166137645,
+        "normalized_laplacian_second_moment": 1.0265642753217394,
+        "normalized_laplacian_third_moment": 0.9736952649567359,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.008973701397583913,
+        "adjacency_fourth_moment_per_node": 121181696.43833734
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 2317.776699694906,
+        "n_edges": 366076.2888000663,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.8284008582884463,
+        "radius": 1.937684393940345,
+        "degeneracy": 209.83928744689013,
+        "k_core_size": 2120.06317004023,
+        "maximum_degree": 1964.5977326995169,
+        "degree_variance": 260976.1942946211,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.097978819178792,
+        "degree_entropy": 0.2776364814575427,
+        "joint_degree_entropy": 0.0,
+        "degree_skewness": 2.868165045372533,
+        "degree_kurtosis": 5.963931161033986,
+        "normalized_laplacian_second_moment": 1.0375742442761775,
+        "normalized_laplacian_third_moment": 1.1079933893026312,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.010386549324809285,
+        "adjacency_fourth_moment_per_node": 134950485.78982073
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 1981.914552428911,
+        "n_edges": 324450.233032067,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.7929944857310134,
+        "radius": 2.6020233703438795,
+        "degeneracy": 190.5063226006618,
+        "k_core_size": 1754.4863741862782,
+        "maximum_degree": 2313.4123687300125,
+        "degree_variance": 224025.19980933474,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.7644709556490443,
+        "degree_entropy": 0.29707702348864506,
+        "joint_degree_entropy": 0.0,
+        "degree_skewness": 2.4833960248491347,
+        "degree_kurtosis": 7.224463642818815,
+        "normalized_laplacian_second_moment": 0.8802110419096845,
+        "normalized_laplacian_third_moment": 0.8400420388844816,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0060622495912800965,
+        "adjacency_fourth_moment_per_node": 123640977.15213354
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 2099.5597585843625,
+        "n_edges": 344114.25874505856,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.633864031722181,
+        "radius": 1.6742989778876174,
+        "degeneracy": 205.5760820886722,
+        "k_core_size": 2521.3555728510364,
+        "maximum_degree": 2540.580344787716,
+        "degree_variance": 271791.0219186372,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.8699124023096643,
+        "degree_entropy": 0.3509386162449029,
+        "joint_degree_entropy": 0.0,
+        "degree_skewness": 2.856400469613519,
+        "degree_kurtosis": 4.831793120960749,
+        "normalized_laplacian_second_moment": 0.6868063669577795,
+        "normalized_laplacian_third_moment": 1.5170767296768612,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.00858217882797826,
+        "adjacency_fourth_moment_per_node": 117272822.90180384
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 2106.6978918571713,
+        "n_edges": 368464.2517409315,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.006817202961124,
+        "radius": 1.971887396136154,
+        "degeneracy": 193.9200816418709,
+        "k_core_size": 2107.3504266533337,
+        "maximum_degree": 1921.6871777858848,
+        "degree_variance": 245275.44587154553,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.9905482742748367,
+        "degree_entropy": 0.308212431692619,
+        "joint_degree_entropy": 0.0,
+        "degree_skewness": 2.755058174177532,
+        "degree_kurtosis": 5.821527474282426,
+        "normalized_laplacian_second_moment": 0.9886489865659782,
+        "normalized_laplacian_third_moment": 1.0049025387542017,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.009470940861511528,
+        "adjacency_fourth_moment_per_node": 131100818.23693046
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 2127.117255605408,
+        "n_edges": 362747.0032144692,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.8760566771970146,
+        "radius": 2.0392259226637277,
+        "degeneracy": 193.17254066658117,
+        "k_core_size": 2192.3220284180493,
+        "maximum_degree": 1820.162977119452,
+        "degree_variance": 251139.97022945038,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0580601392499194,
+        "degree_entropy": 0.31393026593466167,
+        "joint_degree_entropy": 0.0,
+        "degree_skewness": 3.020780906010061,
+        "degree_kurtosis": 6.092191236260057,
+        "normalized_laplacian_second_moment": 0.9810633304627666,
+        "normalized_laplacian_third_moment": 1.0047858225899053,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.00895972200936672,
+        "adjacency_fourth_moment_per_node": 117243677.74542865
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 2229.339989544175,
+        "n_edges": 349749.00251791126,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0795143838532444,
+        "radius": 1.8436420645744676,
+        "degeneracy": 185.90687655538315,
+        "k_core_size": 2237.689467458619,
+        "maximum_degree": 2106.656581867917,
+        "degree_variance": 258239.39675118358,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.7829870894316145,
+        "degree_entropy": 0.29876090701576,
+        "joint_degree_entropy": 0.0,
+        "degree_skewness": 2.4465318288836535,
+        "degree_kurtosis": 6.0744822963351535,
+        "normalized_laplacian_second_moment": 1.0330725322391818,
+        "normalized_laplacian_third_moment": 1.0371877550265598,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.00948128706205852,
+        "adjacency_fourth_moment_per_node": 121145476.75898503
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 1867.102090002712,
+        "n_edges": 448596.65212205827,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.743775965850109,
+        "radius": 2.104062048400808,
+        "degeneracy": 208.24876150743853,
+        "k_core_size": 2625.3884977753282,
+        "maximum_degree": 2434.289177107875,
+        "degree_variance": 244399.0370019051,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.1891084113587698,
+        "degree_entropy": 0.32593973166740725,
+        "joint_degree_entropy": 0.0,
+        "degree_skewness": 2.474022068103169,
+        "degree_kurtosis": 6.586530636571616,
+        "normalized_laplacian_second_moment": 1.1108374232336626,
+        "normalized_laplacian_third_moment": 0.9287670908550051,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.009288321168176879,
+        "adjacency_fourth_moment_per_node": 133993733.51144809
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 1755.774987248413,
+        "n_edges": 270652.7223846102,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.7789581941923345,
+        "radius": 2.0970793438952473,
+        "degeneracy": 201.412452438675,
+        "k_core_size": 2662.0713672387287,
+        "maximum_degree": 1503.386385528051,
+        "degree_variance": 288498.94519540074,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.4984170453599446,
+        "degree_entropy": 0.25793234826508304,
+        "joint_degree_entropy": 0.0,
+        "degree_skewness": 3.8962144680487385,
+        "degree_kurtosis": 5.425870513240127,
+        "normalized_laplacian_second_moment": 0.8208856385530375,
+        "normalized_laplacian_third_moment": 1.4203031097337164,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.008384517985435025,
+        "adjacency_fourth_moment_per_node": 140078829.99055722
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.9,
+      "invariants": {
+        "n_nodes": 2094.0,
+        "n_edges": 370305.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 195.0,
+        "k_core_size": 2094.0,
+        "maximum_degree": 1899.0,
+        "degree_variance": 245214.07935895436,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0,
+        "degree_entropy": 0.3097048480911978,
+        "joint_degree_entropy": 0.0,
+        "degree_skewness": 2.800204842948847,
+        "degree_kurtosis": 5.8411471624741775,
+        "normalized_laplacian_second_moment": 1.0009551098376313,
+        "normalized_laplacian_third_moment": 1.002865329512894,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.00939937646845671,
+        "adjacency_fourth_moment_per_node": 130970193.91117479
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.8,
+      "invariants": {
+        "n_nodes": 2094.0,
+        "n_edges": 370305.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 195.0,
+        "k_core_size": 2094.0,
+        "maximum_degree": 1899.0,
+        "degree_variance": 245214.07935895436,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0,
+        "degree_entropy": 0.3097048480911978,
+        "joint_degree_entropy": 0.0,
+        "degree_skewness": 2.800204842948847,
+        "degree_kurtosis": 5.8411471624741775,
+        "normalized_laplacian_second_moment": 1.0009551098376313,
+        "normalized_laplacian_third_moment": 1.002865329512894,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.00939937646845671,
+        "adjacency_fourth_moment_per_node": 130970193.91117479
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.7,
+      "invariants": {
+        "n_nodes": 2094.0,
+        "n_edges": 370305.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 195.0,
+        "k_core_size": 2094.0,
+        "maximum_degree": 1899.0,
+        "degree_variance": 245214.07935895436,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0,
+        "degree_entropy": 0.3097048480911978,
+        "joint_degree_entropy": 0.0,
+        "degree_skewness": 2.800204842948847,
+        "degree_kurtosis": 5.8411471624741775,
+        "normalized_laplacian_second_moment": 1.0009551098376313,
+        "normalized_laplacian_third_moment": 1.002865329512894,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.00939937646845671,
+        "adjacency_fourth_moment_per_node": 130970193.91117479
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.6,
+      "invariants": {
+        "n_nodes": 2094.0,
+        "n_edges": 370305.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 195.0,
+        "k_core_size": 2094.0,
+        "maximum_degree": 1899.0,
+        "degree_variance": 245214.07935895436,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0,
+        "degree_entropy": 0.3097048480911978,
+        "joint_degree_entropy": 0.0,
+        "degree_skewness": 2.800204842948847,
+        "degree_kurtosis": 5.8411471624741775,
+        "normalized_laplacian_second_moment": 1.0009551098376313,
+        "normalized_laplacian_third_moment": 1.002865329512894,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.00939937646845671,
+        "adjacency_fourth_moment_per_node": 130970193.91117479
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.5,
+      "invariants": {
+        "n_nodes": 2094.0,
+        "n_edges": 370305.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 195.0,
+        "k_core_size": 2094.0,
+        "maximum_degree": 1899.0,
+        "degree_variance": 245214.07935895436,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0,
+        "degree_entropy": 0.3097048480911978,
+        "joint_degree_entropy": 0.0,
+        "degree_skewness": 2.800204842948847,
+        "degree_kurtosis": 5.8411471624741775,
+        "normalized_laplacian_second_moment": 1.0009551098376313,
+        "normalized_laplacian_third_moment": 1.002865329512894,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.00939937646845671,
+        "adjacency_fourth_moment_per_node": 130970193.91117479
+      }
+    }
+  ],
+  "process_perturbed": [
+    {
+      "method": "scaling",
+      "intensity": 0.5,
+      "signatures": {
+        "lag1_autocorr": 0.8935731001656949,
+        "coef_variation": 1.5703889674273575,
+        "fano_factor": 2.466121509020028,
+        "norm_succ_diff": 0.34891237361041394,
+        "hurst_exponent": 0.8013415058527915,
+        "trend_coeff": -0.5873317137241453,
+        "count_skewness": 2.2517173411594027
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 1.0,
+      "signatures": {
+        "lag1_autocorr": 0.8935731001656949,
+        "coef_variation": 1.5703889674273575,
+        "fano_factor": 2.466121509020028,
+        "norm_succ_diff": 0.34891237361041394,
+        "hurst_exponent": 0.8013415058527915,
+        "trend_coeff": -0.5873317137241453,
+        "count_skewness": 2.2517173411594027
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 2.5,
+      "signatures": {
+        "lag1_autocorr": 0.8935731001656949,
+        "coef_variation": 1.5703889674273575,
+        "fano_factor": 2.466121509020028,
+        "norm_succ_diff": 0.34891237361041394,
+        "hurst_exponent": 0.8013415058527915,
+        "trend_coeff": -0.5873317137241453,
+        "count_skewness": 2.2517173411594027
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 5.0,
+      "signatures": {
+        "lag1_autocorr": 0.8935731001656949,
+        "coef_variation": 1.5703889674273575,
+        "fano_factor": 2.466121509020028,
+        "norm_succ_diff": 0.34891237361041394,
+        "hurst_exponent": 0.8013415058527915,
+        "trend_coeff": -0.5873317137241453,
+        "count_skewness": 2.2517173411594027
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 10.0,
+      "signatures": {
+        "lag1_autocorr": 0.8935731001656949,
+        "coef_variation": 1.5703889674273575,
+        "fano_factor": 2.466121509020028,
+        "norm_succ_diff": 0.34891237361041394,
+        "hurst_exponent": 0.8013415058527915,
+        "trend_coeff": -0.5873317137241453,
+        "count_skewness": 2.2517173411594027
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 2.0,
+      "signatures": {
+        "lag1_autocorr": 0.942237879378107,
+        "coef_variation": 1.5293885630850845,
+        "fano_factor": 724.9597346208368,
+        "norm_succ_diff": 0.2374112245096966,
+        "hurst_exponent": 0.8055383393393835,
+        "trend_coeff": -0.5976923717845966,
+        "count_skewness": 2.107526264367296
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 3.0,
+      "signatures": {
+        "lag1_autocorr": 0.963345863895834,
+        "coef_variation": 1.4963436815614475,
+        "fano_factor": 693.7944010344067,
+        "norm_succ_diff": 0.18686083900005507,
+        "hurst_exponent": 0.8092409209196011,
+        "trend_coeff": -0.6053476710892323,
+        "count_skewness": 1.9862415503092716
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 5.0,
+      "signatures": {
+        "lag1_autocorr": 0.982466992201135,
+        "coef_variation": 1.4445698139610614,
+        "fano_factor": 646.3942236365946,
+        "norm_succ_diff": 0.12631226338033624,
+        "hurst_exponent": 0.8154495279798333,
+        "trend_coeff": -0.6152896257617934,
+        "count_skewness": 1.774849257130249
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 7.0,
+      "signatures": {
+        "lag1_autocorr": 0.99004481669365,
+        "coef_variation": 1.4121499761916123,
+        "fano_factor": 617.5965455944147,
+        "norm_succ_diff": 0.0902534961204803,
+        "hurst_exponent": 0.8188863996926766,
+        "trend_coeff": -0.6174183041248045,
+        "count_skewness": 1.6609926097734355
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 10.0,
+      "signatures": {
+        "lag1_autocorr": 0.9910903025990486,
+        "coef_variation": 1.380239299313515,
+        "fano_factor": 590.3684990045932,
+        "norm_succ_diff": 0.08457168920906953,
+        "hurst_exponent": 0.8208262501668926,
+        "trend_coeff": -0.6136997679486861,
+        "count_skewness": 1.5966329566495379
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": 0.06308103962977418,
+        "coef_variation": 1.3417203268983389,
+        "fano_factor": 648.4033003967949,
+        "norm_succ_diff": 1.2263498285741652,
+        "hurst_exponent": 0.4419602529099283,
+        "trend_coeff": 0.031058829968386884,
+        "count_skewness": 1.2190370226869256
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.2,
+      "signatures": {
+        "lag1_autocorr": 0.15632949817803876,
+        "coef_variation": 2.180453292739994,
+        "fano_factor": 922.176614465068,
+        "norm_succ_diff": 1.2841747918614421,
+        "hurst_exponent": 0.531385930874974,
+        "trend_coeff": 0.03751611864839273,
+        "count_skewness": 3.5249163029800066
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.3,
+      "signatures": {
+        "lag1_autocorr": 0.05571326024859102,
+        "coef_variation": 1.8086859671265876,
+        "fano_factor": 833.6505573995724,
+        "norm_succ_diff": 1.4205927988329246,
+        "hurst_exponent": 0.5400599327316289,
+        "trend_coeff": 0.006225076929465523,
+        "count_skewness": 2.170310417472978
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.4,
+      "signatures": {
+        "lag1_autocorr": 0.004440980127084712,
+        "coef_variation": 1.4144543629551707,
+        "fano_factor": 793.9905264827078,
+        "norm_succ_diff": 1.298145837685281,
+        "hurst_exponent": 0.500511560204821,
+        "trend_coeff": 0.12520120657377334,
+        "count_skewness": 1.4817187396291802
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.5,
+      "signatures": {
+        "lag1_autocorr": 0.08208414145832067,
+        "coef_variation": 1.7392265542375935,
+        "fano_factor": 824.1388099132137,
+        "norm_succ_diff": 1.3237674050231647,
+        "hurst_exponent": 0.49870835249545714,
+        "trend_coeff": 0.03514052231922644,
+        "count_skewness": 2.6914619972229206
+      }
+    }
+  ],
+  "signatures_perturbed": [
+    {
+      "method": "noise",
+      "intensity": 0.005,
+      "signatures": {
+        "lag1_autocorr": 0.8939246930128317,
+        "coef_variation": 1.5548895080038412,
+        "fano_factor": 760.8261328750763,
+        "norm_succ_diff": 0.3504058656491363,
+        "hurst_exponent": 0.8050311375330838,
+        "trend_coeff": -0.5877834301271496,
+        "count_skewness": 2.258602840236482
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.01,
+      "signatures": {
+        "lag1_autocorr": 0.8907736257290642,
+        "coef_variation": 1.5484142920768742,
+        "fano_factor": 761.9457800392117,
+        "norm_succ_diff": 0.3536065452839975,
+        "hurst_exponent": 0.8014152062073674,
+        "trend_coeff": -0.593304791375187,
+        "count_skewness": 2.243802313461933
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.025,
+      "signatures": {
+        "lag1_autocorr": 0.9131726120160364,
+        "coef_variation": 1.5415745467790118,
+        "fano_factor": 735.814195246137,
+        "norm_succ_diff": 0.3510740956585364,
+        "hurst_exponent": 0.8073369240384306,
+        "trend_coeff": -0.608075932172238,
+        "count_skewness": 2.2241776470403796
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.05,
+      "signatures": {
+        "lag1_autocorr": 0.9127700696117587,
+        "coef_variation": 1.6001195246389728,
+        "fano_factor": 774.14910173577,
+        "norm_succ_diff": 0.3392615890987339,
+        "hurst_exponent": 0.7365956591597527,
+        "trend_coeff": -0.5434852844571094,
+        "count_skewness": 2.1278770648246743
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": 0.999096634886827,
+        "coef_variation": 1.6195467785627797,
+        "fano_factor": 807.30924308772,
+        "norm_succ_diff": 0.324068624672882,
+        "hurst_exponent": 0.7918549011797945,
+        "trend_coeff": -0.46352546750261014,
+        "count_skewness": 2.4982446020251636
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.005,
+      "signatures": {
+        "lag1_autocorr": 0.8930197553698412,
+        "coef_variation": 1.563728784395632,
+        "fano_factor": 772.1766150885359,
+        "norm_succ_diff": 0.3484296700800262,
+        "hurst_exponent": 0.806767618591105,
+        "trend_coeff": -0.5875893184154495,
+        "count_skewness": 2.2493659134092274
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.01,
+      "signatures": {
+        "lag1_autocorr": 0.887979364108928,
+        "coef_variation": 1.5669624852719868,
+        "fano_factor": 774.3437950902584,
+        "norm_succ_diff": 0.3478541634348937,
+        "hurst_exponent": 0.7909211069050787,
+        "trend_coeff": -0.5902812179641311,
+        "count_skewness": 2.2471779076235685
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.025,
+      "signatures": {
+        "lag1_autocorr": 0.9041259945044267,
+        "coef_variation": 1.5609386432044148,
+        "fano_factor": 788.597670607535,
+        "norm_succ_diff": 0.33438044276826073,
+        "hurst_exponent": 0.7945308607944909,
+        "trend_coeff": -0.573637690900709,
+        "count_skewness": 2.1902084501153234
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.05,
+      "signatures": {
+        "lag1_autocorr": 0.9138635546484059,
+        "coef_variation": 1.463030925774901,
+        "fano_factor": 771.1495490989464,
+        "norm_succ_diff": 0.34715169649354927,
+        "hurst_exponent": 0.7849762938610468,
+        "trend_coeff": -0.50810248283388,
+        "count_skewness": 2.205085430826791
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": 0.8873460674378795,
+        "coef_variation": 1.6300385181027763,
+        "fano_factor": 666.4773684736778,
+        "norm_succ_diff": 0.28160026713479785,
+        "hurst_exponent": 0.6891489802962945,
+        "trend_coeff": -0.576188717948407,
+        "count_skewness": 2.5648598958352977
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.95,
+      "signatures": {
+        "lag1_autocorr": 0.8935731001656948,
+        "coef_variation": 1.5703889674289226,
+        "fano_factor": 764.5615569552355,
+        "norm_succ_diff": 0.3489123736107618,
+        "hurst_exponent": 0.8013415058527915,
+        "trend_coeff": -0.5873317137241454,
+        "count_skewness": 2.2517173411594027
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.9,
+      "signatures": {
+        "lag1_autocorr": 0.8935731001656948,
+        "coef_variation": 1.5703889674289226,
+        "fano_factor": 764.5615569552355,
+        "norm_succ_diff": 0.3489123736107618,
+        "hurst_exponent": 0.8013415058527915,
+        "trend_coeff": -0.5873317137241454,
+        "count_skewness": 2.2517173411594027
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.85,
+      "signatures": {
+        "lag1_autocorr": 0.8935731001656948,
+        "coef_variation": 1.5703889674289226,
+        "fano_factor": 764.5615569552355,
+        "norm_succ_diff": 0.3489123736107618,
+        "hurst_exponent": 0.8013415058527915,
+        "trend_coeff": -0.5873317137241454,
+        "count_skewness": 2.2517173411594027
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.8,
+      "signatures": {
+        "lag1_autocorr": 0.8935731001656948,
+        "coef_variation": 1.5703889674289226,
+        "fano_factor": 764.5615569552355,
+        "norm_succ_diff": 0.3489123736107618,
+        "hurst_exponent": 0.8013415058527915,
+        "trend_coeff": -0.5873317137241454,
+        "count_skewness": 2.2517173411594027
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.7,
+      "signatures": {
+        "lag1_autocorr": 0.8935731001656948,
+        "coef_variation": 1.5703889674289226,
+        "fano_factor": 764.5615569552355,
+        "norm_succ_diff": 0.3489123736107618,
+        "hurst_exponent": 0.8013415058527915,
+        "trend_coeff": -0.5873317137241454,
+        "count_skewness": 2.2517173411594027
+      }
+    }
+  ],
+  "temporal_aggregated": [
+    {
+      "scale": "2D",
+      "events": [
+        {
+          "date": "2004-04-15",
+          "target": 2
+        },
+        {
+          "date": "2004-04-17",
+          "target": 0
+        },
+        {
+          "date": "2004-04-19",
+          "target": 22
+        },
+        {
+          "date": "2004-04-21",
+          "target": 221
+        },
+        {
+          "date": "2004-04-23",
+          "target": 598
+        },
+        {
+          "date": "2004-04-25",
+          "target": 679
+        },
+        {
+          "date": "2004-04-27",
+          "target": 1455
+        },
+        {
+          "date": "2004-04-29",
+          "target": 1952
+        },
+        {
+          "date": "2004-05-01",
+          "target": 1410
+        },
+        {
+          "date": "2004-05-03",
+          "target": 3002
+        },
+        {
+          "date": "2004-05-05",
+          "target": 3321
+        },
+        {
+          "date": "2004-05-07",
+          "target": 2921
+        },
+        {
+          "date": "2004-05-09",
+          "target": 2458
+        },
+        {
+          "date": "2004-05-11",
+          "target": 2315
+        },
+        {
+          "date": "2004-05-13",
+          "target": 1389
+        },
+        {
+          "date": "2004-05-15",
+          "target": 1467
+        },
+        {
+          "date": "2004-05-17",
+          "target": 2770
+        },
+        {
+          "date": "2004-05-19",
+          "target": 3375
+        },
+        {
+          "date": "2004-05-21",
+          "target": 2531
+        },
+        {
+          "date": "2004-05-23",
+          "target": 2176
+        },
+        {
+          "date": "2004-05-25",
+          "target": 3968
+        },
+        {
+          "date": "2004-05-27",
+          "target": 3609
+        },
+        {
+          "date": "2004-05-29",
+          "target": 565
+        },
+        {
+          "date": "2004-05-31",
+          "target": 919
+        },
+        {
+          "date": "2004-06-02",
+          "target": 1277
+        },
+        {
+          "date": "2004-06-04",
+          "target": 763
+        },
+        {
+          "date": "2004-06-06",
+          "target": 704
+        },
+        {
+          "date": "2004-06-08",
+          "target": 1249
+        },
+        {
+          "date": "2004-06-10",
+          "target": 1228
+        },
+        {
+          "date": "2004-06-12",
+          "target": 624
+        },
+        {
+          "date": "2004-06-14",
+          "target": 710
+        },
+        {
+          "date": "2004-06-16",
+          "target": 18
+        },
+        {
+          "date": "2004-06-18",
+          "target": 15
+        },
+        {
+          "date": "2004-06-20",
+          "target": 11
+        },
+        {
+          "date": "2004-06-22",
+          "target": 17
+        },
+        {
+          "date": "2004-06-24",
+          "target": 23
+        },
+        {
+          "date": "2004-06-26",
+          "target": 99
+        },
+        {
+          "date": "2004-06-28",
+          "target": 441
+        },
+        {
+          "date": "2004-06-30",
+          "target": 428
+        },
+        {
+          "date": "2004-07-02",
+          "target": 407
+        },
+        {
+          "date": "2004-07-04",
+          "target": 284
+        },
+        {
+          "date": "2004-07-06",
+          "target": 348
+        },
+        {
+          "date": "2004-07-08",
+          "target": 270
+        },
+        {
+          "date": "2004-07-10",
+          "target": 285
+        },
+        {
+          "date": "2004-07-12",
+          "target": 342
+        },
+        {
+          "date": "2004-07-14",
+          "target": 193
+        },
+        {
+          "date": "2004-07-16",
+          "target": 87
+        },
+        {
+          "date": "2004-07-18",
+          "target": 70
+        },
+        {
+          "date": "2004-07-20",
+          "target": 197
+        },
+        {
+          "date": "2004-07-22",
+          "target": 215
+        },
+        {
+          "date": "2004-07-24",
+          "target": 112
+        },
+        {
+          "date": "2004-07-26",
+          "target": 283
+        },
+        {
+          "date": "2004-07-28",
+          "target": 233
+        },
+        {
+          "date": "2004-07-30",
+          "target": 179
+        },
+        {
+          "date": "2004-08-01",
+          "target": 156
+        },
+        {
+          "date": "2004-08-03",
+          "target": 192
+        },
+        {
+          "date": "2004-08-05",
+          "target": 151
+        },
+        {
+          "date": "2004-08-07",
+          "target": 87
+        },
+        {
+          "date": "2004-08-09",
+          "target": 143
+        },
+        {
+          "date": "2004-08-11",
+          "target": 154
+        },
+        {
+          "date": "2004-08-13",
+          "target": 130
+        },
+        {
+          "date": "2004-08-15",
+          "target": 152
+        },
+        {
+          "date": "2004-08-17",
+          "target": 221
+        },
+        {
+          "date": "2004-08-19",
+          "target": 211
+        },
+        {
+          "date": "2004-08-21",
+          "target": 114
+        },
+        {
+          "date": "2004-08-23",
+          "target": 268
+        },
+        {
+          "date": "2004-08-25",
+          "target": 209
+        },
+        {
+          "date": "2004-08-27",
+          "target": 189
+        },
+        {
+          "date": "2004-08-29",
+          "target": 146
+        },
+        {
+          "date": "2004-08-31",
+          "target": 199
+        },
+        {
+          "date": "2004-09-02",
+          "target": 136
+        },
+        {
+          "date": "2004-09-04",
+          "target": 66
+        },
+        {
+          "date": "2004-09-06",
+          "target": 108
+        },
+        {
+          "date": "2004-09-08",
+          "target": 115
+        },
+        {
+          "date": "2004-09-10",
+          "target": 108
+        },
+        {
+          "date": "2004-09-12",
+          "target": 168
+        },
+        {
+          "date": "2004-09-14",
+          "target": 218
+        },
+        {
+          "date": "2004-09-16",
+          "target": 236
+        },
+        {
+          "date": "2004-09-18",
+          "target": 80
+        },
+        {
+          "date": "2004-09-20",
+          "target": 131
+        },
+        {
+          "date": "2004-09-22",
+          "target": 130
+        },
+        {
+          "date": "2004-09-24",
+          "target": 244
+        },
+        {
+          "date": "2004-09-26",
+          "target": 175
+        },
+        {
+          "date": "2004-09-28",
+          "target": 90
+        },
+        {
+          "date": "2004-09-30",
+          "target": 102
+        },
+        {
+          "date": "2004-10-02",
+          "target": 49
+        },
+        {
+          "date": "2004-10-04",
+          "target": 88
+        },
+        {
+          "date": "2004-10-06",
+          "target": 172
+        },
+        {
+          "date": "2004-10-08",
+          "target": 30
+        },
+        {
+          "date": "2004-10-10",
+          "target": 55
+        },
+        {
+          "date": "2004-10-12",
+          "target": 65
+        },
+        {
+          "date": "2004-10-14",
+          "target": 51
+        },
+        {
+          "date": "2004-10-16",
+          "target": 65
+        },
+        {
+          "date": "2004-10-18",
+          "target": 40
+        },
+        {
+          "date": "2004-10-20",
+          "target": 34
+        },
+        {
+          "date": "2004-10-22",
+          "target": 38
+        },
+        {
+          "date": "2004-10-24",
+          "target": 48
+        },
+        {
+          "date": "2004-10-26",
+          "target": 34
+        }
+      ]
+    },
+    {
+      "scale": "3D",
+      "events": [
+        {
+          "date": "2004-04-15",
+          "target": 2
+        },
+        {
+          "date": "2004-04-18",
+          "target": 22
+        },
+        {
+          "date": "2004-04-21",
+          "target": 415
+        },
+        {
+          "date": "2004-04-24",
+          "target": 1083
+        },
+        {
+          "date": "2004-04-27",
+          "target": 2311
+        },
+        {
+          "date": "2004-04-30",
+          "target": 2506
+        },
+        {
+          "date": "2004-05-03",
+          "target": 4561
+        },
+        {
+          "date": "2004-05-06",
+          "target": 4683
+        },
+        {
+          "date": "2004-05-09",
+          "target": 3358
+        },
+        {
+          "date": "2004-05-12",
+          "target": 2804
+        },
+        {
+          "date": "2004-05-15",
+          "target": 2792
+        },
+        {
+          "date": "2004-05-18",
+          "target": 4820
+        },
+        {
+          "date": "2004-05-21",
+          "target": 3342
+        },
+        {
+          "date": "2004-05-24",
+          "target": 5333
+        },
+        {
+          "date": "2004-05-27",
+          "target": 3851
+        },
+        {
+          "date": "2004-05-30",
+          "target": 1242
+        },
+        {
+          "date": "2004-06-02",
+          "target": 1785
+        },
+        {
+          "date": "2004-06-05",
+          "target": 959
+        },
+        {
+          "date": "2004-06-08",
+          "target": 1940
+        },
+        {
+          "date": "2004-06-11",
+          "target": 1161
+        },
+        {
+          "date": "2004-06-14",
+          "target": 718
+        },
+        {
+          "date": "2004-06-17",
+          "target": 25
+        },
+        {
+          "date": "2004-06-20",
+          "target": 16
+        },
+        {
+          "date": "2004-06-23",
+          "target": 35
+        },
+        {
+          "date": "2004-06-26",
+          "target": 342
+        },
+        {
+          "date": "2004-06-29",
+          "target": 626
+        },
+        {
+          "date": "2004-07-02",
+          "target": 562
+        },
+        {
+          "date": "2004-07-05",
+          "target": 477
+        },
+        {
+          "date": "2004-07-08",
+          "target": 452
+        },
+        {
+          "date": "2004-07-11",
+          "target": 445
+        },
+        {
+          "date": "2004-07-14",
+          "target": 257
+        },
+        {
+          "date": "2004-07-17",
+          "target": 93
+        },
+        {
+          "date": "2004-07-20",
+          "target": 330
+        },
+        {
+          "date": "2004-07-23",
+          "target": 194
+        },
+        {
+          "date": "2004-07-26",
+          "target": 396
+        },
+        {
+          "date": "2004-07-29",
+          "target": 299
+        },
+        {
+          "date": "2004-08-01",
+          "target": 247
+        },
+        {
+          "date": "2004-08-04",
+          "target": 252
+        },
+        {
+          "date": "2004-08-07",
+          "target": 151
+        },
+        {
+          "date": "2004-08-10",
+          "target": 233
+        },
+        {
+          "date": "2004-08-13",
+          "target": 166
+        },
+        {
+          "date": "2004-08-16",
+          "target": 337
+        },
+        {
+          "date": "2004-08-19",
+          "target": 258
+        },
+        {
+          "date": "2004-08-22",
+          "target": 335
+        },
+        {
+          "date": "2004-08-25",
+          "target": 293
+        },
+        {
+          "date": "2004-08-28",
+          "target": 251
+        },
+        {
+          "date": "2004-08-31",
+          "target": 281
+        },
+        {
+          "date": "2004-09-03",
+          "target": 120
+        },
+        {
+          "date": "2004-09-06",
+          "target": 173
+        },
+        {
+          "date": "2004-09-09",
+          "target": 158
+        },
+        {
+          "date": "2004-09-12",
+          "target": 294
+        },
+        {
+          "date": "2004-09-15",
+          "target": 328
+        },
+        {
+          "date": "2004-09-18",
+          "target": 163
+        },
+        {
+          "date": "2004-09-21",
+          "target": 178
+        },
+        {
+          "date": "2004-09-24",
+          "target": 277
+        },
+        {
+          "date": "2004-09-27",
+          "target": 232
+        },
+        {
+          "date": "2004-09-30",
+          "target": 125
+        },
+        {
+          "date": "2004-10-03",
+          "target": 114
+        },
+        {
+          "date": "2004-10-06",
+          "target": 183
+        },
+        {
+          "date": "2004-10-09",
+          "target": 74
+        },
+        {
+          "date": "2004-10-12",
+          "target": 105
+        },
+        {
+          "date": "2004-10-15",
+          "target": 76
+        },
+        {
+          "date": "2004-10-18",
+          "target": 58
+        },
+        {
+          "date": "2004-10-21",
+          "target": 54
+        },
+        {
+          "date": "2004-10-24",
+          "target": 82
+        }
+      ]
+    },
+    {
+      "scale": "7D",
+      "events": [
+        {
+          "date": "2004-04-15",
+          "target": 47
+        },
+        {
+          "date": "2004-04-22",
+          "target": 2930
+        },
+        {
+          "date": "2004-04-29",
+          "target": 7923
+        },
+        {
+          "date": "2004-05-06",
+          "target": 9456
+        },
+        {
+          "date": "2004-05-13",
+          "target": 7277
+        },
+        {
+          "date": "2004-05-20",
+          "target": 10399
+        },
+        {
+          "date": "2004-05-27",
+          "target": 5613
+        },
+        {
+          "date": "2004-06-03",
+          "target": 3473
+        },
+        {
+          "date": "2004-06-10",
+          "target": 2570
+        },
+        {
+          "date": "2004-06-17",
+          "target": 53
+        },
+        {
+          "date": "2004-06-24",
+          "target": 797
+        },
+        {
+          "date": "2004-07-01",
+          "target": 1233
+        },
+        {
+          "date": "2004-07-08",
+          "target": 1004
+        },
+        {
+          "date": "2004-07-15",
+          "target": 440
+        },
+        {
+          "date": "2004-07-22",
+          "target": 723
+        },
+        {
+          "date": "2004-07-29",
+          "target": 647
+        },
+        {
+          "date": "2004-08-05",
+          "target": 444
+        },
+        {
+          "date": "2004-08-12",
+          "target": 594
+        },
+        {
+          "date": "2004-08-19",
+          "target": 681
+        },
+        {
+          "date": "2004-08-26",
+          "target": 655
+        },
+        {
+          "date": "2004-09-02",
+          "target": 375
+        },
+        {
+          "date": "2004-09-09",
+          "target": 544
+        },
+        {
+          "date": "2004-09-16",
+          "target": 498
+        },
+        {
+          "date": "2004-09-23",
+          "target": 588
+        },
+        {
+          "date": "2004-09-30",
+          "target": 323
+        },
+        {
+          "date": "2004-10-07",
+          "target": 238
+        },
+        {
+          "date": "2004-10-14",
+          "target": 174
+        },
+        {
+          "date": "2004-10-21",
+          "target": 136
+        }
+      ]
+    },
+    {
+      "scale": "14D",
+      "events": [
+        {
+          "date": "2004-04-15",
+          "target": 2977
+        },
+        {
+          "date": "2004-04-29",
+          "target": 17379
+        },
+        {
+          "date": "2004-05-13",
+          "target": 17676
+        },
+        {
+          "date": "2004-05-27",
+          "target": 9086
+        },
+        {
+          "date": "2004-06-10",
+          "target": 2623
+        },
+        {
+          "date": "2004-06-24",
+          "target": 2030
+        },
+        {
+          "date": "2004-07-08",
+          "target": 1444
+        },
+        {
+          "date": "2004-07-22",
+          "target": 1370
+        },
+        {
+          "date": "2004-08-05",
+          "target": 1038
+        },
+        {
+          "date": "2004-08-19",
+          "target": 1336
+        },
+        {
+          "date": "2004-09-02",
+          "target": 919
+        },
+        {
+          "date": "2004-09-16",
+          "target": 1086
+        },
+        {
+          "date": "2004-09-30",
+          "target": 561
+        },
+        {
+          "date": "2004-10-14",
+          "target": 310
+        }
+      ]
+    },
+    {
+      "scale": "30D",
+      "events": [
+        {
+          "date": "2004-04-15",
+          "target": 21745
+        },
+        {
+          "date": "2004-05-15",
+          "target": 27225
+        },
+        {
+          "date": "2004-06-14",
+          "target": 3698
+        },
+        {
+          "date": "2004-07-14",
+          "target": 2452
+        },
+        {
+          "date": "2004-08-13",
+          "target": 2372
+        },
+        {
+          "date": "2004-09-12",
+          "target": 1968
+        },
+        {
+          "date": "2004-10-12",
+          "target": 375
+        }
+      ]
+    }
+  ]
+}

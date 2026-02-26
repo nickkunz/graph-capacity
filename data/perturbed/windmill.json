@@ -1,0 +1,4381 @@
+{
+  "network_perturbed": [
+    {
+      "method": "rewire",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 319,
+        "n_edges": 50721,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 318,
+        "k_core_size": 319,
+        "maximum_degree": 318,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0031446540880504,
+        "normalized_laplacian_third_moment": 1.0062991970254096,
+        "random_walk_triangle_weight": 0.0031347652387168153,
+        "random_walk_fourth_moment": 0.003134796335727324,
+        "adjacency_fourth_moment_per_node": 32056626.0
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.03,
+      "invariants": {
+        "n_nodes": 319,
+        "n_edges": 50721,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 318,
+        "k_core_size": 319,
+        "maximum_degree": 318,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0031446540880504,
+        "normalized_laplacian_third_moment": 1.0062991970254096,
+        "random_walk_triangle_weight": 0.0031347652387168153,
+        "random_walk_fourth_moment": 0.003134796335727324,
+        "adjacency_fourth_moment_per_node": 32056626.0
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 319,
+        "n_edges": 50721,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 318,
+        "k_core_size": 319,
+        "maximum_degree": 318,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0031446540880504,
+        "normalized_laplacian_third_moment": 1.0062991970254096,
+        "random_walk_triangle_weight": 0.0031347652387168153,
+        "random_walk_fourth_moment": 0.003134796335727324,
+        "adjacency_fourth_moment_per_node": 32056626.0
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 319,
+        "n_edges": 50721,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 318,
+        "k_core_size": 319,
+        "maximum_degree": 318,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0031446540880504,
+        "normalized_laplacian_third_moment": 1.0062991970254096,
+        "random_walk_triangle_weight": 0.0031347652387168153,
+        "random_walk_fourth_moment": 0.003134796335727324,
+        "adjacency_fourth_moment_per_node": 32056626.0
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 319,
+        "n_edges": 50721,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 318,
+        "k_core_size": 319,
+        "maximum_degree": 318,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0031446540880504,
+        "normalized_laplacian_third_moment": 1.0062991970254096,
+        "random_walk_triangle_weight": 0.0031347652387168153,
+        "random_walk_fourth_moment": 0.003134796335727324,
+        "adjacency_fourth_moment_per_node": 32056626.0
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 319,
+        "n_edges": 50214,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 310,
+        "k_core_size": 319,
+        "maximum_degree": 318,
+        "degree_variance": 2.986881025147158,
+        "global_clustering": 0.9900009518551658,
+        "degree_assortativity": -0.005880088662617387,
+        "degree_entropy": 1.9082804078242046,
+        "joint_degree_entropy": 3.2347415024665502,
+        "degree_skewness": -0.49813556241156937,
+        "degree_kurtosis": -0.24267138719991177,
+        "normalized_laplacian_second_moment": 1.003176404422397,
+        "normalized_laplacian_third_moment": 1.0063947476035597,
+        "random_walk_triangle_weight": 0.0031344656636300545,
+        "random_walk_fourth_moment": 0.0031348005256524106,
+        "adjacency_fourth_moment_per_node": 30797713.44200627
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.03,
+      "invariants": {
+        "n_nodes": 319,
+        "n_edges": 49200,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 300,
+        "k_core_size": 318,
+        "maximum_degree": 317,
+        "degree_variance": 8.969703520995274,
+        "global_clustering": 0.9700019638226975,
+        "degree_assortativity": -0.00631012089152816,
+        "degree_entropy": 2.485667987673627,
+        "joint_degree_entropy": 4.3403494897438675,
+        "degree_skewness": -0.18810741140401735,
+        "degree_kurtosis": -0.02285777312099624,
+        "normalized_laplacian_second_moment": 1.0032418679891582,
+        "normalized_laplacian_third_moment": 1.006591771451772,
+        "random_walk_triangle_weight": 0.003133832515702856,
+        "random_walk_fourth_moment": 0.0031348221473616635,
+        "adjacency_fourth_moment_per_node": 28391821.454545453
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.07,
+      "invariants": {
+        "n_nodes": 319,
+        "n_edges": 47171,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 282,
+        "k_core_size": 317,
+        "maximum_degree": 305,
+        "degree_variance": 20.64865714763023,
+        "global_clustering": 0.930016604330616,
+        "degree_assortativity": -0.004075238408718368,
+        "degree_entropy": 2.865113718595811,
+        "joint_degree_entropy": 5.074030150164837,
+        "degree_skewness": -0.6386925203164505,
+        "degree_kurtosis": 1.1537973144456277,
+        "normalized_laplacian_second_moment": 1.0033813115352095,
+        "normalized_laplacian_third_moment": 1.0070113774062506,
+        "random_walk_triangle_weight": 0.0031325571993778643,
+        "random_walk_fourth_moment": 0.0031349243568242324,
+        "adjacency_fourth_moment_per_node": 24004510.852664575
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 319,
+        "n_edges": 43113,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 253,
+        "k_core_size": 318,
+        "maximum_degree": 287,
+        "degree_variance": 42.97526557325498,
+        "global_clustering": 0.850067305224156,
+        "degree_assortativity": -0.0046926999939349385,
+        "degree_entropy": 3.250706419440374,
+        "joint_degree_entropy": 5.834049191298566,
+        "degree_skewness": -0.08822558695200834,
+        "degree_kurtosis": -0.11932872378412718,
+        "normalized_laplacian_second_moment": 1.0036995695943125,
+        "normalized_laplacian_third_moment": 1.0079691540739717,
+        "random_walk_triangle_weight": 0.003129554708965156,
+        "random_walk_fourth_moment": 0.0031354524165784717,
+        "adjacency_fourth_moment_per_node": 16776675.44200627
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 319,
+        "n_edges": 38041,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 220,
+        "k_core_size": 316,
+        "maximum_degree": 264,
+        "degree_variance": 60.40673735517535,
+        "global_clustering": 0.7500683293323451,
+        "degree_assortativity": -0.007958624134449277,
+        "degree_entropy": 3.388604548919524,
+        "joint_degree_entropy": 6.104427820534418,
+        "degree_skewness": 0.07311360681406648,
+        "degree_kurtosis": 0.16526634109276195,
+        "normalized_laplacian_second_moment": 1.0041928104303437,
+        "normalized_laplacian_third_moment": 1.009453348565328,
+        "random_walk_triangle_weight": 0.003125082725703221,
+        "random_walk_fourth_moment": 0.003137079356356242,
+        "adjacency_fourth_moment_per_node": 10193299.692789968
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 316,
+        "n_edges": 49770,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 315,
+        "k_core_size": 316,
+        "maximum_degree": 315,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0031746031746032,
+        "normalized_laplacian_third_moment": 1.0063592844545297,
+        "random_walk_triangle_weight": 0.0031645250692869764,
+        "random_walk_fourth_moment": 0.0031645570632720505,
+        "adjacency_fourth_moment_per_node": 31156965.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.02,
+      "invariants": {
+        "n_nodes": 313,
+        "n_edges": 48828,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 312,
+        "k_core_size": 313,
+        "maximum_degree": 312,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0032051282051282,
+        "normalized_laplacian_third_moment": 1.0064205292570592,
+        "random_walk_triangle_weight": 0.0031948553583169338,
+        "random_walk_fourth_moment": 0.0031948882841080118,
+        "adjacency_fourth_moment_per_node": 30274296.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 304,
+        "n_edges": 46056,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 303,
+        "k_core_size": 304,
+        "maximum_degree": 303,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0033003300330032,
+        "normalized_laplacian_third_moment": 1.0066115522443526,
+        "random_walk_triangle_weight": 0.0032894378546765935,
+        "random_walk_fourth_moment": 0.0032894738024598505,
+        "adjacency_fourth_moment_per_node": 27726621.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 288,
+        "n_edges": 41328,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 287,
+        "k_core_size": 288,
+        "maximum_degree": 287,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0034843205574913,
+        "normalized_laplacian_third_moment": 1.0069807816047067,
+        "random_walk_triangle_weight": 0.0034721800677439416,
+        "random_walk_fourth_moment": 0.0034722223691019067,
+        "adjacency_fourth_moment_per_node": 23557821.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 256,
+        "n_edges": 32640,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 255,
+        "k_core_size": 256,
+        "maximum_degree": 255,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.003921568627451,
+        "normalized_laplacian_third_moment": 1.0078585159553821,
+        "random_walk_triangle_weight": 0.0039061899269511677,
+        "random_walk_fourth_moment": 0.00390625023558059,
+        "adjacency_fourth_moment_per_node": 16516605.0
+      }
+    }
+  ],
+  "invariants_perturbed": [
+    {
+      "method": "noise",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 322.487053877083,
+        "n_edges": 49343.53247260979,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.9957220389412338,
+        "radius": 0.9929846554124451,
+        "degeneracy": 317.5226341484436,
+        "k_core_size": 319.63906877313354,
+        "maximum_degree": 315.5831418025416,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0155809587299482,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.014098767189148,
+        "normalized_laplacian_third_moment": 1.0021792460298455,
+        "random_walk_triangle_weight": 0.0031923028391904872,
+        "random_walk_fourth_moment": 0.0031128127404767485,
+        "adjacency_fourth_moment_per_node": 32293746.511203896
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.02,
+      "invariants": {
+        "n_nodes": 320.5665937704665,
+        "n_edges": 50524.820163207696,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.010666414738594,
+        "radius": 0.9862151237272136,
+        "degeneracy": 315.04780596006395,
+        "k_core_size": 326.8112347526186,
+        "maximum_degree": 321.8188399068031,
+        "degree_variance": 0.0,
+        "global_clustering": 0.9476480771174061,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0502160634347075,
+        "normalized_laplacian_third_moment": 1.0119876700274562,
+        "random_walk_triangle_weight": 0.003164186647903146,
+        "random_walk_fourth_moment": 0.003129133369700459,
+        "adjacency_fourth_moment_per_node": 31765133.10933431
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 343.8416373222411,
+        "n_edges": 53825.19392687976,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.999136256413871,
+        "radius": 0.9935513445518295,
+        "degeneracy": 323.9271579078774,
+        "k_core_size": 291.446633342966,
+        "maximum_degree": 303.46255682910993,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0077642880599091,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0115037627887071,
+        "normalized_laplacian_third_moment": 1.0227129594953965,
+        "random_walk_triangle_weight": 0.0031033122405521494,
+        "random_walk_fourth_moment": 0.0030426986063047945,
+        "adjacency_fourth_moment_per_node": 31062578.115150653
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 370.18055770418664,
+        "n_edges": 56477.02610277594,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.9884563580726905,
+        "radius": 1.1449450061397723,
+        "degeneracy": 388.53109434006075,
+        "k_core_size": 339.53699154854985,
+        "maximum_degree": 341.7764714647236,
+        "degree_variance": 0.0,
+        "global_clustering": 0.791944558360833,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0086640339247355,
+        "normalized_laplacian_third_moment": 1.1513570954419228,
+        "random_walk_triangle_weight": 0.0032794321025857126,
+        "random_walk_fourth_moment": 0.003579771281688691,
+        "adjacency_fourth_moment_per_node": 31975723.075138286
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 380.88197495722136,
+        "n_edges": 39397.386610886184,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.7675929894437188,
+        "radius": 0.7883796612605977,
+        "degeneracy": 254.56868396232562,
+        "k_core_size": 366.71435617993876,
+        "maximum_degree": 313.24383192698696,
+        "degree_variance": 0.0,
+        "global_clustering": 0.7255076043703956,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0796555120690798,
+        "normalized_laplacian_third_moment": 1.1232805066534732,
+        "random_walk_triangle_weight": 0.003992503012497339,
+        "random_walk_fourth_moment": 0.003431739014918458,
+        "adjacency_fourth_moment_per_node": 32027250.61859885
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 317.70660275372745,
+        "n_edges": 50213.79251686052,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.9918564162294365,
+        "radius": 1.0011398477889977,
+        "degeneracy": 321.02735201973434,
+        "k_core_size": 320.16422857096205,
+        "maximum_degree": 319.6230557899848,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0043064433978148,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0024041607353822,
+        "normalized_laplacian_third_moment": 1.012043238264586,
+        "random_walk_triangle_weight": 0.003142253618554653,
+        "random_walk_fourth_moment": 0.003121102127375411,
+        "adjacency_fourth_moment_per_node": 32191460.529304344
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.02,
+      "invariants": {
+        "n_nodes": 322.0163049112825,
+        "n_edges": 51627.2914691369,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0338530492238305,
+        "radius": 1.009364709034541,
+        "degeneracy": 303.5568404739146,
+        "k_core_size": 332.6545622097656,
+        "maximum_degree": 306.2192893764359,
+        "degree_variance": 0.0,
+        "global_clustering": 0.9663136753485437,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0207903200280724,
+        "normalized_laplacian_third_moment": 0.9963783541081054,
+        "random_walk_triangle_weight": 0.0031364853930649634,
+        "random_walk_fourth_moment": 0.0032197965047691696,
+        "adjacency_fourth_moment_per_node": 31166905.813965287
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 311.63540502249816,
+        "n_edges": 53916.979215554704,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0264448679192235,
+        "radius": 0.9305629882295913,
+        "degeneracy": 327.1993965209391,
+        "k_core_size": 334.4071431042668,
+        "maximum_degree": 303.3754115885989,
+        "degree_variance": 0.0,
+        "global_clustering": 1.047854689333189,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 0.9631781011478705,
+        "normalized_laplacian_third_moment": 1.0833254376011774,
+        "random_walk_triangle_weight": 0.0033269654252854235,
+        "random_walk_fourth_moment": 0.003170227433944898,
+        "adjacency_fourth_moment_per_node": 31925837.25766627
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 334.9837144009892,
+        "n_edges": 46849.951883414906,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.8978970758129572,
+        "radius": 1.0365468388410966,
+        "degeneracy": 297.9471568341098,
+        "k_core_size": 341.50652960906484,
+        "maximum_degree": 328.0563178121141,
+        "degree_variance": 0.0,
+        "global_clustering": 1.050531846070956,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 0.997749602854983,
+        "normalized_laplacian_third_moment": 0.9947432590141416,
+        "random_walk_triangle_weight": 0.0035194544946471886,
+        "random_walk_fourth_moment": 0.002609766341102481,
+        "adjacency_fourth_moment_per_node": 35478813.07676364
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 412.1645736476045,
+        "n_edges": 59453.89541319261,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0197742480783716,
+        "radius": 1.1995087533283497,
+        "degeneracy": 349.13113153012915,
+        "k_core_size": 354.3298815427936,
+        "maximum_degree": 402.5525746429642,
+        "degree_variance": 0.0,
+        "global_clustering": 0.7348521034617246,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.2018678970884533,
+        "normalized_laplacian_third_moment": 0.7623324177570374,
+        "random_walk_triangle_weight": 0.0028912476230098,
+        "random_walk_fourth_moment": 0.002990597414847424,
+        "adjacency_fourth_moment_per_node": 32672843.04263853
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.95,
+      "invariants": {
+        "n_nodes": 319.0,
+        "n_edges": 50721.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 318.0,
+        "k_core_size": 319.0,
+        "maximum_degree": 318.0,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0031446540880504,
+        "normalized_laplacian_third_moment": 1.0062991970254096,
+        "random_walk_triangle_weight": 0.0031347652387168153,
+        "random_walk_fourth_moment": 0.003134796335727324,
+        "adjacency_fourth_moment_per_node": 32056626.0
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.9,
+      "invariants": {
+        "n_nodes": 319.0,
+        "n_edges": 50721.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 318.0,
+        "k_core_size": 319.0,
+        "maximum_degree": 318.0,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0031446540880504,
+        "normalized_laplacian_third_moment": 1.0062991970254096,
+        "random_walk_triangle_weight": 0.0031347652387168153,
+        "random_walk_fourth_moment": 0.003134796335727324,
+        "adjacency_fourth_moment_per_node": 32056626.0
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.8,
+      "invariants": {
+        "n_nodes": 319.0,
+        "n_edges": 50721.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 318.0,
+        "k_core_size": 319.0,
+        "maximum_degree": 318.0,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0031446540880504,
+        "normalized_laplacian_third_moment": 1.0062991970254096,
+        "random_walk_triangle_weight": 0.0031347652387168153,
+        "random_walk_fourth_moment": 0.003134796335727324,
+        "adjacency_fourth_moment_per_node": 32056626.0
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.7,
+      "invariants": {
+        "n_nodes": 319.0,
+        "n_edges": 50721.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 318.0,
+        "k_core_size": 319.0,
+        "maximum_degree": 318.0,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0031446540880504,
+        "normalized_laplacian_third_moment": 1.0062991970254096,
+        "random_walk_triangle_weight": 0.0031347652387168153,
+        "random_walk_fourth_moment": 0.003134796335727324,
+        "adjacency_fourth_moment_per_node": 32056626.0
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.6,
+      "invariants": {
+        "n_nodes": 319.0,
+        "n_edges": 50721.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 318.0,
+        "k_core_size": 319.0,
+        "maximum_degree": 318.0,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.0031446540880504,
+        "normalized_laplacian_third_moment": 1.0062991970254096,
+        "random_walk_triangle_weight": 0.0031347652387168153,
+        "random_walk_fourth_moment": 0.003134796335727324,
+        "adjacency_fourth_moment_per_node": 32056626.0
+      }
+    }
+  ],
+  "process_perturbed": [
+    {
+      "method": "scaling",
+      "intensity": 0.5,
+      "signatures": {
+        "lag1_autocorr": -0.058335753733753846,
+        "coef_variation": 0.160191714913139,
+        "fano_factor": 0.025661385526838058,
+        "norm_succ_diff": 0.18536499091886233,
+        "hurst_exponent": 0.5316087747660675,
+        "trend_coeff": -0.01579554334983177,
+        "count_skewness": -0.0844545357277907
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 0.75,
+      "signatures": {
+        "lag1_autocorr": -0.05833575373375379,
+        "coef_variation": 0.160191714913139,
+        "fano_factor": 0.02566138552683806,
+        "norm_succ_diff": 0.18536499091886238,
+        "hurst_exponent": 0.5316087747660668,
+        "trend_coeff": -0.015795543349831753,
+        "count_skewness": -0.08445453572778903
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 1.0,
+      "signatures": {
+        "lag1_autocorr": -0.058335753733753846,
+        "coef_variation": 0.160191714913139,
+        "fano_factor": 0.025661385526838058,
+        "norm_succ_diff": 0.18536499091886233,
+        "hurst_exponent": 0.5316087747660675,
+        "trend_coeff": -0.01579554334983177,
+        "count_skewness": -0.0844545357277907
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 1.5,
+      "signatures": {
+        "lag1_autocorr": -0.05833575373375379,
+        "coef_variation": 0.160191714913139,
+        "fano_factor": 0.02566138552683806,
+        "norm_succ_diff": 0.18536499091886238,
+        "hurst_exponent": 0.5316087747660668,
+        "trend_coeff": -0.015795543349831753,
+        "count_skewness": -0.08445453572778903
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 2.0,
+      "signatures": {
+        "lag1_autocorr": -0.058335753733753846,
+        "coef_variation": 0.160191714913139,
+        "fano_factor": 0.025661385526838058,
+        "norm_succ_diff": 0.18536499091886233,
+        "hurst_exponent": 0.5316087747660675,
+        "trend_coeff": -0.01579554334983177,
+        "count_skewness": -0.0844545357277907
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 1.0,
+      "signatures": {
+        "lag1_autocorr": -0.05833575373375383,
+        "coef_variation": 0.16019171491329917,
+        "fano_factor": 86.4743511273912,
+        "norm_succ_diff": 0.18536499091904768,
+        "hurst_exponent": 0.5316087747660672,
+        "trend_coeff": -0.01579554334983177,
+        "count_skewness": -0.08445453572779066
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 2.0,
+      "signatures": {
+        "lag1_autocorr": 0.4710097629326742,
+        "coef_variation": 0.11008156069802363,
+        "fano_factor": 40.83537462839786,
+        "norm_succ_diff": 0.09165813431233762,
+        "hurst_exponent": 0.5870500451704288,
+        "trend_coeff": -0.01803819955187878,
+        "count_skewness": -0.032494034955495237
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 4.0,
+      "signatures": {
+        "lag1_autocorr": 0.7274165268694363,
+        "coef_variation": 0.07828630833148743,
+        "fano_factor": 20.646655212942644,
+        "norm_succ_diff": 0.046345420432306876,
+        "hurst_exponent": 0.6329932907460352,
+        "trend_coeff": -0.0180925099312237,
+        "count_skewness": -0.1452786147140833
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 8.0,
+      "signatures": {
+        "lag1_autocorr": 0.8617687428488582,
+        "coef_variation": 0.056644429706870364,
+        "fano_factor": 10.802617183888458,
+        "norm_succ_diff": 0.022898653054926107,
+        "hurst_exponent": 0.6733446192732209,
+        "trend_coeff": -0.015947032715220955,
+        "count_skewness": -0.31634452345675296
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 16.0,
+      "signatures": {
+        "lag1_autocorr": 0.9176075082585345,
+        "coef_variation": 0.04101993553750799,
+        "fano_factor": 5.659426006352453,
+        "norm_succ_diff": 0.011195020687984522,
+        "hurst_exponent": 0.710486698570006,
+        "trend_coeff": -0.01997124761343512,
+        "count_skewness": -0.9054935225744842
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.0,
+      "signatures": {
+        "lag1_autocorr": 0.0,
+        "coef_variation": 0.0,
+        "fano_factor": 0.0,
+        "norm_succ_diff": 0.0,
+        "hurst_exponent": 0.5,
+        "trend_coeff": 0.0,
+        "count_skewness": 0.0
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": 0.02672708668706439,
+        "coef_variation": 0.1641842305182997,
+        "fano_factor": 88.96144002534393,
+        "norm_succ_diff": 0.18545556487830428,
+        "hurst_exponent": 0.49055522279485214,
+        "trend_coeff": -0.029658989967393714,
+        "count_skewness": -0.06974445685937186
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.2,
+      "signatures": {
+        "lag1_autocorr": 0.04352623768021947,
+        "coef_variation": 0.16495754972821416,
+        "fano_factor": 90.82629042355732,
+        "norm_succ_diff": 0.18367617002176215,
+        "hurst_exponent": 0.5227712190840221,
+        "trend_coeff": -0.0179771701823238,
+        "count_skewness": -0.20041409458254109
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.35,
+      "signatures": {
+        "lag1_autocorr": 0.013545687665505594,
+        "coef_variation": 0.15058082732454547,
+        "fano_factor": 76.96861556712956,
+        "norm_succ_diff": 0.16821873492992542,
+        "hurst_exponent": 0.5008771653262593,
+        "trend_coeff": 0.010298246424434582,
+        "count_skewness": -0.27541703267853174
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.5,
+      "signatures": {
+        "lag1_autocorr": -0.07222218483158581,
+        "coef_variation": 0.1544849641878327,
+        "fano_factor": 79.96264232267565,
+        "norm_succ_diff": 0.18346210344090333,
+        "hurst_exponent": 0.48835485996390865,
+        "trend_coeff": -0.00860611200604833,
+        "count_skewness": 0.13560114281685823
+      }
+    }
+  ],
+  "signatures_perturbed": [
+    {
+      "method": "noise",
+      "intensity": 0.01,
+      "signatures": {
+        "lag1_autocorr": -0.05724189537401718,
+        "coef_variation": 0.1602243673687966,
+        "fano_factor": 87.34262131804276,
+        "norm_succ_diff": 0.18311728791940632,
+        "hurst_exponent": 0.5372647264310144,
+        "trend_coeff": -0.01565256051274234,
+        "count_skewness": -0.08481610927711514
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.02,
+      "signatures": {
+        "lag1_autocorr": -0.05728028203060065,
+        "coef_variation": 0.16097630566831614,
+        "fano_factor": 85.22934183979817,
+        "norm_succ_diff": 0.18670029606256835,
+        "hurst_exponent": 0.5257720247092165,
+        "trend_coeff": -0.016100781536130777,
+        "count_skewness": -0.08322848073254922
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.05,
+      "signatures": {
+        "lag1_autocorr": -0.06356702006381282,
+        "coef_variation": 0.15678794288791212,
+        "fano_factor": 83.17163655098655,
+        "norm_succ_diff": 0.1700195213566385,
+        "hurst_exponent": 0.47902775271304054,
+        "trend_coeff": -0.017678506426347673,
+        "count_skewness": -0.08195967802982684
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": -0.06061839007345397,
+        "coef_variation": 0.16046594265722783,
+        "fano_factor": 88.23380812760881,
+        "norm_succ_diff": 0.17266886103723833,
+        "hurst_exponent": 0.549620311972968,
+        "trend_coeff": -0.0163652054411155,
+        "count_skewness": -0.08125977058327619
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.2,
+      "signatures": {
+        "lag1_autocorr": -0.04691707686495188,
+        "coef_variation": 0.1729359002047495,
+        "fano_factor": 97.2700260972541,
+        "norm_succ_diff": 0.18978955997652802,
+        "hurst_exponent": 0.7235621976340566,
+        "trend_coeff": -0.01895034048289606,
+        "count_skewness": -0.06256094973658186
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.01,
+      "signatures": {
+        "lag1_autocorr": -0.05900033888467002,
+        "coef_variation": 0.16275971547297027,
+        "fano_factor": 86.80715449501265,
+        "norm_succ_diff": 0.1811586088598696,
+        "hurst_exponent": 0.5207492284834151,
+        "trend_coeff": -0.015392837561970267,
+        "count_skewness": -0.08368766360961861
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.02,
+      "signatures": {
+        "lag1_autocorr": -0.059511808029878016,
+        "coef_variation": 0.1605504136475694,
+        "fano_factor": 86.71299420700677,
+        "norm_succ_diff": 0.1834159177380551,
+        "hurst_exponent": 0.5315505467969632,
+        "trend_coeff": -0.01573367861071935,
+        "count_skewness": -0.08398334586754021
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.05,
+      "signatures": {
+        "lag1_autocorr": -0.06129214543498862,
+        "coef_variation": 0.16151605235511496,
+        "fano_factor": 84.66483822220071,
+        "norm_succ_diff": 0.19655715764492623,
+        "hurst_exponent": 0.561181667854583,
+        "trend_coeff": -0.016091859470561274,
+        "count_skewness": -0.08796421608080723
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": -0.055529837210605615,
+        "coef_variation": 0.16461822448882013,
+        "fano_factor": 86.26838496764161,
+        "norm_succ_diff": 0.14457206035407258,
+        "hurst_exponent": 0.5694429694885114,
+        "trend_coeff": -0.014380566586018464,
+        "count_skewness": -0.09189908970000492
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.2,
+      "signatures": {
+        "lag1_autocorr": -0.049149805241411035,
+        "coef_variation": 0.09889702490522544,
+        "fano_factor": 70.4942966048321,
+        "norm_succ_diff": 0.20713059882827478,
+        "hurst_exponent": 0.3486517616871423,
+        "trend_coeff": -0.013139209281183666,
+        "count_skewness": -0.046255356152643444
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.95,
+      "signatures": {
+        "lag1_autocorr": -0.05833575373375383,
+        "coef_variation": 0.16019171491329917,
+        "fano_factor": 86.4743511273912,
+        "norm_succ_diff": 0.18536499091904768,
+        "hurst_exponent": 0.5316087747660672,
+        "trend_coeff": -0.01579554334983177,
+        "count_skewness": -0.08445453572779066
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.9,
+      "signatures": {
+        "lag1_autocorr": -0.05833575373375383,
+        "coef_variation": 0.16019171491329917,
+        "fano_factor": 86.4743511273912,
+        "norm_succ_diff": 0.18536499091904768,
+        "hurst_exponent": 0.5316087747660672,
+        "trend_coeff": -0.01579554334983177,
+        "count_skewness": -0.08445453572779066
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.8,
+      "signatures": {
+        "lag1_autocorr": -0.05833575373375383,
+        "coef_variation": 0.16019171491329917,
+        "fano_factor": 86.4743511273912,
+        "norm_succ_diff": 0.18536499091904768,
+        "hurst_exponent": 0.5316087747660672,
+        "trend_coeff": -0.01579554334983177,
+        "count_skewness": -0.08445453572779066
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.7,
+      "signatures": {
+        "lag1_autocorr": -0.05833575373375383,
+        "coef_variation": 0.16019171491329917,
+        "fano_factor": 86.4743511273912,
+        "norm_succ_diff": 0.18536499091904768,
+        "hurst_exponent": 0.5316087747660672,
+        "trend_coeff": -0.01579554334983177,
+        "count_skewness": -0.08445453572779066
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.6,
+      "signatures": {
+        "lag1_autocorr": -0.05833575373375383,
+        "coef_variation": 0.16019171491329917,
+        "fano_factor": 86.4743511273912,
+        "norm_succ_diff": 0.18536499091904768,
+        "hurst_exponent": 0.5316087747660672,
+        "trend_coeff": -0.01579554334983177,
+        "count_skewness": -0.08445453572779066
+      }
+    }
+  ],
+  "temporal_aggregated": [
+    {
+      "scale": "2D",
+      "events": [
+        {
+          "day": 0,
+          "target": 5109
+        },
+        {
+          "day": 2,
+          "target": 6292
+        },
+        {
+          "day": 4,
+          "target": 6458
+        },
+        {
+          "day": 6,
+          "target": 7223
+        },
+        {
+          "day": 8,
+          "target": 6526
+        },
+        {
+          "day": 10,
+          "target": 6745
+        },
+        {
+          "day": 12,
+          "target": 6581
+        },
+        {
+          "day": 14,
+          "target": 6502
+        },
+        {
+          "day": 16,
+          "target": 7558
+        },
+        {
+          "day": 18,
+          "target": 6124
+        },
+        {
+          "day": 20,
+          "target": 5787
+        },
+        {
+          "day": 22,
+          "target": 7836
+        },
+        {
+          "day": 24,
+          "target": 8457
+        },
+        {
+          "day": 26,
+          "target": 7452
+        },
+        {
+          "day": 28,
+          "target": 6620
+        },
+        {
+          "day": 30,
+          "target": 8040
+        },
+        {
+          "day": 32,
+          "target": 6233
+        },
+        {
+          "day": 34,
+          "target": 7201
+        },
+        {
+          "day": 36,
+          "target": 6144
+        },
+        {
+          "day": 38,
+          "target": 6367
+        },
+        {
+          "day": 40,
+          "target": 5634
+        },
+        {
+          "day": 42,
+          "target": 6583
+        },
+        {
+          "day": 44,
+          "target": 6692
+        },
+        {
+          "day": 46,
+          "target": 8183
+        },
+        {
+          "day": 48,
+          "target": 6458
+        },
+        {
+          "day": 50,
+          "target": 5974
+        },
+        {
+          "day": 52,
+          "target": 6504
+        },
+        {
+          "day": 54,
+          "target": 7171
+        },
+        {
+          "day": 56,
+          "target": 6583
+        },
+        {
+          "day": 58,
+          "target": 7494
+        },
+        {
+          "day": 60,
+          "target": 6844
+        },
+        {
+          "day": 62,
+          "target": 8179
+        },
+        {
+          "day": 64,
+          "target": 6921
+        },
+        {
+          "day": 66,
+          "target": 5758
+        },
+        {
+          "day": 68,
+          "target": 6526
+        },
+        {
+          "day": 70,
+          "target": 6145
+        },
+        {
+          "day": 72,
+          "target": 7182
+        },
+        {
+          "day": 74,
+          "target": 5972
+        },
+        {
+          "day": 76,
+          "target": 8415
+        },
+        {
+          "day": 78,
+          "target": 6446
+        },
+        {
+          "day": 80,
+          "target": 7033
+        },
+        {
+          "day": 82,
+          "target": 6359
+        },
+        {
+          "day": 84,
+          "target": 6730
+        },
+        {
+          "day": 86,
+          "target": 7559
+        },
+        {
+          "day": 88,
+          "target": 7152
+        },
+        {
+          "day": 90,
+          "target": 6442
+        },
+        {
+          "day": 92,
+          "target": 7673
+        },
+        {
+          "day": 94,
+          "target": 6465
+        },
+        {
+          "day": 96,
+          "target": 6238
+        },
+        {
+          "day": 98,
+          "target": 6524
+        },
+        {
+          "day": 100,
+          "target": 6461
+        },
+        {
+          "day": 102,
+          "target": 6750
+        },
+        {
+          "day": 104,
+          "target": 7179
+        },
+        {
+          "day": 106,
+          "target": 6458
+        },
+        {
+          "day": 108,
+          "target": 6998
+        },
+        {
+          "day": 110,
+          "target": 6931
+        },
+        {
+          "day": 112,
+          "target": 6360
+        },
+        {
+          "day": 114,
+          "target": 4665
+        },
+        {
+          "day": 116,
+          "target": 7503
+        },
+        {
+          "day": 118,
+          "target": 7002
+        },
+        {
+          "day": 120,
+          "target": 7514
+        },
+        {
+          "day": 122,
+          "target": 8794
+        },
+        {
+          "day": 124,
+          "target": 7229
+        },
+        {
+          "day": 126,
+          "target": 6687
+        },
+        {
+          "day": 128,
+          "target": 6535
+        },
+        {
+          "day": 130,
+          "target": 7520
+        },
+        {
+          "day": 132,
+          "target": 6216
+        },
+        {
+          "day": 134,
+          "target": 6931
+        },
+        {
+          "day": 136,
+          "target": 6567
+        },
+        {
+          "day": 138,
+          "target": 7520
+        },
+        {
+          "day": 140,
+          "target": 5848
+        },
+        {
+          "day": 142,
+          "target": 6393
+        },
+        {
+          "day": 144,
+          "target": 6043
+        },
+        {
+          "day": 146,
+          "target": 6886
+        },
+        {
+          "day": 148,
+          "target": 6529
+        },
+        {
+          "day": 150,
+          "target": 5075
+        },
+        {
+          "day": 152,
+          "target": 6459
+        },
+        {
+          "day": 154,
+          "target": 8263
+        },
+        {
+          "day": 156,
+          "target": 6790
+        },
+        {
+          "day": 158,
+          "target": 7077
+        },
+        {
+          "day": 160,
+          "target": 5772
+        },
+        {
+          "day": 162,
+          "target": 7083
+        },
+        {
+          "day": 164,
+          "target": 6802
+        },
+        {
+          "day": 166,
+          "target": 5922
+        },
+        {
+          "day": 168,
+          "target": 7467
+        },
+        {
+          "day": 170,
+          "target": 5891
+        },
+        {
+          "day": 172,
+          "target": 6390
+        },
+        {
+          "day": 174,
+          "target": 7311
+        },
+        {
+          "day": 176,
+          "target": 6059
+        },
+        {
+          "day": 178,
+          "target": 7052
+        },
+        {
+          "day": 180,
+          "target": 5679
+        },
+        {
+          "day": 182,
+          "target": 7054
+        },
+        {
+          "day": 184,
+          "target": 6209
+        },
+        {
+          "day": 186,
+          "target": 7020
+        },
+        {
+          "day": 188,
+          "target": 6363
+        },
+        {
+          "day": 190,
+          "target": 7429
+        },
+        {
+          "day": 192,
+          "target": 7538
+        },
+        {
+          "day": 194,
+          "target": 6003
+        },
+        {
+          "day": 196,
+          "target": 6924
+        },
+        {
+          "day": 198,
+          "target": 7025
+        },
+        {
+          "day": 200,
+          "target": 5990
+        },
+        {
+          "day": 202,
+          "target": 6753
+        },
+        {
+          "day": 204,
+          "target": 6749
+        },
+        {
+          "day": 206,
+          "target": 8289
+        },
+        {
+          "day": 208,
+          "target": 6724
+        },
+        {
+          "day": 210,
+          "target": 6596
+        },
+        {
+          "day": 212,
+          "target": 7410
+        },
+        {
+          "day": 214,
+          "target": 7432
+        },
+        {
+          "day": 216,
+          "target": 5443
+        },
+        {
+          "day": 218,
+          "target": 6529
+        },
+        {
+          "day": 220,
+          "target": 5791
+        },
+        {
+          "day": 222,
+          "target": 6028
+        },
+        {
+          "day": 224,
+          "target": 6221
+        },
+        {
+          "day": 226,
+          "target": 6128
+        },
+        {
+          "day": 228,
+          "target": 7119
+        },
+        {
+          "day": 230,
+          "target": 6180
+        },
+        {
+          "day": 232,
+          "target": 7491
+        },
+        {
+          "day": 234,
+          "target": 7305
+        },
+        {
+          "day": 236,
+          "target": 6495
+        },
+        {
+          "day": 238,
+          "target": 6180
+        },
+        {
+          "day": 240,
+          "target": 6341
+        },
+        {
+          "day": 242,
+          "target": 7044
+        },
+        {
+          "day": 244,
+          "target": 7873
+        },
+        {
+          "day": 246,
+          "target": 6151
+        },
+        {
+          "day": 248,
+          "target": 7827
+        },
+        {
+          "day": 250,
+          "target": 6377
+        },
+        {
+          "day": 252,
+          "target": 6047
+        },
+        {
+          "day": 254,
+          "target": 5822
+        },
+        {
+          "day": 256,
+          "target": 7241
+        },
+        {
+          "day": 258,
+          "target": 7105
+        },
+        {
+          "day": 260,
+          "target": 7021
+        },
+        {
+          "day": 262,
+          "target": 6588
+        },
+        {
+          "day": 264,
+          "target": 6657
+        },
+        {
+          "day": 266,
+          "target": 6541
+        },
+        {
+          "day": 268,
+          "target": 6191
+        },
+        {
+          "day": 270,
+          "target": 6481
+        },
+        {
+          "day": 272,
+          "target": 7915
+        },
+        {
+          "day": 274,
+          "target": 7559
+        },
+        {
+          "day": 276,
+          "target": 6150
+        },
+        {
+          "day": 278,
+          "target": 6297
+        },
+        {
+          "day": 280,
+          "target": 6541
+        },
+        {
+          "day": 282,
+          "target": 6854
+        },
+        {
+          "day": 284,
+          "target": 8133
+        },
+        {
+          "day": 286,
+          "target": 7152
+        },
+        {
+          "day": 288,
+          "target": 6377
+        },
+        {
+          "day": 290,
+          "target": 7364
+        },
+        {
+          "day": 292,
+          "target": 6307
+        },
+        {
+          "day": 294,
+          "target": 6459
+        },
+        {
+          "day": 296,
+          "target": 7138
+        },
+        {
+          "day": 298,
+          "target": 6405
+        },
+        {
+          "day": 300,
+          "target": 7422
+        },
+        {
+          "day": 302,
+          "target": 6512
+        },
+        {
+          "day": 304,
+          "target": 7306
+        },
+        {
+          "day": 306,
+          "target": 7301
+        },
+        {
+          "day": 308,
+          "target": 6483
+        },
+        {
+          "day": 310,
+          "target": 8095
+        },
+        {
+          "day": 312,
+          "target": 5192
+        },
+        {
+          "day": 314,
+          "target": 8066
+        },
+        {
+          "day": 316,
+          "target": 6764
+        },
+        {
+          "day": 318,
+          "target": 6653
+        },
+        {
+          "day": 320,
+          "target": 6794
+        },
+        {
+          "day": 322,
+          "target": 6290
+        },
+        {
+          "day": 324,
+          "target": 6900
+        },
+        {
+          "day": 326,
+          "target": 6116
+        },
+        {
+          "day": 328,
+          "target": 6233
+        },
+        {
+          "day": 330,
+          "target": 6691
+        },
+        {
+          "day": 332,
+          "target": 7130
+        },
+        {
+          "day": 334,
+          "target": 8023
+        },
+        {
+          "day": 336,
+          "target": 7631
+        },
+        {
+          "day": 338,
+          "target": 6061
+        },
+        {
+          "day": 340,
+          "target": 6920
+        },
+        {
+          "day": 342,
+          "target": 6692
+        },
+        {
+          "day": 344,
+          "target": 7243
+        },
+        {
+          "day": 346,
+          "target": 7311
+        },
+        {
+          "day": 348,
+          "target": 7096
+        },
+        {
+          "day": 350,
+          "target": 6449
+        },
+        {
+          "day": 352,
+          "target": 5014
+        },
+        {
+          "day": 354,
+          "target": 6515
+        },
+        {
+          "day": 356,
+          "target": 6376
+        },
+        {
+          "day": 358,
+          "target": 7315
+        },
+        {
+          "day": 360,
+          "target": 7088
+        },
+        {
+          "day": 362,
+          "target": 7663
+        },
+        {
+          "day": 364,
+          "target": 7514
+        },
+        {
+          "day": 366,
+          "target": 7883
+        },
+        {
+          "day": 368,
+          "target": 5167
+        },
+        {
+          "day": 370,
+          "target": 5429
+        },
+        {
+          "day": 372,
+          "target": 6615
+        },
+        {
+          "day": 374,
+          "target": 6223
+        },
+        {
+          "day": 376,
+          "target": 5227
+        },
+        {
+          "day": 378,
+          "target": 7532
+        },
+        {
+          "day": 380,
+          "target": 7809
+        },
+        {
+          "day": 382,
+          "target": 6680
+        },
+        {
+          "day": 384,
+          "target": 5342
+        },
+        {
+          "day": 386,
+          "target": 7423
+        },
+        {
+          "day": 388,
+          "target": 6139
+        },
+        {
+          "day": 390,
+          "target": 7138
+        },
+        {
+          "day": 392,
+          "target": 7813
+        },
+        {
+          "day": 394,
+          "target": 6295
+        },
+        {
+          "day": 396,
+          "target": 5791
+        },
+        {
+          "day": 398,
+          "target": 7225
+        },
+        {
+          "day": 400,
+          "target": 6497
+        },
+        {
+          "day": 402,
+          "target": 6779
+        },
+        {
+          "day": 404,
+          "target": 6918
+        },
+        {
+          "day": 406,
+          "target": 6461
+        },
+        {
+          "day": 408,
+          "target": 7462
+        },
+        {
+          "day": 410,
+          "target": 7191
+        },
+        {
+          "day": 412,
+          "target": 6673
+        },
+        {
+          "day": 414,
+          "target": 6081
+        },
+        {
+          "day": 416,
+          "target": 6584
+        },
+        {
+          "day": 418,
+          "target": 6343
+        },
+        {
+          "day": 420,
+          "target": 7442
+        },
+        {
+          "day": 422,
+          "target": 7434
+        },
+        {
+          "day": 424,
+          "target": 6636
+        },
+        {
+          "day": 426,
+          "target": 7253
+        },
+        {
+          "day": 428,
+          "target": 7854
+        },
+        {
+          "day": 430,
+          "target": 8166
+        },
+        {
+          "day": 432,
+          "target": 6697
+        },
+        {
+          "day": 434,
+          "target": 6768
+        },
+        {
+          "day": 436,
+          "target": 7384
+        },
+        {
+          "day": 438,
+          "target": 7708
+        },
+        {
+          "day": 440,
+          "target": 5879
+        },
+        {
+          "day": 442,
+          "target": 6758
+        },
+        {
+          "day": 444,
+          "target": 7574
+        },
+        {
+          "day": 446,
+          "target": 6942
+        },
+        {
+          "day": 448,
+          "target": 5942
+        },
+        {
+          "day": 450,
+          "target": 8554
+        },
+        {
+          "day": 452,
+          "target": 6804
+        },
+        {
+          "day": 454,
+          "target": 6406
+        },
+        {
+          "day": 456,
+          "target": 7049
+        },
+        {
+          "day": 458,
+          "target": 5040
+        },
+        {
+          "day": 460,
+          "target": 7670
+        },
+        {
+          "day": 462,
+          "target": 7393
+        },
+        {
+          "day": 464,
+          "target": 5622
+        },
+        {
+          "day": 466,
+          "target": 7800
+        },
+        {
+          "day": 468,
+          "target": 6008
+        },
+        {
+          "day": 470,
+          "target": 7457
+        },
+        {
+          "day": 472,
+          "target": 6385
+        },
+        {
+          "day": 474,
+          "target": 7206
+        },
+        {
+          "day": 476,
+          "target": 7628
+        },
+        {
+          "day": 478,
+          "target": 7219
+        },
+        {
+          "day": 480,
+          "target": 5574
+        },
+        {
+          "day": 482,
+          "target": 6965
+        },
+        {
+          "day": 484,
+          "target": 5303
+        },
+        {
+          "day": 486,
+          "target": 6545
+        },
+        {
+          "day": 488,
+          "target": 6890
+        },
+        {
+          "day": 490,
+          "target": 6721
+        },
+        {
+          "day": 492,
+          "target": 6728
+        },
+        {
+          "day": 494,
+          "target": 7595
+        },
+        {
+          "day": 496,
+          "target": 5538
+        },
+        {
+          "day": 498,
+          "target": 7165
+        },
+        {
+          "day": 500,
+          "target": 7018
+        },
+        {
+          "day": 502,
+          "target": 7109
+        },
+        {
+          "day": 504,
+          "target": 7254
+        },
+        {
+          "day": 506,
+          "target": 6104
+        },
+        {
+          "day": 508,
+          "target": 6445
+        },
+        {
+          "day": 510,
+          "target": 6603
+        },
+        {
+          "day": 512,
+          "target": 5866
+        },
+        {
+          "day": 514,
+          "target": 5842
+        },
+        {
+          "day": 516,
+          "target": 5606
+        },
+        {
+          "day": 518,
+          "target": 7155
+        },
+        {
+          "day": 520,
+          "target": 7470
+        },
+        {
+          "day": 522,
+          "target": 7743
+        },
+        {
+          "day": 524,
+          "target": 7109
+        },
+        {
+          "day": 526,
+          "target": 6973
+        },
+        {
+          "day": 528,
+          "target": 6163
+        },
+        {
+          "day": 530,
+          "target": 7535
+        },
+        {
+          "day": 532,
+          "target": 7051
+        },
+        {
+          "day": 534,
+          "target": 6247
+        },
+        {
+          "day": 536,
+          "target": 5052
+        },
+        {
+          "day": 538,
+          "target": 6616
+        },
+        {
+          "day": 540,
+          "target": 6787
+        },
+        {
+          "day": 542,
+          "target": 7198
+        },
+        {
+          "day": 544,
+          "target": 5973
+        },
+        {
+          "day": 546,
+          "target": 4551
+        },
+        {
+          "day": 548,
+          "target": 5766
+        },
+        {
+          "day": 550,
+          "target": 5441
+        },
+        {
+          "day": 552,
+          "target": 6764
+        },
+        {
+          "day": 554,
+          "target": 6259
+        },
+        {
+          "day": 556,
+          "target": 6357
+        },
+        {
+          "day": 558,
+          "target": 6377
+        },
+        {
+          "day": 560,
+          "target": 6676
+        },
+        {
+          "day": 562,
+          "target": 7293
+        },
+        {
+          "day": 564,
+          "target": 6230
+        },
+        {
+          "day": 566,
+          "target": 6848
+        },
+        {
+          "day": 568,
+          "target": 7093
+        },
+        {
+          "day": 570,
+          "target": 7316
+        },
+        {
+          "day": 572,
+          "target": 5961
+        },
+        {
+          "day": 574,
+          "target": 5985
+        },
+        {
+          "day": 576,
+          "target": 5501
+        },
+        {
+          "day": 578,
+          "target": 7070
+        },
+        {
+          "day": 580,
+          "target": 6550
+        },
+        {
+          "day": 582,
+          "target": 6403
+        },
+        {
+          "day": 584,
+          "target": 6736
+        },
+        {
+          "day": 586,
+          "target": 6680
+        },
+        {
+          "day": 588,
+          "target": 7688
+        },
+        {
+          "day": 590,
+          "target": 7330
+        },
+        {
+          "day": 592,
+          "target": 6192
+        },
+        {
+          "day": 594,
+          "target": 6845
+        },
+        {
+          "day": 596,
+          "target": 6021
+        },
+        {
+          "day": 598,
+          "target": 5856
+        },
+        {
+          "day": 600,
+          "target": 7177
+        },
+        {
+          "day": 602,
+          "target": 6237
+        },
+        {
+          "day": 604,
+          "target": 5991
+        },
+        {
+          "day": 606,
+          "target": 6094
+        },
+        {
+          "day": 608,
+          "target": 6108
+        },
+        {
+          "day": 610,
+          "target": 6846
+        },
+        {
+          "day": 612,
+          "target": 7507
+        },
+        {
+          "day": 614,
+          "target": 6281
+        },
+        {
+          "day": 616,
+          "target": 5578
+        },
+        {
+          "day": 618,
+          "target": 7399
+        },
+        {
+          "day": 620,
+          "target": 6830
+        },
+        {
+          "day": 622,
+          "target": 6772
+        },
+        {
+          "day": 624,
+          "target": 6362
+        },
+        {
+          "day": 626,
+          "target": 7617
+        },
+        {
+          "day": 628,
+          "target": 7453
+        },
+        {
+          "day": 630,
+          "target": 7026
+        },
+        {
+          "day": 632,
+          "target": 6585
+        },
+        {
+          "day": 634,
+          "target": 6360
+        },
+        {
+          "day": 636,
+          "target": 8063
+        },
+        {
+          "day": 638,
+          "target": 6995
+        },
+        {
+          "day": 640,
+          "target": 7340
+        },
+        {
+          "day": 642,
+          "target": 6376
+        },
+        {
+          "day": 644,
+          "target": 6938
+        },
+        {
+          "day": 646,
+          "target": 6427
+        },
+        {
+          "day": 648,
+          "target": 6598
+        },
+        {
+          "day": 650,
+          "target": 6677
+        },
+        {
+          "day": 652,
+          "target": 6529
+        },
+        {
+          "day": 654,
+          "target": 5644
+        },
+        {
+          "day": 656,
+          "target": 6816
+        },
+        {
+          "day": 658,
+          "target": 6431
+        },
+        {
+          "day": 660,
+          "target": 8070
+        },
+        {
+          "day": 662,
+          "target": 6637
+        },
+        {
+          "day": 664,
+          "target": 5862
+        },
+        {
+          "day": 666,
+          "target": 7880
+        },
+        {
+          "day": 668,
+          "target": 5808
+        },
+        {
+          "day": 670,
+          "target": 6503
+        },
+        {
+          "day": 672,
+          "target": 5652
+        },
+        {
+          "day": 674,
+          "target": 6889
+        },
+        {
+          "day": 676,
+          "target": 6221
+        },
+        {
+          "day": 678,
+          "target": 6597
+        },
+        {
+          "day": 680,
+          "target": 5438
+        },
+        {
+          "day": 682,
+          "target": 5722
+        },
+        {
+          "day": 684,
+          "target": 6974
+        },
+        {
+          "day": 686,
+          "target": 6036
+        },
+        {
+          "day": 688,
+          "target": 7271
+        },
+        {
+          "day": 690,
+          "target": 6588
+        },
+        {
+          "day": 692,
+          "target": 7206
+        },
+        {
+          "day": 694,
+          "target": 7794
+        },
+        {
+          "day": 696,
+          "target": 7719
+        },
+        {
+          "day": 698,
+          "target": 6464
+        },
+        {
+          "day": 700,
+          "target": 6233
+        },
+        {
+          "day": 702,
+          "target": 5763
+        },
+        {
+          "day": 704,
+          "target": 6772
+        },
+        {
+          "day": 706,
+          "target": 8099
+        },
+        {
+          "day": 708,
+          "target": 7383
+        },
+        {
+          "day": 710,
+          "target": 6752
+        },
+        {
+          "day": 712,
+          "target": 9013
+        },
+        {
+          "day": 714,
+          "target": 5862
+        },
+        {
+          "day": 716,
+          "target": 7561
+        },
+        {
+          "day": 718,
+          "target": 7681
+        },
+        {
+          "day": 720,
+          "target": 7463
+        },
+        {
+          "day": 722,
+          "target": 7271
+        },
+        {
+          "day": 724,
+          "target": 6952
+        }
+      ]
+    },
+    {
+      "scale": "3D",
+      "events": [
+        {
+          "day": 0,
+          "target": 8090
+        },
+        {
+          "day": 3,
+          "target": 9769
+        },
+        {
+          "day": 6,
+          "target": 9913
+        },
+        {
+          "day": 9,
+          "target": 10581
+        },
+        {
+          "day": 12,
+          "target": 9283
+        },
+        {
+          "day": 15,
+          "target": 11358
+        },
+        {
+          "day": 18,
+          "target": 9503
+        },
+        {
+          "day": 21,
+          "target": 10244
+        },
+        {
+          "day": 24,
+          "target": 12596
+        },
+        {
+          "day": 27,
+          "target": 9933
+        },
+        {
+          "day": 30,
+          "target": 11396
+        },
+        {
+          "day": 33,
+          "target": 10078
+        },
+        {
+          "day": 36,
+          "target": 8845
+        },
+        {
+          "day": 39,
+          "target": 9300
+        },
+        {
+          "day": 42,
+          "target": 9725
+        },
+        {
+          "day": 45,
+          "target": 11733
+        },
+        {
+          "day": 48,
+          "target": 9576
+        },
+        {
+          "day": 51,
+          "target": 9360
+        },
+        {
+          "day": 54,
+          "target": 10797
+        },
+        {
+          "day": 57,
+          "target": 10451
+        },
+        {
+          "day": 60,
+          "target": 11041
+        },
+        {
+          "day": 63,
+          "target": 10903
+        },
+        {
+          "day": 66,
+          "target": 8638
+        },
+        {
+          "day": 69,
+          "target": 9791
+        },
+        {
+          "day": 72,
+          "target": 9864
+        },
+        {
+          "day": 75,
+          "target": 11705
+        },
+        {
+          "day": 78,
+          "target": 10500
+        },
+        {
+          "day": 81,
+          "target": 9338
+        },
+        {
+          "day": 84,
+          "target": 10514
+        },
+        {
+          "day": 87,
+          "target": 10927
+        },
+        {
+          "day": 90,
+          "target": 10348
+        },
+        {
+          "day": 93,
+          "target": 10232
+        },
+        {
+          "day": 96,
+          "target": 9846
+        },
+        {
+          "day": 99,
+          "target": 9377
+        },
+        {
+          "day": 102,
+          "target": 9918
+        },
+        {
+          "day": 105,
+          "target": 10469
+        },
+        {
+          "day": 108,
+          "target": 10871
+        },
+        {
+          "day": 111,
+          "target": 9418
+        },
+        {
+          "day": 114,
+          "target": 8215
+        },
+        {
+          "day": 117,
+          "target": 10955
+        },
+        {
+          "day": 120,
+          "target": 12075
+        },
+        {
+          "day": 123,
+          "target": 11462
+        },
+        {
+          "day": 126,
+          "target": 10565
+        },
+        {
+          "day": 129,
+          "target": 10177
+        },
+        {
+          "day": 132,
+          "target": 9903
+        },
+        {
+          "day": 135,
+          "target": 9811
+        },
+        {
+          "day": 138,
+          "target": 11019
+        },
+        {
+          "day": 141,
+          "target": 8742
+        },
+        {
+          "day": 144,
+          "target": 10209
+        },
+        {
+          "day": 147,
+          "target": 9249
+        },
+        {
+          "day": 150,
+          "target": 8643
+        },
+        {
+          "day": 153,
+          "target": 11154
+        },
+        {
+          "day": 156,
+          "target": 9933
+        },
+        {
+          "day": 159,
+          "target": 9706
+        },
+        {
+          "day": 162,
+          "target": 10181
+        },
+        {
+          "day": 165,
+          "target": 9626
+        },
+        {
+          "day": 168,
+          "target": 10092
+        },
+        {
+          "day": 171,
+          "target": 9656
+        },
+        {
+          "day": 174,
+          "target": 9741
+        },
+        {
+          "day": 177,
+          "target": 10681
+        },
+        {
+          "day": 180,
+          "target": 9927
+        },
+        {
+          "day": 183,
+          "target": 9015
+        },
+        {
+          "day": 186,
+          "target": 10034
+        },
+        {
+          "day": 189,
+          "target": 10778
+        },
+        {
+          "day": 192,
+          "target": 10400
+        },
+        {
+          "day": 195,
+          "target": 10065
+        },
+        {
+          "day": 198,
+          "target": 9419
+        },
+        {
+          "day": 201,
+          "target": 10349
+        },
+        {
+          "day": 204,
+          "target": 10733
+        },
+        {
+          "day": 207,
+          "target": 11029
+        },
+        {
+          "day": 210,
+          "target": 10807
+        },
+        {
+          "day": 213,
+          "target": 10631
+        },
+        {
+          "day": 216,
+          "target": 8710
+        },
+        {
+          "day": 219,
+          "target": 9053
+        },
+        {
+          "day": 222,
+          "target": 9120
+        },
+        {
+          "day": 225,
+          "target": 9257
+        },
+        {
+          "day": 228,
+          "target": 10564
+        },
+        {
+          "day": 231,
+          "target": 10226
+        },
+        {
+          "day": 234,
+          "target": 10391
+        },
+        {
+          "day": 237,
+          "target": 9589
+        },
+        {
+          "day": 240,
+          "target": 10067
+        },
+        {
+          "day": 243,
+          "target": 11191
+        },
+        {
+          "day": 246,
+          "target": 10263
+        },
+        {
+          "day": 249,
+          "target": 10092
+        },
+        {
+          "day": 252,
+          "target": 8826
+        },
+        {
+          "day": 255,
+          "target": 10284
+        },
+        {
+          "day": 258,
+          "target": 10675
+        },
+        {
+          "day": 261,
+          "target": 10039
+        },
+        {
+          "day": 264,
+          "target": 9532
+        },
+        {
+          "day": 267,
+          "target": 9857
+        },
+        {
+          "day": 270,
+          "target": 10496
+        },
+        {
+          "day": 273,
+          "target": 11459
+        },
+        {
+          "day": 276,
+          "target": 9454
+        },
+        {
+          "day": 279,
+          "target": 9534
+        },
+        {
+          "day": 282,
+          "target": 11107
+        },
+        {
+          "day": 285,
+          "target": 11032
+        },
+        {
+          "day": 288,
+          "target": 10410
+        },
+        {
+          "day": 291,
+          "target": 9638
+        },
+        {
+          "day": 294,
+          "target": 9667
+        },
+        {
+          "day": 297,
+          "target": 10335
+        },
+        {
+          "day": 300,
+          "target": 10799
+        },
+        {
+          "day": 303,
+          "target": 10441
+        },
+        {
+          "day": 306,
+          "target": 10459
+        },
+        {
+          "day": 309,
+          "target": 11420
+        },
+        {
+          "day": 312,
+          "target": 9065
+        },
+        {
+          "day": 315,
+          "target": 10957
+        },
+        {
+          "day": 318,
+          "target": 9541
+        },
+        {
+          "day": 321,
+          "target": 10196
+        },
+        {
+          "day": 324,
+          "target": 9972
+        },
+        {
+          "day": 327,
+          "target": 9277
+        },
+        {
+          "day": 330,
+          "target": 10330
+        },
+        {
+          "day": 333,
+          "target": 11514
+        },
+        {
+          "day": 336,
+          "target": 11037
+        },
+        {
+          "day": 339,
+          "target": 9575
+        },
+        {
+          "day": 342,
+          "target": 10047
+        },
+        {
+          "day": 345,
+          "target": 11199
+        },
+        {
+          "day": 348,
+          "target": 9944
+        },
+        {
+          "day": 351,
+          "target": 8615
+        },
+        {
+          "day": 354,
+          "target": 10382
+        },
+        {
+          "day": 357,
+          "target": 9824
+        },
+        {
+          "day": 360,
+          "target": 11230
+        },
+        {
+          "day": 363,
+          "target": 11035
+        },
+        {
+          "day": 366,
+          "target": 10499
+        },
+        {
+          "day": 369,
+          "target": 7980
+        },
+        {
+          "day": 372,
+          "target": 10077
+        },
+        {
+          "day": 375,
+          "target": 7988
+        },
+        {
+          "day": 378,
+          "target": 11306
+        },
+        {
+          "day": 381,
+          "target": 10715
+        },
+        {
+          "day": 384,
+          "target": 8475
+        },
+        {
+          "day": 387,
+          "target": 10429
+        },
+        {
+          "day": 390,
+          "target": 10894
+        },
+        {
+          "day": 393,
+          "target": 10352
+        },
+        {
+          "day": 396,
+          "target": 9735
+        },
+        {
+          "day": 399,
+          "target": 9778
+        },
+        {
+          "day": 402,
+          "target": 10148
+        },
+        {
+          "day": 405,
+          "target": 10010
+        },
+        {
+          "day": 408,
+          "target": 10986
+        },
+        {
+          "day": 411,
+          "target": 10340
+        },
+        {
+          "day": 414,
+          "target": 9190
+        },
+        {
+          "day": 417,
+          "target": 9818
+        },
+        {
+          "day": 420,
+          "target": 11265
+        },
+        {
+          "day": 423,
+          "target": 10247
+        },
+        {
+          "day": 426,
+          "target": 11067
+        },
+        {
+          "day": 429,
+          "target": 12206
+        },
+        {
+          "day": 432,
+          "target": 9568
+        },
+        {
+          "day": 435,
+          "target": 11281
+        },
+        {
+          "day": 438,
+          "target": 10115
+        },
+        {
+          "day": 441,
+          "target": 10230
+        },
+        {
+          "day": 444,
+          "target": 10839
+        },
+        {
+          "day": 447,
+          "target": 9619
+        },
+        {
+          "day": 450,
+          "target": 11941
+        },
+        {
+          "day": 453,
+          "target": 9823
+        },
+        {
+          "day": 456,
+          "target": 9648
+        },
+        {
+          "day": 459,
+          "target": 10111
+        },
+        {
+          "day": 462,
+          "target": 10160
+        },
+        {
+          "day": 465,
+          "target": 10655
+        },
+        {
+          "day": 468,
+          "target": 9756
+        },
+        {
+          "day": 471,
+          "target": 10094
+        },
+        {
+          "day": 474,
+          "target": 10709
+        },
+        {
+          "day": 477,
+          "target": 11344
+        },
+        {
+          "day": 480,
+          "target": 9080
+        },
+        {
+          "day": 483,
+          "target": 8762
+        },
+        {
+          "day": 486,
+          "target": 10029
+        },
+        {
+          "day": 489,
+          "target": 10127
+        },
+        {
+          "day": 492,
+          "target": 10529
+        },
+        {
+          "day": 495,
+          "target": 9332
+        },
+        {
+          "day": 498,
+          "target": 10880
+        },
+        {
+          "day": 501,
+          "target": 10412
+        },
+        {
+          "day": 504,
+          "target": 10479
+        },
+        {
+          "day": 507,
+          "target": 9324
+        },
+        {
+          "day": 510,
+          "target": 8660
+        },
+        {
+          "day": 513,
+          "target": 9651
+        },
+        {
+          "day": 516,
+          "target": 9298
+        },
+        {
+          "day": 519,
+          "target": 10933
+        },
+        {
+          "day": 522,
+          "target": 11454
+        },
+        {
+          "day": 525,
+          "target": 10371
+        },
+        {
+          "day": 528,
+          "target": 9919
+        },
+        {
+          "day": 531,
+          "target": 10830
+        },
+        {
+          "day": 534,
+          "target": 8737
+        },
+        {
+          "day": 537,
+          "target": 9178
+        },
+        {
+          "day": 540,
+          "target": 10579
+        },
+        {
+          "day": 543,
+          "target": 9379
+        },
+        {
+          "day": 546,
+          "target": 7792
+        },
+        {
+          "day": 549,
+          "target": 7966
+        },
+        {
+          "day": 552,
+          "target": 9838
+        },
+        {
+          "day": 555,
+          "target": 9542
+        },
+        {
+          "day": 558,
+          "target": 9654
+        },
+        {
+          "day": 561,
+          "target": 10692
+        },
+        {
+          "day": 564,
+          "target": 10270
+        },
+        {
+          "day": 567,
+          "target": 9901
+        },
+        {
+          "day": 570,
+          "target": 9733
+        },
+        {
+          "day": 573,
+          "target": 9529
+        },
+        {
+          "day": 576,
+          "target": 8833
+        },
+        {
+          "day": 579,
+          "target": 10288
+        },
+        {
+          "day": 582,
+          "target": 9972
+        },
+        {
+          "day": 585,
+          "target": 9847
+        },
+        {
+          "day": 588,
+          "target": 11164
+        },
+        {
+          "day": 591,
+          "target": 10046
+        },
+        {
+          "day": 594,
+          "target": 10276
+        },
+        {
+          "day": 597,
+          "target": 8446
+        },
+        {
+          "day": 600,
+          "target": 10406
+        },
+        {
+          "day": 603,
+          "target": 8999
+        },
+        {
+          "day": 606,
+          "target": 9200
+        },
+        {
+          "day": 609,
+          "target": 9848
+        },
+        {
+          "day": 612,
+          "target": 10957
+        },
+        {
+          "day": 615,
+          "target": 8409
+        },
+        {
+          "day": 618,
+          "target": 10836
+        },
+        {
+          "day": 621,
+          "target": 10165
+        },
+        {
+          "day": 624,
+          "target": 10323
+        },
+        {
+          "day": 627,
+          "target": 11109
+        },
+        {
+          "day": 630,
+          "target": 10363
+        },
+        {
+          "day": 633,
+          "target": 9608
+        },
+        {
+          "day": 636,
+          "target": 12049
+        },
+        {
+          "day": 639,
+          "target": 10349
+        },
+        {
+          "day": 642,
+          "target": 10384
+        },
+        {
+          "day": 645,
+          "target": 9357
+        },
+        {
+          "day": 648,
+          "target": 10497
+        },
+        {
+          "day": 651,
+          "target": 9307
+        },
+        {
+          "day": 654,
+          "target": 8850
+        },
+        {
+          "day": 657,
+          "target": 10041
+        },
+        {
+          "day": 660,
+          "target": 11256
+        },
+        {
+          "day": 663,
+          "target": 9313
+        },
+        {
+          "day": 666,
+          "target": 10619
+        },
+        {
+          "day": 669,
+          "target": 9572
+        },
+        {
+          "day": 672,
+          "target": 8911
+        },
+        {
+          "day": 675,
+          "target": 9851
+        },
+        {
+          "day": 678,
+          "target": 9069
+        },
+        {
+          "day": 681,
+          "target": 8688
+        },
+        {
+          "day": 684,
+          "target": 9918
+        },
+        {
+          "day": 687,
+          "target": 10363
+        },
+        {
+          "day": 690,
+          "target": 10664
+        },
+        {
+          "day": 693,
+          "target": 10924
+        },
+        {
+          "day": 696,
+          "target": 10638
+        },
+        {
+          "day": 699,
+          "target": 9778
+        },
+        {
+          "day": 702,
+          "target": 9643
+        },
+        {
+          "day": 705,
+          "target": 10991
+        },
+        {
+          "day": 708,
+          "target": 10635
+        },
+        {
+          "day": 711,
+          "target": 12513
+        },
+        {
+          "day": 714,
+          "target": 9847
+        },
+        {
+          "day": 717,
+          "target": 11257
+        },
+        {
+          "day": 720,
+          "target": 11233
+        },
+        {
+          "day": 723,
+          "target": 10453
+        }
+      ]
+    },
+    {
+      "scale": "7D",
+      "events": [
+        {
+          "day": 0,
+          "target": 21891
+        },
+        {
+          "day": 7,
+          "target": 23043
+        },
+        {
+          "day": 14,
+          "target": 23563
+        },
+        {
+          "day": 21,
+          "target": 26153
+        },
+        {
+          "day": 28,
+          "target": 24396
+        },
+        {
+          "day": 35,
+          "target": 21843
+        },
+        {
+          "day": 42,
+          "target": 25009
+        },
+        {
+          "day": 49,
+          "target": 22556
+        },
+        {
+          "day": 56,
+          "target": 25118
+        },
+        {
+          "day": 63,
+          "target": 23187
+        },
+        {
+          "day": 70,
+          "target": 23851
+        },
+        {
+          "day": 77,
+          "target": 23701
+        },
+        {
+          "day": 84,
+          "target": 24702
+        },
+        {
+          "day": 91,
+          "target": 23557
+        },
+        {
+          "day": 98,
+          "target": 22903
+        },
+        {
+          "day": 105,
+          "target": 24398
+        },
+        {
+          "day": 112,
+          "target": 22406
+        },
+        {
+          "day": 119,
+          "target": 26661
+        },
+        {
+          "day": 126,
+          "target": 22699
+        },
+        {
+          "day": 133,
+          "target": 25277
+        },
+        {
+          "day": 140,
+          "target": 22450
+        },
+        {
+          "day": 147,
+          "target": 20783
+        },
+        {
+          "day": 154,
+          "target": 25543
+        },
+        {
+          "day": 161,
+          "target": 22166
+        },
+        {
+          "day": 168,
+          "target": 22753
+        },
+        {
+          "day": 175,
+          "target": 23096
+        },
+        {
+          "day": 182,
+          "target": 23297
+        },
+        {
+          "day": 189,
+          "target": 24319
+        },
+        {
+          "day": 196,
+          "target": 23133
+        },
+        {
+          "day": 203,
+          "target": 25321
+        },
+        {
+          "day": 210,
+          "target": 23938
+        },
+        {
+          "day": 217,
+          "target": 21291
+        },
+        {
+          "day": 224,
+          "target": 22913
+        },
+        {
+          "day": 231,
+          "target": 24026
+        },
+        {
+          "day": 238,
+          "target": 23700
+        },
+        {
+          "day": 245,
+          "target": 24093
+        },
+        {
+          "day": 252,
+          "target": 23150
+        },
+        {
+          "day": 259,
+          "target": 23331
+        },
+        {
+          "day": 266,
+          "target": 23228
+        },
+        {
+          "day": 273,
+          "target": 23906
+        },
+        {
+          "day": 280,
+          "target": 25174
+        },
+        {
+          "day": 287,
+          "target": 23554
+        },
+        {
+          "day": 294,
+          "target": 23969
+        },
+        {
+          "day": 301,
+          "target": 24574
+        },
+        {
+          "day": 308,
+          "target": 23643
+        },
+        {
+          "day": 315,
+          "target": 24404
+        },
+        {
+          "day": 322,
+          "target": 22188
+        },
+        {
+          "day": 329,
+          "target": 25195
+        },
+        {
+          "day": 336,
+          "target": 23857
+        },
+        {
+          "day": 343,
+          "target": 25097
+        },
+        {
+          "day": 350,
+          "target": 21845
+        },
+        {
+          "day": 357,
+          "target": 24575
+        },
+        {
+          "day": 364,
+          "target": 22785
+        },
+        {
+          "day": 371,
+          "target": 21273
+        },
+        {
+          "day": 378,
+          "target": 24993
+        },
+        {
+          "day": 385,
+          "target": 23070
+        },
+        {
+          "day": 392,
+          "target": 23843
+        },
+        {
+          "day": 399,
+          "target": 23475
+        },
+        {
+          "day": 406,
+          "target": 24147
+        },
+        {
+          "day": 413,
+          "target": 22648
+        },
+        {
+          "day": 420,
+          "target": 24978
+        },
+        {
+          "day": 427,
+          "target": 26504
+        },
+        {
+          "day": 434,
+          "target": 24267
+        },
+        {
+          "day": 441,
+          "target": 24746
+        },
+        {
+          "day": 448,
+          "target": 24476
+        },
+        {
+          "day": 455,
+          "target": 22989
+        },
+        {
+          "day": 462,
+          "target": 23671
+        },
+        {
+          "day": 469,
+          "target": 24200
+        },
+        {
+          "day": 476,
+          "target": 23927
+        },
+        {
+          "day": 483,
+          "target": 22197
+        },
+        {
+          "day": 490,
+          "target": 23763
+        },
+        {
+          "day": 497,
+          "target": 24111
+        },
+        {
+          "day": 504,
+          "target": 22731
+        },
+        {
+          "day": 511,
+          "target": 20989
+        },
+        {
+          "day": 518,
+          "target": 26079
+        },
+        {
+          "day": 525,
+          "target": 24069
+        },
+        {
+          "day": 532,
+          "target": 21463
+        },
+        {
+          "day": 539,
+          "target": 23461
+        },
+        {
+          "day": 546,
+          "target": 19413
+        },
+        {
+          "day": 553,
+          "target": 22102
+        },
+        {
+          "day": 560,
+          "target": 24239
+        },
+        {
+          "day": 567,
+          "target": 23178
+        },
+        {
+          "day": 574,
+          "target": 21505
+        },
+        {
+          "day": 581,
+          "target": 23420
+        },
+        {
+          "day": 588,
+          "target": 24492
+        },
+        {
+          "day": 595,
+          "target": 22617
+        },
+        {
+          "day": 602,
+          "target": 21428
+        },
+        {
+          "day": 609,
+          "target": 23636
+        },
+        {
+          "day": 616,
+          "target": 23080
+        },
+        {
+          "day": 623,
+          "target": 24931
+        },
+        {
+          "day": 630,
+          "target": 23772
+        },
+        {
+          "day": 637,
+          "target": 24973
+        },
+        {
+          "day": 644,
+          "target": 23862
+        },
+        {
+          "day": 651,
+          "target": 21767
+        },
+        {
+          "day": 658,
+          "target": 24299
+        },
+        {
+          "day": 665,
+          "target": 22892
+        },
+        {
+          "day": 672,
+          "target": 21589
+        },
+        {
+          "day": 679,
+          "target": 21904
+        },
+        {
+          "day": 686,
+          "target": 23971
+        },
+        {
+          "day": 693,
+          "target": 25107
+        },
+        {
+          "day": 700,
+          "target": 22462
+        },
+        {
+          "day": 707,
+          "target": 27553
+        },
+        {
+          "day": 714,
+          "target": 24102
+        },
+        {
+          "day": 721,
+          "target": 21287
+        }
+      ]
+    },
+    {
+      "scale": "14D",
+      "events": [
+        {
+          "day": 0,
+          "target": 44934
+        },
+        {
+          "day": 14,
+          "target": 49716
+        },
+        {
+          "day": 28,
+          "target": 46239
+        },
+        {
+          "day": 42,
+          "target": 47565
+        },
+        {
+          "day": 56,
+          "target": 48305
+        },
+        {
+          "day": 70,
+          "target": 47552
+        },
+        {
+          "day": 84,
+          "target": 48259
+        },
+        {
+          "day": 98,
+          "target": 47301
+        },
+        {
+          "day": 112,
+          "target": 49067
+        },
+        {
+          "day": 126,
+          "target": 47976
+        },
+        {
+          "day": 140,
+          "target": 43233
+        },
+        {
+          "day": 154,
+          "target": 47709
+        },
+        {
+          "day": 168,
+          "target": 45849
+        },
+        {
+          "day": 182,
+          "target": 47616
+        },
+        {
+          "day": 196,
+          "target": 48454
+        },
+        {
+          "day": 210,
+          "target": 45229
+        },
+        {
+          "day": 224,
+          "target": 46939
+        },
+        {
+          "day": 238,
+          "target": 47793
+        },
+        {
+          "day": 252,
+          "target": 46481
+        },
+        {
+          "day": 266,
+          "target": 47134
+        },
+        {
+          "day": 280,
+          "target": 48728
+        },
+        {
+          "day": 294,
+          "target": 48543
+        },
+        {
+          "day": 308,
+          "target": 48047
+        },
+        {
+          "day": 322,
+          "target": 47383
+        },
+        {
+          "day": 336,
+          "target": 48954
+        },
+        {
+          "day": 350,
+          "target": 46420
+        },
+        {
+          "day": 364,
+          "target": 44058
+        },
+        {
+          "day": 378,
+          "target": 48063
+        },
+        {
+          "day": 392,
+          "target": 47318
+        },
+        {
+          "day": 406,
+          "target": 46795
+        },
+        {
+          "day": 420,
+          "target": 51482
+        },
+        {
+          "day": 434,
+          "target": 49013
+        },
+        {
+          "day": 448,
+          "target": 47465
+        },
+        {
+          "day": 462,
+          "target": 47871
+        },
+        {
+          "day": 476,
+          "target": 46124
+        },
+        {
+          "day": 490,
+          "target": 47874
+        },
+        {
+          "day": 504,
+          "target": 43720
+        },
+        {
+          "day": 518,
+          "target": 50148
+        },
+        {
+          "day": 532,
+          "target": 44924
+        },
+        {
+          "day": 546,
+          "target": 41515
+        },
+        {
+          "day": 560,
+          "target": 47417
+        },
+        {
+          "day": 574,
+          "target": 44925
+        },
+        {
+          "day": 588,
+          "target": 47109
+        },
+        {
+          "day": 602,
+          "target": 45064
+        },
+        {
+          "day": 616,
+          "target": 48011
+        },
+        {
+          "day": 630,
+          "target": 48745
+        },
+        {
+          "day": 644,
+          "target": 45629
+        },
+        {
+          "day": 658,
+          "target": 47191
+        },
+        {
+          "day": 672,
+          "target": 43493
+        },
+        {
+          "day": 686,
+          "target": 49078
+        },
+        {
+          "day": 700,
+          "target": 50015
+        },
+        {
+          "day": 714,
+          "target": 45389
+        }
+      ]
+    },
+    {
+      "scale": "30D",
+      "events": [
+        {
+          "day": 0,
+          "target": 101270
+        },
+        {
+          "day": 30,
+          "target": 101261
+        },
+        {
+          "day": 60,
+          "target": 103221
+        },
+        {
+          "day": 90,
+          "target": 99649
+        },
+        {
+          "day": 120,
+          "target": 103212
+        },
+        {
+          "day": 150,
+          "target": 99413
+        },
+        {
+          "day": 180,
+          "target": 101749
+        },
+        {
+          "day": 210,
+          "target": 98348
+        },
+        {
+          "day": 240,
+          "target": 100826
+        },
+        {
+          "day": 270,
+          "target": 103132
+        },
+        {
+          "day": 300,
+          "target": 102127
+        },
+        {
+          "day": 330,
+          "target": 102467
+        },
+        {
+          "day": 360,
+          "target": 99734
+        },
+        {
+          "day": 390,
+          "target": 101251
+        },
+        {
+          "day": 420,
+          "target": 106437
+        },
+        {
+          "day": 450,
+          "target": 104241
+        },
+        {
+          "day": 480,
+          "target": 98954
+        },
+        {
+          "day": 510,
+          "target": 99031
+        },
+        {
+          "day": 540,
+          "target": 95613
+        },
+        {
+          "day": 570,
+          "target": 98134
+        },
+        {
+          "day": 600,
+          "target": 100252
+        },
+        {
+          "day": 630,
+          "target": 100805
+        },
+        {
+          "day": 660,
+          "target": 97560
+        },
+        {
+          "day": 690,
+          "target": 106890
+        },
+        {
+          "day": 720,
+          "target": 24285
+        }
+      ]
+    }
+  ]
+}
