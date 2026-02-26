@@ -122,19 +122,36 @@ class RainProcessor:
         self.signatures: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
 
-    def load_data(self):
+    def load_data(self, force_refresh: bool = False):
         """ Loads the raw data from source. """
         os.environ['SSL_CERT_FILE'] = certifi.where()
+
+        cache_dir = root / "cache" / "rain"
+        cache_dir.mkdir(parents = True, exist_ok = True)
+        cache_key = f"{str(self.country).upper()}_{self.start_date.date()}_{self.end_date.date()}"
+        path_network = cache_dir / f"{cache_key}_network.csv"
+        path_events = cache_dir / f"{cache_key}_events.csv"
+
+        if (not force_refresh) and path_network.exists() and path_events.exists():
+            self.data_network_raw = pd.read_csv(path_network)
+            self.data_events_raw = pd.read_csv(path_events)
+            if "timestamp" in self.data_events_raw.columns:
+                self.data_events_raw["timestamp"] = pd.to_datetime(self.data_events_raw["timestamp"], utc = True, errors = "coerce")
+            return self
+
         self.data_network_raw = _load_network_rain(
-            start=self.start_date,
-            end=self.end_date,
-            country=self.country
+            start = self.start_date,
+            end = self.end_date,
+            country = self.country
         )
         self.data_events_raw = _load_events_rain(
-            data=self.data_network_raw,
-            start=self.start_date,
-            end=self.end_date
+            data = self.data_network_raw,
+            start = self.start_date,
+            end = self.end_date
         )
+
+        self.data_network_raw.to_csv(path_network, index = False)
+        self.data_events_raw.to_csv(path_events, index = False)
         return self
 
     def process_network(self):

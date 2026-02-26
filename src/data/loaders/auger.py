@@ -6,7 +6,6 @@ import zipfile
 import certifi
 import numpy as np
 import pandas as pd
-import requests
 import igraph as ig
 from pathlib import Path
 from typing import Optional, Dict, Any
@@ -22,7 +21,8 @@ from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
 from src.data.helpers import (
     _create_igraph_object,
-    _aggregate_by_day
+    _aggregate_by_day,
+    _request_with_retry
 )
 
 ## filter auger stations by array and validate coordinates
@@ -92,8 +92,7 @@ def _build_network_auger(station_map: pd.DataFrame, array: str = "both"):
 def _load_events_auger(url: str, timeout: int = 120) -> pd.DataFrame:
     
     ## download and extract zip
-    response = requests.get(url = url, timeout = timeout)
-    response.raise_for_status()
+    response = _request_with_retry(url = url, timeout = timeout, use_cache = True)
     
     z = zipfile.ZipFile(io.BytesIO(response.content))
     

@@ -2,9 +2,7 @@
 import io
 import os
 import sys
-import ssl
 import tarfile
-import urllib.request
 import pandas as pd
 from pathlib import Path
 from typing import Optional, Dict, Any
@@ -17,18 +15,14 @@ if str(root) not in sys.path:
 ## modules
 from src.vectorizers.invariants import BipartiteInvariants
 from src.vectorizers.signatures import ProcessSignatures
+from src.data.helpers import _request_with_retry
 
 ## load mooc_actions from the snap tarball robustly (streaming, stdlib parsing)
 def _load_network_mooc(url: str) -> pd.DataFrame:
     
-    ## create ssl context that can handle self-signed certificates
-    ssl_context = ssl.create_default_context()
-    ssl_context.check_hostname = False
-    ssl_context.verify_mode = ssl.CERT_NONE
-    
-    ## download archive into memory with ssl context
-    with urllib.request.urlopen(url = url, context = ssl_context) as r:
-        tar_bytes = r.read()
+    ## download archive into memory
+    response = _request_with_retry(url = url, timeout = 60, use_cache = True)
+    tar_bytes = response.content
 
     ## open outer tar.gz
     tf = tarfile.open(fileobj = io.BytesIO(tar_bytes), mode = "r:gz")

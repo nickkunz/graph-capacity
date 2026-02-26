@@ -21,7 +21,8 @@ from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
 from src.data.helpers import (
     _create_igraph_object, 
-    _aggregate_by_day
+    _aggregate_by_day,
+    _request_with_retry
 )
 
 ## create a requests session with a connection pool
@@ -44,8 +45,7 @@ def _load_network_nwis(
     ) -> pd.DataFrame:
 
     ## load data
-    response = session.get(url = url, params = dict(params), timeout = timeout)
-    response.raise_for_status()
+    response = _request_with_retry(url = url, params = dict(params), timeout = timeout, use_cache = True)
 
     ## parse response
     if response.text.strip().lower().startswith("<!doctype html") or response.text.strip().lower().startswith("<html"):
@@ -79,8 +79,7 @@ def _load_network_nwis_metadata(
 
     ## send request
     params = {"format": "rdb", "sites": ids, "siteOutput": "expanded"}
-    response = session.get(url = url, params = params, timeout = timeout)
-    response.raise_for_status()
+    response = _request_with_retry(url = url, params = params, timeout = timeout, use_cache = True)
 
     ## parse response
     lines = [l for l in response.text.split("\n") if not l.startswith("#") and l.strip()]
@@ -211,8 +210,7 @@ def _load_events_nwis(
         "endDT": end_date, 
         "parameterCd": param_code
     }
-    response = session.get(url = url, params = params, timeout = timeout)
-    response.raise_for_status()
+    response = _request_with_retry(url = url, params = params, timeout = timeout, use_cache = True)
     
     ## parse response
     data = response.json()

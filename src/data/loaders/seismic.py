@@ -1,7 +1,6 @@
 ## libraries
 import sys
 import logging
-import requests
 import pandas as pd
 import igraph as ig
 import xml.etree.ElementTree as ET
@@ -19,7 +18,8 @@ from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
 from src.data.helpers import (
     _create_igraph_object,
-    _aggregate_by_day
+    _aggregate_by_day,
+    _request_with_retry
 )
 
 ## logging
@@ -29,8 +29,7 @@ logger = logging.getLogger(__name__)
 def _load_network_seismic(url: str, params: dict, namespace: dict, row_path: str, col_map: dict, timeout: int = 60) -> pd.DataFrame:
 
     ## fetch and parse xml data
-    response = requests.get(url = url, params = params, timeout = timeout)
-    response.raise_for_status()
+    response = _request_with_retry(url = url, params = params, timeout = timeout, use_cache = True)
     root = ET.fromstring(text = response.content)
     
     ## find all parent elements to become rows
@@ -119,12 +118,11 @@ def _load_events_seismic(params: dict, url: str = "https://earthquake.usgs.gov/f
                 
                 ## fetch data for this chunk
                 try:
-                    response = requests.get(url = url, params=chunk_params)
-                    response.raise_for_status()
+                    response = _request_with_retry(url = url, params = chunk_params, timeout = 60, use_cache = True)
                     chunk_data = pd.read_csv(StringIO(response.text))
                     if not chunk_data.empty:
                         all_data.append(chunk_data)
-                except requests.exceptions.RequestException as e:
+                except Exception as e:
                     logger.error(f"An error occurred for {chunk_params['starttime']} to {chunk_params['endtime']}: {e}")
                 
                 ## move to next month
@@ -138,10 +136,9 @@ def _load_events_seismic(params: dict, url: str = "https://earthquake.usgs.gov/f
     
     ## if date range is 31 days or less, make a single request
     try:
-        response = requests.get(url = url, params=params)
-        response.raise_for_status()
+        response = _request_with_retry(url = url, params = params, timeout = 60, use_cache = True)
         return pd.read_csv(StringIO(response.text))
-    except requests.exceptions.RequestException as e:
+    except Exception as e:
         logger.error(f"An error occurred during the request: {e}")
         return pd.DataFrame()
 

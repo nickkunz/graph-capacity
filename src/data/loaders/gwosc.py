@@ -6,6 +6,7 @@ import itertools
 import pandas as pd
 import igraph as ig
 import gwosc.datasets as gw
+from io import StringIO
 from pathlib import Path
 from typing import Optional, Dict, Any
 
@@ -19,7 +20,8 @@ from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
 from src.data.helpers import (
     _create_igraph_object,
-    _aggregate_by_day
+    _aggregate_by_day,
+    _request_with_retry
 )
 
 ## load gravitational wave open science center network data
@@ -41,8 +43,9 @@ def _build_network_gwosc(data: dict) -> tuple[list[str], list[tuple]]:
 ## load gravitational wave open science center event data
 def _load_events_gwosc(url: str):
     os.environ['SSL_CERT_FILE'] = certifi.where()
+    response = _request_with_retry(url = url, timeout = 60, use_cache = True)
     return pd.read_csv(
-        filepath_or_buffer = url,
+        filepath_or_buffer = StringIO(response.text),
         usecols = ["GPS", "commonName", "catalog.shortName"],
         na_filter = False
     )
