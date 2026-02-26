@@ -176,6 +176,8 @@ def _run_all_perturbations(proc, name):
 
     ## --- network perturbation --- ##
     graph = getattr(proc, 'graph', None)
+    pre_inv = getattr(proc, 'invariants', None)
+    dimensions = getattr(proc, 'dimensions', None)
     if graph is not None:
         
         ## ensure simple undirected graph (remove multi-edges and self-loops)
@@ -218,12 +220,44 @@ def _run_all_perturbations(proc, name):
                 })
         results['network_perturbed'] = network_results
         logging.info(f"  Network perturbation: {len(network_results)} records")
+    elif pre_inv is not None and dimensions is not None:
+        m, n = int(dimensions[0]), int(dimensions[1])
+        n_nodes = int(m + n)
+        n_edges = int(m * n)
+        degrees = np.concatenate([
+            np.full(shape = m, fill_value = float(n), dtype = float),
+            np.full(shape = n, fill_value = float(m), dtype = float),
+        ])
+        invariants = dict(pre_inv)
+        network_results = []
+        logging.info(f"  Using analytical perturbation for {name} ({n_nodes:,} nodes, {n_edges:,} edges) [graph-free]")
+        for method, intensities in NETWORK_METHODS.items():
+            for intensity in intensities:
+                try:
+                    features = analytical_perturb(
+                        invariants = invariants,
+                        degrees = degrees,
+                        n_nodes = n_nodes,
+                        n_edges = n_edges,
+                        method = {"rewire": "degree_preserving_rewire", "sparsify": "bernoulli_edge_thinning", "node_sample": "uniform_node_sampling"}[method],
+                        intensity = float(intensity),
+                    )
+                except Exception as exc:
+                    logging.warning(f"Analytical {method} @ {intensity:.2f} failed for {name}: {exc}")
+                    continue
+                network_results.append({
+                    'method': method,
+                    'intensity': float(intensity),
+                    'invariants': features
+                })
+        results['network_perturbed'] = network_results
+        logging.info(f"  Network perturbation: {len(network_results)} records")
     else:
         logging.warning(f"  No graph object for {name}, skipping network perturbation.")
 
     ## --- invariant perturbation --- ##
-    if graph is not None:
-        base_inv = GraphInvariants(graph).all(analytical = analytical)
+    if graph is not None or pre_inv is not None:
+        base_inv = GraphInvariants(graph).all(analytical = analytical) if graph is not None else pre_inv
         base_df = pd.DataFrame([base_inv])
         invariant_pert_results = []
         for method, params in INVARIANT_METHODS.items():
@@ -315,10 +349,12 @@ def _run_all_perturbations(proc, name):
 
                 for scale in TEMPORAL_SCALES:
                     scale_days = int(re.match(r'(\d+)', scale).group(1))
-                    bins = range(day_min, day_max + scale_days, scale_days)
-                    labels = list(bins)[:-1] if len(list(bins)) > 1 else [day_min]
+                    bin_edges = list(range(day_min, day_max + scale_days, scale_days))
+                    if len(bin_edges) < 2:
+                        bin_edges = [day_min, day_min + scale_days]
+                    labels = bin_edges[:-1]
                     df_temp['_bin'] = pd.cut(
-                        df_temp[date_col], bins = list(bins),
+                        df_temp[date_col], bins = bin_edges,
                         right = False, labels = labels, include_lowest = True
                     )
                     agg = df_temp.groupby('_bin', observed = False)[target_col].sum()
