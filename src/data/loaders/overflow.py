@@ -43,15 +43,6 @@ class OverflowProcessor:
         ## compute bipartite dimensions and invariants
         m, n = _compute_network_snap(data = self.data, unix_time = True)
         self.invariants = BipartiteInvariants(m = m, n = n).all()
-
-        ## build complete bipartite graph K_{m,n}
-        users = pd.concat([self.data['src'], self.data['dst']]).unique()
-        days = pd.date_range(start = self.data['day'].min(), end = self.data['day'].max(), freq = '1D')
-        user_nodes = [f"user::{str(u)}" for u in users]
-        day_nodes = [f"day::{str(d.date())}" for d in days]
-        nodes = user_nodes + day_nodes
-        edges = list(itertools.product(user_nodes, day_nodes))
-        self.graph = _create_igraph_object(nodes = nodes, edges = edges)
         return self
 
     def process_signatures(self):
