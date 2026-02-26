@@ -77,6 +77,5 @@ class OverflowProcessor:
         return {
             "invariants": self.invariants,
             "signatures": self.signatures,
-            "graph": self.graph,
             "events": self.events.to_dict(orient = "records")
         }
