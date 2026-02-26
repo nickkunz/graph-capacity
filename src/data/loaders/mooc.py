@@ -4,14 +4,14 @@ import os
 import sys
 import ssl
 import tarfile
-import itertools
 import urllib.request
 import pandas as pd
 from typing import Optional, Dict, Any
 
+## path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
 ## modules
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-from src.data.helpers import _create_igraph_object
 from src.vectorizers.invariants import BipartiteInvariants
 from src.vectorizers.signatures import ProcessSignatures
 
@@ -92,6 +92,7 @@ class MoocProcessor:
         self.url: str = url
         self.data: Optional[pd.DataFrame] = None
         self.graph: Optional[Any] = None
+        self.dimensions: Optional[tuple[int, int]] = None
         self.invariants: Optional[Dict[str, Any]] = None
         self.signatures: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
@@ -108,16 +109,8 @@ class MoocProcessor:
 
         ## compute bipartite dimensions and invariants
         m, n = _compute_network_mooc(data = self.data)
+        self.dimensions = (int(m), int(n))
         self.invariants = BipartiteInvariants(m = m, n = n).all()
-
-        ## build complete bipartite graph K_{m,n}
-        users = self.data['src'].dropna().unique()
-        items = self.data['dst'].dropna().unique()
-        user_nodes = [f"user::{str(u)}" for u in users]
-        item_nodes = [f"item::{str(i)}" for i in items]
-        nodes = user_nodes + item_nodes
-        edges = list(itertools.product(user_nodes, item_nodes))
-        self.graph = _create_igraph_object(nodes = nodes, edges = edges)
         return self
 
     def process_signatures(self):

@@ -2,23 +2,23 @@
 import os
 import sys
 import logging
-import itertools
 import pandas as pd
 from typing import Optional, Dict, Any
 
-## logging
-logger = logging.getLogger(__name__)
+## path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 ## modules
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from src.vectorizers.invariants import BipartiteInvariants
 from src.vectorizers.signatures import ProcessSignatures
 from src.data.helpers import (
     _aggregate_by_day, 
     _load_network_snap,
-    _compute_network_snap,
-    _create_igraph_object
+    _compute_network_snap
 )
+
+## logging
+logger = logging.getLogger(__name__)
 
 ## stackoverflow user-user network
 class OverflowProcessor:

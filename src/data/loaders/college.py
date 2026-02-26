@@ -1,15 +1,20 @@
 ## libraries
 import os
 import sys
-import itertools
 import pandas as pd
 from typing import Optional, Dict, Any
 
-## modules
+## path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.data.helpers import _aggregate_by_day, _load_network_snap, _compute_network_snap, _create_igraph_object
+
+## modules
 from src.vectorizers.invariants import BipartiteInvariants
 from src.vectorizers.signatures import ProcessSignatures
+from src.data.helpers import (
+    _aggregate_by_day, 
+    _load_network_snap, 
+    _compute_network_snap
+)
 
 ## college message user-user network
 class CollegeProcessor:
@@ -17,6 +22,7 @@ class CollegeProcessor:
         self.url = url
         self.data: Optional[pd.DataFrame] = None
         self.graph: Optional[Any] = None
+        self.dimensions: Optional[tuple[int, int]] = None
         self.invariants: Optional[Dict[str, Any]] = None
         self.signatures: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
@@ -33,16 +39,8 @@ class CollegeProcessor:
 
         ## compute bipartite dimensions and invariants
         m, n = _compute_network_snap(data = self.data, unix_time = True)
+        self.dimensions = (int(m), int(n))
         self.invariants = BipartiteInvariants(m = m, n = n).all()
-
-        ## build complete bipartite graph K_{m,n}
-        users = pd.concat([self.data['src'], self.data['dst']]).unique()
-        days = pd.date_range(start = self.data['day'].min(), end = self.data['day'].max(), freq = '1D')
-        user_nodes = [f"user::{str(u)}" for u in users]
-        day_nodes = [f"day::{str(d.date())}" for d in days]
-        nodes = user_nodes + day_nodes
-        edges = list(itertools.product(user_nodes, day_nodes))
-        self.graph = _create_igraph_object(nodes = nodes, edges = edges)
         return self
 
     def process_events(self):
