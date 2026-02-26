@@ -1,4 +1,5 @@
 ## libraries
+import re
 import os
 import sys
 import logging
@@ -290,25 +291,54 @@ def _run_all_perturbations(proc, name):
 
     ## --- temporal aggregation --- ##
     if events is not None and isinstance(events, pd.DataFrame) and not events.empty:
-        date_col = next((c for c in ('date', 'datetime', 'timestamp') if c in events.columns), None)
+        date_col = next((c for c in ('date', 'datetime', 'timestamp', 'day') if c in events.columns), None)
         target_col = next((c for c in ('target', 'count') if c in events.columns), None)
 
         if date_col is not None and target_col is not None:
             temporal_results = []
             df_temp = events[[date_col, target_col]].copy()
-            df_temp[date_col] = pd.to_datetime(df_temp[date_col])
-            df_temp = df_temp.set_index(date_col).sort_index()
+            is_ordinal = pd.api.types.is_integer_dtype(df_temp[date_col])
 
-            for scale in TEMPORAL_SCALES:
-                resampled = df_temp[target_col].resample(scale).sum()
-                records = [
-                    {'date': str(dt.date()), 'target': int(val)}
-                    for dt, val in resampled.items()
-                ]
-                temporal_results.append({
-                    'scale': scale,
-                    'events': records
-                })
+            if is_ordinal:
+                ## integer day indices: bin directly without synthesizing dates
+                df_temp = df_temp.sort_values(date_col).reset_index(drop = True)
+                day_min = int(df_temp[date_col].min())
+                day_max = int(df_temp[date_col].max())
+
+                for scale in TEMPORAL_SCALES:
+                    scale_days = int(re.match(r'(\d+)', scale).group(1))
+                    bins = range(day_min, day_max + scale_days, scale_days)
+                    labels = list(bins)[:-1] if len(list(bins)) > 1 else [day_min]
+                    df_temp['_bin'] = pd.cut(
+                        df_temp[date_col], bins = list(bins),
+                        right = False, labels = labels, include_lowest = True
+                    )
+                    agg = df_temp.groupby('_bin', observed = False)[target_col].sum()
+                    records = [
+                        {'day': int(b), 'target': int(v)}
+                        for b, v in agg.items()
+                    ]
+                    temporal_results.append({
+                        'scale': scale,
+                        'events': records
+                    })
+                df_temp.drop(columns = '_bin', inplace = True, errors = 'ignore')
+
+            else:
+                ## real dates: resample with native pandas frequency
+                df_temp[date_col] = pd.to_datetime(df_temp[date_col])
+                df_temp = df_temp.set_index(date_col).sort_index()
+
+                for scale in TEMPORAL_SCALES:
+                    resampled = df_temp[target_col].resample(scale).sum()
+                    records = [
+                        {'date': str(dt.date()), 'target': int(val)}
+                        for dt, val in resampled.items()
+                    ]
+                    temporal_results.append({
+                        'scale': scale,
+                        'events': records
+                    })
 
             results['temporal_aggregated'] = temporal_results
             logging.info(f"  Temporal aggregation: {len(temporal_results)} scales")
