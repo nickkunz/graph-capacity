@@ -104,7 +104,7 @@ logging.basicConfig(
 def processor():
 
     ## ensure processed directory exists
-    os.makedirs(PATH_PROC, exist_ok = True)
+    os.makedirs(name = PATH_PROC, exist_ok = True)
     
     ## --- federal contracts --- ##
     federal_path = os.path.join(PATH_PROC, f"{NAME_FEDERAL}.json")
