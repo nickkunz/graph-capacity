@@ -26,6 +26,7 @@ class OverflowProcessor:
         self.url = url
         self.data: Optional[pd.DataFrame] = None
         self.graph: Optional[Any] = None
+        self.dimensions: Optional[tuple[int, int]] = None
         self.invariants: Optional[Dict[str, Any]] = None
         self.signatures: Optional[Dict[str, Any]] = None
         self.events: Optional[pd.DataFrame] = None
@@ -42,6 +43,7 @@ class OverflowProcessor:
 
         ## compute bipartite dimensions and invariants
         m, n = _compute_network_snap(data = self.data, unix_time = True)
+        self.dimensions = (int(m), int(n))
         self.invariants = BipartiteInvariants(m = m, n = n).all()
         return self
 
