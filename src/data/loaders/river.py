@@ -48,6 +48,12 @@ def _load_network_nwis(
     response.raise_for_status()
 
     ## parse response
+    raw = response.text.strip()
+    if response.text.strip().lower().startswith("<!doctype html") or response.text.strip().lower().startswith("<html"):
+        raise ValueError(
+            "NWIS inventory endpoint returned HTML (likely deprecated/redirected endpoint or invalid params)."
+        )
+
     lines = [l for l in response.text.split("\n") if not l.startswith("#") and l.strip()]
     if len(lines) < 3:
         raise ValueError("No station data returned.")
@@ -55,7 +61,10 @@ def _load_network_nwis(
     ## build dataframe    
     data = pd.read_csv(StringIO("\n".join(lines)), sep = "\t")
     data = data.rename(columns = {c: c.strip() for c in data.columns})
-    data = data[data["site_no"].astype(str).str.isnumeric()]
+    if "site_no" not in data.columns:
+        raise ValueError(f"Expected 'site_no' column in NWIS response, got columns: {list(data.columns)}")
+
+    data = data[data["site_no"].astype(str).str.strip().str.isnumeric()]
 
     ## output unique site ids
     return data["site_no"].unique().tolist()
