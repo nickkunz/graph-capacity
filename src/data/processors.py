@@ -3,14 +3,14 @@ import os
 import sys
 import logging
 import configparser
+from pathlib import Path
 
-## project root
-root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-if root not in sys.path:
-    sys.path.append(root)
+## path
+root = Path(__file__).resolve().parents[2]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
 ## modules
-from src.data.helpers import _save_to_json
 from src.data.loaders.federal import FederalProcessor
 from src.data.loaders.bitcoin import BitcoinProcessor
 from src.data.loaders.amazon import AmazonProcessor
@@ -36,6 +36,7 @@ from src.data.loaders.auger import AugerProcessor
 from src.data.loaders.seismic import SeismicProcessor
 from src.data.loaders.rain import RainProcessor
 from src.data.loaders.chickenpox import ChickenpoxProcessor
+from src.data.helpers import _save_to_json
 
 ## configs
 config = configparser.ConfigParser()
