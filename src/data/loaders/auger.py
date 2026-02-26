@@ -11,8 +11,10 @@ import igraph as ig
 from typing import Optional, Dict, Any
 from datetime import datetime, timezone
 
-## modules
+## path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+## modules
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
 from src.data.helpers import _create_igraph_object, _aggregate_by_day

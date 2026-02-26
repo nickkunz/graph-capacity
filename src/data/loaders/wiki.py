@@ -6,8 +6,10 @@ import pandas as pd
 import igraph as ig
 from torch_geometric_temporal.dataset import WikiMathsDatasetLoader
 
-## modules
+## path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+
+## modules
 from src.data.helpers import _build_network_pygt, _create_igraph_object, _load_network_pygt, _load_events_zip
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures

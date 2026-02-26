@@ -4,8 +4,10 @@ import sys
 import pandas as pd
 from typing import Any, Dict, Optional
 
-## modules
+## path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+
+## modules
 from src.data.helpers import _create_igraph_object, _request_with_retry
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures

@@ -9,8 +9,10 @@ from typing import Optional, Dict, Any
 from meteostat import Stations, Hourly
 from scipy.spatial import Delaunay
 
-## modules
+## path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+## modules
 from src.data.helpers import _create_igraph_object, _aggregate_by_day
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures

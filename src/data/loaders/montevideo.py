@@ -8,8 +8,10 @@ from typing import Optional, Dict, Any
 from torch_geometric_temporal.dataset import MontevideoBusDatasetLoader
 from torch_geometric_temporal.signal import DynamicGraphTemporalSignal
 
-## modules
+## path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+## modules
 from src.data.helpers import _load_network_pygt, _build_network_pygt, _create_igraph_object
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures

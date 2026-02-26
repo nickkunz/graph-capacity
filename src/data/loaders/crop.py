@@ -7,8 +7,10 @@ import pandas as pd
 import numpy as np
 from typing import Optional, Dict, Any
 
-## modules
+## path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+## modules
 from src.data.helpers import _aggregate_by_day, _create_igraph_object
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures

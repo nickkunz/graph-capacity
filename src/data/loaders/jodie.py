@@ -5,8 +5,10 @@ import pandas as pd
 from torch_geometric.datasets import JODIEDataset
 from typing import Optional, Dict, Any
 
-## modules
+## path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+## modules
 from src.data.helpers import _create_igraph_object, _aggregate_by_day, _load_network_pyg, _build_network_pyg
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
