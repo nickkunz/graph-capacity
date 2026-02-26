@@ -6,11 +6,12 @@ import logging
 import configparser
 import numpy as np
 import pandas as pd
+from pathlib import Path
 
-## directory
-root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-if root not in sys.path:
-    sys.path.append(root)
+## path
+root = Path(__file__).resolve().parents[2]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
 ## modules
 from src.vectorizers.invariants import GraphInvariants
@@ -40,15 +41,15 @@ from src.data.loaders.auger import AugerProcessor
 from src.data.loaders.seismic import SeismicProcessor
 from src.data.loaders.rain import RainProcessor
 from src.data.loaders.chickenpox import ChickenpoxProcessor
-from src.data.helpers import (
-    _save_to_json, 
-    _extract_counts
-)
 from src.evaluators.perturbing import (
     network_perturb,
     analytical_perturb,
     process_perturb,
     invariant_perturb
+)
+from src.data.helpers import (
+    _save_to_json, 
+    _extract_counts
 )
 
 ## configs
@@ -118,36 +119,36 @@ logging.basicConfig(
 ## network perturbation (G space)
 ## ----------------------------
 NETWORK_METHODS = {
-    'rewire':      (0.01, 0.05, 0.15, 0.30, 0.50),
-    'sparsify':    (0.01, 0.05, 0.15, 0.30, 0.50),
-    'node_sample': (0.01, 0.05, 0.15, 0.30, 0.50),
+    'rewire':      (0.01, 0.03, 0.10, 0.20, 0.35),
+    'sparsify':    (0.01, 0.03, 0.07, 0.15, 0.25),
+    'node_sample': (0.01, 0.02, 0.05, 0.10, 0.20),
 }
 
 ## --------------------------------
 ## invariant perturbation (x encoding)
 ## --------------------------------
 INVARIANT_METHODS = {
-    'noise':  (0.01, 0.05, 0.10, 0.15, 0.25),   ## additive gaussian
-    'jitter': (0.01, 0.05, 0.10, 0.15, 0.25),   ## multiplicative
-    'subset': (0.90, 0.80, 0.70, 0.60, 0.50),   ## retain fraction
+    'noise':  (0.01, 0.02, 0.05, 0.10, 0.20),
+    'jitter': (0.01, 0.02, 0.05, 0.10, 0.20),
+    'subset': (0.95, 0.90, 0.80, 0.70, 0.60),
 }
 
 ## ------------------------------
 ## process perturbation (S space)
 ## ------------------------------
 PROCESS_METHODS = {
-    'scaling': (0.75, 0.90, 1.10, 1.25, 1.50),        ## symmetric deformation
-    'smoothing': (2, 3, 5, 7, 10),                    ## bounded smoothing window
-    'bootstrapping': (0.10, 0.20, 0.30, 0.40, 0.50),  ## partial temporal destruction
+    'scaling':       (0.50, 0.75, 1.00, 1.50, 2.00),
+    'smoothing':     (1, 2, 4, 8, 16),
+    'bootstrapping': (0.00, 0.10, 0.20, 0.35, 0.50),
 }
 
 ## --------------------------------------
 ## signature-level perturbation (z encoding)
 ## --------------------------------------
 SIGNATURE_METHODS = {
-    'noise':  (0.005, 0.01, 0.025, 0.05, 0.10),
-    'jitter': (0.005, 0.01, 0.025, 0.05, 0.10),
-    'subset': (0.95, 0.90, 0.85, 0.80, 0.70),
+    'noise':  (0.01, 0.02, 0.05, 0.10, 0.20),
+    'jitter': (0.01, 0.02, 0.05, 0.10, 0.20),
+    'subset': (0.95, 0.90, 0.80, 0.70, 0.60),
 }
 
 ## ----------------------
