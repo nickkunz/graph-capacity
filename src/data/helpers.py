@@ -3,8 +3,9 @@ import os
 import io
 import time
 import json
-import hashlib
 import torch
+import logging
+import hashlib
 import zipfile
 import requests
 import importlib
@@ -14,6 +15,9 @@ import igraph as ig
 from typing import Dict
 from pathlib import Path
 from torch_geometric_temporal.signal import DynamicGraphTemporalSignal
+
+## logging
+logger = logging.getLogger(__name__)
 
 ## daily aggregation
 def _aggregate_by_day(data: pd.DataFrame, datetime: str, label: str = 'day') -> pd.DataFrame:
@@ -94,16 +98,23 @@ def _request_with_retry(
     cache_namespace: str = "http",
     force_refresh: bool = False,
     ) -> requests.Response:
-    
+
     ## caching layer
     key = _cache_key(url = url, method = method, params = params, payload = json)
     cache_path = os.path.join(_cache_dir(cache_namespace), f"{key}.bin")
+    if use_cache and force_refresh:
+        logger.info(f"Cache refresh enabled ({cache_namespace}): bypassing cache read for {url}")
     if use_cache and (not force_refresh) and os.path.exists(cache_path):
         try:
             with open(cache_path, "rb") as fp:
+                logger.info(f"Cache hit ({cache_namespace}): {url}")
                 return _cache_response(content = fp.read(), url = url)
-        except Exception:
-            pass
+        except Exception as e:
+            logger.warning(f"Cache read failed ({cache_namespace}) for {url}: {e}")
+    if use_cache:
+        logger.info(f"Cache miss ({cache_namespace}): {url}")
+    else:
+        logger.info(f"Cache disabled: {url}")
 
     ## retry logic
     for attempt in range(retries):
@@ -129,10 +140,11 @@ def _request_with_retry(
                 try:
                     with open(cache_path, "wb") as fp:
                         fp.write(response.content)
-                except Exception:
-                    pass
+                    logger.info(f"Cache write ({cache_namespace}): {url}")
+                except Exception as e:
+                    logger.warning(f"Cache write failed ({cache_namespace}) for {url}: {e}")
             return response
-        
+
         ## catch specific request exceptions and retry
         except requests.RequestException as e:
             if attempt < retries - 1:
