@@ -15,6 +15,7 @@
     "degree_entropy": 1.7339835697484471,
     "joint_degree_entropy": 2.796861126802356,
     "degree_skewness": 0.29151607235065913,
+    "degree_kurtosis": -0.5854730497019851,
     "normalized_laplacian_second_moment": 1.100780753968254,
     "normalized_laplacian_third_moment": 1.065277836217572,
     "random_walk_triangle_weight": 0.0852667003470535,
