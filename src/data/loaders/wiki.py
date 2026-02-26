@@ -1,18 +1,25 @@
 ## libraries
-import os
 import sys
 import numpy as np
 import pandas as pd
 import igraph as ig
+from pathlib import Path
 from torch_geometric_temporal.dataset import WikiMathsDatasetLoader
 
 ## path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
 ## modules
-from src.data.helpers import _build_network_pygt, _create_igraph_object, _load_network_pygt, _load_events_zip
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
+from src.data.helpers import (
+    _build_network_pygt,
+    _create_igraph_object,
+    _load_network_pygt,
+    _load_events_zip    
+)
 
 ## process wikimaths json to get daily event counts
 def process_events_wiki(data: dict) -> pd.DataFrame:

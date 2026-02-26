@@ -1,11 +1,13 @@
 ## libraries
-import os
 import sys
+from pathlib import Path
 import pandas as pd
 from typing import Optional, Dict, Any
 
 ## path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
 ## modules
 from src.vectorizers.invariants import BipartiteInvariants

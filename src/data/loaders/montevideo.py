@@ -4,17 +4,24 @@ import sys
 import numpy as np
 import pandas as pd
 import igraph as ig
+from pathlib import Path
 from typing import Optional, Dict, Any
 from torch_geometric_temporal.dataset import MontevideoBusDatasetLoader
 from torch_geometric_temporal.signal import DynamicGraphTemporalSignal
 
 ## path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
 ## modules
-from src.data.helpers import _load_network_pygt, _build_network_pygt, _create_igraph_object
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
+from src.data.helpers import (
+    _load_network_pygt,
+    _build_network_pygt,
+    _create_igraph_object
+)
 
 ## process montevideo dataset into daily event aggregates
 def _process_events_montevideo(data, hours: int = 24, perc: int = 99) -> pd.DataFrame:

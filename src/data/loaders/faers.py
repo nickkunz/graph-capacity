@@ -1,16 +1,21 @@
 ## libraries
-import os
 import sys
 import pandas as pd
+from pathlib import Path
 from typing import Any, Dict, Optional
 
 ## path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
 ## modules
-from src.data.helpers import _create_igraph_object, _request_with_retry
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
+from src.data.helpers import (
+    _create_igraph_object,
+    _request_with_retry
+)
 
 ## load faers drug–reaction reporting network data
 def _load_network_faers(id: str, url: str) -> pd.DataFrame:

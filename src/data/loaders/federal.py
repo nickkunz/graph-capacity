@@ -1,19 +1,24 @@
 ## libraries
-import os
 import sys
 import time
-import requests
 import pandas as pd
 import igraph
+from pathlib import Path
 from typing import Optional, Dict, Any, Iterator
 
 ## path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
 ## modules
-from src.data.helpers import _create_igraph_object, _aggregate_by_day, _request_with_retry
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
+from src.data.helpers import (
+    _create_igraph_object,
+    _aggregate_by_day,
+    _request_with_retry
+)
 
 ## load network contracts from endpoint
 def _post_network_federal(

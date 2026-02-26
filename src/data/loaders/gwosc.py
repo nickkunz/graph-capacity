@@ -6,15 +6,21 @@ import itertools
 import pandas as pd
 import igraph as ig
 import gwosc.datasets as gw
+from pathlib import Path
 from typing import Optional, Dict, Any
 
 ## path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
 ## modules
 from src.vectorizers.invariants import GraphInvariants
-from src.data.helpers import _create_igraph_object, _aggregate_by_day
 from src.vectorizers.signatures import ProcessSignatures
+from src.data.helpers import (
+    _create_igraph_object,
+    _aggregate_by_day
+)
 
 ## load gravitational wave open science center network data
 def _load_network_gwosc():

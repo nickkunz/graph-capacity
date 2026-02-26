@@ -1,22 +1,27 @@
 ## libraries
-import os
 import sys
 import logging
 import numpy as np
 import pandas as pd
 import igraph as ig
+from pathlib import Path
 from typing import Optional, Dict, Any
+
+## path
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
+
+## modules
+from src.vectorizers.invariants import GraphInvariants
+from src.vectorizers.signatures import ProcessSignatures
+from src.data.helpers import (
+    _request_with_retry,
+    _create_igraph_object
+)
 
 ## logging
 logger = logging.getLogger(__name__)
-
-## path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-
-## modules
-from src.data.helpers import _request_with_retry, _create_igraph_object
-from src.vectorizers.invariants import GraphInvariants
-from src.vectorizers.signatures import ProcessSignatures
 
 ## load eeg electrode network
 def _load_network_epilepsy() -> pd.DataFrame:

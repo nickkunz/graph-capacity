@@ -1,20 +1,26 @@
 ## libraries
-import os
 import sys
 import numpy as np
 import pandas as pd
 import igraph as ig
+from pathlib import Path
 from typing import Optional, Dict, Any
 from torch_geometric_temporal.dataset import WindmillOutputLargeDatasetLoader
 from torch_geometric_temporal.signal import DynamicGraphTemporalSignal
 
 ## path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
 ## modules
-from src.data.helpers import _load_network_pygt, _build_network_pygt, _create_igraph_object
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
+from src.data.helpers import (
+    _load_network_pygt,
+    _build_network_pygt,
+    _create_igraph_object
+)
 
 ## process windmill dataset into daily event aggregates
 def _process_events_wind(data: DynamicGraphTemporalSignal, hours: int = 24, thres: float = 1e-6) -> pd.DataFrame:

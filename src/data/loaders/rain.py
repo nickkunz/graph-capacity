@@ -5,17 +5,23 @@ import certifi
 import warnings
 import igraph as ig
 import pandas as pd
+from pathlib import Path
 from typing import Optional, Dict, Any
 from meteostat import Stations, Hourly
 from scipy.spatial import Delaunay
 
 ## path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
 ## modules
-from src.data.helpers import _create_igraph_object, _aggregate_by_day
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
+from src.data.helpers import (
+    _create_igraph_object,
+    _aggregate_by_day
+)
 
 ## load meteostat weather station data
 def _load_network_rain(start: pd.Timestamp, end: pd.Timestamp, country: str = None) -> pd.DataFrame:

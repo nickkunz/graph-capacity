@@ -1,24 +1,29 @@
 ## libraries
-import os
 import sys
 import logging
 import requests
 import pandas as pd
+import igraph as ig
 import xml.etree.ElementTree as ET
+from pathlib import Path
 from typing import Optional, Dict, Any
 from io import StringIO
-import igraph as ig
+
+## path
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
+
+## modules
+from src.vectorizers.invariants import GraphInvariants
+from src.vectorizers.signatures import ProcessSignatures
+from src.data.helpers import (
+    _create_igraph_object,
+    _aggregate_by_day
+)
 
 ## logging
 logger = logging.getLogger(__name__)
-
-## path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-
-## modules
-from src.data.helpers import _create_igraph_object, _aggregate_by_day
-from src.vectorizers.invariants import GraphInvariants
-from src.vectorizers.signatures import ProcessSignatures
 
 ## xml data loader
 def _load_network_seismic(url: str, params: dict, namespace: dict, row_path: str, col_map: dict, timeout: int = 60) -> pd.DataFrame:

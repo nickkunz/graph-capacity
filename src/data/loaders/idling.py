@@ -6,17 +6,20 @@ import pandas as pd
 import osmnx as ox
 import networkx as nx
 import igraph as ig
+from pathlib import Path
 from typing import Optional, Dict, Any
 
-## logging
-logger = logging.getLogger(__name__)
-
 ## path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
 ## modules
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
+
+## logging
+logger = logging.getLogger(__name__)
 
 ## extract street network graph
 def _load_network_idling(query, network_type = 'drive', simplify = False):

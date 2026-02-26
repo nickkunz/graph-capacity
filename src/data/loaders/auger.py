@@ -8,16 +8,22 @@ import numpy as np
 import pandas as pd
 import requests
 import igraph as ig
+from pathlib import Path
 from typing import Optional, Dict, Any
 from datetime import datetime, timezone
 
 ## path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
 ## modules
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
-from src.data.helpers import _create_igraph_object, _aggregate_by_day
+from src.data.helpers import (
+    _create_igraph_object,
+    _aggregate_by_day
+)
 
 ## filter auger stations by array and validate coordinates
 def _process_network_auger(data: pd.DataFrame) -> pd.DataFrame:

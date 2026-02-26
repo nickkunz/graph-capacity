@@ -4,16 +4,23 @@ import sys
 import torch
 import pandas as pd
 import igraph
+from pathlib import Path
 from torch_geometric.datasets import BitcoinOTC
 from typing import Optional, Dict, Any
 
 ## path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
 ## modules
-from src.data.helpers import _create_igraph_object, _aggregate_by_day, _load_network_pyg
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
+from src.data.helpers import (
+    _create_igraph_object,
+    _aggregate_by_day,
+    _load_network_pyg
+)
 
 ## build tripartite user–rating–user network
 def build_network_bitcoin(data: BitcoinOTC, index: int = 10) -> tuple[list[str], list[tuple[str, str]]]:

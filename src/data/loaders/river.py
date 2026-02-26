@@ -5,13 +5,16 @@ import requests
 import numpy as np
 import pandas as pd
 import igraph as ig
+from pathlib import Path
 from io import StringIO
 from tqdm.auto import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Optional, Dict, Any
 
 ## path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
 ## modules
 from src.vectorizers.invariants import GraphInvariants

@@ -1,19 +1,24 @@
 ## libraries
 import os
 import sys
-import os
 import certifi
 import pandas as pd
 import numpy as np
+from pathlib import Path
 from typing import Optional, Dict, Any
 
 ## path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
 ## modules
-from src.data.helpers import _aggregate_by_day, _create_igraph_object
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
+from src.data.helpers import (
+    _aggregate_by_day, 
+    _create_igraph_object
+)
 
 ## helper to load network data
 def _load_network_data(url: str, cols: list[str], error_msg: str, dtype: dict[str, str] | None = None) -> pd.DataFrame:

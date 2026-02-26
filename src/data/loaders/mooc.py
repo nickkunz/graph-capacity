@@ -6,10 +6,13 @@ import ssl
 import tarfile
 import urllib.request
 import pandas as pd
+from pathlib import Path
 from typing import Optional, Dict, Any
 
 ## path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
 ## modules
 from src.vectorizers.invariants import BipartiteInvariants
