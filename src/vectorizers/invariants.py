@@ -1,8 +1,5 @@
-## logging
-import logging
-logger = logging.getLogger(__name__)
-
 ## libraries
+import logging
 import igraph as ig
 import numpy as np
 import scipy.stats as stats
@@ -10,6 +7,9 @@ from scipy.sparse import csc_matrix, diags, eye
 
 ## modules
 from src.data.helpers import _force_finite
+
+## logging
+logger = logging.getLogger(__name__)
 
 ## compute graph invariant vector
 class GraphInvariants:
