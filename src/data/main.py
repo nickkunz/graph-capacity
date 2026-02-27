@@ -4,7 +4,6 @@ import sys
 import json
 import logging
 import configparser
-import numpy as np
 import pandas as pd
 from pathlib import Path
 
