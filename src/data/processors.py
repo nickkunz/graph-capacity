@@ -38,6 +38,13 @@ from src.data.loaders.rain import RainProcessor
 from src.data.loaders.chickenpox import ChickenpoxProcessor
 from src.data.helpers import _save_to_json
 
+## logging
+logging.basicConfig(
+    level = logging.INFO,
+    format = '%(asctime)s - %(levelname)s - %(message)s',
+    stream = sys.stdout
+)
+
 ## configs
 config = configparser.ConfigParser()
 config.read(os.path.join(root, 'conf', 'settings.ini'))
@@ -93,13 +100,6 @@ URL_AUGER_NETWORK = config['urls']['URL_AUGER_NETWORK'].strip('"')
 URL_AUGER_EVENTS = config['urls']['URL_AUGER_EVENTS'].strip('"')
 URL_SEISMIC_NETWORK = config['urls']['URL_SEISMIC_NETWORK'].strip('"')
 URL_SEISMIC_EVENTS = config['urls']['URL_SEISMIC_EVENTS'].strip('"')
-
-## logging
-logging.basicConfig(
-    level = logging.INFO,
-    format = '%(asctime)s - %(levelname)s - %(message)s',
-    stream = sys.stdout
-)
 
 ## main
 def processor():
