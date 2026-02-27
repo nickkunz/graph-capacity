@@ -806,6 +806,6 @@ def perturber():
     else:
         logging.info(f"Rain perturbations already exist at {rain_path}. Skipping.")
 
-## execute
+## primary execution
 if __name__ == '__main__':
     perturber()
