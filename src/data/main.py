@@ -357,5 +357,3 @@ if __name__ == '__main__':
         logging.info("Main table creation completed.")
     except Exception as e:
         logging.error(f"Failed to create main table: {e}")
-
-    ## end of execution
