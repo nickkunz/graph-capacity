@@ -1,26 +1,35 @@
 ## libraries
 import os
-import json
-import pandas as pd
-import logging
 import sys
+import json
+import logging
 import configparser
+import numpy as np
+import pandas as pd
+from pathlib import Path
 
-## paths and config
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-if PROJECT_ROOT not in sys.path:
-    sys.path.append(PROJECT_ROOT)
+## path
+root = Path(__file__).resolve().parents[2]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
 
-from src.data.processors import processor
+## modules
+from src.data.processors import json_processor
 
-DATA_DIR = os.path.join(PROJECT_ROOT, 'data')
-PROCESSED_DIR_DEFAULT = os.path.join(DATA_DIR, 'processed')
-OUTPUT_DIR_DEFAULT = DATA_DIR
-CONFIG_PATH = os.path.join(PROJECT_ROOT, 'conf', 'settings.ini')
+## logging
+logging.basicConfig(
+    level = logging.INFO,
+    format = '%(asctime)s - %(levelname)s - %(message)s',
+    stream = sys.stdout
+)
+
+## configs
 config = configparser.ConfigParser()
-config.read(CONFIG_PATH)
+config.read(os.path.join(root, 'conf', 'settings.ini'))
 
-## dataset name constants
+## constants
+PATH_PROC = config['paths']['PATH_PROC'].strip('"')
+
 NAME_AMAZON = config['names']['NAME_AMAZON']
 NAME_BITCOIN = config['names']['NAME_BITCOIN']
 NAME_FEDERAL = config['names']['NAME_FEDERAL']
@@ -47,8 +56,7 @@ NAME_AUGER = config['names']['NAME_AUGER']
 NAME_SEISMIC = config['names']['NAME_SEISMIC']
 NAME_RAIN = config['names']['NAME_RAIN']
 
-## dataset metadata mapping (name, discipline, domain)
-DATASET_METADATA = [
+METADATA = (
     (NAME_GWOSC, 'Earth & Physical Sciences', 'Cosmology'),
     (NAME_RIVER, 'Earth & Physical Sciences', 'Hydrology'),
     (NAME_AUGER, 'Earth & Physical Sciences', 'Physics'),
@@ -74,201 +82,280 @@ DATASET_METADATA = [
     (NAME_METRLA, 'Transportation & Infrastructure', 'Traffic'),
     (NAME_PEMSBAY, 'Transportation & Infrastructure', 'Traffic II'),
     (NAME_MONTEVIDEO, 'Transportation & Infrastructure', 'Ridership'),
-]
-
-## logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    stream=sys.stdout
 )
 
-def get_dataset_meta():
-    """
-    Returns a dictionary mapping dataset names to their discipline and domain.
-    """
-    return {
-        name: {'discipline': discipline, 'domain': domain}
-        for name, domain, discipline in DATASET_METADATA
-    }
+## observation rate maximum
+def _rate_max(data, target = 'target'):
+    """ Return the observation(s) with the maximum value in the target column. """
+    idx_max = data[target].idxmax()
+    data_max = data.loc[[idx_max]].copy()
+    data_max.drop(
+        columns = ['day', 'date'], 
+        inplace = True, 
+        errors = 'ignore'
+    )
+    return data_max
 
-def normalize_event_fields(events):
-    """Return a normalized DataFrame plus metadata flags for day/date availability."""
-    df_events = pd.DataFrame(events)
-    if df_events.empty:
-        return None, False, False
+## metadata parsing
+def _parse_metadata(namedata, metadata = METADATA):
+    """ Return domain and discipline for a dataset name from METADATA. """
 
-    df_events = df_events.reset_index(drop=True)
+    ## parse metadata for the dataset name
+    for name, domain, discipline in metadata:
+        if name == namedata:
+            return domain, discipline
+    
+    ## no name match found
+    return 'Unknown', 'Unknown'
 
-    has_date = 'date' in df_events.columns
-    if has_date:
-        df_events['date'] = pd.to_datetime(df_events['date'], errors='coerce')
-    else:
-        df_events['date'] = pd.Series(pd.NaT, index=df_events.index, dtype='datetime64[ns]')
+## metadata insertion
+def _insert_metadata(data, namedata, metadata = METADATA):
+    """ Insert metadata fields and invariant/signature fields into the data. """
 
-    has_day = 'day' in df_events.columns
-    if has_day:
-        df_events['day'] = pd.to_numeric(df_events['day'], errors='coerce').astype('Int64')
-    else:
-        df_events['day'] = pd.Series(pd.NA, index=df_events.index, dtype='Int64')
+    ## parse metadata for the dataset name, warning if no match is found
+    data = data.copy()
+    domain, discipline = _parse_metadata(namedata = namedata, metadata = metadata)
+    if domain == 'Unknown' and discipline == 'Unknown':
+        logging.warning(f"No metadata match found for dataset '{namedata}'.")
 
-    df_events['target'] = pd.to_numeric(df_events['target'], errors='coerce')
+    ## insert metadata
+    data['name'] = namedata
+    data['domain'] = domain
+    data['discipline'] = discipline
+    return data
 
-    required_columns = ['target']
-    if has_day:
-        required_columns.append('day')
+## feature insertion
+def _insert_features(data, invariants, invariant_order, signatures, signature_order):
+    """ Insert invariant and signature fields into the data and track column order. """
 
-    df_events.dropna(subset=required_columns, inplace=True)
-
-    if df_events.empty:
-        return None, has_day, has_date
-
-    return df_events, has_day, has_date
-
-def add_metadata_columns(df_events, dataset_name, meta_map, invariants, invariant_order, signatures, descriptor_order):
-    df_events = df_events.copy()
-    df_events['name'] = dataset_name
-    df_events['discipline'] = meta_map.get(dataset_name, {}).get('discipline', 'Unknown')
-    df_events['domain'] = meta_map.get(dataset_name, {}).get('domain', 'Unknown')
-
+    ## insert invariants and update column order
+    data = data.copy()
     for key, value in invariants.items():
-        df_events[key] = value
+        data[key] = value
         if key not in invariant_order:
             invariant_order.append(key)
 
+    ## insert signatures and update column order
     for key, value in signatures.items():
-        df_events[key] = value
-        if key not in descriptor_order:
-            descriptor_order.append(key)
+        data[key] = value
+        if key not in signature_order:
+            signature_order.append(key)
 
-    return df_events
+    return data
 
-def select_max_event(df_events, has_day, has_date):
-    max_idx = df_events['target'].idxmax()
-    df_max = df_events.loc[[max_idx]].copy()
-    log_day = df_max['day'].iloc[0] if has_day else None
-    log_date = df_max['date'].iloc[0] if has_date else None
-    df_max.drop(columns=['day', 'date'], inplace=True, errors='ignore')
-    return df_max, log_day, log_date
+## json data discovery
+def _find_json_payload(path_proc):
+    """ Return sorted JSON filenames from the processed directory. """
 
-def process_dataset(file_path, dataset_name, meta_map, invariant_order, descriptor_order):
+    ## quality check to ensure processed path exists
+    return sorted(f for f in os.listdir(path_proc) if f.endswith('.json'))
+
+## json data normalization
+def _load_json_payload(file_path):
+    """ Load and unpack a processed dataset JSON payload. """
+
+    ## quality check to ensure file exists
     with open(file_path, 'r') as f:
         data = json.load(f)
 
-    invariants = data.get('invariants', {})
-    signatures = data.get('signatures', {})
-    events = data.get('events', [])
-
-    if not events:
-        logging.warning(f"No events found in {os.path.basename(file_path)}. Skipping.")
-        return None
-
-    df_events, has_day, has_date = normalize_event_fields(events)
-
-    if df_events is None:
-        logging.warning(f"All events in {os.path.basename(file_path)} are invalid after parsing. Skipping.")
-        return None
-
-    df_events = add_metadata_columns(
-        df_events,
-        dataset_name,
-        meta_map,
-        invariants,
-        invariant_order,
-        signatures,
-        descriptor_order
-    )
-    df_max, log_day, log_date = select_max_event(df_events, has_day, has_date)
-
-    logging.info(
-        "Selected max event for %s with target %s (day=%s, date=%s)",
-        dataset_name,
-        df_max['target'].iloc[0],
-        log_day,
-        log_date
+    return (
+        data.get('invariants', {}),
+        data.get('signatures', {}),
+        data.get('events', list())
     )
 
-    return df_events, df_max
-
-def build_all_dataframe(all_data, invariant_order, descriptor_order):
-    master_all_df = pd.concat(all_data, ignore_index=True)
-    invariant_cols = [col for col in invariant_order if col in master_all_df.columns]
-    descriptor_cols = [col for col in descriptor_order if col in master_all_df.columns]
-    all_column_order = ['name', 'domain', 'discipline'] + invariant_cols + descriptor_cols + ['day', 'date', 'target']
-
-    for col in all_column_order:
-        if col not in master_all_df.columns:
-            master_all_df[col] = None
-
-    return master_all_df[all_column_order]
-
-def build_max_dataframe(max_data, invariant_order, descriptor_order):
-    master_max_df = pd.concat(max_data, ignore_index=True) if max_data else pd.DataFrame()
-    invariant_cols = [col for col in invariant_order if col in master_max_df.columns]
-    descriptor_cols = [col for col in descriptor_order if col in master_max_df.columns]
-    max_column_order = ['name', 'domain', 'discipline'] + invariant_cols + descriptor_cols + ['target']
-
-    for col in max_column_order:
-        if col not in master_max_df.columns:
-            master_max_df[col] = None
-
-    return master_max_df[max_column_order]
-
-def create_master_dataframe(processed_dir, output_all_path, output_max_path):
-    """
-    Loads all intermediate .json objects from the processed directory into two CSV files:
-
-    1. data_all.csv: one row per observed event across all datasets, retaining both day
-         and date information for each measurement. Invariants and process signatures are
-         appended as dataset-level columns alongside metadata.
-    2. data.csv: one row per dataset capturing only the event with the largest target
-         value. These rows omit the day and date columns while preserving invariants and
-         signatures.
-    """
-    meta_map = get_dataset_meta()
-    all_data = []
-    max_data = []
-    invariant_order = []
-    descriptor_order = []
+# event normalization
+def _normalize_events(events, target = 'target'):
+    """ Ensuring target is numeric and date/day are parsed if present. """
     
-    json_files = [f for f in os.listdir(processed_dir) if f.endswith('.json')]
+    ## quality check to ensure target field and at least one event exists
+    data_obs = pd.DataFrame(events)
+    if data_obs.empty or target not in data_obs.columns:
+        return None
+
+    ## detect date and day fields
+    data_obs = data_obs.reset_index(drop = True).copy()
+    date_has = 'date' in data_obs.columns
+    day_has = 'day' in data_obs.columns
+
+    ## parse date and day fields if they exist, coercing errors
+    if date_has:
+        data_obs['date'] = pd.to_datetime(
+            arg = data_obs['date'], 
+            errors = 'coerce'
+        )
+    else:
+        data_obs['date'] = pd.Series(
+            data = pd.NaT,
+            index = data_obs.index, 
+            dtype = 'datetime64[ns]'
+        )
+    if day_has:
+        data_obs['day'] = pd.to_numeric(
+            arg = data_obs['day'], 
+            errors = 'coerce'
+        ).astype('Int64')
+    else:
+        data_obs['day'] = pd.Series(
+            data = pd.NA,
+            index = data_obs.index,
+            dtype = 'Int64'
+        )
+
+    ## ensure target field is numeric
+    data_obs[target] = pd.to_numeric(data_obs[target], errors = 'coerce')
+
+    ## drop events with missing target or date/day values
+    subset = [target] + (['day'] if day_has else list())
+    data_obs = data_obs.dropna(subset = subset)
+
+    ## return None if no valid events remain
+    return None if data_obs.empty else data_obs
+
+## column reordering
+def _reorder_features(data_main, invariant_order, signature_order):
+    """ Return data with a consistent output column order. """
+
+    ## build ordered feature columns from discovered invariant/signature keys
+    feat_inv = [i for i in invariant_order if i in data_main.columns]
+    feat_sig = [i for i in signature_order if i in data_main.columns]
+    feat_ord = ['name', 'domain', 'discipline'] + feat_inv + feat_sig + ['target']
+
+    ## add any missing ordered columns to maintain stable schema
+    for i in feat_ord:
+        if i not in data_main.columns:
+            data_main[i] = None
+
+    return data_main[feat_ord]
+
+## main processing function per dataset
+def _process_per_data(file_path, namedata, invariant_order, signature_order, target = 'target'):
+    """ Load and process single JSON payload and output data with the maximum target value. """
+
+    ## load json data
+    invariants, signatures, events = _load_json_payload(
+        file_path = file_path
+    )
+
+    ## normalize events
+    data_obs = _normalize_events(
+        events = events, 
+        target = target
+    )
+
+    ## insert metadata fields
+    data_obs = _insert_metadata(
+        data = data_obs,
+        namedata = namedata,
+        metadata = METADATA
+    )
+
+    ## insert invariant and signature fields
+    data_obs = _insert_features(
+        data = data_obs,
+        invariants = invariants,
+        invariant_order = invariant_order,
+        signatures = signatures,
+        signature_order = signature_order
+    )
+
+    data_max = _rate_max(
+        data = data_obs,
+        target = target
+    )
+    return data_max
+
+## main processing function for all datasets
+def _process_all_data(data_list, invariant_order, signature_order):
+    """ Concatenate all dataset maxima and ensure consistent column order. """
+
+    ## concatenate all dataset maxima and ensure consistent column order
+    data_main = pd.concat(data_list, ignore_index = True) if data_list else pd.DataFrame()
+    return _reorder_features(
+        data_main = data_main,
+        invariant_order = invariant_order,
+        signature_order = signature_order
+    )
+
+## main processing function
+def data_builder(path_proc, path_data):
+
+    """
+    Desc:
+        Create main table by loading processed JSON files, extracting the observation 
+        with the maximum target value for each dataset, and concatenating results into
+        a single table with consistent column order.
+    
+    Args:
+        path_proc (str): Path to the directory containing processed JSON files.
+        path_data (str): Path to save the resulting main table CSV file.
+    
+    Returns:
+        None: The function saves the main table to disk and does not return any value.
+    
+    Raises:
+        FileNotFoundError: If the processed JSON directory does not exist or contains no JSON files.
+        ValueError: If no valid data is processed from the JSON files resulting in an empty.
+    """
+    
+    data_list = list()
+    invariant_order = list()
+    signature_order = list()
+    
+    ## find each json file to process
+    json_files = _find_json_payload(path_proc)
     logging.info(f"Found {len(json_files)} JSON files to process.")
 
+    ## process each json file and append to list
     for file_name in json_files:
-        dataset_name = os.path.splitext(file_name)[0]
-        file_path = os.path.join(processed_dir, file_name)
-
+        namedata = os.path.splitext(file_name)[0]
+        file_path = os.path.join(path_proc, file_name)
         logging.info(f"Processing {file_name}...")
-
-        processed = process_dataset(file_path, dataset_name, meta_map, invariant_order, descriptor_order)
-
-        if not processed:
+        data_processed = _process_per_data(
+            file_path = file_path,
+            namedata = namedata,
+            invariant_order = invariant_order,
+            signature_order = signature_order
+        )
+        if not data_processed:
             continue
+        data_list.append(data_processed)
 
-        df_events, df_max = processed
-        all_data.append(df_events)
-        max_data.append(df_max)
-
-    if not all_data:
+    if not data_list:
         logging.error("No data was processed. Exiting.")
         return
 
-    master_max_df = build_max_dataframe(max_data, invariant_order, descriptor_order)
+    ## concatenate all dataset maxima and ensure consistent column order
+    data_main = _process_all_data(data_list, invariant_order, signature_order)
 
-    master_max_df.to_csv(output_max_path, index=False)
-    logging.info(f"Max observations DataFrame saved to {output_max_path}")
-    logging.info(f"data.csv shape: {master_max_df.shape}")
+    ## clean floating imprecision from processing and replace with exact zero
+    numeric = data_main.select_dtypes(include = 'number')
+    data_main.loc[:, numeric.columns] = numeric.mask(numeric.abs() < 1e-12, 0.0)
 
-## main execution
+    ## save main data to disk
+    data_main.to_csv(path_data, index = False)
+    logging.info(f"Main table shape: {data_main.shape}")
+
+## primary execution
 if __name__ == '__main__':
+
+    ## run json data processor to create payloads for main table creation
     try:
         logging.info("Running data processor...")
-        processor()
+        json_processor()
+        logging.info("Data processor completed.")
     except Exception as e:
-        logging.warning(f"Failed to run processor: {e}. Proceeding with existing data.")
+        logging.warning(f"Failed to run processor: {e}.")
+        logging.info("Continuing to create main table from existing processed data...")
 
-    os.makedirs(name = DATA_DIR, exist_ok = True)
-    
-    output_max_path = os.path.join(DATA_DIR, 'data.csv')
-    
-    create_master_dataframe(PROCESSED_DIR_DEFAULT, None, output_max_path)
+    ## run main data builder that reads the json files and writes them to disk 
+    try:
+        os.makedirs(name = os.path.join(root, 'data'), exist_ok = True)
+        path_data = os.path.join(root, 'data', 'main.csv')
+        logging.info("Creating main table from processed JSON files...")
+        data_builder(path_proc = os.path.join(root, PATH_PROC), path_data = path_data)
+        logging.info("Main table creation completed.")
+    except Exception as e:
+        logging.error(f"Failed to create main table: {e}")
+
+    ## end of execution
