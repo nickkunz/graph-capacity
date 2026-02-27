@@ -242,6 +242,10 @@ def _process_per_data(file_path, namedata, invariant_order, signature_order, tar
         target = target
     )
 
+    ## return None if no valid events remain
+    if data_obs is None:
+        return None
+
     ## insert metadata fields
     data_obs = _insert_metadata(
         data = data_obs,
@@ -316,7 +320,7 @@ def data_builder(path_proc, path_data):
             invariant_order = invariant_order,
             signature_order = signature_order
         )
-        if not data_processed:
+        if data_processed is None:
             continue
         data_list.append(data_processed)
 
