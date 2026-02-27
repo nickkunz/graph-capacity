@@ -46,7 +46,7 @@ class EmailProcessor:
             self.load_data()
 
         ## compute bipartite dimensions and invariants
-        m, n = _compute_network_snap(data = self.data, unix_time = True)
+        m, n = _compute_network_snap(data = self.data, unix_time = False)
         self.dimensions = (int(m), int(n))
         self.invariants = BipartiteInvariants(m = m, n = n).all()
         return self
