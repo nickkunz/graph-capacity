@@ -52,6 +52,13 @@ from src.data.helpers import (
     _extract_counts
 )
 
+## logging
+logging.basicConfig(
+    level = logging.INFO,
+    format = '%(asctime)s - %(levelname)s - %(message)s',
+    stream = sys.stdout
+)
+
 ## configs
 config = configparser.ConfigParser()
 config.read(os.path.join(root, 'conf', 'settings.ini'))
@@ -107,13 +114,6 @@ URL_AUGER_NETWORK = config['urls']['URL_AUGER_NETWORK'].strip('"')
 URL_AUGER_EVENTS = config['urls']['URL_AUGER_EVENTS'].strip('"')
 URL_SEISMIC_NETWORK = config['urls']['URL_SEISMIC_NETWORK'].strip('"')
 URL_SEISMIC_EVENTS = config['urls']['URL_SEISMIC_EVENTS'].strip('"')
-
-## logging
-logging.basicConfig(
-    level = logging.INFO,
-    format = '%(asctime)s - %(levelname)s - %(message)s',
-    stream = sys.stdout
-)
 
 ## ----------------------------
 ## network perturbation (G space)
@@ -392,6 +392,56 @@ def _run_all_perturbations(proc, name):
         logging.warning(f"  No events for {name}, skipping temporal aggregation.")
 
     return results
+
+
+def _prefix_features(features, prefix):
+    return {f"{prefix}__{k}": v for k, v in features.items()}
+
+def _build_index(perturbed_dir):
+    perturbed_path = Path(perturbed_dir)
+    index = {}
+
+    for json_path in sorted(perturbed_path.glob("*.json")):
+        dataset_name = json_path.stem
+
+        with open(json_path, "r") as f:
+            data = json.load(f)
+
+        for json_key, pert_type, feat_key, prefix in PERT_TYPE:
+            for rec in data.get(json_key, []):
+                key = (pert_type, rec["method"], rec["intensity"])
+
+                if key not in index:
+                    index[key] = {}
+
+                row = {"dataset": dataset_name}
+                row.update(
+                    _prefix_features(rec.get(feat_key, {}), prefix)
+                )
+                index[key][dataset_name] = row
+
+    return index
+
+
+def load_perturbations(perturbed_dir = None):
+    if perturbed_dir is None:
+        perturbed_dir = os.path.join(root, PATH_PERT)
+
+    index = _build_index(perturbed_dir)
+    tables = {}
+
+    for key in sorted(index.keys()):
+        pert_type, method, intensity = key
+        df = pd.DataFrame(list(index[key].values()))
+        df = df.sort_values("dataset").reset_index(drop = True)
+        tables[key] = df
+        logging.info(
+            f"Table ({pert_type}, {method}, {intensity}): "
+            f"{len(df)} datasets"
+        )
+
+    logging.info(f"Built {len(tables)} perturbation tables")
+    return tables
 
 
 ## execute
@@ -756,5 +806,6 @@ def perturber():
     else:
         logging.info(f"Rain perturbations already exist at {rain_path}. Skipping.")
 
+## execute
 if __name__ == '__main__':
     perturber()
