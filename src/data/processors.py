@@ -101,8 +101,8 @@ URL_AUGER_EVENTS = config['urls']['URL_AUGER_EVENTS'].strip('"')
 URL_SEISMIC_NETWORK = config['urls']['URL_SEISMIC_NETWORK'].strip('"')
 URL_SEISMIC_EVENTS = config['urls']['URL_SEISMIC_EVENTS'].strip('"')
 
-## main
-def processor():
+## json data processor
+def json_processor():
 
     ## ensure processed directory exists
     os.makedirs(name = PATH_PROC, exist_ok = True)
@@ -413,6 +413,6 @@ def processor():
     else:
         logging.info(f"Rain data already exists at {path_rain}. Skipping data source.")
 
-## execution
+## primary execution
 if __name__ == '__main__':
-    processor()
+    json_processor()
