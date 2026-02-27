@@ -441,16 +441,16 @@ def perturber():
         logging.info(f"Bitcoin perturbations already exist at {bitcoin_path}. Skipping.")
 
     ## --- amazon reviews --- ##
-    # amazon_path = os.path.join(PATH_PERT, f"{NAME_AMAZON}.json")
-    # if not os.path.exists(amazon_path):
-    #     logging.info("Perturbing Amazon data...")
-    #     proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
-    #     proc.run()
-    #     results = _run_all_perturbations(proc, NAME_AMAZON)
-    #     _save_to_json(data = results, path = amazon_path)
-    #     logging.info(f"Amazon perturbations saved to {amazon_path}")
-    # else:
-    #     logging.info(f"Amazon perturbations already exist at {amazon_path}. Skipping.")
+    amazon_path = os.path.join(PATH_PERT, f"{NAME_AMAZON}.json")
+    if not os.path.exists(amazon_path):
+        logging.info("Perturbing Amazon data...")
+        proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
+        proc.run()
+        results = _run_all_perturbations(proc, NAME_AMAZON)
+        _save_to_json(data = results, path = amazon_path)
+        logging.info(f"Amazon perturbations saved to {amazon_path}")
+    else:
+        logging.info(f"Amazon perturbations already exist at {amazon_path}. Skipping.")
 
     ## --- world bank --- ##
     world_path = os.path.join(PATH_PERT, f"{NAME_WORLD}.json")
