@@ -61,11 +61,13 @@ def _save_to_json(data: dict, path: str) -> None:
     with open(path, 'w') as fp:
         json.dump(obj = data, fp = fp, indent = 2, default = str)
 
+## find path for cache directory
 def _cache_dir(namespace: str = "http") -> str:
     path = Path(__file__).resolve().parents[2] / "cache" / namespace
     path.mkdir(parents = True, exist_ok = True)
     return str(path)
 
+## generate cache key from request parameters
 def _cache_key(url: str, method: str = "GET", params: dict = None, payload: dict = None) -> str:
     payload = {
         "url": str(url),
@@ -76,6 +78,7 @@ def _cache_key(url: str, method: str = "GET", params: dict = None, payload: dict
     canonical = json.dumps(payload, sort_keys = True, default = str)
     return hashlib.sha1(canonical.encode("utf-8")).hexdigest()
 
+## create a cached response object for a given content and url
 def _cache_response(content: bytes, url: str, status_code: int = 200) -> requests.Response:
     response = requests.Response()
     response._content = content
