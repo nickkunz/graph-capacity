@@ -36,7 +36,7 @@ def _create_igraph_object(nodes: list[str], edges: list[tuple]) -> ig.Graph:
     return g
 
 ## finite value guarantee
-def _force_finite(value, default = 0.0) -> float:
+def _force_finite(value: Any, default: float = 0.0) -> float:
     ## convert inf, -inf, nan to default value
     if not np.isfinite(value):
         return default
