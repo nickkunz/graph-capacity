@@ -185,7 +185,7 @@ def _compute_network_snap(data: pd.DataFrame, unix_time: bool = True) -> tuple[i
     return m, n
 
 ## load network from pytorch geometric temporal dataset
-def _load_network_pygt(loader):
+def _load_network_pygt(loader: object) -> DynamicGraphTemporalSignal:
     try:
         dataset = loader.get_dataset()
         if dataset is None:
