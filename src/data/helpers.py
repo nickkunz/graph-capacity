@@ -12,7 +12,7 @@ import importlib
 import numpy as np
 import pandas as pd
 import igraph as ig
-from typing import Dict
+from typing import Any, Dict
 from pathlib import Path
 from torch_geometric_temporal.signal import DynamicGraphTemporalSignal
 
@@ -314,7 +314,7 @@ def _extract_counts(events: pd.DataFrame | None):
     return None
 
 ## extract timestamps from processor object
-def _extract_timestamps(proc, name: str | None = None):
+def _extract_timestamps(proc: Any, name: str | None = None) -> pd.Series | None:
     try:
         from src.data.loaders.bitcoin import load_events_bitcoin
         if hasattr(proc, 'data_raw') and proc.data_raw is not None:
@@ -344,7 +344,7 @@ def _extract_timestamps(proc, name: str | None = None):
     return None
 
 ## convert unix timestamps to datetime
-def _to_datetime(values):
+def _to_datetime(values: pd.Series | None) -> pd.Series | None:
     if values is None or len(values) == 0:
         return None
     if pd.api.types.is_numeric_dtype(values):
