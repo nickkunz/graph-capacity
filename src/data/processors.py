@@ -101,7 +101,7 @@ URL_AUGER_EVENTS = config['urls']['URL_AUGER_EVENTS'].strip('"')
 URL_SEISMIC_NETWORK = config['urls']['URL_SEISMIC_NETWORK'].strip('"')
 URL_SEISMIC_EVENTS = config['urls']['URL_SEISMIC_EVENTS'].strip('"')
 
-## json data processor
+## json data processor pipeline
 def json_processor():
 
     ## ensure processed directory exists
