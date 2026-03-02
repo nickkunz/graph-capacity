@@ -1,6 +1,7 @@
 ## libraries
 import os
 import io
+import sys
 import time
 import json
 import torch
@@ -12,9 +13,19 @@ import importlib
 import numpy as np
 import pandas as pd
 import igraph as ig
+import configparser
 from typing import Any, Dict
 from pathlib import Path
 from torch_geometric_temporal.signal import DynamicGraphTemporalSignal
+
+## path
+root = Path(__file__).resolve().parents[2]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
+
+## config
+config = configparser.ConfigParser()
+config.read(os.path.join(root, 'conf', 'settings.ini'))
 
 ## logging
 logger = logging.getLogger(__name__)
@@ -72,8 +83,8 @@ def _cache_key(url: str, method: str = "GET", params: dict = None, payload: dict
     payload = {
         "url": str(url),
         "method": str(method).upper(),
-        "params": params or {},
-        "payload": payload or {},
+        "params": params or dict(),
+        "payload": payload or dict(),
     }
     canonical = json.dumps(payload, sort_keys = True, default = str)
     return hashlib.sha1(canonical.encode("utf-8")).hexdigest()
@@ -332,11 +343,11 @@ def _extract_timestamps(proc: Any, name: str | None = None) -> pd.Series | None:
 
     ## check for common timestamp/datetime columns in data attributes
     for attr in ('data', 'data_raw', 'data_events', 'data_events_raw'):
-        df = getattr(proc, attr, None)
-        if df is not None and isinstance(df, pd.DataFrame):
+        data = getattr(proc, attr, None)
+        if data is not None and isinstance(data, pd.DataFrame):
             for col in ('timestamp', 'datetime'):
-                if col in df.columns:
-                    return df[col]
+                if col in data.columns:
+                    return data[col]
 
     ## check events attribute as final fallback
     events = getattr(proc, 'events', None)
@@ -353,3 +364,116 @@ def _to_datetime(values: pd.Series | None) -> pd.Series | None:
     if pd.api.types.is_numeric_dtype(values):
         return pd.to_datetime(values, unit = 's')
     return pd.to_datetime(values)
+
+
+# -----------------------------------------------------------------------------
+# perturbation table helpers
+# -----------------------------------------------------------------------------
+
+## constants
+PERT_TYPE = [
+    ('network_perturbed', 'network', 'invariants', 'net'),
+    ('invariants_perturbed', 'invariants', 'invariants', 'inv'),
+    ('process_perturbed', 'process', 'signatures', 'proc'),
+    ('signatures_perturbed', 'signature', 'signatures', 'sig'),
+    ('temporal_aggregated', 'temporal', 'events', 'tmp'),
+]
+PERT_JSON_BY_TYPE = {
+    type: json_key for json_key, type, _, _ in PERT_TYPE
+}
+PATH_PERT = config['paths']['PATH_PERT'].strip('"')
+
+## prefix feature keys in a dictionary with a given prefix
+def _prefix_features(features: dict, prefix: str) -> dict:
+    """ Add a prefix to each key in the features dictionary. """
+
+    ## ensure features is a dictionary
+    return {f"{prefix}__{k}": v for k, v in features.items()}
+
+## collect perturbated data from json files
+def _index_perturbs(pert_path: str) -> dict:
+    """ Iterate over all perturbation json files and extract features into an index. """
+
+    ## iterate over all json files in the perturbation directory
+    index = dict()
+    path = Path(pert_path)
+    for json_path in sorted(path.glob("*.json")):
+        data_name = json_path.stem
+        with open(json_path, "r") as f:
+            data = json.load(f)
+
+        ## iterate over defined perturbation types and extract features into index
+        for json_key, type, feat_key, prefix in PERT_TYPE:
+            for rec in data.get(json_key, []):
+                
+                ## support for both intensity or param field
+                intensity = rec.get("intensity", rec.get("param"))
+                method = rec.get("method")
+
+                ## temporal aggregation: method is always "aggregation", intensity is the scale
+                if type == "temporal":
+                    method = "aggregation"
+                    intensity = rec.get("scale")
+
+                key = (type, method, intensity)
+                if key not in index:
+                    index[key] = dict()
+
+                ## create observation with dataset name and prefixed features
+                obs = {"dataset": data_name}
+
+                ## temporal aggregation: compute signatures from events list
+                if type == "temporal" and isinstance(rec.get("events"), list):
+                    events_df = pd.DataFrame(rec["events"])
+                    if "target" in events_df.columns and len(events_df) >= 2:
+                        from src.vectorizers.signatures import ProcessSignatures
+                        events_df["idx"] = range(len(events_df))
+                        sigs = ProcessSignatures(events_df, sort_by = ["idx"], target = "target")
+                        obs.update(_prefix_features(sigs.all(), prefix))
+                else:
+                    feat_val = rec.get(feat_key, dict()) if feat_key is not None else dict()
+                    if isinstance(feat_val, dict):
+                        obs.update(_prefix_features(feat_val, prefix))
+                index[key][data_name] = obs
+    return index
+
+## create perturbation data from indexed perturbation data
+def load_perturbs(pert_path: str | None = None, schema: str = "tuple") -> dict:
+    """ Create perturbation tables indexed by tuple or payload schema. """
+
+    ## fallback to default path if not provided
+    if pert_path is None:
+        pert_path = os.path.join(root, PATH_PERT)
+
+    ## build tables from indexed perturbation data
+    data_dict = dict()
+    index = _index_perturbs(pert_path)
+    for key in sorted(index.keys()):
+        type, method, intensity = key
+        data = pd.DataFrame(list(index[key].values()))
+        data = data.sort_values("dataset").reset_index(drop = True)
+        data_dict[key] = data
+        logger.info(
+            f"Table ({type}, {method}, {intensity}): "
+            f"{len(data)} datasets"
+        )
+
+    ## default tuple schema: {(type, method, intensity): DataFrame}
+    if schema == "tuple":
+        logger.info(f"Created {len(data_dict)} perturbation tables from {pert_path}")
+        return data_dict
+
+    ## payload schema: {json_key: {method: {intensity: DataFrame}}}
+    if schema == "payload":
+        payload_dict = dict()
+        for (type, method, intensity), data in data_dict.items():
+            json_key = PERT_JSON_BY_TYPE.get(type, type)
+            if json_key not in payload_dict:
+                payload_dict[json_key] = dict()
+            if method not in payload_dict[json_key]:
+                payload_dict[json_key][method] = dict()
+            payload_dict[json_key][method][intensity] = data
+        logger.info(f"Created {len(payload_dict)} perturbation groups from {pert_path}")
+        return payload_dict
+
+    raise ValueError("schema must be either 'tuple' or 'payload'")
