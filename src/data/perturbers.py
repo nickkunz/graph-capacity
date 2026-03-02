@@ -6,6 +6,7 @@ import logging
 import configparser
 import numpy as np
 import pandas as pd
+from typing import Any
 from pathlib import Path
 
 ## path
@@ -159,7 +160,7 @@ TEMPORAL_SCALES = ('2D', '3D', '7D', '14D', '30D')
 
 
 ## helper functions
-def _is_fully_connected_bipartite(graph) -> bool:
+def _is_fully_connected_bipartite(graph: Any) -> bool:
     """Check if a graph is a fully connected bipartite graph."""
     if graph.vcount() == 0 or graph.ecount() == 0:
         return False
@@ -170,9 +171,9 @@ def _is_fully_connected_bipartite(graph) -> bool:
     n2 = len(types) - n1
     return graph.ecount() == n1 * n2
 
-def _run_all_perturbations(proc, name):
+def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
     """Run network, process, and temporal perturbations for a given processor."""
-    results = {}
+    results = dict()
 
     ## --- network perturbation --- ##
     graph = getattr(proc, 'graph', None)
@@ -184,7 +185,7 @@ def _run_all_perturbations(proc, name):
         graph.simplify()
 
         ## check for fully connected bipartite structure to determine if analytical perturbation can be used
-        network_results = []
+        network_results = list()
         analytical = _is_fully_connected_bipartite(graph)
         if analytical:
             degrees = np.array(graph.degree(), dtype=float)
@@ -229,7 +230,7 @@ def _run_all_perturbations(proc, name):
             np.full(shape = n, fill_value = float(m), dtype = float),
         ])
         invariants = dict(pre_inv)
-        network_results = []
+        network_results = list()
         logging.info(f"  Using analytical perturbation for {name} ({n_nodes:,} nodes, {n_edges:,} edges) [graph-free]")
         for method, intensities in NETWORK_METHODS.items():
             for intensity in intensities:
@@ -259,7 +260,7 @@ def _run_all_perturbations(proc, name):
     if graph is not None or pre_inv is not None:
         base_inv = GraphInvariants(graph).all(analytical = analytical) if graph is not None else pre_inv
         base_df = pd.DataFrame([base_inv])
-        invariant_pert_results = []
+        invariant_results = list()
         for method, params in INVARIANT_METHODS.items():
             for param in params:
                 try:
@@ -273,20 +274,20 @@ def _run_all_perturbations(proc, name):
                 except Exception as exc:
                     logging.warning(f"Invariant {method} @ {param:.3f} failed for {name}: {exc}")
                     continue
-                invariant_pert_results.append({
+                invariant_results.append({
                     'method': method,
                     'intensity': float(param),
                     'invariants': row
                 })
-        results['invariants_perturbed'] = invariant_pert_results
-        logging.info(f"  Invariant perturbation: {len(invariant_pert_results)} records")
+        results['invariants_perturbed'] = invariant_results
+        logging.info(f"  Invariant perturbation: {len(invariant_results)} records")
 
     ## --- process perturbation --- ##
     events = getattr(proc, 'events', None)
     counts = _extract_counts(events)
 
     if counts is not None and len(counts) > 0:
-        process_results = []
+        process_results = list()
         for method, params in PROCESS_METHODS.items():
             for param in params:
                 try:
@@ -309,7 +310,7 @@ def _run_all_perturbations(proc, name):
         data_temp = pd.DataFrame({"counts": counts, "idx": range(len(counts))})
         base_sigs = ProcessSignatures(data_temp, sort_by = ["idx"], target = "counts").all()
         base_sig_df = pd.DataFrame([base_sigs])
-        sig_pert_results = []
+        sig_pert_results = list()
         for method, params in SIGNATURE_METHODS.items():
             for param in params:
                 try:
@@ -337,7 +338,7 @@ def _run_all_perturbations(proc, name):
         target_col = next((c for c in ('target', 'count') if c in events.columns), None)
 
         if date_col is not None and target_col is not None:
-            temporal_results = []
+            temporal_results = list()
             df_temp = events[[date_col, target_col]].copy()
             is_ordinal = pd.api.types.is_integer_dtype(df_temp[date_col])
 
@@ -393,59 +394,8 @@ def _run_all_perturbations(proc, name):
 
     return results
 
-
-def _prefix_features(features, prefix):
-    return {f"{prefix}__{k}": v for k, v in features.items()}
-
-def _build_index(perturbed_dir):
-    perturbed_path = Path(perturbed_dir)
-    index = {}
-
-    for json_path in sorted(perturbed_path.glob("*.json")):
-        dataset_name = json_path.stem
-
-        with open(json_path, "r") as f:
-            data = json.load(f)
-
-        for json_key, pert_type, feat_key, prefix in PERT_TYPE:
-            for rec in data.get(json_key, []):
-                key = (pert_type, rec["method"], rec["intensity"])
-
-                if key not in index:
-                    index[key] = {}
-
-                row = {"dataset": dataset_name}
-                row.update(
-                    _prefix_features(rec.get(feat_key, {}), prefix)
-                )
-                index[key][dataset_name] = row
-
-    return index
-
-
-def load_perturbations(perturbed_dir = None):
-    if perturbed_dir is None:
-        perturbed_dir = os.path.join(root, PATH_PERT)
-
-    index = _build_index(perturbed_dir)
-    tables = {}
-
-    for key in sorted(index.keys()):
-        pert_type, method, intensity = key
-        df = pd.DataFrame(list(index[key].values()))
-        df = df.sort_values("dataset").reset_index(drop = True)
-        tables[key] = df
-        logging.info(
-            f"Table ({pert_type}, {method}, {intensity}): "
-            f"{len(df)} datasets"
-        )
-
-    logging.info(f"Built {len(tables)} perturbation tables")
-    return tables
-
-
-## execute
-def perturber():
+## data perturbation pipeline
+def json_perturber():
 
     ## ensure perturbation directory exists
     os.makedirs(name = PATH_PERT, exist_ok = True)
@@ -460,8 +410,8 @@ def perturber():
             end_date = "2024-12-31"
         )
         proc.run()
-        results = _run_all_perturbations(proc, NAME_FEDERAL)
-        _save_to_json(data = results, path = federal_path)
+        data = _execute_perturbations(proc = proc, name = NAME_FEDERAL)
+        _save_to_json(data = data, path = federal_path)
         logging.info(f"Federal perturbations saved to {federal_path}")
     else:
         logging.info(f"Federal perturbations already exist at {federal_path}. Skipping.")
@@ -472,8 +422,8 @@ def perturber():
         logging.info("Perturbing MOOC data...")
         proc = MoocProcessor(url = URL_MOOC)
         proc.run()
-        results = _run_all_perturbations(proc, NAME_MOOC)
-        _save_to_json(data = results, path = mooc_path)
+        data = _execute_perturbations(proc = proc, name = NAME_MOOC)
+        _save_to_json(data = data, path = mooc_path)
         logging.info(f"MOOC perturbations saved to {mooc_path}")
     else:
         logging.info(f"MOOC perturbations already exist at {mooc_path}. Skipping.")
@@ -484,23 +434,23 @@ def perturber():
         logging.info("Perturbing Bitcoin data...")
         proc = BitcoinProcessor(root_path = PATH_ROOT, name = NAME_BITCOIN)
         proc.run()
-        results = _run_all_perturbations(proc, NAME_BITCOIN)
-        _save_to_json(data = results, path = bitcoin_path)
+        data = _execute_perturbations(proc = proc, name = NAME_BITCOIN)
+        _save_to_json(data = data, path = bitcoin_path)
         logging.info(f"Bitcoin perturbations saved to {bitcoin_path}")
     else:
         logging.info(f"Bitcoin perturbations already exist at {bitcoin_path}. Skipping.")
 
     ## --- amazon reviews --- ##
-    amazon_path = os.path.join(PATH_PERT, f"{NAME_AMAZON}.json")
-    if not os.path.exists(amazon_path):
-        logging.info("Perturbing Amazon data...")
-        proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
-        proc.run()
-        results = _run_all_perturbations(proc, NAME_AMAZON)
-        _save_to_json(data = results, path = amazon_path)
-        logging.info(f"Amazon perturbations saved to {amazon_path}")
-    else:
-        logging.info(f"Amazon perturbations already exist at {amazon_path}. Skipping.")
+    # amazon_path = os.path.join(PATH_PERT, f"{NAME_AMAZON}.json")
+    # if not os.path.exists(amazon_path):
+    #     logging.info("Perturbing Amazon data...")
+    #     proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
+    #     proc.run()
+    #     data = _execute_perturbations(proc = proc, name = NAME_AMAZON)
+    #     _save_to_json(data = data, path = amazon_path)
+    #     logging.info(f"Amazon perturbations saved to {amazon_path}")
+    # else:
+    #     logging.info(f"Amazon perturbations already exist at {amazon_path}. Skipping.")
 
     ## --- world bank --- ##
     world_path = os.path.join(PATH_PERT, f"{NAME_WORLD}.json")
@@ -513,8 +463,8 @@ def perturber():
             end_year = "2024"
         )
         proc.run()
-        results = _run_all_perturbations(proc, NAME_WORLD)
-        _save_to_json(data = results, path = world_path)
+        data = _execute_perturbations(proc = proc, name = NAME_WORLD)
+        _save_to_json(data = data, path = world_path)
         logging.info(f"World Bank perturbations saved to {world_path}")
     else:
         logging.info(f"World Bank perturbations already exist at {world_path}. Skipping.")
@@ -525,8 +475,8 @@ def perturber():
         logging.info("Perturbing Wiki data...")
         proc = WikiProcessor(url = URL_WIKI, name = "wikivital_mathematics.json")
         proc.run()
-        results = _run_all_perturbations(proc, NAME_WIKI)
-        _save_to_json(data = results, path = wiki_path)
+        data = _execute_perturbations(proc = proc, name = NAME_WIKI)
+        _save_to_json(data = data, path = wiki_path)
         logging.info(f"Wiki perturbations saved to {wiki_path}")
     else:
         logging.info(f"Wiki perturbations already exist at {wiki_path}. Skipping.")
@@ -537,8 +487,8 @@ def perturber():
         logging.info("Perturbing JODIE data...")
         proc = JodieProcessor(root_path = PATH_ROOT, name = "wikipedia")
         proc.run()
-        results = _run_all_perturbations(proc, NAME_JODIE)
-        _save_to_json(data = results, path = jodie_path)
+        data = _execute_perturbations(proc = proc, name = NAME_JODIE)
+        _save_to_json(data = data, path = jodie_path)
         logging.info(f"JODIE perturbations saved to {jodie_path}")
     else:
         logging.info(f"JODIE perturbations already exist at {jodie_path}. Skipping.")
@@ -549,8 +499,8 @@ def perturber():
         logging.info("Perturbing MathOverflow data...")
         proc = OverflowProcessor(url = URL_OVERFLOW)
         proc.run()
-        results = _run_all_perturbations(proc, NAME_OVERFLOW)
-        _save_to_json(data = results, path = overflow_path)
+        data = _execute_perturbations(proc = proc, name = NAME_OVERFLOW)
+        _save_to_json(data = data, path = overflow_path)
         logging.info(f"MathOverflow perturbations saved to {overflow_path}")
     else:
         logging.info(f"MathOverflow perturbations already exist at {overflow_path}. Skipping.")
@@ -561,8 +511,8 @@ def perturber():
         logging.info("Perturbing EU-Core Email data...")
         proc = EmailProcessor(url = URL_EMAIL)
         proc.run()
-        results = _run_all_perturbations(proc, NAME_EMAIL)
-        _save_to_json(data = results, path = email_path)
+        data = _execute_perturbations(proc = proc, name = NAME_EMAIL)
+        _save_to_json(data = data, path = email_path)
         logging.info(f"EU-Core Email perturbations saved to {email_path}")
     else:
         logging.info(f"EU-Core Email perturbations already exist at {email_path}. Skipping.")
@@ -573,8 +523,8 @@ def perturber():
         logging.info("Perturbing UC Irvine College Message data...")
         proc = CollegeProcessor(url = URL_COLLEGE)
         proc.run()
-        results = _run_all_perturbations(proc, NAME_COLLEGE)
-        _save_to_json(data = results, path = college_path)
+        data = _execute_perturbations(proc = proc, name = NAME_COLLEGE)
+        _save_to_json(data = data, path = college_path)
         logging.info(f"UC Irvine College Message perturbations saved to {college_path}")
     else:
         logging.info(f"UC Irvine College Message perturbations already exist at {college_path}. Skipping.")
@@ -585,8 +535,8 @@ def perturber():
         logging.info("Perturbing Halifax idling data...")
         proc = IdlingProcessor(path_events = PATH_ROOT + "idling/")
         proc.run()
-        results = _run_all_perturbations(proc, NAME_IDLING)
-        _save_to_json(data = results, path = idling_path)
+        data = _execute_perturbations(proc = proc, name = NAME_IDLING)
+        _save_to_json(data = data, path = idling_path)
         logging.info(f"Halifax idling perturbations saved to {idling_path}")
     else:
         logging.info(f"Halifax idling perturbations already exist at {idling_path}. Skipping.")
@@ -597,8 +547,8 @@ def perturber():
         logging.info("Perturbing Windmill data...")
         proc = WindmillProcessor(raw_data_dir = os.path.join(PATH_ROOT, NAME_WINDMILL))
         proc.run()
-        results = _run_all_perturbations(proc, NAME_WINDMILL)
-        _save_to_json(data = results, path = windmill_path)
+        data = _execute_perturbations(proc = proc, name = NAME_WINDMILL)
+        _save_to_json(data = data, path = windmill_path)
         logging.info(f"Windmill perturbations saved to {windmill_path}")
     else:
         logging.info(f"Windmill perturbations already exist at {windmill_path}. Skipping.")
@@ -609,8 +559,8 @@ def perturber():
         logging.info("Perturbing METR-LA data...")
         proc = MetrLaProcessor(raw_data_dir = os.path.join(PATH_ROOT, NAME_METRLA))
         proc.run()
-        results = _run_all_perturbations(proc, NAME_METRLA)
-        _save_to_json(data = results, path = metrla_path)
+        data = _execute_perturbations(proc = proc, name = NAME_METRLA)
+        _save_to_json(data = data, path = metrla_path)
         logging.info(f"METR-LA perturbations saved to {metrla_path}")
     else:
         logging.info(f"METR-LA perturbations already exist at {metrla_path}. Skipping.")
@@ -621,8 +571,8 @@ def perturber():
         logging.info("Perturbing PEMS-BAY data...")
         proc = PemsBayProcessor(raw_data_dir = os.path.join(PATH_ROOT, NAME_PEMSBAY))
         proc.run()
-        results = _run_all_perturbations(proc, NAME_PEMSBAY)
-        _save_to_json(data = results, path = pemsbay_path)
+        data = _execute_perturbations(proc = proc, name = NAME_PEMSBAY)
+        _save_to_json(data = data, path = pemsbay_path)
         logging.info(f"PEMS-BAY perturbations saved to {pemsbay_path}")
     else:
         logging.info(f"PEMS-BAY perturbations already exist at {pemsbay_path}. Skipping.")
@@ -633,8 +583,8 @@ def perturber():
         logging.info("Perturbing Montevideo data...")
         proc = MontevideoProcessor()
         proc.run()
-        results = _run_all_perturbations(proc, NAME_MONTEVIDEO)
-        _save_to_json(data = results, path = montevideo_path)
+        data = _execute_perturbations(proc = proc, name = NAME_MONTEVIDEO)
+        _save_to_json(data = data, path = montevideo_path)
         logging.info(f"Montevideo perturbations saved to {montevideo_path}")
     else:
         logging.info(f"Montevideo perturbations already exist at {montevideo_path}. Skipping.")
@@ -645,8 +595,8 @@ def perturber():
         logging.info("Perturbing CropPol data...")
         proc = CropProcessor(url_sampling = URL_CROP_SAMPLING, url_field = URL_CROP_FIELD)
         proc.run()
-        results = _run_all_perturbations(proc, NAME_CROP)
-        _save_to_json(data = results, path = crop_path)
+        data = _execute_perturbations(proc = proc, name = NAME_CROP)
+        _save_to_json(data = data, path = crop_path)
         logging.info(f"CropPol perturbations saved to {crop_path}")
     else:
         logging.info(f"CropPol perturbations already exist at {crop_path}. Skipping.")
@@ -657,8 +607,8 @@ def perturber():
         logging.info("Perturbing FAERS data...")
         proc = FaersProcessor(id = "IMATINIB", url = URL_FAERS)
         proc.run()
-        results = _run_all_perturbations(proc, NAME_FAERS)
-        _save_to_json(data = results, path = faers_path)
+        data = _execute_perturbations(proc = proc, name = NAME_FAERS)
+        _save_to_json(data = data, path = faers_path)
         logging.info(f"FAERS perturbations saved to {faers_path}")
     else:
         logging.info(f"FAERS perturbations already exist at {faers_path}. Skipping.")
@@ -669,8 +619,8 @@ def perturber():
         logging.info("Perturbing C. Elegans data...")
         proc = CelegansProcessor()
         proc.run()
-        results = _run_all_perturbations(proc, NAME_CELEGANS)
-        _save_to_json(data = results, path = celegans_path)
+        data = _execute_perturbations(proc = proc, name = NAME_CELEGANS)
+        _save_to_json(data = data, path = celegans_path)
         logging.info(f"C. Elegans perturbations saved to {celegans_path}")
     else:
         logging.info(f"C. Elegans perturbations already exist at {celegans_path}. Skipping.")
@@ -682,8 +632,8 @@ def perturber():
         ids = [f'chb{i:02d}' for i in range(1, 25)]
         proc = EpilepsyProcessor(url = URL_EPILEPSY, ids = ids)
         proc.run()
-        results = _run_all_perturbations(proc, NAME_EPILEPSY)
-        _save_to_json(data = results, path = epilepsy_path)
+        data = _execute_perturbations(proc = proc, name = NAME_EPILEPSY)
+        _save_to_json(data = data, path = epilepsy_path)
         logging.info(f"Epilepsy perturbations saved to {epilepsy_path}")
     else:
         logging.info(f"Epilepsy perturbations already exist at {epilepsy_path}. Skipping.")
@@ -697,8 +647,8 @@ def perturber():
             name = "hungary_chickenpox.csv"
         )
         proc.run()
-        results = _run_all_perturbations(proc, NAME_CHICKENPOX)
-        _save_to_json(data = results, path = chickenpox_path)
+        data = _execute_perturbations(proc = proc, name = NAME_CHICKENPOX)
+        _save_to_json(data = data, path = chickenpox_path)
         logging.info(f"Chickenpox perturbations saved to {chickenpox_path}")
     else:
         logging.info(f"Chickenpox perturbations already exist at {chickenpox_path}. Skipping.")
@@ -709,8 +659,8 @@ def perturber():
         logging.info("Perturbing GWOSC data...")
         proc = GwoscProcessor(url = URL_GWOSC)
         proc.run()
-        results = _run_all_perturbations(proc, NAME_GWOSC)
-        _save_to_json(data = results, path = gwosc_path)
+        data = _execute_perturbations(proc = proc, name = NAME_GWOSC)
+        _save_to_json(data = data, path = gwosc_path)
         logging.info(f"GWOSC perturbations saved to {gwosc_path}")
     else:
         logging.info(f"GWOSC perturbations already exist at {gwosc_path}. Skipping.")
@@ -734,8 +684,8 @@ def perturber():
             end_date = "2024-12-31"
         )
         proc.run()
-        results = _run_all_perturbations(proc, NAME_RIVER)
-        _save_to_json(data = results, path = river_path)
+        data = _execute_perturbations(proc = proc, name = NAME_RIVER)
+        _save_to_json(data = data, path = river_path)
         logging.info(f"NWIS river perturbations saved to {river_path}")
     else:
         logging.info(f"NWIS river perturbations already exist at {river_path}. Skipping.")
@@ -749,8 +699,8 @@ def perturber():
             url_events = URL_AUGER_EVENTS
         )
         proc.run()
-        results = _run_all_perturbations(proc, NAME_AUGER)
-        _save_to_json(data = results, path = auger_path)
+        data = _execute_perturbations(proc = proc, name = NAME_AUGER)
+        _save_to_json(data = data, path = auger_path)
         logging.info(f"Auger perturbations saved to {auger_path}")
     else:
         logging.info(f"Auger perturbations already exist at {auger_path}. Skipping.")
@@ -784,8 +734,8 @@ def perturber():
             params_events = params_events
         )
         proc.run()
-        results = _run_all_perturbations(proc, NAME_SEISMIC)
-        _save_to_json(data = results, path = seismic_path)
+        data = _execute_perturbations(proc = proc, name = NAME_SEISMIC)
+        _save_to_json(data = data, path = seismic_path)
         logging.info(f"Seismic perturbations saved to {seismic_path}")
     else:
         logging.info(f"Seismic perturbations already exist at {seismic_path}. Skipping.")
@@ -800,12 +750,12 @@ def perturber():
             end_date = "2024-03-31"
         )
         proc.run()
-        results = _run_all_perturbations(proc, NAME_RAIN)
-        _save_to_json(data = results, path = rain_path)
+        data = _execute_perturbations(proc = proc, name = NAME_RAIN)
+        _save_to_json(data = data, path = rain_path)
         logging.info(f"Rain perturbations saved to {rain_path}")
     else:
         logging.info(f"Rain perturbations already exist at {rain_path}. Skipping.")
 
 ## primary execution
 if __name__ == '__main__':
-    perturber()
+    json_perturber()
