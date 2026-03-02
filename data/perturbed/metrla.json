@@ -1,0 +1,1753 @@
+{
+  "network_perturbed": [
+    {
+      "method": "rewire",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 207,
+        "n_edges": 1313,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 10.0,
+        "radius": 5.0,
+        "degeneracy": 12,
+        "k_core_size": 18,
+        "maximum_degree": 25,
+        "degree_variance": 24.949707111017766,
+        "global_clustering": 0.528171371192681,
+        "degree_assortativity": 0.4558147582052039,
+        "degree_entropy": 2.9085755989636146,
+        "joint_degree_entropy": 4.616364114442215,
+        "degree_skewness": -0.3338350506312211,
+        "degree_kurtosis": -0.7342893991829991,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1444.0289855072465
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.03,
+      "invariants": {
+        "n_nodes": 207,
+        "n_edges": 1313,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 8.0,
+        "radius": 5.0,
+        "degeneracy": 11,
+        "k_core_size": 17,
+        "maximum_degree": 25,
+        "degree_variance": 24.949707111017766,
+        "global_clustering": 0.4746178734798617,
+        "degree_assortativity": 0.4188151178350787,
+        "degree_entropy": 2.9085755989636146,
+        "joint_degree_entropy": 4.632286990393283,
+        "degree_skewness": -0.3338350506312211,
+        "degree_kurtosis": -0.7342893991829991,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1303.5458937198068
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 207,
+        "n_edges": 1313,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 6.0,
+        "radius": 4.0,
+        "degeneracy": 10,
+        "k_core_size": 17,
+        "maximum_degree": 25,
+        "degree_variance": 24.949707111017766,
+        "global_clustering": 0.3338725873033583,
+        "degree_assortativity": 0.3470802492652854,
+        "degree_entropy": 2.9085755989636146,
+        "joint_degree_entropy": 4.687954248157832,
+        "degree_skewness": -0.3338350506312211,
+        "degree_kurtosis": -0.7342893991829991,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 973.7294685990338
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 207,
+        "n_edges": 1313,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 9,
+        "k_core_size": 128,
+        "maximum_degree": 25,
+        "degree_variance": 24.949707111017766,
+        "global_clustering": 0.22944326676336046,
+        "degree_assortativity": 0.3028601248044532,
+        "degree_entropy": 2.9085755989636146,
+        "joint_degree_entropy": 4.707887253970418,
+        "degree_skewness": -0.3338350506312211,
+        "degree_kurtosis": -0.7342893991829991,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 738.8309178743962
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 207,
+        "n_edges": 1313,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 9,
+        "k_core_size": 135,
+        "maximum_degree": 25,
+        "degree_variance": 24.949707111017766,
+        "global_clustering": 0.14425973446390716,
+        "degree_assortativity": 0.21151459234333456,
+        "degree_entropy": 2.9085755989636146,
+        "joint_degree_entropy": 4.733988260002339,
+        "degree_skewness": -0.3338350506312211,
+        "degree_kurtosis": -0.7342893991829991,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 612.0289855072464
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 207,
+        "n_edges": 1300,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 13.0,
+        "radius": 7.0,
+        "degeneracy": 12,
+        "k_core_size": 18,
+        "maximum_degree": 25,
+        "degree_variance": 24.623165068029593,
+        "global_clustering": 0.5461682881037719,
+        "degree_assortativity": 0.45616588874009506,
+        "degree_entropy": 2.908544896011184,
+        "joint_degree_entropy": 4.619174799942333,
+        "degree_skewness": -0.31229586740394866,
+        "degree_kurtosis": -0.7170502747032503,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1455.8647342995168
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.03,
+      "invariants": {
+        "n_nodes": 207,
+        "n_edges": 1274,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 13.0,
+        "radius": 7.0,
+        "degeneracy": 11,
+        "k_core_size": 20,
+        "maximum_degree": 23,
+        "degree_variance": 24.455133141963643,
+        "global_clustering": 0.5293700926855186,
+        "degree_assortativity": 0.47524493533967144,
+        "degree_entropy": 2.8843956353843017,
+        "joint_degree_entropy": 4.556736285863517,
+        "degree_skewness": -0.3348430775917757,
+        "degree_kurtosis": -0.8660994141384668,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1361.5072463768115
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.07,
+      "invariants": {
+        "n_nodes": 207,
+        "n_edges": 1222,
+        "n_articulation_points": 1,
+        "n_bridges": 0,
+        "diameter": 14.0,
+        "radius": 7.0,
+        "degeneracy": 10,
+        "k_core_size": 22,
+        "maximum_degree": 25,
+        "degree_variance": 22.213867301453938,
+        "global_clustering": 0.5048049016446308,
+        "degree_assortativity": 0.3794894115921797,
+        "degree_entropy": 2.844976175854291,
+        "joint_degree_entropy": 4.542155463872168,
+        "degree_skewness": -0.3171200128026738,
+        "degree_kurtosis": -0.660253657678846,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1149.4492753623188
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 207,
+        "n_edges": 1117,
+        "n_articulation_points": 4,
+        "n_bridges": 3,
+        "diameter": 14.0,
+        "radius": 7.0,
+        "degeneracy": 9,
+        "k_core_size": 33,
+        "maximum_degree": 22,
+        "degree_variance": 19.507573105556716,
+        "global_clustering": 0.4649224357490159,
+        "degree_assortativity": 0.40565650037869233,
+        "degree_entropy": 2.8219505912513294,
+        "joint_degree_entropy": 4.502171696451134,
+        "degree_skewness": -0.2783679537404681,
+        "degree_kurtosis": -0.4375037524078169,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 845.3236714975845
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 207,
+        "n_edges": 985,
+        "n_articulation_points": 2,
+        "n_bridges": 2,
+        "diameter": 14.0,
+        "radius": 7.0,
+        "degeneracy": 8,
+        "k_core_size": 36,
+        "maximum_degree": 19,
+        "degree_variance": 17.631356624425308,
+        "global_clustering": 0.4188368905423928,
+        "degree_assortativity": 0.40466908603544066,
+        "degree_entropy": 2.7893964091270544,
+        "joint_degree_entropy": 4.51012731443485,
+        "degree_skewness": -0.09039601625917176,
+        "degree_kurtosis": -0.7590474398982789,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 593.207729468599
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 205,
+        "n_edges": 1277,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 13.0,
+        "radius": 7.0,
+        "degeneracy": 12,
+        "k_core_size": 18,
+        "maximum_degree": 24,
+        "degree_variance": 23.175110053539555,
+        "global_clustering": 0.5476834430856068,
+        "degree_assortativity": 0.41021639912490776,
+        "degree_entropy": 2.8412848048157326,
+        "joint_degree_entropy": 4.515495210482354,
+        "degree_skewness": -0.3831651319239354,
+        "degree_kurtosis": -0.7046263657629588,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1402.5073170731707
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.02,
+      "invariants": {
+        "n_nodes": 203,
+        "n_edges": 1269,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 13.0,
+        "radius": 7.0,
+        "degeneracy": 12,
+        "k_core_size": 18,
+        "maximum_degree": 25,
+        "degree_variance": 24.673639253561113,
+        "global_clustering": 0.5503186948131688,
+        "degree_assortativity": 0.4956359698141462,
+        "degree_entropy": 2.9201076487887194,
+        "joint_degree_entropy": 4.636486638074347,
+        "degree_skewness": -0.26595451202290643,
+        "degree_kurtosis": -0.7186164284162437,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1453.8226600985222
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 197,
+        "n_edges": 1194,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 13.0,
+        "radius": 7.0,
+        "degeneracy": 12,
+        "k_core_size": 18,
+        "maximum_degree": 24,
+        "degree_variance": 26.57399056919787,
+        "global_clustering": 0.5591621060577467,
+        "degree_assortativity": 0.5300972661452644,
+        "degree_entropy": 2.9344580654113734,
+        "joint_degree_entropy": 4.6314429062781635,
+        "degree_skewness": -0.22492477421686924,
+        "degree_kurtosis": -0.9031699647205347,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1413.6852791878173
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 187,
+        "n_edges": 1052,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 13.0,
+        "radius": 7.0,
+        "degeneracy": 10,
+        "k_core_size": 16,
+        "maximum_degree": 24,
+        "degree_variance": 19.39672281163316,
+        "global_clustering": 0.5508017145578663,
+        "degree_assortativity": 0.4129780339135074,
+        "degree_entropy": 2.78032681180975,
+        "joint_degree_entropy": 4.418785492105499,
+        "degree_skewness": -0.2375886251328688,
+        "degree_kurtosis": -0.5997033685582092,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1046.4171122994653
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 166,
+        "n_edges": 868,
+        "n_articulation_points": 5,
+        "n_bridges": 4,
+        "diameter": 14.0,
+        "radius": 7.0,
+        "degeneracy": 10,
+        "k_core_size": 13,
+        "maximum_degree": 21,
+        "degree_variance": 18.87472782697053,
+        "global_clustering": 0.5548281505728314,
+        "degree_assortativity": 0.41639521710774785,
+        "degree_entropy": 2.732846528574101,
+        "joint_degree_entropy": 4.232903322108151,
+        "degree_skewness": -0.4520281274023087,
+        "degree_kurtosis": -0.6435876895648773,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 884.1927710843373
+      }
+    }
+  ],
+  "invariants_perturbed": [
+    {
+      "method": "noise",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 207.4641984977172,
+        "n_edges": 1309.6525189562026,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 12.999078022737363,
+        "radius": 6.952956931951745,
+        "degeneracy": 11.752405571297604,
+        "k_core_size": 18.11273497037463,
+        "maximum_degree": 24.605187844045343,
+        "degree_variance": 24.643540512170105,
+        "global_clustering": 0.5528560329595202,
+        "degree_assortativity": 0.4609482117632281,
+        "degree_entropy": 2.9478599164542967,
+        "joint_degree_entropy": 4.552424057760236,
+        "degree_skewness": -0.33377594947143646,
+        "degree_kurtosis": -0.7447467070476533,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1497.8837146153899
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.02,
+      "invariants": {
+        "n_nodes": 200.15601015165166,
+        "n_edges": 1351.029433682258,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 12.83496081377284,
+        "radius": 7.025057414525264,
+        "degeneracy": 11.849858917074258,
+        "k_core_size": 18.015814532491788,
+        "maximum_degree": 25.756973448128523,
+        "degree_variance": 25.128335950191502,
+        "global_clustering": 0.5490668241133628,
+        "degree_assortativity": 0.45485552064257406,
+        "degree_entropy": 2.92531589317655,
+        "joint_degree_entropy": 4.471101541339897,
+        "degree_skewness": -0.34291018789325045,
+        "degree_kurtosis": -0.7169105818498306,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1518.6048913612515
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 213.9513701045229,
+        "n_edges": 1258.6519684182988,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 13.388643145029633,
+        "radius": 6.843635624310096,
+        "degeneracy": 11.264167565034775,
+        "k_core_size": 18.38320411529348,
+        "maximum_degree": 24.408260168317014,
+        "degree_variance": 25.96312126999557,
+        "global_clustering": 0.5853747329963418,
+        "degree_assortativity": 0.42356356501247877,
+        "degree_entropy": 2.951020990389211,
+        "joint_degree_entropy": 4.6504350532907095,
+        "degree_skewness": -0.33623056712601285,
+        "degree_kurtosis": -0.7482003902568043,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1461.9587112553468
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 204.3050040045399,
+        "n_edges": 1542.8629709690663,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 12.515628944199689,
+        "radius": 6.141633151339067,
+        "degeneracy": 10.710614645656332,
+        "k_core_size": 18.97312798990689,
+        "maximum_degree": 25.393159064002376,
+        "degree_variance": 21.629335447479782,
+        "global_clustering": 0.5380844703083402,
+        "degree_assortativity": 0.4521420442678762,
+        "degree_entropy": 2.641508824156459,
+        "joint_degree_entropy": 3.9049123867798805,
+        "degree_skewness": -0.3155788714227925,
+        "degree_kurtosis": -0.7781535132190878,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1492.8582650339538
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 176.46518137233835,
+        "n_edges": 1470.7592315046838,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 14.69063830962785,
+        "radius": 4.226513619278305,
+        "degeneracy": 12.164778426609857,
+        "k_core_size": 18.907608879726,
+        "maximum_degree": 25.569930682651485,
+        "degree_variance": 19.060969465816555,
+        "global_clustering": 0.3247541147207443,
+        "degree_assortativity": 0.4277379501017392,
+        "degree_entropy": 3.984245100135266,
+        "joint_degree_entropy": 5.463615000079477,
+        "degree_skewness": -0.16405138403850186,
+        "degree_kurtosis": -0.48345543763065074,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1114.5339365632785
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.01,
+      "invariants": {
+        "n_nodes": 203.98538566240595,
+        "n_edges": 1319.3821108418167,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 13.163904903802766,
+        "radius": 7.059100408159137,
+        "degeneracy": 12.002436920757138,
+        "k_core_size": 18.069931837699404,
+        "maximum_degree": 24.865487909761164,
+        "degree_variance": 25.673617939319023,
+        "global_clustering": 0.558883557401725,
+        "degree_assortativity": 0.4605768956952824,
+        "degree_entropy": 2.8997007549119402,
+        "joint_degree_entropy": 4.653761091466655,
+        "degree_skewness": -0.3347916697670087,
+        "degree_kurtosis": -0.733243259516732,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1504.6742696537822
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.02,
+      "invariants": {
+        "n_nodes": 202.17107667601653,
+        "n_edges": 1278.6020351393147,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 12.97850521114223,
+        "radius": 7.195260826430183,
+        "degeneracy": 11.985387965410176,
+        "k_core_size": 18.268657496794248,
+        "maximum_degree": 25.752126277284876,
+        "degree_variance": 24.15762379351345,
+        "global_clustering": 0.5539786819575548,
+        "degree_assortativity": 0.4726152055765571,
+        "degree_entropy": 2.878715410604276,
+        "joint_degree_entropy": 4.7677987990378465,
+        "degree_skewness": -0.3317081679307825,
+        "degree_kurtosis": -0.7516978802325087,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1552.1382960985904
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 219.22563536454442,
+        "n_edges": 1291.8655408640702,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 12.881569772728298,
+        "radius": 6.860723580396145,
+        "degeneracy": 12.61301372009402,
+        "k_core_size": 18.32454678770064,
+        "maximum_degree": 24.77374548283994,
+        "degree_variance": 26.598685596148627,
+        "global_clustering": 0.4886434311380707,
+        "degree_assortativity": 0.5002996162504455,
+        "degree_entropy": 2.8219207303478253,
+        "joint_degree_entropy": 4.430864303756689,
+        "degree_skewness": -0.31655871996299634,
+        "degree_kurtosis": -0.7053087486176367,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1518.3048714375639
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 198.08253301489285,
+        "n_edges": 958.1693185441815,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 13.815392447980315,
+        "radius": 6.966285819301206,
+        "degeneracy": 10.527982663201453,
+        "k_core_size": 16.986103024388235,
+        "maximum_degree": 20.954261369983797,
+        "degree_variance": 24.495691638306027,
+        "global_clustering": 0.5500781086730354,
+        "degree_assortativity": 0.4620061446127183,
+        "degree_entropy": 3.058176216854474,
+        "joint_degree_entropy": 3.814743779239369,
+        "degree_skewness": -0.34117982093716465,
+        "degree_kurtosis": -0.6735371532830584,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1549.5985827416857
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 106.93392144817433,
+        "n_edges": 1351.3879631006762,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 16.784464535773928,
+        "radius": 5.903767778927569,
+        "degeneracy": 14.21720025674101,
+        "k_core_size": 22.456580176127908,
+        "maximum_degree": 21.86344472773803,
+        "degree_variance": 26.911240429995253,
+        "global_clustering": 0.6196660768567622,
+        "degree_assortativity": 0.47509215176081465,
+        "degree_entropy": 2.472337158887172,
+        "joint_degree_entropy": 4.346596177394732,
+        "degree_skewness": -0.3040038476907006,
+        "degree_kurtosis": -0.7779105870870016,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1138.8723149765713
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.95,
+      "invariants": {
+        "n_nodes": 207.0,
+        "n_edges": 1313.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 13.0,
+        "radius": 7.0,
+        "degeneracy": 12.0,
+        "k_core_size": 18.0,
+        "maximum_degree": 25.0,
+        "degree_variance": 24.949707111017766,
+        "global_clustering": 0.5510989624009818,
+        "degree_assortativity": 0.46162532528411543,
+        "degree_entropy": 2.9085755989636146,
+        "joint_degree_entropy": 4.610330934751831,
+        "degree_skewness": -0.3338350506312211,
+        "degree_kurtosis": -0.7342893991829991,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1504.280193236715
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.9,
+      "invariants": {
+        "n_nodes": 207.0,
+        "n_edges": 1313.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 13.0,
+        "radius": 7.0,
+        "degeneracy": 12.0,
+        "k_core_size": 18.0,
+        "maximum_degree": 25.0,
+        "degree_variance": 24.949707111017766,
+        "global_clustering": 0.5510989624009818,
+        "degree_assortativity": 0.46162532528411543,
+        "degree_entropy": 2.9085755989636146,
+        "joint_degree_entropy": 4.610330934751831,
+        "degree_skewness": -0.3338350506312211,
+        "degree_kurtosis": -0.7342893991829991,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1504.280193236715
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.8,
+      "invariants": {
+        "n_nodes": 207.0,
+        "n_edges": 1313.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 13.0,
+        "radius": 7.0,
+        "degeneracy": 12.0,
+        "k_core_size": 18.0,
+        "maximum_degree": 25.0,
+        "degree_variance": 24.949707111017766,
+        "global_clustering": 0.5510989624009818,
+        "degree_assortativity": 0.46162532528411543,
+        "degree_entropy": 2.9085755989636146,
+        "joint_degree_entropy": 4.610330934751831,
+        "degree_skewness": -0.3338350506312211,
+        "degree_kurtosis": -0.7342893991829991,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1504.280193236715
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.7,
+      "invariants": {
+        "n_nodes": 207.0,
+        "n_edges": 1313.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 13.0,
+        "radius": 7.0,
+        "degeneracy": 12.0,
+        "k_core_size": 18.0,
+        "maximum_degree": 25.0,
+        "degree_variance": 24.949707111017766,
+        "global_clustering": 0.5510989624009818,
+        "degree_assortativity": 0.46162532528411543,
+        "degree_entropy": 2.9085755989636146,
+        "joint_degree_entropy": 4.610330934751831,
+        "degree_skewness": -0.3338350506312211,
+        "degree_kurtosis": -0.7342893991829991,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1504.280193236715
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.6,
+      "invariants": {
+        "n_nodes": 207.0,
+        "n_edges": 1313.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 13.0,
+        "radius": 7.0,
+        "degeneracy": 12.0,
+        "k_core_size": 18.0,
+        "maximum_degree": 25.0,
+        "degree_variance": 24.949707111017766,
+        "global_clustering": 0.5510989624009818,
+        "degree_assortativity": 0.46162532528411543,
+        "degree_entropy": 2.9085755989636146,
+        "joint_degree_entropy": 4.610330934751831,
+        "degree_skewness": -0.3338350506312211,
+        "degree_kurtosis": -0.7342893991829991,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 1504.280193236715
+      }
+    }
+  ],
+  "process_perturbed": [
+    {
+      "method": "scaling",
+      "intensity": 0.5,
+      "signatures": {
+        "lag1_autocorr": 0.3829407341751943,
+        "coef_variation": 0.3118937191902597,
+        "fano_factor": 0.09727769207042987,
+        "norm_succ_diff": 0.28001590301854185,
+        "hurst_exponent": 0.443957567325496,
+        "trend_coeff": -0.08176593125576716,
+        "count_skewness": -0.2737870962037504
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 0.75,
+      "signatures": {
+        "lag1_autocorr": 0.3829407341751944,
+        "coef_variation": 0.31189371919025977,
+        "fano_factor": 0.09727769207042987,
+        "norm_succ_diff": 0.28001590301854185,
+        "hurst_exponent": 0.4439575673254975,
+        "trend_coeff": -0.0817659312557672,
+        "count_skewness": -0.27378709620374847
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 1.0,
+      "signatures": {
+        "lag1_autocorr": 0.3829407341751943,
+        "coef_variation": 0.3118937191902597,
+        "fano_factor": 0.09727769207042987,
+        "norm_succ_diff": 0.28001590301854185,
+        "hurst_exponent": 0.443957567325496,
+        "trend_coeff": -0.08176593125576716,
+        "count_skewness": -0.2737870962037504
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 1.5,
+      "signatures": {
+        "lag1_autocorr": 0.3829407341751944,
+        "coef_variation": 0.31189371919025977,
+        "fano_factor": 0.09727769207042987,
+        "norm_succ_diff": 0.28001590301854185,
+        "hurst_exponent": 0.4439575673254975,
+        "trend_coeff": -0.0817659312557672,
+        "count_skewness": -0.27378709620374847
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 2.0,
+      "signatures": {
+        "lag1_autocorr": 0.3829407341751943,
+        "coef_variation": 0.3118937191902597,
+        "fano_factor": 0.09727769207042987,
+        "norm_succ_diff": 0.28001590301854185,
+        "hurst_exponent": 0.443957567325496,
+        "trend_coeff": -0.08176593125576716,
+        "count_skewness": -0.2737870962037504
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 1.0,
+      "signatures": {
+        "lag1_autocorr": 0.3829407341751944,
+        "coef_variation": 0.3118937191905717,
+        "fano_factor": 1908.149744422205,
+        "norm_succ_diff": 0.28001590301882184,
+        "hurst_exponent": 0.4439575673254975,
+        "trend_coeff": -0.08176593125576721,
+        "count_skewness": -0.2737870962037485
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 2.0,
+      "signatures": {
+        "lag1_autocorr": 0.5456019454466252,
+        "coef_variation": 0.25954007767806997,
+        "fano_factor": 1321.1996924081848,
+        "norm_succ_diff": 0.20394188063583854,
+        "hurst_exponent": 0.4705330275090605,
+        "trend_coeff": -0.10753609206086547,
+        "count_skewness": -0.273576730668562
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 4.0,
+      "signatures": {
+        "lag1_autocorr": 0.6586834071874624,
+        "coef_variation": 0.1621709190588498,
+        "fano_factor": 516.5755522898507,
+        "norm_succ_diff": 0.11057239585199605,
+        "hurst_exponent": 0.53381202051322,
+        "trend_coeff": -0.1771085499877891,
+        "count_skewness": 0.20601088173504034
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 8.0,
+      "signatures": {
+        "lag1_autocorr": 0.7526802506113363,
+        "coef_variation": 0.07178890964336135,
+        "fano_factor": 101.3159162125821,
+        "norm_succ_diff": 0.03626917113824319,
+        "hurst_exponent": 0.6703144548192559,
+        "trend_coeff": -0.38119618037877034,
+        "count_skewness": 0.13715778698797998
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 16.0,
+      "signatures": {
+        "lag1_autocorr": 0.7608617804704453,
+        "coef_variation": 0.05604665233602151,
+        "fano_factor": 62.0098649286763,
+        "norm_succ_diff": 0.026727994468325453,
+        "hurst_exponent": 0.6952617463840142,
+        "trend_coeff": -0.4754809718172045,
+        "count_skewness": 0.1778460116685157
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.0,
+      "signatures": {
+        "lag1_autocorr": 0.0,
+        "coef_variation": 0.0,
+        "fano_factor": 0.0,
+        "norm_succ_diff": 0.0,
+        "hurst_exponent": 0.5,
+        "trend_coeff": 0.0,
+        "count_skewness": 0.0
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": -0.0539110155467018,
+        "coef_variation": 0.31526723565796055,
+        "fano_factor": 1773.4550690910876,
+        "norm_succ_diff": 0.3655901951979556,
+        "hurst_exponent": 0.5400054057884125,
+        "trend_coeff": -0.08382281683166487,
+        "count_skewness": 0.03080086035603514
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.2,
+      "signatures": {
+        "lag1_autocorr": -0.14524673390259607,
+        "coef_variation": 0.32043431626619434,
+        "fano_factor": 1991.5602102058956,
+        "norm_succ_diff": 0.37724257236260544,
+        "hurst_exponent": 0.5551485084953106,
+        "trend_coeff": 0.08192372064470355,
+        "count_skewness": -0.5272162008419465
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.35,
+      "signatures": {
+        "lag1_autocorr": -0.024247131537916567,
+        "coef_variation": 0.28403451184362544,
+        "fano_factor": 1667.4902106102666,
+        "norm_succ_diff": 0.3061111249008423,
+        "hurst_exponent": 0.49533721294915206,
+        "trend_coeff": 0.05232056264101863,
+        "count_skewness": -0.975258160887658
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.5,
+      "signatures": {
+        "lag1_autocorr": -0.08687141837421963,
+        "coef_variation": 0.30067774767424255,
+        "fano_factor": 1807.0825569774993,
+        "norm_succ_diff": 0.3481980670629781,
+        "hurst_exponent": 0.5470255643607876,
+        "trend_coeff": 0.22090734361683861,
+        "count_skewness": -0.7311647996505756
+      }
+    }
+  ],
+  "signatures_perturbed": [
+    {
+      "method": "noise",
+      "intensity": 0.01,
+      "signatures": {
+        "lag1_autocorr": 0.38264399280274686,
+        "coef_variation": 0.31054887005500675,
+        "fano_factor": 1907.4539222110736,
+        "norm_succ_diff": 0.2854002607355514,
+        "hurst_exponent": 0.4432416033097847,
+        "trend_coeff": -0.08193999980621086,
+        "count_skewness": -0.2746021583693834
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.02,
+      "signatures": {
+        "lag1_autocorr": 0.37465870039215327,
+        "coef_variation": 0.3089749285679917,
+        "fano_factor": 1913.988592246652,
+        "norm_succ_diff": 0.2724154113107701,
+        "hurst_exponent": 0.42723788458927137,
+        "trend_coeff": -0.07802476867797623,
+        "count_skewness": -0.281498749335453
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.05,
+      "signatures": {
+        "lag1_autocorr": 0.41348890180506404,
+        "coef_variation": 0.3301974832183898,
+        "fano_factor": 1941.4134071073786,
+        "norm_succ_diff": 0.28312649579801163,
+        "hurst_exponent": 0.4760417291978728,
+        "trend_coeff": -0.07699947245486301,
+        "count_skewness": -0.25936136455442244
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": 0.40963712963597326,
+        "coef_variation": 0.2939905985354775,
+        "fano_factor": 1700.4743125139698,
+        "norm_succ_diff": 0.2900808913527188,
+        "hurst_exponent": 0.50164447887982,
+        "trend_coeff": -0.07348770078044288,
+        "count_skewness": -0.22751734374320265
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.2,
+      "signatures": {
+        "lag1_autocorr": 0.2752856071851957,
+        "coef_variation": 0.4136384907548212,
+        "fano_factor": 1353.576407877113,
+        "norm_succ_diff": 0.24500592020647666,
+        "hurst_exponent": 0.4992129241223991,
+        "trend_coeff": -0.09366495598734123,
+        "count_skewness": -0.34076628197708725
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.01,
+      "signatures": {
+        "lag1_autocorr": 0.3855310917278425,
+        "coef_variation": 0.3087664371464721,
+        "fano_factor": 1896.044753779993,
+        "norm_succ_diff": 0.28115484074632685,
+        "hurst_exponent": 0.44171443768424234,
+        "trend_coeff": -0.08266674451456095,
+        "count_skewness": -0.26943741137795846
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.02,
+      "signatures": {
+        "lag1_autocorr": 0.40185797822142344,
+        "coef_variation": 0.30128505891623897,
+        "fano_factor": 1963.4711264845932,
+        "norm_succ_diff": 0.2845640704493122,
+        "hurst_exponent": 0.45081570656830783,
+        "trend_coeff": -0.08272786241455847,
+        "count_skewness": -0.26747618718144023
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.05,
+      "signatures": {
+        "lag1_autocorr": 0.3783747939489186,
+        "coef_variation": 0.2874872368272483,
+        "fano_factor": 1857.1857405525238,
+        "norm_succ_diff": 0.2814924561037789,
+        "hurst_exponent": 0.4457765225501676,
+        "trend_coeff": -0.07958001294962083,
+        "count_skewness": -0.2621764853110483
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.1,
+      "signatures": {
+        "lag1_autocorr": 0.361233858467566,
+        "coef_variation": 0.32507937637186424,
+        "fano_factor": 1962.7817491094843,
+        "norm_succ_diff": 0.27204502519171775,
+        "hurst_exponent": 0.414306170188184,
+        "trend_coeff": -0.09210846898165696,
+        "count_skewness": -0.26226799723459554
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.2,
+      "signatures": {
+        "lag1_autocorr": 0.4612463124941788,
+        "coef_variation": 0.3871185574585071,
+        "fano_factor": 1558.8899879969701,
+        "norm_succ_diff": 0.22588722721482618,
+        "hurst_exponent": 0.5647376594546177,
+        "trend_coeff": -0.0811376342716172,
+        "count_skewness": -0.258484941083955
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.95,
+      "signatures": {
+        "lag1_autocorr": 0.3829407341751944,
+        "coef_variation": 0.3118937191905717,
+        "fano_factor": 1908.149744422205,
+        "norm_succ_diff": 0.28001590301882184,
+        "hurst_exponent": 0.4439575673254975,
+        "trend_coeff": -0.08176593125576721,
+        "count_skewness": -0.2737870962037485
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.9,
+      "signatures": {
+        "lag1_autocorr": 0.3829407341751944,
+        "coef_variation": 0.3118937191905717,
+        "fano_factor": 1908.149744422205,
+        "norm_succ_diff": 0.28001590301882184,
+        "hurst_exponent": 0.4439575673254975,
+        "trend_coeff": -0.08176593125576721,
+        "count_skewness": -0.2737870962037485
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.8,
+      "signatures": {
+        "lag1_autocorr": 0.3829407341751944,
+        "coef_variation": 0.3118937191905717,
+        "fano_factor": 1908.149744422205,
+        "norm_succ_diff": 0.28001590301882184,
+        "hurst_exponent": 0.4439575673254975,
+        "trend_coeff": -0.08176593125576721,
+        "count_skewness": -0.2737870962037485
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.7,
+      "signatures": {
+        "lag1_autocorr": 0.3829407341751944,
+        "coef_variation": 0.3118937191905717,
+        "fano_factor": 1908.149744422205,
+        "norm_succ_diff": 0.28001590301882184,
+        "hurst_exponent": 0.4439575673254975,
+        "trend_coeff": -0.08176593125576721,
+        "count_skewness": -0.2737870962037485
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.6,
+      "signatures": {
+        "lag1_autocorr": 0.3829407341751944,
+        "coef_variation": 0.3118937191905717,
+        "fano_factor": 1908.149744422205,
+        "norm_succ_diff": 0.28001590301882184,
+        "hurst_exponent": 0.4439575673254975,
+        "trend_coeff": -0.08176593125576721,
+        "count_skewness": -0.2737870962037485
+      }
+    }
+  ],
+  "temporal_aggregated": [
+    {
+      "scale": "2D",
+      "events": [
+        {
+          "date": "2012-03-01",
+          "target": 45205
+        },
+        {
+          "date": "2012-03-03",
+          "target": 24297
+        },
+        {
+          "date": "2012-03-05",
+          "target": 55318
+        },
+        {
+          "date": "2012-03-07",
+          "target": 53819
+        },
+        {
+          "date": "2012-03-09",
+          "target": 32829
+        },
+        {
+          "date": "2012-03-11",
+          "target": 31895
+        },
+        {
+          "date": "2012-03-13",
+          "target": 44727
+        },
+        {
+          "date": "2012-03-15",
+          "target": 46543
+        },
+        {
+          "date": "2012-03-17",
+          "target": 31903
+        },
+        {
+          "date": "2012-03-19",
+          "target": 42863
+        },
+        {
+          "date": "2012-03-21",
+          "target": 44643
+        },
+        {
+          "date": "2012-03-23",
+          "target": 37908
+        },
+        {
+          "date": "2012-03-25",
+          "target": 30165
+        },
+        {
+          "date": "2012-03-27",
+          "target": 33666
+        },
+        {
+          "date": "2012-03-29",
+          "target": 50253
+        },
+        {
+          "date": "2012-03-31",
+          "target": 25976
+        },
+        {
+          "date": "2012-04-02",
+          "target": 43840
+        },
+        {
+          "date": "2012-04-04",
+          "target": 44778
+        },
+        {
+          "date": "2012-04-06",
+          "target": 33123
+        },
+        {
+          "date": "2012-04-08",
+          "target": 22534
+        },
+        {
+          "date": "2012-04-10",
+          "target": 55444
+        },
+        {
+          "date": "2012-04-12",
+          "target": 50138
+        },
+        {
+          "date": "2012-04-14",
+          "target": 22037
+        },
+        {
+          "date": "2012-04-16",
+          "target": 56400
+        },
+        {
+          "date": "2012-04-18",
+          "target": 48941
+        },
+        {
+          "date": "2012-04-20",
+          "target": 34229
+        },
+        {
+          "date": "2012-04-22",
+          "target": 31339
+        },
+        {
+          "date": "2012-04-24",
+          "target": 36361
+        },
+        {
+          "date": "2012-04-26",
+          "target": 50901
+        },
+        {
+          "date": "2012-04-28",
+          "target": 31399
+        },
+        {
+          "date": "2012-04-30",
+          "target": 45200
+        },
+        {
+          "date": "2012-05-02",
+          "target": 52446
+        },
+        {
+          "date": "2012-05-04",
+          "target": 35135
+        },
+        {
+          "date": "2012-05-06",
+          "target": 28993
+        },
+        {
+          "date": "2012-05-08",
+          "target": 46699
+        },
+        {
+          "date": "2012-05-10",
+          "target": 48629
+        },
+        {
+          "date": "2012-05-12",
+          "target": 23897
+        },
+        {
+          "date": "2012-05-14",
+          "target": 45203
+        },
+        {
+          "date": "2012-05-16",
+          "target": 47841
+        },
+        {
+          "date": "2012-05-18",
+          "target": 35496
+        },
+        {
+          "date": "2012-05-20",
+          "target": 30656
+        },
+        {
+          "date": "2012-05-22",
+          "target": 48590
+        },
+        {
+          "date": "2012-05-24",
+          "target": 46580
+        },
+        {
+          "date": "2012-05-26",
+          "target": 22371
+        },
+        {
+          "date": "2012-05-28",
+          "target": 31668
+        },
+        {
+          "date": "2012-05-30",
+          "target": 51154
+        },
+        {
+          "date": "2012-06-01",
+          "target": 27944
+        },
+        {
+          "date": "2012-06-03",
+          "target": 33391
+        },
+        {
+          "date": "2012-06-05",
+          "target": 45872
+        },
+        {
+          "date": "2012-06-07",
+          "target": 49952
+        },
+        {
+          "date": "2012-06-09",
+          "target": 21550
+        },
+        {
+          "date": "2012-06-11",
+          "target": 40457
+        },
+        {
+          "date": "2012-06-13",
+          "target": 45608
+        },
+        {
+          "date": "2012-06-15",
+          "target": 31837
+        },
+        {
+          "date": "2012-06-17",
+          "target": 19556
+        },
+        {
+          "date": "2012-06-19",
+          "target": 48945
+        },
+        {
+          "date": "2012-06-21",
+          "target": 44673
+        },
+        {
+          "date": "2012-06-23",
+          "target": 28272
+        },
+        {
+          "date": "2012-06-25",
+          "target": 42539
+        }
+      ]
+    },
+    {
+      "scale": "3D",
+      "events": [
+        {
+          "date": "2012-03-01",
+          "target": 58946
+        },
+        {
+          "date": "2012-03-04",
+          "target": 65874
+        },
+        {
+          "date": "2012-03-07",
+          "target": 74844
+        },
+        {
+          "date": "2012-03-10",
+          "target": 43699
+        },
+        {
+          "date": "2012-03-13",
+          "target": 69795
+        },
+        {
+          "date": "2012-03-16",
+          "target": 53378
+        },
+        {
+          "date": "2012-03-19",
+          "target": 66484
+        },
+        {
+          "date": "2012-03-22",
+          "target": 58930
+        },
+        {
+          "date": "2012-03-25",
+          "target": 41609
+        },
+        {
+          "date": "2012-03-28",
+          "target": 72475
+        },
+        {
+          "date": "2012-03-31",
+          "target": 45011
+        },
+        {
+          "date": "2012-04-03",
+          "target": 69583
+        },
+        {
+          "date": "2012-04-06",
+          "target": 41055
+        },
+        {
+          "date": "2012-04-09",
+          "target": 70046
+        },
+        {
+          "date": "2012-04-12",
+          "target": 62659
+        },
+        {
+          "date": "2012-04-15",
+          "target": 65916
+        },
+        {
+          "date": "2012-04-18",
+          "target": 70567
+        },
+        {
+          "date": "2012-04-21",
+          "target": 43942
+        },
+        {
+          "date": "2012-04-24",
+          "target": 66026
+        },
+        {
+          "date": "2012-04-27",
+          "target": 52635
+        },
+        {
+          "date": "2012-04-30",
+          "target": 72626
+        },
+        {
+          "date": "2012-05-03",
+          "target": 60155
+        },
+        {
+          "date": "2012-05-06",
+          "target": 52784
+        },
+        {
+          "date": "2012-05-09",
+          "target": 71537
+        },
+        {
+          "date": "2012-05-12",
+          "target": 44236
+        },
+        {
+          "date": "2012-05-15",
+          "target": 72705
+        },
+        {
+          "date": "2012-05-18",
+          "target": 46145
+        },
+        {
+          "date": "2012-05-21",
+          "target": 68597
+        },
+        {
+          "date": "2012-05-24",
+          "target": 61543
+        },
+        {
+          "date": "2012-05-27",
+          "target": 39076
+        },
+        {
+          "date": "2012-05-30",
+          "target": 65369
+        },
+        {
+          "date": "2012-06-02",
+          "target": 47120
+        },
+        {
+          "date": "2012-06-05",
+          "target": 73142
+        },
+        {
+          "date": "2012-06-08",
+          "target": 44232
+        },
+        {
+          "date": "2012-06-11",
+          "target": 63989
+        },
+        {
+          "date": "2012-06-14",
+          "target": 53913
+        },
+        {
+          "date": "2012-06-17",
+          "target": 44386
+        },
+        {
+          "date": "2012-06-20",
+          "target": 68788
+        },
+        {
+          "date": "2012-06-23",
+          "target": 47786
+        },
+        {
+          "date": "2012-06-26",
+          "target": 23025
+        }
+      ]
+    },
+    {
+      "scale": "7D",
+      "events": [
+        {
+          "date": "2012-03-01",
+          "target": 155215
+        },
+        {
+          "date": "2012-03-08",
+          "target": 132875
+        },
+        {
+          "date": "2012-03-15",
+          "target": 144930
+        },
+        {
+          "date": "2012-03-22",
+          "target": 122761
+        },
+        {
+          "date": "2012-03-29",
+          "target": 143103
+        },
+        {
+          "date": "2012-04-05",
+          "target": 132845
+        },
+        {
+          "date": "2012-04-12",
+          "target": 151835
+        },
+        {
+          "date": "2012-04-19",
+          "target": 127610
+        },
+        {
+          "date": "2012-04-26",
+          "target": 154926
+        },
+        {
+          "date": "2012-05-03",
+          "target": 135847
+        },
+        {
+          "date": "2012-05-10",
+          "target": 140755
+        },
+        {
+          "date": "2012-05-17",
+          "target": 139557
+        },
+        {
+          "date": "2012-05-24",
+          "target": 124511
+        },
+        {
+          "date": "2012-05-31",
+          "target": 134469
+        },
+        {
+          "date": "2012-06-07",
+          "target": 135491
+        },
+        {
+          "date": "2012-06-14",
+          "target": 122414
+        },
+        {
+          "date": "2012-06-21",
+          "target": 115484
+        }
+      ]
+    },
+    {
+      "scale": "14D",
+      "events": [
+        {
+          "date": "2012-03-01",
+          "target": 288090
+        },
+        {
+          "date": "2012-03-15",
+          "target": 267691
+        },
+        {
+          "date": "2012-03-29",
+          "target": 275948
+        },
+        {
+          "date": "2012-04-12",
+          "target": 279445
+        },
+        {
+          "date": "2012-04-26",
+          "target": 290773
+        },
+        {
+          "date": "2012-05-10",
+          "target": 280312
+        },
+        {
+          "date": "2012-05-24",
+          "target": 258980
+        },
+        {
+          "date": "2012-06-07",
+          "target": 257905
+        },
+        {
+          "date": "2012-06-21",
+          "target": 115484
+        }
+      ]
+    },
+    {
+      "scale": "30D",
+      "events": [
+        {
+          "date": "2012-03-01",
+          "target": 606034
+        },
+        {
+          "date": "2012-03-31",
+          "target": 587440
+        },
+        {
+          "date": "2012-04-30",
+          "target": 589404
+        },
+        {
+          "date": "2012-05-30",
+          "target": 531750
+        }
+      ]
+    }
+  ]
+}

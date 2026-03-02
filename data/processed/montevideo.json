@@ -15,131 +15,141 @@
     "degree_entropy": 0.3606306197615379,
     "joint_degree_entropy": 0.6955851595890644,
     "degree_skewness": 2.3645724369854,
+    "degree_kurtosis": 14.389674842992562,
     "normalized_laplacian_second_moment": 1.4888065843621399,
     "normalized_laplacian_third_moment": 2.4647839506172837,
     "random_walk_triangle_weight": 0.0016358024691358023,
     "random_walk_fourth_moment": 0.3623225308641975,
     "adjacency_fourth_moment_per_node": 6.554074074074074
   },
+  "signatures": {
+    "lag1_autocorr": 0.18372965587199042,
+    "coef_variation": 0.35968127814181916,
+    "fano_factor": 21.09172371491608,
+    "norm_succ_diff": 0.38875062570942875,
+    "hurst_exponent": 0.431963179765925,
+    "trend_coeff": -0.04919598507550271,
+    "count_skewness": -0.5808120547935363
+  },
   "events": [
     {
-      "day": "2020-01-01",
+      "day": 0,
       "target": 188
     },
     {
-      "day": "2020-01-02",
+      "day": 1,
       "target": 206
     },
     {
-      "day": "2020-01-03",
+      "day": 2,
       "target": 116
     },
     {
-      "day": "2020-01-04",
+      "day": 3,
       "target": 52
     },
     {
-      "day": "2020-01-05",
+      "day": 4,
       "target": 168
     },
     {
-      "day": "2020-01-06",
+      "day": 5,
       "target": 256
     },
     {
-      "day": "2020-01-07",
+      "day": 6,
       "target": 197
     },
     {
-      "day": "2020-01-08",
+      "day": 7,
       "target": 209
     },
     {
-      "day": "2020-01-09",
+      "day": 8,
       "target": 240
     },
     {
-      "day": "2020-01-10",
+      "day": 9,
       "target": 138
     },
     {
-      "day": "2020-01-11",
+      "day": 10,
       "target": 54
     },
     {
-      "day": "2020-01-12",
+      "day": 11,
       "target": 104
     },
     {
-      "day": "2020-01-13",
+      "day": 12,
       "target": 217
     },
     {
-      "day": "2020-01-14",
+      "day": 13,
       "target": 206
     },
     {
-      "day": "2020-01-15",
+      "day": 14,
       "target": 184
     },
     {
-      "day": "2020-01-16",
+      "day": 15,
       "target": 232
     },
     {
-      "day": "2020-01-17",
+      "day": 16,
       "target": 108
     },
     {
-      "day": "2020-01-18",
+      "day": 17,
       "target": 64
     },
     {
-      "day": "2020-01-19",
+      "day": 18,
       "target": 193
     },
     {
-      "day": "2020-01-20",
+      "day": 19,
       "target": 145
     },
     {
-      "day": "2020-01-21",
+      "day": 20,
       "target": 209
     },
     {
-      "day": "2020-01-22",
+      "day": 21,
       "target": 121
     },
     {
-      "day": "2020-01-23",
+      "day": 22,
       "target": 217
     },
     {
-      "day": "2020-01-24",
+      "day": 23,
       "target": 116
     },
     {
-      "day": "2020-01-25",
+      "day": 24,
       "target": 46
     },
     {
-      "day": "2020-01-26",
+      "day": 25,
       "target": 166
     },
     {
-      "day": "2020-01-27",
+      "day": 26,
       "target": 181
     },
     {
-      "day": "2020-01-28",
+      "day": 27,
       "target": 174
     },
     {
-      "day": "2020-01-29",
+      "day": 28,
       "target": 194
     },
     {
-      "day": "2020-01-30",
+      "day": 29,
       "target": 190
     }
   ]

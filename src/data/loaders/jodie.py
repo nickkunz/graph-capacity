@@ -1,0 +1,95 @@
+## libraries
+import sys
+import pandas as pd
+from pathlib import Path
+from torch_geometric.datasets import JODIEDataset
+from typing import Optional, Dict, Any
+
+## path
+root = Path(__file__).resolve().parents[3]
+if str(root) not in sys.path:
+    sys.path.insert(0, str(root))
+
+## modules
+from src.vectorizers.invariants import GraphInvariants
+from src.vectorizers.signatures import ProcessSignatures
+from src.data.helpers import (
+    _create_igraph_object,
+    _load_network_pyg,
+    _build_network_pyg
+)
+
+## load jodie wikipedia events from raw data
+def load_events_jodie(data: JODIEDataset) -> pd.DataFrame:
+    data = data[0]
+    return pd.DataFrame({
+        'src': data.src.numpy(),
+        'dst': data.dst.numpy(),
+        'timestamp': data.t.numpy()
+    })
+
+## process jodie wikipedia events
+def process_events_jodie(data: pd.DataFrame) -> pd.DataFrame:
+    data['day'] = (data['timestamp'] // 86400)
+    return data.groupby('day').agg(
+        target=('day', 'size')
+    ).reset_index()
+
+## jodie network
+class JodieProcessor:
+    def __init__(self, root_path: str, name: str):
+        self.root_path = root_path
+        self.name = name
+        self.data_raw: Optional[JODIEDataset] = None
+        self.graph = None
+        self.invariants: Optional[Dict[str, Any]] = None
+        self.signatures: Optional[Dict[str, Any]] = None
+        self.events: Optional[pd.DataFrame] = None
+
+    def load_data(self):
+        """ Loads the raw data from source. """
+        self.data_raw = _load_network_pyg(
+            dataset = "JODIEDataset",
+            root = self.root_path,
+            name = self.name
+        )
+        return self
+
+    def process_network(self):
+        """ Builds the network and computes invariants. """
+        if self.data_raw is None:
+            self.load_data()
+        nodes, edges = _build_network_pyg(data = self.data_raw)
+        self.graph = _create_igraph_object(nodes = nodes, edges = edges)
+        self.invariants = GraphInvariants(graph = self.graph).all()
+        return self
+
+    def process_events(self):
+        """ Processes the event data. """
+        if self.data_raw is None:
+            self.load_data()
+        events = load_events_jodie(data = self.data_raw)
+        self.events = process_events_jodie(data = events)
+        return self
+
+    def process_signatures(self):
+        """Computes process signatures over daily interaction counts."""
+        if self.events is None:
+            self.process_events()
+        self.signatures = ProcessSignatures(
+            data = self.events.copy(),
+            sort_by = ["day"],
+            target = "target"
+        ).all()
+        return self
+
+    def run(self):
+        """ Executes the pipeline and returns the final result. """
+        self.process_network()
+        self.process_signatures()
+        self.process_events()
+        return {
+            "invariants": self.invariants,
+            "signatures": self.signatures,
+            "events": self.events.to_dict(orient = "records")
+        }

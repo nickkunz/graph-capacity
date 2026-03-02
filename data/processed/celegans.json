@@ -15,11 +15,21 @@
     "degree_entropy": 0.632715071169784,
     "joint_degree_entropy": 0.8867896876706334,
     "degree_skewness": -0.23980215420884782,
+    "degree_kurtosis": 2.3811973452297615,
     "normalized_laplacian_second_moment": 1.5125000000000002,
     "normalized_laplacian_third_moment": 2.5375,
     "random_walk_triangle_weight": 0.0,
     "random_walk_fourth_moment": 0.39131944444444444,
     "adjacency_fourth_moment_per_node": 6.05
+  },
+  "signatures": {
+    "lag1_autocorr": 0.355026455026455,
+    "coef_variation": 0.8110788731013264,
+    "fano_factor": 1.4253393665151795,
+    "norm_succ_diff": 0.6244343891399834,
+    "hurst_exponent": 0.5453506962969071,
+    "trend_coeff": -0.5486324744482994,
+    "count_skewness": 1.9722797038923956
   },
   "events": [
     {
