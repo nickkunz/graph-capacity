@@ -14,6 +14,7 @@ if str(root) not in sys.path:
 
 ## modules
 from src.data.processors import json_processor
+from src.data.perturbers import json_perturber
 
 ## logging
 logging.basicConfig(
@@ -297,8 +298,8 @@ def data_builder(path_proc, path_data):
         None: The function saves the main table to disk and does not return any value.
     
     Raises:
-        FileNotFoundError: If the processed JSON directory does not exist or contains no JSON files.
-        ValueError: If no valid data is processed from the JSON files resulting in an empty.
+        FileNotFoundError: Processed JSON directory does not exist or no files.
+        ValueError: No valid data from JSON files resulting in an empty main table.
     """
     
     data_list = list()
@@ -350,6 +351,15 @@ if __name__ == '__main__':
     except Exception as e:
         logging.warning(f"Failed to run processor: {e}.")
         logging.info("Continuing to create main table from existing processed data...")
+
+    ## run perturbation pipeline to create perturbed json payloads
+    try:
+        logging.info("Running data perturber...")
+        json_perturber()
+        logging.info("Data perturber completed.")
+    except Exception as e:
+        logging.warning(f"Failed to run perturber: {e}.")
+        logging.info("Continuing to create main table from existing data...")
 
     ## run main data builder that reads the json files and writes them to disk 
     try:
