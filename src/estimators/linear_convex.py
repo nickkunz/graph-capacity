@@ -3,9 +3,12 @@ import numpy as np
 from sklearn.base import BaseEstimator, RegressorMixin
 from sklearn.linear_model import QuantileRegressor
 
+## modules
+from src.estimators.config import ASYMMETRY_C, ASYMMETRY_R
+
 ## convex hull sklearn regressors
 class LinearConvex(BaseEstimator):
-    def __init__(self, quantile_c = 0.99, quantile_r = 0.5, alpha = 0.1, beta = None):
+    def __init__(self, quantile_c = ASYMMETRY_C, quantile_r = ASYMMETRY_R, alpha = 0.1, beta = None):
         self.estimator_c = BaseConvex(quantile = quantile_c, alpha = alpha, beta = beta)
         self.estimator_r = BaseConvex(quantile = quantile_r, alpha = alpha, beta = beta)
 

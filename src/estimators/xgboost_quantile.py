@@ -2,9 +2,12 @@
 from sklearn.base import BaseEstimator
 import xgboost as xgb
 
+## modules
+from src.estimators.config import ASYMMETRY_C, ASYMMETRY_R
+
 ## xgboost sklearn regressors
 class XGBoostQuantile(BaseEstimator):
-    def __init__(self, quantile_c = 0.99, quantile_r = 0.5, **kwargs):
+    def __init__(self, quantile_c = ASYMMETRY_C, quantile_r = ASYMMETRY_R, **kwargs):
         self.quantile_c = quantile_c
         self.quantile_r = quantile_r
         self.kwargs = kwargs

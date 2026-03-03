@@ -2,9 +2,12 @@
 import numpy as np
 from sklearn.base import BaseEstimator, RegressorMixin
 
+## modules
+from src.estimators.config import ASYMMETRY_C, ASYMMETRY_R
+
 ## laws regression sklearn regressors
 class LinearLAWS(BaseEstimator):
-    def __init__(self, tau_c = 0.95, tau_r = 0.5, alpha_c = 0.5, alpha_r = 0.1, max_iter = 1000, tol = 0.0001):
+    def __init__(self, tau_c = ASYMMETRY_C, tau_r = ASYMMETRY_R, alpha_c = 0.5, alpha_r = 0.1, max_iter = 1000, tol = 0.0001):
         self.tau_c = tau_c
         self.tau_r = tau_r
         self.alpha_c = alpha_c

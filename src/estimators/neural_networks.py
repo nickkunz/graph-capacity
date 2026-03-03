@@ -6,10 +6,12 @@ import torch.optim as optim
 import numpy as np
 from sklearn.base import BaseEstimator, RegressorMixin
 
+## modules
+from src.estimators.config import ASYMMETRY_C, ASYMMETRY_R
 
 ## neural network sklearn regressors
 class NeuralQuantile:
-    def __init__(self, quantile_c = 0.99, quantile_r = 0.5, input_dims = None, **kwargs):
+    def __init__(self, quantile_c = ASYMMETRY_C, quantile_r = ASYMMETRY_R, input_dims = None, **kwargs):
         self.estimator_c = NeuralBase(
             net_cls = QuantileNet,
             loss_fn = quantile_loss,
@@ -26,7 +28,7 @@ class NeuralQuantile:
         )
 
 class NeuralExpectile:
-    def __init__(self, quantile_c = 0.99, quantile_r = 0.5, input_dims = None, **kwargs):
+    def __init__(self, quantile_c = ASYMMETRY_C, quantile_r = ASYMMETRY_R, input_dims = None, **kwargs):
         self.estimator_c = NeuralBase(
             net_cls = ExpectileNet,
             loss_fn = expectile_loss,
@@ -43,7 +45,7 @@ class NeuralExpectile:
         )
 
 class NeuralConvex:
-    def __init__(self, quantile_c = 0.99, quantile_r = 0.5, input_dims = None, **kwargs):
+    def __init__(self, quantile_c = ASYMMETRY_C, quantile_r = ASYMMETRY_R, input_dims = None, **kwargs):
         self.estimator_c = NeuralBase(
             net_cls = ConvexNet,
             loss_fn = quantile_loss,
