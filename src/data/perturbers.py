@@ -157,6 +157,7 @@ SIGNATURE_METHODS = {
 ## ----------------------
 TEMPORAL_SCALES = ('2D', '7D', '14D', '30D', '60D')
 
+
 ## helper functions
 def _is_fully_connected_bipartite(graph: Any) -> bool:
     """Check if a graph is a fully connected bipartite graph."""
@@ -439,16 +440,16 @@ def json_perturber():
         logging.info(f"Bitcoin perturbations already exist at {bitcoin_path}. Skipping.")
 
     ## --- amazon reviews --- ##
-    # amazon_path = os.path.join(PATH_PERT, f"{NAME_AMAZON}.json")
-    # if not os.path.exists(amazon_path):
-    #     logging.info("Perturbing Amazon data...")
-    #     proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
-    #     proc.run()
-    #     data = _execute_perturbations(proc = proc, name = NAME_AMAZON)
-    #     _save_to_json(data = data, path = amazon_path)
-    #     logging.info(f"Amazon perturbations saved to {amazon_path}")
-    # else:
-    #     logging.info(f"Amazon perturbations already exist at {amazon_path}. Skipping.")
+    amazon_path = os.path.join(PATH_PERT, f"{NAME_AMAZON}.json")
+    if not os.path.exists(amazon_path):
+        logging.info("Perturbing Amazon data...")
+        proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
+        proc.run()
+        data = _execute_perturbations(proc = proc, name = NAME_AMAZON)
+        _save_to_json(data = data, path = amazon_path)
+        logging.info(f"Amazon perturbations saved to {amazon_path}")
+    else:
+        logging.info(f"Amazon perturbations already exist at {amazon_path}. Skipping.")
 
     ## --- world bank --- ##
     world_path = os.path.join(PATH_PERT, f"{NAME_WORLD}.json")
