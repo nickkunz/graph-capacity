@@ -1,3 +1,5 @@
 ## constants
 ASYMMETRY_C = 0.99
 ASYMMETRY_R = 0.5
+ALPHA_C = 0.5
+ALPHA_R = 0.1
