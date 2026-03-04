@@ -1,13 +1,13 @@
-## logging
-import logging
-logger = logging.getLogger(__name__)
-
 ## libraries
+import logging
 import numpy as np
 import pandas as pd
 
 ## modules
 from src.data.helpers import _force_finite
+
+## logging
+logger = logging.getLogger(__name__)
 
 ## process signatures class
 class ProcessSignatures:
