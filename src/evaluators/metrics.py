@@ -8,7 +8,7 @@ from scipy.stats import spearmanr, kendalltau, pearsonr
 
 ## violation rate
 def _violation_rate(y_true: np.ndarray, y_pred: np.ndarray) -> float:
-    
+
     """ Fraction of points that violate the frontier. """
 
     ## compute violation: true above frontier
@@ -88,7 +88,6 @@ def frontier_metrics(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12)
         eps = eps,
     )
     return metrics
-
 
 ## pearson correlation
 def _pearson_r(y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -177,9 +176,8 @@ def consensus_metrics(y_true: np.ndarray, y_pred: np.ndarray, p: float = 0.9) ->
         "rbo": _rank_biased_overlap(y_true, y_pred, p = p)
     }
 
-
 ## compute structural index via pca
-def compute_kappa(K_vect, y_pred = None):
+def compute_kappa(K_vect: np.ndarray, y_pred: np.ndarray | None = None) -> np.ndarray:
 
     """ Compute the structural index kappa via PCA on the standardized graph invariants.
     If y_pred is provided, the sign of kappa is adjusted to match the correlation. """
@@ -198,7 +196,7 @@ def compute_kappa(K_vect, y_pred = None):
     return kappa
 
 ## monotonic index for joint frontier
-def monotonic_index(kappa, y_pred):
+def monotonic_index(kappa: np.ndarray, y_pred: np.ndarray) -> float:
 
     """ Monotonicity index that evaluates the agreement of the predicted frontier 
     with the structural ordering. Higher is better. """
@@ -222,7 +220,7 @@ def monotonic_index(kappa, y_pred):
     return float(agree / total) if total > 0 else np.nan
 
 ## structural violation magnitude
-def violation_magnitude(kappa, y_pred):
+def violation_magnitude(kappa: np.ndarray, y_pred: np.ndarray) -> float:
 
     """ Structural violation magnitude that evaluates the degree of violation 
     of the predicted frontier with the structural ordering. Lower is better. """
@@ -246,7 +244,7 @@ def violation_magnitude(kappa, y_pred):
     return float(violation / total) if total > 0 else np.nan
 
 ## structural association 
-def structural_association(kappa, y_pred):
+def structural_association(kappa: np.ndarray, y_pred: np.ndarray) -> dict:
 
     """ Structural association metrics between structural index and frontier.
     Returns Spearman (monotonicity), Kendall (ordering), and Rank R^2 (strength). """
@@ -292,54 +290,3 @@ def structural_ordering(kappa: np.ndarray, y_pred: np.ndarray) -> dict:
     results.update(structural_association(kappa, y_pred))
 
     return results
-
-
-# ## isotonic feasibility consistency
-# def isotonic_feasibility(kappa, y_pred, y_true):
-
-#     """ Isotonic feasibility consistency that evaluates the agreement of the 
-#     predicted frontier with the structural ordering. Higher is better. """
-
-#     kappa = np.asarray(kappa)
-#     y_pred = np.asarray(y_pred)
-#     y_true = np.asarray(y_true)
-
-#     ## feasible region
-#     mask = y_true <= y_pred
-
-#     k_f = kappa[mask]
-#     f_f = y_pred[mask]
-
-#     n = len(k_f)
-#     if n < 2:
-#         return {
-#             "isotonic_feasibility_score": np.nan,
-#             "isotonic_distortion": np.nan,
-#             "feasible_points": int(n)
-#         }
-
-#     ## sort by structural index
-#     order = np.argsort(k_f)
-#     k_sorted = k_f[order]
-#     f_sorted = f_f[order]
-
-#     ## isotonic projection
-#     iso = IsotonicRegression(increasing=True)
-#     f_iso = iso.fit_transform(k_sorted, f_sorted)
-
-#     ## measure distortion
-#     distortion = np.mean(np.abs(f_sorted - f_iso))
-
-#     ## convert to score (higher = better)
-#     scale = np.std(f_sorted)
-#     if scale == 0:
-#         score = 1.0
-#     else:
-#         score = 1 - distortion / scale
-#         score = max(0.0, min(1.0, score))
-
-#     return {
-#         "isotonic_feasibility_score": float(score),
-#         "isotonic_distortion": float(distortion),
-#         "feasible_points": int(n)
-#     }
