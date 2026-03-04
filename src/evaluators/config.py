@@ -7,7 +7,7 @@ from src.estimators.linear_quantile import LinearQuantile
 from src.estimators.linear_laws import LinearLAWS
 from src.estimators.linear_convex import LinearConvex
 from src.estimators.forest_quantile import ForestQuantile
-from src.estimators.boosting_quantile import BoostingQuantile
+from src.estimators.gradient_quantile import BoostingQuantile
 from src.estimators.xgboost_quantile import XGBoostQuantile
 from src.estimators.neural_networks import (
     NeuralQuantile,
