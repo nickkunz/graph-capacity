@@ -15,8 +15,9 @@ def fit_predict_frontier(
     feat_z: list[str],
     estimator_c,
     estimator_r,
-    target: str = "target"
-	) -> np.ndarray:
+    target: str = "target",
+    random_state: int | None = None
+	) -> tuple[np.ndarray, object, object]:
 
     """
     Desc:
@@ -41,6 +42,7 @@ def fit_predict_frontier(
         estimator_c: A scikit-learn compatible estimator for modeling C.
         estimator_r: A scikit-learn compatible estimator for modeling R.
         target: The name of the target variable column in `data` (default is "target").
+        random_state: Optional random state forwarded to the cloned estimators (default is None).
     
     Returns:
         y_pred: A numpy array of predicted log target values based on the frontier model.
@@ -69,6 +71,12 @@ def fit_predict_frontier(
     model_c = clone(estimator_c)
     model_r = clone(estimator_r)
 
+    ## set random random_state on estimators if supported
+    if random_state is not None:
+        for m in (model_c, model_r):
+            if hasattr(m, "random_state"):
+                m.set_params(random_state = random_state)
+
 	## train C on graph invariants
     model_c.fit(X_scaled, y_star)
     c_hat = model_c.predict(X_scaled).astype(float)
@@ -84,4 +92,3 @@ def fit_predict_frontier(
     ## final prediction: y* = log C + log R + epsilon
     y_pred = (c_hat + r_hat).astype(float)
     return y_pred, model_c, model_r
-
