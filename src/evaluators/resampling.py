@@ -451,6 +451,6 @@ def kfold_cross_valid(
 
         ## compute frontier metrics for this fold
         frontier = frontier_metrics(y_true = y_true, y_pred = y_pred)
-        frontier_results.append({"fold": fold_idx, **frontier})
+        frontier_results.append(frontier)
 
     return pd.DataFrame(frontier_results), y_pred_test
