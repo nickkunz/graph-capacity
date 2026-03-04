@@ -264,7 +264,7 @@ def _load_events_zip(url: str, name: str, timeout: int = 30) -> pd.DataFrame:
             elif final.endswith('.json'):
                 data = json.load(fp = file_final)
             else:
-                raise ValueError(f"Unsupported file type: {final}. Only .csv and .json are supported.")
+                raise ValueError(f"Unsupported file type: {final}. .csv and .json only.")
 
         ## check for empty data
         if isinstance(data, pd.DataFrame) and data.empty:
@@ -371,26 +371,16 @@ def _to_datetime(values: pd.Series | None) -> pd.Series | None:
 # -----------------------------------------------------------------------------
 
 ## constants
-PERT_TYPE = [
-    ('network_perturbed', 'network', 'invariants', 'net'),
-    ('invariants_perturbed', 'invariants', 'invariants', 'inv'),
-    ('process_perturbed', 'process', 'signatures', 'proc'),
-    ('signatures_perturbed', 'signature', 'signatures', 'sig'),
-    ('temporal_aggregated', 'temporal', 'events', 'tmp'),
-]
-PERT_JSON_BY_TYPE = {
-    type: json_key for json_key, type, _, _ in PERT_TYPE
-}
 PATH_PERT = config['paths']['PATH_PERT'].strip('"')
+PERT_SPECS = [
+    {"key": "network_perturbed",    "type": "network",    "feat": "invariants"},
+    {"key": "invariants_perturbed", "type": "invariants", "feat": "invariants"},
+    {"key": "process_perturbed",    "type": "process",    "feat": "signatures"},
+    {"key": "signatures_perturbed", "type": "signature",  "feat": "signatures"},
+    {"key": "temporal_aggregated",  "type": "temporal",   "feat": "events"},
+]
 
-## prefix feature keys in a dictionary with a given prefix
-def _prefix_features(features: dict, prefix: str) -> dict:
-    """ Add a prefix to each key in the features dictionary. """
-
-    ## ensure features is a dictionary
-    return {f"{prefix}__{k}": v for k, v in features.items()}
-
-## collect perturbated data from json files
+## collect perturbed data from json files
 def _index_perturbs(pert_path: str) -> dict:
     """ Iterate over all perturbation json files and extract features into an index. """
 
@@ -403,7 +393,8 @@ def _index_perturbs(pert_path: str) -> dict:
             data = json.load(f)
 
         ## iterate over defined perturbation types and extract features into index
-        for json_key, type, feat_key, prefix in PERT_TYPE:
+        for spec in PERT_SPECS:
+            json_key, pert_type, feat_key = spec["key"], spec["type"], spec["feat"]
             for rec in data.get(json_key, []):
                 
                 ## support for both intensity or param field
@@ -411,50 +402,61 @@ def _index_perturbs(pert_path: str) -> dict:
                 method = rec.get("method")
 
                 ## temporal aggregation: method is always "aggregation", intensity is the scale
-                if type == "temporal":
+                if pert_type == "temporal":
                     method = "aggregation"
                     intensity = rec.get("scale")
 
-                key = (type, method, intensity)
-                if key not in index:
-                    index[key] = dict()
+                idx_key = (pert_type, method, intensity)
+                if idx_key not in index:
+                    index[idx_key] = dict()
 
-                ## create observation with dataset name and prefixed features
+                ## create observation with dataset name and features
                 obs = {"dataset": data_name}
 
                 ## temporal aggregation: compute signatures from events list
-                if type == "temporal" and isinstance(rec.get("events"), list):
+                if pert_type == "temporal" and isinstance(rec.get("events"), list):
                     events_df = pd.DataFrame(rec["events"])
                     if "target" in events_df.columns and len(events_df) >= 2:
                         from src.vectorizers.signatures import ProcessSignatures
                         events_df["idx"] = range(len(events_df))
-                        sigs = ProcessSignatures(events_df, sort_by = ["idx"], target = "target")
-                        obs.update(_prefix_features(sigs.all(), prefix))
+                        sigs = ProcessSignatures(
+                            data = events_df, 
+                            sort_by = ["idx"], 
+                            target = "target"
+                        )
+                        obs.update(sigs.all())
+                        obs["target"] = int(events_df["target"].max())
                 else:
                     feat_val = rec.get(feat_key, dict()) if feat_key is not None else dict()
                     if isinstance(feat_val, dict):
-                        obs.update(_prefix_features(feat_val, prefix))
-                index[key][data_name] = obs
+                        obs.update(feat_val)
+                index[idx_key][data_name] = obs
     return index
 
 ## create perturbation data from indexed perturbation data
-def load_perturbs(pert_path: str | None = None, schema: str = "tuple") -> dict:
-    """ Create perturbation tables indexed by tuple or payload schema. """
+def load_perturbs(pert_path: str | None = None, schema: str = "payload") -> dict:
+    """ Create perturbation tables indexed by payload or tuple schema. """
 
     ## fallback to default path if not provided
     if pert_path is None:
         pert_path = os.path.join(root, PATH_PERT)
 
+    ## deterministic sort for mixed key types
+    def _sort_key(key: tuple) -> tuple[str, str, str]:
+        return tuple(str(v) for v in key)
+
     ## build tables from indexed perturbation data
     data_dict = dict()
     index = _index_perturbs(pert_path)
-    for key in sorted(index.keys()):
-        type, method, intensity = key
+    for key in sorted(index.keys(), key = _sort_key):
+        pert_type, method, intensity = key
         data = pd.DataFrame(list(index[key].values()))
         data = data.sort_values("dataset").reset_index(drop = True)
+        data.insert(1, "method", method)
+        data.insert(2, "intensity", intensity)
         data_dict[key] = data
         logger.info(
-            f"Table ({type}, {method}, {intensity}): "
+            f"Table ({pert_type}, {method}, {intensity}): "
             f"{len(data)} datasets"
         )
 
@@ -463,11 +465,14 @@ def load_perturbs(pert_path: str | None = None, schema: str = "tuple") -> dict:
         logger.info(f"Created {len(data_dict)} perturbation tables from {pert_path}")
         return data_dict
 
+    ## lookup: pert_type -> json_key
+    _type_to_key = {spec["type"]: spec["key"] for spec in PERT_SPECS}
+
     ## payload schema: {json_key: {method: {intensity: DataFrame}}}
     if schema == "payload":
         payload_dict = dict()
-        for (type, method, intensity), data in data_dict.items():
-            json_key = PERT_JSON_BY_TYPE.get(type, type)
+        for (pert_type, method, intensity), data in data_dict.items():
+            json_key = _type_to_key.get(pert_type, pert_type)
             if json_key not in payload_dict:
                 payload_dict[json_key] = dict()
             if method not in payload_dict[json_key]:
