@@ -302,6 +302,11 @@ def data_builder(path_proc, path_data):
         ValueError: No valid data from JSON files resulting in an empty main table.
     """
     
+    ## check if main table already exists
+    if os.path.exists(path_data):
+        logging.info(f"Main table already exists at {path_data}. Skipping.")
+        return
+
     data_list = list()
     invariant_order = list()
     signature_order = list()
