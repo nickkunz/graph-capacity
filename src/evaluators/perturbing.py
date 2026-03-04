@@ -455,7 +455,7 @@ def process_perturb(
     counts: np.ndarray,
     method: str = "scaling",
     param: float = 1.0,
-) -> dict:
+    ) -> dict:
     """
     Desc:
         Modifies process signatures by perturbing the underlying count process.
@@ -475,12 +475,9 @@ def process_perturb(
     ## copy counts to avoid modifying original
     S_new = counts.copy().astype(float)
 
-    ## intensity scaling with mean-normalization for comparability
+    ## power-law scaling to reshape the intensity distribution
     if method == "scaling":
-        S_new = S_new * float(param)
-        mean_val = float(np.mean(S_new))
-        if mean_val > 0:
-            S_new = S_new / mean_val
+        S_new = np.power(np.maximum(S_new, 0) + 1, float(param)) - 1
 
     ## rolling average smoothing to reduce noise (param = window size)
     elif method == "smoothing":
