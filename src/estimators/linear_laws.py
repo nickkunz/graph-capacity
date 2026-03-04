@@ -1,26 +1,59 @@
 ## libraries
 import numpy as np
+from numpy.typing import ArrayLike, NDArray
 from sklearn.base import BaseEstimator, RegressorMixin
 
 ## modules
-from src.estimators.config import ASYMMETRY_C, ASYMMETRY_R
+from src.estimators.config import (
+    ASYMMETRY_C,
+    ASYMMETRY_R,
+    ALPHA_C,
+    ALPHA_R
+)
 
 ## laws regression sklearn regressors
 class LinearLAWS(BaseEstimator):
-    def __init__(self, tau_c = ASYMMETRY_C, tau_r = ASYMMETRY_R, alpha_c = 0.5, alpha_r = 0.1, max_iter = 1000, tol = 0.0001):
+    def __init__(self, 
+        tau_c: float = ASYMMETRY_C,
+        tau_r: float = ASYMMETRY_R, 
+        alpha_c: float = ALPHA_C, 
+        alpha_r: float = ALPHA_R, 
+        max_iter: int = 1000,
+        tol: float = 0.0001
+        ) -> None:
+
         self.tau_c = tau_c
         self.tau_r = tau_r
         self.alpha_c = alpha_c
         self.alpha_r = alpha_r
         self.max_iter = max_iter
         self.tol = tol
-        self.estimator_c = BaseLAWS(tau = tau_c, alpha = alpha_c, fit_intercept = True, max_iter = max_iter, tol = tol)
-        self.estimator_r = BaseLAWS(tau = tau_r, alpha = alpha_r, fit_intercept = False, max_iter = max_iter, tol = tol)
+        self.estimator_c = BaseLAWS(
+            tau = tau_c, 
+            alpha = alpha_c,
+            fit_intercept = True,
+            max_iter = max_iter,
+            tol = tol
+        )
+        self.estimator_r = BaseLAWS(
+            tau = tau_r, 
+            alpha = alpha_r, 
+            fit_intercept = False, 
+            max_iter = max_iter, 
+            tol = tol
+        )
 
 ## laws regression sklearn framework
 class BaseLAWS(BaseEstimator, RegressorMixin):
 
-    def __init__(self, tau, alpha, fit_intercept, max_iter, tol):
+    def __init__(
+        self,
+        tau: float,
+        alpha: float,
+        fit_intercept: bool,
+        max_iter: int,
+        tol: float
+        ) -> None:
         self.tau = tau
         self.alpha = alpha
         self.fit_intercept = fit_intercept
@@ -28,7 +61,7 @@ class BaseLAWS(BaseEstimator, RegressorMixin):
         self.tol = tol
 
     ## sklearn fit interface
-    def fit(self, X, y):
+    def fit(self, X: ArrayLike, y: ArrayLike) -> "BaseLAWS":
 
         X = np.asarray(X, dtype = np.float64)
         y = np.asarray(y, dtype = np.float64).reshape(-1)
@@ -97,6 +130,6 @@ class BaseLAWS(BaseEstimator, RegressorMixin):
         return self
 
     ## sklearn predict interface
-    def predict(self, X):
+    def predict(self, X: ArrayLike) -> NDArray[np.float64]:
         X = np.asarray(X, dtype = np.float64)
         return X @ self.coef_ + self.intercept_
