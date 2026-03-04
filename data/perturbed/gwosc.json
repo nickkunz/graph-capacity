@@ -29,7 +29,7 @@
     },
     {
       "method": "rewire",
-      "intensity": 0.03,
+      "intensity": 0.05,
       "invariants": {
         "n_nodes": 5,
         "n_edges": 10,
@@ -83,7 +83,88 @@
     },
     {
       "method": "rewire",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 5,
+        "n_edges": 10,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 4,
+        "k_core_size": 5,
+        "maximum_degree": 4,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.25,
+        "normalized_laplacian_third_moment": 1.5625,
+        "random_walk_triangle_weight": 0.1875,
+        "random_walk_fourth_moment": 0.203125,
+        "adjacency_fourth_moment_per_node": 52.0
+      }
+    },
+    {
+      "method": "rewire",
       "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 5,
+        "n_edges": 10,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 4,
+        "k_core_size": 5,
+        "maximum_degree": 4,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.25,
+        "normalized_laplacian_third_moment": 1.5625,
+        "random_walk_triangle_weight": 0.1875,
+        "random_walk_fourth_moment": 0.203125,
+        "adjacency_fourth_moment_per_node": 52.0
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 5,
+        "n_edges": 10,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 4,
+        "k_core_size": 5,
+        "maximum_degree": 4,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.25,
+        "normalized_laplacian_third_moment": 1.5625,
+        "random_walk_triangle_weight": 0.1875,
+        "random_walk_fourth_moment": 0.203125,
+        "adjacency_fourth_moment_per_node": 52.0
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.3,
       "invariants": {
         "n_nodes": 5,
         "n_edges": 10,
@@ -136,6 +217,60 @@
       }
     },
     {
+      "method": "rewire",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 5,
+        "n_edges": 10,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 4,
+        "k_core_size": 5,
+        "maximum_degree": 4,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.25,
+        "normalized_laplacian_third_moment": 1.5625,
+        "random_walk_triangle_weight": 0.1875,
+        "random_walk_fourth_moment": 0.203125,
+        "adjacency_fourth_moment_per_node": 52.0
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 5,
+        "n_edges": 10,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 4,
+        "k_core_size": 5,
+        "maximum_degree": 4,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.25,
+        "normalized_laplacian_third_moment": 1.5625,
+        "random_walk_triangle_weight": 0.1875,
+        "random_walk_fourth_moment": 0.203125,
+        "adjacency_fourth_moment_per_node": 52.0
+      }
+    },
+    {
       "method": "sparsify",
       "intensity": 0.01,
       "invariants": {
@@ -164,7 +299,7 @@
     },
     {
       "method": "sparsify",
-      "intensity": 0.03,
+      "intensity": 0.05,
       "invariants": {
         "n_nodes": 5,
         "n_edges": 10,
@@ -191,34 +326,7 @@
     },
     {
       "method": "sparsify",
-      "intensity": 0.07,
-      "invariants": {
-        "n_nodes": 5,
-        "n_edges": 10,
-        "n_articulation_points": 0,
-        "n_bridges": 0,
-        "diameter": 1.0,
-        "radius": 1.0,
-        "degeneracy": 4,
-        "k_core_size": 5,
-        "maximum_degree": 4,
-        "degree_variance": 0.0,
-        "global_clustering": 1.0,
-        "degree_assortativity": 0.0,
-        "degree_entropy": -0.0,
-        "joint_degree_entropy": -0.0,
-        "degree_skewness": 0.0,
-        "degree_kurtosis": 0.0,
-        "normalized_laplacian_second_moment": 1.25,
-        "normalized_laplacian_third_moment": 1.5625,
-        "random_walk_triangle_weight": 0.1875,
-        "random_walk_fourth_moment": 0.203125,
-        "adjacency_fourth_moment_per_node": 52.0
-      }
-    },
-    {
-      "method": "sparsify",
-      "intensity": 0.15,
+      "intensity": 0.1,
       "invariants": {
         "n_nodes": 5,
         "n_edges": 9,
@@ -245,7 +353,34 @@
     },
     {
       "method": "sparsify",
-      "intensity": 0.25,
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 5,
+        "n_edges": 9,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 3,
+        "k_core_size": 5,
+        "maximum_degree": 4,
+        "degree_variance": 0.24,
+        "global_clustering": 0.875,
+        "degree_assortativity": -0.499999999999988,
+        "degree_entropy": 0.6730116670092562,
+        "joint_degree_entropy": 0.6365141682948126,
+        "degree_skewness": -0.6085806194501854,
+        "degree_kurtosis": -3.3333333333333326,
+        "normalized_laplacian_second_moment": 1.275,
+        "normalized_laplacian_third_moment": 1.65625,
+        "random_walk_triangle_weight": 0.16874999999999998,
+        "random_walk_fourth_moment": 0.2140625,
+        "adjacency_fourth_moment_per_node": 37.2
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.2,
       "invariants": {
         "n_nodes": 5,
         "n_edges": 8,
@@ -261,45 +396,153 @@
         "degree_assortativity": -0.3333333333333333,
         "degree_entropy": 0.5004024235381876,
         "joint_degree_entropy": 0.6931471805599451,
-        "degree_skewness": 2.2360679774997885,
+        "degree_skewness": 2.236067977499788,
         "degree_kurtosis": 4.99999999999999,
         "normalized_laplacian_second_moment": 1.3111111111111111,
         "normalized_laplacian_third_moment": 1.8000000000000003,
-        "random_walk_triangle_weight": 0.13333333333333336,
+        "random_walk_triangle_weight": 0.13333333333333333,
         "random_walk_fourth_moment": 0.24197530864197528,
         "adjacency_fourth_moment_per_node": 25.6
       }
     },
     {
-      "method": "node_sample",
-      "intensity": 0.01,
+      "method": "sparsify",
+      "intensity": 0.25,
       "invariants": {
         "n_nodes": 5,
-        "n_edges": 10,
+        "n_edges": 8,
         "n_articulation_points": 0,
         "n_bridges": 0,
-        "diameter": 1.0,
+        "diameter": 2.0,
         "radius": 1.0,
-        "degeneracy": 4,
+        "degeneracy": 3,
+        "k_core_size": 4,
+        "maximum_degree": 4,
+        "degree_variance": 0.5599999999999999,
+        "global_clustering": 0.7894736842105263,
+        "degree_assortativity": -0.5483870967741935,
+        "degree_entropy": 1.0549201679861437,
+        "joint_degree_entropy": 1.2130075659799038,
+        "degree_skewness": -0.5122408325718841,
+        "degree_kurtosis": -0.6122448979591817,
+        "normalized_laplacian_second_moment": 1.3027777777777778,
+        "normalized_laplacian_third_moment": 1.7541666666666669,
+        "random_walk_triangle_weight": 0.15416666666666665,
+        "random_walk_fourth_moment": 0.22363040123456784,
+        "adjacency_fourth_moment_per_node": 26.4
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 5,
+        "n_edges": 7,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 2,
+        "k_core_size": 5,
+        "maximum_degree": 3,
+        "degree_variance": 0.15999999999999998,
+        "global_clustering": 0.46153846153846156,
+        "degree_assortativity": -0.16666666666667151,
+        "degree_entropy": 0.5004024235381876,
+        "joint_degree_entropy": 0.5982695885852569,
+        "degree_skewness": -2.2360679774997885,
+        "degree_kurtosis": 4.99999999999999,
+        "normalized_laplacian_second_moment": 1.3555555555555556,
+        "normalized_laplacian_third_moment": 1.9777777777777779,
+        "random_walk_triangle_weight": 0.08888888888888888,
+        "random_walk_fourth_moment": 0.28641975308641976,
+        "adjacency_fourth_moment_per_node": 18.0
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 5,
+        "n_edges": 7,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 2,
         "k_core_size": 5,
         "maximum_degree": 4,
-        "degree_variance": 0.0,
-        "global_clustering": 1.0,
-        "degree_assortativity": 0.0,
-        "degree_entropy": -0.0,
-        "joint_degree_entropy": -0.0,
-        "degree_skewness": 0.0,
-        "degree_kurtosis": 0.0,
-        "normalized_laplacian_second_moment": 1.25,
-        "normalized_laplacian_third_moment": 1.5625,
-        "random_walk_triangle_weight": 0.1875,
-        "random_walk_fourth_moment": 0.203125,
-        "adjacency_fourth_moment_per_node": 52.0
+        "degree_variance": 0.5599999999999999,
+        "global_clustering": 0.6428571428571428,
+        "degree_assortativity": -0.5000000000000016,
+        "degree_entropy": 1.0549201679861437,
+        "joint_degree_entropy": 1.3517839942896455,
+        "degree_skewness": 0.512240832571884,
+        "degree_kurtosis": -0.6122448979591817,
+        "normalized_laplacian_second_moment": 1.3444444444444446,
+        "normalized_laplacian_third_moment": 1.9,
+        "random_walk_triangle_weight": 0.1333333333333333,
+        "random_walk_fourth_moment": 0.2410493827160493,
+        "adjacency_fourth_moment_per_node": 17.2
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 5,
+        "n_edges": 6,
+        "n_articulation_points": 1,
+        "n_bridges": 1,
+        "diameter": 3.0,
+        "radius": 2.0,
+        "degeneracy": 2,
+        "k_core_size": 4,
+        "maximum_degree": 3,
+        "degree_variance": 0.64,
+        "global_clustering": 0.6000000000000001,
+        "degree_assortativity": -0.2857142857142844,
+        "degree_entropy": 0.9502705392332342,
+        "joint_degree_entropy": 1.0114042647073513,
+        "degree_skewness": -1.2577882373436309,
+        "degree_kurtosis": 0.3124999999999978,
+        "normalized_laplacian_second_moment": 1.4,
+        "normalized_laplacian_third_moment": 2.0888888888888895,
+        "random_walk_triangle_weight": 0.11111111111111112,
+        "random_walk_fourth_moment": 0.2814814814814815,
+        "adjacency_fourth_moment_per_node": 12.0
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 5,
+        "n_edges": 6,
+        "n_articulation_points": 1,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 2,
+        "k_core_size": 5,
+        "maximum_degree": 4,
+        "degree_variance": 0.64,
+        "global_clustering": 0.6000000000000001,
+        "degree_assortativity": -0.499999999999999,
+        "degree_entropy": 0.5004024235381876,
+        "joint_degree_entropy": 0.6365141682948126,
+        "degree_skewness": 2.2360679774997902,
+        "degree_kurtosis": 5.000000000000002,
+        "normalized_laplacian_second_moment": 1.4,
+        "normalized_laplacian_third_moment": 2.05,
+        "random_walk_triangle_weight": 0.15,
+        "random_walk_fourth_moment": 0.25,
+        "adjacency_fourth_moment_per_node": 10.4
       }
     },
     {
       "method": "node_sample",
-      "intensity": 0.02,
+      "intensity": 0.01,
       "invariants": {
         "n_nodes": 5,
         "n_edges": 10,
@@ -354,6 +597,33 @@
     {
       "method": "node_sample",
       "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 5,
+        "n_edges": 10,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 4,
+        "k_core_size": 5,
+        "maximum_degree": 4,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.25,
+        "normalized_laplacian_third_moment": 1.5625,
+        "random_walk_triangle_weight": 0.1875,
+        "random_walk_fourth_moment": 0.203125,
+        "adjacency_fourth_moment_per_node": 52.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.15,
       "invariants": {
         "n_nodes": 5,
         "n_edges": 10,
@@ -404,6 +674,141 @@
         "random_walk_fourth_moment": 0.25925925925925924,
         "adjacency_fourth_moment_per_node": 21.0
       }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 4,
+        "n_edges": 6,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 3,
+        "k_core_size": 4,
+        "maximum_degree": 3,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.3333333333333335,
+        "normalized_laplacian_third_moment": 1.777777777777778,
+        "random_walk_triangle_weight": 0.2222222222222222,
+        "random_walk_fourth_moment": 0.25925925925925924,
+        "adjacency_fourth_moment_per_node": 21.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 4,
+        "n_edges": 6,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 3,
+        "k_core_size": 4,
+        "maximum_degree": 3,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.3333333333333335,
+        "normalized_laplacian_third_moment": 1.777777777777778,
+        "random_walk_triangle_weight": 0.2222222222222222,
+        "random_walk_fourth_moment": 0.25925925925925924,
+        "adjacency_fourth_moment_per_node": 21.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 4,
+        "n_edges": 6,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 3,
+        "k_core_size": 4,
+        "maximum_degree": 3,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.3333333333333335,
+        "normalized_laplacian_third_moment": 1.777777777777778,
+        "random_walk_triangle_weight": 0.2222222222222222,
+        "random_walk_fourth_moment": 0.25925925925925924,
+        "adjacency_fourth_moment_per_node": 21.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 3,
+        "n_edges": 3,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 2,
+        "k_core_size": 3,
+        "maximum_degree": 2,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.5,
+        "normalized_laplacian_third_moment": 2.25,
+        "random_walk_triangle_weight": 0.25,
+        "random_walk_fourth_moment": 0.375,
+        "adjacency_fourth_moment_per_node": 6.0
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 3,
+        "n_edges": 3,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 2,
+        "k_core_size": 3,
+        "maximum_degree": 2,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.5,
+        "normalized_laplacian_third_moment": 2.25,
+        "random_walk_triangle_weight": 0.25,
+        "random_walk_fourth_moment": 0.375,
+        "adjacency_fourth_moment_per_node": 6.0
+      }
     }
   ],
   "invariants_perturbed": [
@@ -411,270 +816,567 @@
       "method": "noise",
       "intensity": 0.01,
       "invariants": {
-        "n_nodes": 4.927673923518727,
-        "n_edges": 10.039746837275386,
+        "n_nodes": 4.957358555212677,
+        "n_edges": 9.916131382384618,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 0.9964661504107318,
-        "radius": 0.9971172559852522,
-        "degeneracy": 4.014727884568928,
-        "k_core_size": 4.958061755612541,
-        "maximum_degree": 4.019400712183353,
+        "diameter": 1.0082192044563518,
+        "radius": 1.0009093438395131,
+        "degeneracy": 3.988727336090368,
+        "k_core_size": 4.992196958291448,
+        "maximum_degree": 4.005046403407517,
         "degree_variance": 0.0,
-        "global_clustering": 1.0149246772020357,
+        "global_clustering": 1.0226835798325151,
         "degree_assortativity": 0.0,
         "degree_entropy": -0.0,
         "joint_degree_entropy": -0.0,
         "degree_skewness": 0.0,
         "degree_kurtosis": 0.0,
-        "normalized_laplacian_second_moment": 1.225972080880078,
-        "normalized_laplacian_third_moment": 1.559526742276721,
-        "random_walk_triangle_weight": 0.18792692802062735,
-        "random_walk_fourth_moment": 0.20514941539364576,
-        "adjacency_fourth_moment_per_node": 51.93787859315548
-      }
-    },
-    {
-      "method": "noise",
-      "intensity": 0.02,
-      "invariants": {
-        "n_nodes": 5.008150539816043,
-        "n_edges": 9.771468480610883,
-        "n_articulation_points": 0.0,
-        "n_bridges": 0.0,
-        "diameter": 0.986295497473978,
-        "radius": 0.9811408088435407,
-        "degeneracy": 3.9931232474675205,
-        "k_core_size": 4.991375577691964,
-        "maximum_degree": 4.009031686734517,
-        "degree_variance": 0.0,
-        "global_clustering": 0.9824433780625874,
-        "degree_assortativity": 0.0,
-        "degree_entropy": -0.0,
-        "joint_degree_entropy": -0.0,
-        "degree_skewness": 0.0,
-        "degree_kurtosis": 0.0,
-        "normalized_laplacian_second_moment": 1.231214529056561,
-        "normalized_laplacian_third_moment": 1.5516543271173036,
-        "random_walk_triangle_weight": 0.1888511626764032,
-        "random_walk_fourth_moment": 0.19687624568397016,
-        "adjacency_fourth_moment_per_node": 51.406082158551385
+        "normalized_laplacian_second_moment": 1.2330154942435583,
+        "normalized_laplacian_third_moment": 1.5502218252774753,
+        "random_walk_triangle_weight": 0.18639987758108972,
+        "random_walk_fourth_moment": 0.2019001320926847,
+        "adjacency_fourth_moment_per_node": 51.759843886756784
       }
     },
     {
       "method": "noise",
       "intensity": 0.05,
       "invariants": {
-        "n_nodes": 5.361114443652731,
-        "n_edges": 10.196464762063757,
+        "n_nodes": 5.139554397627591,
+        "n_edges": 9.703625019056078,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 0.9507271317142293,
-        "radius": 0.9922861754922591,
-        "degeneracy": 3.9990981320559755,
-        "k_core_size": 4.917855187182053,
-        "maximum_degree": 3.717555597824501,
+        "diameter": 0.9546234235780878,
+        "radius": 0.982336200989864,
+        "degeneracy": 4.2922148220648655,
+        "k_core_size": 5.048217364658045,
+        "maximum_degree": 4.008951696728753,
         "degree_variance": 0.0,
-        "global_clustering": 1.0181473897137308,
+        "global_clustering": 1.0374317133335123,
         "degree_assortativity": 0.0,
         "degree_entropy": -0.0,
         "joint_degree_entropy": -0.0,
         "degree_skewness": 0.0,
         "degree_kurtosis": 0.0,
-        "normalized_laplacian_second_moment": 1.2368817580493006,
-        "normalized_laplacian_third_moment": 1.4551101452583977,
-        "random_walk_triangle_weight": 0.16651536331663894,
-        "random_walk_fourth_moment": 0.20940201381350068,
-        "adjacency_fourth_moment_per_node": 48.772562380866034
+        "normalized_laplacian_second_moment": 1.2867749900447654,
+        "normalized_laplacian_third_moment": 1.5091242942142296,
+        "random_walk_triangle_weight": 0.17310500488399563,
+        "random_walk_fourth_moment": 0.19769542489664696,
+        "adjacency_fourth_moment_per_node": 53.33912817577404
       }
     },
     {
       "method": "noise",
       "intensity": 0.1,
       "invariants": {
-        "n_nodes": 5.550209249243619,
-        "n_edges": 8.912842762871783,
+        "n_nodes": 4.847246668647902,
+        "n_edges": 9.475928940164122,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 1.0450545046677275,
-        "radius": 0.9840455396311932,
-        "degeneracy": 4.580508060453235,
-        "k_core_size": 5.57863795016884,
-        "maximum_degree": 3.7551173436459813,
+        "diameter": 0.8527856892179349,
+        "radius": 1.1533535875702479,
+        "degeneracy": 3.209408790418069,
+        "k_core_size": 5.354913322025148,
+        "maximum_degree": 4.162021707781049,
         "degree_variance": 0.0,
-        "global_clustering": 0.9898011304857599,
+        "global_clustering": 1.02313278777922,
         "degree_assortativity": 0.0,
         "degree_entropy": -0.0,
         "joint_degree_entropy": -0.0,
         "degree_skewness": 0.0,
         "degree_kurtosis": 0.0,
-        "normalized_laplacian_second_moment": 1.3929718876744368,
-        "normalized_laplacian_third_moment": 1.7277204654190956,
-        "random_walk_triangle_weight": 0.1719655017248421,
-        "random_walk_fourth_moment": 0.19426208238084283,
-        "adjacency_fourth_moment_per_node": 58.39117601564142
+        "normalized_laplacian_second_moment": 1.3472762828252451,
+        "normalized_laplacian_third_moment": 1.1863904626527617,
+        "random_walk_triangle_weight": 0.20279394537759152,
+        "random_walk_fourth_moment": 0.19187471524338354,
+        "adjacency_fourth_moment_per_node": 48.233279964730954
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 5.8074418393128155,
+        "n_edges": 13.239679961193907,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.9412758239469571,
+        "radius": 1.1918610661163214,
+        "degeneracy": 3.898635929838957,
+        "k_core_size": 4.835976217573967,
+        "maximum_degree": 3.9384791546081086,
+        "degree_variance": 0.0,
+        "global_clustering": 0.984109794513667,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.1029310358533666,
+        "normalized_laplacian_third_moment": 1.913788223361578,
+        "random_walk_triangle_weight": 0.17833708517163288,
+        "random_walk_fourth_moment": 0.23584956808102964,
+        "adjacency_fourth_moment_per_node": 46.70216532622906
       }
     },
     {
       "method": "noise",
       "intensity": 0.2,
       "invariants": {
-        "n_nodes": 4.880008248791191,
-        "n_edges": 4.877362133601312,
+        "n_nodes": 5.084051695776369,
+        "n_edges": 8.923860472448158,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 0.8070486769357282,
-        "radius": 0.9340547499410059,
-        "degeneracy": 3.6512537041098954,
-        "k_core_size": 4.034466848892492,
-        "maximum_degree": 4.400742450189737,
+        "diameter": 1.0771682053199425,
+        "radius": 0.9960582567078378,
+        "degeneracy": 3.203347262696246,
+        "k_core_size": 6.520970999692553,
+        "maximum_degree": 3.3215634240255403,
         "degree_variance": 0.0,
-        "global_clustering": 0.814335606812823,
+        "global_clustering": 1.1303404121301295,
         "degree_assortativity": 0.0,
         "degree_entropy": -0.0,
         "joint_degree_entropy": -0.0,
         "degree_skewness": 0.0,
         "degree_kurtosis": 0.0,
-        "normalized_laplacian_second_moment": 1.2259273143972576,
-        "normalized_laplacian_third_moment": 1.7936192156353556,
-        "random_walk_triangle_weight": 0.21174850791515015,
-        "random_walk_fourth_moment": 0.13558975893491337,
-        "adjacency_fourth_moment_per_node": 60.93966114913115
+        "normalized_laplacian_second_moment": 1.2803866698885742,
+        "normalized_laplacian_third_moment": 0.9929212502238195,
+        "random_walk_triangle_weight": 0.1751712564667446,
+        "random_walk_fourth_moment": 0.25143708744591464,
+        "adjacency_fourth_moment_per_node": 74.3135772729772
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 5.14871594535058,
+        "n_edges": 11.728821959284236,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.9217445650379724,
+        "radius": 1.2155674422038842,
+        "degeneracy": 3.9431571479062137,
+        "k_core_size": 2.6408424790532217,
+        "maximum_degree": 4.732927782555375,
+        "degree_variance": 0.0,
+        "global_clustering": 1.1418673755147146,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.3459490173094544,
+        "normalized_laplacian_third_moment": 1.204367133394302,
+        "random_walk_triangle_weight": 0.17815800356619388,
+        "random_walk_fourth_moment": 0.12409360985787354,
+        "adjacency_fourth_moment_per_node": 38.463866388537156
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 4.379691564865549,
+        "n_edges": 9.51045220274113,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.4038881018242976,
+        "radius": 0.5099065054792202,
+        "degeneracy": 4.044624730284516,
+        "k_core_size": 2.525755958366188,
+        "maximum_degree": 3.5228977967578423,
+        "degree_variance": 0.0,
+        "global_clustering": 0.6160485206314881,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 0.7391905337580476,
+        "normalized_laplacian_third_moment": 1.3922239299949561,
+        "random_walk_triangle_weight": 0.1369088405525608,
+        "random_walk_fourth_moment": 0.25194193007885746,
+        "adjacency_fourth_moment_per_node": 23.542156936515976
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 3.342615777450557,
+        "n_edges": 2.7110471365727573,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.2112674330107627,
+        "radius": 1.1967309672276958,
+        "degeneracy": 7.190220342245878,
+        "k_core_size": 4.642496657847186,
+        "maximum_degree": 1.8685610777350297,
+        "degree_variance": 0.0,
+        "global_clustering": 1.7812702476770395,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.654103140259255,
+        "normalized_laplacian_third_moment": 1.800541598587618,
+        "random_walk_triangle_weight": 0.1710079475053537,
+        "random_walk_fourth_moment": 0.2411608542136414,
+        "adjacency_fourth_moment_per_node": 41.55140583195453
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 3.75217068922282,
+        "n_edges": 16.018565465732678,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.4209093267849735,
+        "radius": 1.0610377799736719,
+        "degeneracy": 4.911288959907755,
+        "k_core_size": 5.655036967829888,
+        "maximum_degree": 3.2027671097240975,
+        "degree_variance": 0.0,
+        "global_clustering": 1.1648046028980494,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 0.8816920707973557,
+        "normalized_laplacian_third_moment": 1.4223185366932787,
+        "random_walk_triangle_weight": 0.14146727353315103,
+        "random_walk_fourth_moment": 0.23265909624964365,
+        "adjacency_fourth_moment_per_node": 27.120624110180124
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 4.840427193577878,
+        "n_edges": 10.010824484942388,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.9861682610000506,
+        "radius": 1.2950465054251108,
+        "degeneracy": 1.529280095513327,
+        "k_core_size": 5.372936439919677,
+        "maximum_degree": 6.06004450921019,
+        "degree_variance": 0.0,
+        "global_clustering": 0.7043306853691745,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 2.305116155847621,
+        "normalized_laplacian_third_moment": 1.1149312889290603,
+        "random_walk_triangle_weight": 0.35055652745872456,
+        "random_walk_fourth_moment": 0.2876629349202785,
+        "adjacency_fourth_moment_per_node": 60.87971876823205
       }
     },
     {
       "method": "jitter",
       "intensity": 0.01,
       "invariants": {
-        "n_nodes": 5.012041951933371,
-        "n_edges": 10.028053464328742,
+        "n_nodes": 4.866428151879586,
+        "n_edges": 10.089135656601005,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 1.0115653443171828,
-        "radius": 0.989590502056015,
-        "degeneracy": 4.029897949286223,
-        "k_core_size": 5.042423281548763,
-        "maximum_degree": 3.979133554927814,
+        "diameter": 0.997413558667352,
+        "radius": 1.0077694196340072,
+        "degeneracy": 3.9817108676983897,
+        "k_core_size": 4.957540210576747,
+        "maximum_degree": 3.9833456135371583,
         "degree_variance": 0.0,
-        "global_clustering": 1.0092415022041354,
+        "global_clustering": 0.9962038729519109,
         "degree_assortativity": 0.0,
         "degree_entropy": -0.0,
         "joint_degree_entropy": -0.0,
         "degree_skewness": 0.0,
         "degree_kurtosis": 0.0,
-        "normalized_laplacian_second_moment": 1.2382808526650861,
-        "normalized_laplacian_third_moment": 1.557746912197746,
-        "random_walk_triangle_weight": 0.18989067944519883,
-        "random_walk_fourth_moment": 0.20559091308789731,
-        "adjacency_fourth_moment_per_node": 51.60431308744543
-      }
-    },
-    {
-      "method": "jitter",
-      "intensity": 0.02,
-      "invariants": {
-        "n_nodes": 5.0516751318868085,
-        "n_edges": 10.13378379761856,
-        "n_articulation_points": 0.0,
-        "n_bridges": 0.0,
-        "diameter": 0.9920939567212184,
-        "radius": 1.0250597094239908,
-        "degeneracy": 4.023312691980912,
-        "k_core_size": 4.905291265549579,
-        "maximum_degree": 3.8996181599235826,
-        "degree_variance": 0.0,
-        "global_clustering": 0.9956571443053286,
-        "degree_assortativity": 0.0,
-        "degree_entropy": -0.0,
-        "joint_degree_entropy": -0.0,
-        "degree_skewness": 0.0,
-        "degree_kurtosis": 0.0,
-        "normalized_laplacian_second_moment": 1.2413970671694212,
-        "normalized_laplacian_third_moment": 1.5810768814114293,
-        "random_walk_triangle_weight": 0.18131106432403377,
-        "random_walk_fourth_moment": 0.20634188748515142,
-        "adjacency_fourth_moment_per_node": 52.91460082965047
+        "normalized_laplacian_second_moment": 1.25931278680159,
+        "normalized_laplacian_third_moment": 1.5505722368322206,
+        "random_walk_triangle_weight": 0.18775196698946917,
+        "random_walk_fourth_moment": 0.2054483300948192,
+        "adjacency_fourth_moment_per_node": 52.284384386392226
       }
     },
     {
       "method": "jitter",
       "intensity": 0.05,
       "invariants": {
-        "n_nodes": 5.105866231365096,
-        "n_edges": 9.335435985618563,
+        "n_nodes": 5.138692954530947,
+        "n_edges": 10.08349874732724,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 1.0204661154382677,
-        "radius": 0.9645259864501596,
-        "degeneracy": 3.845223404129184,
-        "k_core_size": 5.4468820666736875,
-        "maximum_degree": 4.1870610191067525,
+        "diameter": 1.004837043676842,
+        "radius": 1.0212522624667104,
+        "degeneracy": 3.5983232230847655,
+        "k_core_size": 4.842030142931312,
+        "maximum_degree": 3.864950275972252,
         "degree_variance": 0.0,
-        "global_clustering": 1.019302981919964,
+        "global_clustering": 1.0277386008404454,
         "degree_assortativity": 0.0,
         "degree_entropy": -0.0,
         "joint_degree_entropy": -0.0,
         "degree_skewness": 0.0,
         "degree_kurtosis": 0.0,
-        "normalized_laplacian_second_moment": 1.185220991386682,
-        "normalized_laplacian_third_moment": 1.5679654958168472,
-        "random_walk_triangle_weight": 0.18583220291134692,
-        "random_walk_fourth_moment": 0.20730712269885257,
-        "adjacency_fourth_moment_per_node": 46.356511224089594
+        "normalized_laplacian_second_moment": 1.238782001879996,
+        "normalized_laplacian_third_moment": 1.4338322031228654,
+        "random_walk_triangle_weight": 0.19107233505883225,
+        "random_walk_fourth_moment": 0.19552346697991793,
+        "adjacency_fourth_moment_per_node": 55.060906407520825
       }
     },
     {
       "method": "jitter",
       "intensity": 0.1,
       "invariants": {
-        "n_nodes": 5.239412321664309,
-        "n_edges": 10.390801934043573,
+        "n_nodes": 5.191161357894746,
+        "n_edges": 10.426461776803011,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 1.0420622854506723,
-        "radius": 1.1956783960990833,
-        "degeneracy": 3.672815902794963,
-        "k_core_size": 5.0024760660887875,
-        "maximum_degree": 3.9457248200009922,
+        "diameter": 0.944738479482051,
+        "radius": 1.0246223284330032,
+        "degeneracy": 4.202408842982532,
+        "k_core_size": 4.6389673342183375,
+        "maximum_degree": 3.5422558863832245,
         "degree_variance": 0.0,
-        "global_clustering": 1.0566452179354169,
+        "global_clustering": 0.9552531172064337,
         "degree_assortativity": 0.0,
         "degree_entropy": -0.0,
         "joint_degree_entropy": -0.0,
         "degree_skewness": 0.0,
         "degree_kurtosis": 0.0,
-        "normalized_laplacian_second_moment": 1.3824054542146913,
-        "normalized_laplacian_third_moment": 1.52480184890512,
-        "random_walk_triangle_weight": 0.20810930124207128,
-        "random_walk_fourth_moment": 0.1692729506111927,
-        "adjacency_fourth_moment_per_node": 57.77989859888911
+        "normalized_laplacian_second_moment": 1.0906136216315514,
+        "normalized_laplacian_third_moment": 1.7035805549174818,
+        "random_walk_triangle_weight": 0.16666931654652944,
+        "random_walk_fourth_moment": 0.1684227827427765,
+        "adjacency_fourth_moment_per_node": 49.37333170937842
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 4.575428008821055,
+        "n_edges": 9.988867426135592,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.9406247732078148,
+        "radius": 0.9776136159340723,
+        "degeneracy": 4.605540395998837,
+        "k_core_size": 4.306909555542528,
+        "maximum_degree": 4.4293173597688655,
+        "degree_variance": 0.0,
+        "global_clustering": 0.9308301826294538,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 0.9190199375395945,
+        "normalized_laplacian_third_moment": 1.375790919880161,
+        "random_walk_triangle_weight": 0.16342030575215655,
+        "random_walk_fourth_moment": 0.1533491907020506,
+        "adjacency_fourth_moment_per_node": 43.63950488605086
       }
     },
     {
       "method": "jitter",
       "intensity": 0.2,
       "invariants": {
-        "n_nodes": 5.305755775799158,
-        "n_edges": 10.5095162841999,
+        "n_nodes": 4.844018151409251,
+        "n_edges": 5.774344651550435,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 1.0123939398667459,
-        "radius": 0.8292453069844941,
-        "degeneracy": 4.8737095416212455,
-        "k_core_size": 5.495640328834805,
-        "maximum_degree": 4.180357732913468,
+        "diameter": 0.8862393800736307,
+        "radius": 0.7594802358399996,
+        "degeneracy": 4.442455979097288,
+        "k_core_size": 4.205829366467787,
+        "maximum_degree": 2.9444215279646255,
         "degree_variance": 0.0,
-        "global_clustering": 0.6671200618343434,
+        "global_clustering": 1.208721057969072,
         "degree_assortativity": 0.0,
         "degree_entropy": -0.0,
         "joint_degree_entropy": -0.0,
         "degree_skewness": 0.0,
         "degree_kurtosis": 0.0,
-        "normalized_laplacian_second_moment": 1.5153235214184275,
-        "normalized_laplacian_third_moment": 1.1743583442212813,
-        "random_walk_triangle_weight": 0.21457392070702525,
-        "random_walk_fourth_moment": 0.14444793614736362,
-        "adjacency_fourth_moment_per_node": 55.49270674972492
+        "normalized_laplacian_second_moment": 0.9413912069182417,
+        "normalized_laplacian_third_moment": 1.7007256223567309,
+        "random_walk_triangle_weight": 0.15937018805057027,
+        "random_walk_fourth_moment": 0.22479464096586854,
+        "adjacency_fourth_moment_per_node": 40.631939811908
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 5.266653212220854,
+        "n_edges": 9.330365809558433,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 0.9902697638440233,
+        "radius": 0.6261697704249143,
+        "degeneracy": 3.5756803225793155,
+        "k_core_size": 7.45226137527051,
+        "maximum_degree": 4.926777752967851,
+        "degree_variance": 0.0,
+        "global_clustering": 0.6833346398201854,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.560659326378291,
+        "normalized_laplacian_third_moment": 1.6383861211552357,
+        "random_walk_triangle_weight": 0.15312504475829442,
+        "random_walk_fourth_moment": 0.2579868284793268,
+        "adjacency_fourth_moment_per_node": 51.32432497504569
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 1.1885196329836556,
+        "n_edges": 6.178878416013598,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.076335047574226,
+        "radius": 0.9662108968143662,
+        "degeneracy": 4.157778201539399,
+        "k_core_size": 6.81480861913613,
+        "maximum_degree": 5.806144161909242,
+        "degree_variance": 0.0,
+        "global_clustering": 0.3915413263923324,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.1756691494760583,
+        "normalized_laplacian_third_moment": 1.2860431654920716,
+        "random_walk_triangle_weight": 0.1456671249198203,
+        "random_walk_fourth_moment": 0.22198195791353315,
+        "adjacency_fourth_moment_per_node": 44.24750904429448
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 7.2754478740608715,
+        "n_edges": 12.601311601819091,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.4225463627482413,
+        "radius": 1.2612895662591443,
+        "degeneracy": 4.311165784134939,
+        "k_core_size": 5.47137960537436,
+        "maximum_degree": 3.3504781478390226,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0552404217860094,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.4430389083629964,
+        "normalized_laplacian_third_moment": 2.3047569658931417,
+        "random_walk_triangle_weight": 0.13838558975761184,
+        "random_walk_fourth_moment": 0.09926373746422171,
+        "adjacency_fourth_moment_per_node": 51.35108507433669
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 2.7743642136758027,
+        "n_edges": 12.387108379221575,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.441784135715034,
+        "radius": 1.4254706987568768,
+        "degeneracy": 4.0933873933686495,
+        "k_core_size": 5.518265150839367,
+        "maximum_degree": 2.5420414735735584,
+        "degree_variance": 0.0,
+        "global_clustering": 1.897423461371405,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.4319236480446569,
+        "normalized_laplacian_third_moment": 1.8216908616469623,
+        "random_walk_triangle_weight": 0.22306389048625336,
+        "random_walk_fourth_moment": 0.08310035611082733,
+        "adjacency_fourth_moment_per_node": 26.18186467879898
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 2.8599919681230883,
+        "n_edges": 19.770788277292233,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.3922621259874002,
+        "radius": 1.1143519155175219,
+        "degeneracy": 3.1824352233005264,
+        "k_core_size": 4.201938549509062,
+        "maximum_degree": 6.613063880780613,
+        "degree_variance": 0.0,
+        "global_clustering": 0.9197365411304786,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 0.8641532424757776,
+        "normalized_laplacian_third_moment": 1.3334405376749343,
+        "random_walk_triangle_weight": 0.18924454562060655,
+        "random_walk_fourth_moment": 0.22706044732737415,
+        "adjacency_fourth_moment_per_node": 80.20773702929044
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.99,
+      "invariants": {
+        "n_nodes": 5.0,
+        "n_edges": 10.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 4.0,
+        "k_core_size": 5.0,
+        "maximum_degree": 4.0,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.25,
+        "normalized_laplacian_third_moment": 1.5625,
+        "random_walk_triangle_weight": 0.1875,
+        "random_walk_fourth_moment": 0.203125,
+        "adjacency_fourth_moment_per_node": 52.0
       }
     },
     {
@@ -733,7 +1435,61 @@
     },
     {
       "method": "subset",
+      "intensity": 0.85,
+      "invariants": {
+        "n_nodes": 5.0,
+        "n_edges": 10.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 4.0,
+        "k_core_size": 5.0,
+        "maximum_degree": 4.0,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.25,
+        "normalized_laplacian_third_moment": 1.5625,
+        "random_walk_triangle_weight": 0.1875,
+        "random_walk_fourth_moment": 0.203125,
+        "adjacency_fourth_moment_per_node": 52.0
+      }
+    },
+    {
+      "method": "subset",
       "intensity": 0.8,
+      "invariants": {
+        "n_nodes": 5.0,
+        "n_edges": 10.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 4.0,
+        "k_core_size": 5.0,
+        "maximum_degree": 4.0,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.25,
+        "normalized_laplacian_third_moment": 1.5625,
+        "random_walk_triangle_weight": 0.1875,
+        "random_walk_fourth_moment": 0.203125,
+        "adjacency_fourth_moment_per_node": 52.0
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.75,
       "invariants": {
         "n_nodes": 5.0,
         "n_edges": 10.0,
@@ -787,7 +1543,61 @@
     },
     {
       "method": "subset",
+      "intensity": 0.65,
+      "invariants": {
+        "n_nodes": 5.0,
+        "n_edges": 10.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 4.0,
+        "k_core_size": 5.0,
+        "maximum_degree": 4.0,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.25,
+        "normalized_laplacian_third_moment": 1.5625,
+        "random_walk_triangle_weight": 0.1875,
+        "random_walk_fourth_moment": 0.203125,
+        "adjacency_fourth_moment_per_node": 52.0
+      }
+    },
+    {
+      "method": "subset",
       "intensity": 0.6,
+      "invariants": {
+        "n_nodes": 5.0,
+        "n_edges": 10.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.0,
+        "radius": 1.0,
+        "degeneracy": 4.0,
+        "k_core_size": 5.0,
+        "maximum_degree": 4.0,
+        "degree_variance": 0.0,
+        "global_clustering": 1.0,
+        "degree_assortativity": 0.0,
+        "degree_entropy": -0.0,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": 0.0,
+        "normalized_laplacian_second_moment": 1.25,
+        "normalized_laplacian_third_moment": 1.5625,
+        "random_walk_triangle_weight": 0.1875,
+        "random_walk_fourth_moment": 0.203125,
+        "adjacency_fourth_moment_per_node": 52.0
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.55,
       "invariants": {
         "n_nodes": 5.0,
         "n_edges": 10.0,
@@ -825,19 +1635,6 @@
         "hurst_exponent": 0.6847416979415383,
         "trend_coeff": -0.22053287865590535,
         "count_skewness": 1.4413299627917355
-      }
-    },
-    {
-      "method": "scaling",
-      "intensity": 0.75,
-      "signatures": {
-        "lag1_autocorr": 0.1795378872738367,
-        "coef_variation": 0.45990745713704173,
-        "fano_factor": 0.21151486913047135,
-        "norm_succ_diff": 0.35329351535800846,
-        "hurst_exponent": 0.6847416979415383,
-        "trend_coeff": -0.22053287865590532,
-        "count_skewness": 1.4413299627917342
       }
     },
     {
@@ -880,6 +1677,84 @@
       }
     },
     {
+      "method": "scaling",
+      "intensity": 2.5,
+      "signatures": {
+        "lag1_autocorr": 0.1795378872738367,
+        "coef_variation": 0.4599074571370418,
+        "fano_factor": 0.21151486913047143,
+        "norm_succ_diff": 0.35329351535800857,
+        "hurst_exponent": 0.6847416979415383,
+        "trend_coeff": -0.22053287865590535,
+        "count_skewness": 1.4413299627917355
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 3.0,
+      "signatures": {
+        "lag1_autocorr": 0.1795378872738367,
+        "coef_variation": 0.45990745713704173,
+        "fano_factor": 0.21151486913047135,
+        "norm_succ_diff": 0.35329351535800846,
+        "hurst_exponent": 0.6847416979415383,
+        "trend_coeff": -0.22053287865590532,
+        "count_skewness": 1.4413299627917342
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 3.5,
+      "signatures": {
+        "lag1_autocorr": 0.1795378872738367,
+        "coef_variation": 0.4599074571370418,
+        "fano_factor": 0.21151486913047143,
+        "norm_succ_diff": 0.35329351535800857,
+        "hurst_exponent": 0.6847416979415383,
+        "trend_coeff": -0.22053287865590535,
+        "count_skewness": 1.4413299627917355
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 4.0,
+      "signatures": {
+        "lag1_autocorr": 0.1795378872738367,
+        "coef_variation": 0.4599074571370418,
+        "fano_factor": 0.21151486913047143,
+        "norm_succ_diff": 0.35329351535800857,
+        "hurst_exponent": 0.6847416979415383,
+        "trend_coeff": -0.22053287865590535,
+        "count_skewness": 1.4413299627917355
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 4.5,
+      "signatures": {
+        "lag1_autocorr": 0.1795378872738368,
+        "coef_variation": 0.4599074571370418,
+        "fano_factor": 0.2115148691304714,
+        "norm_succ_diff": 0.35329351535800846,
+        "hurst_exponent": 0.6847416979415383,
+        "trend_coeff": -0.2205328786559054,
+        "count_skewness": 1.441329962791735
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 5.0,
+      "signatures": {
+        "lag1_autocorr": 0.1795378872738367,
+        "coef_variation": 0.4599074571370418,
+        "fano_factor": 0.21151486913047143,
+        "norm_succ_diff": 0.35329351535800857,
+        "hurst_exponent": 0.6847416979415383,
+        "trend_coeff": -0.22053287865590535,
+        "count_skewness": 1.4413299627917355
+      }
+    },
+    {
       "method": "smoothing",
       "intensity": 1.0,
       "signatures": {
@@ -907,6 +1782,19 @@
     },
     {
       "method": "smoothing",
+      "intensity": 3.0,
+      "signatures": {
+        "lag1_autocorr": 0.76770987678306,
+        "coef_variation": 0.30480119861384264,
+        "fano_factor": 0.13581206277169758,
+        "norm_succ_diff": 0.12313102665901954,
+        "hurst_exponent": 0.7553737334441935,
+        "trend_coeff": -0.3301091410628412,
+        "count_skewness": 0.8503149874590722
+      }
+    },
+    {
+      "method": "smoothing",
       "intensity": 4.0,
       "signatures": {
         "lag1_autocorr": 0.8641571276896829,
@@ -916,6 +1804,45 @@
         "hurst_exponent": 0.7710304629371079,
         "trend_coeff": -0.36285253831495334,
         "count_skewness": 0.7838498401553925
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 5.0,
+      "signatures": {
+        "lag1_autocorr": 0.8917992015202312,
+        "coef_variation": 0.26234135636046163,
+        "fano_factor": 0.10088902087215249,
+        "norm_succ_diff": 0.06787544544370051,
+        "hurst_exponent": 0.7786622015961457,
+        "trend_coeff": -0.3798552716246827,
+        "count_skewness": 0.770521411412046
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 6.0,
+      "signatures": {
+        "lag1_autocorr": 0.9141574822308098,
+        "coef_variation": 0.2538551420321241,
+        "fano_factor": 0.09454228602642435,
+        "norm_succ_diff": 0.057710959136342284,
+        "hurst_exponent": 0.7827186309806052,
+        "trend_coeff": -0.3944971757700524,
+        "count_skewness": 0.773842366046649
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 7.0,
+      "signatures": {
+        "lag1_autocorr": 0.920137747664209,
+        "coef_variation": 0.247679339470925,
+        "fano_factor": 0.09007811404579256,
+        "norm_succ_diff": 0.055308605125768025,
+        "hurst_exponent": 0.7854561722227351,
+        "trend_coeff": -0.40468971687177374,
+        "count_skewness": 0.7732948013041467
       }
     },
     {
@@ -933,80 +1860,158 @@
     },
     {
       "method": "smoothing",
-      "intensity": 16.0,
+      "intensity": 9.0,
       "signatures": {
-        "lag1_autocorr": 0.9616505549064348,
-        "coef_variation": 0.2135026706005997,
-        "fano_factor": 0.0671823314269871,
-        "norm_succ_diff": 0.028777180327272535,
-        "hurst_exponent": 0.8063707085716508,
-        "trend_coeff": -0.47249643788748164,
-        "count_skewness": 0.8810516086778714
+        "lag1_autocorr": 0.94881130830778,
+        "coef_variation": 0.2353215785896326,
+        "fano_factor": 0.08146393199934908,
+        "norm_succ_diff": 0.03884635256948727,
+        "hurst_exponent": 0.7923532759409638,
+        "trend_coeff": -0.42319247616515626,
+        "count_skewness": 0.8035011447184243
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 10.0,
+      "signatures": {
+        "lag1_autocorr": 0.9511968954910309,
+        "coef_variation": 0.2318106212462321,
+        "fano_factor": 0.07907200378789933,
+        "norm_succ_diff": 0.037061664723448885,
+        "hurst_exponent": 0.794372753718973,
+        "trend_coeff": -0.43246267229589525,
+        "count_skewness": 0.800009039195946
       }
     },
     {
       "method": "bootstrapping",
-      "intensity": 0.0,
+      "intensity": 0.01,
       "signatures": {
-        "lag1_autocorr": 0.0,
-        "coef_variation": 0.0,
-        "fano_factor": 0.0,
-        "norm_succ_diff": 0.0,
-        "hurst_exponent": 0.5,
-        "trend_coeff": 0.0,
-        "count_skewness": 0.0
+        "lag1_autocorr": -0.03564614204960853,
+        "coef_variation": 0.5192247830542572,
+        "fano_factor": 0.519069767441591,
+        "norm_succ_diff": 0.5349612403097996,
+        "hurst_exponent": 0.569661277707276,
+        "trend_coeff": 0.02854661885292269,
+        "count_skewness": 0.14855552702001568
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.05,
+      "signatures": {
+        "lag1_autocorr": -0.03953892269858,
+        "coef_variation": 0.5257530986846903,
+        "fano_factor": 0.4661946902652103,
+        "norm_succ_diff": 0.5039823008846569,
+        "hurst_exponent": 0.5116575818068504,
+        "trend_coeff": 0.01696443815468458,
+        "count_skewness": 1.4632447230600685
       }
     },
     {
       "method": "bootstrapping",
       "intensity": 0.1,
       "signatures": {
-        "lag1_autocorr": -0.07483514578068617,
-        "coef_variation": 0.4201034600628549,
-        "fano_factor": 0.2063404255317384,
-        "norm_succ_diff": 0.2694255319146632,
-        "hurst_exponent": 0.5849298893464072,
-        "trend_coeff": -0.008750419118652958,
-        "count_skewness": 2.877935256846637
+        "lag1_autocorr": -0.005930313991814504,
+        "coef_variation": 0.37572726152956903,
+        "fano_factor": 0.22123809523795404,
+        "norm_succ_diff": 0.38604761904737267,
+        "hurst_exponent": 0.5141791130087083,
+        "trend_coeff": 0.09401249481559777,
+        "count_skewness": 0.4713489244644223
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.15,
+      "signatures": {
+        "lag1_autocorr": -0.059433742616964505,
+        "coef_variation": 0.3515020985205963,
+        "fano_factor": 0.15797665369637445,
+        "norm_succ_diff": 0.3323929961086894,
+        "hurst_exponent": 0.522624265466525,
+        "trend_coeff": 0.059672814198981634,
+        "count_skewness": 0.980308795881374
       }
     },
     {
       "method": "bootstrapping",
       "intensity": 0.2,
       "signatures": {
-        "lag1_autocorr": 0.021992360720499156,
-        "coef_variation": 0.5475059528038447,
-        "fano_factor": 0.45188118811851213,
-        "norm_succ_diff": 0.47762376237592075,
-        "hurst_exponent": 0.48860197505717085,
-        "trend_coeff": 0.042075846544085145,
-        "count_skewness": 1.75499023662585
+        "lag1_autocorr": -0.056290181744339515,
+        "coef_variation": 0.5061792980648951,
+        "fano_factor": 0.39516129032232433,
+        "norm_succ_diff": 0.4960161290319364,
+        "hurst_exponent": 0.4850415358919718,
+        "trend_coeff": 0.013212899885281076,
+        "count_skewness": 1.240644242409221
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.25,
+      "signatures": {
+        "lag1_autocorr": -0.031055759236417253,
+        "coef_variation": 0.4088489105143627,
+        "fano_factor": 0.24117241379293633,
+        "norm_succ_diff": 0.41239655172385203,
+        "hurst_exponent": 0.4718693902165948,
+        "trend_coeff": -0.019526613359511905,
+        "count_skewness": 0.9479166702489611
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.3,
+      "signatures": {
+        "lag1_autocorr": -0.06482921195187462,
+        "coef_variation": 0.44513733330300426,
+        "fano_factor": 0.27306859205756356,
+        "norm_succ_diff": 0.42812274368199976,
+        "hurst_exponent": 0.4630448093645617,
+        "trend_coeff": 0.00042036876349820906,
+        "count_skewness": 1.6327334450266797
       }
     },
     {
       "method": "bootstrapping",
       "intensity": 0.35,
       "signatures": {
-        "lag1_autocorr": 0.04287850417570348,
-        "coef_variation": 0.4772882356634677,
-        "fano_factor": 0.34453947368398274,
-        "norm_succ_diff": 0.4595230263154856,
-        "hurst_exponent": 0.5735839909636399,
-        "trend_coeff": 0.009645254173371393,
-        "count_skewness": 1.0281358802488922
+        "lag1_autocorr": 0.04729555673515275,
+        "coef_variation": 0.5112827595348636,
+        "fano_factor": 0.38626262626236474,
+        "norm_succ_diff": 0.45681818181787265,
+        "hurst_exponent": 0.5341282623889662,
+        "trend_coeff": 0.00728191067813967,
+        "count_skewness": 1.4600941710559228
       }
     },
     {
       "method": "bootstrapping",
-      "intensity": 0.5,
+      "intensity": 0.4,
       "signatures": {
-        "lag1_autocorr": 0.18436659593110125,
-        "coef_variation": 0.43141003658040744,
-        "fano_factor": 0.2861165048541828,
-        "norm_succ_diff": 0.3740291262133489,
-        "hurst_exponent": 0.5619498086482889,
-        "trend_coeff": -0.0007776523661112314,
-        "count_skewness": 1.1429623310539927
+        "lag1_autocorr": -0.006176724078963596,
+        "coef_variation": 0.4502742014690765,
+        "fano_factor": 0.3147115384613357,
+        "norm_succ_diff": 0.43807692307664087,
+        "hurst_exponent": 0.43486851703499807,
+        "trend_coeff": 0.0457503322646311,
+        "count_skewness": 0.9512835925248248
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.45,
+      "signatures": {
+        "lag1_autocorr": 0.08397512437810943,
+        "coef_variation": 0.5099801035520711,
+        "fano_factor": 0.35971223021556736,
+        "norm_succ_diff": 0.41212230215797535,
+        "hurst_exponent": 0.5762674586656363,
+        "trend_coeff": 0.0194986671288573,
+        "count_skewness": 1.8621559397255882
       }
     }
   ],
@@ -1015,130 +2020,273 @@
       "method": "noise",
       "intensity": 0.01,
       "signatures": {
-        "lag1_autocorr": 0.17623929728742538,
-        "coef_variation": 0.4595660782484569,
-        "fano_factor": 0.30559418982422853,
-        "norm_succ_diff": 0.3522204962629793,
-        "hurst_exponent": 0.6908304779192062,
-        "trend_coeff": -0.21786420823084335,
-        "count_skewness": 1.4425465803899942
-      }
-    },
-    {
-      "method": "noise",
-      "intensity": 0.02,
-      "signatures": {
-        "lag1_autocorr": 0.1777525649303049,
-        "coef_variation": 0.4485981427822075,
-        "fano_factor": 0.30938531722251555,
-        "norm_succ_diff": 0.3545962312515138,
-        "hurst_exponent": 0.6878115256449594,
-        "trend_coeff": -0.22276160309003812,
-        "count_skewness": 1.4849613379868771
+        "lag1_autocorr": 0.18067302135464047,
+        "coef_variation": 0.46097166852574983,
+        "fano_factor": 0.31013723182762737,
+        "norm_succ_diff": 0.35672062640565955,
+        "hurst_exponent": 0.6941828753445899,
+        "trend_coeff": -0.22116520371315365,
+        "count_skewness": 1.445887772184783
       }
     },
     {
       "method": "noise",
       "intensity": 0.05,
       "signatures": {
-        "lag1_autocorr": 0.1767930314306476,
-        "coef_variation": 0.45835604039232897,
-        "fano_factor": 0.31078775723447627,
-        "norm_succ_diff": 0.34938092491749706,
-        "hurst_exponent": 0.6604136952688401,
-        "trend_coeff": -0.23138528791333135,
-        "count_skewness": 1.4862935948458111
+        "lag1_autocorr": 0.1771528225237966,
+        "coef_variation": 0.4648134024559161,
+        "fano_factor": 0.3065086832419153,
+        "norm_succ_diff": 0.3523633319261062,
+        "hurst_exponent": 0.6859085125594313,
+        "trend_coeff": -0.20710959727541658,
+        "count_skewness": 1.3670291155970817
       }
     },
     {
       "method": "noise",
       "intensity": 0.1,
       "signatures": {
-        "lag1_autocorr": 0.1756327764702495,
-        "coef_variation": 0.4446100993722765,
-        "fano_factor": 0.2694527996452911,
-        "norm_succ_diff": 0.41635930326317006,
-        "hurst_exponent": 0.568094165524735,
-        "trend_coeff": -0.2432236627757657,
-        "count_skewness": 1.4099279660562842
+        "lag1_autocorr": 0.1950367328765653,
+        "coef_variation": 0.3825982912182861,
+        "fano_factor": 0.3245517742939869,
+        "norm_succ_diff": 0.34229860388222844,
+        "hurst_exponent": 0.6564554999624627,
+        "trend_coeff": -0.2268251953614574,
+        "count_skewness": 1.5223721704907793
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.15,
+      "signatures": {
+        "lag1_autocorr": 0.2138882304744229,
+        "coef_variation": 0.5028227499853292,
+        "fano_factor": 0.2939120754440926,
+        "norm_succ_diff": 0.2677395244024949,
+        "hurst_exponent": 0.5107758703099032,
+        "trend_coeff": -0.25180467691008,
+        "count_skewness": 1.5296377672612003
       }
     },
     {
       "method": "noise",
       "intensity": 0.2,
       "signatures": {
-        "lag1_autocorr": 0.10161410678546515,
-        "coef_variation": 0.4799578621641336,
-        "fano_factor": 0.24255061088129967,
-        "norm_succ_diff": 0.379460498248734,
-        "hurst_exponent": 0.42346113780533173,
-        "trend_coeff": -0.21148693057187748,
-        "count_skewness": 1.3877751163148968
+        "lag1_autocorr": 0.12986150260398616,
+        "coef_variation": 0.48060424280295466,
+        "fano_factor": 0.33472359974257,
+        "norm_succ_diff": 0.3431704050657353,
+        "hurst_exponent": 0.8249698626963249,
+        "trend_coeff": -0.2405257988396419,
+        "count_skewness": 1.155232984437693
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.25,
+      "signatures": {
+        "lag1_autocorr": 0.17052052359006506,
+        "coef_variation": 0.37154136296255924,
+        "fano_factor": 0.3934658828798307,
+        "norm_succ_diff": 0.2832113798941321,
+        "hurst_exponent": 0.7012974202617777,
+        "trend_coeff": -0.17637715221327174,
+        "count_skewness": 1.3138885996072878
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.3,
+      "signatures": {
+        "lag1_autocorr": 0.21758091304189847,
+        "coef_variation": 0.1383093371730213,
+        "fano_factor": 0.1717248386431978,
+        "norm_succ_diff": 0.26360054212078915,
+        "hurst_exponent": 1.0170875717000365,
+        "trend_coeff": -0.185329968530646,
+        "count_skewness": 1.2028312002652872
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.35,
+      "signatures": {
+        "lag1_autocorr": 0.1816961427894754,
+        "coef_variation": 0.3832679174356497,
+        "fano_factor": 0.22143177546438414,
+        "norm_succ_diff": 0.44992169956092465,
+        "hurst_exponent": 0.7683838782635135,
+        "trend_coeff": -0.1421926505280697,
+        "count_skewness": 1.326067569152154
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.4,
+      "signatures": {
+        "lag1_autocorr": 0.23927098225180712,
+        "coef_variation": 0.8691080972856626,
+        "fano_factor": 0.30573881148977183,
+        "norm_succ_diff": 0.6005874933741103,
+        "hurst_exponent": 0.09270312777302436,
+        "trend_coeff": -0.2569757861002221,
+        "count_skewness": 2.004048537848979
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.45,
+      "signatures": {
+        "lag1_autocorr": 0.16618089847322876,
+        "coef_variation": 0.6796995994558852,
+        "fano_factor": 0.3109061385725048,
+        "norm_succ_diff": 0.380838542371477,
+        "hurst_exponent": 0.7852662533377233,
+        "trend_coeff": -0.32097767123528564,
+        "count_skewness": 1.5911888388986444
       }
     },
     {
       "method": "jitter",
       "intensity": 0.01,
       "signatures": {
-        "lag1_autocorr": 0.18265374288014247,
-        "coef_variation": 0.46623537735458326,
-        "fano_factor": 0.30875431094965194,
-        "norm_succ_diff": 0.3563515505941901,
-        "hurst_exponent": 0.6882659523031393,
-        "trend_coeff": -0.2197828155714571,
-        "count_skewness": 1.437908252960686
-      }
-    },
-    {
-      "method": "jitter",
-      "intensity": 0.02,
-      "signatures": {
-        "lag1_autocorr": 0.18297616786414947,
-        "coef_variation": 0.45932418733545555,
-        "fano_factor": 0.30571568357475165,
-        "norm_succ_diff": 0.3502404146863014,
-        "hurst_exponent": 0.681912082480617,
-        "trend_coeff": -0.21568826751302514,
-        "count_skewness": 1.4688791733533015
+        "lag1_autocorr": 0.18048415979561852,
+        "coef_variation": 0.45681175998528883,
+        "fano_factor": 0.30967462088101816,
+        "norm_succ_diff": 0.34967332780436466,
+        "hurst_exponent": 0.6851479520993826,
+        "trend_coeff": -0.2173751306925843,
+        "count_skewness": 1.4493935409061725
       }
     },
     {
       "method": "jitter",
       "intensity": 0.05,
       "signatures": {
-        "lag1_autocorr": 0.18210757660663396,
-        "coef_variation": 0.4439854228305913,
-        "fano_factor": 0.3079906227697691,
-        "norm_succ_diff": 0.3517554917629744,
-        "hurst_exponent": 0.6731849315009542,
-        "trend_coeff": -0.2346400407096035,
-        "count_skewness": 1.5334541512477717
+        "lag1_autocorr": 0.1868883593307228,
+        "coef_variation": 0.4843103713443313,
+        "fano_factor": 0.2943879417394269,
+        "norm_succ_diff": 0.345079263359168,
+        "hurst_exponent": 0.6042548735487205,
+        "trend_coeff": -0.21962621602740806,
+        "count_skewness": 1.4844909022192603
       }
     },
     {
       "method": "jitter",
       "intensity": 0.1,
       "signatures": {
-        "lag1_autocorr": 0.18005817688191286,
-        "coef_variation": 0.50957247433498,
-        "fano_factor": 0.29556830623243885,
-        "norm_succ_diff": 0.3536885475341688,
-        "hurst_exponent": 0.6378641786928012,
-        "trend_coeff": -0.2003397029684685,
-        "count_skewness": 1.343480967643614
+        "lag1_autocorr": 0.22263959250407464,
+        "coef_variation": 0.5316612269417109,
+        "fano_factor": 0.33584414377956073,
+        "norm_succ_diff": 0.32549266263086163,
+        "hurst_exponent": 0.5379411373048406,
+        "trend_coeff": -0.22093705129734828,
+        "count_skewness": 1.4471319116913062
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.15,
+      "signatures": {
+        "lag1_autocorr": 0.16290041582478396,
+        "coef_variation": 0.481013006396709,
+        "fano_factor": 0.2689420478914846,
+        "norm_succ_diff": 0.45399515687460607,
+        "hurst_exponent": 0.6820402057009692,
+        "trend_coeff": -0.3166419708280897,
+        "count_skewness": 1.5531360570875263
       }
     },
     {
       "method": "jitter",
       "intensity": 0.2,
       "signatures": {
-        "lag1_autocorr": 0.13040554612661046,
-        "coef_variation": 0.4304368790020723,
-        "fano_factor": 0.3769025783606616,
-        "norm_succ_diff": 0.29768249993150797,
-        "hurst_exponent": 0.4619915040435444,
-        "trend_coeff": -0.22868884250845153,
-        "count_skewness": 1.2790553002843736
+        "lag1_autocorr": 0.16889532330777268,
+        "coef_variation": 0.47709176196750647,
+        "fano_factor": 0.152727424132885,
+        "norm_succ_diff": 0.340830187406378,
+        "hurst_exponent": 0.534349792934839,
+        "trend_coeff": -0.2455009876217366,
+        "count_skewness": 1.2664211073591027
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.25,
+      "signatures": {
+        "lag1_autocorr": 0.22381193131309884,
+        "coef_variation": 0.4189283110962362,
+        "fano_factor": 0.42750789476323925,
+        "norm_succ_diff": 0.35883540015410453,
+        "hurst_exponent": 0.7621666861720464,
+        "trend_coeff": -0.20244767801577132,
+        "count_skewness": 1.5314815250834952
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.3,
+      "signatures": {
+        "lag1_autocorr": 0.2389684202317563,
+        "coef_variation": 0.8061127526520098,
+        "fano_factor": 0.3562849254619971,
+        "norm_succ_diff": 0.6181970065749219,
+        "hurst_exponent": 0.43590310715341984,
+        "trend_coeff": -0.28695644667788184,
+        "count_skewness": 1.5516177969604021
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.35,
+      "signatures": {
+        "lag1_autocorr": 0.14235976442432657,
+        "coef_variation": 0.0,
+        "fano_factor": 0.11178544792539896,
+        "norm_succ_diff": 0.37147398405672655,
+        "hurst_exponent": 0.34376899195530164,
+        "trend_coeff": -0.20919899632780625,
+        "count_skewness": 1.7417751395906986
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.4,
+      "signatures": {
+        "lag1_autocorr": 0.11242906737871847,
+        "coef_variation": 0.6257727506606389,
+        "fano_factor": 0.42940927434687237,
+        "norm_succ_diff": 0.14558054703086026,
+        "hurst_exponent": 0.7874496332755238,
+        "trend_coeff": -0.2679718594126811,
+        "count_skewness": 2.3128702982643126
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.45,
+      "signatures": {
+        "lag1_autocorr": 0.18223902928529065,
+        "coef_variation": 0.0,
+        "fano_factor": 0.32156417148163485,
+        "norm_succ_diff": 0.5188867047588894,
+        "hurst_exponent": 0.3905413541881027,
+        "trend_coeff": 0.025124605978516807,
+        "count_skewness": 1.150023027136191
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.99,
+      "signatures": {
+        "lag1_autocorr": 0.1795378872738367,
+        "coef_variation": 0.45990745713718617,
+        "fano_factor": 0.30832764505098303,
+        "norm_succ_diff": 0.3532935153581194,
+        "hurst_exponent": 0.6847416979415383,
+        "trend_coeff": -0.22053287865590535,
+        "count_skewness": 1.441329962791735
       }
     },
     {
@@ -1169,7 +2317,33 @@
     },
     {
       "method": "subset",
+      "intensity": 0.85,
+      "signatures": {
+        "lag1_autocorr": 0.1795378872738367,
+        "coef_variation": 0.45990745713718617,
+        "fano_factor": 0.30832764505098303,
+        "norm_succ_diff": 0.3532935153581194,
+        "hurst_exponent": 0.6847416979415383,
+        "trend_coeff": -0.22053287865590535,
+        "count_skewness": 1.441329962791735
+      }
+    },
+    {
+      "method": "subset",
       "intensity": 0.8,
+      "signatures": {
+        "lag1_autocorr": 0.1795378872738367,
+        "coef_variation": 0.45990745713718617,
+        "fano_factor": 0.30832764505098303,
+        "norm_succ_diff": 0.3532935153581194,
+        "hurst_exponent": 0.6847416979415383,
+        "trend_coeff": -0.22053287865590535,
+        "count_skewness": 1.441329962791735
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.75,
       "signatures": {
         "lag1_autocorr": 0.1795378872738367,
         "coef_variation": 0.45990745713718617,
@@ -1195,7 +2369,33 @@
     },
     {
       "method": "subset",
+      "intensity": 0.65,
+      "signatures": {
+        "lag1_autocorr": 0.1795378872738367,
+        "coef_variation": 0.45990745713718617,
+        "fano_factor": 0.30832764505098303,
+        "norm_succ_diff": 0.3532935153581194,
+        "hurst_exponent": 0.6847416979415383,
+        "trend_coeff": -0.22053287865590535,
+        "count_skewness": 1.441329962791735
+      }
+    },
+    {
+      "method": "subset",
       "intensity": 0.6,
+      "signatures": {
+        "lag1_autocorr": 0.1795378872738367,
+        "coef_variation": 0.45990745713718617,
+        "fano_factor": 0.30832764505098303,
+        "norm_succ_diff": 0.3532935153581194,
+        "hurst_exponent": 0.6847416979415383,
+        "trend_coeff": -0.22053287865590535,
+        "count_skewness": 1.441329962791735
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.55,
       "signatures": {
         "lag1_autocorr": 0.1795378872738367,
         "coef_variation": 0.45990745713718617,
@@ -7294,4067 +8494,6 @@
       ]
     },
     {
-      "scale": "3D",
-      "events": [
-        {
-          "date": "2015-09-14",
-          "target": 2
-        },
-        {
-          "date": "2015-09-17",
-          "target": 0
-        },
-        {
-          "date": "2015-09-20",
-          "target": 0
-        },
-        {
-          "date": "2015-09-23",
-          "target": 0
-        },
-        {
-          "date": "2015-09-26",
-          "target": 0
-        },
-        {
-          "date": "2015-09-29",
-          "target": 0
-        },
-        {
-          "date": "2015-10-02",
-          "target": 0
-        },
-        {
-          "date": "2015-10-05",
-          "target": 0
-        },
-        {
-          "date": "2015-10-08",
-          "target": 1
-        },
-        {
-          "date": "2015-10-11",
-          "target": 3
-        },
-        {
-          "date": "2015-10-14",
-          "target": 0
-        },
-        {
-          "date": "2015-10-17",
-          "target": 0
-        },
-        {
-          "date": "2015-10-20",
-          "target": 0
-        },
-        {
-          "date": "2015-10-23",
-          "target": 0
-        },
-        {
-          "date": "2015-10-26",
-          "target": 0
-        },
-        {
-          "date": "2015-10-29",
-          "target": 0
-        },
-        {
-          "date": "2015-11-01",
-          "target": 0
-        },
-        {
-          "date": "2015-11-04",
-          "target": 0
-        },
-        {
-          "date": "2015-11-07",
-          "target": 0
-        },
-        {
-          "date": "2015-11-10",
-          "target": 0
-        },
-        {
-          "date": "2015-11-13",
-          "target": 0
-        },
-        {
-          "date": "2015-11-16",
-          "target": 1
-        },
-        {
-          "date": "2015-11-19",
-          "target": 0
-        },
-        {
-          "date": "2015-11-22",
-          "target": 0
-        },
-        {
-          "date": "2015-11-25",
-          "target": 0
-        },
-        {
-          "date": "2015-11-28",
-          "target": 0
-        },
-        {
-          "date": "2015-12-01",
-          "target": 0
-        },
-        {
-          "date": "2015-12-04",
-          "target": 0
-        },
-        {
-          "date": "2015-12-07",
-          "target": 0
-        },
-        {
-          "date": "2015-12-10",
-          "target": 0
-        },
-        {
-          "date": "2015-12-13",
-          "target": 0
-        },
-        {
-          "date": "2015-12-16",
-          "target": 0
-        },
-        {
-          "date": "2015-12-19",
-          "target": 0
-        },
-        {
-          "date": "2015-12-22",
-          "target": 0
-        },
-        {
-          "date": "2015-12-25",
-          "target": 2
-        },
-        {
-          "date": "2015-12-28",
-          "target": 0
-        },
-        {
-          "date": "2015-12-31",
-          "target": 0
-        },
-        {
-          "date": "2016-01-03",
-          "target": 0
-        },
-        {
-          "date": "2016-01-06",
-          "target": 0
-        },
-        {
-          "date": "2016-01-09",
-          "target": 0
-        },
-        {
-          "date": "2016-01-12",
-          "target": 0
-        },
-        {
-          "date": "2016-01-15",
-          "target": 0
-        },
-        {
-          "date": "2016-01-18",
-          "target": 0
-        },
-        {
-          "date": "2016-01-21",
-          "target": 0
-        },
-        {
-          "date": "2016-01-24",
-          "target": 0
-        },
-        {
-          "date": "2016-01-27",
-          "target": 0
-        },
-        {
-          "date": "2016-01-30",
-          "target": 0
-        },
-        {
-          "date": "2016-02-02",
-          "target": 0
-        },
-        {
-          "date": "2016-02-05",
-          "target": 0
-        },
-        {
-          "date": "2016-02-08",
-          "target": 0
-        },
-        {
-          "date": "2016-02-11",
-          "target": 0
-        },
-        {
-          "date": "2016-02-14",
-          "target": 0
-        },
-        {
-          "date": "2016-02-17",
-          "target": 0
-        },
-        {
-          "date": "2016-02-20",
-          "target": 0
-        },
-        {
-          "date": "2016-02-23",
-          "target": 0
-        },
-        {
-          "date": "2016-02-26",
-          "target": 0
-        },
-        {
-          "date": "2016-02-29",
-          "target": 0
-        },
-        {
-          "date": "2016-03-03",
-          "target": 0
-        },
-        {
-          "date": "2016-03-06",
-          "target": 0
-        },
-        {
-          "date": "2016-03-09",
-          "target": 0
-        },
-        {
-          "date": "2016-03-12",
-          "target": 0
-        },
-        {
-          "date": "2016-03-15",
-          "target": 0
-        },
-        {
-          "date": "2016-03-18",
-          "target": 0
-        },
-        {
-          "date": "2016-03-21",
-          "target": 0
-        },
-        {
-          "date": "2016-03-24",
-          "target": 0
-        },
-        {
-          "date": "2016-03-27",
-          "target": 0
-        },
-        {
-          "date": "2016-03-30",
-          "target": 0
-        },
-        {
-          "date": "2016-04-02",
-          "target": 0
-        },
-        {
-          "date": "2016-04-05",
-          "target": 0
-        },
-        {
-          "date": "2016-04-08",
-          "target": 0
-        },
-        {
-          "date": "2016-04-11",
-          "target": 0
-        },
-        {
-          "date": "2016-04-14",
-          "target": 0
-        },
-        {
-          "date": "2016-04-17",
-          "target": 0
-        },
-        {
-          "date": "2016-04-20",
-          "target": 0
-        },
-        {
-          "date": "2016-04-23",
-          "target": 0
-        },
-        {
-          "date": "2016-04-26",
-          "target": 0
-        },
-        {
-          "date": "2016-04-29",
-          "target": 0
-        },
-        {
-          "date": "2016-05-02",
-          "target": 0
-        },
-        {
-          "date": "2016-05-05",
-          "target": 0
-        },
-        {
-          "date": "2016-05-08",
-          "target": 0
-        },
-        {
-          "date": "2016-05-11",
-          "target": 0
-        },
-        {
-          "date": "2016-05-14",
-          "target": 0
-        },
-        {
-          "date": "2016-05-17",
-          "target": 0
-        },
-        {
-          "date": "2016-05-20",
-          "target": 0
-        },
-        {
-          "date": "2016-05-23",
-          "target": 0
-        },
-        {
-          "date": "2016-05-26",
-          "target": 0
-        },
-        {
-          "date": "2016-05-29",
-          "target": 0
-        },
-        {
-          "date": "2016-06-01",
-          "target": 0
-        },
-        {
-          "date": "2016-06-04",
-          "target": 0
-        },
-        {
-          "date": "2016-06-07",
-          "target": 0
-        },
-        {
-          "date": "2016-06-10",
-          "target": 0
-        },
-        {
-          "date": "2016-06-13",
-          "target": 0
-        },
-        {
-          "date": "2016-06-16",
-          "target": 0
-        },
-        {
-          "date": "2016-06-19",
-          "target": 0
-        },
-        {
-          "date": "2016-06-22",
-          "target": 0
-        },
-        {
-          "date": "2016-06-25",
-          "target": 0
-        },
-        {
-          "date": "2016-06-28",
-          "target": 0
-        },
-        {
-          "date": "2016-07-01",
-          "target": 0
-        },
-        {
-          "date": "2016-07-04",
-          "target": 0
-        },
-        {
-          "date": "2016-07-07",
-          "target": 0
-        },
-        {
-          "date": "2016-07-10",
-          "target": 0
-        },
-        {
-          "date": "2016-07-13",
-          "target": 0
-        },
-        {
-          "date": "2016-07-16",
-          "target": 0
-        },
-        {
-          "date": "2016-07-19",
-          "target": 0
-        },
-        {
-          "date": "2016-07-22",
-          "target": 0
-        },
-        {
-          "date": "2016-07-25",
-          "target": 0
-        },
-        {
-          "date": "2016-07-28",
-          "target": 0
-        },
-        {
-          "date": "2016-07-31",
-          "target": 0
-        },
-        {
-          "date": "2016-08-03",
-          "target": 0
-        },
-        {
-          "date": "2016-08-06",
-          "target": 0
-        },
-        {
-          "date": "2016-08-09",
-          "target": 0
-        },
-        {
-          "date": "2016-08-12",
-          "target": 0
-        },
-        {
-          "date": "2016-08-15",
-          "target": 0
-        },
-        {
-          "date": "2016-08-18",
-          "target": 0
-        },
-        {
-          "date": "2016-08-21",
-          "target": 0
-        },
-        {
-          "date": "2016-08-24",
-          "target": 0
-        },
-        {
-          "date": "2016-08-27",
-          "target": 0
-        },
-        {
-          "date": "2016-08-30",
-          "target": 0
-        },
-        {
-          "date": "2016-09-02",
-          "target": 0
-        },
-        {
-          "date": "2016-09-05",
-          "target": 0
-        },
-        {
-          "date": "2016-09-08",
-          "target": 0
-        },
-        {
-          "date": "2016-09-11",
-          "target": 0
-        },
-        {
-          "date": "2016-09-14",
-          "target": 0
-        },
-        {
-          "date": "2016-09-17",
-          "target": 0
-        },
-        {
-          "date": "2016-09-20",
-          "target": 0
-        },
-        {
-          "date": "2016-09-23",
-          "target": 0
-        },
-        {
-          "date": "2016-09-26",
-          "target": 0
-        },
-        {
-          "date": "2016-09-29",
-          "target": 0
-        },
-        {
-          "date": "2016-10-02",
-          "target": 0
-        },
-        {
-          "date": "2016-10-05",
-          "target": 0
-        },
-        {
-          "date": "2016-10-08",
-          "target": 0
-        },
-        {
-          "date": "2016-10-11",
-          "target": 0
-        },
-        {
-          "date": "2016-10-14",
-          "target": 0
-        },
-        {
-          "date": "2016-10-17",
-          "target": 0
-        },
-        {
-          "date": "2016-10-20",
-          "target": 0
-        },
-        {
-          "date": "2016-10-23",
-          "target": 0
-        },
-        {
-          "date": "2016-10-26",
-          "target": 0
-        },
-        {
-          "date": "2016-10-29",
-          "target": 0
-        },
-        {
-          "date": "2016-11-01",
-          "target": 0
-        },
-        {
-          "date": "2016-11-04",
-          "target": 0
-        },
-        {
-          "date": "2016-11-07",
-          "target": 0
-        },
-        {
-          "date": "2016-11-10",
-          "target": 0
-        },
-        {
-          "date": "2016-11-13",
-          "target": 0
-        },
-        {
-          "date": "2016-11-16",
-          "target": 0
-        },
-        {
-          "date": "2016-11-19",
-          "target": 0
-        },
-        {
-          "date": "2016-11-22",
-          "target": 0
-        },
-        {
-          "date": "2016-11-25",
-          "target": 0
-        },
-        {
-          "date": "2016-11-28",
-          "target": 0
-        },
-        {
-          "date": "2016-12-01",
-          "target": 1
-        },
-        {
-          "date": "2016-12-04",
-          "target": 0
-        },
-        {
-          "date": "2016-12-07",
-          "target": 0
-        },
-        {
-          "date": "2016-12-10",
-          "target": 0
-        },
-        {
-          "date": "2016-12-13",
-          "target": 0
-        },
-        {
-          "date": "2016-12-16",
-          "target": 1
-        },
-        {
-          "date": "2016-12-19",
-          "target": 0
-        },
-        {
-          "date": "2016-12-22",
-          "target": 0
-        },
-        {
-          "date": "2016-12-25",
-          "target": 0
-        },
-        {
-          "date": "2016-12-28",
-          "target": 0
-        },
-        {
-          "date": "2016-12-31",
-          "target": 0
-        },
-        {
-          "date": "2017-01-03",
-          "target": 2
-        },
-        {
-          "date": "2017-01-06",
-          "target": 0
-        },
-        {
-          "date": "2017-01-09",
-          "target": 0
-        },
-        {
-          "date": "2017-01-12",
-          "target": 0
-        },
-        {
-          "date": "2017-01-15",
-          "target": 0
-        },
-        {
-          "date": "2017-01-18",
-          "target": 0
-        },
-        {
-          "date": "2017-01-21",
-          "target": 0
-        },
-        {
-          "date": "2017-01-24",
-          "target": 0
-        },
-        {
-          "date": "2017-01-27",
-          "target": 0
-        },
-        {
-          "date": "2017-01-30",
-          "target": 0
-        },
-        {
-          "date": "2017-02-02",
-          "target": 0
-        },
-        {
-          "date": "2017-02-05",
-          "target": 0
-        },
-        {
-          "date": "2017-02-08",
-          "target": 1
-        },
-        {
-          "date": "2017-02-11",
-          "target": 0
-        },
-        {
-          "date": "2017-02-14",
-          "target": 0
-        },
-        {
-          "date": "2017-02-17",
-          "target": 1
-        },
-        {
-          "date": "2017-02-20",
-          "target": 0
-        },
-        {
-          "date": "2017-02-23",
-          "target": 0
-        },
-        {
-          "date": "2017-02-26",
-          "target": 0
-        },
-        {
-          "date": "2017-03-01",
-          "target": 0
-        },
-        {
-          "date": "2017-03-04",
-          "target": 0
-        },
-        {
-          "date": "2017-03-07",
-          "target": 0
-        },
-        {
-          "date": "2017-03-10",
-          "target": 0
-        },
-        {
-          "date": "2017-03-13",
-          "target": 0
-        },
-        {
-          "date": "2017-03-16",
-          "target": 0
-        },
-        {
-          "date": "2017-03-19",
-          "target": 0
-        },
-        {
-          "date": "2017-03-22",
-          "target": 0
-        },
-        {
-          "date": "2017-03-25",
-          "target": 0
-        },
-        {
-          "date": "2017-03-28",
-          "target": 0
-        },
-        {
-          "date": "2017-03-31",
-          "target": 0
-        },
-        {
-          "date": "2017-04-03",
-          "target": 1
-        },
-        {
-          "date": "2017-04-06",
-          "target": 0
-        },
-        {
-          "date": "2017-04-09",
-          "target": 0
-        },
-        {
-          "date": "2017-04-12",
-          "target": 1
-        },
-        {
-          "date": "2017-04-15",
-          "target": 0
-        },
-        {
-          "date": "2017-04-18",
-          "target": 0
-        },
-        {
-          "date": "2017-04-21",
-          "target": 1
-        },
-        {
-          "date": "2017-04-24",
-          "target": 0
-        },
-        {
-          "date": "2017-04-27",
-          "target": 0
-        },
-        {
-          "date": "2017-04-30",
-          "target": 0
-        },
-        {
-          "date": "2017-05-03",
-          "target": 0
-        },
-        {
-          "date": "2017-05-06",
-          "target": 0
-        },
-        {
-          "date": "2017-05-09",
-          "target": 0
-        },
-        {
-          "date": "2017-05-12",
-          "target": 0
-        },
-        {
-          "date": "2017-05-15",
-          "target": 0
-        },
-        {
-          "date": "2017-05-18",
-          "target": 0
-        },
-        {
-          "date": "2017-05-21",
-          "target": 0
-        },
-        {
-          "date": "2017-05-24",
-          "target": 0
-        },
-        {
-          "date": "2017-05-27",
-          "target": 0
-        },
-        {
-          "date": "2017-05-30",
-          "target": 0
-        },
-        {
-          "date": "2017-06-02",
-          "target": 0
-        },
-        {
-          "date": "2017-06-05",
-          "target": 0
-        },
-        {
-          "date": "2017-06-08",
-          "target": 2
-        },
-        {
-          "date": "2017-06-11",
-          "target": 0
-        },
-        {
-          "date": "2017-06-14",
-          "target": 1
-        },
-        {
-          "date": "2017-06-17",
-          "target": 0
-        },
-        {
-          "date": "2017-06-20",
-          "target": 0
-        },
-        {
-          "date": "2017-06-23",
-          "target": 0
-        },
-        {
-          "date": "2017-06-26",
-          "target": 0
-        },
-        {
-          "date": "2017-06-29",
-          "target": 1
-        },
-        {
-          "date": "2017-07-02",
-          "target": 0
-        },
-        {
-          "date": "2017-07-05",
-          "target": 1
-        },
-        {
-          "date": "2017-07-08",
-          "target": 0
-        },
-        {
-          "date": "2017-07-11",
-          "target": 0
-        },
-        {
-          "date": "2017-07-14",
-          "target": 0
-        },
-        {
-          "date": "2017-07-17",
-          "target": 0
-        },
-        {
-          "date": "2017-07-20",
-          "target": 1
-        },
-        {
-          "date": "2017-07-23",
-          "target": 0
-        },
-        {
-          "date": "2017-07-26",
-          "target": 0
-        },
-        {
-          "date": "2017-07-29",
-          "target": 2
-        },
-        {
-          "date": "2017-08-01",
-          "target": 0
-        },
-        {
-          "date": "2017-08-04",
-          "target": 0
-        },
-        {
-          "date": "2017-08-07",
-          "target": 2
-        },
-        {
-          "date": "2017-08-10",
-          "target": 0
-        },
-        {
-          "date": "2017-08-13",
-          "target": 2
-        },
-        {
-          "date": "2017-08-16",
-          "target": 3
-        },
-        {
-          "date": "2017-08-19",
-          "target": 0
-        },
-        {
-          "date": "2017-08-22",
-          "target": 2
-        },
-        {
-          "date": "2017-08-25",
-          "target": 0
-        },
-        {
-          "date": "2017-08-28",
-          "target": 0
-        },
-        {
-          "date": "2017-08-31",
-          "target": 0
-        },
-        {
-          "date": "2017-09-03",
-          "target": 0
-        },
-        {
-          "date": "2017-09-06",
-          "target": 0
-        },
-        {
-          "date": "2017-09-09",
-          "target": 0
-        },
-        {
-          "date": "2017-09-12",
-          "target": 0
-        },
-        {
-          "date": "2017-09-15",
-          "target": 0
-        },
-        {
-          "date": "2017-09-18",
-          "target": 0
-        },
-        {
-          "date": "2017-09-21",
-          "target": 0
-        },
-        {
-          "date": "2017-09-24",
-          "target": 0
-        },
-        {
-          "date": "2017-09-27",
-          "target": 0
-        },
-        {
-          "date": "2017-09-30",
-          "target": 0
-        },
-        {
-          "date": "2017-10-03",
-          "target": 0
-        },
-        {
-          "date": "2017-10-06",
-          "target": 0
-        },
-        {
-          "date": "2017-10-09",
-          "target": 0
-        },
-        {
-          "date": "2017-10-12",
-          "target": 0
-        },
-        {
-          "date": "2017-10-15",
-          "target": 0
-        },
-        {
-          "date": "2017-10-18",
-          "target": 0
-        },
-        {
-          "date": "2017-10-21",
-          "target": 0
-        },
-        {
-          "date": "2017-10-24",
-          "target": 0
-        },
-        {
-          "date": "2017-10-27",
-          "target": 0
-        },
-        {
-          "date": "2017-10-30",
-          "target": 0
-        },
-        {
-          "date": "2017-11-02",
-          "target": 0
-        },
-        {
-          "date": "2017-11-05",
-          "target": 0
-        },
-        {
-          "date": "2017-11-08",
-          "target": 0
-        },
-        {
-          "date": "2017-11-11",
-          "target": 0
-        },
-        {
-          "date": "2017-11-14",
-          "target": 0
-        },
-        {
-          "date": "2017-11-17",
-          "target": 0
-        },
-        {
-          "date": "2017-11-20",
-          "target": 0
-        },
-        {
-          "date": "2017-11-23",
-          "target": 0
-        },
-        {
-          "date": "2017-11-26",
-          "target": 0
-        },
-        {
-          "date": "2017-11-29",
-          "target": 0
-        },
-        {
-          "date": "2017-12-02",
-          "target": 0
-        },
-        {
-          "date": "2017-12-05",
-          "target": 0
-        },
-        {
-          "date": "2017-12-08",
-          "target": 0
-        },
-        {
-          "date": "2017-12-11",
-          "target": 0
-        },
-        {
-          "date": "2017-12-14",
-          "target": 0
-        },
-        {
-          "date": "2017-12-17",
-          "target": 0
-        },
-        {
-          "date": "2017-12-20",
-          "target": 0
-        },
-        {
-          "date": "2017-12-23",
-          "target": 0
-        },
-        {
-          "date": "2017-12-26",
-          "target": 0
-        },
-        {
-          "date": "2017-12-29",
-          "target": 0
-        },
-        {
-          "date": "2018-01-01",
-          "target": 0
-        },
-        {
-          "date": "2018-01-04",
-          "target": 0
-        },
-        {
-          "date": "2018-01-07",
-          "target": 0
-        },
-        {
-          "date": "2018-01-10",
-          "target": 0
-        },
-        {
-          "date": "2018-01-13",
-          "target": 0
-        },
-        {
-          "date": "2018-01-16",
-          "target": 0
-        },
-        {
-          "date": "2018-01-19",
-          "target": 0
-        },
-        {
-          "date": "2018-01-22",
-          "target": 0
-        },
-        {
-          "date": "2018-01-25",
-          "target": 0
-        },
-        {
-          "date": "2018-01-28",
-          "target": 0
-        },
-        {
-          "date": "2018-01-31",
-          "target": 0
-        },
-        {
-          "date": "2018-02-03",
-          "target": 0
-        },
-        {
-          "date": "2018-02-06",
-          "target": 0
-        },
-        {
-          "date": "2018-02-09",
-          "target": 0
-        },
-        {
-          "date": "2018-02-12",
-          "target": 0
-        },
-        {
-          "date": "2018-02-15",
-          "target": 0
-        },
-        {
-          "date": "2018-02-18",
-          "target": 0
-        },
-        {
-          "date": "2018-02-21",
-          "target": 0
-        },
-        {
-          "date": "2018-02-24",
-          "target": 0
-        },
-        {
-          "date": "2018-02-27",
-          "target": 0
-        },
-        {
-          "date": "2018-03-02",
-          "target": 0
-        },
-        {
-          "date": "2018-03-05",
-          "target": 0
-        },
-        {
-          "date": "2018-03-08",
-          "target": 0
-        },
-        {
-          "date": "2018-03-11",
-          "target": 0
-        },
-        {
-          "date": "2018-03-14",
-          "target": 0
-        },
-        {
-          "date": "2018-03-17",
-          "target": 0
-        },
-        {
-          "date": "2018-03-20",
-          "target": 0
-        },
-        {
-          "date": "2018-03-23",
-          "target": 0
-        },
-        {
-          "date": "2018-03-26",
-          "target": 0
-        },
-        {
-          "date": "2018-03-29",
-          "target": 0
-        },
-        {
-          "date": "2018-04-01",
-          "target": 0
-        },
-        {
-          "date": "2018-04-04",
-          "target": 0
-        },
-        {
-          "date": "2018-04-07",
-          "target": 0
-        },
-        {
-          "date": "2018-04-10",
-          "target": 0
-        },
-        {
-          "date": "2018-04-13",
-          "target": 0
-        },
-        {
-          "date": "2018-04-16",
-          "target": 0
-        },
-        {
-          "date": "2018-04-19",
-          "target": 0
-        },
-        {
-          "date": "2018-04-22",
-          "target": 0
-        },
-        {
-          "date": "2018-04-25",
-          "target": 0
-        },
-        {
-          "date": "2018-04-28",
-          "target": 0
-        },
-        {
-          "date": "2018-05-01",
-          "target": 0
-        },
-        {
-          "date": "2018-05-04",
-          "target": 0
-        },
-        {
-          "date": "2018-05-07",
-          "target": 0
-        },
-        {
-          "date": "2018-05-10",
-          "target": 0
-        },
-        {
-          "date": "2018-05-13",
-          "target": 0
-        },
-        {
-          "date": "2018-05-16",
-          "target": 0
-        },
-        {
-          "date": "2018-05-19",
-          "target": 0
-        },
-        {
-          "date": "2018-05-22",
-          "target": 0
-        },
-        {
-          "date": "2018-05-25",
-          "target": 0
-        },
-        {
-          "date": "2018-05-28",
-          "target": 0
-        },
-        {
-          "date": "2018-05-31",
-          "target": 0
-        },
-        {
-          "date": "2018-06-03",
-          "target": 0
-        },
-        {
-          "date": "2018-06-06",
-          "target": 0
-        },
-        {
-          "date": "2018-06-09",
-          "target": 0
-        },
-        {
-          "date": "2018-06-12",
-          "target": 0
-        },
-        {
-          "date": "2018-06-15",
-          "target": 0
-        },
-        {
-          "date": "2018-06-18",
-          "target": 0
-        },
-        {
-          "date": "2018-06-21",
-          "target": 0
-        },
-        {
-          "date": "2018-06-24",
-          "target": 0
-        },
-        {
-          "date": "2018-06-27",
-          "target": 0
-        },
-        {
-          "date": "2018-06-30",
-          "target": 0
-        },
-        {
-          "date": "2018-07-03",
-          "target": 0
-        },
-        {
-          "date": "2018-07-06",
-          "target": 0
-        },
-        {
-          "date": "2018-07-09",
-          "target": 0
-        },
-        {
-          "date": "2018-07-12",
-          "target": 0
-        },
-        {
-          "date": "2018-07-15",
-          "target": 0
-        },
-        {
-          "date": "2018-07-18",
-          "target": 0
-        },
-        {
-          "date": "2018-07-21",
-          "target": 0
-        },
-        {
-          "date": "2018-07-24",
-          "target": 0
-        },
-        {
-          "date": "2018-07-27",
-          "target": 0
-        },
-        {
-          "date": "2018-07-30",
-          "target": 0
-        },
-        {
-          "date": "2018-08-02",
-          "target": 0
-        },
-        {
-          "date": "2018-08-05",
-          "target": 0
-        },
-        {
-          "date": "2018-08-08",
-          "target": 0
-        },
-        {
-          "date": "2018-08-11",
-          "target": 0
-        },
-        {
-          "date": "2018-08-14",
-          "target": 0
-        },
-        {
-          "date": "2018-08-17",
-          "target": 0
-        },
-        {
-          "date": "2018-08-20",
-          "target": 0
-        },
-        {
-          "date": "2018-08-23",
-          "target": 0
-        },
-        {
-          "date": "2018-08-26",
-          "target": 0
-        },
-        {
-          "date": "2018-08-29",
-          "target": 0
-        },
-        {
-          "date": "2018-09-01",
-          "target": 0
-        },
-        {
-          "date": "2018-09-04",
-          "target": 0
-        },
-        {
-          "date": "2018-09-07",
-          "target": 0
-        },
-        {
-          "date": "2018-09-10",
-          "target": 0
-        },
-        {
-          "date": "2018-09-13",
-          "target": 0
-        },
-        {
-          "date": "2018-09-16",
-          "target": 0
-        },
-        {
-          "date": "2018-09-19",
-          "target": 0
-        },
-        {
-          "date": "2018-09-22",
-          "target": 0
-        },
-        {
-          "date": "2018-09-25",
-          "target": 0
-        },
-        {
-          "date": "2018-09-28",
-          "target": 0
-        },
-        {
-          "date": "2018-10-01",
-          "target": 0
-        },
-        {
-          "date": "2018-10-04",
-          "target": 0
-        },
-        {
-          "date": "2018-10-07",
-          "target": 0
-        },
-        {
-          "date": "2018-10-10",
-          "target": 0
-        },
-        {
-          "date": "2018-10-13",
-          "target": 0
-        },
-        {
-          "date": "2018-10-16",
-          "target": 0
-        },
-        {
-          "date": "2018-10-19",
-          "target": 0
-        },
-        {
-          "date": "2018-10-22",
-          "target": 0
-        },
-        {
-          "date": "2018-10-25",
-          "target": 0
-        },
-        {
-          "date": "2018-10-28",
-          "target": 0
-        },
-        {
-          "date": "2018-10-31",
-          "target": 0
-        },
-        {
-          "date": "2018-11-03",
-          "target": 0
-        },
-        {
-          "date": "2018-11-06",
-          "target": 0
-        },
-        {
-          "date": "2018-11-09",
-          "target": 0
-        },
-        {
-          "date": "2018-11-12",
-          "target": 0
-        },
-        {
-          "date": "2018-11-15",
-          "target": 0
-        },
-        {
-          "date": "2018-11-18",
-          "target": 0
-        },
-        {
-          "date": "2018-11-21",
-          "target": 0
-        },
-        {
-          "date": "2018-11-24",
-          "target": 0
-        },
-        {
-          "date": "2018-11-27",
-          "target": 0
-        },
-        {
-          "date": "2018-11-30",
-          "target": 0
-        },
-        {
-          "date": "2018-12-03",
-          "target": 0
-        },
-        {
-          "date": "2018-12-06",
-          "target": 0
-        },
-        {
-          "date": "2018-12-09",
-          "target": 0
-        },
-        {
-          "date": "2018-12-12",
-          "target": 0
-        },
-        {
-          "date": "2018-12-15",
-          "target": 0
-        },
-        {
-          "date": "2018-12-18",
-          "target": 0
-        },
-        {
-          "date": "2018-12-21",
-          "target": 0
-        },
-        {
-          "date": "2018-12-24",
-          "target": 0
-        },
-        {
-          "date": "2018-12-27",
-          "target": 0
-        },
-        {
-          "date": "2018-12-30",
-          "target": 0
-        },
-        {
-          "date": "2019-01-02",
-          "target": 0
-        },
-        {
-          "date": "2019-01-05",
-          "target": 0
-        },
-        {
-          "date": "2019-01-08",
-          "target": 0
-        },
-        {
-          "date": "2019-01-11",
-          "target": 0
-        },
-        {
-          "date": "2019-01-14",
-          "target": 0
-        },
-        {
-          "date": "2019-01-17",
-          "target": 0
-        },
-        {
-          "date": "2019-01-20",
-          "target": 0
-        },
-        {
-          "date": "2019-01-23",
-          "target": 0
-        },
-        {
-          "date": "2019-01-26",
-          "target": 0
-        },
-        {
-          "date": "2019-01-29",
-          "target": 0
-        },
-        {
-          "date": "2019-02-01",
-          "target": 0
-        },
-        {
-          "date": "2019-02-04",
-          "target": 0
-        },
-        {
-          "date": "2019-02-07",
-          "target": 0
-        },
-        {
-          "date": "2019-02-10",
-          "target": 0
-        },
-        {
-          "date": "2019-02-13",
-          "target": 0
-        },
-        {
-          "date": "2019-02-16",
-          "target": 0
-        },
-        {
-          "date": "2019-02-19",
-          "target": 0
-        },
-        {
-          "date": "2019-02-22",
-          "target": 0
-        },
-        {
-          "date": "2019-02-25",
-          "target": 0
-        },
-        {
-          "date": "2019-02-28",
-          "target": 0
-        },
-        {
-          "date": "2019-03-03",
-          "target": 0
-        },
-        {
-          "date": "2019-03-06",
-          "target": 0
-        },
-        {
-          "date": "2019-03-09",
-          "target": 0
-        },
-        {
-          "date": "2019-03-12",
-          "target": 0
-        },
-        {
-          "date": "2019-03-15",
-          "target": 0
-        },
-        {
-          "date": "2019-03-18",
-          "target": 0
-        },
-        {
-          "date": "2019-03-21",
-          "target": 0
-        },
-        {
-          "date": "2019-03-24",
-          "target": 0
-        },
-        {
-          "date": "2019-03-27",
-          "target": 0
-        },
-        {
-          "date": "2019-03-30",
-          "target": 0
-        },
-        {
-          "date": "2019-04-02",
-          "target": 1
-        },
-        {
-          "date": "2019-04-05",
-          "target": 0
-        },
-        {
-          "date": "2019-04-08",
-          "target": 2
-        },
-        {
-          "date": "2019-04-11",
-          "target": 6
-        },
-        {
-          "date": "2019-04-14",
-          "target": 0
-        },
-        {
-          "date": "2019-04-17",
-          "target": 0
-        },
-        {
-          "date": "2019-04-20",
-          "target": 2
-        },
-        {
-          "date": "2019-04-23",
-          "target": 4
-        },
-        {
-          "date": "2019-04-26",
-          "target": 3
-        },
-        {
-          "date": "2019-04-29",
-          "target": 0
-        },
-        {
-          "date": "2019-05-02",
-          "target": 2
-        },
-        {
-          "date": "2019-05-05",
-          "target": 0
-        },
-        {
-          "date": "2019-05-08",
-          "target": 0
-        },
-        {
-          "date": "2019-05-11",
-          "target": 4
-        },
-        {
-          "date": "2019-05-14",
-          "target": 2
-        },
-        {
-          "date": "2019-05-17",
-          "target": 4
-        },
-        {
-          "date": "2019-05-20",
-          "target": 4
-        },
-        {
-          "date": "2019-05-23",
-          "target": 0
-        },
-        {
-          "date": "2019-05-26",
-          "target": 2
-        },
-        {
-          "date": "2019-05-29",
-          "target": 1
-        },
-        {
-          "date": "2019-06-01",
-          "target": 2
-        },
-        {
-          "date": "2019-06-04",
-          "target": 0
-        },
-        {
-          "date": "2019-06-07",
-          "target": 0
-        },
-        {
-          "date": "2019-06-10",
-          "target": 0
-        },
-        {
-          "date": "2019-06-13",
-          "target": 0
-        },
-        {
-          "date": "2019-06-16",
-          "target": 0
-        },
-        {
-          "date": "2019-06-19",
-          "target": 2
-        },
-        {
-          "date": "2019-06-22",
-          "target": 0
-        },
-        {
-          "date": "2019-06-25",
-          "target": 0
-        },
-        {
-          "date": "2019-06-28",
-          "target": 2
-        },
-        {
-          "date": "2019-07-01",
-          "target": 2
-        },
-        {
-          "date": "2019-07-04",
-          "target": 2
-        },
-        {
-          "date": "2019-07-07",
-          "target": 4
-        },
-        {
-          "date": "2019-07-10",
-          "target": 0
-        },
-        {
-          "date": "2019-07-13",
-          "target": 0
-        },
-        {
-          "date": "2019-07-16",
-          "target": 0
-        },
-        {
-          "date": "2019-07-19",
-          "target": 4
-        },
-        {
-          "date": "2019-07-22",
-          "target": 0
-        },
-        {
-          "date": "2019-07-25",
-          "target": 3
-        },
-        {
-          "date": "2019-07-28",
-          "target": 2
-        },
-        {
-          "date": "2019-07-31",
-          "target": 2
-        },
-        {
-          "date": "2019-08-03",
-          "target": 3
-        },
-        {
-          "date": "2019-08-06",
-          "target": 0
-        },
-        {
-          "date": "2019-08-09",
-          "target": 0
-        },
-        {
-          "date": "2019-08-12",
-          "target": 2
-        },
-        {
-          "date": "2019-08-15",
-          "target": 0
-        },
-        {
-          "date": "2019-08-18",
-          "target": 0
-        },
-        {
-          "date": "2019-08-21",
-          "target": 0
-        },
-        {
-          "date": "2019-08-24",
-          "target": 0
-        },
-        {
-          "date": "2019-08-27",
-          "target": 4
-        },
-        {
-          "date": "2019-08-30",
-          "target": 0
-        },
-        {
-          "date": "2019-09-02",
-          "target": 0
-        },
-        {
-          "date": "2019-09-05",
-          "target": 0
-        },
-        {
-          "date": "2019-09-08",
-          "target": 4
-        },
-        {
-          "date": "2019-09-11",
-          "target": 0
-        },
-        {
-          "date": "2019-09-14",
-          "target": 3
-        },
-        {
-          "date": "2019-09-17",
-          "target": 1
-        },
-        {
-          "date": "2019-09-20",
-          "target": 0
-        },
-        {
-          "date": "2019-09-23",
-          "target": 3
-        },
-        {
-          "date": "2019-09-26",
-          "target": 1
-        },
-        {
-          "date": "2019-09-29",
-          "target": 4
-        },
-        {
-          "date": "2019-10-02",
-          "target": 0
-        },
-        {
-          "date": "2019-10-05",
-          "target": 0
-        },
-        {
-          "date": "2019-10-08",
-          "target": 0
-        },
-        {
-          "date": "2019-10-11",
-          "target": 0
-        },
-        {
-          "date": "2019-10-14",
-          "target": 0
-        },
-        {
-          "date": "2019-10-17",
-          "target": 0
-        },
-        {
-          "date": "2019-10-20",
-          "target": 0
-        },
-        {
-          "date": "2019-10-23",
-          "target": 0
-        },
-        {
-          "date": "2019-10-26",
-          "target": 0
-        },
-        {
-          "date": "2019-10-29",
-          "target": 0
-        },
-        {
-          "date": "2019-11-01",
-          "target": 1
-        },
-        {
-          "date": "2019-11-04",
-          "target": 1
-        },
-        {
-          "date": "2019-11-07",
-          "target": 1
-        },
-        {
-          "date": "2019-11-10",
-          "target": 0
-        },
-        {
-          "date": "2019-11-13",
-          "target": 1
-        },
-        {
-          "date": "2019-11-16",
-          "target": 1
-        },
-        {
-          "date": "2019-11-19",
-          "target": 0
-        },
-        {
-          "date": "2019-11-22",
-          "target": 0
-        },
-        {
-          "date": "2019-11-25",
-          "target": 2
-        },
-        {
-          "date": "2019-11-28",
-          "target": 1
-        },
-        {
-          "date": "2019-12-01",
-          "target": 0
-        },
-        {
-          "date": "2019-12-04",
-          "target": 2
-        },
-        {
-          "date": "2019-12-07",
-          "target": 0
-        },
-        {
-          "date": "2019-12-10",
-          "target": 0
-        },
-        {
-          "date": "2019-12-13",
-          "target": 1
-        },
-        {
-          "date": "2019-12-16",
-          "target": 1
-        },
-        {
-          "date": "2019-12-19",
-          "target": 1
-        },
-        {
-          "date": "2019-12-22",
-          "target": 1
-        },
-        {
-          "date": "2019-12-25",
-          "target": 0
-        },
-        {
-          "date": "2019-12-28",
-          "target": 1
-        },
-        {
-          "date": "2019-12-31",
-          "target": 0
-        },
-        {
-          "date": "2020-01-03",
-          "target": 1
-        },
-        {
-          "date": "2020-01-06",
-          "target": 0
-        },
-        {
-          "date": "2020-01-09",
-          "target": 0
-        },
-        {
-          "date": "2020-01-12",
-          "target": 1
-        },
-        {
-          "date": "2020-01-15",
-          "target": 1
-        },
-        {
-          "date": "2020-01-18",
-          "target": 0
-        },
-        {
-          "date": "2020-01-21",
-          "target": 1
-        },
-        {
-          "date": "2020-01-24",
-          "target": 0
-        },
-        {
-          "date": "2020-01-27",
-          "target": 2
-        },
-        {
-          "date": "2020-01-30",
-          "target": 1
-        },
-        {
-          "date": "2020-02-02",
-          "target": 1
-        },
-        {
-          "date": "2020-02-05",
-          "target": 0
-        },
-        {
-          "date": "2020-02-08",
-          "target": 4
-        },
-        {
-          "date": "2020-02-11",
-          "target": 0
-        },
-        {
-          "date": "2020-02-14",
-          "target": 2
-        },
-        {
-          "date": "2020-02-17",
-          "target": 2
-        },
-        {
-          "date": "2020-02-20",
-          "target": 2
-        },
-        {
-          "date": "2020-02-23",
-          "target": 2
-        },
-        {
-          "date": "2020-02-26",
-          "target": 0
-        },
-        {
-          "date": "2020-02-29",
-          "target": 1
-        },
-        {
-          "date": "2020-03-03",
-          "target": 0
-        },
-        {
-          "date": "2020-03-06",
-          "target": 2
-        },
-        {
-          "date": "2020-03-09",
-          "target": 2
-        },
-        {
-          "date": "2020-03-12",
-          "target": 0
-        },
-        {
-          "date": "2020-03-15",
-          "target": 1
-        },
-        {
-          "date": "2020-03-18",
-          "target": 0
-        },
-        {
-          "date": "2020-03-21",
-          "target": 1
-        },
-        {
-          "date": "2020-03-24",
-          "target": 0
-        },
-        {
-          "date": "2020-03-27",
-          "target": 0
-        },
-        {
-          "date": "2020-03-30",
-          "target": 0
-        },
-        {
-          "date": "2020-04-02",
-          "target": 0
-        },
-        {
-          "date": "2020-04-05",
-          "target": 0
-        },
-        {
-          "date": "2020-04-08",
-          "target": 0
-        },
-        {
-          "date": "2020-04-11",
-          "target": 0
-        },
-        {
-          "date": "2020-04-14",
-          "target": 0
-        },
-        {
-          "date": "2020-04-17",
-          "target": 0
-        },
-        {
-          "date": "2020-04-20",
-          "target": 0
-        },
-        {
-          "date": "2020-04-23",
-          "target": 0
-        },
-        {
-          "date": "2020-04-26",
-          "target": 0
-        },
-        {
-          "date": "2020-04-29",
-          "target": 0
-        },
-        {
-          "date": "2020-05-02",
-          "target": 0
-        },
-        {
-          "date": "2020-05-05",
-          "target": 0
-        },
-        {
-          "date": "2020-05-08",
-          "target": 0
-        },
-        {
-          "date": "2020-05-11",
-          "target": 0
-        },
-        {
-          "date": "2020-05-14",
-          "target": 0
-        },
-        {
-          "date": "2020-05-17",
-          "target": 0
-        },
-        {
-          "date": "2020-05-20",
-          "target": 0
-        },
-        {
-          "date": "2020-05-23",
-          "target": 0
-        },
-        {
-          "date": "2020-05-26",
-          "target": 0
-        },
-        {
-          "date": "2020-05-29",
-          "target": 0
-        },
-        {
-          "date": "2020-06-01",
-          "target": 0
-        },
-        {
-          "date": "2020-06-04",
-          "target": 0
-        },
-        {
-          "date": "2020-06-07",
-          "target": 0
-        },
-        {
-          "date": "2020-06-10",
-          "target": 0
-        },
-        {
-          "date": "2020-06-13",
-          "target": 0
-        },
-        {
-          "date": "2020-06-16",
-          "target": 0
-        },
-        {
-          "date": "2020-06-19",
-          "target": 0
-        },
-        {
-          "date": "2020-06-22",
-          "target": 0
-        },
-        {
-          "date": "2020-06-25",
-          "target": 0
-        },
-        {
-          "date": "2020-06-28",
-          "target": 0
-        },
-        {
-          "date": "2020-07-01",
-          "target": 0
-        },
-        {
-          "date": "2020-07-04",
-          "target": 0
-        },
-        {
-          "date": "2020-07-07",
-          "target": 0
-        },
-        {
-          "date": "2020-07-10",
-          "target": 0
-        },
-        {
-          "date": "2020-07-13",
-          "target": 0
-        },
-        {
-          "date": "2020-07-16",
-          "target": 0
-        },
-        {
-          "date": "2020-07-19",
-          "target": 0
-        },
-        {
-          "date": "2020-07-22",
-          "target": 0
-        },
-        {
-          "date": "2020-07-25",
-          "target": 0
-        },
-        {
-          "date": "2020-07-28",
-          "target": 0
-        },
-        {
-          "date": "2020-07-31",
-          "target": 0
-        },
-        {
-          "date": "2020-08-03",
-          "target": 0
-        },
-        {
-          "date": "2020-08-06",
-          "target": 0
-        },
-        {
-          "date": "2020-08-09",
-          "target": 0
-        },
-        {
-          "date": "2020-08-12",
-          "target": 0
-        },
-        {
-          "date": "2020-08-15",
-          "target": 0
-        },
-        {
-          "date": "2020-08-18",
-          "target": 0
-        },
-        {
-          "date": "2020-08-21",
-          "target": 0
-        },
-        {
-          "date": "2020-08-24",
-          "target": 0
-        },
-        {
-          "date": "2020-08-27",
-          "target": 0
-        },
-        {
-          "date": "2020-08-30",
-          "target": 0
-        },
-        {
-          "date": "2020-09-02",
-          "target": 0
-        },
-        {
-          "date": "2020-09-05",
-          "target": 0
-        },
-        {
-          "date": "2020-09-08",
-          "target": 0
-        },
-        {
-          "date": "2020-09-11",
-          "target": 0
-        },
-        {
-          "date": "2020-09-14",
-          "target": 0
-        },
-        {
-          "date": "2020-09-17",
-          "target": 0
-        },
-        {
-          "date": "2020-09-20",
-          "target": 0
-        },
-        {
-          "date": "2020-09-23",
-          "target": 0
-        },
-        {
-          "date": "2020-09-26",
-          "target": 0
-        },
-        {
-          "date": "2020-09-29",
-          "target": 0
-        },
-        {
-          "date": "2020-10-02",
-          "target": 0
-        },
-        {
-          "date": "2020-10-05",
-          "target": 0
-        },
-        {
-          "date": "2020-10-08",
-          "target": 0
-        },
-        {
-          "date": "2020-10-11",
-          "target": 0
-        },
-        {
-          "date": "2020-10-14",
-          "target": 0
-        },
-        {
-          "date": "2020-10-17",
-          "target": 0
-        },
-        {
-          "date": "2020-10-20",
-          "target": 0
-        },
-        {
-          "date": "2020-10-23",
-          "target": 0
-        },
-        {
-          "date": "2020-10-26",
-          "target": 0
-        },
-        {
-          "date": "2020-10-29",
-          "target": 0
-        },
-        {
-          "date": "2020-11-01",
-          "target": 0
-        },
-        {
-          "date": "2020-11-04",
-          "target": 0
-        },
-        {
-          "date": "2020-11-07",
-          "target": 0
-        },
-        {
-          "date": "2020-11-10",
-          "target": 0
-        },
-        {
-          "date": "2020-11-13",
-          "target": 0
-        },
-        {
-          "date": "2020-11-16",
-          "target": 0
-        },
-        {
-          "date": "2020-11-19",
-          "target": 0
-        },
-        {
-          "date": "2020-11-22",
-          "target": 0
-        },
-        {
-          "date": "2020-11-25",
-          "target": 0
-        },
-        {
-          "date": "2020-11-28",
-          "target": 0
-        },
-        {
-          "date": "2020-12-01",
-          "target": 0
-        },
-        {
-          "date": "2020-12-04",
-          "target": 0
-        },
-        {
-          "date": "2020-12-07",
-          "target": 0
-        },
-        {
-          "date": "2020-12-10",
-          "target": 0
-        },
-        {
-          "date": "2020-12-13",
-          "target": 0
-        },
-        {
-          "date": "2020-12-16",
-          "target": 0
-        },
-        {
-          "date": "2020-12-19",
-          "target": 0
-        },
-        {
-          "date": "2020-12-22",
-          "target": 0
-        },
-        {
-          "date": "2020-12-25",
-          "target": 0
-        },
-        {
-          "date": "2020-12-28",
-          "target": 0
-        },
-        {
-          "date": "2020-12-31",
-          "target": 0
-        },
-        {
-          "date": "2021-01-03",
-          "target": 0
-        },
-        {
-          "date": "2021-01-06",
-          "target": 0
-        },
-        {
-          "date": "2021-01-09",
-          "target": 0
-        },
-        {
-          "date": "2021-01-12",
-          "target": 0
-        },
-        {
-          "date": "2021-01-15",
-          "target": 0
-        },
-        {
-          "date": "2021-01-18",
-          "target": 0
-        },
-        {
-          "date": "2021-01-21",
-          "target": 0
-        },
-        {
-          "date": "2021-01-24",
-          "target": 0
-        },
-        {
-          "date": "2021-01-27",
-          "target": 0
-        },
-        {
-          "date": "2021-01-30",
-          "target": 0
-        },
-        {
-          "date": "2021-02-02",
-          "target": 0
-        },
-        {
-          "date": "2021-02-05",
-          "target": 0
-        },
-        {
-          "date": "2021-02-08",
-          "target": 0
-        },
-        {
-          "date": "2021-02-11",
-          "target": 0
-        },
-        {
-          "date": "2021-02-14",
-          "target": 0
-        },
-        {
-          "date": "2021-02-17",
-          "target": 0
-        },
-        {
-          "date": "2021-02-20",
-          "target": 0
-        },
-        {
-          "date": "2021-02-23",
-          "target": 0
-        },
-        {
-          "date": "2021-02-26",
-          "target": 0
-        },
-        {
-          "date": "2021-03-01",
-          "target": 0
-        },
-        {
-          "date": "2021-03-04",
-          "target": 0
-        },
-        {
-          "date": "2021-03-07",
-          "target": 0
-        },
-        {
-          "date": "2021-03-10",
-          "target": 0
-        },
-        {
-          "date": "2021-03-13",
-          "target": 0
-        },
-        {
-          "date": "2021-03-16",
-          "target": 0
-        },
-        {
-          "date": "2021-03-19",
-          "target": 0
-        },
-        {
-          "date": "2021-03-22",
-          "target": 0
-        },
-        {
-          "date": "2021-03-25",
-          "target": 0
-        },
-        {
-          "date": "2021-03-28",
-          "target": 0
-        },
-        {
-          "date": "2021-03-31",
-          "target": 0
-        },
-        {
-          "date": "2021-04-03",
-          "target": 0
-        },
-        {
-          "date": "2021-04-06",
-          "target": 0
-        },
-        {
-          "date": "2021-04-09",
-          "target": 0
-        },
-        {
-          "date": "2021-04-12",
-          "target": 0
-        },
-        {
-          "date": "2021-04-15",
-          "target": 0
-        },
-        {
-          "date": "2021-04-18",
-          "target": 0
-        },
-        {
-          "date": "2021-04-21",
-          "target": 0
-        },
-        {
-          "date": "2021-04-24",
-          "target": 0
-        },
-        {
-          "date": "2021-04-27",
-          "target": 0
-        },
-        {
-          "date": "2021-04-30",
-          "target": 0
-        },
-        {
-          "date": "2021-05-03",
-          "target": 0
-        },
-        {
-          "date": "2021-05-06",
-          "target": 0
-        },
-        {
-          "date": "2021-05-09",
-          "target": 0
-        },
-        {
-          "date": "2021-05-12",
-          "target": 0
-        },
-        {
-          "date": "2021-05-15",
-          "target": 0
-        },
-        {
-          "date": "2021-05-18",
-          "target": 0
-        },
-        {
-          "date": "2021-05-21",
-          "target": 0
-        },
-        {
-          "date": "2021-05-24",
-          "target": 0
-        },
-        {
-          "date": "2021-05-27",
-          "target": 0
-        },
-        {
-          "date": "2021-05-30",
-          "target": 0
-        },
-        {
-          "date": "2021-06-02",
-          "target": 0
-        },
-        {
-          "date": "2021-06-05",
-          "target": 0
-        },
-        {
-          "date": "2021-06-08",
-          "target": 0
-        },
-        {
-          "date": "2021-06-11",
-          "target": 0
-        },
-        {
-          "date": "2021-06-14",
-          "target": 0
-        },
-        {
-          "date": "2021-06-17",
-          "target": 0
-        },
-        {
-          "date": "2021-06-20",
-          "target": 0
-        },
-        {
-          "date": "2021-06-23",
-          "target": 0
-        },
-        {
-          "date": "2021-06-26",
-          "target": 0
-        },
-        {
-          "date": "2021-06-29",
-          "target": 0
-        },
-        {
-          "date": "2021-07-02",
-          "target": 0
-        },
-        {
-          "date": "2021-07-05",
-          "target": 0
-        },
-        {
-          "date": "2021-07-08",
-          "target": 0
-        },
-        {
-          "date": "2021-07-11",
-          "target": 0
-        },
-        {
-          "date": "2021-07-14",
-          "target": 0
-        },
-        {
-          "date": "2021-07-17",
-          "target": 0
-        },
-        {
-          "date": "2021-07-20",
-          "target": 0
-        },
-        {
-          "date": "2021-07-23",
-          "target": 0
-        },
-        {
-          "date": "2021-07-26",
-          "target": 0
-        },
-        {
-          "date": "2021-07-29",
-          "target": 0
-        },
-        {
-          "date": "2021-08-01",
-          "target": 0
-        },
-        {
-          "date": "2021-08-04",
-          "target": 0
-        },
-        {
-          "date": "2021-08-07",
-          "target": 0
-        },
-        {
-          "date": "2021-08-10",
-          "target": 0
-        },
-        {
-          "date": "2021-08-13",
-          "target": 0
-        },
-        {
-          "date": "2021-08-16",
-          "target": 0
-        },
-        {
-          "date": "2021-08-19",
-          "target": 0
-        },
-        {
-          "date": "2021-08-22",
-          "target": 0
-        },
-        {
-          "date": "2021-08-25",
-          "target": 0
-        },
-        {
-          "date": "2021-08-28",
-          "target": 0
-        },
-        {
-          "date": "2021-08-31",
-          "target": 0
-        },
-        {
-          "date": "2021-09-03",
-          "target": 0
-        },
-        {
-          "date": "2021-09-06",
-          "target": 0
-        },
-        {
-          "date": "2021-09-09",
-          "target": 0
-        },
-        {
-          "date": "2021-09-12",
-          "target": 0
-        },
-        {
-          "date": "2021-09-15",
-          "target": 0
-        },
-        {
-          "date": "2021-09-18",
-          "target": 0
-        },
-        {
-          "date": "2021-09-21",
-          "target": 0
-        },
-        {
-          "date": "2021-09-24",
-          "target": 0
-        },
-        {
-          "date": "2021-09-27",
-          "target": 0
-        },
-        {
-          "date": "2021-09-30",
-          "target": 0
-        },
-        {
-          "date": "2021-10-03",
-          "target": 0
-        },
-        {
-          "date": "2021-10-06",
-          "target": 0
-        },
-        {
-          "date": "2021-10-09",
-          "target": 0
-        },
-        {
-          "date": "2021-10-12",
-          "target": 0
-        },
-        {
-          "date": "2021-10-15",
-          "target": 0
-        },
-        {
-          "date": "2021-10-18",
-          "target": 0
-        },
-        {
-          "date": "2021-10-21",
-          "target": 0
-        },
-        {
-          "date": "2021-10-24",
-          "target": 0
-        },
-        {
-          "date": "2021-10-27",
-          "target": 0
-        },
-        {
-          "date": "2021-10-30",
-          "target": 0
-        },
-        {
-          "date": "2021-11-02",
-          "target": 0
-        },
-        {
-          "date": "2021-11-05",
-          "target": 0
-        },
-        {
-          "date": "2021-11-08",
-          "target": 0
-        },
-        {
-          "date": "2021-11-11",
-          "target": 0
-        },
-        {
-          "date": "2021-11-14",
-          "target": 0
-        },
-        {
-          "date": "2021-11-17",
-          "target": 0
-        },
-        {
-          "date": "2021-11-20",
-          "target": 0
-        },
-        {
-          "date": "2021-11-23",
-          "target": 0
-        },
-        {
-          "date": "2021-11-26",
-          "target": 0
-        },
-        {
-          "date": "2021-11-29",
-          "target": 0
-        },
-        {
-          "date": "2021-12-02",
-          "target": 0
-        },
-        {
-          "date": "2021-12-05",
-          "target": 0
-        },
-        {
-          "date": "2021-12-08",
-          "target": 0
-        },
-        {
-          "date": "2021-12-11",
-          "target": 0
-        },
-        {
-          "date": "2021-12-14",
-          "target": 0
-        },
-        {
-          "date": "2021-12-17",
-          "target": 0
-        },
-        {
-          "date": "2021-12-20",
-          "target": 0
-        },
-        {
-          "date": "2021-12-23",
-          "target": 0
-        },
-        {
-          "date": "2021-12-26",
-          "target": 0
-        },
-        {
-          "date": "2021-12-29",
-          "target": 0
-        },
-        {
-          "date": "2022-01-01",
-          "target": 0
-        },
-        {
-          "date": "2022-01-04",
-          "target": 0
-        },
-        {
-          "date": "2022-01-07",
-          "target": 0
-        },
-        {
-          "date": "2022-01-10",
-          "target": 0
-        },
-        {
-          "date": "2022-01-13",
-          "target": 0
-        },
-        {
-          "date": "2022-01-16",
-          "target": 0
-        },
-        {
-          "date": "2022-01-19",
-          "target": 0
-        },
-        {
-          "date": "2022-01-22",
-          "target": 0
-        },
-        {
-          "date": "2022-01-25",
-          "target": 0
-        },
-        {
-          "date": "2022-01-28",
-          "target": 0
-        },
-        {
-          "date": "2022-01-31",
-          "target": 0
-        },
-        {
-          "date": "2022-02-03",
-          "target": 0
-        },
-        {
-          "date": "2022-02-06",
-          "target": 0
-        },
-        {
-          "date": "2022-02-09",
-          "target": 0
-        },
-        {
-          "date": "2022-02-12",
-          "target": 0
-        },
-        {
-          "date": "2022-02-15",
-          "target": 0
-        },
-        {
-          "date": "2022-02-18",
-          "target": 0
-        },
-        {
-          "date": "2022-02-21",
-          "target": 0
-        },
-        {
-          "date": "2022-02-24",
-          "target": 0
-        },
-        {
-          "date": "2022-02-27",
-          "target": 0
-        },
-        {
-          "date": "2022-03-02",
-          "target": 0
-        },
-        {
-          "date": "2022-03-05",
-          "target": 0
-        },
-        {
-          "date": "2022-03-08",
-          "target": 0
-        },
-        {
-          "date": "2022-03-11",
-          "target": 0
-        },
-        {
-          "date": "2022-03-14",
-          "target": 0
-        },
-        {
-          "date": "2022-03-17",
-          "target": 0
-        },
-        {
-          "date": "2022-03-20",
-          "target": 0
-        },
-        {
-          "date": "2022-03-23",
-          "target": 0
-        },
-        {
-          "date": "2022-03-26",
-          "target": 0
-        },
-        {
-          "date": "2022-03-29",
-          "target": 0
-        },
-        {
-          "date": "2022-04-01",
-          "target": 0
-        },
-        {
-          "date": "2022-04-04",
-          "target": 0
-        },
-        {
-          "date": "2022-04-07",
-          "target": 0
-        },
-        {
-          "date": "2022-04-10",
-          "target": 0
-        },
-        {
-          "date": "2022-04-13",
-          "target": 0
-        },
-        {
-          "date": "2022-04-16",
-          "target": 0
-        },
-        {
-          "date": "2022-04-19",
-          "target": 0
-        },
-        {
-          "date": "2022-04-22",
-          "target": 0
-        },
-        {
-          "date": "2022-04-25",
-          "target": 0
-        },
-        {
-          "date": "2022-04-28",
-          "target": 0
-        },
-        {
-          "date": "2022-05-01",
-          "target": 0
-        },
-        {
-          "date": "2022-05-04",
-          "target": 0
-        },
-        {
-          "date": "2022-05-07",
-          "target": 0
-        },
-        {
-          "date": "2022-05-10",
-          "target": 0
-        },
-        {
-          "date": "2022-05-13",
-          "target": 0
-        },
-        {
-          "date": "2022-05-16",
-          "target": 0
-        },
-        {
-          "date": "2022-05-19",
-          "target": 0
-        },
-        {
-          "date": "2022-05-22",
-          "target": 0
-        },
-        {
-          "date": "2022-05-25",
-          "target": 0
-        },
-        {
-          "date": "2022-05-28",
-          "target": 0
-        },
-        {
-          "date": "2022-05-31",
-          "target": 0
-        },
-        {
-          "date": "2022-06-03",
-          "target": 0
-        },
-        {
-          "date": "2022-06-06",
-          "target": 0
-        },
-        {
-          "date": "2022-06-09",
-          "target": 0
-        },
-        {
-          "date": "2022-06-12",
-          "target": 0
-        },
-        {
-          "date": "2022-06-15",
-          "target": 0
-        },
-        {
-          "date": "2022-06-18",
-          "target": 0
-        },
-        {
-          "date": "2022-06-21",
-          "target": 0
-        },
-        {
-          "date": "2022-06-24",
-          "target": 0
-        },
-        {
-          "date": "2022-06-27",
-          "target": 0
-        },
-        {
-          "date": "2022-06-30",
-          "target": 0
-        },
-        {
-          "date": "2022-07-03",
-          "target": 0
-        },
-        {
-          "date": "2022-07-06",
-          "target": 0
-        },
-        {
-          "date": "2022-07-09",
-          "target": 0
-        },
-        {
-          "date": "2022-07-12",
-          "target": 0
-        },
-        {
-          "date": "2022-07-15",
-          "target": 0
-        },
-        {
-          "date": "2022-07-18",
-          "target": 0
-        },
-        {
-          "date": "2022-07-21",
-          "target": 0
-        },
-        {
-          "date": "2022-07-24",
-          "target": 0
-        },
-        {
-          "date": "2022-07-27",
-          "target": 0
-        },
-        {
-          "date": "2022-07-30",
-          "target": 0
-        },
-        {
-          "date": "2022-08-02",
-          "target": 0
-        },
-        {
-          "date": "2022-08-05",
-          "target": 0
-        },
-        {
-          "date": "2022-08-08",
-          "target": 0
-        },
-        {
-          "date": "2022-08-11",
-          "target": 0
-        },
-        {
-          "date": "2022-08-14",
-          "target": 0
-        },
-        {
-          "date": "2022-08-17",
-          "target": 0
-        },
-        {
-          "date": "2022-08-20",
-          "target": 0
-        },
-        {
-          "date": "2022-08-23",
-          "target": 0
-        },
-        {
-          "date": "2022-08-26",
-          "target": 0
-        },
-        {
-          "date": "2022-08-29",
-          "target": 0
-        },
-        {
-          "date": "2022-09-01",
-          "target": 0
-        },
-        {
-          "date": "2022-09-04",
-          "target": 0
-        },
-        {
-          "date": "2022-09-07",
-          "target": 0
-        },
-        {
-          "date": "2022-09-10",
-          "target": 0
-        },
-        {
-          "date": "2022-09-13",
-          "target": 0
-        },
-        {
-          "date": "2022-09-16",
-          "target": 0
-        },
-        {
-          "date": "2022-09-19",
-          "target": 0
-        },
-        {
-          "date": "2022-09-22",
-          "target": 0
-        },
-        {
-          "date": "2022-09-25",
-          "target": 0
-        },
-        {
-          "date": "2022-09-28",
-          "target": 0
-        },
-        {
-          "date": "2022-10-01",
-          "target": 0
-        },
-        {
-          "date": "2022-10-04",
-          "target": 0
-        },
-        {
-          "date": "2022-10-07",
-          "target": 0
-        },
-        {
-          "date": "2022-10-10",
-          "target": 0
-        },
-        {
-          "date": "2022-10-13",
-          "target": 0
-        },
-        {
-          "date": "2022-10-16",
-          "target": 0
-        },
-        {
-          "date": "2022-10-19",
-          "target": 0
-        },
-        {
-          "date": "2022-10-22",
-          "target": 0
-        },
-        {
-          "date": "2022-10-25",
-          "target": 0
-        },
-        {
-          "date": "2022-10-28",
-          "target": 0
-        },
-        {
-          "date": "2022-10-31",
-          "target": 0
-        },
-        {
-          "date": "2022-11-03",
-          "target": 0
-        },
-        {
-          "date": "2022-11-06",
-          "target": 0
-        },
-        {
-          "date": "2022-11-09",
-          "target": 0
-        },
-        {
-          "date": "2022-11-12",
-          "target": 0
-        },
-        {
-          "date": "2022-11-15",
-          "target": 0
-        },
-        {
-          "date": "2022-11-18",
-          "target": 0
-        },
-        {
-          "date": "2022-11-21",
-          "target": 0
-        },
-        {
-          "date": "2022-11-24",
-          "target": 0
-        },
-        {
-          "date": "2022-11-27",
-          "target": 0
-        },
-        {
-          "date": "2022-11-30",
-          "target": 0
-        },
-        {
-          "date": "2022-12-03",
-          "target": 0
-        },
-        {
-          "date": "2022-12-06",
-          "target": 0
-        },
-        {
-          "date": "2022-12-09",
-          "target": 0
-        },
-        {
-          "date": "2022-12-12",
-          "target": 0
-        },
-        {
-          "date": "2022-12-15",
-          "target": 0
-        },
-        {
-          "date": "2022-12-18",
-          "target": 0
-        },
-        {
-          "date": "2022-12-21",
-          "target": 0
-        },
-        {
-          "date": "2022-12-24",
-          "target": 0
-        },
-        {
-          "date": "2022-12-27",
-          "target": 0
-        },
-        {
-          "date": "2022-12-30",
-          "target": 0
-        },
-        {
-          "date": "2023-01-02",
-          "target": 0
-        },
-        {
-          "date": "2023-01-05",
-          "target": 0
-        },
-        {
-          "date": "2023-01-08",
-          "target": 0
-        },
-        {
-          "date": "2023-01-11",
-          "target": 0
-        },
-        {
-          "date": "2023-01-14",
-          "target": 0
-        },
-        {
-          "date": "2023-01-17",
-          "target": 0
-        },
-        {
-          "date": "2023-01-20",
-          "target": 0
-        },
-        {
-          "date": "2023-01-23",
-          "target": 0
-        },
-        {
-          "date": "2023-01-26",
-          "target": 0
-        },
-        {
-          "date": "2023-01-29",
-          "target": 0
-        },
-        {
-          "date": "2023-02-01",
-          "target": 0
-        },
-        {
-          "date": "2023-02-04",
-          "target": 0
-        },
-        {
-          "date": "2023-02-07",
-          "target": 0
-        },
-        {
-          "date": "2023-02-10",
-          "target": 0
-        },
-        {
-          "date": "2023-02-13",
-          "target": 0
-        },
-        {
-          "date": "2023-02-16",
-          "target": 0
-        },
-        {
-          "date": "2023-02-19",
-          "target": 0
-        },
-        {
-          "date": "2023-02-22",
-          "target": 0
-        },
-        {
-          "date": "2023-02-25",
-          "target": 0
-        },
-        {
-          "date": "2023-02-28",
-          "target": 0
-        },
-        {
-          "date": "2023-03-03",
-          "target": 0
-        },
-        {
-          "date": "2023-03-06",
-          "target": 0
-        },
-        {
-          "date": "2023-03-09",
-          "target": 0
-        },
-        {
-          "date": "2023-03-12",
-          "target": 0
-        },
-        {
-          "date": "2023-03-15",
-          "target": 0
-        },
-        {
-          "date": "2023-03-18",
-          "target": 0
-        },
-        {
-          "date": "2023-03-21",
-          "target": 0
-        },
-        {
-          "date": "2023-03-24",
-          "target": 0
-        },
-        {
-          "date": "2023-03-27",
-          "target": 0
-        },
-        {
-          "date": "2023-03-30",
-          "target": 0
-        },
-        {
-          "date": "2023-04-02",
-          "target": 0
-        },
-        {
-          "date": "2023-04-05",
-          "target": 0
-        },
-        {
-          "date": "2023-04-08",
-          "target": 0
-        },
-        {
-          "date": "2023-04-11",
-          "target": 0
-        },
-        {
-          "date": "2023-04-14",
-          "target": 0
-        },
-        {
-          "date": "2023-04-17",
-          "target": 0
-        },
-        {
-          "date": "2023-04-20",
-          "target": 0
-        },
-        {
-          "date": "2023-04-23",
-          "target": 0
-        },
-        {
-          "date": "2023-04-26",
-          "target": 0
-        },
-        {
-          "date": "2023-04-29",
-          "target": 0
-        },
-        {
-          "date": "2023-05-02",
-          "target": 0
-        },
-        {
-          "date": "2023-05-05",
-          "target": 0
-        },
-        {
-          "date": "2023-05-08",
-          "target": 0
-        },
-        {
-          "date": "2023-05-11",
-          "target": 0
-        },
-        {
-          "date": "2023-05-14",
-          "target": 0
-        },
-        {
-          "date": "2023-05-17",
-          "target": 1
-        },
-        {
-          "date": "2023-05-20",
-          "target": 0
-        },
-        {
-          "date": "2023-05-23",
-          "target": 0
-        },
-        {
-          "date": "2023-05-26",
-          "target": 0
-        },
-        {
-          "date": "2023-05-29",
-          "target": 2
-        },
-        {
-          "date": "2023-06-01",
-          "target": 2
-        },
-        {
-          "date": "2023-06-04",
-          "target": 3
-        },
-        {
-          "date": "2023-06-07",
-          "target": 3
-        },
-        {
-          "date": "2023-06-10",
-          "target": 0
-        },
-        {
-          "date": "2023-06-13",
-          "target": 1
-        },
-        {
-          "date": "2023-06-16",
-          "target": 1
-        },
-        {
-          "date": "2023-06-19",
-          "target": 0
-        },
-        {
-          "date": "2023-06-22",
-          "target": 2
-        },
-        {
-          "date": "2023-06-25",
-          "target": 2
-        },
-        {
-          "date": "2023-06-28",
-          "target": 4
-        },
-        {
-          "date": "2023-07-01",
-          "target": 2
-        },
-        {
-          "date": "2023-07-04",
-          "target": 3
-        },
-        {
-          "date": "2023-07-07",
-          "target": 6
-        },
-        {
-          "date": "2023-07-10",
-          "target": 1
-        },
-        {
-          "date": "2023-07-13",
-          "target": 0
-        },
-        {
-          "date": "2023-07-16",
-          "target": 1
-        },
-        {
-          "date": "2023-07-19",
-          "target": 1
-        },
-        {
-          "date": "2023-07-22",
-          "target": 2
-        },
-        {
-          "date": "2023-07-25",
-          "target": 1
-        },
-        {
-          "date": "2023-07-28",
-          "target": 2
-        },
-        {
-          "date": "2023-07-31",
-          "target": 1
-        },
-        {
-          "date": "2023-08-03",
-          "target": 2
-        },
-        {
-          "date": "2023-08-06",
-          "target": 2
-        },
-        {
-          "date": "2023-08-09",
-          "target": 1
-        },
-        {
-          "date": "2023-08-12",
-          "target": 2
-        },
-        {
-          "date": "2023-08-15",
-          "target": 1
-        },
-        {
-          "date": "2023-08-18",
-          "target": 2
-        },
-        {
-          "date": "2023-08-21",
-          "target": 2
-        },
-        {
-          "date": "2023-08-24",
-          "target": 3
-        },
-        {
-          "date": "2023-08-27",
-          "target": 0
-        },
-        {
-          "date": "2023-08-30",
-          "target": 3
-        },
-        {
-          "date": "2023-09-02",
-          "target": 5
-        },
-        {
-          "date": "2023-09-05",
-          "target": 0
-        },
-        {
-          "date": "2023-09-08",
-          "target": 0
-        },
-        {
-          "date": "2023-09-11",
-          "target": 1
-        },
-        {
-          "date": "2023-09-14",
-          "target": 1
-        },
-        {
-          "date": "2023-09-17",
-          "target": 1
-        },
-        {
-          "date": "2023-09-20",
-          "target": 4
-        },
-        {
-          "date": "2023-09-23",
-          "target": 2
-        },
-        {
-          "date": "2023-09-26",
-          "target": 3
-        },
-        {
-          "date": "2023-09-29",
-          "target": 2
-        },
-        {
-          "date": "2023-10-02",
-          "target": 2
-        },
-        {
-          "date": "2023-10-05",
-          "target": 3
-        },
-        {
-          "date": "2023-10-08",
-          "target": 1
-        },
-        {
-          "date": "2023-10-11",
-          "target": 1
-        },
-        {
-          "date": "2023-10-14",
-          "target": 1
-        },
-        {
-          "date": "2023-10-17",
-          "target": 1
-        },
-        {
-          "date": "2023-10-20",
-          "target": 1
-        },
-        {
-          "date": "2023-10-23",
-          "target": 0
-        },
-        {
-          "date": "2023-10-26",
-          "target": 2
-        },
-        {
-          "date": "2023-10-29",
-          "target": 1
-        },
-        {
-          "date": "2023-11-01",
-          "target": 3
-        },
-        {
-          "date": "2023-11-04",
-          "target": 1
-        },
-        {
-          "date": "2023-11-07",
-          "target": 1
-        },
-        {
-          "date": "2023-11-10",
-          "target": 1
-        },
-        {
-          "date": "2023-11-13",
-          "target": 4
-        },
-        {
-          "date": "2023-11-16",
-          "target": 3
-        },
-        {
-          "date": "2023-11-19",
-          "target": 2
-        },
-        {
-          "date": "2023-11-22",
-          "target": 1
-        },
-        {
-          "date": "2023-11-25",
-          "target": 2
-        },
-        {
-          "date": "2023-11-28",
-          "target": 1
-        },
-        {
-          "date": "2023-12-01",
-          "target": 0
-        },
-        {
-          "date": "2023-12-04",
-          "target": 4
-        },
-        {
-          "date": "2023-12-07",
-          "target": 0
-        },
-        {
-          "date": "2023-12-10",
-          "target": 0
-        },
-        {
-          "date": "2023-12-13",
-          "target": 1
-        },
-        {
-          "date": "2023-12-16",
-          "target": 0
-        },
-        {
-          "date": "2023-12-19",
-          "target": 2
-        },
-        {
-          "date": "2023-12-22",
-          "target": 4
-        },
-        {
-          "date": "2023-12-25",
-          "target": 1
-        },
-        {
-          "date": "2023-12-28",
-          "target": 1
-        },
-        {
-          "date": "2023-12-31",
-          "target": 2
-        },
-        {
-          "date": "2024-01-03",
-          "target": 2
-        },
-        {
-          "date": "2024-01-06",
-          "target": 1
-        },
-        {
-          "date": "2024-01-09",
-          "target": 1
-        }
-      ]
-    },
-    {
       "scale": "7D",
       "events": [
         {
@@ -14386,6 +11525,215 @@
         {
           "date": "2023-12-31",
           "target": 6
+        }
+      ]
+    },
+    {
+      "scale": "60D",
+      "events": [
+        {
+          "date": "2015-09-14",
+          "target": 6
+        },
+        {
+          "date": "2015-11-13",
+          "target": 3
+        },
+        {
+          "date": "2016-01-12",
+          "target": 0
+        },
+        {
+          "date": "2016-03-12",
+          "target": 0
+        },
+        {
+          "date": "2016-05-11",
+          "target": 0
+        },
+        {
+          "date": "2016-07-10",
+          "target": 0
+        },
+        {
+          "date": "2016-09-08",
+          "target": 0
+        },
+        {
+          "date": "2016-11-07",
+          "target": 4
+        },
+        {
+          "date": "2017-01-06",
+          "target": 2
+        },
+        {
+          "date": "2017-03-07",
+          "target": 3
+        },
+        {
+          "date": "2017-05-06",
+          "target": 4
+        },
+        {
+          "date": "2017-07-05",
+          "target": 13
+        },
+        {
+          "date": "2017-09-03",
+          "target": 0
+        },
+        {
+          "date": "2017-11-02",
+          "target": 0
+        },
+        {
+          "date": "2018-01-01",
+          "target": 0
+        },
+        {
+          "date": "2018-03-02",
+          "target": 0
+        },
+        {
+          "date": "2018-05-01",
+          "target": 0
+        },
+        {
+          "date": "2018-06-30",
+          "target": 0
+        },
+        {
+          "date": "2018-08-29",
+          "target": 0
+        },
+        {
+          "date": "2018-10-28",
+          "target": 0
+        },
+        {
+          "date": "2018-12-27",
+          "target": 0
+        },
+        {
+          "date": "2019-02-25",
+          "target": 15
+        },
+        {
+          "date": "2019-04-26",
+          "target": 26
+        },
+        {
+          "date": "2019-06-25",
+          "target": 26
+        },
+        {
+          "date": "2019-08-24",
+          "target": 20
+        },
+        {
+          "date": "2019-10-23",
+          "target": 13
+        },
+        {
+          "date": "2019-12-22",
+          "target": 18
+        },
+        {
+          "date": "2020-02-20",
+          "target": 11
+        },
+        {
+          "date": "2020-04-20",
+          "target": 0
+        },
+        {
+          "date": "2020-06-19",
+          "target": 0
+        },
+        {
+          "date": "2020-08-18",
+          "target": 0
+        },
+        {
+          "date": "2020-10-17",
+          "target": 0
+        },
+        {
+          "date": "2020-12-16",
+          "target": 0
+        },
+        {
+          "date": "2021-02-14",
+          "target": 0
+        },
+        {
+          "date": "2021-04-15",
+          "target": 0
+        },
+        {
+          "date": "2021-06-14",
+          "target": 0
+        },
+        {
+          "date": "2021-08-13",
+          "target": 0
+        },
+        {
+          "date": "2021-10-12",
+          "target": 0
+        },
+        {
+          "date": "2021-12-11",
+          "target": 0
+        },
+        {
+          "date": "2022-02-09",
+          "target": 0
+        },
+        {
+          "date": "2022-04-10",
+          "target": 0
+        },
+        {
+          "date": "2022-06-09",
+          "target": 0
+        },
+        {
+          "date": "2022-08-08",
+          "target": 0
+        },
+        {
+          "date": "2022-10-07",
+          "target": 0
+        },
+        {
+          "date": "2022-12-06",
+          "target": 0
+        },
+        {
+          "date": "2023-02-04",
+          "target": 0
+        },
+        {
+          "date": "2023-04-05",
+          "target": 5
+        },
+        {
+          "date": "2023-06-04",
+          "target": 36
+        },
+        {
+          "date": "2023-08-03",
+          "target": 37
+        },
+        {
+          "date": "2023-10-02",
+          "target": 32
+        },
+        {
+          "date": "2023-12-01",
+          "target": 19
         }
       ]
     }

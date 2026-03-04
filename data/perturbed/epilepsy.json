@@ -14,22 +14,22 @@
         "k_core_size": 19,
         "maximum_degree": 5,
         "degree_variance": 0.7202216066481996,
-        "global_clustering": 0.11688311688311688,
-        "degree_assortativity": 0.5660964230171069,
+        "global_clustering": 0.15584415584415584,
+        "degree_assortativity": 0.4696734059097976,
         "degree_entropy": 1.2187590038372849,
-        "joint_degree_entropy": 1.6946249124960264,
+        "joint_degree_entropy": 1.7430288790202746,
         "degree_skewness": -0.014011927112048865,
         "degree_kurtosis": -0.7023320570831899,
-        "normalized_laplacian_second_moment": 1.320906432748538,
-        "normalized_laplacian_third_moment": 1.9482456140350877,
-        "random_walk_triangle_weight": 0.014473684210526317,
-        "random_walk_fourth_moment": 0.19331444931773878,
-        "adjacency_fourth_moment_per_node": 24.105263157894736
+        "normalized_laplacian_second_moment": 1.319736842105263,
+        "normalized_laplacian_third_moment": 1.9368421052631581,
+        "random_walk_triangle_weight": 0.022368421052631583,
+        "random_walk_fourth_moment": 0.18805007309941515,
+        "adjacency_fourth_moment_per_node": 22.842105263157894
       }
     },
     {
       "method": "rewire",
-      "intensity": 0.03,
+      "intensity": 0.05,
       "invariants": {
         "n_nodes": 19,
         "n_edges": 31,
@@ -62,28 +62,109 @@
         "n_edges": 31,
         "n_articulation_points": 0,
         "n_bridges": 0,
-        "diameter": 5.0,
+        "diameter": 6.0,
         "radius": 3.0,
         "degeneracy": 2,
         "k_core_size": 19,
         "maximum_degree": 5,
         "degree_variance": 0.7202216066481996,
         "global_clustering": 0.15584415584415584,
-        "degree_assortativity": 0.4696734059097976,
+        "degree_assortativity": 0.5178849144634535,
         "degree_entropy": 1.2187590038372849,
-        "joint_degree_entropy": 1.754925721288917,
+        "joint_degree_entropy": 1.787748051959626,
         "degree_skewness": -0.014011927112048865,
         "degree_kurtosis": -0.7023320570831899,
-        "normalized_laplacian_second_moment": 1.3187134502923976,
-        "normalized_laplacian_third_moment": 1.9350877192982452,
-        "random_walk_triangle_weight": 0.021052631578947368,
-        "random_walk_fourth_moment": 0.1806367771280052,
-        "adjacency_fourth_moment_per_node": 22.0
+        "normalized_laplacian_second_moment": 1.3194444444444444,
+        "normalized_laplacian_third_moment": 1.9399122807017544,
+        "random_walk_triangle_weight": 0.01842105263157895,
+        "random_walk_fourth_moment": 0.1958952647823262,
+        "adjacency_fourth_moment_per_node": 24.105263157894736
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 31,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 5.0,
+        "radius": 4.0,
+        "degeneracy": 2,
+        "k_core_size": 19,
+        "maximum_degree": 5,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.23376623376623376,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9337719298245615,
+        "random_walk_triangle_weight": 0.028947368421052635,
+        "random_walk_fourth_moment": 0.18733857212475633,
+        "adjacency_fourth_moment_per_node": 22.42105263157895
       }
     },
     {
       "method": "rewire",
       "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 31,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 19,
+        "maximum_degree": 5,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.15584415584415584,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.942105263157895,
+        "random_walk_triangle_weight": 0.020614035087719296,
+        "random_walk_fourth_moment": 0.19158849090318383,
+        "adjacency_fourth_moment_per_node": 23.263157894736842
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 31,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 19,
+        "maximum_degree": 5,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.2727272727272727,
+        "degree_assortativity": 0.4214618973561443,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.7189348259156576,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.3157894736842106,
+        "normalized_laplacian_third_moment": 1.9069078947368419,
+        "random_walk_triangle_weight": 0.04046052631578947,
+        "random_walk_fourth_moment": 0.17851689408706947,
+        "adjacency_fourth_moment_per_node": 22.0
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.3,
       "invariants": {
         "n_nodes": 19,
         "n_edges": 31,
@@ -95,17 +176,17 @@
         "k_core_size": 19,
         "maximum_degree": 5,
         "degree_variance": 0.7202216066481996,
-        "global_clustering": 0.15584415584415584,
-        "degree_assortativity": 0.276827371695179,
+        "global_clustering": 0.11688311688311688,
+        "degree_assortativity": 0.37325038880248834,
         "degree_entropy": 1.2187590038372849,
-        "joint_degree_entropy": 1.8200541537479888,
+        "joint_degree_entropy": 1.7872318230772803,
         "degree_skewness": -0.014011927112048865,
         "degree_kurtosis": -0.7023320570831899,
-        "normalized_laplacian_second_moment": 1.3130116959064329,
-        "normalized_laplacian_third_moment": 1.9179824561403511,
-        "random_walk_triangle_weight": 0.021052631578947368,
-        "random_walk_fourth_moment": 0.17830592105263157,
-        "adjacency_fourth_moment_per_node": 22.0
+        "normalized_laplacian_second_moment": 1.314327485380117,
+        "normalized_laplacian_third_moment": 1.917543859649123,
+        "random_walk_triangle_weight": 0.02543859649122807,
+        "random_walk_fourth_moment": 0.1931225633528265,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
       }
     },
     {
@@ -122,17 +203,71 @@
         "k_core_size": 19,
         "maximum_degree": 5,
         "degree_variance": 0.7202216066481996,
-        "global_clustering": 0.23376623376623376,
-        "degree_assortativity": 0.276827371695179,
+        "global_clustering": 0.2727272727272727,
+        "degree_assortativity": 0.5178849144634535,
         "degree_entropy": 1.2187590038372849,
-        "joint_degree_entropy": 1.7805329712345106,
+        "joint_degree_entropy": 1.6468290415843492,
         "degree_skewness": -0.014011927112048865,
         "degree_kurtosis": -0.7023320570831899,
-        "normalized_laplacian_second_moment": 1.3121345029239766,
-        "normalized_laplacian_third_moment": 1.8960526315789472,
-        "random_walk_triangle_weight": 0.04035087719298246,
-        "random_walk_fourth_moment": 0.17301717836257308,
-        "adjacency_fourth_moment_per_node": 21.57894736842105
+        "normalized_laplacian_second_moment": 1.3201754385964912,
+        "normalized_laplacian_third_moment": 1.9179824561403511,
+        "random_walk_triangle_weight": 0.04254385964912281,
+        "random_walk_fourth_moment": 0.18528265107212472,
+        "adjacency_fourth_moment_per_node": 22.0
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 31,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 19,
+        "maximum_degree": 5,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.07792207792207792,
+        "degree_assortativity": 0.37325038880248834,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.7872318230772803,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.314327485380117,
+        "normalized_laplacian_third_moment": 1.9350877192982456,
+        "random_walk_triangle_weight": 0.007894736842105263,
+        "random_walk_fourth_moment": 0.17937987329434696,
+        "adjacency_fourth_moment_per_node": 22.42105263157895
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 31,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 5.0,
+        "radius": 4.0,
+        "degeneracy": 3,
+        "k_core_size": 6,
+        "maximum_degree": 5,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.11688311688311688,
+        "degree_assortativity": 0.4214618973561443,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.7512409277040204,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.3159356725146198,
+        "normalized_laplacian_third_moment": 1.9349780701754387,
+        "random_walk_triangle_weight": 0.012828947368421053,
+        "random_walk_fourth_moment": 0.18160554743339827,
+        "adjacency_fourth_moment_per_node": 22.42105263157895
       }
     },
     {
@@ -164,56 +299,56 @@
     },
     {
       "method": "sparsify",
-      "intensity": 0.03,
+      "intensity": 0.05,
       "invariants": {
         "n_nodes": 19,
-        "n_edges": 31,
-        "n_articulation_points": 0,
-        "n_bridges": 0,
-        "diameter": 6.0,
-        "radius": 3.0,
+        "n_edges": 30,
+        "n_articulation_points": 2,
+        "n_bridges": 2,
+        "diameter": 7.0,
+        "radius": 4.0,
         "degeneracy": 2,
-        "k_core_size": 19,
+        "k_core_size": 17,
         "maximum_degree": 5,
-        "degree_variance": 0.7202216066481996,
-        "global_clustering": 0.1948051948051948,
-        "degree_assortativity": 0.5660964230171069,
-        "degree_entropy": 1.2187590038372849,
-        "joint_degree_entropy": 1.6946249124960264,
-        "degree_skewness": -0.014011927112048865,
-        "degree_kurtosis": -0.7023320570831899,
-        "normalized_laplacian_second_moment": 1.320906432748538,
-        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "degree_variance": 0.9750692520775623,
+        "global_clustering": 0.20270270270270271,
+        "degree_assortativity": 0.5312499999999992,
+        "degree_entropy": 1.369854489522488,
+        "joint_degree_entropy": 1.8296938066794788,
+        "degree_skewness": -0.34789168623852607,
+        "degree_kurtosis": -0.3562283513612048,
+        "normalized_laplacian_second_moment": 1.3399122807017543,
+        "normalized_laplacian_third_moment": 1.9947368421052631,
         "random_walk_triangle_weight": 0.025,
-        "random_walk_fourth_moment": 0.19333272417153993,
-        "adjacency_fourth_moment_per_node": 23.68421052631579
+        "random_walk_fourth_moment": 0.21386147660818713,
+        "adjacency_fourth_moment_per_node": 22.94736842105263
       }
     },
     {
       "method": "sparsify",
-      "intensity": 0.07,
+      "intensity": 0.1,
       "invariants": {
         "n_nodes": 19,
-        "n_edges": 29,
+        "n_edges": 28,
         "n_articulation_points": 0,
         "n_bridges": 0,
         "diameter": 6.0,
         "radius": 3.0,
         "degeneracy": 2,
         "k_core_size": 19,
-        "maximum_degree": 5,
-        "degree_variance": 0.6814404432132964,
-        "global_clustering": 0.13636363636363635,
-        "degree_assortativity": 0.32669983416251885,
-        "degree_entropy": 1.1882606527098063,
-        "joint_degree_entropy": 1.8752992871563547,
-        "degree_skewness": 0.5041142633097943,
-        "degree_kurtosis": -0.011967666305071845,
-        "normalized_laplacian_second_moment": 1.3366959064327486,
-        "normalized_laplacian_third_moment": 1.9942982456140346,
-        "random_walk_triangle_weight": 0.015789473684210527,
-        "random_walk_fourth_moment": 0.20740720435347626,
-        "adjacency_fourth_moment_per_node": 19.894736842105264
+        "maximum_degree": 4,
+        "degree_variance": 0.5761772853185596,
+        "global_clustering": 0.1,
+        "degree_assortativity": 0.28703703703703903,
+        "degree_entropy": 1.079529573325518,
+        "joint_degree_entropy": 1.6591499884539782,
+        "degree_skewness": 0.0957355101948491,
+        "degree_kurtosis": -1.2713028628611212,
+        "normalized_laplacian_second_moment": 1.3479532163742691,
+        "normalized_laplacian_third_moment": 2.028508771929825,
+        "random_walk_triangle_weight": 0.015350877192982454,
+        "random_walk_fourth_moment": 0.217612897985705,
+        "adjacency_fourth_moment_per_node": 17.68421052631579
       }
     },
     {
@@ -222,25 +357,52 @@
       "invariants": {
         "n_nodes": 19,
         "n_edges": 27,
-        "n_articulation_points": 3,
-        "n_bridges": 3,
-        "diameter": 7.0,
-        "radius": 4.0,
+        "n_articulation_points": 1,
+        "n_bridges": 1,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 18,
+        "maximum_degree": 4,
+        "degree_variance": 0.8698060941828255,
+        "global_clustering": 0.10344827586206896,
+        "degree_assortativity": 0.2159709618874764,
+        "degree_entropy": 1.238169641222965,
+        "joint_degree_entropy": 1.780680025766731,
+        "degree_skewness": -0.07742208190597182,
+        "degree_kurtosis": -1.1958855269155417,
+        "normalized_laplacian_second_moment": 1.3567251461988303,
+        "normalized_laplacian_third_moment": 2.054824561403509,
+        "random_walk_triangle_weight": 0.015350877192982454,
+        "random_walk_fourth_moment": 0.22269939896036384,
+        "adjacency_fourth_moment_per_node": 17.157894736842106
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 25,
+        "n_articulation_points": 2,
+        "n_bridges": 2,
+        "diameter": 6.0,
+        "radius": 3.0,
         "degeneracy": 2,
         "k_core_size": 16,
         "maximum_degree": 4,
-        "degree_variance": 0.7645429362880887,
-        "global_clustering": 0.15789473684210525,
-        "degree_assortativity": 0.45454545454545425,
-        "degree_entropy": 1.1942726843483222,
-        "joint_degree_entropy": 1.6198528719321597,
-        "degree_skewness": -0.6889649375530055,
-        "degree_kurtosis": 0.2083703991993766,
-        "normalized_laplacian_second_moment": 1.368421052631579,
-        "normalized_laplacian_third_moment": 2.084978070175439,
-        "random_walk_triangle_weight": 0.020285087719298243,
-        "random_walk_fourth_moment": 0.23561362897985702,
-        "adjacency_fourth_moment_per_node": 16.94736842105263
+        "degree_variance": 0.969529085872576,
+        "global_clustering": 0.12,
+        "degree_assortativity": 0.3076923076923082,
+        "degree_entropy": 1.3066469989453449,
+        "joint_degree_entropy": 1.6436920943376956,
+        "degree_skewness": -0.9409906535829355,
+        "degree_kurtosis": 1.3565042016806759,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 14.842105263157896
       }
     },
     {
@@ -249,57 +411,138 @@
       "invariants": {
         "n_nodes": 19,
         "n_edges": 24,
-        "n_articulation_points": 3,
-        "n_bridges": 4,
+        "n_articulation_points": 5,
+        "n_bridges": 5,
+        "diameter": 9.0,
+        "radius": 5.0,
+        "degeneracy": 2,
+        "k_core_size": 14,
+        "maximum_degree": 4,
+        "degree_variance": 0.7756232686980611,
+        "global_clustering": 0.06818181818181818,
+        "degree_assortativity": 0.09302325581395328,
+        "degree_entropy": 1.233684137833772,
+        "joint_degree_entropy": 1.5990924388327934,
+        "degree_skewness": -0.3385202154579084,
+        "degree_kurtosis": -0.4990921368547423,
+        "normalized_laplacian_second_moment": 1.4064327485380117,
+        "normalized_laplacian_third_moment": 2.2076023391812867,
+        "random_walk_triangle_weight": 0.011695906432748537,
+        "random_walk_fourth_moment": 0.2770061728395061,
+        "adjacency_fourth_moment_per_node": 13.052631578947368
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 22,
+        "n_articulation_points": 8,
+        "n_bridges": 8,
+        "diameter": 10.0,
+        "radius": 5.0,
+        "degeneracy": 2,
+        "k_core_size": 11,
+        "maximum_degree": 4,
+        "degree_variance": 0.7423822714681441,
+        "global_clustering": 0.0,
+        "degree_assortativity": 0.31638418079096053,
+        "degree_entropy": 1.233684137833772,
+        "joint_degree_entropy": 1.9453165424776906,
+        "degree_skewness": 0.36150929199276927,
+        "degree_kurtosis": -0.2532071861937024,
+        "normalized_laplacian_second_moment": 1.4451754385964912,
+        "normalized_laplacian_third_moment": 2.335526315789474,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.32001807179987,
+        "adjacency_fourth_moment_per_node": 11.157894736842104
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 21,
+        "n_articulation_points": 5,
+        "n_bridges": 7,
         "diameter": 6.0,
         "radius": 3.0,
         "degeneracy": 2,
-        "k_core_size": 15,
+        "k_core_size": 10,
         "maximum_degree": 4,
-        "degree_variance": 1.0914127423822715,
-        "global_clustering": 0.0,
-        "degree_assortativity": 0.04572564612325825,
-        "degree_entropy": 1.3713810177718107,
-        "joint_degree_entropy": 1.9456660291127656,
-        "degree_skewness": -0.07594731796526749,
-        "degree_kurtosis": -1.1606434529285958,
-        "normalized_laplacian_second_moment": 1.3837719298245614,
-        "normalized_laplacian_third_moment": 2.151315789473684,
+        "degree_variance": 1.5346260387811632,
+        "global_clustering": 0.15000000000000002,
+        "degree_assortativity": 0.07599999999999997,
+        "degree_entropy": 1.5030658660713336,
+        "joint_degree_entropy": 1.9384650060354534,
+        "degree_skewness": 0.1026135224389551,
+        "degree_kurtosis": -1.226791312127555,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.2577312784275502,
-        "adjacency_fourth_moment_per_node": 14.526315789473685
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 11.894736842105264
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 19,
+        "n_articulation_points": 8,
+        "n_bridges": 9,
+        "diameter": 11.0,
+        "radius": 6.0,
+        "degeneracy": 2,
+        "k_core_size": 9,
+        "maximum_degree": 3,
+        "degree_variance": 0.7368421052631579,
+        "global_clustering": 0.11538461538461539,
+        "degree_assortativity": -0.1874999999999991,
+        "degree_entropy": 1.2112144216250411,
+        "joint_degree_entropy": 1.3401984065714685,
+        "degree_skewness": -0.5431254191981333,
+        "degree_kurtosis": -0.23769507803121215,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 7.473684210526316
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 19,
+        "n_edges": 18,
+        "n_articulation_points": 6,
+        "n_bridges": 8,
+        "diameter": 7.0,
+        "radius": 4.0,
+        "degeneracy": 2,
+        "k_core_size": 8,
+        "maximum_degree": 4,
+        "degree_variance": 1.5678670360110802,
+        "global_clustering": 0.0967741935483871,
+        "degree_assortativity": -0.2040133779264221,
+        "degree_entropy": 1.559086989906188,
+        "joint_degree_entropy": 1.9230688680951116,
+        "degree_skewness": 0.04168590039619692,
+        "degree_kurtosis": -1.0622873230002194,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 8.842105263157896
       }
     },
     {
       "method": "node_sample",
       "intensity": 0.01,
-      "invariants": {
-        "n_nodes": 19,
-        "n_edges": 31,
-        "n_articulation_points": 0,
-        "n_bridges": 0,
-        "diameter": 6.0,
-        "radius": 3.0,
-        "degeneracy": 2,
-        "k_core_size": 19,
-        "maximum_degree": 5,
-        "degree_variance": 0.7202216066481996,
-        "global_clustering": 0.1948051948051948,
-        "degree_assortativity": 0.5660964230171069,
-        "degree_entropy": 1.2187590038372849,
-        "joint_degree_entropy": 1.6946249124960264,
-        "degree_skewness": -0.014011927112048865,
-        "degree_kurtosis": -0.7023320570831899,
-        "normalized_laplacian_second_moment": 1.320906432748538,
-        "normalized_laplacian_third_moment": 1.9377192982456137,
-        "random_walk_triangle_weight": 0.025,
-        "random_walk_fourth_moment": 0.19333272417153993,
-        "adjacency_fourth_moment_per_node": 23.68421052631579
-      }
-    },
-    {
-      "method": "node_sample",
-      "intensity": 0.02,
       "invariants": {
         "n_nodes": 19,
         "n_edges": 31,
@@ -356,26 +599,53 @@
       "intensity": 0.1,
       "invariants": {
         "n_nodes": 18,
-        "n_edges": 27,
-        "n_articulation_points": 0,
-        "n_bridges": 0,
-        "diameter": 6.0,
-        "radius": 3.0,
+        "n_edges": 28,
+        "n_articulation_points": 2,
+        "n_bridges": 2,
+        "diameter": 7.0,
+        "radius": 4.0,
         "degeneracy": 2,
-        "k_core_size": 18,
+        "k_core_size": 16,
+        "maximum_degree": 5,
+        "degree_variance": 0.9876543209876544,
+        "global_clustering": 0.22058823529411764,
+        "degree_assortativity": 0.47500000000000026,
+        "degree_entropy": 1.387800031495263,
+        "joint_degree_entropy": 1.905666694484775,
+        "degree_skewness": -0.24447009019509958,
+        "degree_kurtosis": -0.3597890625000004,
+        "normalized_laplacian_second_moment": 1.3433641975308641,
+        "normalized_laplacian_third_moment": 2.000231481481481,
+        "random_walk_triangle_weight": 0.02986111111111111,
+        "random_walk_fourth_moment": 0.21634623628257887,
+        "adjacency_fourth_moment_per_node": 22.22222222222222
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 17,
+        "n_edges": 24,
+        "n_articulation_points": 2,
+        "n_bridges": 2,
+        "diameter": 7.0,
+        "radius": 4.0,
+        "degeneracy": 2,
+        "k_core_size": 15,
         "maximum_degree": 4,
-        "degree_variance": 0.5555555555555556,
-        "global_clustering": 0.1016949152542373,
-        "degree_assortativity": 0.43157894736842145,
-        "degree_entropy": 1.0720433435750705,
-        "joint_degree_entropy": 1.4900935655199308,
-        "degree_skewness": 0.0,
-        "degree_kurtosis": -1.1900000000000002,
-        "normalized_laplacian_second_moment": 1.3433641975308643,
-        "normalized_laplacian_third_moment": 2.0138888888888893,
-        "random_walk_triangle_weight": 0.016203703703703703,
-        "random_walk_fourth_moment": 0.2160761745541838,
-        "adjacency_fourth_moment_per_node": 19.22222222222222
+        "degree_variance": 0.7335640138408305,
+        "global_clustering": 0.12,
+        "degree_assortativity": 0.3258426966292142,
+        "degree_entropy": 1.2324052234657887,
+        "joint_degree_entropy": 1.6315016743728212,
+        "degree_skewness": -0.2372267345244868,
+        "degree_kurtosis": -0.504907694654936,
+        "normalized_laplacian_second_moment": 1.3700980392156863,
+        "normalized_laplacian_third_moment": 2.093137254901961,
+        "random_walk_triangle_weight": 0.017156862745098037,
+        "random_walk_fourth_moment": 0.24520583696441534,
+        "adjacency_fourth_moment_per_node": 17.41176470588235
       }
     },
     {
@@ -383,26 +653,161 @@
       "intensity": 0.2,
       "invariants": {
         "n_nodes": 16,
-        "n_edges": 22,
+        "n_edges": 20,
         "n_articulation_points": 3,
-        "n_bridges": 3,
-        "diameter": 7.0,
+        "n_bridges": 2,
+        "diameter": 8.0,
         "radius": 4.0,
         "degeneracy": 2,
-        "k_core_size": 13,
+        "k_core_size": 16,
+        "maximum_degree": 3,
+        "degree_variance": 0.25,
+        "global_clustering": 0.09375,
+        "degree_assortativity": -0.0416666666666696,
+        "degree_entropy": 0.6931471805599451,
+        "joint_degree_entropy": 0.9985793315873916,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": -2.3076923076923075,
+        "normalized_laplacian_second_moment": 1.3993055555555556,
+        "normalized_laplacian_third_moment": 2.1770833333333335,
+        "random_walk_triangle_weight": 0.020833333333333332,
+        "random_walk_fourth_moment": 0.27266589506172834,
+        "adjacency_fourth_moment_per_node": 11.5
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 15,
+        "n_edges": 21,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 14,
         "maximum_degree": 4,
-        "degree_variance": 0.9375,
+        "degree_variance": 1.0933333333333335,
         "global_clustering": 0.13043478260869565,
-        "degree_assortativity": 0.24137931034482724,
-        "degree_entropy": 1.3208883431493217,
-        "joint_degree_entropy": 1.771721769306378,
-        "degree_skewness": -0.3428571428571429,
-        "degree_kurtosis": -0.7384615384615385,
-        "normalized_laplacian_second_moment": 1.375,
-        "normalized_laplacian_third_moment": 2.1067708333333335,
-        "random_walk_triangle_weight": 0.018229166666666664,
-        "random_walk_fourth_moment": 0.25641396604938266,
-        "adjacency_fourth_moment_per_node": 17.25
+        "degree_assortativity": 0.288135593220338,
+        "degree_entropy": 1.2519894208137128,
+        "joint_degree_entropy": 1.5916855369595373,
+        "degree_skewness": -1.1076836438928874,
+        "degree_kurtosis": 1.9491602983572012,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 18.266666666666666
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 14,
+        "n_edges": 14,
+        "n_articulation_points": 10,
+        "n_bridges": 11,
+        "diameter": 10.0,
+        "radius": 5.0,
+        "degeneracy": 2,
+        "k_core_size": 3,
+        "maximum_degree": 3,
+        "degree_variance": 0.42857142857142855,
+        "global_clustering": 0.1764705882352941,
+        "degree_assortativity": 0.06666666666666558,
+        "degree_entropy": 0.979971182083305,
+        "joint_degree_entropy": 1.195268417086983,
+        "degree_skewness": 0.0,
+        "degree_kurtosis": -0.3939393939393936,
+        "normalized_laplacian_second_moment": 1.503968253968254,
+        "normalized_laplacian_third_moment": 2.488095238095238,
+        "random_walk_triangle_weight": 0.023809523809523808,
+        "random_walk_fourth_moment": 0.369157848324515,
+        "adjacency_fourth_moment_per_node": 6.857142857142857
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 13,
+        "n_edges": 14,
+        "n_articulation_points": 8,
+        "n_bridges": 8,
+        "diameter": 8.0,
+        "radius": 4.0,
+        "degeneracy": 2,
+        "k_core_size": 5,
+        "maximum_degree": 3,
+        "degree_variance": 0.591715976331361,
+        "global_clustering": 0.15000000000000002,
+        "degree_assortativity": 0.5333333333333354,
+        "degree_entropy": 1.0733942812811261,
+        "joint_degree_entropy": 1.3013055504369098,
+        "degree_skewness": -0.3065726290122845,
+        "degree_kurtosis": -1.2820363636363645,
+        "normalized_laplacian_second_moment": 1.4871794871794872,
+        "normalized_laplacian_third_moment": 2.4444444444444446,
+        "random_walk_triangle_weight": 0.017094017094017092,
+        "random_walk_fourth_moment": 0.35660018993352327,
+        "adjacency_fourth_moment_per_node": 8.923076923076923
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 12,
+        "n_edges": 10,
+        "n_articulation_points": 4,
+        "n_bridges": 4,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 2,
+        "k_core_size": 6,
+        "maximum_degree": 3,
+        "degree_variance": 0.8888888888888888,
+        "global_clustering": 0.0,
+        "degree_assortativity": 0.16666666666666585,
+        "degree_entropy": 1.2424533248939997,
+        "joint_degree_entropy": 1.2798542258336671,
+        "degree_skewness": -0.5585276403187226,
+        "degree_kurtosis": -0.3093749999999993,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 5.666666666666667
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 11,
+        "n_edges": 10,
+        "n_articulation_points": 5,
+        "n_bridges": 7,
+        "diameter": 4.0,
+        "radius": 2.0,
+        "degeneracy": 2,
+        "k_core_size": 3,
+        "maximum_degree": 3,
+        "degree_variance": 0.5123966942148761,
+        "global_clustering": 0.2727272727272727,
+        "degree_assortativity": -0.4285714285714283,
+        "degree_entropy": 1.0361987848192835,
+        "joint_degree_entropy": 1.332179040210122,
+        "degree_skewness": 0.32941652785809217,
+        "degree_kurtosis": -0.8775580992022207,
+        "normalized_laplacian_second_moment": 1.5151515151515151,
+        "normalized_laplacian_third_moment": 2.5,
+        "random_walk_triangle_weight": 0.045454545454545456,
+        "random_walk_fourth_moment": 0.4065656565656565,
+        "adjacency_fourth_moment_per_node": 5.818181818181818
       }
     }
   ],
@@ -411,270 +816,567 @@
       "method": "noise",
       "intensity": 0.01,
       "invariants": {
-        "n_nodes": 18.69031857939448,
-        "n_edges": 30.872913752982075,
+        "n_nodes": 19.08759689662405,
+        "n_edges": 30.96573159283378,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 6.091520930439272,
-        "radius": 3.0294078367474433,
-        "degeneracy": 1.993674614239097,
-        "k_core_size": 19.05447824872419,
-        "maximum_degree": 4.95244908494671,
-        "degree_variance": 0.7230130584440431,
-        "global_clustering": 0.19727271404805574,
-        "degree_assortativity": 0.5691531476591406,
-        "degree_entropy": 1.2177606554726335,
-        "joint_degree_entropy": 1.684049491039628,
-        "degree_skewness": -0.013750917705544166,
-        "degree_kurtosis": -0.6999471860173448,
-        "normalized_laplacian_second_moment": 1.3167422920481153,
-        "normalized_laplacian_third_moment": 1.9239363429913037,
-        "random_walk_triangle_weight": 0.024859838138033837,
-        "random_walk_fourth_moment": 0.19247757040828942,
-        "adjacency_fourth_moment_per_node": 23.565663490399725
-      }
-    },
-    {
-      "method": "noise",
-      "intensity": 0.02,
-      "invariants": {
-        "n_nodes": 18.96672843702397,
-        "n_edges": 30.589171755188268,
-        "n_articulation_points": 0.0,
-        "n_bridges": 0.0,
-        "diameter": 6.22064246745002,
-        "radius": 2.9989397523661587,
-        "degeneracy": 1.943223549352917,
-        "k_core_size": 18.89288445649664,
-        "maximum_degree": 4.748202308650854,
-        "degree_variance": 0.7400829537779247,
-        "global_clustering": 0.19691534334418495,
-        "degree_assortativity": 0.5759408681980668,
-        "degree_entropy": 1.2007681674638806,
-        "joint_degree_entropy": 1.73012473758382,
-        "degree_skewness": -0.013910822847959746,
-        "degree_kurtosis": -0.6993649571441364,
-        "normalized_laplacian_second_moment": 1.301330701865804,
-        "normalized_laplacian_third_moment": 1.9013099655262804,
-        "random_walk_triangle_weight": 0.02573986081340489,
-        "random_walk_fourth_moment": 0.19472289802901638,
-        "adjacency_fourth_moment_per_node": 23.866135962317017
+        "diameter": 5.975438433669929,
+        "radius": 2.992142937755095,
+        "degeneracy": 1.9856510778006813,
+        "k_core_size": 18.912580801867797,
+        "maximum_degree": 5.021525871618533,
+        "degree_variance": 0.726354662375701,
+        "global_clustering": 0.1904625709272783,
+        "degree_assortativity": 0.5626088815536208,
+        "degree_entropy": 1.206993605100543,
+        "joint_degree_entropy": 1.6916755786652409,
+        "degree_skewness": -0.0139820550472123,
+        "degree_kurtosis": -0.6911936371073402,
+        "normalized_laplacian_second_moment": 1.323017317397928,
+        "normalized_laplacian_third_moment": 1.9643298420867599,
+        "random_walk_triangle_weight": 0.02495164945115171,
+        "random_walk_fourth_moment": 0.19217841807779404,
+        "adjacency_fourth_moment_per_node": 23.613773402458747
       }
     },
     {
       "method": "noise",
       "intensity": 0.05,
       "invariants": {
-        "n_nodes": 18.886244657353082,
-        "n_edges": 32.69684491237575,
+        "n_nodes": 17.594166983996224,
+        "n_edges": 29.883709189507258,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 6.454577506411232,
-        "radius": 2.9314043738922937,
-        "degeneracy": 2.040772134998518,
-        "k_core_size": 19.008117513911465,
-        "maximum_degree": 5.169823310855988,
-        "degree_variance": 0.738723683960473,
-        "global_clustering": 0.19245813502923348,
-        "degree_assortativity": 0.5203651070931484,
-        "degree_entropy": 1.2138995382630628,
-        "joint_degree_entropy": 1.615559916651915,
-        "degree_skewness": -0.012980260970641398,
-        "degree_kurtosis": -0.7005067413413351,
-        "normalized_laplacian_second_moment": 1.325014096886264,
-        "normalized_laplacian_third_moment": 1.9857726598855983,
-        "random_walk_triangle_weight": 0.02671087227224888,
-        "random_walk_fourth_moment": 0.19919795871622875,
-        "adjacency_fourth_moment_per_node": 23.52188915492703
+        "diameter": 5.556452265393638,
+        "radius": 3.036925917013368,
+        "degeneracy": 2.0507905305543734,
+        "k_core_size": 19.08785801994674,
+        "maximum_degree": 5.222243475581597,
+        "degree_variance": 0.6578710548474606,
+        "global_clustering": 0.20217879574902708,
+        "degree_assortativity": 0.49389978970538945,
+        "degree_entropy": 1.27717234749899,
+        "joint_degree_entropy": 1.6523923559956568,
+        "degree_skewness": -0.012932694155845952,
+        "degree_kurtosis": -0.7366578427116017,
+        "normalized_laplacian_second_moment": 1.3024849281469222,
+        "normalized_laplacian_third_moment": 1.9679499914828988,
+        "random_walk_triangle_weight": 0.025100827942211745,
+        "random_walk_fourth_moment": 0.21233284519776913,
+        "adjacency_fourth_moment_per_node": 22.976108148361483
       }
     },
     {
       "method": "noise",
       "intensity": 0.1,
       "invariants": {
-        "n_nodes": 16.953476521024815,
-        "n_edges": 34.29043280396632,
+        "n_nodes": 17.659664808487744,
+        "n_edges": 32.7134073629082,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 5.872695000871532,
-        "radius": 2.5935880389894197,
-        "degeneracy": 1.9693525761994217,
-        "k_core_size": 22.8758839279118,
-        "maximum_degree": 4.582295484136765,
-        "degree_variance": 0.5847141677973793,
-        "global_clustering": 0.14577879201608518,
-        "degree_assortativity": 0.6022094682267308,
-        "degree_entropy": 1.2567827706865327,
-        "joint_degree_entropy": 1.9820094993352475,
-        "degree_skewness": -0.01316985936150141,
-        "degree_kurtosis": -0.6868293473617457,
-        "normalized_laplacian_second_moment": 1.505260084530225,
-        "normalized_laplacian_third_moment": 2.1679590487291915,
-        "random_walk_triangle_weight": 0.027406123533109256,
-        "random_walk_fourth_moment": 0.17834943105121476,
-        "adjacency_fourth_moment_per_node": 24.651954539396343
+        "diameter": 5.679837834705054,
+        "radius": 2.6815691763433196,
+        "degeneracy": 2.4812117518395977,
+        "k_core_size": 18.72670321935645,
+        "maximum_degree": 5.735253263451247,
+        "degree_variance": 0.6706148905176257,
+        "global_clustering": 0.2022299754117445,
+        "degree_assortativity": 0.5649658174805887,
+        "degree_entropy": 1.1516388512674127,
+        "joint_degree_entropy": 1.6419923061011552,
+        "degree_skewness": -0.012934706316625483,
+        "degree_kurtosis": -0.5877629755026266,
+        "normalized_laplacian_second_moment": 1.1490572579005314,
+        "normalized_laplacian_third_moment": 1.8189467229179432,
+        "random_walk_triangle_weight": 0.024757173851564843,
+        "random_walk_fourth_moment": 0.21513017078206056,
+        "adjacency_fourth_moment_per_node": 21.986516608720812
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 15.386773531167183,
+        "n_edges": 31.58536057503742,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.519480118988424,
+        "radius": 3.6780152540135735,
+        "degeneracy": 1.9385128037069816,
+        "k_core_size": 22.309090322178463,
+        "maximum_degree": 5.430134042849856,
+        "degree_variance": 0.6026035788164271,
+        "global_clustering": 0.20950662196743403,
+        "degree_assortativity": 0.6124371473037262,
+        "degree_entropy": 1.224845488887743,
+        "joint_degree_entropy": 1.0891196893591801,
+        "degree_skewness": -0.014603787730539226,
+        "degree_kurtosis": -0.5768803518574888,
+        "normalized_laplacian_second_moment": 1.2510344798974624,
+        "normalized_laplacian_third_moment": 1.6272812375295662,
+        "random_walk_triangle_weight": 0.028759799032242434,
+        "random_walk_fourth_moment": 0.1606875165193601,
+        "adjacency_fourth_moment_per_node": 26.1852104360057
       }
     },
     {
       "method": "noise",
       "intensity": 0.2,
       "invariants": {
-        "n_nodes": 12.611728022046101,
-        "n_edges": 31.67345676724636,
+        "n_nodes": 22.235466694721318,
+        "n_edges": 33.301260537025485,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 4.182771134262536,
-        "radius": 3.0584912258391914,
-        "degeneracy": 1.2030548582114204,
-        "k_core_size": 18.348223990421317,
-        "maximum_degree": 4.335900202484122,
-        "degree_variance": 0.6516037275095315,
-        "global_clustering": 0.15469073824783902,
-        "degree_assortativity": 0.6475680420528229,
-        "degree_entropy": 1.4221178877486034,
-        "joint_degree_entropy": 1.8297154226803136,
-        "degree_skewness": -0.016968174087365083,
-        "degree_kurtosis": -0.6305437671731795,
-        "normalized_laplacian_second_moment": 1.739093057051948,
-        "normalized_laplacian_third_moment": 2.1012988248827895,
-        "random_walk_triangle_weight": 0.022041335309458347,
-        "random_walk_fourth_moment": 0.2379178645627935,
-        "adjacency_fourth_moment_per_node": 22.968897808813846
+        "diameter": 7.072318680470392,
+        "radius": 3.571253531305989,
+        "degeneracy": 1.8922888183990647,
+        "k_core_size": 18.094990149399997,
+        "maximum_degree": 5.449772322509431,
+        "degree_variance": 0.6048840312410014,
+        "global_clustering": 0.14120575923366907,
+        "degree_assortativity": 0.460609806409391,
+        "degree_entropy": 1.0806026068687324,
+        "joint_degree_entropy": 1.7869277023206145,
+        "degree_skewness": -0.008237789414627066,
+        "degree_kurtosis": -0.5623490463285314,
+        "normalized_laplacian_second_moment": 0.6872494387154252,
+        "normalized_laplacian_third_moment": 1.8486162939170827,
+        "random_walk_triangle_weight": 0.02337488922968599,
+        "random_walk_fourth_moment": 0.17945817170832085,
+        "adjacency_fourth_moment_per_node": 24.880773248754014
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 31.512120761294714,
+        "n_edges": 32.647726437755466,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 3.2588728182345363,
+        "radius": 4.1947556594071855,
+        "degeneracy": 1.5567261721305852,
+        "k_core_size": 21.952570210185716,
+        "maximum_degree": 4.046717839378772,
+        "degree_variance": 0.7463112512890677,
+        "global_clustering": 0.13711014435358176,
+        "degree_assortativity": 0.6426643060459392,
+        "degree_entropy": 1.1764065777076447,
+        "joint_degree_entropy": 1.9584938733718187,
+        "degree_skewness": -0.014176411299055421,
+        "degree_kurtosis": -0.7001499207926161,
+        "normalized_laplacian_second_moment": 1.3204788556143872,
+        "normalized_laplacian_third_moment": 2.061616506252739,
+        "random_walk_triangle_weight": 0.01856447094121156,
+        "random_walk_fourth_moment": 0.17665910461251993,
+        "adjacency_fourth_moment_per_node": 28.467885991963605
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 22.437362659873564,
+        "n_edges": 42.19510347757053,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 5.228157452392958,
+        "radius": 1.4139140293616563,
+        "degeneracy": 2.8961273535956877,
+        "k_core_size": 26.92783113839502,
+        "maximum_degree": 4.838718337266599,
+        "degree_variance": 0.6249438269568324,
+        "global_clustering": 0.0771542402339075,
+        "degree_assortativity": 0.526924300601648,
+        "degree_entropy": 1.0258201783634775,
+        "joint_degree_entropy": 1.1327747532482455,
+        "degree_skewness": -0.00977736874616577,
+        "degree_kurtosis": -0.33880465151497824,
+        "normalized_laplacian_second_moment": 0.5904906222757039,
+        "normalized_laplacian_third_moment": 1.4382157615922975,
+        "random_walk_triangle_weight": 0.022803816496469606,
+        "random_walk_fourth_moment": 0.23847719069942894,
+        "adjacency_fourth_moment_per_node": 28.76090724533183
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 32.38501037374513,
+        "n_edges": 37.827564623543154,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 5.0612507980791515,
+        "radius": 3.798722887756842,
+        "degeneracy": 1.3326039604342985,
+        "k_core_size": 20.432828704505766,
+        "maximum_degree": 5.2603113643943695,
+        "degree_variance": 0.5382100827966555,
+        "global_clustering": 0.14635363117237818,
+        "degree_assortativity": 0.5571343033052695,
+        "degree_entropy": 1.3744908967857017,
+        "joint_degree_entropy": 1.0363909580750752,
+        "degree_skewness": -0.006636608570528647,
+        "degree_kurtosis": -0.712743980218295,
+        "normalized_laplacian_second_moment": 1.3058362051387478,
+        "normalized_laplacian_third_moment": 2.585742171263582,
+        "random_walk_triangle_weight": 0.0110192849360867,
+        "random_walk_fourth_moment": 0.21145826180958344,
+        "adjacency_fourth_moment_per_node": 16.080607268919014
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 27.42529443854429,
+        "n_edges": 37.81117912479753,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 4.362427651958896,
+        "radius": 2.6031196082013954,
+        "degeneracy": 3.2302700374130318,
+        "k_core_size": 27.298292000213937,
+        "maximum_degree": 3.334453761857416,
+        "degree_variance": 1.3173511884566176,
+        "global_clustering": 0.270830510065484,
+        "degree_assortativity": 0.632555652835894,
+        "degree_entropy": 0.052816902987544045,
+        "joint_degree_entropy": 0.7217208875192918,
+        "degree_skewness": -0.01120535589018485,
+        "degree_kurtosis": -0.2782688711953869,
+        "normalized_laplacian_second_moment": 1.0816176139700633,
+        "normalized_laplacian_third_moment": 1.431854266625983,
+        "random_walk_triangle_weight": 0.027490952349893467,
+        "random_walk_fourth_moment": 0.1266916871879296,
+        "adjacency_fourth_moment_per_node": 27.976446329868164
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 20.07451528099119,
+        "n_edges": 31.33669207461564,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 4.595377166549492,
+        "radius": 4.5880403513979084,
+        "degeneracy": 3.2122768237921404,
+        "k_core_size": 0.9653124379269009,
+        "maximum_degree": 4.780512174632216,
+        "degree_variance": 1.5056306412657028,
+        "global_clustering": 0.29061870968381986,
+        "degree_assortativity": 0.37375626679267593,
+        "degree_entropy": 1.1031227890268054,
+        "joint_degree_entropy": 1.4987748219236472,
+        "degree_skewness": -0.010857896830969344,
+        "degree_kurtosis": -0.5961088978360631,
+        "normalized_laplacian_second_moment": -0.03814400192236067,
+        "normalized_laplacian_third_moment": 0.8371209172690308,
+        "random_walk_triangle_weight": 0.012445977380086046,
+        "random_walk_fourth_moment": 0.01718494962642081,
+        "adjacency_fourth_moment_per_node": 22.992091484568554
       }
     },
     {
       "method": "jitter",
       "intensity": 0.01,
       "invariants": {
-        "n_nodes": 18.6865106493876,
-        "n_edges": 31.02574080576343,
+        "n_nodes": 19.04202066942784,
+        "n_edges": 30.75397240894813,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 6.0415937813540905,
-        "radius": 3.004399434784526,
-        "degeneracy": 2.008076202637048,
-        "k_core_size": 19.270310087966138,
-        "maximum_degree": 4.994116276726116,
-        "degree_variance": 0.7130445650316954,
-        "global_clustering": 0.1933335425417332,
-        "degree_assortativity": 0.5558094590145498,
-        "degree_entropy": 1.2339576261213332,
-        "joint_degree_entropy": 1.701256043386648,
-        "degree_skewness": -0.014014933880873185,
-        "degree_kurtosis": -0.6996889414018425,
-        "normalized_laplacian_second_moment": 1.303380241054064,
-        "normalized_laplacian_third_moment": 1.9261901432847324,
-        "random_walk_triangle_weight": 0.02503543644955017,
-        "random_walk_fourth_moment": 0.19575524757906104,
-        "adjacency_fourth_moment_per_node": 23.41185707775807
-      }
-    },
-    {
-      "method": "jitter",
-      "intensity": 0.02,
-      "invariants": {
-        "n_nodes": 19.009296161251424,
-        "n_edges": 31.246849897749144,
-        "n_articulation_points": 0.0,
-        "n_bridges": 0.0,
-        "diameter": 6.0740737126324085,
-        "radius": 2.9757920863631586,
-        "degeneracy": 2.0706321948950275,
-        "k_core_size": 18.79871609444224,
-        "maximum_degree": 4.933026104774119,
-        "degree_variance": 0.710089053371136,
-        "global_clustering": 0.1845467188557379,
-        "degree_assortativity": 0.5775710340191176,
-        "degree_entropy": 1.1992923440799512,
-        "joint_degree_entropy": 1.6262171982162499,
-        "degree_skewness": -0.014079555988000586,
-        "degree_kurtosis": -0.7095144486701721,
-        "normalized_laplacian_second_moment": 1.356574467924796,
-        "normalized_laplacian_third_moment": 1.987988477259796,
-        "random_walk_triangle_weight": 0.025041077390687234,
-        "random_walk_fourth_moment": 0.19750737634527435,
-        "adjacency_fourth_moment_per_node": 24.717878210685242
+        "diameter": 5.975487065310826,
+        "radius": 2.960598621487367,
+        "degeneracy": 2.0058257155948427,
+        "k_core_size": 18.782274281852892,
+        "maximum_degree": 4.957980238517384,
+        "degree_variance": 0.7276153011326895,
+        "global_clustering": 0.1961047297008544,
+        "degree_assortativity": 0.5728491496611375,
+        "degree_entropy": 1.2258578452971798,
+        "joint_degree_entropy": 1.7193741264020466,
+        "degree_skewness": -0.013910978716901598,
+        "degree_kurtosis": -0.6931069706737085,
+        "normalized_laplacian_second_moment": 1.3266998168394872,
+        "normalized_laplacian_third_moment": 1.9761844042171575,
+        "random_walk_triangle_weight": 0.025182714608978127,
+        "random_walk_fourth_moment": 0.1919993451436324,
+        "adjacency_fourth_moment_per_node": 23.858026605360273
       }
     },
     {
       "method": "jitter",
       "intensity": 0.05,
       "invariants": {
-        "n_nodes": 19.989468346331147,
-        "n_edges": 30.077055752581007,
+        "n_nodes": 19.227823941727543,
+        "n_edges": 31.602240602695677,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 5.8867013777285,
-        "radius": 3.220481485759305,
-        "degeneracy": 1.9986223701474002,
-        "k_core_size": 17.921578242383507,
-        "maximum_degree": 5.777827649648875,
-        "degree_variance": 0.7447632732933916,
-        "global_clustering": 0.20788007496585836,
-        "degree_assortativity": 0.545078191304631,
-        "degree_entropy": 1.176411736347312,
-        "joint_degree_entropy": 1.6746889919396843,
-        "degree_skewness": -0.013809892114338668,
-        "degree_kurtosis": -0.7329329035008785,
-        "normalized_laplacian_second_moment": 1.5124598125832402,
-        "normalized_laplacian_third_moment": 1.835165058635872,
-        "random_walk_triangle_weight": 0.025576066966625906,
-        "random_walk_fourth_moment": 0.17766577372974632,
-        "adjacency_fourth_moment_per_node": 22.91518642397918
+        "diameter": 6.046236363616689,
+        "radius": 3.038211901408049,
+        "degeneracy": 2.0694663528572037,
+        "k_core_size": 18.802967558023425,
+        "maximum_degree": 5.516869217648168,
+        "degree_variance": 0.715072011189345,
+        "global_clustering": 0.22265951048646393,
+        "degree_assortativity": 0.5052184813939976,
+        "degree_entropy": 1.2322308979031216,
+        "joint_degree_entropy": 1.8002932016266306,
+        "degree_skewness": -0.014778780992156135,
+        "degree_kurtosis": -0.7097681237537149,
+        "normalized_laplacian_second_moment": 1.4015139213061667,
+        "normalized_laplacian_third_moment": 2.007523299916658,
+        "random_walk_triangle_weight": 0.0265967290776169,
+        "random_walk_fourth_moment": 0.20407921949938357,
+        "adjacency_fourth_moment_per_node": 23.050514091094026
       }
     },
     {
       "method": "jitter",
       "intensity": 0.1,
       "invariants": {
-        "n_nodes": 19.660344671265662,
-        "n_edges": 30.129312761861165,
+        "n_nodes": 20.146642688022194,
+        "n_edges": 27.818601760256726,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 5.887429787032781,
-        "radius": 3.356868925855505,
-        "degeneracy": 1.7085427628594545,
-        "k_core_size": 18.763627056448335,
-        "maximum_degree": 4.48260439805792,
-        "degree_variance": 0.6978607981328709,
-        "global_clustering": 0.17589760392602655,
-        "degree_assortativity": 0.6385400086650794,
-        "degree_entropy": 1.2032493982450485,
-        "joint_degree_entropy": 1.7205308364519103,
-        "degree_skewness": -0.015180651659318537,
-        "degree_kurtosis": -0.7087688066537906,
-        "normalized_laplacian_second_moment": 1.3988296289240303,
-        "normalized_laplacian_third_moment": 1.7421128091803855,
-        "random_walk_triangle_weight": 0.02504036689021725,
-        "random_walk_fourth_moment": 0.18184064425060478,
-        "adjacency_fourth_moment_per_node": 20.90721172644266
+        "diameter": 6.440339122854027,
+        "radius": 2.8428556400484535,
+        "degeneracy": 1.8946323782919947,
+        "k_core_size": 19.627489903320246,
+        "maximum_degree": 4.760098135715812,
+        "degree_variance": 0.6402678450096116,
+        "global_clustering": 0.1944844968585591,
+        "degree_assortativity": 0.5971039978602367,
+        "degree_entropy": 1.0794838420711097,
+        "joint_degree_entropy": 1.758988114513147,
+        "degree_skewness": -0.011816161307321169,
+        "degree_kurtosis": -0.6760493090773269,
+        "normalized_laplacian_second_moment": 1.1343187087761113,
+        "normalized_laplacian_third_moment": 1.849060111836101,
+        "random_walk_triangle_weight": 0.024305752723514346,
+        "random_walk_fourth_moment": 0.19101649155943956,
+        "adjacency_fourth_moment_per_node": 26.242655004456335
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 17.869634739591174,
+        "n_edges": 31.78574254995892,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.454051140913048,
+        "radius": 3.138930507563334,
+        "degeneracy": 1.7242121311661085,
+        "k_core_size": 17.543404860726948,
+        "maximum_degree": 4.971067902258355,
+        "degree_variance": 0.696779954473201,
+        "global_clustering": 0.20115216580908543,
+        "degree_assortativity": 0.509575643682265,
+        "degree_entropy": 1.2614690422792796,
+        "joint_degree_entropy": 1.7058383791505458,
+        "degree_skewness": -0.016177111705128762,
+        "degree_kurtosis": -0.6739112461356496,
+        "normalized_laplacian_second_moment": 1.334842341810267,
+        "normalized_laplacian_third_moment": 1.8380120302146306,
+        "random_walk_triangle_weight": 0.01888209936890116,
+        "random_walk_fourth_moment": 0.19509431998643859,
+        "adjacency_fourth_moment_per_node": 21.88305143328244
       }
     },
     {
       "method": "jitter",
       "intensity": 0.2,
       "invariants": {
-        "n_nodes": 13.647971558399426,
-        "n_edges": 25.612364411075863,
+        "n_nodes": 10.247554854515554,
+        "n_edges": 27.104087075412597,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 6.223203898557348,
-        "radius": 2.999765029721969,
-        "degeneracy": 1.2518563050592306,
-        "k_core_size": 17.59715456880179,
-        "maximum_degree": 3.785655292980871,
-        "degree_variance": 1.0945131808888666,
-        "global_clustering": 0.10351005211681603,
-        "degree_assortativity": 0.585115003367577,
-        "degree_entropy": 1.208786098690008,
-        "joint_degree_entropy": 2.0986065693620737,
-        "degree_skewness": -0.01020870801520133,
-        "degree_kurtosis": -0.5003681505393601,
-        "normalized_laplacian_second_moment": 1.495160653704422,
-        "normalized_laplacian_third_moment": 1.709494256818944,
-        "random_walk_triangle_weight": 0.023219600518933292,
-        "random_walk_fourth_moment": 0.16690198762979705,
-        "adjacency_fourth_moment_per_node": 18.667700660363735
+        "diameter": 5.262749935256457,
+        "radius": 3.536611429359639,
+        "degeneracy": 2.025962514822355,
+        "k_core_size": 26.90303487080572,
+        "maximum_degree": 3.9583593702343602,
+        "degree_variance": 0.7229388407017491,
+        "global_clustering": 0.2038114722644019,
+        "degree_assortativity": 0.3751695027584856,
+        "degree_entropy": 1.441010551326162,
+        "joint_degree_entropy": 1.4171478038120453,
+        "degree_skewness": -0.011733389476752495,
+        "degree_kurtosis": -0.6399855976042268,
+        "normalized_laplacian_second_moment": 1.7776570941190597,
+        "normalized_laplacian_third_moment": 1.615526906956944,
+        "random_walk_triangle_weight": 0.02213646482452665,
+        "random_walk_fourth_moment": 0.20713847847947878,
+        "adjacency_fourth_moment_per_node": 27.375046972337145
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 15.786659851875683,
+        "n_edges": 35.14065138982986,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 5.386144253310766,
+        "radius": 2.6651795070495075,
+        "degeneracy": 2.3064667452859853,
+        "k_core_size": 18.439716668559637,
+        "maximum_degree": 4.543336871838649,
+        "degree_variance": 0.8787131167740724,
+        "global_clustering": 0.16802863407621085,
+        "degree_assortativity": 0.7057342693550035,
+        "degree_entropy": 1.0436993143514908,
+        "joint_degree_entropy": 1.9969160818774259,
+        "degree_skewness": -0.018052041914046166,
+        "degree_kurtosis": -0.5896331884310634,
+        "normalized_laplacian_second_moment": 1.3740569132130094,
+        "normalized_laplacian_third_moment": 2.3344418788098737,
+        "random_walk_triangle_weight": 0.018383759537971056,
+        "random_walk_fourth_moment": 0.1812813211143799,
+        "adjacency_fourth_moment_per_node": 28.214289339178702
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 32.17385414590019,
+        "n_edges": 23.047129669987534,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 4.651136032068556,
+        "radius": 2.1677885263149994,
+        "degeneracy": 2.813846355765016,
+        "k_core_size": 14.911905959713273,
+        "maximum_degree": 3.168865424320834,
+        "degree_variance": 0.7077392823940287,
+        "global_clustering": 0.09091323334428873,
+        "degree_assortativity": 0.6459996241470158,
+        "degree_entropy": 1.029265781423056,
+        "joint_degree_entropy": 1.1000322921855437,
+        "degree_skewness": -0.019483753449110477,
+        "degree_kurtosis": -1.076648473333252,
+        "normalized_laplacian_second_moment": 1.6732681569649919,
+        "normalized_laplacian_third_moment": 1.0858487898210627,
+        "random_walk_triangle_weight": 0.017604859356665843,
+        "random_walk_fourth_moment": 0.1765314356042313,
+        "adjacency_fourth_moment_per_node": 16.10629183815918
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 13.904395306113932,
+        "n_edges": 30.98365663493524,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.741262449095722,
+        "radius": 2.3684013935860158,
+        "degeneracy": 1.5655101867672616,
+        "k_core_size": 8.386789216529419,
+        "maximum_degree": 4.6601568362126375,
+        "degree_variance": 1.3153755650587906,
+        "global_clustering": 0.19182442581443326,
+        "degree_assortativity": 0.3773018372817032,
+        "degree_entropy": 1.5177074942714546,
+        "joint_degree_entropy": 2.010174783985129,
+        "degree_skewness": -0.014211879550818346,
+        "degree_kurtosis": -1.1008031526801254,
+        "normalized_laplacian_second_moment": 1.1054956153397049,
+        "normalized_laplacian_third_moment": 3.0274808923064973,
+        "random_walk_triangle_weight": 0.035691067972446554,
+        "random_walk_fourth_moment": 0.09343516565302291,
+        "adjacency_fourth_moment_per_node": 25.502790533564074
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 31.136242491777125,
+        "n_edges": 40.47157412461114,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 3.1488570664244975,
+        "radius": 3.5999046815331557,
+        "degeneracy": 1.2991246302801511,
+        "k_core_size": 15.30502607709294,
+        "maximum_degree": 1.8936612807759112,
+        "degree_variance": 0.6817275910793552,
+        "global_clustering": 0.18661587327461196,
+        "degree_assortativity": 0.2762518804592101,
+        "degree_entropy": 1.593832519864983,
+        "joint_degree_entropy": 1.8965561536340736,
+        "degree_skewness": -0.016835407855029415,
+        "degree_kurtosis": -0.7983085888627266,
+        "normalized_laplacian_second_moment": 1.948532961939989,
+        "normalized_laplacian_third_moment": 1.8665843977348575,
+        "random_walk_triangle_weight": 0.016473537222443768,
+        "random_walk_fourth_moment": 0.2589805625237677,
+        "adjacency_fourth_moment_per_node": 24.500348874680185
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 0.8295144021932064,
+        "n_edges": 62.007486949073005,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 8.660481687709765,
+        "radius": 0.7196444523529583,
+        "degeneracy": 3.1546200059856426,
+        "k_core_size": 25.330357782844406,
+        "maximum_degree": 2.028911586037021,
+        "degree_variance": 0.7305925223910993,
+        "global_clustering": 0.10069515547325553,
+        "degree_assortativity": 0.5118286491359411,
+        "degree_entropy": 1.111279428159117,
+        "joint_degree_entropy": 1.3488207157910022,
+        "degree_skewness": -0.012464193102386573,
+        "degree_kurtosis": -1.1442002456047604,
+        "normalized_laplacian_second_moment": 0.9507591099250774,
+        "normalized_laplacian_third_moment": 1.621646850030378,
+        "random_walk_triangle_weight": 0.038731605291445204,
+        "random_walk_fourth_moment": 0.20613104822463857,
+        "adjacency_fourth_moment_per_node": 9.225873019500686
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.99,
+      "invariants": {
+        "n_nodes": 19.0,
+        "n_edges": 31.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2.0,
+        "k_core_size": 19.0,
+        "maximum_degree": 5.0,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.1948051948051948,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "random_walk_triangle_weight": 0.025,
+        "random_walk_fourth_moment": 0.19333272417153993,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
       }
     },
     {
@@ -733,7 +1435,61 @@
     },
     {
       "method": "subset",
+      "intensity": 0.85,
+      "invariants": {
+        "n_nodes": 19.0,
+        "n_edges": 31.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2.0,
+        "k_core_size": 19.0,
+        "maximum_degree": 5.0,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.1948051948051948,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "random_walk_triangle_weight": 0.025,
+        "random_walk_fourth_moment": 0.19333272417153993,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
+      }
+    },
+    {
+      "method": "subset",
       "intensity": 0.8,
+      "invariants": {
+        "n_nodes": 19.0,
+        "n_edges": 31.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2.0,
+        "k_core_size": 19.0,
+        "maximum_degree": 5.0,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.1948051948051948,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "random_walk_triangle_weight": 0.025,
+        "random_walk_fourth_moment": 0.19333272417153993,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.75,
       "invariants": {
         "n_nodes": 19.0,
         "n_edges": 31.0,
@@ -787,7 +1543,61 @@
     },
     {
       "method": "subset",
+      "intensity": 0.65,
+      "invariants": {
+        "n_nodes": 19.0,
+        "n_edges": 31.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2.0,
+        "k_core_size": 19.0,
+        "maximum_degree": 5.0,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.1948051948051948,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "random_walk_triangle_weight": 0.025,
+        "random_walk_fourth_moment": 0.19333272417153993,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
+      }
+    },
+    {
+      "method": "subset",
       "intensity": 0.6,
+      "invariants": {
+        "n_nodes": 19.0,
+        "n_edges": 31.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 2.0,
+        "k_core_size": 19.0,
+        "maximum_degree": 5.0,
+        "degree_variance": 0.7202216066481996,
+        "global_clustering": 0.1948051948051948,
+        "degree_assortativity": 0.5660964230171069,
+        "degree_entropy": 1.2187590038372849,
+        "joint_degree_entropy": 1.6946249124960264,
+        "degree_skewness": -0.014011927112048865,
+        "degree_kurtosis": -0.7023320570831899,
+        "normalized_laplacian_second_moment": 1.320906432748538,
+        "normalized_laplacian_third_moment": 1.9377192982456137,
+        "random_walk_triangle_weight": 0.025,
+        "random_walk_fourth_moment": 0.19333272417153993,
+        "adjacency_fourth_moment_per_node": 23.68421052631579
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.55,
       "invariants": {
         "n_nodes": 19.0,
         "n_edges": 31.0,
@@ -825,19 +1635,6 @@
         "hurst_exponent": 0.5430193508798139,
         "trend_coeff": -0.13224392422162598,
         "count_skewness": 2.7041336992737857
-      }
-    },
-    {
-      "method": "scaling",
-      "intensity": 0.75,
-      "signatures": {
-        "lag1_autocorr": 0.09225239269959706,
-        "coef_variation": 0.9857823026288702,
-        "fano_factor": 0.9717667481772491,
-        "norm_succ_diff": 0.9122754038946034,
-        "hurst_exponent": 0.5430193508798139,
-        "trend_coeff": -0.13224392422162595,
-        "count_skewness": 2.704133699273787
       }
     },
     {
@@ -880,6 +1677,84 @@
       }
     },
     {
+      "method": "scaling",
+      "intensity": 2.5,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959709,
+        "coef_variation": 0.9857823026288701,
+        "fano_factor": 0.9717667481772488,
+        "norm_succ_diff": 0.9122754038946034,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 3.0,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959706,
+        "coef_variation": 0.9857823026288702,
+        "fano_factor": 0.9717667481772491,
+        "norm_succ_diff": 0.9122754038946034,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162595,
+        "count_skewness": 2.704133699273787
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 3.5,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959715,
+        "coef_variation": 0.9857823026288701,
+        "fano_factor": 0.9717667481772491,
+        "norm_succ_diff": 0.9122754038946032,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 4.0,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959715,
+        "coef_variation": 0.9857823026288701,
+        "fano_factor": 0.9717667481772491,
+        "norm_succ_diff": 0.9122754038946032,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 4.5,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959713,
+        "coef_variation": 0.9857823026288701,
+        "fano_factor": 0.9717667481772491,
+        "norm_succ_diff": 0.9122754038946032,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 5.0,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959709,
+        "coef_variation": 0.9857823026288701,
+        "fano_factor": 0.9717667481772488,
+        "norm_succ_diff": 0.9122754038946034,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
       "method": "smoothing",
       "intensity": 1.0,
       "signatures": {
@@ -907,6 +1782,19 @@
     },
     {
       "method": "smoothing",
+      "intensity": 3.0,
+      "signatures": {
+        "lag1_autocorr": 0.638887297654133,
+        "coef_variation": 0.5442409665809209,
+        "fano_factor": 1.4199327415243934,
+        "norm_succ_diff": 0.3082020721544323,
+        "hurst_exponent": 0.6356859527348293,
+        "trend_coeff": -0.1931891769002675,
+        "count_skewness": 2.2496991114562945
+      }
+    },
+    {
+      "method": "smoothing",
       "intensity": 4.0,
       "signatures": {
         "lag1_autocorr": 0.7220133511767637,
@@ -916,6 +1804,45 @@
         "hurst_exponent": 0.6717528742322768,
         "trend_coeff": -0.1998970232784166,
         "count_skewness": 1.729909986470171
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 5.0,
+      "signatures": {
+        "lag1_autocorr": 0.7460950044232264,
+        "coef_variation": 0.4063407034618395,
+        "fano_factor": 0.7973208630972646,
+        "norm_succ_diff": 0.17350320347591958,
+        "hurst_exponent": 0.6886366035832818,
+        "trend_coeff": -0.19390882044035937,
+        "count_skewness": 1.5904597583254534
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 6.0,
+      "signatures": {
+        "lag1_autocorr": 0.7971187851936323,
+        "coef_variation": 0.3736181528928008,
+        "fano_factor": 0.6733406073830209,
+        "norm_succ_diff": 0.1550158996967186,
+        "hurst_exponent": 0.7131789331954288,
+        "trend_coeff": -0.19569326447821966,
+        "count_skewness": 1.3051451030827514
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 7.0,
+      "signatures": {
+        "lag1_autocorr": 0.8079345382818375,
+        "coef_variation": 0.3518811673907398,
+        "fano_factor": 0.5975030410367284,
+        "norm_succ_diff": 0.12481786866327747,
+        "hurst_exponent": 0.7242486920805119,
+        "trend_coeff": -0.18070980680816337,
+        "count_skewness": 1.1132040869771267
       }
     },
     {
@@ -933,20 +1860,33 @@
     },
     {
       "method": "smoothing",
-      "intensity": 16.0,
+      "intensity": 9.0,
       "signatures": {
-        "lag1_autocorr": 0.8000686220609484,
-        "coef_variation": 0.21848928152278843,
-        "fano_factor": 0.23337243318057369,
-        "norm_succ_diff": 0.07419407346068038,
-        "hurst_exponent": 0.7766961158631425,
-        "trend_coeff": 0.17505444844525983,
-        "count_skewness": 0.12164132102241688
+        "lag1_autocorr": 0.807510045452802,
+        "coef_variation": 0.31304497720130925,
+        "fano_factor": 0.47448287581875054,
+        "norm_succ_diff": 0.11542815259401429,
+        "hurst_exponent": 0.7423942498050522,
+        "trend_coeff": -0.12122853351991915,
+        "count_skewness": 0.7594978636773293
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 10.0,
+      "signatures": {
+        "lag1_autocorr": 0.8451006157696692,
+        "coef_variation": 0.2904325611449707,
+        "fano_factor": 0.4095704381909334,
+        "norm_succ_diff": 0.09227995779297521,
+        "hurst_exponent": 0.7499293908866095,
+        "trend_coeff": -0.08098408475638894,
+        "count_skewness": 0.6825707888848136
       }
     },
     {
       "method": "bootstrapping",
-      "intensity": 0.0,
+      "intensity": 0.01,
       "signatures": {
         "lag1_autocorr": 0.0,
         "coef_variation": 0.0,
@@ -959,54 +1899,119 @@
     },
     {
       "method": "bootstrapping",
+      "intensity": 0.05,
+      "signatures": {
+        "lag1_autocorr": -0.13479532163742683,
+        "coef_variation": 0.6966796172868416,
+        "fano_factor": 1.7626321974143206,
+        "norm_succ_diff": 0.7814336075203487,
+        "hurst_exponent": 0.4744204019040663,
+        "trend_coeff": -0.1153499601456945,
+        "count_skewness": -0.1012758592313799
+      }
+    },
+    {
+      "method": "bootstrapping",
       "intensity": 0.1,
       "signatures": {
-        "lag1_autocorr": 0.01972048187286247,
-        "coef_variation": 1.0047698429709924,
-        "fano_factor": 5.154081916967506,
-        "norm_succ_diff": 0.9105600445804847,
-        "hurst_exponent": 0.564980123026986,
-        "trend_coeff": 0.03840299457682408,
-        "count_skewness": 1.0544836269613875
+        "lag1_autocorr": 0.12346568368373133,
+        "coef_variation": 1.379663233509149,
+        "fano_factor": 14.376212449381278,
+        "norm_succ_diff": 1.0628119408605805,
+        "hurst_exponent": 0.5395929480342465,
+        "trend_coeff": 0.01201989392558032,
+        "count_skewness": 1.1858713446770974
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.15,
+      "signatures": {
+        "lag1_autocorr": 0.06269216712546483,
+        "coef_variation": 0.9842593636823165,
+        "fano_factor": 3.2887073119621553,
+        "norm_succ_diff": 0.8837209302322978,
+        "hurst_exponent": 0.5312755049185871,
+        "trend_coeff": 0.23036836643490574,
+        "count_skewness": 1.251117836457748
       }
     },
     {
       "method": "bootstrapping",
       "intensity": 0.2,
       "signatures": {
-        "lag1_autocorr": 0.06027510089778436,
-        "coef_variation": 0.9390668991347775,
-        "fano_factor": 2.8311918475844076,
-        "norm_succ_diff": 0.9260079751880145,
-        "hurst_exponent": 0.5135814448450234,
-        "trend_coeff": -0.09437954782866954,
-        "count_skewness": 1.3590229927747248
+        "lag1_autocorr": -0.10990042674253203,
+        "coef_variation": 0.3424674446093153,
+        "fano_factor": 0.5555555555554381,
+        "norm_succ_diff": 0.35375375375367907,
+        "hurst_exponent": 0.5208891016298669,
+        "trend_coeff": -0.07795786541543762,
+        "count_skewness": 0.7863469940075395
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.25,
+      "signatures": {
+        "lag1_autocorr": 0.06499098075342427,
+        "coef_variation": 0.7673582628048827,
+        "fano_factor": 1.9989524408123165,
+        "norm_succ_diff": 0.7722606327255215,
+        "hurst_exponent": 0.4980965378119312,
+        "trend_coeff": 0.11249871361479995,
+        "count_skewness": 0.4604992908760564
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.3,
+      "signatures": {
+        "lag1_autocorr": -0.06521012362000715,
+        "coef_variation": 0.907398968880237,
+        "fano_factor": 3.4885009232827096,
+        "norm_succ_diff": 0.9440993788817648,
+        "hurst_exponent": 0.47255424912979177,
+        "trend_coeff": -0.03574149251801481,
+        "count_skewness": 1.5273418530135108
       }
     },
     {
       "method": "bootstrapping",
       "intensity": 0.35,
       "signatures": {
-        "lag1_autocorr": 0.24261840002243218,
-        "coef_variation": 0.6416772527056877,
-        "fano_factor": 1.657834304892717,
-        "norm_succ_diff": 0.6041335453098658,
-        "hurst_exponent": 0.5149393784990222,
-        "trend_coeff": -0.012707908744383102,
-        "count_skewness": 0.7957899225344458
+        "lag1_autocorr": -0.11285350600475956,
+        "coef_variation": 0.7266784587033261,
+        "fano_factor": 3.7798092209851633,
+        "norm_succ_diff": 0.7174085850555436,
+        "hurst_exponent": 0.5253221197569058,
+        "trend_coeff": -0.024313111791943273,
+        "count_skewness": 2.3605824395105843
       }
     },
     {
       "method": "bootstrapping",
-      "intensity": 0.5,
+      "intensity": 0.4,
       "signatures": {
-        "lag1_autocorr": 0.029573842046805278,
-        "coef_variation": 0.6968696104347444,
-        "fano_factor": 2.1597633136089813,
-        "norm_succ_diff": 0.7657124580199781,
-        "hurst_exponent": 0.4931023646665186,
-        "trend_coeff": 0.16047355567707594,
-        "count_skewness": 0.5079647975229405
+        "lag1_autocorr": -0.16621808932969087,
+        "coef_variation": 0.5687719399912632,
+        "fano_factor": 1.6430471922696668,
+        "norm_succ_diff": 0.697101246323907,
+        "hurst_exponent": 0.41626275612741004,
+        "trend_coeff": 0.1713236568495002,
+        "count_skewness": 0.4015644883548817
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.45,
+      "signatures": {
+        "lag1_autocorr": -0.05549982537877945,
+        "coef_variation": 0.7615203869754075,
+        "fano_factor": 3.418436293435713,
+        "norm_succ_diff": 0.6785714285713135,
+        "hurst_exponent": 0.501686507290229,
+        "trend_coeff": -0.09589414852709215,
+        "count_skewness": 2.53903045265785
       }
     }
   ],
@@ -1015,130 +2020,273 @@
       "method": "noise",
       "intensity": 0.01,
       "signatures": {
-        "lag1_autocorr": 0.09173098633090006,
-        "coef_variation": 0.9983741629042525,
-        "fano_factor": 4.572267785772074,
-        "norm_succ_diff": 0.911499552644408,
-        "hurst_exponent": 0.5437286240976167,
-        "trend_coeff": -0.1304663477123667,
-        "count_skewness": 2.726245585302043
-      }
-    },
-    {
-      "method": "noise",
-      "intensity": 0.02,
-      "signatures": {
-        "lag1_autocorr": 0.08982157427502128,
-        "coef_variation": 0.9673826972228068,
-        "fano_factor": 4.593258200128539,
-        "norm_succ_diff": 0.9044507417628105,
-        "hurst_exponent": 0.5356956638132739,
-        "trend_coeff": -0.1299035862719165,
-        "count_skewness": 2.761387704749618
+        "lag1_autocorr": 0.09149658514100138,
+        "coef_variation": 0.9786673776980119,
+        "fano_factor": 4.682892940021392,
+        "norm_succ_diff": 0.9015266969782418,
+        "hurst_exponent": 0.5407933531930912,
+        "trend_coeff": -0.13475628218417934,
+        "count_skewness": 2.6967105546306738
       }
     },
     {
       "method": "noise",
       "intensity": 0.05,
       "signatures": {
-        "lag1_autocorr": 0.0948055202302455,
-        "coef_variation": 0.920390014847549,
-        "fano_factor": 4.4482192635755915,
-        "norm_succ_diff": 0.9916833096966317,
-        "hurst_exponent": 0.5220406653578593,
-        "trend_coeff": -0.13934262506097386,
-        "count_skewness": 2.597725327016204
+        "lag1_autocorr": 0.0824848262240213,
+        "coef_variation": 1.0097148544766037,
+        "fano_factor": 4.837178620839236,
+        "norm_succ_diff": 0.8630974701052392,
+        "hurst_exponent": 0.5719152542934762,
+        "trend_coeff": -0.12579294805403335,
+        "count_skewness": 2.7870291062406705
       }
     },
     {
       "method": "noise",
       "intensity": 0.1,
       "signatures": {
-        "lag1_autocorr": 0.09250677778749708,
-        "coef_variation": 1.057804168414727,
-        "fano_factor": 4.607837504880621,
-        "norm_succ_diff": 0.8697418253747972,
-        "hurst_exponent": 0.5333019767159854,
-        "trend_coeff": -0.13749299444860266,
-        "count_skewness": 3.0589029332723743
+        "lag1_autocorr": 0.08914312002136866,
+        "coef_variation": 0.8459377482193542,
+        "fano_factor": 4.17288315627254,
+        "norm_succ_diff": 0.7727771542982127,
+        "hurst_exponent": 0.5266520570127236,
+        "trend_coeff": -0.13319014805851914,
+        "count_skewness": 2.851274634324148
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.15,
+      "signatures": {
+        "lag1_autocorr": 0.10069837386153388,
+        "coef_variation": 1.0013019463395023,
+        "fano_factor": 5.143378336065989,
+        "norm_succ_diff": 1.0396170851503677,
+        "hurst_exponent": 0.5876018375855884,
+        "trend_coeff": -0.12113759879096234,
+        "count_skewness": 3.206815358001304
       }
     },
     {
       "method": "noise",
       "intensity": 0.2,
       "signatures": {
-        "lag1_autocorr": 0.08885018700669674,
-        "coef_variation": 1.306355091478637,
-        "fano_factor": 4.700327531639912,
-        "norm_succ_diff": 0.7148368642479216,
-        "hurst_exponent": 0.3607813759281024,
-        "trend_coeff": -0.15641902247909997,
-        "count_skewness": 1.7749233290905586
+        "lag1_autocorr": 0.08841200887896374,
+        "coef_variation": 0.7303305192055243,
+        "fano_factor": 3.4919431156266887,
+        "norm_succ_diff": 0.8047583001467373,
+        "hurst_exponent": 0.5684349897339521,
+        "trend_coeff": -0.16832508598627194,
+        "count_skewness": 2.2454165075022923
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.25,
+      "signatures": {
+        "lag1_autocorr": 0.09366069090387712,
+        "coef_variation": 0.7472400303191041,
+        "fano_factor": 3.435395573159872,
+        "norm_succ_diff": 1.4090156948280825,
+        "hurst_exponent": 0.6315848986215644,
+        "trend_coeff": -0.21176558551559993,
+        "count_skewness": 1.8360720926026524
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.3,
+      "signatures": {
+        "lag1_autocorr": 0.10643327308602939,
+        "coef_variation": 0.6881943687621579,
+        "fano_factor": 2.9957847973898764,
+        "norm_succ_diff": 0.9452461723584258,
+        "hurst_exponent": 0.38495597552242045,
+        "trend_coeff": -0.07859543482629958,
+        "count_skewness": 1.540185930178609
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.35,
+      "signatures": {
+        "lag1_autocorr": 0.11462925083310127,
+        "coef_variation": 1.5752724996478795,
+        "fano_factor": 7.502306186969754,
+        "norm_succ_diff": 0.8827328301280718,
+        "hurst_exponent": 0.4321561035286682,
+        "trend_coeff": -0.15898126101004878,
+        "count_skewness": 1.0879903775081605
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.4,
+      "signatures": {
+        "lag1_autocorr": 0.07230865481443963,
+        "coef_variation": 1.1870800410458937,
+        "fano_factor": 4.3722139794660295,
+        "norm_succ_diff": 1.1446110258292308,
+        "hurst_exponent": 0.9431917299052122,
+        "trend_coeff": -0.16889657649533585,
+        "count_skewness": 3.8969060632446197
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.45,
+      "signatures": {
+        "lag1_autocorr": 0.09667541549674817,
+        "coef_variation": 1.0972688764233003,
+        "fano_factor": 2.269308003024716,
+        "norm_succ_diff": 1.1574189037665896,
+        "hurst_exponent": 0.38951998936111265,
+        "trend_coeff": -0.11909836908753625,
+        "count_skewness": 1.7104693460868408
       }
     },
     {
       "method": "jitter",
       "intensity": 0.01,
       "signatures": {
-        "lag1_autocorr": 0.09175987164934225,
-        "coef_variation": 0.9860293071441492,
-        "fano_factor": 4.603198659816775,
-        "norm_succ_diff": 0.9122956672797087,
-        "hurst_exponent": 0.5434469090011347,
-        "trend_coeff": -0.13252420952137442,
-        "count_skewness": 2.6863776169972056
-      }
-    },
-    {
-      "method": "jitter",
-      "intensity": 0.02,
-      "signatures": {
-        "lag1_autocorr": 0.09197409039524924,
-        "coef_variation": 0.9893557358609554,
-        "fano_factor": 4.566021843421064,
-        "norm_succ_diff": 0.8994957906628936,
-        "hurst_exponent": 0.526699807118457,
-        "trend_coeff": -0.13224281386938122,
-        "count_skewness": 2.7658863298806087
+        "lag1_autocorr": 0.09179193885170735,
+        "coef_variation": 0.9810128844827699,
+        "fano_factor": 4.563275030946781,
+        "norm_succ_diff": 0.9273927637829247,
+        "hurst_exponent": 0.5481157944022674,
+        "trend_coeff": -0.13045234082817264,
+        "count_skewness": 2.67142921587368
       }
     },
     {
       "method": "jitter",
       "intensity": 0.05,
       "signatures": {
-        "lag1_autocorr": 0.09733712926321489,
-        "coef_variation": 0.8502809856734386,
-        "fano_factor": 4.865847225989296,
-        "norm_succ_diff": 0.8743424259143127,
-        "hurst_exponent": 0.5263853978297637,
-        "trend_coeff": -0.13358664192674566,
-        "count_skewness": 2.608911670061963
+        "lag1_autocorr": 0.09192452828579158,
+        "coef_variation": 0.9670165297978869,
+        "fano_factor": 4.526566727253076,
+        "norm_succ_diff": 0.8846102037866392,
+        "hurst_exponent": 0.549424192798452,
+        "trend_coeff": -0.12973648419061076,
+        "count_skewness": 2.78323933857794
       }
     },
     {
       "method": "jitter",
       "intensity": 0.1,
       "signatures": {
-        "lag1_autocorr": 0.09405424427795303,
-        "coef_variation": 1.1051822573592323,
-        "fano_factor": 3.858868378039965,
-        "norm_succ_diff": 0.7739455912526096,
-        "hurst_exponent": 0.5012555232921483,
-        "trend_coeff": -0.11696076264695782,
-        "count_skewness": 2.365824746897446
+        "lag1_autocorr": 0.09695240157353423,
+        "coef_variation": 0.8418708928280683,
+        "fano_factor": 4.322666769943002,
+        "norm_succ_diff": 0.6152500487760202,
+        "hurst_exponent": 0.5386998907096315,
+        "trend_coeff": -0.1410209903994818,
+        "count_skewness": 2.861911869550421
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.15,
+      "signatures": {
+        "lag1_autocorr": 0.07170707866231908,
+        "coef_variation": 0.5708312029185677,
+        "fano_factor": 3.9571767323804226,
+        "norm_succ_diff": 0.7504394156141103,
+        "hurst_exponent": 0.6224237868620358,
+        "trend_coeff": -0.11705284115638186,
+        "count_skewness": 3.53803371082443
       }
     },
     {
       "method": "jitter",
       "intensity": 0.2,
       "signatures": {
-        "lag1_autocorr": 0.11018171721578653,
-        "coef_variation": 0.7175792147847863,
-        "fano_factor": 5.130387797907053,
-        "norm_succ_diff": 0.9134354819141373,
-        "hurst_exponent": 0.50968099233428,
-        "trend_coeff": -0.16989654654406808,
-        "count_skewness": 3.0368069055023375
+        "lag1_autocorr": 0.09951254062988547,
+        "coef_variation": 0.9283739176400069,
+        "fano_factor": 5.401510376775127,
+        "norm_succ_diff": 1.18208674921047,
+        "hurst_exponent": 0.5404878676453856,
+        "trend_coeff": -0.1416468190788919,
+        "count_skewness": 2.1980677206527277
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.25,
+      "signatures": {
+        "lag1_autocorr": 0.08347760142022675,
+        "coef_variation": 0.6837715031513147,
+        "fano_factor": 5.829532084085724,
+        "norm_succ_diff": 1.0336953960545987,
+        "hurst_exponent": 0.4110806767863083,
+        "trend_coeff": -0.1637064175299351,
+        "count_skewness": 1.6108078220885174
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.3,
+      "signatures": {
+        "lag1_autocorr": 0.12755885901067227,
+        "coef_variation": 1.3289430484312088,
+        "fano_factor": 6.3821146205043195,
+        "norm_succ_diff": 0.794736772018357,
+        "hurst_exponent": 0.1620007876540577,
+        "trend_coeff": -0.10250733780086145,
+        "count_skewness": 2.1163859517227057
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.35,
+      "signatures": {
+        "lag1_autocorr": 0.122161334349275,
+        "coef_variation": 1.1128486897215812,
+        "fano_factor": 6.180408845631264,
+        "norm_succ_diff": 1.044854898101378,
+        "hurst_exponent": 0.41532326347995646,
+        "trend_coeff": -0.13706840789376476,
+        "count_skewness": 3.1547179937766145
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.4,
+      "signatures": {
+        "lag1_autocorr": 0.11039434578441612,
+        "coef_variation": 0.744663041221122,
+        "fano_factor": 7.16948919915925,
+        "norm_succ_diff": 0.5391246018360193,
+        "hurst_exponent": 0.14708710195770358,
+        "trend_coeff": -0.08816928680466156,
+        "count_skewness": 4.19209151821619
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.45,
+      "signatures": {
+        "lag1_autocorr": 0.08630228228463249,
+        "coef_variation": 0.6851501329966144,
+        "fano_factor": 5.7207025011249115,
+        "norm_succ_diff": 0.9778441969914871,
+        "hurst_exponent": 0.20232774620348049,
+        "trend_coeff": -0.10619135552554339,
+        "count_skewness": 2.7209687808356766
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.99,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959709,
+        "coef_variation": 0.9857823026296467,
+        "fano_factor": 4.577532840101701,
+        "norm_succ_diff": 0.912275403895322,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
       }
     },
     {
@@ -1169,7 +2317,33 @@
     },
     {
       "method": "subset",
+      "intensity": 0.85,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959709,
+        "coef_variation": 0.9857823026296467,
+        "fano_factor": 4.577532840101701,
+        "norm_succ_diff": 0.912275403895322,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
+      "method": "subset",
       "intensity": 0.8,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959709,
+        "coef_variation": 0.9857823026296467,
+        "fano_factor": 4.577532840101701,
+        "norm_succ_diff": 0.912275403895322,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.75,
       "signatures": {
         "lag1_autocorr": 0.09225239269959709,
         "coef_variation": 0.9857823026296467,
@@ -1195,7 +2369,33 @@
     },
     {
       "method": "subset",
+      "intensity": 0.65,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959709,
+        "coef_variation": 0.9857823026296467,
+        "fano_factor": 4.577532840101701,
+        "norm_succ_diff": 0.912275403895322,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
+      "method": "subset",
       "intensity": 0.6,
+      "signatures": {
+        "lag1_autocorr": 0.09225239269959709,
+        "coef_variation": 0.9857823026296467,
+        "fano_factor": 4.577532840101701,
+        "norm_succ_diff": 0.912275403895322,
+        "hurst_exponent": 0.5430193508798139,
+        "trend_coeff": -0.13224392422162598,
+        "count_skewness": 2.7041336992737857
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.55,
       "signatures": {
         "lag1_autocorr": 0.09225239269959709,
         "coef_variation": 0.9857823026296467,
@@ -1966,511 +3166,6 @@
       ]
     },
     {
-      "scale": "3D",
-      "events": [
-        {
-          "date": "2010-02-19",
-          "target": 7
-        },
-        {
-          "date": "2010-02-22",
-          "target": 0
-        },
-        {
-          "date": "2010-02-25",
-          "target": 0
-        },
-        {
-          "date": "2010-02-28",
-          "target": 0
-        },
-        {
-          "date": "2010-03-03",
-          "target": 0
-        },
-        {
-          "date": "2010-03-06",
-          "target": 5
-        },
-        {
-          "date": "2010-03-09",
-          "target": 4
-        },
-        {
-          "date": "2010-03-12",
-          "target": 3
-        },
-        {
-          "date": "2010-03-15",
-          "target": 4
-        },
-        {
-          "date": "2010-03-18",
-          "target": 10
-        },
-        {
-          "date": "2010-03-21",
-          "target": 0
-        },
-        {
-          "date": "2010-03-24",
-          "target": 0
-        },
-        {
-          "date": "2010-03-27",
-          "target": 0
-        },
-        {
-          "date": "2010-03-30",
-          "target": 3
-        },
-        {
-          "date": "2010-04-02",
-          "target": 0
-        },
-        {
-          "date": "2010-04-05",
-          "target": 5
-        },
-        {
-          "date": "2010-04-08",
-          "target": 0
-        },
-        {
-          "date": "2010-04-11",
-          "target": 0
-        },
-        {
-          "date": "2010-04-14",
-          "target": 0
-        },
-        {
-          "date": "2010-04-17",
-          "target": 0
-        },
-        {
-          "date": "2010-04-20",
-          "target": 0
-        },
-        {
-          "date": "2010-04-23",
-          "target": 0
-        },
-        {
-          "date": "2010-04-26",
-          "target": 0
-        },
-        {
-          "date": "2010-04-29",
-          "target": 0
-        },
-        {
-          "date": "2010-05-02",
-          "target": 2
-        },
-        {
-          "date": "2010-05-05",
-          "target": 1
-        },
-        {
-          "date": "2010-05-08",
-          "target": 14
-        },
-        {
-          "date": "2010-05-11",
-          "target": 26
-        },
-        {
-          "date": "2010-05-14",
-          "target": 0
-        },
-        {
-          "date": "2010-05-17",
-          "target": 0
-        },
-        {
-          "date": "2010-05-20",
-          "target": 0
-        },
-        {
-          "date": "2010-05-23",
-          "target": 0
-        },
-        {
-          "date": "2010-05-26",
-          "target": 0
-        },
-        {
-          "date": "2010-05-29",
-          "target": 0
-        },
-        {
-          "date": "2010-06-01",
-          "target": 12
-        },
-        {
-          "date": "2010-06-04",
-          "target": 0
-        },
-        {
-          "date": "2010-06-07",
-          "target": 0
-        },
-        {
-          "date": "2010-06-10",
-          "target": 8
-        },
-        {
-          "date": "2010-06-13",
-          "target": 0
-        },
-        {
-          "date": "2010-06-16",
-          "target": 0
-        },
-        {
-          "date": "2010-06-19",
-          "target": 0
-        },
-        {
-          "date": "2010-06-22",
-          "target": 0
-        },
-        {
-          "date": "2010-06-25",
-          "target": 0
-        },
-        {
-          "date": "2010-06-28",
-          "target": 0
-        },
-        {
-          "date": "2010-07-01",
-          "target": 17
-        },
-        {
-          "date": "2010-07-04",
-          "target": 3
-        },
-        {
-          "date": "2010-07-07",
-          "target": 0
-        },
-        {
-          "date": "2010-07-10",
-          "target": 0
-        },
-        {
-          "date": "2010-07-13",
-          "target": 10
-        },
-        {
-          "date": "2010-07-16",
-          "target": 0
-        },
-        {
-          "date": "2010-07-19",
-          "target": 0
-        },
-        {
-          "date": "2010-07-22",
-          "target": 0
-        },
-        {
-          "date": "2010-07-25",
-          "target": 0
-        },
-        {
-          "date": "2010-07-28",
-          "target": 0
-        },
-        {
-          "date": "2010-07-31",
-          "target": 2
-        },
-        {
-          "date": "2010-08-03",
-          "target": 1
-        },
-        {
-          "date": "2010-08-06",
-          "target": 0
-        },
-        {
-          "date": "2010-08-09",
-          "target": 0
-        },
-        {
-          "date": "2010-08-12",
-          "target": 0
-        },
-        {
-          "date": "2010-08-15",
-          "target": 6
-        },
-        {
-          "date": "2010-08-18",
-          "target": 0
-        },
-        {
-          "date": "2010-08-21",
-          "target": 0
-        },
-        {
-          "date": "2010-08-24",
-          "target": 0
-        },
-        {
-          "date": "2010-08-27",
-          "target": 0
-        },
-        {
-          "date": "2010-08-30",
-          "target": 0
-        },
-        {
-          "date": "2010-09-02",
-          "target": 3
-        },
-        {
-          "date": "2010-09-05",
-          "target": 0
-        },
-        {
-          "date": "2010-09-08",
-          "target": 0
-        },
-        {
-          "date": "2010-09-11",
-          "target": 0
-        },
-        {
-          "date": "2010-09-14",
-          "target": 7
-        },
-        {
-          "date": "2010-09-17",
-          "target": 1
-        },
-        {
-          "date": "2010-09-20",
-          "target": 0
-        },
-        {
-          "date": "2010-09-23",
-          "target": 0
-        },
-        {
-          "date": "2010-09-26",
-          "target": 0
-        },
-        {
-          "date": "2010-09-29",
-          "target": 4
-        },
-        {
-          "date": "2010-10-02",
-          "target": 0
-        },
-        {
-          "date": "2010-10-05",
-          "target": 0
-        },
-        {
-          "date": "2010-10-08",
-          "target": 0
-        },
-        {
-          "date": "2010-10-11",
-          "target": 0
-        },
-        {
-          "date": "2010-10-14",
-          "target": 3
-        },
-        {
-          "date": "2010-10-17",
-          "target": 0
-        },
-        {
-          "date": "2010-10-20",
-          "target": 0
-        },
-        {
-          "date": "2010-10-23",
-          "target": 0
-        },
-        {
-          "date": "2010-10-26",
-          "target": 0
-        },
-        {
-          "date": "2010-10-29",
-          "target": 0
-        },
-        {
-          "date": "2010-11-01",
-          "target": 7
-        },
-        {
-          "date": "2010-11-04",
-          "target": 0
-        },
-        {
-          "date": "2010-11-07",
-          "target": 0
-        },
-        {
-          "date": "2010-11-10",
-          "target": 0
-        },
-        {
-          "date": "2010-11-13",
-          "target": 0
-        },
-        {
-          "date": "2010-11-16",
-          "target": 0
-        },
-        {
-          "date": "2010-11-19",
-          "target": 0
-        },
-        {
-          "date": "2010-11-22",
-          "target": 0
-        },
-        {
-          "date": "2010-11-25",
-          "target": 0
-        },
-        {
-          "date": "2010-11-28",
-          "target": 0
-        },
-        {
-          "date": "2010-12-01",
-          "target": 0
-        },
-        {
-          "date": "2010-12-04",
-          "target": 0
-        },
-        {
-          "date": "2010-12-07",
-          "target": 0
-        },
-        {
-          "date": "2010-12-10",
-          "target": 0
-        },
-        {
-          "date": "2010-12-13",
-          "target": 0
-        },
-        {
-          "date": "2010-12-16",
-          "target": 4
-        },
-        {
-          "date": "2010-12-19",
-          "target": 0
-        },
-        {
-          "date": "2010-12-22",
-          "target": 0
-        },
-        {
-          "date": "2010-12-25",
-          "target": 0
-        },
-        {
-          "date": "2010-12-28",
-          "target": 0
-        },
-        {
-          "date": "2010-12-31",
-          "target": 0
-        },
-        {
-          "date": "2011-01-03",
-          "target": 0
-        },
-        {
-          "date": "2011-01-06",
-          "target": 0
-        },
-        {
-          "date": "2011-01-09",
-          "target": 0
-        },
-        {
-          "date": "2011-01-12",
-          "target": 0
-        },
-        {
-          "date": "2011-01-15",
-          "target": 0
-        },
-        {
-          "date": "2011-01-18",
-          "target": 0
-        },
-        {
-          "date": "2011-01-21",
-          "target": 0
-        },
-        {
-          "date": "2011-01-24",
-          "target": 0
-        },
-        {
-          "date": "2011-01-27",
-          "target": 0
-        },
-        {
-          "date": "2011-01-30",
-          "target": 0
-        },
-        {
-          "date": "2011-02-02",
-          "target": 0
-        },
-        {
-          "date": "2011-02-05",
-          "target": 0
-        },
-        {
-          "date": "2011-02-08",
-          "target": 0
-        },
-        {
-          "date": "2011-02-11",
-          "target": 0
-        },
-        {
-          "date": "2011-02-14",
-          "target": 0
-        },
-        {
-          "date": "2011-02-17",
-          "target": 0
-        },
-        {
-          "date": "2011-02-20",
-          "target": 0
-        },
-        {
-          "date": "2011-02-23",
-          "target": 2
-        },
-        {
-          "date": "2011-02-26",
-          "target": 5
-        }
-      ]
-    },
-    {
       "scale": "7D",
       "events": [
         {
@@ -2854,6 +3549,39 @@
         {
           "date": "2011-01-15",
           "target": 0
+        },
+        {
+          "date": "2011-02-14",
+          "target": 7
+        }
+      ]
+    },
+    {
+      "scale": "60D",
+      "events": [
+        {
+          "date": "2010-02-19",
+          "target": 41
+        },
+        {
+          "date": "2010-04-20",
+          "target": 63
+        },
+        {
+          "date": "2010-06-19",
+          "target": 39
+        },
+        {
+          "date": "2010-08-18",
+          "target": 18
+        },
+        {
+          "date": "2010-10-17",
+          "target": 7
+        },
+        {
+          "date": "2010-12-16",
+          "target": 4
         },
         {
           "date": "2011-02-14",

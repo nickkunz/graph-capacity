@@ -6,34 +6,7 @@
       "invariants": {
         "n_nodes": 222,
         "n_edges": 427,
-        "n_articulation_points": 8,
-        "n_bridges": 99,
-        "diameter": 5.0,
-        "radius": 3.0,
-        "degeneracy": 5,
-        "k_core_size": 10,
-        "maximum_degree": 181,
-        "degree_variance": 202.1657333008684,
-        "global_clustering": 0.005072708826513358,
-        "degree_assortativity": -0.5681627468283293,
-        "degree_entropy": 1.575336974286283,
-        "joint_degree_entropy": 3.25681925295533,
-        "degree_skewness": 10.318673508318907,
-        "degree_kurtosis": 117.78297878085175,
-        "normalized_laplacian_second_moment": 1.0349829555973646,
-        "normalized_laplacian_third_moment": 1.1048594605792992,
-        "random_walk_triangle_weight": 8.940621279479476e-05,
-        "random_walk_fourth_moment": 0.017093490780798998,
-        "adjacency_fourth_moment_per_node": 629.972972972973
-      }
-    },
-    {
-      "method": "rewire",
-      "intensity": 0.03,
-      "invariants": {
-        "n_nodes": 222,
-        "n_edges": 427,
-        "n_articulation_points": 9,
+        "n_articulation_points": 7,
         "n_bridges": 99,
         "diameter": 5.0,
         "radius": 3.0,
@@ -41,17 +14,44 @@
         "k_core_size": 11,
         "maximum_degree": 181,
         "degree_variance": 202.1657333008684,
-        "global_clustering": 0.009891782211701047,
-        "degree_assortativity": -0.5636553322344783,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.5718667915939275,
         "degree_entropy": 1.575336974286283,
-        "joint_degree_entropy": 3.2738555172148964,
+        "joint_degree_entropy": 3.2478735075166987,
         "degree_skewness": 10.318673508318907,
         "degree_kurtosis": 117.78297878085175,
-        "normalized_laplacian_second_moment": 1.0370426640106643,
-        "normalized_laplacian_third_moment": 1.1109654602971772,
-        "random_walk_triangle_weight": 0.00016253173481534444,
-        "random_walk_fourth_moment": 0.017552981012695697,
-        "adjacency_fourth_moment_per_node": 632.9639639639639
+        "normalized_laplacian_second_moment": 1.03407142354052,
+        "normalized_laplacian_third_moment": 1.1022142706215596,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.01687957688660222,
+        "adjacency_fourth_moment_per_node": 634.3333333333334
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.05,
+      "invariants": {
+        "n_nodes": 222,
+        "n_edges": 427,
+        "n_articulation_points": 8,
+        "n_bridges": 99,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 4,
+        "k_core_size": 34,
+        "maximum_degree": 181,
+        "degree_variance": 202.1657333008684,
+        "global_clustering": 0.023334460601961447,
+        "degree_assortativity": -0.5549684653437301,
+        "degree_entropy": 1.575336974286283,
+        "joint_degree_entropy": 3.3313868250699312,
+        "degree_skewness": 10.318673508318907,
+        "degree_kurtosis": 117.78297878085175,
+        "normalized_laplacian_second_moment": 1.039581404329667,
+        "normalized_laplacian_third_moment": 1.1184360124986128,
+        "random_walk_triangle_weight": 0.000308200490388548,
+        "random_walk_fourth_moment": 0.017400009544124313,
+        "adjacency_fourth_moment_per_node": 622.8378378378378
       }
     },
     {
@@ -64,21 +64,48 @@
         "n_bridges": 99,
         "diameter": 5.0,
         "radius": 3.0,
+        "degeneracy": 4,
+        "k_core_size": 35,
+        "maximum_degree": 181,
+        "degree_variance": 202.1657333008684,
+        "global_clustering": 0.03018261751775448,
+        "degree_assortativity": -0.5516847083956571,
+        "degree_entropy": 1.575336974286283,
+        "joint_degree_entropy": 3.3533559010055556,
+        "degree_skewness": 10.318673508318907,
+        "degree_kurtosis": 117.78297878085175,
+        "normalized_laplacian_second_moment": 1.0526380311893389,
+        "normalized_laplacian_third_moment": 1.1572437897209862,
+        "random_walk_triangle_weight": 0.0006703038470301269,
+        "random_walk_fourth_moment": 0.028010228277958623,
+        "adjacency_fourth_moment_per_node": 616.4234234234234
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 222,
+        "n_edges": 427,
+        "n_articulation_points": 9,
+        "n_bridges": 101,
+        "diameter": 6.0,
+        "radius": 3.0,
         "degeneracy": 5,
         "k_core_size": 10,
         "maximum_degree": 181,
         "degree_variance": 202.1657333008684,
-        "global_clustering": 0.028407169428474807,
-        "degree_assortativity": -0.5517862205351906,
+        "global_clustering": 0.027773080825160633,
+        "degree_assortativity": -0.5526038296228349,
         "degree_entropy": 1.575336974286283,
-        "joint_degree_entropy": 3.4020169057519194,
+        "joint_degree_entropy": 3.4192761955572144,
         "degree_skewness": 10.318673508318907,
         "degree_kurtosis": 117.78297878085175,
-        "normalized_laplacian_second_moment": 1.044097451061331,
-        "normalized_laplacian_third_moment": 1.1317637601909425,
-        "random_walk_triangle_weight": 0.0005285929930508238,
-        "random_walk_fourth_moment": 0.018085141742000706,
-        "adjacency_fourth_moment_per_node": 617.8648648648649
+        "normalized_laplacian_second_moment": 1.049338285983753,
+        "normalized_laplacian_third_moment": 1.1473783900595773,
+        "random_walk_triangle_weight": 0.0006364678916820368,
+        "random_walk_fourth_moment": 0.02075702492452337,
+        "adjacency_fourth_moment_per_node": 617.5405405405405
       }
     },
     {
@@ -87,25 +114,79 @@
       "invariants": {
         "n_nodes": 222,
         "n_edges": 427,
-        "n_articulation_points": 9,
-        "n_bridges": 99,
+        "n_articulation_points": 11,
+        "n_bridges": 101,
         "diameter": 5.0,
         "radius": 3.0,
         "degeneracy": 5,
-        "k_core_size": 12,
+        "k_core_size": 9,
         "maximum_degree": 181,
         "degree_variance": 202.1657333008684,
-        "global_clustering": 0.03043625295908015,
-        "degree_assortativity": -0.5509787167284046,
+        "global_clustering": 0.03208488332769699,
+        "degree_assortativity": -0.5501059879269864,
         "degree_entropy": 1.575336974286283,
-        "joint_degree_entropy": 3.389754998162716,
+        "joint_degree_entropy": 3.393368005544463,
         "degree_skewness": 10.318673508318907,
         "degree_kurtosis": 117.78297878085175,
-        "normalized_laplacian_second_moment": 1.0433553386507728,
-        "normalized_laplacian_third_moment": 1.1293684932515202,
-        "random_walk_triangle_weight": 0.0006975227007983731,
-        "random_walk_fourth_moment": 0.017289600189082422,
-        "adjacency_fourth_moment_per_node": 606.6576576576576
+        "normalized_laplacian_second_moment": 1.0527362168649739,
+        "normalized_laplacian_third_moment": 1.1576106584362815,
+        "random_walk_triangle_weight": 0.0005979921586400591,
+        "random_walk_fourth_moment": 0.022319563885306162,
+        "adjacency_fourth_moment_per_node": 622.8738738738739
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 222,
+        "n_edges": 427,
+        "n_articulation_points": 5,
+        "n_bridges": 99,
+        "diameter": 4.0,
+        "radius": 2.0,
+        "degeneracy": 5,
+        "k_core_size": 11,
+        "maximum_degree": 181,
+        "degree_variance": 202.1657333008684,
+        "global_clustering": 0.03297260737233683,
+        "degree_assortativity": -0.5501863708429064,
+        "degree_entropy": 1.575336974286283,
+        "joint_degree_entropy": 3.410771448129513,
+        "degree_skewness": 10.318673508318907,
+        "degree_kurtosis": 117.78297878085175,
+        "normalized_laplacian_second_moment": 1.0447387117408429,
+        "normalized_laplacian_third_moment": 1.1335246773033698,
+        "random_walk_triangle_weight": 0.0006914579191590551,
+        "random_walk_fourth_moment": 0.017343098226485158,
+        "adjacency_fourth_moment_per_node": 611.6306306306307
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 222,
+        "n_edges": 427,
+        "n_articulation_points": 12,
+        "n_bridges": 101,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 5,
+        "k_core_size": 11,
+        "maximum_degree": 181,
+        "degree_variance": 202.1657333008684,
+        "global_clustering": 0.034367602299628,
+        "degree_assortativity": -0.5485934111148442,
+        "degree_entropy": 1.575336974286283,
+        "joint_degree_entropy": 3.440795706784664,
+        "degree_skewness": 10.318673508318907,
+        "degree_kurtosis": 117.78297878085175,
+        "normalized_laplacian_second_moment": 1.0571735219260507,
+        "normalized_laplacian_third_moment": 1.1706521623906614,
+        "random_walk_triangle_weight": 0.0008684033874906955,
+        "random_walk_fourth_moment": 0.022716482090957658,
+        "adjacency_fourth_moment_per_node": 615.1981981981982
       }
     },
     {
@@ -115,24 +196,78 @@
         "n_nodes": 222,
         "n_edges": 427,
         "n_articulation_points": 9,
-        "n_bridges": 99,
-        "diameter": 4.0,
-        "radius": 2.0,
+        "n_bridges": 100,
+        "diameter": 5.0,
+        "radius": 3.0,
         "degeneracy": 5,
         "k_core_size": 14,
         "maximum_degree": 181,
         "degree_variance": 202.1657333008684,
-        "global_clustering": 0.03614305038890768,
-        "degree_assortativity": -0.5479949028894505,
+        "global_clustering": 0.034367602299628,
+        "degree_assortativity": -0.549468436571003,
         "degree_entropy": 1.575336974286283,
-        "joint_degree_entropy": 3.4354721559175037,
+        "joint_degree_entropy": 3.4202275854090063,
         "degree_skewness": 10.318673508318907,
         "degree_kurtosis": 117.78297878085175,
-        "normalized_laplacian_second_moment": 1.0516931991387708,
-        "normalized_laplacian_third_moment": 1.1541596567702974,
-        "random_walk_triangle_weight": 0.000919940646015118,
-        "random_walk_fourth_moment": 0.01894131387921614,
-        "adjacency_fourth_moment_per_node": 617.2882882882883
+        "normalized_laplacian_second_moment": 1.0510045949594475,
+        "normalized_laplacian_third_moment": 1.1519730992410444,
+        "random_walk_triangle_weight": 0.001040685637298144,
+        "random_walk_fourth_moment": 0.019464780350562386,
+        "adjacency_fourth_moment_per_node": 608.6756756756756
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 222,
+        "n_edges": 427,
+        "n_articulation_points": 11,
+        "n_bridges": 101,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 5,
+        "k_core_size": 15,
+        "maximum_degree": 181,
+        "degree_variance": 202.1657333008684,
+        "global_clustering": 0.036396685830233345,
+        "degree_assortativity": -0.5477298689323883,
+        "degree_entropy": 1.575336974286283,
+        "joint_degree_entropy": 3.4644376527867937,
+        "degree_skewness": 10.318673508318907,
+        "degree_kurtosis": 117.78297878085175,
+        "normalized_laplacian_second_moment": 1.0548197707561093,
+        "normalized_laplacian_third_moment": 1.1636688977525969,
+        "random_walk_triangle_weight": 0.0007904145157314737,
+        "random_walk_fourth_moment": 0.02169300591798371,
+        "adjacency_fourth_moment_per_node": 620.9639639639639
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 222,
+        "n_edges": 427,
+        "n_articulation_points": 13,
+        "n_bridges": 100,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 5,
+        "k_core_size": 10,
+        "maximum_degree": 181,
+        "degree_variance": 202.1657333008684,
+        "global_clustering": 0.03677713899222185,
+        "degree_assortativity": -0.5477027684064494,
+        "degree_entropy": 1.575336974286283,
+        "joint_degree_entropy": 3.457962735670691,
+        "degree_skewness": 10.318673508318907,
+        "degree_kurtosis": 117.78297878085175,
+        "normalized_laplacian_second_moment": 1.0536336513959597,
+        "normalized_laplacian_third_moment": 1.1599336280021273,
+        "random_walk_triangle_weight": 0.0009673261857519345,
+        "random_walk_fourth_moment": 0.02122446942424014,
+        "adjacency_fourth_moment_per_node": 626.2252252252252
       }
     },
     {
@@ -142,78 +277,78 @@
         "n_nodes": 222,
         "n_edges": 423,
         "n_articulation_points": 8,
-        "n_bridges": 97,
-        "diameter": 5.0,
-        "radius": 3.0,
-        "degeneracy": 5,
-        "k_core_size": 11,
-        "maximum_degree": 179,
-        "degree_variance": 198.74799123447778,
-        "global_clustering": 0.0,
-        "degree_assortativity": -0.5745584294124291,
-        "degree_entropy": 1.6115436188571368,
-        "joint_degree_entropy": 3.254218561056103,
-        "degree_skewness": 10.289061790091617,
-        "degree_kurtosis": 116.97305030500515,
-        "normalized_laplacian_second_moment": 0.0,
-        "normalized_laplacian_third_moment": 0.0,
-        "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 627.6306306306307
-      }
-    },
-    {
-      "method": "sparsify",
-      "intensity": 0.03,
-      "invariants": {
-        "n_nodes": 222,
-        "n_edges": 415,
-        "n_articulation_points": 8,
-        "n_bridges": 101,
+        "n_bridges": 99,
         "diameter": 5.0,
         "radius": 3.0,
         "degeneracy": 5,
         "k_core_size": 10,
-        "maximum_degree": 178,
-        "degree_variance": 193.68849931012093,
+        "maximum_degree": 181,
+        "degree_variance": 199.57682006330657,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.5710549011522408,
-        "degree_entropy": 1.5679120882030806,
-        "joint_degree_entropy": 3.2122440143454973,
-        "degree_skewness": 10.401101480735528,
-        "degree_kurtosis": 119.62172195442913,
-        "normalized_laplacian_second_moment": 0.0,
-        "normalized_laplacian_third_moment": 0.0,
+        "degree_assortativity": -0.5680875891263105,
+        "degree_entropy": 1.5586717932873249,
+        "joint_degree_entropy": 3.218118781520142,
+        "degree_skewness": 10.400641937412859,
+        "degree_kurtosis": 119.90510837091148,
+        "normalized_laplacian_second_moment": 1.0349989974250715,
+        "normalized_laplacian_third_moment": 1.1049969922752148,
         "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 591.7027027027027
+        "random_walk_fourth_moment": 0.017413471755541712,
+        "adjacency_fourth_moment_per_node": 617.5045045045046
       }
     },
     {
       "method": "sparsify",
-      "intensity": 0.07,
+      "intensity": 0.05,
       "invariants": {
         "n_nodes": 222,
-        "n_edges": 398,
+        "n_edges": 406,
         "n_articulation_points": 8,
         "n_bridges": 96,
         "diameter": 5.0,
         "radius": 3.0,
-        "degeneracy": 4,
-        "k_core_size": 28,
-        "maximum_degree": 166,
-        "degree_variance": 172.80123366609857,
+        "degeneracy": 5,
+        "k_core_size": 10,
+        "maximum_degree": 174,
+        "degree_variance": 182.81072964856747,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.5719783779025621,
-        "degree_entropy": 1.649755636694995,
-        "joint_degree_entropy": 3.2010826425473464,
-        "degree_skewness": 10.211326939141792,
-        "degree_kurtosis": 115.16811637315067,
+        "degree_assortativity": -0.5608957586938276,
+        "degree_entropy": 1.6484744810481295,
+        "joint_degree_entropy": 3.1992291833829087,
+        "degree_skewness": 10.439943413534158,
+        "degree_kurtosis": 121.2458217041067,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 521.7477477477478
+        "adjacency_fourth_moment_per_node": 554.4864864864865
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 222,
+        "n_edges": 385,
+        "n_articulation_points": 8,
+        "n_bridges": 98,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 4,
+        "k_core_size": 24,
+        "maximum_degree": 162,
+        "degree_variance": 162.7445012580148,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.5698598481803808,
+        "degree_entropy": 1.6084846901321086,
+        "joint_degree_entropy": 3.034089402914093,
+        "degree_skewness": 10.288411582579966,
+        "degree_kurtosis": 117.0482212572562,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 466.18918918918916
       }
     },
     {
@@ -222,25 +357,52 @@
       "invariants": {
         "n_nodes": 222,
         "n_edges": 363,
-        "n_articulation_points": 6,
-        "n_bridges": 100,
+        "n_articulation_points": 8,
+        "n_bridges": 106,
         "diameter": 5.0,
         "radius": 3.0,
         "degeneracy": 4,
-        "k_core_size": 26,
-        "maximum_degree": 156,
-        "degree_variance": 149.95398100803507,
+        "k_core_size": 23,
+        "maximum_degree": 157,
+        "degree_variance": 147.94497199902608,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.5804856237491948,
-        "degree_entropy": 1.594419444600118,
-        "joint_degree_entropy": 3.0909023206044144,
-        "degree_skewness": 10.301433169033725,
-        "degree_kurtosis": 117.76225661434995,
+        "degree_assortativity": -0.5610103602141332,
+        "degree_entropy": 1.6190086137230446,
+        "joint_degree_entropy": 3.1926890419893654,
+        "degree_skewness": 10.468777023495718,
+        "degree_kurtosis": 122.15641908673038,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 429.77477477477476
+        "adjacency_fourth_moment_per_node": 420.02702702702703
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 222,
+        "n_edges": 342,
+        "n_articulation_points": 8,
+        "n_bridges": 99,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 4,
+        "k_core_size": 13,
+        "maximum_degree": 154,
+        "degree_variance": 142.6691015339664,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.5869092906049139,
+        "degree_entropy": 1.5374856441289686,
+        "joint_degree_entropy": 2.9135441450546766,
+        "degree_skewness": 10.605598286533107,
+        "degree_kurtosis": 123.59612592424565,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 386.6126126126126
       }
     },
     {
@@ -249,25 +411,133 @@
       "invariants": {
         "n_nodes": 222,
         "n_edges": 321,
-        "n_articulation_points": 9,
-        "n_bridges": 86,
-        "diameter": 6.0,
+        "n_articulation_points": 8,
+        "n_bridges": 94,
+        "diameter": 5.0,
         "radius": 3.0,
         "degeneracy": 4,
-        "k_core_size": 18,
-        "maximum_degree": 138,
-        "degree_variance": 114.88020452885318,
+        "k_core_size": 19,
+        "maximum_degree": 128,
+        "degree_variance": 105.60993425858291,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.5595952673820291,
-        "degree_entropy": 1.6345047727050817,
-        "joint_degree_entropy": 3.04264557929906,
-        "degree_skewness": 10.40381277327992,
-        "degree_kurtosis": 121.00123359696639,
+        "degree_assortativity": -0.5720007848708446,
+        "degree_entropy": 1.6608106715653999,
+        "joint_degree_entropy": 3.1590388313764453,
+        "degree_skewness": 9.819103887690797,
+        "degree_kurtosis": 108.17021307993201,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 314.8018018018018
+        "adjacency_fourth_moment_per_node": 286.85585585585585
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 222,
+        "n_edges": 299,
+        "n_articulation_points": 8,
+        "n_bridges": 104,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 3,
+        "k_core_size": 36,
+        "maximum_degree": 128,
+        "degree_variance": 100.97824851878906,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.5734628436664176,
+        "degree_entropy": 1.5414515925130008,
+        "joint_degree_entropy": 2.953003076469005,
+        "degree_skewness": 10.309707010640349,
+        "degree_kurtosis": 117.7896111352548,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 256.5855855855856
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 222,
+        "n_edges": 278,
+        "n_articulation_points": 10,
+        "n_bridges": 109,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 4,
+        "k_core_size": 8,
+        "maximum_degree": 123,
+        "degree_variance": 90.069799529259,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.562131108793919,
+        "degree_entropy": 1.5217251276222301,
+        "joint_degree_entropy": 2.9706526555876933,
+        "degree_skewness": 10.555899953522106,
+        "degree_kurtosis": 124.20618373967437,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 230.2882882882883
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 222,
+        "n_edges": 257,
+        "n_articulation_points": 10,
+        "n_bridges": 103,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 3,
+        "k_core_size": 24,
+        "maximum_degree": 110,
+        "degree_variance": 74.81949517084652,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.5738288499042076,
+        "degree_entropy": 1.461355140112482,
+        "joint_degree_entropy": 2.8084490598795515,
+        "degree_skewness": 10.276277731158318,
+        "degree_kurtosis": 117.26765975767037,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 179.0900900900901
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 222,
+        "n_edges": 235,
+        "n_articulation_points": 11,
+        "n_bridges": 100,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 3,
+        "k_core_size": 28,
+        "maximum_degree": 98,
+        "degree_variance": 64.6259232205178,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.6083488806499966,
+        "degree_entropy": 1.4677236800352815,
+        "joint_degree_entropy": 2.8082641583936656,
+        "degree_skewness": 9.96739670652442,
+        "degree_kurtosis": 107.6814952718722,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 160.06306306306305
       }
     },
     {
@@ -275,53 +545,26 @@
       "intensity": 0.01,
       "invariants": {
         "n_nodes": 220,
-        "n_edges": 425,
-        "n_articulation_points": 8,
-        "n_bridges": 97,
-        "diameter": 5.0,
+        "n_edges": 419,
+        "n_articulation_points": 7,
+        "n_bridges": 99,
+        "diameter": 4.0,
         "radius": 3.0,
         "degeneracy": 5,
         "k_core_size": 11,
-        "maximum_degree": 179,
-        "degree_variance": 200.72685950413222,
+        "maximum_degree": 180,
+        "degree_variance": 202.30900826446276,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.573159775453492,
-        "degree_entropy": 1.5822654089178392,
-        "joint_degree_entropy": 3.2587045179831318,
-        "degree_skewness": 10.222159782755082,
-        "degree_kurtosis": 115.5642149984688,
-        "normalized_laplacian_second_moment": 1.0349307628958508,
-        "normalized_laplacian_third_moment": 1.1047922886875527,
-        "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.01728029649271817,
-        "adjacency_fourth_moment_per_node": 636.6818181818181
-      }
-    },
-    {
-      "method": "node_sample",
-      "intensity": 0.02,
-      "invariants": {
-        "n_nodes": 218,
-        "n_edges": 394,
-        "n_articulation_points": 7,
-        "n_bridges": 100,
-        "diameter": 5.0,
-        "radius": 3.0,
-        "degeneracy": 4,
-        "k_core_size": 22,
-        "maximum_degree": 178,
-        "degree_variance": 197.1818028785456,
-        "global_clustering": 0.0,
-        "degree_assortativity": -0.6075434836967756,
-        "degree_entropy": 1.5026598028986102,
-        "joint_degree_entropy": 2.9968747065698964,
-        "degree_skewness": 10.425087474065064,
-        "degree_kurtosis": 118.7403073905827,
+        "degree_assortativity": -0.5857064699404796,
+        "degree_entropy": 1.5680417320241242,
+        "joint_degree_entropy": 3.1628087931867834,
+        "degree_skewness": 10.260834911007839,
+        "degree_kurtosis": 116.33861914256612,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 597.7614678899082
+        "adjacency_fourth_moment_per_node": 637.9727272727273
       }
     },
     {
@@ -336,19 +579,19 @@
         "radius": 3.0,
         "degeneracy": 5,
         "k_core_size": 11,
-        "maximum_degree": 171,
+        "maximum_degree": 172,
         "degree_variance": 188.14995170818264,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.568348723112011,
-        "degree_entropy": 1.5722642939580993,
-        "joint_degree_entropy": 3.2435055682470204,
-        "degree_skewness": 10.12295923821543,
-        "degree_kurtosis": 113.24503682722322,
-        "normalized_laplacian_second_moment": 1.036630864333358,
-        "normalized_laplacian_third_moment": 1.1098925930000738,
+        "degree_assortativity": -0.5629237972023048,
+        "degree_entropy": 1.5644665387116075,
+        "joint_degree_entropy": 3.243819267311156,
+        "degree_skewness": 10.188755113321864,
+        "degree_kurtosis": 115.05261376334649,
+        "normalized_laplacian_second_moment": 1.0367143514900903,
+        "normalized_laplacian_third_moment": 1.1101430544702706,
         "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.018173929276993864,
-        "adjacency_fourth_moment_per_node": 586.3412322274881
+        "random_walk_fourth_moment": 0.01823231764642502,
+        "adjacency_fourth_moment_per_node": 584.2938388625593
       }
     },
     {
@@ -356,26 +599,53 @@
       "intensity": 0.1,
       "invariants": {
         "n_nodes": 200,
-        "n_edges": 381,
-        "n_articulation_points": 6,
-        "n_bridges": 88,
+        "n_edges": 375,
+        "n_articulation_points": 7,
+        "n_bridges": 89,
         "diameter": 5.0,
         "radius": 3.0,
-        "degeneracy": 4,
-        "k_core_size": 31,
-        "maximum_degree": 162,
-        "degree_variance": 180.2939,
+        "degeneracy": 5,
+        "k_core_size": 10,
+        "maximum_degree": 160,
+        "degree_variance": 176.1275,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.5792934055391964,
-        "degree_entropy": 1.5665014551506795,
-        "joint_degree_entropy": 3.174436789327209,
-        "degree_skewness": 9.7725472434362,
-        "degree_kurtosis": 105.25108455683687,
-        "normalized_laplacian_second_moment": 1.0388268291430791,
-        "normalized_laplacian_third_moment": 1.1164804874292376,
+        "degree_assortativity": -0.5856739423937728,
+        "degree_entropy": 1.5767964154200913,
+        "joint_degree_entropy": 3.208539210840328,
+        "degree_skewness": 9.736438527658228,
+        "degree_kurtosis": 104.70575492491214,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.019372820724654315,
-        "adjacency_fourth_moment_per_node": 567.41
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 550.15
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 189,
+        "n_edges": 175,
+        "n_articulation_points": 8,
+        "n_bridges": 61,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 4,
+        "k_core_size": 8,
+        "maximum_degree": 87,
+        "degree_variance": 47.2055653537135,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.521071360441883,
+        "degree_entropy": 1.505959906302477,
+        "joint_degree_entropy": 2.886988934577091,
+        "degree_skewness": 10.58611169727943,
+        "degree_kurtosis": 126.58583544290587,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 122.994708994709
       }
     },
     {
@@ -383,26 +653,161 @@
       "intensity": 0.2,
       "invariants": {
         "n_nodes": 178,
-        "n_edges": 177,
-        "n_articulation_points": 7,
-        "n_bridges": 63,
-        "diameter": 4.0,
-        "radius": 2.0,
-        "degeneracy": 3,
-        "k_core_size": 24,
-        "maximum_degree": 84,
-        "degree_variance": 52.47178386567352,
+        "n_edges": 300,
+        "n_articulation_points": 6,
+        "n_bridges": 94,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 4,
+        "k_core_size": 17,
+        "maximum_degree": 146,
+        "degree_variance": 153.59285443757096,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.6148425053854593,
-        "degree_entropy": 1.5135224509654461,
-        "joint_degree_entropy": 2.8294386204364086,
-        "degree_skewness": 9.362029715027184,
-        "degree_kurtosis": 97.87826101691789,
+        "degree_assortativity": -0.6061328873501637,
+        "degree_entropy": 1.3950635580460793,
+        "joint_degree_entropy": 2.731318850891362,
+        "degree_skewness": 9.90954685264259,
+        "degree_kurtosis": 105.98658334095603,
+        "normalized_laplacian_second_moment": 1.0378009618538901,
+        "normalized_laplacian_third_moment": 1.1134028855616704,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.020338884732475488,
+        "adjacency_fourth_moment_per_node": 440.7865168539326
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 167,
+        "n_edges": 264,
+        "n_articulation_points": 6,
+        "n_bridges": 87,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 4,
+        "k_core_size": 12,
+        "maximum_degree": 133,
+        "degree_variance": 139.1295492846642,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.6554606513524219,
+        "degree_entropy": 1.3682459240343032,
+        "joint_degree_entropy": 2.6123888443352925,
+        "degree_skewness": 9.560537226732556,
+        "degree_kurtosis": 97.05930856411135,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 147.26966292134833
+        "adjacency_fourth_moment_per_node": 395.4491017964072
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 156,
+        "n_edges": 234,
+        "n_articulation_points": 5,
+        "n_bridges": 86,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 3,
+        "k_core_size": 23,
+        "maximum_degree": 128,
+        "degree_variance": 130.34615384615384,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.6739051601960816,
+        "degree_entropy": 1.245982971593853,
+        "joint_degree_entropy": 2.322995993594978,
+        "degree_skewness": 9.601210239731767,
+        "degree_kurtosis": 98.24741707532442,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 354.97435897435895
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 145,
+        "n_edges": 262,
+        "n_articulation_points": 7,
+        "n_bridges": 65,
+        "diameter": 6.0,
+        "radius": 3.0,
+        "degeneracy": 4,
+        "k_core_size": 21,
+        "maximum_degree": 118,
+        "degree_variance": 125.32670630202139,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.5912864907346018,
+        "degree_entropy": 1.5201724580069809,
+        "joint_degree_entropy": 2.987238231599265,
+        "degree_skewness": 8.530472818682341,
+        "degree_kurtosis": 80.28180931070057,
+        "normalized_laplacian_second_moment": 1.0476053731335382,
+        "normalized_laplacian_third_moment": 1.1428161194006143,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.026461452649519164,
+        "adjacency_fourth_moment_per_node": 390.8965517241379
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 134,
+        "n_edges": 244,
+        "n_articulation_points": 3,
+        "n_bridges": 54,
+        "diameter": 4.0,
+        "radius": 3.0,
+        "degeneracy": 4,
+        "k_core_size": 12,
+        "maximum_degree": 108,
+        "degree_variance": 121.09556694141236,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.6492157487834099,
+        "degree_entropy": 1.5364717802431986,
+        "joint_degree_entropy": 2.8180461394637515,
+        "degree_skewness": 7.823992688577989,
+        "degree_kurtosis": 66.76845033115657,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 395.76119402985074
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 123,
+        "n_edges": 54,
+        "n_articulation_points": 3,
+        "n_bridges": 28,
+        "diameter": 4.0,
+        "radius": 2.0,
+        "degeneracy": 2,
+        "k_core_size": 15,
+        "maximum_degree": 31,
+        "degree_variance": 10.578623835018837,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.7857975064577519,
+        "degree_entropy": 1.005062385048217,
+        "joint_degree_entropy": 1.805432912897689,
+        "degree_skewness": 7.750564490674897,
+        "degree_kurtosis": 65.77351286699907,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 25.658536585365855
       }
     }
   ],
@@ -411,270 +816,567 @@
       "method": "noise",
       "intensity": 0.01,
       "invariants": {
-        "n_nodes": 223.60012174560453,
-        "n_edges": 422.41257845653547,
-        "n_articulation_points": 7.984759316766793,
-        "n_bridges": 97.43846928141593,
-        "diameter": 5.0769743227115205,
-        "radius": 2.972501570014288,
-        "degeneracy": 4.976720386477212,
-        "k_core_size": 10.980536367770918,
-        "maximum_degree": 179.56649864033096,
-        "degree_variance": 201.49397898054258,
+        "n_nodes": 223.92156488096913,
+        "n_edges": 426.2712823155318,
+        "n_articulation_points": 8.109893149785124,
+        "n_bridges": 98.541327669966,
+        "diameter": 4.969048187205658,
+        "radius": 2.98437349679406,
+        "degeneracy": 4.954878649328784,
+        "k_core_size": 11.181729475895379,
+        "maximum_degree": 179.99663179572272,
+        "degree_variance": 200.71565441862032,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.5603085216246996,
-        "degree_entropy": 1.5887252373908791,
-        "joint_degree_entropy": 3.255102809230006,
-        "degree_skewness": 10.299213071810586,
-        "degree_kurtosis": 117.23698612806909,
-        "normalized_laplacian_second_moment": 1.0471966735448077,
-        "normalized_laplacian_third_moment": 1.0848412074049663,
+        "degree_assortativity": -0.5782352536432159,
+        "degree_entropy": 1.5629376432853455,
+        "joint_degree_entropy": 3.2063837077364763,
+        "degree_skewness": 10.386569581522162,
+        "degree_kurtosis": 118.26661499256272,
+        "normalized_laplacian_second_moment": 1.0346978658734116,
+        "normalized_laplacian_third_moment": 1.0864581307336487,
         "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.017211440936717025,
-        "adjacency_fourth_moment_per_node": 649.8193870987527
-      }
-    },
-    {
-      "method": "noise",
-      "intensity": 0.02,
-      "invariants": {
-        "n_nodes": 217.25318232182386,
-        "n_edges": 422.7199380624418,
-        "n_articulation_points": 8.113146190020613,
-        "n_bridges": 99.04617462040892,
-        "diameter": 5.077620510541787,
-        "radius": 2.9470239989777514,
-        "degeneracy": 4.990600967573938,
-        "k_core_size": 10.765148642028134,
-        "maximum_degree": 185.55337772560452,
-        "degree_variance": 206.43266796655362,
-        "global_clustering": 0.0,
-        "degree_assortativity": -0.5695954694970632,
-        "degree_entropy": 1.5569279955654134,
-        "joint_degree_entropy": 3.2635888146937533,
-        "degree_skewness": 10.210583138640246,
-        "degree_kurtosis": 114.11378848342103,
-        "normalized_laplacian_second_moment": 1.0406280419094724,
-        "normalized_laplacian_third_moment": 1.1028399209458708,
-        "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.01719014070056015,
-        "adjacency_fourth_moment_per_node": 630.0127398721361
+        "random_walk_fourth_moment": 0.01685967429264935,
+        "adjacency_fourth_moment_per_node": 632.6327352495013
       }
     },
     {
       "method": "noise",
       "intensity": 0.05,
       "invariants": {
-        "n_nodes": 219.77119273350468,
-        "n_edges": 444.31988115069197,
-        "n_articulation_points": 8.60461912430172,
-        "n_bridges": 104.70632628937622,
-        "diameter": 4.608659351888592,
-        "radius": 2.9166206954526657,
-        "degeneracy": 4.79051474201219,
-        "k_core_size": 11.168764389560431,
-        "maximum_degree": 195.43316661397503,
-        "degree_variance": 184.04115007136983,
+        "n_nodes": 239.8830810110678,
+        "n_edges": 459.90839181795224,
+        "n_articulation_points": 7.313020064218256,
+        "n_bridges": 99.89995408166938,
+        "diameter": 5.490364772204048,
+        "radius": 2.78303255207134,
+        "degeneracy": 5.2468400649209,
+        "k_core_size": 11.01105509727475,
+        "maximum_degree": 190.5302918701542,
+        "degree_variance": 224.4305797699732,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.5887133108262661,
-        "degree_entropy": 1.5623090257616026,
-        "joint_degree_entropy": 3.308329918843467,
-        "degree_skewness": 10.494357128501614,
-        "degree_kurtosis": 116.4848570488217,
-        "normalized_laplacian_second_moment": 0.9439583710260434,
-        "normalized_laplacian_third_moment": 1.0795424999692358,
+        "degree_assortativity": -0.5629598145780723,
+        "degree_entropy": 1.5856161594923117,
+        "joint_degree_entropy": 3.080172276549886,
+        "degree_skewness": 9.903452826832106,
+        "degree_kurtosis": 117.6095649445926,
+        "normalized_laplacian_second_moment": 0.9685659728228417,
+        "normalized_laplacian_third_moment": 1.112116702876641,
         "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.017160321248628655,
-        "adjacency_fourth_moment_per_node": 656.3733559774694
+        "random_walk_fourth_moment": 0.015374154747593564,
+        "adjacency_fourth_moment_per_node": 626.6569290271144
       }
     },
     {
       "method": "noise",
       "intensity": 0.1,
       "invariants": {
-        "n_nodes": 230.3393255510214,
-        "n_edges": 460.23524319356,
-        "n_articulation_points": 8.109025475047943,
-        "n_bridges": 94.08715805434686,
-        "diameter": 5.150570025315129,
-        "radius": 3.105794649576576,
-        "degeneracy": 5.0154934752805165,
-        "k_core_size": 14.460035972442034,
-        "maximum_degree": 188.87572613450956,
-        "degree_variance": 205.753230716916,
+        "n_nodes": 222.2423380190724,
+        "n_edges": 379.41479587642135,
+        "n_articulation_points": 8.367664628953277,
+        "n_bridges": 97.42394434343562,
+        "diameter": 4.672618240634635,
+        "radius": 3.097621213505193,
+        "degeneracy": 4.714107318838551,
+        "k_core_size": 10.342733423215327,
+        "maximum_degree": 192.35069317439832,
+        "degree_variance": 231.40976825427128,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.5346843435681152,
-        "degree_entropy": 1.6278412610593158,
-        "joint_degree_entropy": 3.231716574922102,
-        "degree_skewness": 11.06900890995118,
-        "degree_kurtosis": 141.65621993398338,
-        "normalized_laplacian_second_moment": 0.834128676746647,
-        "normalized_laplacian_third_moment": 1.153363399573734,
+        "degree_assortativity": -0.6681705814963884,
+        "degree_entropy": 1.5299323565487097,
+        "joint_degree_entropy": 3.131845294249419,
+        "degree_skewness": 11.177899783744511,
+        "degree_kurtosis": 129.6394582986777,
+        "normalized_laplacian_second_moment": 1.1256422205566143,
+        "normalized_laplacian_third_moment": 1.2231621516291877,
         "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.017669046381448617,
-        "adjacency_fourth_moment_per_node": 604.7186017100037
+        "random_walk_fourth_moment": 0.01791138107814775,
+        "adjacency_fourth_moment_per_node": 571.9304815591299
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 216.63726407828807,
+        "n_edges": 491.34084400291175,
+        "n_articulation_points": 9.739725386782458,
+        "n_bridges": 86.77017622145378,
+        "diameter": 5.075998373209665,
+        "radius": 2.4275707134943127,
+        "degeneracy": 5.642749271740879,
+        "k_core_size": 13.008340668353215,
+        "maximum_degree": 186.32938043421393,
+        "degree_variance": 164.1782356073892,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.5009264406528133,
+        "degree_entropy": 1.1896135899906441,
+        "joint_degree_entropy": 3.02931441141051,
+        "degree_skewness": 10.128843298405823,
+        "degree_kurtosis": 135.81021576455908,
+        "normalized_laplacian_second_moment": 1.0699455639576803,
+        "normalized_laplacian_third_moment": 1.2731169786275494,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.014953349256483627,
+        "adjacency_fourth_moment_per_node": 485.7651312897189
       }
     },
     {
       "method": "noise",
       "intensity": 0.2,
       "invariants": {
-        "n_nodes": 295.5525939092721,
-        "n_edges": 514.1059790144885,
-        "n_articulation_points": 7.982636410960744,
-        "n_bridges": 106.996977997238,
-        "diameter": 6.2657923759465515,
-        "radius": 2.0722820429054125,
-        "degeneracy": 4.818862370180736,
-        "k_core_size": 12.033790941002286,
-        "maximum_degree": 184.7868828575759,
-        "degree_variance": 167.09437771604752,
+        "n_nodes": 271.2641795636264,
+        "n_edges": 426.5032770668204,
+        "n_articulation_points": 10.3378292806063,
+        "n_bridges": 95.65471066425013,
+        "diameter": 3.9098673018203796,
+        "radius": 3.0832763090123616,
+        "degeneracy": 6.578140492364701,
+        "k_core_size": 12.210504775132133,
+        "maximum_degree": 175.61435333890608,
+        "degree_variance": 246.7156366612329,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.5692167836903286,
-        "degree_entropy": 1.1304544675091668,
-        "joint_degree_entropy": 2.7432924312788463,
-        "degree_skewness": 5.605749947419505,
-        "degree_kurtosis": 91.25404424850672,
-        "normalized_laplacian_second_moment": 1.3687615618382543,
-        "normalized_laplacian_third_moment": 0.8500822530640209,
+        "degree_assortativity": -0.5905637814401656,
+        "degree_entropy": 1.688367533490417,
+        "joint_degree_entropy": 3.5500342292520344,
+        "degree_skewness": 14.209439599939603,
+        "degree_kurtosis": 113.61188295991333,
+        "normalized_laplacian_second_moment": 1.2259186671346995,
+        "normalized_laplacian_third_moment": 1.0165470131830088,
         "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.0232479083588644,
-        "adjacency_fourth_moment_per_node": 574.4061889596456
+        "random_walk_fourth_moment": 0.015972523546982323,
+        "adjacency_fourth_moment_per_node": 611.2766965323741
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 209.99758810218248,
+        "n_edges": 124.5009549683806,
+        "n_articulation_points": 7.714626758719019,
+        "n_bridges": 74.48081889903645,
+        "diameter": 5.417388638736468,
+        "radius": 2.8729294180635994,
+        "degeneracy": 3.8855507557506836,
+        "k_core_size": 9.047878562423998,
+        "maximum_degree": 235.23106945295305,
+        "degree_variance": 186.07253133350383,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.7033035824768906,
+        "degree_entropy": 2.6315739289493827,
+        "joint_degree_entropy": 3.898616073251388,
+        "degree_skewness": 11.741926944204714,
+        "degree_kurtosis": 140.89066338233715,
+        "normalized_laplacian_second_moment": 1.2923903676274635,
+        "normalized_laplacian_third_moment": 0.46028556101451457,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.013272357220879643,
+        "adjacency_fourth_moment_per_node": 552.8013437179667
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 235.84645568626604,
+        "n_edges": 563.8116858296565,
+        "n_articulation_points": 7.591765516269252,
+        "n_bridges": 76.98972790046307,
+        "diameter": 3.0345591838676107,
+        "radius": 1.457202309909291,
+        "degeneracy": 5.790093943378812,
+        "k_core_size": 12.388836976623303,
+        "maximum_degree": 170.45401616788484,
+        "degree_variance": 219.85350402489,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.7463073106890274,
+        "degree_entropy": 2.1022145310439058,
+        "joint_degree_entropy": 3.6256901068109744,
+        "degree_skewness": 11.214246731274994,
+        "degree_kurtosis": 130.1631388081217,
+        "normalized_laplacian_second_moment": 1.1342321893092844,
+        "normalized_laplacian_third_moment": 0.9873945801457603,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.01826651113851871,
+        "adjacency_fourth_moment_per_node": 329.47244486540706
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 179.5664495410792,
+        "n_edges": 437.1398451516851,
+        "n_articulation_points": 5.8746457236685785,
+        "n_bridges": 94.51650136489853,
+        "diameter": 2.888976111903408,
+        "radius": 3.770280446040135,
+        "degeneracy": 8.166518031526277,
+        "k_core_size": 15.873875664255864,
+        "maximum_degree": 190.48010590919074,
+        "degree_variance": 175.50375434237287,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.4487987557272531,
+        "degree_entropy": 2.1470068723427795,
+        "joint_degree_entropy": 2.9141874946474964,
+        "degree_skewness": 10.692515219468921,
+        "degree_kurtosis": 136.42753350234517,
+        "normalized_laplacian_second_moment": 0.8694378260209068,
+        "normalized_laplacian_third_moment": 1.620584405419189,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.02232095960145267,
+        "adjacency_fourth_moment_per_node": 682.6511729640514
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 244.73347366469505,
+        "n_edges": 327.166865647387,
+        "n_articulation_points": 9.078900845995305,
+        "n_bridges": 163.2586008473586,
+        "diameter": 4.221141072862161,
+        "radius": 2.5332059391988553,
+        "degeneracy": 6.338634213652189,
+        "k_core_size": 14.184899167874006,
+        "maximum_degree": 239.5525008603741,
+        "degree_variance": 184.439781689855,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.24467165128992308,
+        "degree_entropy": 1.732926711173443,
+        "joint_degree_entropy": 3.631580934920536,
+        "degree_skewness": 12.427058525256221,
+        "degree_kurtosis": 111.82333980147078,
+        "normalized_laplacian_second_moment": 0.2362904513980405,
+        "normalized_laplacian_third_moment": 1.4360735004061853,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.02399667430594423,
+        "adjacency_fourth_moment_per_node": 840.6450077438628
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 456.42736851639336,
+        "n_edges": 868.183928859959,
+        "n_articulation_points": 14.192285759149692,
+        "n_bridges": -3.4105428147591823,
+        "diameter": 5.446709798978214,
+        "radius": 3.118850557236474,
+        "degeneracy": 0.778079302326713,
+        "k_core_size": 7.988815868743607,
+        "maximum_degree": 128.54163018284007,
+        "degree_variance": 141.7323421876419,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.2766221024360799,
+        "degree_entropy": 2.264367924085112,
+        "joint_degree_entropy": 2.4811051208613635,
+        "degree_skewness": 18.036693677157793,
+        "degree_kurtosis": 120.52007214865353,
+        "normalized_laplacian_second_moment": 0.7701736509280506,
+        "normalized_laplacian_third_moment": 1.6382195103506576,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.02304156903254381,
+        "adjacency_fourth_moment_per_node": 1155.871789109435
       }
     },
     {
       "method": "jitter",
       "intensity": 0.01,
       "invariants": {
-        "n_nodes": 220.73857806306847,
-        "n_edges": 427.7864524401677,
-        "n_articulation_points": 7.8723734093870075,
-        "n_bridges": 100.11137409284572,
-        "diameter": 4.960377031988979,
-        "radius": 3.0207319519412112,
-        "degeneracy": 4.964845092438106,
-        "k_core_size": 11.071787867729347,
-        "maximum_degree": 179.7290669727854,
-        "degree_variance": 201.81728684812984,
+        "n_nodes": 220.1793302622139,
+        "n_edges": 426.33160032860565,
+        "n_articulation_points": 8.014202223152326,
+        "n_bridges": 99.45683787828894,
+        "diameter": 5.05178596187541,
+        "radius": 2.992425743493332,
+        "degeneracy": 5.053718593623126,
+        "k_core_size": 10.968989132352245,
+        "maximum_degree": 179.9024549781923,
+        "degree_variance": 202.63616523595675,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.5575350472673062,
-        "degree_entropy": 1.584294039261315,
-        "joint_degree_entropy": 3.2230298207067256,
-        "degree_skewness": 10.380356669420722,
-        "degree_kurtosis": 117.96339970565957,
-        "normalized_laplacian_second_moment": 1.0406360010823714,
-        "normalized_laplacian_third_moment": 1.118039730877875,
+        "degree_assortativity": -0.5660532345448154,
+        "degree_entropy": 1.556735531722136,
+        "joint_degree_entropy": 3.2942198259255195,
+        "degree_skewness": 10.32257357603188,
+        "degree_kurtosis": 119.05809624236588,
+        "normalized_laplacian_second_moment": 1.049477174937513,
+        "normalized_laplacian_third_moment": 1.1164922061842364,
         "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.0172630890303024,
-        "adjacency_fourth_moment_per_node": 636.3205080783752
-      }
-    },
-    {
-      "method": "jitter",
-      "intensity": 0.02,
-      "invariants": {
-        "n_nodes": 222.59322552741048,
-        "n_edges": 425.49139710835334,
-        "n_articulation_points": 8.049985204742956,
-        "n_bridges": 98.34696424984507,
-        "diameter": 5.039981927535387,
-        "radius": 3.007129243215886,
-        "degeneracy": 5.061731283062381,
-        "k_core_size": 10.997932970807177,
-        "maximum_degree": 182.70457192636823,
-        "degree_variance": 204.06147230920956,
-        "global_clustering": 0.0,
-        "degree_assortativity": -0.5788357329057888,
-        "degree_entropy": 1.6154222595077266,
-        "joint_degree_entropy": 3.232254121112007,
-        "degree_skewness": 10.457706892538676,
-        "degree_kurtosis": 116.33426075256313,
-        "normalized_laplacian_second_moment": 1.005140730399927,
-        "normalized_laplacian_third_moment": 1.0956241870724197,
-        "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.017044086463470772,
-        "adjacency_fourth_moment_per_node": 646.1512112698506
+        "random_walk_fourth_moment": 0.017041424286779978,
+        "adjacency_fourth_moment_per_node": 632.3823364015325
       }
     },
     {
       "method": "jitter",
       "intensity": 0.05,
       "invariants": {
-        "n_nodes": 228.90419326662675,
-        "n_edges": 432.5353054520865,
-        "n_articulation_points": 8.104437921046987,
-        "n_bridges": 109.78240788975764,
-        "diameter": 4.803140011059104,
-        "radius": 2.861641967871102,
-        "degeneracy": 5.297605570577133,
-        "k_core_size": 11.403404562068877,
-        "maximum_degree": 177.38454312546853,
-        "degree_variance": 209.4883008227041,
+        "n_nodes": 228.3471488997929,
+        "n_edges": 418.92505952359585,
+        "n_articulation_points": 8.309504416996203,
+        "n_bridges": 91.41547301185028,
+        "diameter": 4.617925416786456,
+        "radius": 2.9647241719715174,
+        "degeneracy": 4.799986463002154,
+        "k_core_size": 12.003463622849187,
+        "maximum_degree": 191.800672875696,
+        "degree_variance": 212.23947042468828,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.5778726229904773,
-        "degree_entropy": 1.6380972193578514,
-        "joint_degree_entropy": 2.9632083855173663,
-        "degree_skewness": 9.744953678168404,
-        "degree_kurtosis": 110.76838407885657,
-        "normalized_laplacian_second_moment": 1.0098494160930302,
-        "normalized_laplacian_third_moment": 1.0536303294125364,
+        "degree_assortativity": -0.5745795102313879,
+        "degree_entropy": 1.5354305980352567,
+        "joint_degree_entropy": 3.1780843218365322,
+        "degree_skewness": 9.57950030127188,
+        "degree_kurtosis": 111.97292796644093,
+        "normalized_laplacian_second_moment": 1.0498426963148533,
+        "normalized_laplacian_third_moment": 1.087629052184647,
         "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.018307213113976196,
-        "adjacency_fourth_moment_per_node": 678.1567806814039
+        "random_walk_fourth_moment": 0.01648902711536017,
+        "adjacency_fourth_moment_per_node": 627.8885730245025
       }
     },
     {
       "method": "jitter",
       "intensity": 0.1,
       "invariants": {
-        "n_nodes": 227.36686262701818,
-        "n_edges": 447.56987694912834,
-        "n_articulation_points": 5.503376586933591,
-        "n_bridges": 84.11777239498431,
-        "diameter": 5.1562342756027615,
-        "radius": 3.1111439470328373,
-        "degeneracy": 4.900576967737803,
-        "k_core_size": 11.370599540733899,
-        "maximum_degree": 182.36724400169342,
-        "degree_variance": 210.52574860872417,
+        "n_nodes": 218.0433173838461,
+        "n_edges": 473.25139891979813,
+        "n_articulation_points": 7.197055480997349,
+        "n_bridges": 98.9467200375486,
+        "diameter": 4.74980345936025,
+        "radius": 3.017756821430822,
+        "degeneracy": 5.440001667416192,
+        "k_core_size": 12.256255691559268,
+        "maximum_degree": 190.95017560444495,
+        "degree_variance": 202.9077157413077,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.47766746683581873,
-        "degree_entropy": 1.6954849434929598,
-        "joint_degree_entropy": 3.6369234757303652,
-        "degree_skewness": 9.242446138661492,
-        "degree_kurtosis": 107.69996295718747,
-        "normalized_laplacian_second_moment": 1.0680530868271494,
-        "normalized_laplacian_third_moment": 1.3297687935937805,
+        "degree_assortativity": -0.5845624776062119,
+        "degree_entropy": 1.968578619868304,
+        "joint_degree_entropy": 3.327132498919735,
+        "degree_skewness": 8.350186584021017,
+        "degree_kurtosis": 109.14666354134141,
+        "normalized_laplacian_second_moment": 1.178005743476621,
+        "normalized_laplacian_third_moment": 0.9752044903600408,
         "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.01494509563842601,
-        "adjacency_fourth_moment_per_node": 737.304970622605
+        "random_walk_fourth_moment": 0.017848385881851468,
+        "adjacency_fourth_moment_per_node": 577.9833819996506
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 260.32859666657305,
+        "n_edges": 402.7154003886004,
+        "n_articulation_points": 8.694767625851464,
+        "n_bridges": 83.13444933654557,
+        "diameter": 3.6481270032161346,
+        "radius": 4.145006961741084,
+        "degeneracy": 3.750042499281594,
+        "k_core_size": 10.769195482480974,
+        "maximum_degree": 175.3052231686443,
+        "degree_variance": 256.1094917123636,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.6054698796166617,
+        "degree_entropy": 1.5955729474167952,
+        "joint_degree_entropy": 3.5038629681287192,
+        "degree_skewness": 10.341547507621495,
+        "degree_kurtosis": 123.46487192672981,
+        "normalized_laplacian_second_moment": 1.0632868336984314,
+        "normalized_laplacian_third_moment": 1.0632573083713095,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.020606517477300485,
+        "adjacency_fourth_moment_per_node": 610.6189897938859
       }
     },
     {
       "method": "jitter",
       "intensity": 0.2,
       "invariants": {
-        "n_nodes": 216.69886611738556,
-        "n_edges": 434.47023164219536,
-        "n_articulation_points": 10.6417322810898,
-        "n_bridges": 119.84786926509284,
-        "diameter": 5.194913058424041,
-        "radius": 2.8939292425060215,
-        "degeneracy": 5.307314530116612,
-        "k_core_size": 10.021069547726787,
-        "maximum_degree": 144.53130170857625,
-        "degree_variance": 271.9936134498478,
+        "n_nodes": 184.9660208746114,
+        "n_edges": 475.7343612302656,
+        "n_articulation_points": 7.896195161522178,
+        "n_bridges": 99.80345182470025,
+        "diameter": 4.491622074400791,
+        "radius": 3.401666224266836,
+        "degeneracy": 4.140226624400603,
+        "k_core_size": 10.62354692728304,
+        "maximum_degree": 146.6366313389312,
+        "degree_variance": 135.66348761325224,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.45316600574480465,
-        "degree_entropy": 1.6104413051621531,
-        "joint_degree_entropy": 2.407244409647987,
-        "degree_skewness": 10.622357448739217,
-        "degree_kurtosis": 90.34304977165488,
-        "normalized_laplacian_second_moment": 1.1483362840491442,
-        "normalized_laplacian_third_moment": 1.123656325803788,
+        "degree_assortativity": -0.6983145158936451,
+        "degree_entropy": 1.5375542706377912,
+        "joint_degree_entropy": 2.8314514810434255,
+        "degree_skewness": 11.790019969606824,
+        "degree_kurtosis": 127.89850014763654,
+        "normalized_laplacian_second_moment": 0.9485316143293828,
+        "normalized_laplacian_third_moment": 1.2383023403999551,
         "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.010944769696326798,
-        "adjacency_fourth_moment_per_node": 482.7825143821598
+        "random_walk_fourth_moment": 0.016811476048405775,
+        "adjacency_fourth_moment_per_node": 739.917668121987
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 125.66530254077529,
+        "n_edges": 380.5172172797814,
+        "n_articulation_points": 9.374595511516924,
+        "n_bridges": 96.6199955926442,
+        "diameter": 5.9199504189894325,
+        "radius": 4.228151003296703,
+        "degeneracy": 4.4248159968175855,
+        "k_core_size": 12.4390753581996,
+        "maximum_degree": 222.15939825634715,
+        "degree_variance": 238.3957639109006,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.5008257832642938,
+        "degree_entropy": 1.7098422648812213,
+        "joint_degree_entropy": 2.4805790066800326,
+        "degree_skewness": 12.533278914697368,
+        "degree_kurtosis": 97.65634579575918,
+        "normalized_laplacian_second_moment": 0.7673318145716564,
+        "normalized_laplacian_third_moment": 0.7404737638235802,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.00870890123016618,
+        "adjacency_fourth_moment_per_node": 731.0818560418342
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 107.9002244963459,
+        "n_edges": 433.04270545943024,
+        "n_articulation_points": 10.618333985306332,
+        "n_bridges": 80.22398607226779,
+        "diameter": 5.530197278340498,
+        "radius": 3.997125594410444,
+        "degeneracy": 5.800878138130152,
+        "k_core_size": 17.246582491364542,
+        "maximum_degree": 111.95880893611084,
+        "degree_variance": 96.84783288683677,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.5266845997316674,
+        "degree_entropy": 1.793084501854084,
+        "joint_degree_entropy": 4.319654946573216,
+        "degree_skewness": 8.550436237178937,
+        "degree_kurtosis": 117.87024632414716,
+        "normalized_laplacian_second_moment": 0.725325115373621,
+        "normalized_laplacian_third_moment": 1.403269293378263,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.011692907685155398,
+        "adjacency_fourth_moment_per_node": 682.9489061884734
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 139.62841555422526,
+        "n_edges": 613.2563252117633,
+        "n_articulation_points": 4.686092119214091,
+        "n_bridges": 114.8504212073167,
+        "diameter": 5.313571129605151,
+        "radius": 2.027055340704019,
+        "degeneracy": 4.4612242670339155,
+        "k_core_size": 13.536757215362385,
+        "maximum_degree": 136.95539683401114,
+        "degree_variance": 175.5797452142269,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.5954381255298389,
+        "degree_entropy": 2.6327804662560785,
+        "joint_degree_entropy": 2.336027338610541,
+        "degree_skewness": 7.633470901148224,
+        "degree_kurtosis": 68.9670396193062,
+        "normalized_laplacian_second_moment": 1.3526378648106963,
+        "normalized_laplacian_third_moment": 1.193487296698587,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.015128278825222401,
+        "adjacency_fourth_moment_per_node": 731.8859652462022
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 211.35332478828545,
+        "n_edges": 598.6145852565995,
+        "n_articulation_points": 7.353322565182828,
+        "n_bridges": 104.78580857317073,
+        "diameter": 6.048127044521577,
+        "radius": 3.458880034544489,
+        "degeneracy": 9.058676697558951,
+        "k_core_size": 11.780092876832468,
+        "maximum_degree": 179.2909995274857,
+        "degree_variance": 251.56056002380618,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.7654410325830707,
+        "degree_entropy": 2.1737184314624978,
+        "joint_degree_entropy": 2.963729708569902,
+        "degree_skewness": 7.653159106802008,
+        "degree_kurtosis": 78.89677649034742,
+        "normalized_laplacian_second_moment": 0.7731227449117775,
+        "normalized_laplacian_third_moment": 0.5885197419975071,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.019918131305719504,
+        "adjacency_fourth_moment_per_node": 651.5751176244795
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 314.13547170334255,
+        "n_edges": 746.7106883629298,
+        "n_articulation_points": 3.0700044214261757,
+        "n_bridges": 72.79911439197048,
+        "diameter": 7.4500735933878595,
+        "radius": 2.377552241420678,
+        "degeneracy": 7.156274419952312,
+        "k_core_size": 15.785207518657364,
+        "maximum_degree": 26.130804284951896,
+        "degree_variance": 223.57997181464057,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.6584963566489287,
+        "degree_entropy": 2.564314351373857,
+        "joint_degree_entropy": 4.319842593995468,
+        "degree_skewness": 11.022225266880628,
+        "degree_kurtosis": 182.7658129357647,
+        "normalized_laplacian_second_moment": 0.30825740751742026,
+        "normalized_laplacian_third_moment": 2.0288312499457075,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.01103034780716033,
+        "adjacency_fourth_moment_per_node": 504.9468256183917
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.99,
+      "invariants": {
+        "n_nodes": 222.0,
+        "n_edges": 427.0,
+        "n_articulation_points": 8.0,
+        "n_bridges": 99.0,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 5.0,
+        "k_core_size": 11.0,
+        "maximum_degree": 181.0,
+        "degree_variance": 202.1657333008684,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.5717799780447338,
+        "degree_entropy": 1.575336974286283,
+        "joint_degree_entropy": 3.2511590353159874,
+        "degree_skewness": 10.318673508318907,
+        "degree_kurtosis": 117.78297878085175,
+        "normalized_laplacian_second_moment": 1.0346496507060488,
+        "normalized_laplacian_third_moment": 1.103948952118146,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.01715235989555153,
+        "adjacency_fourth_moment_per_node": 637.4324324324324
       }
     },
     {
@@ -733,7 +1435,61 @@
     },
     {
       "method": "subset",
+      "intensity": 0.85,
+      "invariants": {
+        "n_nodes": 222.0,
+        "n_edges": 427.0,
+        "n_articulation_points": 8.0,
+        "n_bridges": 99.0,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 5.0,
+        "k_core_size": 11.0,
+        "maximum_degree": 181.0,
+        "degree_variance": 202.1657333008684,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.5717799780447338,
+        "degree_entropy": 1.575336974286283,
+        "joint_degree_entropy": 3.2511590353159874,
+        "degree_skewness": 10.318673508318907,
+        "degree_kurtosis": 117.78297878085175,
+        "normalized_laplacian_second_moment": 1.0346496507060488,
+        "normalized_laplacian_third_moment": 1.103948952118146,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.01715235989555153,
+        "adjacency_fourth_moment_per_node": 637.4324324324324
+      }
+    },
+    {
+      "method": "subset",
       "intensity": 0.8,
+      "invariants": {
+        "n_nodes": 222.0,
+        "n_edges": 427.0,
+        "n_articulation_points": 8.0,
+        "n_bridges": 99.0,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 5.0,
+        "k_core_size": 11.0,
+        "maximum_degree": 181.0,
+        "degree_variance": 202.1657333008684,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.5717799780447338,
+        "degree_entropy": 1.575336974286283,
+        "joint_degree_entropy": 3.2511590353159874,
+        "degree_skewness": 10.318673508318907,
+        "degree_kurtosis": 117.78297878085175,
+        "normalized_laplacian_second_moment": 1.0346496507060488,
+        "normalized_laplacian_third_moment": 1.103948952118146,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.01715235989555153,
+        "adjacency_fourth_moment_per_node": 637.4324324324324
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.75,
       "invariants": {
         "n_nodes": 222.0,
         "n_edges": 427.0,
@@ -787,7 +1543,61 @@
     },
     {
       "method": "subset",
+      "intensity": 0.65,
+      "invariants": {
+        "n_nodes": 222.0,
+        "n_edges": 427.0,
+        "n_articulation_points": 8.0,
+        "n_bridges": 99.0,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 5.0,
+        "k_core_size": 11.0,
+        "maximum_degree": 181.0,
+        "degree_variance": 202.1657333008684,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.5717799780447338,
+        "degree_entropy": 1.575336974286283,
+        "joint_degree_entropy": 3.2511590353159874,
+        "degree_skewness": 10.318673508318907,
+        "degree_kurtosis": 117.78297878085175,
+        "normalized_laplacian_second_moment": 1.0346496507060488,
+        "normalized_laplacian_third_moment": 1.103948952118146,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.01715235989555153,
+        "adjacency_fourth_moment_per_node": 637.4324324324324
+      }
+    },
+    {
+      "method": "subset",
       "intensity": 0.6,
+      "invariants": {
+        "n_nodes": 222.0,
+        "n_edges": 427.0,
+        "n_articulation_points": 8.0,
+        "n_bridges": 99.0,
+        "diameter": 5.0,
+        "radius": 3.0,
+        "degeneracy": 5.0,
+        "k_core_size": 11.0,
+        "maximum_degree": 181.0,
+        "degree_variance": 202.1657333008684,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.5717799780447338,
+        "degree_entropy": 1.575336974286283,
+        "joint_degree_entropy": 3.2511590353159874,
+        "degree_skewness": 10.318673508318907,
+        "degree_kurtosis": 117.78297878085175,
+        "normalized_laplacian_second_moment": 1.0346496507060488,
+        "normalized_laplacian_third_moment": 1.103948952118146,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.01715235989555153,
+        "adjacency_fourth_moment_per_node": 637.4324324324324
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.55,
       "invariants": {
         "n_nodes": 222.0,
         "n_edges": 427.0,
@@ -818,38 +1628,25 @@
       "method": "scaling",
       "intensity": 0.5,
       "signatures": {
-        "lag1_autocorr": 0.7119421732492772,
-        "coef_variation": 1.1077961556371243,
-        "fano_factor": 1.2272123224456195,
-        "norm_succ_diff": 0.4439180591444754,
-        "hurst_exponent": 0.8108545622953114,
-        "trend_coeff": -0.23765688920975508,
-        "count_skewness": 4.009792611243641
-      }
-    },
-    {
-      "method": "scaling",
-      "intensity": 0.75,
-      "signatures": {
-        "lag1_autocorr": 0.7119421732492772,
-        "coef_variation": 1.1077961556371243,
-        "fano_factor": 1.2272123224456195,
-        "norm_succ_diff": 0.4439180591444754,
-        "hurst_exponent": 0.8108545622953114,
-        "trend_coeff": -0.23765688920975508,
-        "count_skewness": 4.009792611243641
+        "lag1_autocorr": 0.7788848761267066,
+        "coef_variation": 0.622474569547505,
+        "fano_factor": 1.2225207135249574,
+        "norm_succ_diff": 0.29363034577426783,
+        "hurst_exponent": 0.8424901896039934,
+        "trend_coeff": -0.304787498861075,
+        "count_skewness": 1.2102815171535692
       }
     },
     {
       "method": "scaling",
       "intensity": 1.0,
       "signatures": {
-        "lag1_autocorr": 0.7119421732492772,
-        "coef_variation": 1.1077961556371243,
-        "fano_factor": 1.2272123224456195,
-        "norm_succ_diff": 0.4439180591444754,
-        "hurst_exponent": 0.8108545622953114,
-        "trend_coeff": -0.23765688920975508,
+        "lag1_autocorr": 0.7119421732492771,
+        "coef_variation": 1.1077961556381777,
+        "fano_factor": 24.691317682603742,
+        "norm_succ_diff": 0.4439180591448974,
+        "hurst_exponent": 0.8108545622953105,
+        "trend_coeff": -0.237656889209755,
         "count_skewness": 4.009792611243641
       }
     },
@@ -857,26 +1654,104 @@
       "method": "scaling",
       "intensity": 1.5,
       "signatures": {
-        "lag1_autocorr": 0.7119421732492772,
-        "coef_variation": 1.1077961556371243,
-        "fano_factor": 1.2272123224456195,
-        "norm_succ_diff": 0.4439180591444754,
-        "hurst_exponent": 0.8108545622953114,
-        "trend_coeff": -0.23765688920975508,
-        "count_skewness": 4.009792611243641
+        "lag1_autocorr": 0.5884461166748614,
+        "coef_variation": 2.0481599849808494,
+        "fano_factor": 536.7833222469823,
+        "norm_succ_diff": 0.6183596858814693,
+        "hurst_exponent": 0.7590161961979952,
+        "trend_coeff": -0.16353324449517856,
+        "count_skewness": 9.21344837989414
       }
     },
     {
       "method": "scaling",
       "intensity": 2.0,
       "signatures": {
-        "lag1_autocorr": 0.7119421732492772,
-        "coef_variation": 1.1077961556371243,
-        "fano_factor": 1.2272123224456195,
-        "norm_succ_diff": 0.4439180591444754,
-        "hurst_exponent": 0.8108545622953114,
-        "trend_coeff": -0.23765688920975508,
-        "count_skewness": 4.009792611243641
+        "lag1_autocorr": 0.4392475308619231,
+        "coef_variation": 3.773644954642579,
+        "fano_factor": 13408.077685632108,
+        "norm_succ_diff": 0.8048823303956059,
+        "hurst_exponent": 0.6977411699039026,
+        "trend_coeff": -0.1043361944978111,
+        "count_skewness": 16.518848889638704
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 2.5,
+      "signatures": {
+        "lag1_autocorr": 0.301327877123681,
+        "coef_variation": 6.538254574975004,
+        "fano_factor": 352382.1812914643,
+        "norm_succ_diff": 0.9928892509830406,
+        "hurst_exponent": 0.6401584557158857,
+        "trend_coeff": -0.06502789175529193,
+        "count_skewness": 24.166459621305428
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 3.0,
+      "signatures": {
+        "lag1_autocorr": 0.19550556919849066,
+        "coef_variation": 10.294238787265481,
+        "fano_factor": 9036913.910450937,
+        "norm_succ_diff": 1.171353331206668,
+        "hurst_exponent": 0.5893083445848664,
+        "trend_coeff": -0.04062493721666037,
+        "count_skewness": 30.468481060901514
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 3.5,
+      "signatures": {
+        "lag1_autocorr": 0.12327392712648262,
+        "coef_variation": 14.668734146295197,
+        "fano_factor": 218638637.1047072,
+        "norm_succ_diff": 1.3316874663466698,
+        "hurst_exponent": 0.54761207333951,
+        "trend_coeff": -0.025541073416689063,
+        "count_skewness": 34.88321857763095
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 4.0,
+      "signatures": {
+        "lag1_autocorr": 0.07693582672713882,
+        "coef_variation": 19.178294207332414,
+        "fano_factor": 4967480865.361623,
+        "norm_succ_diff": 1.4698918306068025,
+        "hurst_exponent": 0.5240008024205961,
+        "trend_coeff": -0.016010994701677266,
+        "count_skewness": 37.70063890340092
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 4.5,
+      "signatures": {
+        "lag1_autocorr": 0.04797826574846707,
+        "coef_variation": 23.432373485573596,
+        "fano_factor": 106826849961.24084,
+        "norm_succ_diff": 1.5854418345083383,
+        "hurst_exponent": 0.5163206516993007,
+        "trend_coeff": -0.009807098797184513,
+        "count_skewness": 39.41825863000588
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 5.0,
+      "signatures": {
+        "lag1_autocorr": 0.029998550016724503,
+        "coef_variation": 27.198536576620985,
+        "fano_factor": 2197859755427.7295,
+        "norm_succ_diff": 1.6796287228588704,
+        "hurst_exponent": 0.5116506155938165,
+        "trend_coeff": -0.005646662274398426,
+        "count_skewness": 40.44644533930384
       }
     },
     {
@@ -907,6 +1782,19 @@
     },
     {
       "method": "smoothing",
+      "intensity": 3.0,
+      "signatures": {
+        "lag1_autocorr": 0.9440495806937712,
+        "coef_variation": 0.9865032900004378,
+        "fano_factor": 19.582237217982453,
+        "norm_succ_diff": 0.17010908419790494,
+        "hurst_exponent": 0.8261741350127505,
+        "trend_coeff": -0.26526151597502035,
+        "count_skewness": 3.119282900110029
+      }
+    },
+    {
+      "method": "smoothing",
       "intensity": 4.0,
       "signatures": {
         "lag1_autocorr": 0.96738773978037,
@@ -916,6 +1804,45 @@
         "hurst_exponent": 0.8295161776492106,
         "trend_coeff": -0.2713036915394323,
         "count_skewness": 2.89991565796592
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 5.0,
+      "signatures": {
+        "lag1_autocorr": 0.9766320826479393,
+        "coef_variation": 0.9450487474274878,
+        "fano_factor": 17.97214376957956,
+        "norm_succ_diff": 0.1028997081197088,
+        "hurst_exponent": 0.8318206690021575,
+        "trend_coeff": -0.27525496758623624,
+        "count_skewness": 2.7491540301932305
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 6.0,
+      "signatures": {
+        "lag1_autocorr": 0.9826597510856349,
+        "coef_variation": 0.9322286445346313,
+        "fano_factor": 17.488436685758373,
+        "norm_succ_diff": 0.08534165963367386,
+        "hurst_exponent": 0.8335946618401616,
+        "trend_coeff": -0.27820649048198504,
+        "count_skewness": 2.630395139170789
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 7.0,
+      "signatures": {
+        "lag1_autocorr": 0.9869345075799972,
+        "coef_variation": 0.921771366791087,
+        "fano_factor": 17.09892451943512,
+        "norm_succ_diff": 0.07274373582656923,
+        "hurst_exponent": 0.8350702338785796,
+        "trend_coeff": -0.28050831231245593,
+        "count_skewness": 2.536300400019551
       }
     },
     {
@@ -933,80 +1860,158 @@
     },
     {
       "method": "smoothing",
-      "intensity": 16.0,
+      "intensity": 9.0,
       "signatures": {
-        "lag1_autocorr": 0.9961266993087733,
-        "coef_variation": 0.872486450278936,
-        "fano_factor": 15.323440016571015,
-        "norm_succ_diff": 0.03617345108243911,
-        "hurst_exponent": 0.8421990995395787,
-        "trend_coeff": -0.28795940705563405,
-        "count_skewness": 1.9709080535496242
+        "lag1_autocorr": 0.9916824108074302,
+        "coef_variation": 0.906807010642413,
+        "fano_factor": 16.549480688062935,
+        "norm_succ_diff": 0.05884753311756601,
+        "hurst_exponent": 0.8371988576635493,
+        "trend_coeff": -0.2833705775715604,
+        "count_skewness": 2.3776500980691497
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 10.0,
+      "signatures": {
+        "lag1_autocorr": 0.9924851555152431,
+        "coef_variation": 0.9012925609408982,
+        "fano_factor": 16.34943978668939,
+        "norm_succ_diff": 0.0552300314273202,
+        "hurst_exponent": 0.837986664328584,
+        "trend_coeff": -0.28419813091814683,
+        "count_skewness": 2.317759156528281
       }
     },
     {
       "method": "bootstrapping",
-      "intensity": 0.0,
+      "intensity": 0.01,
       "signatures": {
-        "lag1_autocorr": 0.0,
-        "coef_variation": 0.0,
-        "fano_factor": 0.0,
-        "norm_succ_diff": 0.0,
-        "hurst_exponent": 0.5,
-        "trend_coeff": 0.0,
-        "count_skewness": 0.0
+        "lag1_autocorr": 0.03686154299773122,
+        "coef_variation": 0.866271214316105,
+        "fano_factor": 15.34618674214074,
+        "norm_succ_diff": 0.8994469721681994,
+        "hurst_exponent": 0.43934565865094755,
+        "trend_coeff": 0.009494182043477252,
+        "count_skewness": 1.030356889161341
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.05,
+      "signatures": {
+        "lag1_autocorr": 0.0037191318360527367,
+        "coef_variation": 0.9597648281086674,
+        "fano_factor": 17.651267783920446,
+        "norm_succ_diff": 0.9819994485719091,
+        "hurst_exponent": 0.5832563816949636,
+        "trend_coeff": -0.0013391835363081633,
+        "count_skewness": 1.874132508619028
       }
     },
     {
       "method": "bootstrapping",
       "intensity": 0.1,
       "signatures": {
-        "lag1_autocorr": 0.007985111319203656,
-        "coef_variation": 1.2166568837912124,
-        "fano_factor": 32.75469842525836,
-        "norm_succ_diff": 1.0034795818293851,
-        "hurst_exponent": 0.5197761739620723,
-        "trend_coeff": 0.01761720069737179,
-        "count_skewness": 3.701103852504344
+        "lag1_autocorr": -0.024496220408335684,
+        "coef_variation": 1.0478669382692196,
+        "fano_factor": 21.848155008516088,
+        "norm_succ_diff": 0.9420365448987112,
+        "hurst_exponent": 0.5157569200864495,
+        "trend_coeff": -0.020487921289741893,
+        "count_skewness": 3.3095016380834625
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.15,
+      "signatures": {
+        "lag1_autocorr": 0.003306742256474148,
+        "coef_variation": 1.0370685974371752,
+        "fano_factor": 20.927175592979168,
+        "norm_succ_diff": 1.0153323907416305,
+        "hurst_exponent": 0.5377490452298124,
+        "trend_coeff": 0.03150032184711135,
+        "count_skewness": 2.2208323942555896
       }
     },
     {
       "method": "bootstrapping",
       "intensity": 0.2,
       "signatures": {
-        "lag1_autocorr": 0.006911596346369328,
-        "coef_variation": 1.040943533215955,
-        "fano_factor": 20.35861957800016,
-        "norm_succ_diff": 0.9501414631270295,
-        "hurst_exponent": 0.5282594327761417,
-        "trend_coeff": 0.008895114495582494,
-        "count_skewness": 3.190118282990968
+        "lag1_autocorr": -0.010386435790809986,
+        "coef_variation": 1.0916115070951367,
+        "fano_factor": 25.728525149875694,
+        "norm_succ_diff": 0.9759411397454499,
+        "hurst_exponent": 0.5032197199677259,
+        "trend_coeff": 0.022143592864756728,
+        "count_skewness": 3.3535941270760445
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.25,
+      "signatures": {
+        "lag1_autocorr": -0.0069816270610376895,
+        "coef_variation": 1.1842139862904721,
+        "fano_factor": 26.0566770681186,
+        "norm_succ_diff": 1.0299411870706818,
+        "hurst_exponent": 0.5507272490023153,
+        "trend_coeff": 0.031631353894055816,
+        "count_skewness": 3.773481258925862
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.3,
+      "signatures": {
+        "lag1_autocorr": 0.019680944895618217,
+        "coef_variation": 1.0240347195746249,
+        "fano_factor": 22.431207758553665,
+        "norm_succ_diff": 0.9369461378224622,
+        "hurst_exponent": 0.4771766501470427,
+        "trend_coeff": 0.019082415194902242,
+        "count_skewness": 3.087166736016316
       }
     },
     {
       "method": "bootstrapping",
       "intensity": 0.35,
       "signatures": {
-        "lag1_autocorr": 0.016391572888299077,
-        "coef_variation": 1.081113969187569,
-        "fano_factor": 22.64341373542228,
-        "norm_succ_diff": 0.9895588344220446,
-        "hurst_exponent": 0.530808231822517,
-        "trend_coeff": -0.0073697588772070255,
-        "count_skewness": 2.909823325765137
+        "lag1_autocorr": 0.004305705845985966,
+        "coef_variation": 1.1644547865389479,
+        "fano_factor": 30.65040733826594,
+        "norm_succ_diff": 1.0044190408262332,
+        "hurst_exponent": 0.5093888931495337,
+        "trend_coeff": -0.012950110531364545,
+        "count_skewness": 3.3946460647332692
       }
     },
     {
       "method": "bootstrapping",
-      "intensity": 0.5,
+      "intensity": 0.4,
       "signatures": {
-        "lag1_autocorr": -0.030218931917906467,
-        "coef_variation": 1.1632884742794842,
-        "fano_factor": 30.00995371304724,
-        "norm_succ_diff": 1.003779255187196,
-        "hurst_exponent": 0.5023265317946787,
-        "trend_coeff": 0.008619380677738167,
-        "count_skewness": 4.917223189351525
+        "lag1_autocorr": 0.012473135305988524,
+        "coef_variation": 1.149843557938068,
+        "fano_factor": 26.73354046939323,
+        "norm_succ_diff": 1.0221607533457333,
+        "hurst_exponent": 0.5304305529616067,
+        "trend_coeff": 0.016534403611300423,
+        "count_skewness": 3.2958913077743093
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.45,
+      "signatures": {
+        "lag1_autocorr": -0.004129124939286241,
+        "coef_variation": 1.0224022516869482,
+        "fano_factor": 20.805673875299192,
+        "norm_succ_diff": 0.9901081230779013,
+        "hurst_exponent": 0.5145968757348603,
+        "trend_coeff": -0.004078644127493935,
+        "count_skewness": 2.437492453448615
       }
     }
   ],
@@ -1015,130 +2020,273 @@
       "method": "noise",
       "intensity": 0.01,
       "signatures": {
-        "lag1_autocorr": 0.7028610089723638,
-        "coef_variation": 1.1135887298585383,
-        "fano_factor": 24.670420595358166,
-        "norm_succ_diff": 0.4377900061988503,
-        "hurst_exponent": 0.7975790558578945,
-        "trend_coeff": -0.23728792019525888,
-        "count_skewness": 3.982733710235632
-      }
-    },
-    {
-      "method": "noise",
-      "intensity": 0.02,
-      "signatures": {
-        "lag1_autocorr": 0.6979385596052404,
-        "coef_variation": 1.1274803571587597,
-        "fano_factor": 23.860723738881713,
-        "norm_succ_diff": 0.42939573609006126,
-        "hurst_exponent": 0.8337494641040811,
-        "trend_coeff": -0.24177029011309925,
-        "count_skewness": 4.057150223019294
+        "lag1_autocorr": 0.718863349084068,
+        "coef_variation": 1.0970672626637044,
+        "fano_factor": 24.731542082351215,
+        "norm_succ_diff": 0.44278359695748004,
+        "hurst_exponent": 0.8162329778451368,
+        "trend_coeff": -0.23819389029146829,
+        "count_skewness": 3.9596204698270125
       }
     },
     {
       "method": "noise",
       "intensity": 0.05,
       "signatures": {
-        "lag1_autocorr": 0.656170728001975,
-        "coef_variation": 1.0212190127609904,
-        "fano_factor": 25.42489128748673,
-        "norm_succ_diff": 0.43804640581751175,
-        "hurst_exponent": 0.7952392544505924,
-        "trend_coeff": -0.23566154815553508,
-        "count_skewness": 3.9739539812298443
+        "lag1_autocorr": 0.7142608953790005,
+        "coef_variation": 1.14661643705655,
+        "fano_factor": 22.75691730865772,
+        "norm_succ_diff": 0.43479036974519447,
+        "hurst_exponent": 0.8215381970414087,
+        "trend_coeff": -0.23142102821118804,
+        "count_skewness": 4.119526623658678
       }
     },
     {
       "method": "noise",
       "intensity": 0.1,
       "signatures": {
-        "lag1_autocorr": 0.7520470883914789,
-        "coef_variation": 1.1661831131311677,
-        "fano_factor": 23.051317732836253,
-        "norm_succ_diff": 0.3605286289202483,
-        "hurst_exponent": 0.9465163772777822,
-        "trend_coeff": -0.19493176605643925,
-        "count_skewness": 4.036174406634415
+        "lag1_autocorr": 0.5935324837055929,
+        "coef_variation": 1.1196020088463685,
+        "fano_factor": 30.130127430983023,
+        "norm_succ_diff": 0.4232458936156569,
+        "hurst_exponent": 0.8330768920929682,
+        "trend_coeff": -0.23553710067684944,
+        "count_skewness": 4.374397583892562
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.15,
+      "signatures": {
+        "lag1_autocorr": 0.635633860944635,
+        "coef_variation": 0.9129078113446332,
+        "fano_factor": 27.179524420543586,
+        "norm_succ_diff": 0.4699503878132162,
+        "hurst_exponent": 0.7642714257260068,
+        "trend_coeff": -0.27525068321938695,
+        "count_skewness": 4.427864902213076
       }
     },
     {
       "method": "noise",
       "intensity": 0.2,
       "signatures": {
-        "lag1_autocorr": 0.8353977223915723,
-        "coef_variation": 0.8357542002507821,
-        "fano_factor": 30.76300120869761,
-        "norm_succ_diff": 0.5537039771107353,
-        "hurst_exponent": 0.9695450243848804,
-        "trend_coeff": -0.22623556009514176,
-        "count_skewness": 5.541586206383432
+        "lag1_autocorr": 0.7425499975949788,
+        "coef_variation": 1.2539257602518632,
+        "fano_factor": 31.85355160702442,
+        "norm_succ_diff": 0.4562773719224714,
+        "hurst_exponent": 0.6253215301755009,
+        "trend_coeff": -0.24247903565633722,
+        "count_skewness": 3.6378741688877883
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.25,
+      "signatures": {
+        "lag1_autocorr": 1.1344514180067269,
+        "coef_variation": 1.368600572162767,
+        "fano_factor": 15.223382319185912,
+        "norm_succ_diff": 0.3143001876889612,
+        "hurst_exponent": 0.7770299724444235,
+        "trend_coeff": -0.12622806929899225,
+        "count_skewness": 4.866471819241816
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.3,
+      "signatures": {
+        "lag1_autocorr": 0.8009759769079744,
+        "coef_variation": 1.1103035097157452,
+        "fano_factor": 19.744651919548645,
+        "norm_succ_diff": 0.4463339603753448,
+        "hurst_exponent": 0.4557015245293098,
+        "trend_coeff": -0.25824755770717983,
+        "count_skewness": 4.8956447562366705
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.35,
+      "signatures": {
+        "lag1_autocorr": 0.7023601114943012,
+        "coef_variation": 0.8592073484069995,
+        "fano_factor": 16.75722316995118,
+        "norm_succ_diff": 0.5901309740732021,
+        "hurst_exponent": 0.6032720565914824,
+        "trend_coeff": -0.2060410196361887,
+        "count_skewness": 4.836982807184851
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.4,
+      "signatures": {
+        "lag1_autocorr": 0.7244086108080053,
+        "coef_variation": 1.497177637288765,
+        "fano_factor": 15.158592927388867,
+        "norm_succ_diff": 0.6950198376683971,
+        "hurst_exponent": 0.844929307763726,
+        "trend_coeff": -0.15598170701815278,
+        "count_skewness": 0.6246072251357955
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.45,
+      "signatures": {
+        "lag1_autocorr": 1.2608242848241185,
+        "coef_variation": 0.3336225183361088,
+        "fano_factor": 19.75348829919193,
+        "norm_succ_diff": -0.05162863937039447,
+        "hurst_exponent": 0.2305109490146524,
+        "trend_coeff": -0.2634271606347141,
+        "count_skewness": 5.434319228399812
       }
     },
     {
       "method": "jitter",
       "intensity": 0.01,
       "signatures": {
-        "lag1_autocorr": 0.7092169755595897,
-        "coef_variation": 1.0991603430292536,
-        "fano_factor": 24.59181037131338,
-        "norm_succ_diff": 0.4374335306607297,
-        "hurst_exponent": 0.8112643130791065,
-        "trend_coeff": -0.23475617821173106,
-        "count_skewness": 3.9525053368426497
-      }
-    },
-    {
-      "method": "jitter",
-      "intensity": 0.02,
-      "signatures": {
-        "lag1_autocorr": 0.7181290350846402,
-        "coef_variation": 1.0934612541122593,
-        "fano_factor": 24.96401669943589,
-        "norm_succ_diff": 0.4490073333321914,
-        "hurst_exponent": 0.8275824313450639,
-        "trend_coeff": -0.23672721738069782,
-        "count_skewness": 3.981990966699933
+        "lag1_autocorr": 0.7119890224332389,
+        "coef_variation": 1.1013610464412034,
+        "fano_factor": 24.944544037162263,
+        "norm_succ_diff": 0.44392289056558765,
+        "hurst_exponent": 0.8124543045953452,
+        "trend_coeff": -0.23868175056961471,
+        "count_skewness": 3.931079959250399
       }
     },
     {
       "method": "jitter",
       "intensity": 0.05,
       "signatures": {
-        "lag1_autocorr": 0.6721192296821963,
-        "coef_variation": 1.0869765728532759,
-        "fano_factor": 25.284282672982584,
-        "norm_succ_diff": 0.44254768401138705,
-        "hurst_exponent": 0.7355442098148806,
-        "trend_coeff": -0.23115387692078768,
-        "count_skewness": 3.9995320833650085
+        "lag1_autocorr": 0.624960082137995,
+        "coef_variation": 1.0517578994151726,
+        "fano_factor": 24.13075218150786,
+        "norm_succ_diff": 0.4225130223683245,
+        "hurst_exponent": 0.8314798207384438,
+        "trend_coeff": -0.22143527611388614,
+        "count_skewness": 3.784916159621141
       }
     },
     {
       "method": "jitter",
       "intensity": 0.1,
       "signatures": {
-        "lag1_autocorr": 0.6689002521151655,
-        "coef_variation": 0.9515286288181873,
-        "fano_factor": 25.37645465803417,
-        "norm_succ_diff": 0.47388419549130495,
-        "hurst_exponent": 0.7729207670127269,
-        "trend_coeff": -0.21665833909428842,
-        "count_skewness": 4.1310282065723705
+        "lag1_autocorr": 0.680719183452668,
+        "coef_variation": 0.9325533380920926,
+        "fano_factor": 26.23785577484262,
+        "norm_succ_diff": 0.38581822912927993,
+        "hurst_exponent": 0.7376554990056708,
+        "trend_coeff": -0.2368376388884542,
+        "count_skewness": 3.6556246004440416
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.15,
+      "signatures": {
+        "lag1_autocorr": 0.8016115570489355,
+        "coef_variation": 1.0302097264593486,
+        "fano_factor": 22.301391091357647,
+        "norm_succ_diff": 0.33618888140514774,
+        "hurst_exponent": 0.6472203515768457,
+        "trend_coeff": -0.25902589518939406,
+        "count_skewness": 2.8325447805373694
       }
     },
     {
       "method": "jitter",
       "intensity": 0.2,
       "signatures": {
-        "lag1_autocorr": 0.7372657318914104,
-        "coef_variation": 1.0633461141295453,
-        "fano_factor": 22.88200137754866,
-        "norm_succ_diff": 0.5549621466494417,
-        "hurst_exponent": 0.5365653941424943,
-        "trend_coeff": -0.28701903705106624,
-        "count_skewness": 5.665120788638086
+        "lag1_autocorr": 0.8595917603674407,
+        "coef_variation": 1.3329060731507794,
+        "fano_factor": 14.434175046811424,
+        "norm_succ_diff": 0.44006472049032824,
+        "hurst_exponent": 1.0579819214235306,
+        "trend_coeff": -0.1295642701778759,
+        "count_skewness": 3.602639577238505
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.25,
+      "signatures": {
+        "lag1_autocorr": 0.8494381704650779,
+        "coef_variation": 0.6299249957595184,
+        "fano_factor": 20.84903144099532,
+        "norm_succ_diff": 0.3126040286204119,
+        "hurst_exponent": 0.5753292228122445,
+        "trend_coeff": -0.19574419144843314,
+        "count_skewness": 1.890528299524677
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.3,
+      "signatures": {
+        "lag1_autocorr": 0.6684172793893336,
+        "coef_variation": 0.8025344310585277,
+        "fano_factor": 36.498652204260864,
+        "norm_succ_diff": 0.6552684041908873,
+        "hurst_exponent": 0.9954296838756578,
+        "trend_coeff": -0.14252970053813976,
+        "count_skewness": 4.407011913248844
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.35,
+      "signatures": {
+        "lag1_autocorr": 0.4703397066144482,
+        "coef_variation": 1.2223374121740522,
+        "fano_factor": 19.945942433656544,
+        "norm_succ_diff": 0.24543339232189657,
+        "hurst_exponent": 0.5941023293834878,
+        "trend_coeff": -0.37826293173820963,
+        "count_skewness": 3.2032413109034077
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.4,
+      "signatures": {
+        "lag1_autocorr": 0.9645118261413518,
+        "coef_variation": 0.8942003008853114,
+        "fano_factor": 34.182234001647956,
+        "norm_succ_diff": 0.1943044591483925,
+        "hurst_exponent": 0.5941919492168487,
+        "trend_coeff": -0.38677986168007517,
+        "count_skewness": 3.9637119057082195
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.45,
+      "signatures": {
+        "lag1_autocorr": 0.4393084786172577,
+        "coef_variation": 0.8475023715386805,
+        "fano_factor": 32.51452957524674,
+        "norm_succ_diff": 0.30591799285544863,
+        "hurst_exponent": 1.060669815562376,
+        "trend_coeff": -0.2316545934604406,
+        "count_skewness": 1.769369576045048
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.99,
+      "signatures": {
+        "lag1_autocorr": 0.7119421732492771,
+        "coef_variation": 1.1077961556381777,
+        "fano_factor": 24.691317682603742,
+        "norm_succ_diff": 0.4439180591448974,
+        "hurst_exponent": 0.8108545622953105,
+        "trend_coeff": -0.237656889209755,
+        "count_skewness": 4.009792611243641
       }
     },
     {
@@ -1169,7 +2317,33 @@
     },
     {
       "method": "subset",
+      "intensity": 0.85,
+      "signatures": {
+        "lag1_autocorr": 0.7119421732492771,
+        "coef_variation": 1.1077961556381777,
+        "fano_factor": 24.691317682603742,
+        "norm_succ_diff": 0.4439180591448974,
+        "hurst_exponent": 0.8108545622953105,
+        "trend_coeff": -0.237656889209755,
+        "count_skewness": 4.009792611243641
+      }
+    },
+    {
+      "method": "subset",
       "intensity": 0.8,
+      "signatures": {
+        "lag1_autocorr": 0.7119421732492771,
+        "coef_variation": 1.1077961556381777,
+        "fano_factor": 24.691317682603742,
+        "norm_succ_diff": 0.4439180591448974,
+        "hurst_exponent": 0.8108545622953105,
+        "trend_coeff": -0.237656889209755,
+        "count_skewness": 4.009792611243641
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.75,
       "signatures": {
         "lag1_autocorr": 0.7119421732492771,
         "coef_variation": 1.1077961556381777,
@@ -1195,7 +2369,33 @@
     },
     {
       "method": "subset",
+      "intensity": 0.65,
+      "signatures": {
+        "lag1_autocorr": 0.7119421732492771,
+        "coef_variation": 1.1077961556381777,
+        "fano_factor": 24.691317682603742,
+        "norm_succ_diff": 0.4439180591448974,
+        "hurst_exponent": 0.8108545622953105,
+        "trend_coeff": -0.237656889209755,
+        "count_skewness": 4.009792611243641
+      }
+    },
+    {
+      "method": "subset",
       "intensity": 0.6,
+      "signatures": {
+        "lag1_autocorr": 0.7119421732492771,
+        "coef_variation": 1.1077961556381777,
+        "fano_factor": 24.691317682603742,
+        "norm_succ_diff": 0.4439180591448974,
+        "hurst_exponent": 0.8108545622953105,
+        "trend_coeff": -0.237656889209755,
+        "count_skewness": 4.009792611243641
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.55,
       "signatures": {
         "lag1_autocorr": 0.7119421732492771,
         "coef_variation": 1.1077961556381777,
@@ -5026,2551 +6226,6 @@
       ]
     },
     {
-      "scale": "3D",
-      "events": [
-        {
-          "date": "2010-11-08",
-          "target": 10
-        },
-        {
-          "date": "2010-11-11",
-          "target": 18
-        },
-        {
-          "date": "2010-11-14",
-          "target": 7
-        },
-        {
-          "date": "2010-11-17",
-          "target": 5
-        },
-        {
-          "date": "2010-11-20",
-          "target": 1
-        },
-        {
-          "date": "2010-11-23",
-          "target": 5
-        },
-        {
-          "date": "2010-11-26",
-          "target": 7
-        },
-        {
-          "date": "2010-11-29",
-          "target": 8
-        },
-        {
-          "date": "2010-12-02",
-          "target": 3
-        },
-        {
-          "date": "2010-12-05",
-          "target": 13
-        },
-        {
-          "date": "2010-12-08",
-          "target": 0
-        },
-        {
-          "date": "2010-12-11",
-          "target": 14
-        },
-        {
-          "date": "2010-12-14",
-          "target": 8
-        },
-        {
-          "date": "2010-12-17",
-          "target": 2
-        },
-        {
-          "date": "2010-12-20",
-          "target": 12
-        },
-        {
-          "date": "2010-12-23",
-          "target": 1
-        },
-        {
-          "date": "2010-12-26",
-          "target": 13
-        },
-        {
-          "date": "2010-12-29",
-          "target": 15
-        },
-        {
-          "date": "2011-01-01",
-          "target": 10
-        },
-        {
-          "date": "2011-01-04",
-          "target": 15
-        },
-        {
-          "date": "2011-01-07",
-          "target": 15
-        },
-        {
-          "date": "2011-01-10",
-          "target": 4
-        },
-        {
-          "date": "2011-01-13",
-          "target": 9
-        },
-        {
-          "date": "2011-01-16",
-          "target": 8
-        },
-        {
-          "date": "2011-01-19",
-          "target": 10
-        },
-        {
-          "date": "2011-01-22",
-          "target": 5
-        },
-        {
-          "date": "2011-01-25",
-          "target": 13
-        },
-        {
-          "date": "2011-01-28",
-          "target": 6
-        },
-        {
-          "date": "2011-01-31",
-          "target": 26
-        },
-        {
-          "date": "2011-02-03",
-          "target": 29
-        },
-        {
-          "date": "2011-02-06",
-          "target": 9
-        },
-        {
-          "date": "2011-02-09",
-          "target": 21
-        },
-        {
-          "date": "2011-02-12",
-          "target": 24
-        },
-        {
-          "date": "2011-02-15",
-          "target": 41
-        },
-        {
-          "date": "2011-02-18",
-          "target": 20
-        },
-        {
-          "date": "2011-02-21",
-          "target": 20
-        },
-        {
-          "date": "2011-02-24",
-          "target": 34
-        },
-        {
-          "date": "2011-02-27",
-          "target": 26
-        },
-        {
-          "date": "2011-03-02",
-          "target": 35
-        },
-        {
-          "date": "2011-03-05",
-          "target": 19
-        },
-        {
-          "date": "2011-03-08",
-          "target": 17
-        },
-        {
-          "date": "2011-03-11",
-          "target": 9
-        },
-        {
-          "date": "2011-03-14",
-          "target": 14
-        },
-        {
-          "date": "2011-03-17",
-          "target": 11
-        },
-        {
-          "date": "2011-03-20",
-          "target": 9
-        },
-        {
-          "date": "2011-03-23",
-          "target": 37
-        },
-        {
-          "date": "2011-03-26",
-          "target": 23
-        },
-        {
-          "date": "2011-03-29",
-          "target": 19
-        },
-        {
-          "date": "2011-04-01",
-          "target": 21
-        },
-        {
-          "date": "2011-04-04",
-          "target": 62
-        },
-        {
-          "date": "2011-04-07",
-          "target": 35
-        },
-        {
-          "date": "2011-04-10",
-          "target": 26
-        },
-        {
-          "date": "2011-04-13",
-          "target": 56
-        },
-        {
-          "date": "2011-04-16",
-          "target": 64
-        },
-        {
-          "date": "2011-04-19",
-          "target": 61
-        },
-        {
-          "date": "2011-04-22",
-          "target": 54
-        },
-        {
-          "date": "2011-04-25",
-          "target": 89
-        },
-        {
-          "date": "2011-04-28",
-          "target": 91
-        },
-        {
-          "date": "2011-05-01",
-          "target": 203
-        },
-        {
-          "date": "2011-05-04",
-          "target": 195
-        },
-        {
-          "date": "2011-05-07",
-          "target": 153
-        },
-        {
-          "date": "2011-05-10",
-          "target": 188
-        },
-        {
-          "date": "2011-05-13",
-          "target": 263
-        },
-        {
-          "date": "2011-05-16",
-          "target": 197
-        },
-        {
-          "date": "2011-05-19",
-          "target": 163
-        },
-        {
-          "date": "2011-05-22",
-          "target": 173
-        },
-        {
-          "date": "2011-05-25",
-          "target": 175
-        },
-        {
-          "date": "2011-05-28",
-          "target": 121
-        },
-        {
-          "date": "2011-05-31",
-          "target": 280
-        },
-        {
-          "date": "2011-06-03",
-          "target": 436
-        },
-        {
-          "date": "2011-06-06",
-          "target": 409
-        },
-        {
-          "date": "2011-06-09",
-          "target": 471
-        },
-        {
-          "date": "2011-06-12",
-          "target": 256
-        },
-        {
-          "date": "2011-06-15",
-          "target": 143
-        },
-        {
-          "date": "2011-06-18",
-          "target": 110
-        },
-        {
-          "date": "2011-06-21",
-          "target": 164
-        },
-        {
-          "date": "2011-06-24",
-          "target": 120
-        },
-        {
-          "date": "2011-06-27",
-          "target": 101
-        },
-        {
-          "date": "2011-06-30",
-          "target": 73
-        },
-        {
-          "date": "2011-07-03",
-          "target": 56
-        },
-        {
-          "date": "2011-07-06",
-          "target": 66
-        },
-        {
-          "date": "2011-07-09",
-          "target": 66
-        },
-        {
-          "date": "2011-07-12",
-          "target": 56
-        },
-        {
-          "date": "2011-07-15",
-          "target": 42
-        },
-        {
-          "date": "2011-07-18",
-          "target": 63
-        },
-        {
-          "date": "2011-07-21",
-          "target": 67
-        },
-        {
-          "date": "2011-07-24",
-          "target": 47
-        },
-        {
-          "date": "2011-07-27",
-          "target": 25
-        },
-        {
-          "date": "2011-07-30",
-          "target": 39
-        },
-        {
-          "date": "2011-08-02",
-          "target": 52
-        },
-        {
-          "date": "2011-08-05",
-          "target": 42
-        },
-        {
-          "date": "2011-08-08",
-          "target": 76
-        },
-        {
-          "date": "2011-08-11",
-          "target": 41
-        },
-        {
-          "date": "2011-08-14",
-          "target": 65
-        },
-        {
-          "date": "2011-08-17",
-          "target": 38
-        },
-        {
-          "date": "2011-08-20",
-          "target": 32
-        },
-        {
-          "date": "2011-08-23",
-          "target": 40
-        },
-        {
-          "date": "2011-08-26",
-          "target": 44
-        },
-        {
-          "date": "2011-08-29",
-          "target": 45
-        },
-        {
-          "date": "2011-09-01",
-          "target": 44
-        },
-        {
-          "date": "2011-09-04",
-          "target": 23
-        },
-        {
-          "date": "2011-09-07",
-          "target": 29
-        },
-        {
-          "date": "2011-09-10",
-          "target": 31
-        },
-        {
-          "date": "2011-09-13",
-          "target": 48
-        },
-        {
-          "date": "2011-09-16",
-          "target": 20
-        },
-        {
-          "date": "2011-09-19",
-          "target": 41
-        },
-        {
-          "date": "2011-09-22",
-          "target": 11
-        },
-        {
-          "date": "2011-09-25",
-          "target": 12
-        },
-        {
-          "date": "2011-09-28",
-          "target": 23
-        },
-        {
-          "date": "2011-10-01",
-          "target": 24
-        },
-        {
-          "date": "2011-10-04",
-          "target": 19
-        },
-        {
-          "date": "2011-10-07",
-          "target": 17
-        },
-        {
-          "date": "2011-10-10",
-          "target": 30
-        },
-        {
-          "date": "2011-10-13",
-          "target": 21
-        },
-        {
-          "date": "2011-10-16",
-          "target": 25
-        },
-        {
-          "date": "2011-10-19",
-          "target": 18
-        },
-        {
-          "date": "2011-10-22",
-          "target": 33
-        },
-        {
-          "date": "2011-10-25",
-          "target": 29
-        },
-        {
-          "date": "2011-10-28",
-          "target": 24
-        },
-        {
-          "date": "2011-10-31",
-          "target": 28
-        },
-        {
-          "date": "2011-11-03",
-          "target": 28
-        },
-        {
-          "date": "2011-11-06",
-          "target": 38
-        },
-        {
-          "date": "2011-11-09",
-          "target": 39
-        },
-        {
-          "date": "2011-11-12",
-          "target": 32
-        },
-        {
-          "date": "2011-11-15",
-          "target": 40
-        },
-        {
-          "date": "2011-11-18",
-          "target": 14
-        },
-        {
-          "date": "2011-11-21",
-          "target": 32
-        },
-        {
-          "date": "2011-11-24",
-          "target": 30
-        },
-        {
-          "date": "2011-11-27",
-          "target": 25
-        },
-        {
-          "date": "2011-11-30",
-          "target": 32
-        },
-        {
-          "date": "2011-12-03",
-          "target": 37
-        },
-        {
-          "date": "2011-12-06",
-          "target": 39
-        },
-        {
-          "date": "2011-12-09",
-          "target": 39
-        },
-        {
-          "date": "2011-12-12",
-          "target": 46
-        },
-        {
-          "date": "2011-12-15",
-          "target": 36
-        },
-        {
-          "date": "2011-12-18",
-          "target": 42
-        },
-        {
-          "date": "2011-12-21",
-          "target": 61
-        },
-        {
-          "date": "2011-12-24",
-          "target": 39
-        },
-        {
-          "date": "2011-12-27",
-          "target": 48
-        },
-        {
-          "date": "2011-12-30",
-          "target": 28
-        },
-        {
-          "date": "2012-01-02",
-          "target": 34
-        },
-        {
-          "date": "2012-01-05",
-          "target": 47
-        },
-        {
-          "date": "2012-01-08",
-          "target": 35
-        },
-        {
-          "date": "2012-01-11",
-          "target": 37
-        },
-        {
-          "date": "2012-01-14",
-          "target": 22
-        },
-        {
-          "date": "2012-01-17",
-          "target": 47
-        },
-        {
-          "date": "2012-01-20",
-          "target": 46
-        },
-        {
-          "date": "2012-01-23",
-          "target": 43
-        },
-        {
-          "date": "2012-01-26",
-          "target": 22
-        },
-        {
-          "date": "2012-01-29",
-          "target": 44
-        },
-        {
-          "date": "2012-02-01",
-          "target": 46
-        },
-        {
-          "date": "2012-02-04",
-          "target": 53
-        },
-        {
-          "date": "2012-02-07",
-          "target": 47
-        },
-        {
-          "date": "2012-02-10",
-          "target": 44
-        },
-        {
-          "date": "2012-02-13",
-          "target": 48
-        },
-        {
-          "date": "2012-02-16",
-          "target": 59
-        },
-        {
-          "date": "2012-02-19",
-          "target": 63
-        },
-        {
-          "date": "2012-02-22",
-          "target": 47
-        },
-        {
-          "date": "2012-02-25",
-          "target": 55
-        },
-        {
-          "date": "2012-02-28",
-          "target": 51
-        },
-        {
-          "date": "2012-03-02",
-          "target": 55
-        },
-        {
-          "date": "2012-03-05",
-          "target": 29
-        },
-        {
-          "date": "2012-03-08",
-          "target": 37
-        },
-        {
-          "date": "2012-03-11",
-          "target": 61
-        },
-        {
-          "date": "2012-03-14",
-          "target": 91
-        },
-        {
-          "date": "2012-03-17",
-          "target": 72
-        },
-        {
-          "date": "2012-03-20",
-          "target": 53
-        },
-        {
-          "date": "2012-03-23",
-          "target": 40
-        },
-        {
-          "date": "2012-03-26",
-          "target": 46
-        },
-        {
-          "date": "2012-03-29",
-          "target": 57
-        },
-        {
-          "date": "2012-04-01",
-          "target": 47
-        },
-        {
-          "date": "2012-04-04",
-          "target": 59
-        },
-        {
-          "date": "2012-04-07",
-          "target": 21
-        },
-        {
-          "date": "2012-04-10",
-          "target": 58
-        },
-        {
-          "date": "2012-04-13",
-          "target": 60
-        },
-        {
-          "date": "2012-04-16",
-          "target": 57
-        },
-        {
-          "date": "2012-04-19",
-          "target": 66
-        },
-        {
-          "date": "2012-04-22",
-          "target": 91
-        },
-        {
-          "date": "2012-04-25",
-          "target": 56
-        },
-        {
-          "date": "2012-04-28",
-          "target": 49
-        },
-        {
-          "date": "2012-05-01",
-          "target": 61
-        },
-        {
-          "date": "2012-05-04",
-          "target": 51
-        },
-        {
-          "date": "2012-05-07",
-          "target": 51
-        },
-        {
-          "date": "2012-05-10",
-          "target": 58
-        },
-        {
-          "date": "2012-05-13",
-          "target": 43
-        },
-        {
-          "date": "2012-05-16",
-          "target": 43
-        },
-        {
-          "date": "2012-05-19",
-          "target": 54
-        },
-        {
-          "date": "2012-05-22",
-          "target": 108
-        },
-        {
-          "date": "2012-05-25",
-          "target": 68
-        },
-        {
-          "date": "2012-05-28",
-          "target": 62
-        },
-        {
-          "date": "2012-05-31",
-          "target": 57
-        },
-        {
-          "date": "2012-06-03",
-          "target": 86
-        },
-        {
-          "date": "2012-06-06",
-          "target": 79
-        },
-        {
-          "date": "2012-06-09",
-          "target": 74
-        },
-        {
-          "date": "2012-06-12",
-          "target": 67
-        },
-        {
-          "date": "2012-06-15",
-          "target": 81
-        },
-        {
-          "date": "2012-06-18",
-          "target": 99
-        },
-        {
-          "date": "2012-06-21",
-          "target": 67
-        },
-        {
-          "date": "2012-06-24",
-          "target": 107
-        },
-        {
-          "date": "2012-06-27",
-          "target": 62
-        },
-        {
-          "date": "2012-06-30",
-          "target": 69
-        },
-        {
-          "date": "2012-07-03",
-          "target": 107
-        },
-        {
-          "date": "2012-07-06",
-          "target": 69
-        },
-        {
-          "date": "2012-07-09",
-          "target": 69
-        },
-        {
-          "date": "2012-07-12",
-          "target": 89
-        },
-        {
-          "date": "2012-07-15",
-          "target": 105
-        },
-        {
-          "date": "2012-07-18",
-          "target": 102
-        },
-        {
-          "date": "2012-07-21",
-          "target": 83
-        },
-        {
-          "date": "2012-07-24",
-          "target": 99
-        },
-        {
-          "date": "2012-07-27",
-          "target": 70
-        },
-        {
-          "date": "2012-07-30",
-          "target": 80
-        },
-        {
-          "date": "2012-08-02",
-          "target": 60
-        },
-        {
-          "date": "2012-08-05",
-          "target": 82
-        },
-        {
-          "date": "2012-08-08",
-          "target": 78
-        },
-        {
-          "date": "2012-08-11",
-          "target": 97
-        },
-        {
-          "date": "2012-08-14",
-          "target": 95
-        },
-        {
-          "date": "2012-08-17",
-          "target": 119
-        },
-        {
-          "date": "2012-08-20",
-          "target": 99
-        },
-        {
-          "date": "2012-08-23",
-          "target": 87
-        },
-        {
-          "date": "2012-08-26",
-          "target": 82
-        },
-        {
-          "date": "2012-08-29",
-          "target": 84
-        },
-        {
-          "date": "2012-09-01",
-          "target": 62
-        },
-        {
-          "date": "2012-09-04",
-          "target": 93
-        },
-        {
-          "date": "2012-09-07",
-          "target": 122
-        },
-        {
-          "date": "2012-09-10",
-          "target": 147
-        },
-        {
-          "date": "2012-09-13",
-          "target": 107
-        },
-        {
-          "date": "2012-09-16",
-          "target": 107
-        },
-        {
-          "date": "2012-09-19",
-          "target": 105
-        },
-        {
-          "date": "2012-09-22",
-          "target": 57
-        },
-        {
-          "date": "2012-09-25",
-          "target": 214
-        },
-        {
-          "date": "2012-09-28",
-          "target": 139
-        },
-        {
-          "date": "2012-10-01",
-          "target": 111
-        },
-        {
-          "date": "2012-10-04",
-          "target": 120
-        },
-        {
-          "date": "2012-10-07",
-          "target": 98
-        },
-        {
-          "date": "2012-10-10",
-          "target": 120
-        },
-        {
-          "date": "2012-10-13",
-          "target": 122
-        },
-        {
-          "date": "2012-10-16",
-          "target": 96
-        },
-        {
-          "date": "2012-10-19",
-          "target": 76
-        },
-        {
-          "date": "2012-10-22",
-          "target": 104
-        },
-        {
-          "date": "2012-10-25",
-          "target": 121
-        },
-        {
-          "date": "2012-10-28",
-          "target": 70
-        },
-        {
-          "date": "2012-10-31",
-          "target": 124
-        },
-        {
-          "date": "2012-11-03",
-          "target": 73
-        },
-        {
-          "date": "2012-11-06",
-          "target": 123
-        },
-        {
-          "date": "2012-11-09",
-          "target": 93
-        },
-        {
-          "date": "2012-11-12",
-          "target": 73
-        },
-        {
-          "date": "2012-11-15",
-          "target": 100
-        },
-        {
-          "date": "2012-11-18",
-          "target": 83
-        },
-        {
-          "date": "2012-11-21",
-          "target": 114
-        },
-        {
-          "date": "2012-11-24",
-          "target": 85
-        },
-        {
-          "date": "2012-11-27",
-          "target": 146
-        },
-        {
-          "date": "2012-11-30",
-          "target": 81
-        },
-        {
-          "date": "2012-12-03",
-          "target": 99
-        },
-        {
-          "date": "2012-12-06",
-          "target": 122
-        },
-        {
-          "date": "2012-12-09",
-          "target": 123
-        },
-        {
-          "date": "2012-12-12",
-          "target": 57
-        },
-        {
-          "date": "2012-12-15",
-          "target": 87
-        },
-        {
-          "date": "2012-12-18",
-          "target": 109
-        },
-        {
-          "date": "2012-12-21",
-          "target": 88
-        },
-        {
-          "date": "2012-12-24",
-          "target": 89
-        },
-        {
-          "date": "2012-12-27",
-          "target": 116
-        },
-        {
-          "date": "2012-12-30",
-          "target": 60
-        },
-        {
-          "date": "2013-01-02",
-          "target": 106
-        },
-        {
-          "date": "2013-01-05",
-          "target": 102
-        },
-        {
-          "date": "2013-01-08",
-          "target": 83
-        },
-        {
-          "date": "2013-01-11",
-          "target": 65
-        },
-        {
-          "date": "2013-01-14",
-          "target": 94
-        },
-        {
-          "date": "2013-01-17",
-          "target": 71
-        },
-        {
-          "date": "2013-01-20",
-          "target": 91
-        },
-        {
-          "date": "2013-01-23",
-          "target": 92
-        },
-        {
-          "date": "2013-01-26",
-          "target": 91
-        },
-        {
-          "date": "2013-01-29",
-          "target": 89
-        },
-        {
-          "date": "2013-02-01",
-          "target": 74
-        },
-        {
-          "date": "2013-02-04",
-          "target": 55
-        },
-        {
-          "date": "2013-02-07",
-          "target": 83
-        },
-        {
-          "date": "2013-02-10",
-          "target": 97
-        },
-        {
-          "date": "2013-02-13",
-          "target": 72
-        },
-        {
-          "date": "2013-02-16",
-          "target": 95
-        },
-        {
-          "date": "2013-02-19",
-          "target": 107
-        },
-        {
-          "date": "2013-02-22",
-          "target": 51
-        },
-        {
-          "date": "2013-02-25",
-          "target": 59
-        },
-        {
-          "date": "2013-02-28",
-          "target": 164
-        },
-        {
-          "date": "2013-03-03",
-          "target": 131
-        },
-        {
-          "date": "2013-03-06",
-          "target": 116
-        },
-        {
-          "date": "2013-03-09",
-          "target": 96
-        },
-        {
-          "date": "2013-03-12",
-          "target": 125
-        },
-        {
-          "date": "2013-03-15",
-          "target": 82
-        },
-        {
-          "date": "2013-03-18",
-          "target": 131
-        },
-        {
-          "date": "2013-03-21",
-          "target": 145
-        },
-        {
-          "date": "2013-03-24",
-          "target": 186
-        },
-        {
-          "date": "2013-03-27",
-          "target": 239
-        },
-        {
-          "date": "2013-03-30",
-          "target": 127
-        },
-        {
-          "date": "2013-04-02",
-          "target": 223
-        },
-        {
-          "date": "2013-04-05",
-          "target": 134
-        },
-        {
-          "date": "2013-04-08",
-          "target": 306
-        },
-        {
-          "date": "2013-04-11",
-          "target": 258
-        },
-        {
-          "date": "2013-04-14",
-          "target": 240
-        },
-        {
-          "date": "2013-04-17",
-          "target": 113
-        },
-        {
-          "date": "2013-04-20",
-          "target": 146
-        },
-        {
-          "date": "2013-04-23",
-          "target": 135
-        },
-        {
-          "date": "2013-04-26",
-          "target": 126
-        },
-        {
-          "date": "2013-04-29",
-          "target": 167
-        },
-        {
-          "date": "2013-05-02",
-          "target": 140
-        },
-        {
-          "date": "2013-05-05",
-          "target": 123
-        },
-        {
-          "date": "2013-05-08",
-          "target": 133
-        },
-        {
-          "date": "2013-05-11",
-          "target": 60
-        },
-        {
-          "date": "2013-05-14",
-          "target": 123
-        },
-        {
-          "date": "2013-05-17",
-          "target": 70
-        },
-        {
-          "date": "2013-05-20",
-          "target": 107
-        },
-        {
-          "date": "2013-05-23",
-          "target": 107
-        },
-        {
-          "date": "2013-05-26",
-          "target": 87
-        },
-        {
-          "date": "2013-05-29",
-          "target": 93
-        },
-        {
-          "date": "2013-06-01",
-          "target": 85
-        },
-        {
-          "date": "2013-06-04",
-          "target": 115
-        },
-        {
-          "date": "2013-06-07",
-          "target": 105
-        },
-        {
-          "date": "2013-06-10",
-          "target": 71
-        },
-        {
-          "date": "2013-06-13",
-          "target": 120
-        },
-        {
-          "date": "2013-06-16",
-          "target": 115
-        },
-        {
-          "date": "2013-06-19",
-          "target": 58
-        },
-        {
-          "date": "2013-06-22",
-          "target": 60
-        },
-        {
-          "date": "2013-06-25",
-          "target": 131
-        },
-        {
-          "date": "2013-06-28",
-          "target": 108
-        },
-        {
-          "date": "2013-07-01",
-          "target": 79
-        },
-        {
-          "date": "2013-07-04",
-          "target": 86
-        },
-        {
-          "date": "2013-07-07",
-          "target": 100
-        },
-        {
-          "date": "2013-07-10",
-          "target": 68
-        },
-        {
-          "date": "2013-07-13",
-          "target": 105
-        },
-        {
-          "date": "2013-07-16",
-          "target": 124
-        },
-        {
-          "date": "2013-07-19",
-          "target": 192
-        },
-        {
-          "date": "2013-07-22",
-          "target": 109
-        },
-        {
-          "date": "2013-07-25",
-          "target": 80
-        },
-        {
-          "date": "2013-07-28",
-          "target": 115
-        },
-        {
-          "date": "2013-07-31",
-          "target": 125
-        },
-        {
-          "date": "2013-08-03",
-          "target": 184
-        },
-        {
-          "date": "2013-08-06",
-          "target": 220
-        },
-        {
-          "date": "2013-08-09",
-          "target": 140
-        },
-        {
-          "date": "2013-08-12",
-          "target": 340
-        },
-        {
-          "date": "2013-08-15",
-          "target": 413
-        },
-        {
-          "date": "2013-08-18",
-          "target": 105
-        },
-        {
-          "date": "2013-08-21",
-          "target": 222
-        },
-        {
-          "date": "2013-08-24",
-          "target": 54
-        },
-        {
-          "date": "2013-08-27",
-          "target": 106
-        },
-        {
-          "date": "2013-08-30",
-          "target": 77
-        },
-        {
-          "date": "2013-09-02",
-          "target": 102
-        },
-        {
-          "date": "2013-09-05",
-          "target": 59
-        },
-        {
-          "date": "2013-09-08",
-          "target": 60
-        },
-        {
-          "date": "2013-09-11",
-          "target": 54
-        },
-        {
-          "date": "2013-09-14",
-          "target": 61
-        },
-        {
-          "date": "2013-09-17",
-          "target": 41
-        },
-        {
-          "date": "2013-09-20",
-          "target": 57
-        },
-        {
-          "date": "2013-09-23",
-          "target": 62
-        },
-        {
-          "date": "2013-09-26",
-          "target": 52
-        },
-        {
-          "date": "2013-09-29",
-          "target": 68
-        },
-        {
-          "date": "2013-10-02",
-          "target": 58
-        },
-        {
-          "date": "2013-10-05",
-          "target": 58
-        },
-        {
-          "date": "2013-10-08",
-          "target": 51
-        },
-        {
-          "date": "2013-10-11",
-          "target": 35
-        },
-        {
-          "date": "2013-10-14",
-          "target": 74
-        },
-        {
-          "date": "2013-10-17",
-          "target": 74
-        },
-        {
-          "date": "2013-10-20",
-          "target": 55
-        },
-        {
-          "date": "2013-10-23",
-          "target": 95
-        },
-        {
-          "date": "2013-10-26",
-          "target": 34
-        },
-        {
-          "date": "2013-10-29",
-          "target": 73
-        },
-        {
-          "date": "2013-11-01",
-          "target": 43
-        },
-        {
-          "date": "2013-11-04",
-          "target": 69
-        },
-        {
-          "date": "2013-11-07",
-          "target": 63
-        },
-        {
-          "date": "2013-11-10",
-          "target": 66
-        },
-        {
-          "date": "2013-11-13",
-          "target": 97
-        },
-        {
-          "date": "2013-11-16",
-          "target": 85
-        },
-        {
-          "date": "2013-11-19",
-          "target": 129
-        },
-        {
-          "date": "2013-11-22",
-          "target": 88
-        },
-        {
-          "date": "2013-11-25",
-          "target": 156
-        },
-        {
-          "date": "2013-11-28",
-          "target": 131
-        },
-        {
-          "date": "2013-12-01",
-          "target": 95
-        },
-        {
-          "date": "2013-12-04",
-          "target": 86
-        },
-        {
-          "date": "2013-12-07",
-          "target": 67
-        },
-        {
-          "date": "2013-12-10",
-          "target": 82
-        },
-        {
-          "date": "2013-12-13",
-          "target": 68
-        },
-        {
-          "date": "2013-12-16",
-          "target": 135
-        },
-        {
-          "date": "2013-12-19",
-          "target": 68
-        },
-        {
-          "date": "2013-12-22",
-          "target": 75
-        },
-        {
-          "date": "2013-12-25",
-          "target": 50
-        },
-        {
-          "date": "2013-12-28",
-          "target": 53
-        },
-        {
-          "date": "2013-12-31",
-          "target": 38
-        },
-        {
-          "date": "2014-01-03",
-          "target": 50
-        },
-        {
-          "date": "2014-01-06",
-          "target": 64
-        },
-        {
-          "date": "2014-01-09",
-          "target": 33
-        },
-        {
-          "date": "2014-01-12",
-          "target": 51
-        },
-        {
-          "date": "2014-01-15",
-          "target": 39
-        },
-        {
-          "date": "2014-01-18",
-          "target": 50
-        },
-        {
-          "date": "2014-01-21",
-          "target": 38
-        },
-        {
-          "date": "2014-01-24",
-          "target": 36
-        },
-        {
-          "date": "2014-01-27",
-          "target": 57
-        },
-        {
-          "date": "2014-01-30",
-          "target": 47
-        },
-        {
-          "date": "2014-02-02",
-          "target": 50
-        },
-        {
-          "date": "2014-02-05",
-          "target": 44
-        },
-        {
-          "date": "2014-02-08",
-          "target": 51
-        },
-        {
-          "date": "2014-02-11",
-          "target": 61
-        },
-        {
-          "date": "2014-02-14",
-          "target": 55
-        },
-        {
-          "date": "2014-02-17",
-          "target": 62
-        },
-        {
-          "date": "2014-02-20",
-          "target": 71
-        },
-        {
-          "date": "2014-02-23",
-          "target": 37
-        },
-        {
-          "date": "2014-02-26",
-          "target": 78
-        },
-        {
-          "date": "2014-03-01",
-          "target": 35
-        },
-        {
-          "date": "2014-03-04",
-          "target": 26
-        },
-        {
-          "date": "2014-03-07",
-          "target": 28
-        },
-        {
-          "date": "2014-03-10",
-          "target": 31
-        },
-        {
-          "date": "2014-03-13",
-          "target": 25
-        },
-        {
-          "date": "2014-03-16",
-          "target": 26
-        },
-        {
-          "date": "2014-03-19",
-          "target": 39
-        },
-        {
-          "date": "2014-03-22",
-          "target": 19
-        },
-        {
-          "date": "2014-03-25",
-          "target": 54
-        },
-        {
-          "date": "2014-03-28",
-          "target": 36
-        },
-        {
-          "date": "2014-03-31",
-          "target": 36
-        },
-        {
-          "date": "2014-04-03",
-          "target": 32
-        },
-        {
-          "date": "2014-04-06",
-          "target": 33
-        },
-        {
-          "date": "2014-04-09",
-          "target": 64
-        },
-        {
-          "date": "2014-04-12",
-          "target": 59
-        },
-        {
-          "date": "2014-04-15",
-          "target": 56
-        },
-        {
-          "date": "2014-04-18",
-          "target": 43
-        },
-        {
-          "date": "2014-04-21",
-          "target": 73
-        },
-        {
-          "date": "2014-04-24",
-          "target": 79
-        },
-        {
-          "date": "2014-04-27",
-          "target": 58
-        },
-        {
-          "date": "2014-04-30",
-          "target": 48
-        },
-        {
-          "date": "2014-05-03",
-          "target": 67
-        },
-        {
-          "date": "2014-05-06",
-          "target": 31
-        },
-        {
-          "date": "2014-05-09",
-          "target": 17
-        },
-        {
-          "date": "2014-05-12",
-          "target": 38
-        },
-        {
-          "date": "2014-05-15",
-          "target": 25
-        },
-        {
-          "date": "2014-05-18",
-          "target": 36
-        },
-        {
-          "date": "2014-05-21",
-          "target": 40
-        },
-        {
-          "date": "2014-05-24",
-          "target": 31
-        },
-        {
-          "date": "2014-05-27",
-          "target": 19
-        },
-        {
-          "date": "2014-05-30",
-          "target": 35
-        },
-        {
-          "date": "2014-06-02",
-          "target": 45
-        },
-        {
-          "date": "2014-06-05",
-          "target": 35
-        },
-        {
-          "date": "2014-06-08",
-          "target": 41
-        },
-        {
-          "date": "2014-06-11",
-          "target": 43
-        },
-        {
-          "date": "2014-06-14",
-          "target": 22
-        },
-        {
-          "date": "2014-06-17",
-          "target": 27
-        },
-        {
-          "date": "2014-06-20",
-          "target": 44
-        },
-        {
-          "date": "2014-06-23",
-          "target": 48
-        },
-        {
-          "date": "2014-06-26",
-          "target": 55
-        },
-        {
-          "date": "2014-06-29",
-          "target": 58
-        },
-        {
-          "date": "2014-07-02",
-          "target": 35
-        },
-        {
-          "date": "2014-07-05",
-          "target": 26
-        },
-        {
-          "date": "2014-07-08",
-          "target": 27
-        },
-        {
-          "date": "2014-07-11",
-          "target": 24
-        },
-        {
-          "date": "2014-07-14",
-          "target": 36
-        },
-        {
-          "date": "2014-07-17",
-          "target": 21
-        },
-        {
-          "date": "2014-07-20",
-          "target": 23
-        },
-        {
-          "date": "2014-07-23",
-          "target": 36
-        },
-        {
-          "date": "2014-07-26",
-          "target": 22
-        },
-        {
-          "date": "2014-07-29",
-          "target": 42
-        },
-        {
-          "date": "2014-08-01",
-          "target": 21
-        },
-        {
-          "date": "2014-08-04",
-          "target": 40
-        },
-        {
-          "date": "2014-08-07",
-          "target": 49
-        },
-        {
-          "date": "2014-08-10",
-          "target": 61
-        },
-        {
-          "date": "2014-08-13",
-          "target": 67
-        },
-        {
-          "date": "2014-08-16",
-          "target": 44
-        },
-        {
-          "date": "2014-08-19",
-          "target": 31
-        },
-        {
-          "date": "2014-08-22",
-          "target": 29
-        },
-        {
-          "date": "2014-08-25",
-          "target": 39
-        },
-        {
-          "date": "2014-08-28",
-          "target": 44
-        },
-        {
-          "date": "2014-08-31",
-          "target": 26
-        },
-        {
-          "date": "2014-09-03",
-          "target": 19
-        },
-        {
-          "date": "2014-09-06",
-          "target": 39
-        },
-        {
-          "date": "2014-09-09",
-          "target": 17
-        },
-        {
-          "date": "2014-09-12",
-          "target": 17
-        },
-        {
-          "date": "2014-09-15",
-          "target": 33
-        },
-        {
-          "date": "2014-09-18",
-          "target": 26
-        },
-        {
-          "date": "2014-09-21",
-          "target": 17
-        },
-        {
-          "date": "2014-09-24",
-          "target": 20
-        },
-        {
-          "date": "2014-09-27",
-          "target": 26
-        },
-        {
-          "date": "2014-09-30",
-          "target": 15
-        },
-        {
-          "date": "2014-10-03",
-          "target": 13
-        },
-        {
-          "date": "2014-10-06",
-          "target": 33
-        },
-        {
-          "date": "2014-10-09",
-          "target": 19
-        },
-        {
-          "date": "2014-10-12",
-          "target": 17
-        },
-        {
-          "date": "2014-10-15",
-          "target": 21
-        },
-        {
-          "date": "2014-10-18",
-          "target": 25
-        },
-        {
-          "date": "2014-10-21",
-          "target": 24
-        },
-        {
-          "date": "2014-10-24",
-          "target": 26
-        },
-        {
-          "date": "2014-10-27",
-          "target": 36
-        },
-        {
-          "date": "2014-10-30",
-          "target": 9
-        },
-        {
-          "date": "2014-11-02",
-          "target": 21
-        },
-        {
-          "date": "2014-11-05",
-          "target": 20
-        },
-        {
-          "date": "2014-11-08",
-          "target": 11
-        },
-        {
-          "date": "2014-11-11",
-          "target": 27
-        },
-        {
-          "date": "2014-11-14",
-          "target": 15
-        },
-        {
-          "date": "2014-11-17",
-          "target": 14
-        },
-        {
-          "date": "2014-11-20",
-          "target": 17
-        },
-        {
-          "date": "2014-11-23",
-          "target": 15
-        },
-        {
-          "date": "2014-11-26",
-          "target": 43
-        },
-        {
-          "date": "2014-11-29",
-          "target": 22
-        },
-        {
-          "date": "2014-12-02",
-          "target": 12
-        },
-        {
-          "date": "2014-12-05",
-          "target": 12
-        },
-        {
-          "date": "2014-12-08",
-          "target": 28
-        },
-        {
-          "date": "2014-12-11",
-          "target": 9
-        },
-        {
-          "date": "2014-12-14",
-          "target": 15
-        },
-        {
-          "date": "2014-12-17",
-          "target": 11
-        },
-        {
-          "date": "2014-12-20",
-          "target": 13
-        },
-        {
-          "date": "2014-12-23",
-          "target": 17
-        },
-        {
-          "date": "2014-12-26",
-          "target": 10
-        },
-        {
-          "date": "2014-12-29",
-          "target": 48
-        },
-        {
-          "date": "2015-01-01",
-          "target": 21
-        },
-        {
-          "date": "2015-01-04",
-          "target": 2
-        },
-        {
-          "date": "2015-01-07",
-          "target": 13
-        },
-        {
-          "date": "2015-01-10",
-          "target": 22
-        },
-        {
-          "date": "2015-01-13",
-          "target": 21
-        },
-        {
-          "date": "2015-01-16",
-          "target": 15
-        },
-        {
-          "date": "2015-01-19",
-          "target": 18
-        },
-        {
-          "date": "2015-01-22",
-          "target": 13
-        },
-        {
-          "date": "2015-01-25",
-          "target": 7
-        },
-        {
-          "date": "2015-01-28",
-          "target": 13
-        },
-        {
-          "date": "2015-01-31",
-          "target": 7
-        },
-        {
-          "date": "2015-02-03",
-          "target": 17
-        },
-        {
-          "date": "2015-02-06",
-          "target": 13
-        },
-        {
-          "date": "2015-02-09",
-          "target": 18
-        },
-        {
-          "date": "2015-02-12",
-          "target": 14
-        },
-        {
-          "date": "2015-02-15",
-          "target": 18
-        },
-        {
-          "date": "2015-02-18",
-          "target": 11
-        },
-        {
-          "date": "2015-02-21",
-          "target": 9
-        },
-        {
-          "date": "2015-02-24",
-          "target": 12
-        },
-        {
-          "date": "2015-02-27",
-          "target": 5
-        },
-        {
-          "date": "2015-03-02",
-          "target": 5
-        },
-        {
-          "date": "2015-03-05",
-          "target": 11
-        },
-        {
-          "date": "2015-03-08",
-          "target": 11
-        },
-        {
-          "date": "2015-03-11",
-          "target": 13
-        },
-        {
-          "date": "2015-03-14",
-          "target": 2
-        },
-        {
-          "date": "2015-03-17",
-          "target": 12
-        },
-        {
-          "date": "2015-03-20",
-          "target": 8
-        },
-        {
-          "date": "2015-03-23",
-          "target": 10
-        },
-        {
-          "date": "2015-03-26",
-          "target": 10
-        },
-        {
-          "date": "2015-03-29",
-          "target": 3
-        },
-        {
-          "date": "2015-04-01",
-          "target": 15
-        },
-        {
-          "date": "2015-04-04",
-          "target": 6
-        },
-        {
-          "date": "2015-04-07",
-          "target": 5
-        },
-        {
-          "date": "2015-04-10",
-          "target": 2
-        },
-        {
-          "date": "2015-04-13",
-          "target": 6
-        },
-        {
-          "date": "2015-04-16",
-          "target": 17
-        },
-        {
-          "date": "2015-04-19",
-          "target": 15
-        },
-        {
-          "date": "2015-04-22",
-          "target": 9
-        },
-        {
-          "date": "2015-04-25",
-          "target": 8
-        },
-        {
-          "date": "2015-04-28",
-          "target": 13
-        },
-        {
-          "date": "2015-05-01",
-          "target": 7
-        },
-        {
-          "date": "2015-05-04",
-          "target": 42
-        },
-        {
-          "date": "2015-05-07",
-          "target": 22
-        },
-        {
-          "date": "2015-05-10",
-          "target": 2
-        },
-        {
-          "date": "2015-05-13",
-          "target": 20
-        },
-        {
-          "date": "2015-05-16",
-          "target": 14
-        },
-        {
-          "date": "2015-05-19",
-          "target": 14
-        },
-        {
-          "date": "2015-05-22",
-          "target": 8
-        },
-        {
-          "date": "2015-05-25",
-          "target": 15
-        },
-        {
-          "date": "2015-05-28",
-          "target": 17
-        },
-        {
-          "date": "2015-05-31",
-          "target": 3
-        },
-        {
-          "date": "2015-06-03",
-          "target": 20
-        },
-        {
-          "date": "2015-06-06",
-          "target": 12
-        },
-        {
-          "date": "2015-06-09",
-          "target": 8
-        },
-        {
-          "date": "2015-06-12",
-          "target": 8
-        },
-        {
-          "date": "2015-06-15",
-          "target": 5
-        },
-        {
-          "date": "2015-06-18",
-          "target": 10
-        },
-        {
-          "date": "2015-06-21",
-          "target": 4
-        },
-        {
-          "date": "2015-06-24",
-          "target": 14
-        },
-        {
-          "date": "2015-06-27",
-          "target": 4
-        },
-        {
-          "date": "2015-06-30",
-          "target": 4
-        },
-        {
-          "date": "2015-07-03",
-          "target": 0
-        },
-        {
-          "date": "2015-07-06",
-          "target": 3
-        },
-        {
-          "date": "2015-07-09",
-          "target": 5
-        },
-        {
-          "date": "2015-07-12",
-          "target": 8
-        },
-        {
-          "date": "2015-07-15",
-          "target": 8
-        },
-        {
-          "date": "2015-07-18",
-          "target": 14
-        },
-        {
-          "date": "2015-07-21",
-          "target": 5
-        },
-        {
-          "date": "2015-07-24",
-          "target": 10
-        },
-        {
-          "date": "2015-07-27",
-          "target": 5
-        },
-        {
-          "date": "2015-07-30",
-          "target": 5
-        },
-        {
-          "date": "2015-08-02",
-          "target": 15
-        },
-        {
-          "date": "2015-08-05",
-          "target": 1
-        },
-        {
-          "date": "2015-08-08",
-          "target": 7
-        },
-        {
-          "date": "2015-08-11",
-          "target": 10
-        },
-        {
-          "date": "2015-08-14",
-          "target": 5
-        },
-        {
-          "date": "2015-08-17",
-          "target": 18
-        },
-        {
-          "date": "2015-08-20",
-          "target": 5
-        },
-        {
-          "date": "2015-08-23",
-          "target": 5
-        },
-        {
-          "date": "2015-08-26",
-          "target": 7
-        },
-        {
-          "date": "2015-08-29",
-          "target": 7
-        },
-        {
-          "date": "2015-09-01",
-          "target": 14
-        },
-        {
-          "date": "2015-09-04",
-          "target": 5
-        },
-        {
-          "date": "2015-09-07",
-          "target": 16
-        },
-        {
-          "date": "2015-09-10",
-          "target": 7
-        },
-        {
-          "date": "2015-09-13",
-          "target": 4
-        },
-        {
-          "date": "2015-09-16",
-          "target": 2
-        },
-        {
-          "date": "2015-09-19",
-          "target": 2
-        },
-        {
-          "date": "2015-09-22",
-          "target": 3
-        },
-        {
-          "date": "2015-09-25",
-          "target": 1
-        },
-        {
-          "date": "2015-09-28",
-          "target": 2
-        },
-        {
-          "date": "2015-10-01",
-          "target": 9
-        },
-        {
-          "date": "2015-10-04",
-          "target": 3
-        },
-        {
-          "date": "2015-10-07",
-          "target": 3
-        },
-        {
-          "date": "2015-10-10",
-          "target": 0
-        },
-        {
-          "date": "2015-10-13",
-          "target": 1
-        },
-        {
-          "date": "2015-10-16",
-          "target": 2
-        },
-        {
-          "date": "2015-10-19",
-          "target": 7
-        },
-        {
-          "date": "2015-10-22",
-          "target": 3
-        },
-        {
-          "date": "2015-10-25",
-          "target": 5
-        },
-        {
-          "date": "2015-10-28",
-          "target": 3
-        },
-        {
-          "date": "2015-10-31",
-          "target": 6
-        },
-        {
-          "date": "2015-11-03",
-          "target": 9
-        },
-        {
-          "date": "2015-11-06",
-          "target": 3
-        },
-        {
-          "date": "2015-11-09",
-          "target": 1
-        },
-        {
-          "date": "2015-11-12",
-          "target": 5
-        },
-        {
-          "date": "2015-11-15",
-          "target": 0
-        },
-        {
-          "date": "2015-11-18",
-          "target": 3
-        },
-        {
-          "date": "2015-11-21",
-          "target": 0
-        },
-        {
-          "date": "2015-11-24",
-          "target": 4
-        },
-        {
-          "date": "2015-11-27",
-          "target": 0
-        },
-        {
-          "date": "2015-11-30",
-          "target": 4
-        },
-        {
-          "date": "2015-12-03",
-          "target": 6
-        },
-        {
-          "date": "2015-12-06",
-          "target": 1
-        },
-        {
-          "date": "2015-12-09",
-          "target": 7
-        },
-        {
-          "date": "2015-12-12",
-          "target": 0
-        },
-        {
-          "date": "2015-12-15",
-          "target": 8
-        },
-        {
-          "date": "2015-12-18",
-          "target": 1
-        },
-        {
-          "date": "2015-12-21",
-          "target": 7
-        },
-        {
-          "date": "2015-12-24",
-          "target": 5
-        },
-        {
-          "date": "2015-12-27",
-          "target": 3
-        },
-        {
-          "date": "2015-12-30",
-          "target": 0
-        },
-        {
-          "date": "2016-01-02",
-          "target": 7
-        },
-        {
-          "date": "2016-01-05",
-          "target": 6
-        },
-        {
-          "date": "2016-01-08",
-          "target": 5
-        },
-        {
-          "date": "2016-01-11",
-          "target": 5
-        },
-        {
-          "date": "2016-01-14",
-          "target": 4
-        },
-        {
-          "date": "2016-01-17",
-          "target": 1
-        },
-        {
-          "date": "2016-01-20",
-          "target": 7
-        },
-        {
-          "date": "2016-01-23",
-          "target": 7
-        }
-      ]
-    },
-    {
       "scale": "7D",
       "events": [
         {
@@ -9478,6 +8133,139 @@
         {
           "date": "2016-01-11",
           "target": 24
+        }
+      ]
+    },
+    {
+      "scale": "60D",
+      "events": [
+        {
+          "date": "2010-11-08",
+          "target": 167
+        },
+        {
+          "date": "2011-01-07",
+          "target": 374
+        },
+        {
+          "date": "2011-03-08",
+          "target": 1096
+        },
+        {
+          "date": "2011-05-07",
+          "target": 4052
+        },
+        {
+          "date": "2011-07-06",
+          "target": 990
+        },
+        {
+          "date": "2011-09-04",
+          "target": 506
+        },
+        {
+          "date": "2011-11-03",
+          "target": 725
+        },
+        {
+          "date": "2012-01-02",
+          "target": 890
+        },
+        {
+          "date": "2012-03-02",
+          "target": 1105
+        },
+        {
+          "date": "2012-05-01",
+          "target": 1378
+        },
+        {
+          "date": "2012-06-30",
+          "target": 1741
+        },
+        {
+          "date": "2012-08-29",
+          "target": 2205
+        },
+        {
+          "date": "2012-10-28",
+          "target": 1939
+        },
+        {
+          "date": "2012-12-27",
+          "target": 1694
+        },
+        {
+          "date": "2013-02-25",
+          "target": 3156
+        },
+        {
+          "date": "2013-04-26",
+          "target": 2065
+        },
+        {
+          "date": "2013-06-25",
+          "target": 3046
+        },
+        {
+          "date": "2013-08-24",
+          "target": 1258
+        },
+        {
+          "date": "2013-10-23",
+          "target": 1730
+        },
+        {
+          "date": "2013-12-22",
+          "target": 1004
+        },
+        {
+          "date": "2014-02-20",
+          "target": 828
+        },
+        {
+          "date": "2014-04-21",
+          "target": 810
+        },
+        {
+          "date": "2014-06-20",
+          "target": 779
+        },
+        {
+          "date": "2014-08-19",
+          "target": 501
+        },
+        {
+          "date": "2014-10-18",
+          "target": 401
+        },
+        {
+          "date": "2014-12-17",
+          "target": 313
+        },
+        {
+          "date": "2015-02-15",
+          "target": 174
+        },
+        {
+          "date": "2015-04-16",
+          "target": 274
+        },
+        {
+          "date": "2015-06-15",
+          "target": 137
+        },
+        {
+          "date": "2015-08-14",
+          "target": 118
+        },
+        {
+          "date": "2015-10-13",
+          "target": 70
+        },
+        {
+          "date": "2015-12-12",
+          "target": 66
         }
       ]
     }

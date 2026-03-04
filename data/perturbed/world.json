@@ -29,7 +29,7 @@
     },
     {
       "method": "rewire",
-      "intensity": 0.03,
+      "intensity": 0.05,
       "invariants": {
         "n_nodes": 144,
         "n_edges": 63,
@@ -41,22 +41,49 @@
         "k_core_size": 24,
         "maximum_degree": 21,
         "degree_variance": 9.734375,
-        "global_clustering": 0.0,
-        "degree_assortativity": -1.0,
+        "global_clustering": 0.08658008658008658,
+        "degree_assortativity": -0.9365079365079365,
         "degree_entropy": 0.5133562357423771,
-        "joint_degree_entropy": -0.0,
+        "joint_degree_entropy": 0.16276479441419922,
         "degree_skewness": 5.678205011491068,
         "degree_kurtosis": 34.32318313905059,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 55.125
+        "adjacency_fourth_moment_per_node": 50.791666666666664
       }
     },
     {
       "method": "rewire",
       "intensity": 0.1,
+      "invariants": {
+        "n_nodes": 144,
+        "n_edges": 63,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 3,
+        "k_core_size": 24,
+        "maximum_degree": 21,
+        "degree_variance": 9.734375,
+        "global_clustering": 0.08658008658008658,
+        "degree_assortativity": -0.9365079365079365,
+        "degree_entropy": 0.5133562357423771,
+        "joint_degree_entropy": 0.16276479441419922,
+        "degree_skewness": 5.678205011491068,
+        "degree_kurtosis": 34.32318313905059,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 50.791666666666664
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.15,
       "invariants": {
         "n_nodes": 144,
         "n_edges": 63,
@@ -95,6 +122,60 @@
         "k_core_size": 24,
         "maximum_degree": 21,
         "degree_variance": 9.734375,
+        "global_clustering": 0.08658008658008658,
+        "degree_assortativity": -0.9365079365079365,
+        "degree_entropy": 0.5133562357423771,
+        "joint_degree_entropy": 0.16276479441419922,
+        "degree_skewness": 5.678205011491068,
+        "degree_kurtosis": 34.32318313905059,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 50.791666666666664
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 144,
+        "n_edges": 63,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 3.0,
+        "radius": 2.0,
+        "degeneracy": 3,
+        "k_core_size": 24,
+        "maximum_degree": 21,
+        "degree_variance": 9.734375,
+        "global_clustering": 0.23809523809523808,
+        "degree_assortativity": -0.8095238095238095,
+        "degree_entropy": 0.5133562357423771,
+        "joint_degree_entropy": 0.3805062184775956,
+        "degree_skewness": 5.678205011491068,
+        "degree_kurtosis": 34.32318313905059,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 47.013888888888886
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 144,
+        "n_edges": 63,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 3,
+        "k_core_size": 24,
+        "maximum_degree": 21,
+        "degree_variance": 9.734375,
         "global_clustering": 0.16450216450216448,
         "degree_assortativity": -0.8730158730158729,
         "degree_entropy": 0.5133562357423771,
@@ -111,6 +192,60 @@
     {
       "method": "rewire",
       "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 144,
+        "n_edges": 63,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 3,
+        "k_core_size": 24,
+        "maximum_degree": 21,
+        "degree_variance": 9.734375,
+        "global_clustering": 0.23809523809523808,
+        "degree_assortativity": -0.8095238095238095,
+        "degree_entropy": 0.5133562357423771,
+        "joint_degree_entropy": 0.3805062184775956,
+        "degree_skewness": 5.678205011491068,
+        "degree_kurtosis": 34.32318313905059,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 46.125
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 144,
+        "n_edges": 63,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 3.0,
+        "radius": 2.0,
+        "degeneracy": 3,
+        "k_core_size": 24,
+        "maximum_degree": 21,
+        "degree_variance": 9.734375,
+        "global_clustering": 0.23809523809523808,
+        "degree_assortativity": -0.8095238095238095,
+        "degree_entropy": 0.5133562357423771,
+        "joint_degree_entropy": 0.3805062184775956,
+        "degree_skewness": 5.678205011491068,
+        "degree_kurtosis": 34.32318313905059,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 47.013888888888886
+      }
+    },
+    {
+      "method": "rewire",
+      "intensity": 0.45,
       "invariants": {
         "n_nodes": 144,
         "n_edges": 63,
@@ -164,56 +299,56 @@
     },
     {
       "method": "sparsify",
-      "intensity": 0.03,
+      "intensity": 0.05,
       "invariants": {
         "n_nodes": 144,
-        "n_edges": 62,
+        "n_edges": 60,
         "n_articulation_points": 0,
         "n_bridges": 0,
         "diameter": 3.0,
         "radius": 2.0,
         "degeneracy": 3,
-        "k_core_size": 23,
+        "k_core_size": 21,
         "maximum_degree": 21,
-        "degree_variance": 9.439043209876539,
+        "degree_variance": 8.861111111111114,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.9985424720336818,
-        "degree_entropy": 0.5545358762006859,
-        "joint_degree_entropy": 0.7584873205812659,
-        "degree_skewness": 5.678831907434358,
-        "degree_kurtosis": 34.36091895449286,
+        "degree_assortativity": -0.9952853635391407,
+        "degree_entropy": 0.5960526215066888,
+        "joint_degree_entropy": 1.4149744596634815,
+        "degree_skewness": 5.68197899811991,
+        "degree_kurtosis": 34.46430118092669,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 52.27777777777778
+        "adjacency_fourth_moment_per_node": 46.833333333333336
       }
     },
     {
       "method": "sparsify",
-      "intensity": 0.07,
+      "intensity": 0.1,
       "invariants": {
         "n_nodes": 144,
-        "n_edges": 59,
-        "n_articulation_points": 0,
-        "n_bridges": 0,
-        "diameter": 3.0,
+        "n_edges": 57,
+        "n_articulation_points": 1,
+        "n_bridges": 1,
+        "diameter": 4.0,
         "radius": 2.0,
         "degeneracy": 3,
-        "k_core_size": 20,
-        "maximum_degree": 21,
-        "degree_variance": 8.57851080246914,
+        "k_core_size": 19,
+        "maximum_degree": 20,
+        "degree_variance": 8.026041666666663,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.9933121390303407,
-        "degree_entropy": 0.5976250510454401,
-        "joint_degree_entropy": 1.0410757561961548,
-        "degree_skewness": 5.684990399248987,
-        "degree_kurtosis": 34.541615837529946,
+        "degree_assortativity": -0.9940460950483436,
+        "degree_entropy": 0.6336632569776557,
+        "joint_degree_entropy": 1.562313990041061,
+        "degree_skewness": 5.660271432099795,
+        "degree_kurtosis": 34.2448351674903,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 44.236111111111114
+        "adjacency_fourth_moment_per_node": 40.18055555555556
       }
     },
     {
@@ -222,25 +357,52 @@
       "invariants": {
         "n_nodes": 144,
         "n_edges": 54,
-        "n_articulation_points": 2,
+        "n_articulation_points": 1,
         "n_bridges": 2,
         "diameter": 4.0,
         "radius": 2.0,
         "degeneracy": 3,
         "k_core_size": 17,
-        "maximum_degree": 20,
-        "degree_variance": 7.256944444444445,
+        "maximum_degree": 18,
+        "degree_variance": 7.215277777777778,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.9820461880880952,
-        "degree_entropy": 0.6485244799032956,
-        "joint_degree_entropy": 1.278930194270564,
-        "degree_skewness": 5.68405630599909,
-        "degree_kurtosis": 34.788467905651295,
+        "degree_assortativity": -0.997719417863776,
+        "degree_entropy": 0.6352637680638205,
+        "joint_degree_entropy": 0.6298309121390553,
+        "degree_skewness": 5.618761515672892,
+        "degree_kurtosis": 33.687412663628905,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 34.166666666666664
+        "adjacency_fourth_moment_per_node": 34.02777777777778
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.2,
+      "invariants": {
+        "n_nodes": 144,
+        "n_edges": 51,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 3.0,
+        "radius": 2.0,
+        "degeneracy": 3,
+        "k_core_size": 14,
+        "maximum_degree": 17,
+        "degree_variance": 6.456597222222219,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.9977877589327615,
+        "degree_entropy": 0.5966302295758749,
+        "joint_degree_entropy": 0.6492483548708978,
+        "degree_skewness": 5.5954792546166185,
+        "degree_kurtosis": 33.45737813482672,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 28.375
       }
     },
     {
@@ -249,25 +411,133 @@
       "invariants": {
         "n_nodes": 144,
         "n_edges": 48,
-        "n_articulation_points": 1,
-        "n_bridges": 4,
+        "n_articulation_points": 2,
+        "n_bridges": 3,
         "diameter": 4.0,
         "radius": 2.0,
         "degeneracy": 3,
-        "k_core_size": 13,
-        "maximum_degree": 18,
-        "degree_variance": 5.77777777777778,
+        "k_core_size": 12,
+        "maximum_degree": 17,
+        "degree_variance": 5.7361111111111125,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.9783118405627206,
-        "degree_entropy": 0.6776070293484124,
-        "joint_degree_entropy": 1.4325197146595599,
-        "degree_skewness": 5.662157652657118,
-        "degree_kurtosis": 34.64198252114978,
+        "degree_assortativity": -0.9887851867107277,
+        "degree_entropy": 0.682696019076682,
+        "joint_degree_entropy": 1.9232993967318117,
+        "degree_skewness": 5.622820425821963,
+        "degree_kurtosis": 33.86938427348018,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 23.444444444444443
+        "adjacency_fourth_moment_per_node": 22.86111111111111
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 144,
+        "n_edges": 45,
+        "n_articulation_points": 2,
+        "n_bridges": 2,
+        "diameter": 4.0,
+        "radius": 2.0,
+        "degeneracy": 3,
+        "k_core_size": 10,
+        "maximum_degree": 16,
+        "degree_variance": 5.067708333333333,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.9886488869296887,
+        "degree_entropy": 0.6526246230308971,
+        "joint_degree_entropy": 1.9234983219842157,
+        "degree_skewness": 5.5920592979770705,
+        "degree_kurtosis": 33.58219393409399,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 18.90277777777778
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 144,
+        "n_edges": 41,
+        "n_articulation_points": 2,
+        "n_bridges": 5,
+        "diameter": 4.0,
+        "radius": 2.0,
+        "degeneracy": 3,
+        "k_core_size": 7,
+        "maximum_degree": 15,
+        "degree_variance": 4.203510802469134,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.9829588113072477,
+        "degree_entropy": 0.6691428113880036,
+        "joint_degree_entropy": 1.5706502887941205,
+        "degree_skewness": 5.632739985646598,
+        "degree_kurtosis": 34.10416541755701,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 13.208333333333334
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 144,
+        "n_edges": 38,
+        "n_articulation_points": 3,
+        "n_bridges": 7,
+        "diameter": 4.0,
+        "radius": 2.0,
+        "degeneracy": 3,
+        "k_core_size": 8,
+        "maximum_degree": 14,
+        "degree_variance": 3.72145061728395,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.9437186383979018,
+        "degree_entropy": 0.6643893876501532,
+        "joint_degree_entropy": 1.6074097668736045,
+        "degree_skewness": 5.693465851876589,
+        "degree_kurtosis": 35.45139802774227,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 11.972222222222221
+      }
+    },
+    {
+      "method": "sparsify",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 144,
+        "n_edges": 35,
+        "n_articulation_points": 3,
+        "n_bridges": 7,
+        "diameter": 4.0,
+        "radius": 2.0,
+        "degeneracy": 3,
+        "k_core_size": 7,
+        "maximum_degree": 13,
+        "degree_variance": 3.15258487654321,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.9624630674187485,
+        "degree_entropy": 0.6511143531957033,
+        "joint_degree_entropy": 2.1044697132301153,
+        "degree_skewness": 5.548202937383226,
+        "degree_kurtosis": 33.47750092625986,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 9.569444444444445
       }
     },
     {
@@ -289,7 +559,7 @@
         "degree_entropy": 0.515666282438451,
         "joint_degree_entropy": -0.0,
         "degree_skewness": 5.657772898414832,
-        "degree_kurtosis": 34.06772032516906,
+        "degree_kurtosis": 34.06772032516908,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
@@ -299,56 +569,29 @@
     },
     {
       "method": "node_sample",
-      "intensity": 0.02,
-      "invariants": {
-        "n_nodes": 142,
-        "n_edges": 63,
-        "n_articulation_points": 0,
-        "n_bridges": 0,
-        "diameter": 2.0,
-        "radius": 2.0,
-        "degeneracy": 3,
-        "k_core_size": 24,
-        "maximum_degree": 21,
-        "degree_variance": 9.860543542947832,
-        "global_clustering": 0.0,
-        "degree_assortativity": -1.0,
-        "degree_entropy": 0.5179989326354529,
-        "joint_degree_entropy": -0.0,
-        "degree_skewness": 5.637267998227411,
-        "degree_kurtosis": 33.81226531654247,
-        "normalized_laplacian_second_moment": 0.0,
-        "normalized_laplacian_third_moment": 0.0,
-        "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 55.901408450704224
-      }
-    },
-    {
-      "method": "node_sample",
       "intensity": 0.05,
       "invariants": {
         "n_nodes": 137,
-        "n_edges": 63,
+        "n_edges": 60,
         "n_articulation_points": 0,
         "n_bridges": 0,
         "diameter": 2.0,
         "radius": 2.0,
         "degeneracy": 3,
-        "k_core_size": 24,
-        "maximum_degree": 21,
-        "degree_variance": 10.19063349139538,
+        "k_core_size": 23,
+        "maximum_degree": 20,
+        "degree_variance": 9.305770152911718,
         "global_clustering": 0.0,
         "degree_assortativity": -1.0,
-        "degree_entropy": 0.5300128121588494,
+        "degree_entropy": 0.5175203020758864,
         "joint_degree_entropy": -0.0,
-        "degree_skewness": 5.533624393078935,
-        "degree_kurtosis": 32.53511409353544,
+        "degree_skewness": 5.485108774699067,
+        "degree_kurtosis": 32.06535215943089,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 57.941605839416056
+        "adjacency_fourth_moment_per_node": 52.55474452554745
       }
     },
     {
@@ -356,26 +599,53 @@
       "intensity": 0.1,
       "invariants": {
         "n_nodes": 130,
-        "n_edges": 63,
+        "n_edges": 57,
         "n_articulation_points": 0,
         "n_bridges": 0,
         "diameter": 2.0,
         "radius": 2.0,
         "degeneracy": 3,
-        "k_core_size": 24,
-        "maximum_degree": 21,
-        "degree_variance": 10.691360946745561,
+        "k_core_size": 22,
+        "maximum_degree": 19,
+        "degree_variance": 8.877159763313607,
         "global_clustering": 0.0,
         "degree_assortativity": -1.0,
-        "degree_entropy": 0.5478778963473103,
+        "degree_entropy": 0.5220702196895634,
         "joint_degree_entropy": -0.0,
-        "degree_skewness": 5.385238947786394,
-        "degree_kurtosis": 30.747488378010317,
+        "degree_skewness": 5.286423055391018,
+        "degree_kurtosis": 29.814732775982904,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 61.06153846153846
+        "adjacency_fourth_moment_per_node": 49.98461538461538
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 123,
+        "n_edges": 18,
+        "n_articulation_points": 1,
+        "n_bridges": 18,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 1,
+        "k_core_size": 19,
+        "maximum_degree": 18,
+        "degree_variance": 2.6948245092207026,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0,
+        "degree_entropy": 0.4622384598209235,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 10.337100255945563,
+        "degree_kurtosis": 111.6035933606734,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 5.2682926829268295
       }
     },
     {
@@ -391,18 +661,126 @@
         "degeneracy": 2,
         "k_core_size": 19,
         "maximum_degree": 17,
-        "degree_variance": 5.225326991676578,
+        "degree_variance": 5.225326991676576,
         "global_clustering": 0.0,
         "degree_assortativity": -1.0,
         "degree_entropy": 0.5010222072709876,
         "joint_degree_entropy": -0.0,
-        "degree_skewness": 6.487822983881238,
-        "degree_kurtosis": 44.818265007777995,
+        "degree_skewness": 6.48782298388124,
+        "degree_kurtosis": 44.81826500777804,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
         "adjacency_fourth_moment_per_node": 19.93103448275862
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 108,
+        "n_edges": 16,
+        "n_articulation_points": 1,
+        "n_bridges": 16,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 1,
+        "k_core_size": 17,
+        "maximum_degree": 16,
+        "degree_variance": 2.430727023319616,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0,
+        "degree_entropy": 0.47056053593098,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 9.603638430244034,
+        "degree_kurtosis": 96.78983977757564,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 4.7407407407407405
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 101,
+        "n_edges": 16,
+        "n_articulation_points": 1,
+        "n_bridges": 16,
+        "diameter": 2.0,
+        "radius": 1.0,
+        "degeneracy": 1,
+        "k_core_size": 17,
+        "maximum_degree": 16,
+        "degree_variance": 2.5926869914714237,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0,
+        "degree_entropy": 0.4908627875474488,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 9.292956257388461,
+        "degree_kurtosis": 90.59578741190057,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 5.069306930693069
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 94,
+        "n_edges": 39,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 3,
+        "k_core_size": 16,
+        "maximum_degree": 13,
+        "degree_variance": 5.949751018560434,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0,
+        "degree_entropy": 0.5383642823254029,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 4.094419473691104,
+        "degree_kurtosis": 17.876007657426037,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 32.361702127659576
+      }
+    },
+    {
+      "method": "node_sample",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 80,
+        "n_edges": 26,
+        "n_articulation_points": 0,
+        "n_bridges": 0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 2,
+        "k_core_size": 15,
+        "maximum_degree": 13,
+        "degree_variance": 4.452500000000002,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0,
+        "degree_entropy": 0.5562040277821778,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 5.127731437092656,
+        "degree_kurtosis": 28.17494194064392,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 16.9
       }
     }
   ],
@@ -411,270 +789,567 @@
       "method": "noise",
       "intensity": 0.01,
       "invariants": {
-        "n_nodes": 142.94135684502106,
-        "n_edges": 63.20470174215423,
+        "n_nodes": 143.75421579773962,
+        "n_edges": 63.09591097638529,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 2.0107778451114235,
-        "radius": 1.984615565866843,
-        "degeneracy": 3.025954206123358,
-        "k_core_size": 24.08161053831832,
-        "maximum_degree": 20.860082351690007,
-        "degree_variance": 9.870378474017153,
+        "diameter": 2.007832217682904,
+        "radius": 1.9685322271263501,
+        "degeneracy": 3.0050949960477467,
+        "k_core_size": 24.221734421279375,
+        "maximum_degree": 21.19674360089012,
+        "degree_variance": 9.679984246567013,
         "global_clustering": 0.0,
-        "degree_assortativity": -1.0022617641511435,
-        "degree_entropy": 0.5179668258361406,
+        "degree_assortativity": -1.0035080980950153,
+        "degree_entropy": 0.5137033381501509,
         "joint_degree_entropy": -0.0,
-        "degree_skewness": 5.782088336221544,
-        "degree_kurtosis": 34.34424924741975,
+        "degree_skewness": 5.601650339145085,
+        "degree_kurtosis": 34.71093097435549,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 55.15541012361544
-      }
-    },
-    {
-      "method": "noise",
-      "intensity": 0.02,
-      "invariants": {
-        "n_nodes": 146.3772711231984,
-        "n_edges": 63.59430448307527,
-        "n_articulation_points": 0.0,
-        "n_bridges": 0.0,
-        "diameter": 2.0499635571701345,
-        "radius": 2.0764557088480724,
-        "degeneracy": 3.0455542548194807,
-        "k_core_size": 23.379850619794137,
-        "maximum_degree": 21.19792997583454,
-        "degree_variance": 9.606943301602756,
-        "global_clustering": 0.0,
-        "degree_assortativity": -0.9948703274346407,
-        "degree_entropy": 0.4894795032203808,
-        "joint_degree_entropy": -0.0,
-        "degree_skewness": 5.759276956577992,
-        "degree_kurtosis": 35.05320483629253,
-        "normalized_laplacian_second_moment": 0.0,
-        "normalized_laplacian_third_moment": 0.0,
-        "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 55.346637261727885
+        "adjacency_fourth_moment_per_node": 55.077796787240494
       }
     },
     {
       "method": "noise",
       "intensity": 0.05,
       "invariants": {
-        "n_nodes": 145.3298901313902,
-        "n_edges": 61.219231215562665,
+        "n_nodes": 139.72352712480665,
+        "n_edges": 62.793862326005616,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 2.063593761284652,
-        "radius": 1.9612116649584583,
-        "degeneracy": 3.240133265618871,
-        "k_core_size": 24.854526691614417,
-        "maximum_degree": 20.33730704861003,
-        "degree_variance": 9.615960072750374,
+        "diameter": 2.017213107965809,
+        "radius": 1.7581014225691738,
+        "degeneracy": 3.1718220229796885,
+        "k_core_size": 23.596655599378252,
+        "maximum_degree": 21.342346709392405,
+        "degree_variance": 10.351290412767701,
         "global_clustering": 0.0,
-        "degree_assortativity": -1.0259461322295056,
-        "degree_entropy": 0.46160706886729824,
+        "degree_assortativity": -1.020431371008977,
+        "degree_entropy": 0.5067604007424212,
         "joint_degree_entropy": -0.0,
-        "degree_skewness": 5.570722865730875,
-        "degree_kurtosis": 36.053733746725946,
+        "degree_skewness": 6.065335806034626,
+        "degree_kurtosis": 32.52710306006332,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 55.38222839577573
+        "adjacency_fourth_moment_per_node": 57.04198993645252
       }
     },
     {
       "method": "noise",
       "intensity": 0.1,
       "invariants": {
-        "n_nodes": 105.29796899482344,
-        "n_edges": 52.37623305312715,
+        "n_nodes": 136.65004479955147,
+        "n_edges": 57.232752567918666,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 2.04593348186366,
-        "radius": 1.9857759796477523,
-        "degeneracy": 2.7471793536053855,
-        "k_core_size": 22.19280702907246,
-        "maximum_degree": 22.576517451969632,
-        "degree_variance": 9.061327750553998,
+        "diameter": 1.9261657648482446,
+        "radius": 2.0007517298442092,
+        "degeneracy": 2.865187351260309,
+        "k_core_size": 26.247091346719113,
+        "maximum_degree": 18.532868955814337,
+        "degree_variance": 11.36415476072683,
         "global_clustering": 0.0,
-        "degree_assortativity": -1.0596256444980292,
-        "degree_entropy": 0.47851288774623235,
+        "degree_assortativity": -1.0729121631398884,
+        "degree_entropy": 0.47733199887054145,
         "joint_degree_entropy": -0.0,
-        "degree_skewness": 4.908665256236826,
-        "degree_kurtosis": 31.05827534364807,
+        "degree_skewness": 5.358071847962499,
+        "degree_kurtosis": 34.789104633418646,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 50.85023752674755
+        "adjacency_fourth_moment_per_node": 58.6856383851783
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 102.67389058567015,
+        "n_edges": 52.440391230705615,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.2863562623869385,
+        "radius": 2.4679633902176374,
+        "degeneracy": 2.838494397589885,
+        "k_core_size": 22.607289936415984,
+        "maximum_degree": 21.098427594629985,
+        "degree_variance": 11.356907706204002,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0694089668026485,
+        "degree_entropy": 0.5216216726977144,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 5.7985233368161895,
+        "degree_kurtosis": 36.93312795661221,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 46.24698166771152
       }
     },
     {
       "method": "noise",
       "intensity": 0.2,
       "invariants": {
-        "n_nodes": 124.9695718235853,
-        "n_edges": 88.7320131758747,
+        "n_nodes": 156.12949915655258,
+        "n_edges": 58.87996004311219,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 2.583574539583525,
-        "radius": 1.9264951435156703,
-        "degeneracy": 3.437416749518063,
-        "k_core_size": 20.48905967876028,
-        "maximum_degree": 13.77182284147802,
-        "degree_variance": 11.729251235650576,
+        "diameter": 1.9691725217804525,
+        "radius": 2.0829243351903206,
+        "degeneracy": 2.5286372506976273,
+        "k_core_size": 24.737209427492786,
+        "maximum_degree": 15.865856538321744,
+        "degree_variance": 8.436481789149404,
         "global_clustering": 0.0,
-        "degree_assortativity": -1.0079427112199695,
-        "degree_entropy": 0.5972702812205253,
+        "degree_assortativity": -0.712355132749672,
+        "degree_entropy": 0.6619407884896131,
         "joint_degree_entropy": -0.0,
-        "degree_skewness": 4.81788214582828,
-        "degree_kurtosis": 33.89041650053787,
+        "degree_skewness": 7.552902959211195,
+        "degree_kurtosis": 43.722708992916125,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 69.45061820905093
+        "adjacency_fourth_moment_per_node": 56.578368290257345
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 214.1105160561135,
+        "n_edges": 61.97352307663687,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.932225989648619,
+        "radius": 0.8221544292794025,
+        "degeneracy": 3.593989783650329,
+        "k_core_size": 19.285926397327465,
+        "maximum_degree": 24.11604191051981,
+        "degree_variance": 10.406857652693605,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.1056752604421205,
+        "degree_entropy": 0.5570304146881463,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 6.396477113340638,
+        "degree_kurtosis": 33.63159947399151,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 69.52902643054031
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 155.74945971928142,
+        "n_edges": 54.46126280995715,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 3.019634377571076,
+        "radius": 2.2059526478641907,
+        "degeneracy": 2.9814257074348762,
+        "k_core_size": 24.265668423735715,
+        "maximum_degree": 20.4661146977104,
+        "degree_variance": 14.758078159407793,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.1761596891359334,
+        "degree_entropy": 0.4753178562404287,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 3.652740739948615,
+        "degree_kurtosis": 16.955375431852808,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 74.93981182220983
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 121.36954373898428,
+        "n_edges": 104.08667227296905,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0770647346432813,
+        "radius": 1.5677198083068191,
+        "degeneracy": 4.445860296221547,
+        "k_core_size": 14.713926633223176,
+        "maximum_degree": 22.8051205915472,
+        "degree_variance": 8.990101536180415,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.6520070718525552,
+        "degree_entropy": 0.591394270761826,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 3.6576543949943794,
+        "degree_kurtosis": 37.81583005299654,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 68.97202277876036
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 198.8723454684593,
+        "n_edges": 39.45417057364969,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.4103728065766448,
+        "radius": 2.0679312464791257,
+        "degeneracy": 3.7271581781480534,
+        "k_core_size": 29.66209938082268,
+        "maximum_degree": 22.88065522147932,
+        "degree_variance": 15.260292458046369,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.023280480218559,
+        "degree_entropy": 0.5258434894244224,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 8.735091882430106,
+        "degree_kurtosis": 15.832482896567385,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 43.969347276798494
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 122.4451215072991,
+        "n_edges": 68.53611674976845,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.6476336328635557,
+        "radius": 1.8652522810572911,
+        "degeneracy": 1.2535451866639367,
+        "k_core_size": 27.05665923294967,
+        "maximum_degree": 13.80564797268879,
+        "degree_variance": 6.402482866535699,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.6609243183595161,
+        "degree_entropy": 0.41016035741530943,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 2.9621777471443282,
+        "degree_kurtosis": 59.21629339052451,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 71.91897030093254
       }
     },
     {
       "method": "jitter",
       "intensity": 0.01,
       "invariants": {
-        "n_nodes": 143.1474544857938,
-        "n_edges": 62.99261930969532,
+        "n_nodes": 145.58431222408325,
+        "n_edges": 63.37699954460888,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 2.0013682197665914,
-        "radius": 2.012253850766777,
-        "degeneracy": 3.021439913728112,
-        "k_core_size": 23.85307551894669,
-        "maximum_degree": 20.835151716580558,
-        "degree_variance": 9.85442983031909,
+        "diameter": 2.0224622734343476,
+        "radius": 2.0044570988122072,
+        "degeneracy": 3.006635449751955,
+        "k_core_size": 24.198666897900573,
+        "maximum_degree": 21.68227397600033,
+        "degree_variance": 9.531369497172301,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.9966426092492618,
-        "degree_entropy": 0.5141888560382274,
+        "degree_assortativity": -1.0133176321397248,
+        "degree_entropy": 0.5073639288594844,
         "joint_degree_entropy": -0.0,
-        "degree_skewness": 5.647455583630807,
-        "degree_kurtosis": 34.30853406137564,
+        "degree_skewness": 5.628452150183434,
+        "degree_kurtosis": 34.612413425273616,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 55.383492825631635
-      }
-    },
-    {
-      "method": "jitter",
-      "intensity": 0.02,
-      "invariants": {
-        "n_nodes": 142.92136619377862,
-        "n_edges": 62.66725661432475,
-        "n_articulation_points": 0.0,
-        "n_bridges": 0.0,
-        "diameter": 2.0553922139292298,
-        "radius": 1.9914624048097909,
-        "degeneracy": 3.0253338033920265,
-        "k_core_size": 24.495654897365156,
-        "maximum_degree": 20.592751524671908,
-        "degree_variance": 9.7565322494713,
-        "global_clustering": 0.0,
-        "degree_assortativity": -0.997704768796294,
-        "degree_entropy": 0.5112911294582061,
-        "joint_degree_entropy": -0.0,
-        "degree_skewness": 5.739083019756481,
-        "degree_kurtosis": 35.15769008920683,
-        "normalized_laplacian_second_moment": 0.0,
-        "normalized_laplacian_third_moment": 0.0,
-        "random_walk_triangle_weight": 0.0,
-        "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 53.93808721913059
+        "adjacency_fourth_moment_per_node": 54.46534587214016
       }
     },
     {
       "method": "jitter",
       "intensity": 0.05,
       "invariants": {
-        "n_nodes": 143.65418996132988,
-        "n_edges": 65.65875462660902,
+        "n_nodes": 147.48584099559469,
+        "n_edges": 57.84214964778013,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 2.2495970316842246,
-        "radius": 1.9948852553071466,
-        "degeneracy": 3.0462022953374515,
-        "k_core_size": 23.951277762386724,
-        "maximum_degree": 22.076015182289357,
-        "degree_variance": 10.93818075250745,
+        "diameter": 1.9086780170087427,
+        "radius": 1.8611591028728904,
+        "degeneracy": 3.2657036989991983,
+        "k_core_size": 24.856509223569475,
+        "maximum_degree": 21.152450828117836,
+        "degree_variance": 9.887538975609486,
         "global_clustering": 0.0,
-        "degree_assortativity": -1.0175992925388162,
-        "degree_entropy": 0.5212812784631338,
+        "degree_assortativity": -0.9919409858444798,
+        "degree_entropy": 0.5208880035618935,
         "joint_degree_entropy": -0.0,
-        "degree_skewness": 5.312978511454535,
-        "degree_kurtosis": 36.20577276510865,
+        "degree_skewness": 5.542636788855233,
+        "degree_kurtosis": 34.400369508981115,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 57.13463058697657
+        "adjacency_fourth_moment_per_node": 48.949399314235606
       }
     },
     {
       "method": "jitter",
       "intensity": 0.1,
       "invariants": {
-        "n_nodes": 143.34230093889562,
-        "n_edges": 65.47872957152309,
+        "n_nodes": 132.97529201218077,
+        "n_edges": 59.5550915776584,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 1.8724331023743956,
-        "radius": 1.9169799616470398,
-        "degeneracy": 2.9491211934222017,
-        "k_core_size": 26.108851068233612,
-        "maximum_degree": 19.224717094998688,
-        "degree_variance": 9.345429753498268,
+        "diameter": 2.139201306059226,
+        "radius": 2.00368606641942,
+        "degeneracy": 2.8780004682246862,
+        "k_core_size": 24.20624252164965,
+        "maximum_degree": 22.19607784335044,
+        "degree_variance": 9.186444575523522,
         "global_clustering": 0.0,
-        "degree_assortativity": -0.8998662960701747,
-        "degree_entropy": 0.5027615055403827,
+        "degree_assortativity": -1.2288017245705058,
+        "degree_entropy": 0.49896369567595616,
         "joint_degree_entropy": -0.0,
-        "degree_skewness": 5.765037312386549,
-        "degree_kurtosis": 33.415935716814055,
+        "degree_skewness": 5.762270231188851,
+        "degree_kurtosis": 29.23336907817868,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 53.59336611992415
+        "adjacency_fourth_moment_per_node": 50.23686123831501
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.15,
+      "invariants": {
+        "n_nodes": 130.65670514317205,
+        "n_edges": 56.15315750165951,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.9511115199613067,
+        "radius": 2.625400591116334,
+        "degeneracy": 2.9099397053144336,
+        "k_core_size": 23.956176238402634,
+        "maximum_degree": 25.211562152399086,
+        "degree_variance": 13.609765649907274,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0308113142645672,
+        "degree_entropy": 0.6212295127901055,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 6.0993422678827685,
+        "degree_kurtosis": 37.64271315854128,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 53.35019020072969
       }
     },
     {
       "method": "jitter",
       "intensity": 0.2,
       "invariants": {
-        "n_nodes": 142.36978407007834,
-        "n_edges": 86.40501557499672,
+        "n_nodes": 121.74505101895932,
+        "n_edges": 83.34513093342566,
         "n_articulation_points": 0.0,
         "n_bridges": 0.0,
-        "diameter": 2.016416359270604,
-        "radius": 1.7109175128079417,
-        "degeneracy": 3.0828026471022145,
-        "k_core_size": 19.758666916130483,
-        "maximum_degree": 30.98425987001339,
-        "degree_variance": 10.754808168406026,
+        "diameter": 2.2846529742773907,
+        "radius": 1.3772862993092598,
+        "degeneracy": 1.9245143033230119,
+        "k_core_size": 30.58500768817771,
+        "maximum_degree": 14.584027526901878,
+        "degree_variance": 7.438386387615065,
         "global_clustering": 0.0,
-        "degree_assortativity": -1.4024072125143492,
-        "degree_entropy": 0.5532493630093271,
+        "degree_assortativity": -1.1778400429946618,
+        "degree_entropy": 0.5286457056308375,
         "joint_degree_entropy": -0.0,
-        "degree_skewness": 2.5600165860029414,
-        "degree_kurtosis": 44.384604219936215,
+        "degree_skewness": 6.730918576303846,
+        "degree_kurtosis": 31.213522618314336,
         "normalized_laplacian_second_moment": 0.0,
         "normalized_laplacian_third_moment": 0.0,
         "random_walk_triangle_weight": 0.0,
         "random_walk_fourth_moment": 0.0,
-        "adjacency_fourth_moment_per_node": 49.46455200221194
+        "adjacency_fourth_moment_per_node": 54.78226453299624
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.25,
+      "invariants": {
+        "n_nodes": 129.62935744820612,
+        "n_edges": 51.61254103558962,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0363612896305825,
+        "radius": 2.11719993978336,
+        "degeneracy": 3.6965183001476127,
+        "k_core_size": 30.928369593039562,
+        "maximum_degree": 19.349305918644657,
+        "degree_variance": 7.101779030835771,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.608625184349848,
+        "degree_entropy": 0.4772289624999896,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 6.277086480253548,
+        "degree_kurtosis": 38.23133347221998,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 49.95402721710795
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.3,
+      "invariants": {
+        "n_nodes": 171.10291065245585,
+        "n_edges": 75.93721521959662,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 3.345812149156795,
+        "radius": 2.0635427031516063,
+        "degeneracy": 3.2309412241039155,
+        "k_core_size": 34.88544706910495,
+        "maximum_degree": 27.76101651151364,
+        "degree_variance": 7.801344698420413,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.386969681595467,
+        "degree_entropy": 0.2912823534681518,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 7.223405765956785,
+        "degree_kurtosis": 22.211719123045075,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 47.88113935700905
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.35,
+      "invariants": {
+        "n_nodes": 93.21250132416375,
+        "n_edges": 48.43482313002116,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.540973510866197,
+        "radius": 2.292121064331948,
+        "degeneracy": 2.2577145589487344,
+        "k_core_size": 23.13467991396702,
+        "maximum_degree": 28.008327540606878,
+        "degree_variance": 14.693301758166577,
+        "global_clustering": 0.0,
+        "degree_assortativity": -0.36773788189608403,
+        "degree_entropy": 0.24939400857827382,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 8.457446285568318,
+        "degree_kurtosis": 31.5498407779369,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 39.47476723742892
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.4,
+      "invariants": {
+        "n_nodes": 125.5759230552948,
+        "n_edges": 59.484689528008815,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.8999569050984828,
+        "radius": 2.512585737224632,
+        "degeneracy": 3.056673268659997,
+        "k_core_size": 29.36592612817833,
+        "maximum_degree": 25.451324989075733,
+        "degree_variance": 12.08231905554779,
+        "global_clustering": 0.0,
+        "degree_assortativity": -2.3689558720212096,
+        "degree_entropy": 0.47489304466025833,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 3.873442135697552,
+        "degree_kurtosis": 33.77615009421128,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 39.63117173955254
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.45,
+      "invariants": {
+        "n_nodes": 212.03293946981154,
+        "n_edges": 39.14695845172174,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 1.7372759632955246,
+        "radius": 3.600567917562554,
+        "degeneracy": 1.8813427516145638,
+        "k_core_size": 18.494412240547195,
+        "maximum_degree": 21.3427631118248,
+        "degree_variance": 16.298232517027838,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.8005169748697591,
+        "degree_entropy": 0.45449434694802004,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 11.807331405498266,
+        "degree_kurtosis": 51.79402158172303,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 42.50956850442383
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.99,
+      "invariants": {
+        "n_nodes": 144.0,
+        "n_edges": 63.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 3.0,
+        "k_core_size": 24.0,
+        "maximum_degree": 21.0,
+        "degree_variance": 9.734375,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0,
+        "degree_entropy": 0.5133562357423771,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 5.678205011491068,
+        "degree_kurtosis": 34.32318313905059,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 55.125
       }
     },
     {
@@ -733,7 +1408,61 @@
     },
     {
       "method": "subset",
+      "intensity": 0.85,
+      "invariants": {
+        "n_nodes": 144.0,
+        "n_edges": 63.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 3.0,
+        "k_core_size": 24.0,
+        "maximum_degree": 21.0,
+        "degree_variance": 9.734375,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0,
+        "degree_entropy": 0.5133562357423771,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 5.678205011491068,
+        "degree_kurtosis": 34.32318313905059,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 55.125
+      }
+    },
+    {
+      "method": "subset",
       "intensity": 0.8,
+      "invariants": {
+        "n_nodes": 144.0,
+        "n_edges": 63.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 3.0,
+        "k_core_size": 24.0,
+        "maximum_degree": 21.0,
+        "degree_variance": 9.734375,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0,
+        "degree_entropy": 0.5133562357423771,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 5.678205011491068,
+        "degree_kurtosis": 34.32318313905059,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 55.125
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.75,
       "invariants": {
         "n_nodes": 144.0,
         "n_edges": 63.0,
@@ -787,7 +1516,61 @@
     },
     {
       "method": "subset",
+      "intensity": 0.65,
+      "invariants": {
+        "n_nodes": 144.0,
+        "n_edges": 63.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 3.0,
+        "k_core_size": 24.0,
+        "maximum_degree": 21.0,
+        "degree_variance": 9.734375,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0,
+        "degree_entropy": 0.5133562357423771,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 5.678205011491068,
+        "degree_kurtosis": 34.32318313905059,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 55.125
+      }
+    },
+    {
+      "method": "subset",
       "intensity": 0.6,
+      "invariants": {
+        "n_nodes": 144.0,
+        "n_edges": 63.0,
+        "n_articulation_points": 0.0,
+        "n_bridges": 0.0,
+        "diameter": 2.0,
+        "radius": 2.0,
+        "degeneracy": 3.0,
+        "k_core_size": 24.0,
+        "maximum_degree": 21.0,
+        "degree_variance": 9.734375,
+        "global_clustering": 0.0,
+        "degree_assortativity": -1.0,
+        "degree_entropy": 0.5133562357423771,
+        "joint_degree_entropy": -0.0,
+        "degree_skewness": 5.678205011491068,
+        "degree_kurtosis": 34.32318313905059,
+        "normalized_laplacian_second_moment": 0.0,
+        "normalized_laplacian_third_moment": 0.0,
+        "random_walk_triangle_weight": 0.0,
+        "random_walk_fourth_moment": 0.0,
+        "adjacency_fourth_moment_per_node": 55.125
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.55,
       "invariants": {
         "n_nodes": 144.0,
         "n_edges": 63.0,
@@ -825,19 +1608,6 @@
         "hurst_exponent": 0.6403027038914147,
         "trend_coeff": 0.05590485028092596,
         "count_skewness": 1.713397301868222
-      }
-    },
-    {
-      "method": "scaling",
-      "intensity": 0.75,
-      "signatures": {
-        "lag1_autocorr": 0.24822316318563678,
-        "coef_variation": 0.774644934164071,
-        "fano_factor": 0.600074774026658,
-        "norm_succ_diff": 0.6610693277304314,
-        "hurst_exponent": 0.640302703891415,
-        "trend_coeff": 0.055904850280925955,
-        "count_skewness": 1.7133973018682214
       }
     },
     {
@@ -880,6 +1650,84 @@
       }
     },
     {
+      "method": "scaling",
+      "intensity": 2.5,
+      "signatures": {
+        "lag1_autocorr": 0.24822316318563684,
+        "coef_variation": 0.7746449341640708,
+        "fano_factor": 0.6000747740266578,
+        "norm_succ_diff": 0.6610693277304314,
+        "hurst_exponent": 0.640302703891415,
+        "trend_coeff": 0.05590485028092596,
+        "count_skewness": 1.7133973018682231
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 3.0,
+      "signatures": {
+        "lag1_autocorr": 0.24822316318563678,
+        "coef_variation": 0.774644934164071,
+        "fano_factor": 0.600074774026658,
+        "norm_succ_diff": 0.6610693277304314,
+        "hurst_exponent": 0.640302703891415,
+        "trend_coeff": 0.055904850280925955,
+        "count_skewness": 1.7133973018682214
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 3.5,
+      "signatures": {
+        "lag1_autocorr": 0.24822316318563678,
+        "coef_variation": 0.774644934164071,
+        "fano_factor": 0.600074774026658,
+        "norm_succ_diff": 0.6610693277304314,
+        "hurst_exponent": 0.640302703891415,
+        "trend_coeff": 0.05590485028092595,
+        "count_skewness": 1.7133973018682223
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 4.0,
+      "signatures": {
+        "lag1_autocorr": 0.24822316318563684,
+        "coef_variation": 0.7746449341640708,
+        "fano_factor": 0.6000747740266578,
+        "norm_succ_diff": 0.6610693277304313,
+        "hurst_exponent": 0.6403027038914147,
+        "trend_coeff": 0.05590485028092596,
+        "count_skewness": 1.713397301868222
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 4.5,
+      "signatures": {
+        "lag1_autocorr": 0.24822316318563684,
+        "coef_variation": 0.774644934164071,
+        "fano_factor": 0.600074774026658,
+        "norm_succ_diff": 0.6610693277304314,
+        "hurst_exponent": 0.640302703891415,
+        "trend_coeff": 0.055904850280925955,
+        "count_skewness": 1.7133973018682225
+      }
+    },
+    {
+      "method": "scaling",
+      "intensity": 5.0,
+      "signatures": {
+        "lag1_autocorr": 0.24822316318563684,
+        "coef_variation": 0.7746449341640708,
+        "fano_factor": 0.6000747740266578,
+        "norm_succ_diff": 0.6610693277304314,
+        "hurst_exponent": 0.640302703891415,
+        "trend_coeff": 0.05590485028092596,
+        "count_skewness": 1.7133973018682231
+      }
+    },
+    {
       "method": "smoothing",
       "intensity": 1.0,
       "signatures": {
@@ -907,6 +1755,19 @@
     },
     {
       "method": "smoothing",
+      "intensity": 3.0,
+      "signatures": {
+        "lag1_autocorr": 0.8156772221711109,
+        "coef_variation": 0.5406065586243229,
+        "fano_factor": 0.7415998289698357,
+        "norm_succ_diff": 0.22611882689047116,
+        "hurst_exponent": 0.6917332885886871,
+        "trend_coeff": 0.07792079289400182,
+        "count_skewness": 1.3845354985593217
+      }
+    },
+    {
+      "method": "smoothing",
       "intensity": 4.0,
       "signatures": {
         "lag1_autocorr": 0.8696757933159632,
@@ -916,6 +1777,45 @@
         "hurst_exponent": 0.7028459844290595,
         "trend_coeff": 0.08343746620325526,
         "count_skewness": 1.361888349822659
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 5.0,
+      "signatures": {
+        "lag1_autocorr": 0.9017622720699585,
+        "coef_variation": 0.46994099873222234,
+        "fano_factor": 0.5607667365867368,
+        "norm_succ_diff": 0.14492798210034846,
+        "hurst_exponent": 0.7113848055594576,
+        "trend_coeff": 0.08817834430646647,
+        "count_skewness": 1.298904520049375
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 6.0,
+      "signatures": {
+        "lag1_autocorr": 0.9209413444539696,
+        "coef_variation": 0.4462762194563071,
+        "fano_factor": 0.5058885704742383,
+        "norm_succ_diff": 0.1220434053260161,
+        "hurst_exponent": 0.7181353845229564,
+        "trend_coeff": 0.09296741223015524,
+        "count_skewness": 1.2817230285571837
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 7.0,
+      "signatures": {
+        "lag1_autocorr": 0.9332896099449295,
+        "coef_variation": 0.4262104628142524,
+        "fano_factor": 0.4615170296378121,
+        "norm_succ_diff": 0.1073604188868029,
+        "hurst_exponent": 0.7238569650108319,
+        "trend_coeff": 0.09730361601725347,
+        "count_skewness": 1.2598557365459928
       }
     },
     {
@@ -933,80 +1833,158 @@
     },
     {
       "method": "smoothing",
-      "intensity": 16.0,
+      "intensity": 9.0,
       "signatures": {
-        "lag1_autocorr": 0.9743270177817721,
-        "coef_variation": 0.31715348653735637,
-        "fano_factor": 0.2555616982169238,
-        "norm_succ_diff": 0.047009861246470684,
-        "hurst_exponent": 0.7610525951186302,
-        "trend_coeff": 0.13149183093279831,
-        "count_skewness": 1.0689553412467094
+        "lag1_autocorr": 0.9522793517075364,
+        "coef_variation": 0.39273703754690237,
+        "fano_factor": 0.3918959587399435,
+        "norm_succ_diff": 0.08139815857145187,
+        "hurst_exponent": 0.7342384787860599,
+        "trend_coeff": 0.10478500950595641,
+        "count_skewness": 1.20165793811319
+      }
+    },
+    {
+      "method": "smoothing",
+      "intensity": 10.0,
+      "signatures": {
+        "lag1_autocorr": 0.9576228154671877,
+        "coef_variation": 0.3789708942667351,
+        "fano_factor": 0.36495087649074354,
+        "norm_succ_diff": 0.0743508416243685,
+        "hurst_exponent": 0.7387824186006016,
+        "trend_coeff": 0.10890490141143584,
+        "count_skewness": 1.1802023065536473
       }
     },
     {
       "method": "bootstrapping",
-      "intensity": 0.0,
+      "intensity": 0.01,
       "signatures": {
-        "lag1_autocorr": 0.0,
-        "coef_variation": 0.0,
-        "fano_factor": 0.0,
-        "norm_succ_diff": 0.0,
-        "hurst_exponent": 0.5,
-        "trend_coeff": 0.0,
-        "count_skewness": 0.0
+        "lag1_autocorr": 0.007819656553630431,
+        "coef_variation": 0.7200751617826199,
+        "fano_factor": 2.017418206707216,
+        "norm_succ_diff": 0.7662496007298966,
+        "hurst_exponent": 0.48323452261239014,
+        "trend_coeff": 0.017466445730434745,
+        "count_skewness": 0.9412532034251843
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.05,
+      "signatures": {
+        "lag1_autocorr": -0.07985707240438739,
+        "coef_variation": 0.7024456088569212,
+        "fano_factor": 1.2877795918362411,
+        "norm_succ_diff": 0.7239231292514232,
+        "hurst_exponent": 0.5275678534607288,
+        "trend_coeff": 0.0395027665473451,
+        "count_skewness": 1.7729417086011678
       }
     },
     {
       "method": "bootstrapping",
       "intensity": 0.1,
       "signatures": {
-        "lag1_autocorr": -0.013729306237559028,
-        "coef_variation": 0.7780562953428423,
-        "fano_factor": 1.5823494651038266,
-        "norm_succ_diff": 0.7651553744266049,
-        "hurst_exponent": 0.49155059553463265,
-        "trend_coeff": 0.02423423420681566,
-        "count_skewness": 1.8956310649652865
+        "lag1_autocorr": -0.03306692296582887,
+        "coef_variation": 0.69508183363276,
+        "fano_factor": 1.296304383787772,
+        "norm_succ_diff": 0.7155930521089144,
+        "hurst_exponent": 0.5837293678895076,
+        "trend_coeff": -0.06485994567528053,
+        "count_skewness": 1.757189637201039
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.15,
+      "signatures": {
+        "lag1_autocorr": -0.047301827897879255,
+        "coef_variation": 0.7623895592167046,
+        "fano_factor": 1.3033349168640267,
+        "norm_succ_diff": 0.7492161520186682,
+        "hurst_exponent": 0.49497893952531774,
+        "trend_coeff": -0.007762006872328719,
+        "count_skewness": 1.637402448866676
       }
     },
     {
       "method": "bootstrapping",
       "intensity": 0.2,
       "signatures": {
-        "lag1_autocorr": -0.023405724344114493,
-        "coef_variation": 0.8145627053616962,
-        "fano_factor": 1.7643598731423846,
-        "norm_succ_diff": 0.8087885161071904,
-        "hurst_exponent": 0.5194489688593359,
-        "trend_coeff": -0.023846457108260718,
-        "count_skewness": 1.878207458948289
+        "lag1_autocorr": 0.014271156127147003,
+        "coef_variation": 0.7948513930564199,
+        "fano_factor": 1.5832575274524325,
+        "norm_succ_diff": 0.7863818632657152,
+        "hurst_exponent": 0.5213743141732025,
+        "trend_coeff": -0.05014661963185751,
+        "count_skewness": 1.7532009940625068
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.25,
+      "signatures": {
+        "lag1_autocorr": 0.008327442135776957,
+        "coef_variation": 0.6896589575791293,
+        "fano_factor": 1.113390974591864,
+        "norm_succ_diff": 0.6692643155097634,
+        "hurst_exponent": 0.5050833386011607,
+        "trend_coeff": 0.01097568913795997,
+        "count_skewness": 1.70612634508643
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.3,
+      "signatures": {
+        "lag1_autocorr": 0.028741219101039217,
+        "coef_variation": 0.7067990600748006,
+        "fano_factor": 1.2578924731177799,
+        "norm_succ_diff": 0.6947378811913335,
+        "hurst_exponent": 0.4473634678144358,
+        "trend_coeff": 0.013516795305749339,
+        "count_skewness": 1.6514791792344476
       }
     },
     {
       "method": "bootstrapping",
       "intensity": 0.35,
       "signatures": {
-        "lag1_autocorr": -0.006272863770234278,
-        "coef_variation": 0.7102819349988512,
-        "fano_factor": 1.2333725490191034,
-        "norm_succ_diff": 0.720458242555987,
-        "hurst_exponent": 0.5602939670750127,
-        "trend_coeff": 0.0027430812041210157,
-        "count_skewness": 1.5530049015627467
+        "lag1_autocorr": -0.03715463827854174,
+        "coef_variation": 0.7851876481227594,
+        "fano_factor": 1.5293955984964316,
+        "norm_succ_diff": 0.7815022365357379,
+        "hurst_exponent": 0.4816678142556697,
+        "trend_coeff": 0.01959186383484137,
+        "count_skewness": 1.8361305265144037
       }
     },
     {
       "method": "bootstrapping",
-      "intensity": 0.5,
+      "intensity": 0.4,
       "signatures": {
-        "lag1_autocorr": -0.025066415023512294,
-        "coef_variation": 0.769089680613388,
-        "fano_factor": 1.364149345649909,
-        "norm_succ_diff": 0.752734411085124,
-        "hurst_exponent": 0.552397043925259,
-        "trend_coeff": -0.04107527302837436,
-        "count_skewness": 2.103790846105669
+        "lag1_autocorr": 0.07312409401497445,
+        "coef_variation": 0.8377161172011112,
+        "fano_factor": 1.8034791018991252,
+        "norm_succ_diff": 0.7725312607941727,
+        "hurst_exponent": 0.552305666998183,
+        "trend_coeff": -0.059415539502806695,
+        "count_skewness": 1.8693440492485587
+      }
+    },
+    {
+      "method": "bootstrapping",
+      "intensity": 0.45,
+      "signatures": {
+        "lag1_autocorr": 0.012277374597203666,
+        "coef_variation": 0.7465754641439641,
+        "fano_factor": 1.3915818666661088,
+        "norm_succ_diff": 0.7364472888885938,
+        "hurst_exponent": 0.4898120835980595,
+        "trend_coeff": -0.01206831141204804,
+        "count_skewness": 1.6848915775186177
       }
     }
   ],
@@ -1015,130 +1993,273 @@
       "method": "noise",
       "intensity": 0.01,
       "signatures": {
-        "lag1_autocorr": 0.24667829760785226,
-        "coef_variation": 0.7711655348401726,
-        "fano_factor": 1.5035412418565002,
-        "norm_succ_diff": 0.6728317349880077,
-        "hurst_exponent": 0.6516419814723722,
-        "trend_coeff": 0.05677712162371296,
-        "count_skewness": 1.7207122359138838
-      }
-    },
-    {
-      "method": "noise",
-      "intensity": 0.02,
-      "signatures": {
-        "lag1_autocorr": 0.24928828715860277,
-        "coef_variation": 0.7803603099199865,
-        "fano_factor": 1.5802330847712476,
-        "norm_succ_diff": 0.6697079533782831,
-        "hurst_exponent": 0.6267080904378473,
-        "trend_coeff": 0.05476248721274005,
-        "count_skewness": 1.7266929425271536
+        "lag1_autocorr": 0.24568901967592482,
+        "coef_variation": 0.778127118633035,
+        "fano_factor": 1.5327645587541763,
+        "norm_succ_diff": 0.66317613265793,
+        "hurst_exponent": 0.6420145036962365,
+        "trend_coeff": 0.05555291607676995,
+        "count_skewness": 1.6928916737129833
       }
     },
     {
       "method": "noise",
       "intensity": 0.05,
       "signatures": {
-        "lag1_autocorr": 0.24751704420406404,
-        "coef_variation": 0.8109972317228424,
-        "fano_factor": 1.5452792221266876,
-        "norm_succ_diff": 0.6891522391253984,
-        "hurst_exponent": 0.7183099371340801,
-        "trend_coeff": 0.05969989747441567,
-        "count_skewness": 1.834705767084771
+        "lag1_autocorr": 0.24639925238756247,
+        "coef_variation": 0.8041793690342848,
+        "fano_factor": 1.4513808105189259,
+        "norm_succ_diff": 0.6941931023519308,
+        "hurst_exponent": 0.623445090654943,
+        "trend_coeff": 0.05526973049801043,
+        "count_skewness": 1.6749403560361407
       }
     },
     {
       "method": "noise",
       "intensity": 0.1,
       "signatures": {
-        "lag1_autocorr": 0.22786600831496995,
-        "coef_variation": 0.8713099099344574,
-        "fano_factor": 1.414716999908183,
-        "norm_succ_diff": 0.5692679771890323,
-        "hurst_exponent": 0.7097940264023267,
-        "trend_coeff": 0.05916723254876203,
-        "count_skewness": 1.7238921124085083
+        "lag1_autocorr": 0.29445090754447656,
+        "coef_variation": 0.7237469037026707,
+        "fano_factor": 1.5519355672404576,
+        "norm_succ_diff": 0.5648792334020597,
+        "hurst_exponent": 0.6319273093675557,
+        "trend_coeff": 0.052823739723410985,
+        "count_skewness": 1.5558003724364442
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.15,
+      "signatures": {
+        "lag1_autocorr": 0.2755297194205917,
+        "coef_variation": 0.8018207004280831,
+        "fano_factor": 1.4051941201416973,
+        "norm_succ_diff": 0.6162206678078397,
+        "hurst_exponent": 0.4343737360071772,
+        "trend_coeff": 0.05991466364428377,
+        "count_skewness": 1.516227205413465
       }
     },
     {
       "method": "noise",
       "intensity": 0.2,
       "signatures": {
-        "lag1_autocorr": 0.20110949831505093,
-        "coef_variation": 0.7494995803800047,
-        "fano_factor": 1.2446478381268289,
-        "norm_succ_diff": 0.4384229251113747,
-        "hurst_exponent": 0.5555631266507488,
-        "trend_coeff": 0.044654134962783386,
-        "count_skewness": 1.9666264852933948
+        "lag1_autocorr": 0.16215554306859897,
+        "coef_variation": 0.7712055762978074,
+        "fano_factor": 1.804084850482109,
+        "norm_succ_diff": 0.6409719858276509,
+        "hurst_exponent": 0.5635145401427057,
+        "trend_coeff": 0.06747962888103981,
+        "count_skewness": 1.2199591181687832
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.25,
+      "signatures": {
+        "lag1_autocorr": 0.19967811071090635,
+        "coef_variation": 0.8649144229549984,
+        "fano_factor": 1.8862179787518842,
+        "norm_succ_diff": 0.6765410584629645,
+        "hurst_exponent": 0.653018873325914,
+        "trend_coeff": 0.04273791615771994,
+        "count_skewness": 1.123038759028311
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.3,
+      "signatures": {
+        "lag1_autocorr": 0.1536223895516935,
+        "coef_variation": 0.6868334036336948,
+        "fano_factor": 1.575781407277221,
+        "norm_succ_diff": 0.5987663059583184,
+        "hurst_exponent": 0.5427886244657352,
+        "trend_coeff": 0.06987664795333072,
+        "count_skewness": 2.4427030934224665
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.35,
+      "signatures": {
+        "lag1_autocorr": 0.26512599476087667,
+        "coef_variation": 0.6631766379296944,
+        "fano_factor": 2.0670113014828786,
+        "norm_succ_diff": 0.6172617403431399,
+        "hurst_exponent": 0.9171994231755618,
+        "trend_coeff": 0.07031645181070897,
+        "count_skewness": 1.6753137024666864
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.4,
+      "signatures": {
+        "lag1_autocorr": 0.3096341509248564,
+        "coef_variation": 0.12244259866835672,
+        "fano_factor": 2.330397831689702,
+        "norm_succ_diff": 1.0544050629912685,
+        "hurst_exponent": 0.7215521702124271,
+        "trend_coeff": 0.04554128658586446,
+        "count_skewness": 2.399226310907891
+      }
+    },
+    {
+      "method": "noise",
+      "intensity": 0.45,
+      "signatures": {
+        "lag1_autocorr": 0.23365624428737,
+        "coef_variation": -0.027141328022706412,
+        "fano_factor": 2.3542916176336064,
+        "norm_succ_diff": 0.8123268642751701,
+        "hurst_exponent": 0.44002814105568555,
+        "trend_coeff": 0.07188821337381074,
+        "count_skewness": 1.966016205286427
       }
     },
     {
       "method": "jitter",
       "intensity": 0.01,
       "signatures": {
-        "lag1_autocorr": 0.2449229971190622,
-        "coef_variation": 0.78579246272836,
-        "fano_factor": 1.5131434443252811,
-        "norm_succ_diff": 0.656598281088299,
-        "hurst_exponent": 0.64217289947043,
-        "trend_coeff": 0.05563357461136141,
-        "count_skewness": 1.714335403065368
-      }
-    },
-    {
-      "method": "jitter",
-      "intensity": 0.02,
-      "signatures": {
-        "lag1_autocorr": 0.25151123950792476,
-        "coef_variation": 0.7561804463094124,
-        "fano_factor": 1.4637843339990628,
-        "norm_succ_diff": 0.6580777899030218,
-        "hurst_exponent": 0.6372198683109658,
-        "trend_coeff": 0.055054234844992785,
-        "count_skewness": 1.7316012048168283
+        "lag1_autocorr": 0.24742849336859707,
+        "coef_variation": 0.7645987127153361,
+        "fano_factor": 1.5396338324904102,
+        "norm_succ_diff": 0.6650149245248428,
+        "hurst_exponent": 0.634051630767449,
+        "trend_coeff": 0.05640172799980494,
+        "count_skewness": 1.6991845432482933
       }
     },
     {
       "method": "jitter",
       "intensity": 0.05,
       "signatures": {
-        "lag1_autocorr": 0.26273978384963054,
-        "coef_variation": 0.7595987577428538,
-        "fano_factor": 1.5526520555702505,
-        "norm_succ_diff": 0.6375075824299976,
-        "hurst_exponent": 0.6810513817424804,
-        "trend_coeff": 0.056041923482466234,
-        "count_skewness": 1.5346581635083647
+        "lag1_autocorr": 0.24913034488939031,
+        "coef_variation": 0.8073661049658984,
+        "fano_factor": 1.455660195445394,
+        "norm_succ_diff": 0.6932182022508329,
+        "hurst_exponent": 0.6329035415621495,
+        "trend_coeff": 0.05877805211933088,
+        "count_skewness": 1.8068604655544362
       }
     },
     {
       "method": "jitter",
       "intensity": 0.1,
       "signatures": {
-        "lag1_autocorr": 0.22058048215043563,
-        "coef_variation": 0.6046970585896128,
-        "fano_factor": 1.4072291469873683,
-        "norm_succ_diff": 0.6003820756439943,
-        "hurst_exponent": 0.5378401637336987,
-        "trend_coeff": 0.05979642632285782,
-        "count_skewness": 1.5452865133949043
+        "lag1_autocorr": 0.2937731925071472,
+        "coef_variation": 0.7628806701561276,
+        "fano_factor": 1.4843903990925449,
+        "norm_succ_diff": 0.5879444562662326,
+        "hurst_exponent": 0.6680158772043808,
+        "trend_coeff": 0.051423626527980035,
+        "count_skewness": 2.1774112613862426
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.15,
+      "signatures": {
+        "lag1_autocorr": 0.3363814282550798,
+        "coef_variation": 0.682652415612354,
+        "fano_factor": 1.4748274724860493,
+        "norm_succ_diff": 0.6788153008279935,
+        "hurst_exponent": 0.5786055185546669,
+        "trend_coeff": 0.06159258913913007,
+        "count_skewness": 1.5058862769392058
       }
     },
     {
       "method": "jitter",
       "intensity": 0.2,
       "signatures": {
-        "lag1_autocorr": 0.1723074641877874,
-        "coef_variation": 1.0691383830014254,
-        "fano_factor": 1.4744221664282984,
-        "norm_succ_diff": 0.5872444362938963,
-        "hurst_exponent": 0.48936470065217813,
-        "trend_coeff": 0.05593077544539692,
-        "count_skewness": 2.05084330008476
+        "lag1_autocorr": 0.2971074808339335,
+        "coef_variation": 0.6051446493403182,
+        "fano_factor": 1.7838369670194585,
+        "norm_succ_diff": 0.6433226684356201,
+        "hurst_exponent": 0.6206407998292156,
+        "trend_coeff": 0.047891664727271764,
+        "count_skewness": 1.6966558961703637
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.25,
+      "signatures": {
+        "lag1_autocorr": 0.23290357033838888,
+        "coef_variation": 0.9763366187753383,
+        "fano_factor": 1.5572004630439913,
+        "norm_succ_diff": 0.9290298687460109,
+        "hurst_exponent": 0.680379769978531,
+        "trend_coeff": 0.08943118180387198,
+        "count_skewness": 1.7978135646861897
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.3,
+      "signatures": {
+        "lag1_autocorr": 0.21448103366971255,
+        "coef_variation": 0.6950487635889142,
+        "fano_factor": 1.7974254719938494,
+        "norm_succ_diff": 0.26375610797985727,
+        "hurst_exponent": 0.5845788186884775,
+        "trend_coeff": 0.049499642527886516,
+        "count_skewness": 2.0936986894389227
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.35,
+      "signatures": {
+        "lag1_autocorr": 0.31290649147570476,
+        "coef_variation": 0.4928939344161103,
+        "fano_factor": 0.7705117280121062,
+        "norm_succ_diff": 0.41228701986997723,
+        "hurst_exponent": 0.9011821160126491,
+        "trend_coeff": 0.014181490766128478,
+        "count_skewness": 2.014242849459572
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.4,
+      "signatures": {
+        "lag1_autocorr": 0.21001820667863957,
+        "coef_variation": 0.933585355800379,
+        "fano_factor": 2.821523497703652,
+        "norm_succ_diff": 0.6353172782347238,
+        "hurst_exponent": 0.5061501561355546,
+        "trend_coeff": 0.09010215029130045,
+        "count_skewness": 2.318898016586547
+      }
+    },
+    {
+      "method": "jitter",
+      "intensity": 0.45,
+      "signatures": {
+        "lag1_autocorr": 0.28026334791622026,
+        "coef_variation": 0.7941860755271636,
+        "fano_factor": 1.581829048826965,
+        "norm_succ_diff": 0.5055388439776514,
+        "hurst_exponent": 0.7641318198259793,
+        "trend_coeff": 0.03155666022293707,
+        "count_skewness": 2.864534897887794
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.99,
+      "signatures": {
+        "lag1_autocorr": 0.24822316318563684,
+        "coef_variation": 0.77464493416454,
+        "fano_factor": 1.521361344537215,
+        "norm_succ_diff": 0.6610693277308317,
+        "hurst_exponent": 0.6403027038914146,
+        "trend_coeff": 0.05590485028092596,
+        "count_skewness": 1.7133973018682234
       }
     },
     {
@@ -1169,7 +2290,33 @@
     },
     {
       "method": "subset",
+      "intensity": 0.85,
+      "signatures": {
+        "lag1_autocorr": 0.24822316318563684,
+        "coef_variation": 0.77464493416454,
+        "fano_factor": 1.521361344537215,
+        "norm_succ_diff": 0.6610693277308317,
+        "hurst_exponent": 0.6403027038914146,
+        "trend_coeff": 0.05590485028092596,
+        "count_skewness": 1.7133973018682234
+      }
+    },
+    {
+      "method": "subset",
       "intensity": 0.8,
+      "signatures": {
+        "lag1_autocorr": 0.24822316318563684,
+        "coef_variation": 0.77464493416454,
+        "fano_factor": 1.521361344537215,
+        "norm_succ_diff": 0.6610693277308317,
+        "hurst_exponent": 0.6403027038914146,
+        "trend_coeff": 0.05590485028092596,
+        "count_skewness": 1.7133973018682234
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.75,
       "signatures": {
         "lag1_autocorr": 0.24822316318563684,
         "coef_variation": 0.77464493416454,
@@ -1195,7 +2342,33 @@
     },
     {
       "method": "subset",
+      "intensity": 0.65,
+      "signatures": {
+        "lag1_autocorr": 0.24822316318563684,
+        "coef_variation": 0.77464493416454,
+        "fano_factor": 1.521361344537215,
+        "norm_succ_diff": 0.6610693277308317,
+        "hurst_exponent": 0.6403027038914146,
+        "trend_coeff": 0.05590485028092596,
+        "count_skewness": 1.7133973018682234
+      }
+    },
+    {
+      "method": "subset",
       "intensity": 0.6,
+      "signatures": {
+        "lag1_autocorr": 0.24822316318563684,
+        "coef_variation": 0.77464493416454,
+        "fano_factor": 1.521361344537215,
+        "norm_succ_diff": 0.6610693277308317,
+        "hurst_exponent": 0.6403027038914146,
+        "trend_coeff": 0.05590485028092596,
+        "count_skewness": 1.7133973018682234
+      }
+    },
+    {
+      "method": "subset",
+      "intensity": 0.55,
       "signatures": {
         "lag1_autocorr": 0.24822316318563684,
         "coef_variation": 0.77464493416454,
@@ -7790,4395 +8963,6 @@
       ]
     },
     {
-      "scale": "3D",
-      "events": [
-        {
-          "date": "2015-12-21",
-          "target": 8
-        },
-        {
-          "date": "2015-12-24",
-          "target": 0
-        },
-        {
-          "date": "2015-12-27",
-          "target": 0
-        },
-        {
-          "date": "2015-12-30",
-          "target": 0
-        },
-        {
-          "date": "2016-01-02",
-          "target": 0
-        },
-        {
-          "date": "2016-01-05",
-          "target": 0
-        },
-        {
-          "date": "2016-01-08",
-          "target": 0
-        },
-        {
-          "date": "2016-01-11",
-          "target": 2
-        },
-        {
-          "date": "2016-01-14",
-          "target": 0
-        },
-        {
-          "date": "2016-01-17",
-          "target": 2
-        },
-        {
-          "date": "2016-01-20",
-          "target": 0
-        },
-        {
-          "date": "2016-01-23",
-          "target": 0
-        },
-        {
-          "date": "2016-01-26",
-          "target": 1
-        },
-        {
-          "date": "2016-01-29",
-          "target": 2
-        },
-        {
-          "date": "2016-02-01",
-          "target": 0
-        },
-        {
-          "date": "2016-02-04",
-          "target": 0
-        },
-        {
-          "date": "2016-02-07",
-          "target": 0
-        },
-        {
-          "date": "2016-02-10",
-          "target": 4
-        },
-        {
-          "date": "2016-02-13",
-          "target": 0
-        },
-        {
-          "date": "2016-02-16",
-          "target": 2
-        },
-        {
-          "date": "2016-02-19",
-          "target": 1
-        },
-        {
-          "date": "2016-02-22",
-          "target": 0
-        },
-        {
-          "date": "2016-02-25",
-          "target": 3
-        },
-        {
-          "date": "2016-02-28",
-          "target": 0
-        },
-        {
-          "date": "2016-03-02",
-          "target": 0
-        },
-        {
-          "date": "2016-03-05",
-          "target": 0
-        },
-        {
-          "date": "2016-03-08",
-          "target": 2
-        },
-        {
-          "date": "2016-03-11",
-          "target": 0
-        },
-        {
-          "date": "2016-03-14",
-          "target": 1
-        },
-        {
-          "date": "2016-03-17",
-          "target": 3
-        },
-        {
-          "date": "2016-03-20",
-          "target": 2
-        },
-        {
-          "date": "2016-03-23",
-          "target": 6
-        },
-        {
-          "date": "2016-03-26",
-          "target": 3
-        },
-        {
-          "date": "2016-03-29",
-          "target": 5
-        },
-        {
-          "date": "2016-04-01",
-          "target": 0
-        },
-        {
-          "date": "2016-04-04",
-          "target": 4
-        },
-        {
-          "date": "2016-04-07",
-          "target": 1
-        },
-        {
-          "date": "2016-04-10",
-          "target": 0
-        },
-        {
-          "date": "2016-04-13",
-          "target": 0
-        },
-        {
-          "date": "2016-04-16",
-          "target": 0
-        },
-        {
-          "date": "2016-04-19",
-          "target": 2
-        },
-        {
-          "date": "2016-04-22",
-          "target": 0
-        },
-        {
-          "date": "2016-04-25",
-          "target": 3
-        },
-        {
-          "date": "2016-04-28",
-          "target": 4
-        },
-        {
-          "date": "2016-05-01",
-          "target": 1
-        },
-        {
-          "date": "2016-05-04",
-          "target": 0
-        },
-        {
-          "date": "2016-05-07",
-          "target": 1
-        },
-        {
-          "date": "2016-05-10",
-          "target": 3
-        },
-        {
-          "date": "2016-05-13",
-          "target": 1
-        },
-        {
-          "date": "2016-05-16",
-          "target": 2
-        },
-        {
-          "date": "2016-05-19",
-          "target": 4
-        },
-        {
-          "date": "2016-05-22",
-          "target": 1
-        },
-        {
-          "date": "2016-05-25",
-          "target": 7
-        },
-        {
-          "date": "2016-05-28",
-          "target": 0
-        },
-        {
-          "date": "2016-05-31",
-          "target": 5
-        },
-        {
-          "date": "2016-06-03",
-          "target": 5
-        },
-        {
-          "date": "2016-06-06",
-          "target": 5
-        },
-        {
-          "date": "2016-06-09",
-          "target": 2
-        },
-        {
-          "date": "2016-06-12",
-          "target": 4
-        },
-        {
-          "date": "2016-06-15",
-          "target": 5
-        },
-        {
-          "date": "2016-06-18",
-          "target": 0
-        },
-        {
-          "date": "2016-06-21",
-          "target": 10
-        },
-        {
-          "date": "2016-06-24",
-          "target": 2
-        },
-        {
-          "date": "2016-06-27",
-          "target": 6
-        },
-        {
-          "date": "2016-06-30",
-          "target": 6
-        },
-        {
-          "date": "2016-07-03",
-          "target": 3
-        },
-        {
-          "date": "2016-07-06",
-          "target": 3
-        },
-        {
-          "date": "2016-07-09",
-          "target": 0
-        },
-        {
-          "date": "2016-07-12",
-          "target": 3
-        },
-        {
-          "date": "2016-07-15",
-          "target": 1
-        },
-        {
-          "date": "2016-07-18",
-          "target": 1
-        },
-        {
-          "date": "2016-07-21",
-          "target": 0
-        },
-        {
-          "date": "2016-07-24",
-          "target": 1
-        },
-        {
-          "date": "2016-07-27",
-          "target": 2
-        },
-        {
-          "date": "2016-07-30",
-          "target": 0
-        },
-        {
-          "date": "2016-08-02",
-          "target": 4
-        },
-        {
-          "date": "2016-08-05",
-          "target": 0
-        },
-        {
-          "date": "2016-08-08",
-          "target": 0
-        },
-        {
-          "date": "2016-08-11",
-          "target": 0
-        },
-        {
-          "date": "2016-08-14",
-          "target": 0
-        },
-        {
-          "date": "2016-08-17",
-          "target": 0
-        },
-        {
-          "date": "2016-08-20",
-          "target": 0
-        },
-        {
-          "date": "2016-08-23",
-          "target": 1
-        },
-        {
-          "date": "2016-08-26",
-          "target": 0
-        },
-        {
-          "date": "2016-08-29",
-          "target": 1
-        },
-        {
-          "date": "2016-09-01",
-          "target": 1
-        },
-        {
-          "date": "2016-09-04",
-          "target": 0
-        },
-        {
-          "date": "2016-09-07",
-          "target": 2
-        },
-        {
-          "date": "2016-09-10",
-          "target": 0
-        },
-        {
-          "date": "2016-09-13",
-          "target": 2
-        },
-        {
-          "date": "2016-09-16",
-          "target": 0
-        },
-        {
-          "date": "2016-09-19",
-          "target": 1
-        },
-        {
-          "date": "2016-09-22",
-          "target": 0
-        },
-        {
-          "date": "2016-09-25",
-          "target": 3
-        },
-        {
-          "date": "2016-09-28",
-          "target": 3
-        },
-        {
-          "date": "2016-10-01",
-          "target": 0
-        },
-        {
-          "date": "2016-10-04",
-          "target": 0
-        },
-        {
-          "date": "2016-10-07",
-          "target": 0
-        },
-        {
-          "date": "2016-10-10",
-          "target": 0
-        },
-        {
-          "date": "2016-10-13",
-          "target": 1
-        },
-        {
-          "date": "2016-10-16",
-          "target": 2
-        },
-        {
-          "date": "2016-10-19",
-          "target": 0
-        },
-        {
-          "date": "2016-10-22",
-          "target": 1
-        },
-        {
-          "date": "2016-10-25",
-          "target": 4
-        },
-        {
-          "date": "2016-10-28",
-          "target": 0
-        },
-        {
-          "date": "2016-10-31",
-          "target": 3
-        },
-        {
-          "date": "2016-11-03",
-          "target": 0
-        },
-        {
-          "date": "2016-11-06",
-          "target": 1
-        },
-        {
-          "date": "2016-11-09",
-          "target": 3
-        },
-        {
-          "date": "2016-11-12",
-          "target": 0
-        },
-        {
-          "date": "2016-11-15",
-          "target": 3
-        },
-        {
-          "date": "2016-11-18",
-          "target": 2
-        },
-        {
-          "date": "2016-11-21",
-          "target": 4
-        },
-        {
-          "date": "2016-11-24",
-          "target": 0
-        },
-        {
-          "date": "2016-11-27",
-          "target": 1
-        },
-        {
-          "date": "2016-11-30",
-          "target": 4
-        },
-        {
-          "date": "2016-12-03",
-          "target": 0
-        },
-        {
-          "date": "2016-12-06",
-          "target": 5
-        },
-        {
-          "date": "2016-12-09",
-          "target": 2
-        },
-        {
-          "date": "2016-12-12",
-          "target": 3
-        },
-        {
-          "date": "2016-12-15",
-          "target": 6
-        },
-        {
-          "date": "2016-12-18",
-          "target": 9
-        },
-        {
-          "date": "2016-12-21",
-          "target": 4
-        },
-        {
-          "date": "2016-12-24",
-          "target": 0
-        },
-        {
-          "date": "2016-12-27",
-          "target": 0
-        },
-        {
-          "date": "2016-12-30",
-          "target": 0
-        },
-        {
-          "date": "2017-01-02",
-          "target": 0
-        },
-        {
-          "date": "2017-01-05",
-          "target": 1
-        },
-        {
-          "date": "2017-01-08",
-          "target": 2
-        },
-        {
-          "date": "2017-01-11",
-          "target": 6
-        },
-        {
-          "date": "2017-01-14",
-          "target": 0
-        },
-        {
-          "date": "2017-01-17",
-          "target": 4
-        },
-        {
-          "date": "2017-01-20",
-          "target": 0
-        },
-        {
-          "date": "2017-01-23",
-          "target": 2
-        },
-        {
-          "date": "2017-01-26",
-          "target": 3
-        },
-        {
-          "date": "2017-01-29",
-          "target": 3
-        },
-        {
-          "date": "2017-02-01",
-          "target": 1
-        },
-        {
-          "date": "2017-02-04",
-          "target": 1
-        },
-        {
-          "date": "2017-02-07",
-          "target": 3
-        },
-        {
-          "date": "2017-02-10",
-          "target": 0
-        },
-        {
-          "date": "2017-02-13",
-          "target": 1
-        },
-        {
-          "date": "2017-02-16",
-          "target": 1
-        },
-        {
-          "date": "2017-02-19",
-          "target": 3
-        },
-        {
-          "date": "2017-02-22",
-          "target": 3
-        },
-        {
-          "date": "2017-02-25",
-          "target": 4
-        },
-        {
-          "date": "2017-02-28",
-          "target": 9
-        },
-        {
-          "date": "2017-03-03",
-          "target": 0
-        },
-        {
-          "date": "2017-03-06",
-          "target": 3
-        },
-        {
-          "date": "2017-03-09",
-          "target": 5
-        },
-        {
-          "date": "2017-03-12",
-          "target": 0
-        },
-        {
-          "date": "2017-03-15",
-          "target": 10
-        },
-        {
-          "date": "2017-03-18",
-          "target": 2
-        },
-        {
-          "date": "2017-03-21",
-          "target": 4
-        },
-        {
-          "date": "2017-03-24",
-          "target": 7
-        },
-        {
-          "date": "2017-03-27",
-          "target": 1
-        },
-        {
-          "date": "2017-03-30",
-          "target": 11
-        },
-        {
-          "date": "2017-04-02",
-          "target": 1
-        },
-        {
-          "date": "2017-04-05",
-          "target": 5
-        },
-        {
-          "date": "2017-04-08",
-          "target": 0
-        },
-        {
-          "date": "2017-04-11",
-          "target": 4
-        },
-        {
-          "date": "2017-04-14",
-          "target": 3
-        },
-        {
-          "date": "2017-04-17",
-          "target": 0
-        },
-        {
-          "date": "2017-04-20",
-          "target": 0
-        },
-        {
-          "date": "2017-04-23",
-          "target": 0
-        },
-        {
-          "date": "2017-04-26",
-          "target": 16
-        },
-        {
-          "date": "2017-04-29",
-          "target": 0
-        },
-        {
-          "date": "2017-05-02",
-          "target": 10
-        },
-        {
-          "date": "2017-05-05",
-          "target": 3
-        },
-        {
-          "date": "2017-05-08",
-          "target": 2
-        },
-        {
-          "date": "2017-05-11",
-          "target": 2
-        },
-        {
-          "date": "2017-05-14",
-          "target": 2
-        },
-        {
-          "date": "2017-05-17",
-          "target": 5
-        },
-        {
-          "date": "2017-05-20",
-          "target": 0
-        },
-        {
-          "date": "2017-05-23",
-          "target": 5
-        },
-        {
-          "date": "2017-05-26",
-          "target": 6
-        },
-        {
-          "date": "2017-05-29",
-          "target": 6
-        },
-        {
-          "date": "2017-06-01",
-          "target": 4
-        },
-        {
-          "date": "2017-06-04",
-          "target": 2
-        },
-        {
-          "date": "2017-06-07",
-          "target": 10
-        },
-        {
-          "date": "2017-06-10",
-          "target": 0
-        },
-        {
-          "date": "2017-06-13",
-          "target": 11
-        },
-        {
-          "date": "2017-06-16",
-          "target": 0
-        },
-        {
-          "date": "2017-06-19",
-          "target": 6
-        },
-        {
-          "date": "2017-06-22",
-          "target": 9
-        },
-        {
-          "date": "2017-06-25",
-          "target": 4
-        },
-        {
-          "date": "2017-06-28",
-          "target": 6
-        },
-        {
-          "date": "2017-07-01",
-          "target": 0
-        },
-        {
-          "date": "2017-07-04",
-          "target": 5
-        },
-        {
-          "date": "2017-07-07",
-          "target": 0
-        },
-        {
-          "date": "2017-07-10",
-          "target": 1
-        },
-        {
-          "date": "2017-07-13",
-          "target": 0
-        },
-        {
-          "date": "2017-07-16",
-          "target": 1
-        },
-        {
-          "date": "2017-07-19",
-          "target": 1
-        },
-        {
-          "date": "2017-07-22",
-          "target": 0
-        },
-        {
-          "date": "2017-07-25",
-          "target": 3
-        },
-        {
-          "date": "2017-07-28",
-          "target": 1
-        },
-        {
-          "date": "2017-07-31",
-          "target": 2
-        },
-        {
-          "date": "2017-08-03",
-          "target": 2
-        },
-        {
-          "date": "2017-08-06",
-          "target": 0
-        },
-        {
-          "date": "2017-08-09",
-          "target": 0
-        },
-        {
-          "date": "2017-08-12",
-          "target": 0
-        },
-        {
-          "date": "2017-08-15",
-          "target": 0
-        },
-        {
-          "date": "2017-08-18",
-          "target": 0
-        },
-        {
-          "date": "2017-08-21",
-          "target": 4
-        },
-        {
-          "date": "2017-08-24",
-          "target": 0
-        },
-        {
-          "date": "2017-08-27",
-          "target": 1
-        },
-        {
-          "date": "2017-08-30",
-          "target": 2
-        },
-        {
-          "date": "2017-09-02",
-          "target": 0
-        },
-        {
-          "date": "2017-09-05",
-          "target": 1
-        },
-        {
-          "date": "2017-09-08",
-          "target": 0
-        },
-        {
-          "date": "2017-09-11",
-          "target": 1
-        },
-        {
-          "date": "2017-09-14",
-          "target": 3
-        },
-        {
-          "date": "2017-09-17",
-          "target": 0
-        },
-        {
-          "date": "2017-09-20",
-          "target": 0
-        },
-        {
-          "date": "2017-09-23",
-          "target": 0
-        },
-        {
-          "date": "2017-09-26",
-          "target": 6
-        },
-        {
-          "date": "2017-09-29",
-          "target": 2
-        },
-        {
-          "date": "2017-10-02",
-          "target": 1
-        },
-        {
-          "date": "2017-10-05",
-          "target": 0
-        },
-        {
-          "date": "2017-10-08",
-          "target": 0
-        },
-        {
-          "date": "2017-10-11",
-          "target": 0
-        },
-        {
-          "date": "2017-10-14",
-          "target": 0
-        },
-        {
-          "date": "2017-10-17",
-          "target": 1
-        },
-        {
-          "date": "2017-10-20",
-          "target": 2
-        },
-        {
-          "date": "2017-10-23",
-          "target": 0
-        },
-        {
-          "date": "2017-10-26",
-          "target": 1
-        },
-        {
-          "date": "2017-10-29",
-          "target": 3
-        },
-        {
-          "date": "2017-11-01",
-          "target": 1
-        },
-        {
-          "date": "2017-11-04",
-          "target": 0
-        },
-        {
-          "date": "2017-11-07",
-          "target": 1
-        },
-        {
-          "date": "2017-11-10",
-          "target": 0
-        },
-        {
-          "date": "2017-11-13",
-          "target": 1
-        },
-        {
-          "date": "2017-11-16",
-          "target": 2
-        },
-        {
-          "date": "2017-11-19",
-          "target": 2
-        },
-        {
-          "date": "2017-11-22",
-          "target": 2
-        },
-        {
-          "date": "2017-11-25",
-          "target": 0
-        },
-        {
-          "date": "2017-11-28",
-          "target": 2
-        },
-        {
-          "date": "2017-12-01",
-          "target": 3
-        },
-        {
-          "date": "2017-12-04",
-          "target": 4
-        },
-        {
-          "date": "2017-12-07",
-          "target": 3
-        },
-        {
-          "date": "2017-12-10",
-          "target": 2
-        },
-        {
-          "date": "2017-12-13",
-          "target": 12
-        },
-        {
-          "date": "2017-12-16",
-          "target": 1
-        },
-        {
-          "date": "2017-12-19",
-          "target": 12
-        },
-        {
-          "date": "2017-12-22",
-          "target": 0
-        },
-        {
-          "date": "2017-12-25",
-          "target": 0
-        },
-        {
-          "date": "2017-12-28",
-          "target": 0
-        },
-        {
-          "date": "2017-12-31",
-          "target": 0
-        },
-        {
-          "date": "2018-01-03",
-          "target": 1
-        },
-        {
-          "date": "2018-01-06",
-          "target": 0
-        },
-        {
-          "date": "2018-01-09",
-          "target": 1
-        },
-        {
-          "date": "2018-01-12",
-          "target": 0
-        },
-        {
-          "date": "2018-01-15",
-          "target": 1
-        },
-        {
-          "date": "2018-01-18",
-          "target": 1
-        },
-        {
-          "date": "2018-01-21",
-          "target": 0
-        },
-        {
-          "date": "2018-01-24",
-          "target": 2
-        },
-        {
-          "date": "2018-01-27",
-          "target": 3
-        },
-        {
-          "date": "2018-01-30",
-          "target": 5
-        },
-        {
-          "date": "2018-02-02",
-          "target": 0
-        },
-        {
-          "date": "2018-02-05",
-          "target": 1
-        },
-        {
-          "date": "2018-02-08",
-          "target": 0
-        },
-        {
-          "date": "2018-02-11",
-          "target": 0
-        },
-        {
-          "date": "2018-02-14",
-          "target": 2
-        },
-        {
-          "date": "2018-02-17",
-          "target": 0
-        },
-        {
-          "date": "2018-02-20",
-          "target": 0
-        },
-        {
-          "date": "2018-02-23",
-          "target": 0
-        },
-        {
-          "date": "2018-02-26",
-          "target": 4
-        },
-        {
-          "date": "2018-03-01",
-          "target": 2
-        },
-        {
-          "date": "2018-03-04",
-          "target": 0
-        },
-        {
-          "date": "2018-03-07",
-          "target": 0
-        },
-        {
-          "date": "2018-03-10",
-          "target": 1
-        },
-        {
-          "date": "2018-03-13",
-          "target": 7
-        },
-        {
-          "date": "2018-03-16",
-          "target": 2
-        },
-        {
-          "date": "2018-03-19",
-          "target": 3
-        },
-        {
-          "date": "2018-03-22",
-          "target": 0
-        },
-        {
-          "date": "2018-03-25",
-          "target": 0
-        },
-        {
-          "date": "2018-03-28",
-          "target": 16
-        },
-        {
-          "date": "2018-03-31",
-          "target": 2
-        },
-        {
-          "date": "2018-04-03",
-          "target": 0
-        },
-        {
-          "date": "2018-04-06",
-          "target": 0
-        },
-        {
-          "date": "2018-04-09",
-          "target": 4
-        },
-        {
-          "date": "2018-04-12",
-          "target": 5
-        },
-        {
-          "date": "2018-04-15",
-          "target": 0
-        },
-        {
-          "date": "2018-04-18",
-          "target": 0
-        },
-        {
-          "date": "2018-04-21",
-          "target": 0
-        },
-        {
-          "date": "2018-04-24",
-          "target": 9
-        },
-        {
-          "date": "2018-04-27",
-          "target": 0
-        },
-        {
-          "date": "2018-04-30",
-          "target": 2
-        },
-        {
-          "date": "2018-05-03",
-          "target": 2
-        },
-        {
-          "date": "2018-05-06",
-          "target": 2
-        },
-        {
-          "date": "2018-05-09",
-          "target": 0
-        },
-        {
-          "date": "2018-05-12",
-          "target": 0
-        },
-        {
-          "date": "2018-05-15",
-          "target": 4
-        },
-        {
-          "date": "2018-05-18",
-          "target": 7
-        },
-        {
-          "date": "2018-05-21",
-          "target": 2
-        },
-        {
-          "date": "2018-05-24",
-          "target": 9
-        },
-        {
-          "date": "2018-05-27",
-          "target": 3
-        },
-        {
-          "date": "2018-05-30",
-          "target": 8
-        },
-        {
-          "date": "2018-06-02",
-          "target": 2
-        },
-        {
-          "date": "2018-06-05",
-          "target": 8
-        },
-        {
-          "date": "2018-06-08",
-          "target": 2
-        },
-        {
-          "date": "2018-06-11",
-          "target": 2
-        },
-        {
-          "date": "2018-06-14",
-          "target": 12
-        },
-        {
-          "date": "2018-06-17",
-          "target": 3
-        },
-        {
-          "date": "2018-06-20",
-          "target": 10
-        },
-        {
-          "date": "2018-06-23",
-          "target": 0
-        },
-        {
-          "date": "2018-06-26",
-          "target": 17
-        },
-        {
-          "date": "2018-06-29",
-          "target": 5
-        },
-        {
-          "date": "2018-07-02",
-          "target": 0
-        },
-        {
-          "date": "2018-07-05",
-          "target": 11
-        },
-        {
-          "date": "2018-07-08",
-          "target": 4
-        },
-        {
-          "date": "2018-07-11",
-          "target": 3
-        },
-        {
-          "date": "2018-07-14",
-          "target": 1
-        },
-        {
-          "date": "2018-07-17",
-          "target": 4
-        },
-        {
-          "date": "2018-07-20",
-          "target": 0
-        },
-        {
-          "date": "2018-07-23",
-          "target": 1
-        },
-        {
-          "date": "2018-07-26",
-          "target": 2
-        },
-        {
-          "date": "2018-07-29",
-          "target": 3
-        },
-        {
-          "date": "2018-08-01",
-          "target": 2
-        },
-        {
-          "date": "2018-08-04",
-          "target": 0
-        },
-        {
-          "date": "2018-08-07",
-          "target": 0
-        },
-        {
-          "date": "2018-08-10",
-          "target": 0
-        },
-        {
-          "date": "2018-08-13",
-          "target": 0
-        },
-        {
-          "date": "2018-08-16",
-          "target": 0
-        },
-        {
-          "date": "2018-08-19",
-          "target": 0
-        },
-        {
-          "date": "2018-08-22",
-          "target": 0
-        },
-        {
-          "date": "2018-08-25",
-          "target": 0
-        },
-        {
-          "date": "2018-08-28",
-          "target": 5
-        },
-        {
-          "date": "2018-08-31",
-          "target": 1
-        },
-        {
-          "date": "2018-09-03",
-          "target": 0
-        },
-        {
-          "date": "2018-09-06",
-          "target": 0
-        },
-        {
-          "date": "2018-09-09",
-          "target": 0
-        },
-        {
-          "date": "2018-09-12",
-          "target": 5
-        },
-        {
-          "date": "2018-09-15",
-          "target": 0
-        },
-        {
-          "date": "2018-09-18",
-          "target": 3
-        },
-        {
-          "date": "2018-09-21",
-          "target": 1
-        },
-        {
-          "date": "2018-09-24",
-          "target": 5
-        },
-        {
-          "date": "2018-09-27",
-          "target": 9
-        },
-        {
-          "date": "2018-09-30",
-          "target": 1
-        },
-        {
-          "date": "2018-10-03",
-          "target": 4
-        },
-        {
-          "date": "2018-10-06",
-          "target": 0
-        },
-        {
-          "date": "2018-10-09",
-          "target": 0
-        },
-        {
-          "date": "2018-10-12",
-          "target": 0
-        },
-        {
-          "date": "2018-10-15",
-          "target": 0
-        },
-        {
-          "date": "2018-10-18",
-          "target": 0
-        },
-        {
-          "date": "2018-10-21",
-          "target": 3
-        },
-        {
-          "date": "2018-10-24",
-          "target": 1
-        },
-        {
-          "date": "2018-10-27",
-          "target": 0
-        },
-        {
-          "date": "2018-10-30",
-          "target": 6
-        },
-        {
-          "date": "2018-11-02",
-          "target": 0
-        },
-        {
-          "date": "2018-11-05",
-          "target": 0
-        },
-        {
-          "date": "2018-11-08",
-          "target": 1
-        },
-        {
-          "date": "2018-11-11",
-          "target": 0
-        },
-        {
-          "date": "2018-11-14",
-          "target": 1
-        },
-        {
-          "date": "2018-11-17",
-          "target": 0
-        },
-        {
-          "date": "2018-11-20",
-          "target": 2
-        },
-        {
-          "date": "2018-11-23",
-          "target": 0
-        },
-        {
-          "date": "2018-11-26",
-          "target": 1
-        },
-        {
-          "date": "2018-11-29",
-          "target": 3
-        },
-        {
-          "date": "2018-12-02",
-          "target": 2
-        },
-        {
-          "date": "2018-12-05",
-          "target": 3
-        },
-        {
-          "date": "2018-12-08",
-          "target": 1
-        },
-        {
-          "date": "2018-12-11",
-          "target": 7
-        },
-        {
-          "date": "2018-12-14",
-          "target": 1
-        },
-        {
-          "date": "2018-12-17",
-          "target": 13
-        },
-        {
-          "date": "2018-12-20",
-          "target": 0
-        },
-        {
-          "date": "2018-12-23",
-          "target": 0
-        },
-        {
-          "date": "2018-12-26",
-          "target": 0
-        },
-        {
-          "date": "2018-12-29",
-          "target": 0
-        },
-        {
-          "date": "2019-01-01",
-          "target": 2
-        },
-        {
-          "date": "2019-01-04",
-          "target": 0
-        },
-        {
-          "date": "2019-01-07",
-          "target": 0
-        },
-        {
-          "date": "2019-01-10",
-          "target": 0
-        },
-        {
-          "date": "2019-01-13",
-          "target": 2
-        },
-        {
-          "date": "2019-01-16",
-          "target": 2
-        },
-        {
-          "date": "2019-01-19",
-          "target": 0
-        },
-        {
-          "date": "2019-01-22",
-          "target": 1
-        },
-        {
-          "date": "2019-01-25",
-          "target": 1
-        },
-        {
-          "date": "2019-01-28",
-          "target": 0
-        },
-        {
-          "date": "2019-01-31",
-          "target": 2
-        },
-        {
-          "date": "2019-02-03",
-          "target": 0
-        },
-        {
-          "date": "2019-02-06",
-          "target": 1
-        },
-        {
-          "date": "2019-02-09",
-          "target": 0
-        },
-        {
-          "date": "2019-02-12",
-          "target": 1
-        },
-        {
-          "date": "2019-02-15",
-          "target": 1
-        },
-        {
-          "date": "2019-02-18",
-          "target": 2
-        },
-        {
-          "date": "2019-02-21",
-          "target": 4
-        },
-        {
-          "date": "2019-02-24",
-          "target": 0
-        },
-        {
-          "date": "2019-02-27",
-          "target": 9
-        },
-        {
-          "date": "2019-03-02",
-          "target": 0
-        },
-        {
-          "date": "2019-03-05",
-          "target": 4
-        },
-        {
-          "date": "2019-03-08",
-          "target": 0
-        },
-        {
-          "date": "2019-03-11",
-          "target": 1
-        },
-        {
-          "date": "2019-03-14",
-          "target": 6
-        },
-        {
-          "date": "2019-03-17",
-          "target": 6
-        },
-        {
-          "date": "2019-03-20",
-          "target": 7
-        },
-        {
-          "date": "2019-03-23",
-          "target": 0
-        },
-        {
-          "date": "2019-03-26",
-          "target": 5
-        },
-        {
-          "date": "2019-03-29",
-          "target": 6
-        },
-        {
-          "date": "2019-04-01",
-          "target": 1
-        },
-        {
-          "date": "2019-04-04",
-          "target": 2
-        },
-        {
-          "date": "2019-04-07",
-          "target": 0
-        },
-        {
-          "date": "2019-04-10",
-          "target": 0
-        },
-        {
-          "date": "2019-04-13",
-          "target": 0
-        },
-        {
-          "date": "2019-04-16",
-          "target": 6
-        },
-        {
-          "date": "2019-04-19",
-          "target": 0
-        },
-        {
-          "date": "2019-04-22",
-          "target": 3
-        },
-        {
-          "date": "2019-04-25",
-          "target": 2
-        },
-        {
-          "date": "2019-04-28",
-          "target": 5
-        },
-        {
-          "date": "2019-05-01",
-          "target": 1
-        },
-        {
-          "date": "2019-05-04",
-          "target": 1
-        },
-        {
-          "date": "2019-05-07",
-          "target": 6
-        },
-        {
-          "date": "2019-05-10",
-          "target": 1
-        },
-        {
-          "date": "2019-05-13",
-          "target": 4
-        },
-        {
-          "date": "2019-05-16",
-          "target": 7
-        },
-        {
-          "date": "2019-05-19",
-          "target": 2
-        },
-        {
-          "date": "2019-05-22",
-          "target": 15
-        },
-        {
-          "date": "2019-05-25",
-          "target": 0
-        },
-        {
-          "date": "2019-05-28",
-          "target": 12
-        },
-        {
-          "date": "2019-05-31",
-          "target": 2
-        },
-        {
-          "date": "2019-06-03",
-          "target": 6
-        },
-        {
-          "date": "2019-06-06",
-          "target": 3
-        },
-        {
-          "date": "2019-06-09",
-          "target": 0
-        },
-        {
-          "date": "2019-06-12",
-          "target": 0
-        },
-        {
-          "date": "2019-06-15",
-          "target": 0
-        },
-        {
-          "date": "2019-06-18",
-          "target": 0
-        },
-        {
-          "date": "2019-06-21",
-          "target": 0
-        },
-        {
-          "date": "2019-06-24",
-          "target": 0
-        },
-        {
-          "date": "2019-06-27",
-          "target": 0
-        },
-        {
-          "date": "2019-06-30",
-          "target": 0
-        },
-        {
-          "date": "2019-07-03",
-          "target": 0
-        },
-        {
-          "date": "2019-07-06",
-          "target": 0
-        },
-        {
-          "date": "2019-07-09",
-          "target": 0
-        },
-        {
-          "date": "2019-07-12",
-          "target": 0
-        },
-        {
-          "date": "2019-07-15",
-          "target": 0
-        },
-        {
-          "date": "2019-07-18",
-          "target": 0
-        },
-        {
-          "date": "2019-07-21",
-          "target": 0
-        },
-        {
-          "date": "2019-07-24",
-          "target": 0
-        },
-        {
-          "date": "2019-07-27",
-          "target": 0
-        },
-        {
-          "date": "2019-07-30",
-          "target": 0
-        },
-        {
-          "date": "2019-08-02",
-          "target": 0
-        },
-        {
-          "date": "2019-08-05",
-          "target": 0
-        },
-        {
-          "date": "2019-08-08",
-          "target": 0
-        },
-        {
-          "date": "2019-08-11",
-          "target": 0
-        },
-        {
-          "date": "2019-08-14",
-          "target": 0
-        },
-        {
-          "date": "2019-08-17",
-          "target": 0
-        },
-        {
-          "date": "2019-08-20",
-          "target": 0
-        },
-        {
-          "date": "2019-08-23",
-          "target": 0
-        },
-        {
-          "date": "2019-08-26",
-          "target": 0
-        },
-        {
-          "date": "2019-08-29",
-          "target": 0
-        },
-        {
-          "date": "2019-09-01",
-          "target": 0
-        },
-        {
-          "date": "2019-09-04",
-          "target": 0
-        },
-        {
-          "date": "2019-09-07",
-          "target": 0
-        },
-        {
-          "date": "2019-09-10",
-          "target": 0
-        },
-        {
-          "date": "2019-09-13",
-          "target": 0
-        },
-        {
-          "date": "2019-09-16",
-          "target": 0
-        },
-        {
-          "date": "2019-09-19",
-          "target": 0
-        },
-        {
-          "date": "2019-09-22",
-          "target": 0
-        },
-        {
-          "date": "2019-09-25",
-          "target": 0
-        },
-        {
-          "date": "2019-09-28",
-          "target": 0
-        },
-        {
-          "date": "2019-10-01",
-          "target": 0
-        },
-        {
-          "date": "2019-10-04",
-          "target": 0
-        },
-        {
-          "date": "2019-10-07",
-          "target": 0
-        },
-        {
-          "date": "2019-10-10",
-          "target": 0
-        },
-        {
-          "date": "2019-10-13",
-          "target": 0
-        },
-        {
-          "date": "2019-10-16",
-          "target": 0
-        },
-        {
-          "date": "2019-10-19",
-          "target": 0
-        },
-        {
-          "date": "2019-10-22",
-          "target": 0
-        },
-        {
-          "date": "2019-10-25",
-          "target": 0
-        },
-        {
-          "date": "2019-10-28",
-          "target": 0
-        },
-        {
-          "date": "2019-10-31",
-          "target": 0
-        },
-        {
-          "date": "2019-11-03",
-          "target": 0
-        },
-        {
-          "date": "2019-11-06",
-          "target": 0
-        },
-        {
-          "date": "2019-11-09",
-          "target": 0
-        },
-        {
-          "date": "2019-11-12",
-          "target": 0
-        },
-        {
-          "date": "2019-11-15",
-          "target": 0
-        },
-        {
-          "date": "2019-11-18",
-          "target": 0
-        },
-        {
-          "date": "2019-11-21",
-          "target": 0
-        },
-        {
-          "date": "2019-11-24",
-          "target": 0
-        },
-        {
-          "date": "2019-11-27",
-          "target": 0
-        },
-        {
-          "date": "2019-11-30",
-          "target": 0
-        },
-        {
-          "date": "2019-12-03",
-          "target": 0
-        },
-        {
-          "date": "2019-12-06",
-          "target": 0
-        },
-        {
-          "date": "2019-12-09",
-          "target": 0
-        },
-        {
-          "date": "2019-12-12",
-          "target": 0
-        },
-        {
-          "date": "2019-12-15",
-          "target": 0
-        },
-        {
-          "date": "2019-12-18",
-          "target": 0
-        },
-        {
-          "date": "2019-12-21",
-          "target": 0
-        },
-        {
-          "date": "2019-12-24",
-          "target": 0
-        },
-        {
-          "date": "2019-12-27",
-          "target": 0
-        },
-        {
-          "date": "2019-12-30",
-          "target": 0
-        },
-        {
-          "date": "2020-01-02",
-          "target": 0
-        },
-        {
-          "date": "2020-01-05",
-          "target": 0
-        },
-        {
-          "date": "2020-01-08",
-          "target": 0
-        },
-        {
-          "date": "2020-01-11",
-          "target": 0
-        },
-        {
-          "date": "2020-01-14",
-          "target": 0
-        },
-        {
-          "date": "2020-01-17",
-          "target": 0
-        },
-        {
-          "date": "2020-01-20",
-          "target": 0
-        },
-        {
-          "date": "2020-01-23",
-          "target": 0
-        },
-        {
-          "date": "2020-01-26",
-          "target": 0
-        },
-        {
-          "date": "2020-01-29",
-          "target": 0
-        },
-        {
-          "date": "2020-02-01",
-          "target": 0
-        },
-        {
-          "date": "2020-02-04",
-          "target": 0
-        },
-        {
-          "date": "2020-02-07",
-          "target": 0
-        },
-        {
-          "date": "2020-02-10",
-          "target": 0
-        },
-        {
-          "date": "2020-02-13",
-          "target": 0
-        },
-        {
-          "date": "2020-02-16",
-          "target": 0
-        },
-        {
-          "date": "2020-02-19",
-          "target": 0
-        },
-        {
-          "date": "2020-02-22",
-          "target": 0
-        },
-        {
-          "date": "2020-02-25",
-          "target": 0
-        },
-        {
-          "date": "2020-02-28",
-          "target": 0
-        },
-        {
-          "date": "2020-03-02",
-          "target": 0
-        },
-        {
-          "date": "2020-03-05",
-          "target": 0
-        },
-        {
-          "date": "2020-03-08",
-          "target": 0
-        },
-        {
-          "date": "2020-03-11",
-          "target": 0
-        },
-        {
-          "date": "2020-03-14",
-          "target": 0
-        },
-        {
-          "date": "2020-03-17",
-          "target": 0
-        },
-        {
-          "date": "2020-03-20",
-          "target": 0
-        },
-        {
-          "date": "2020-03-23",
-          "target": 0
-        },
-        {
-          "date": "2020-03-26",
-          "target": 0
-        },
-        {
-          "date": "2020-03-29",
-          "target": 0
-        },
-        {
-          "date": "2020-04-01",
-          "target": 0
-        },
-        {
-          "date": "2020-04-04",
-          "target": 0
-        },
-        {
-          "date": "2020-04-07",
-          "target": 0
-        },
-        {
-          "date": "2020-04-10",
-          "target": 0
-        },
-        {
-          "date": "2020-04-13",
-          "target": 0
-        },
-        {
-          "date": "2020-04-16",
-          "target": 0
-        },
-        {
-          "date": "2020-04-19",
-          "target": 0
-        },
-        {
-          "date": "2020-04-22",
-          "target": 0
-        },
-        {
-          "date": "2020-04-25",
-          "target": 0
-        },
-        {
-          "date": "2020-04-28",
-          "target": 0
-        },
-        {
-          "date": "2020-05-01",
-          "target": 0
-        },
-        {
-          "date": "2020-05-04",
-          "target": 0
-        },
-        {
-          "date": "2020-05-07",
-          "target": 0
-        },
-        {
-          "date": "2020-05-10",
-          "target": 0
-        },
-        {
-          "date": "2020-05-13",
-          "target": 0
-        },
-        {
-          "date": "2020-05-16",
-          "target": 0
-        },
-        {
-          "date": "2020-05-19",
-          "target": 0
-        },
-        {
-          "date": "2020-05-22",
-          "target": 0
-        },
-        {
-          "date": "2020-05-25",
-          "target": 0
-        },
-        {
-          "date": "2020-05-28",
-          "target": 0
-        },
-        {
-          "date": "2020-05-31",
-          "target": 0
-        },
-        {
-          "date": "2020-06-03",
-          "target": 0
-        },
-        {
-          "date": "2020-06-06",
-          "target": 0
-        },
-        {
-          "date": "2020-06-09",
-          "target": 0
-        },
-        {
-          "date": "2020-06-12",
-          "target": 0
-        },
-        {
-          "date": "2020-06-15",
-          "target": 0
-        },
-        {
-          "date": "2020-06-18",
-          "target": 0
-        },
-        {
-          "date": "2020-06-21",
-          "target": 0
-        },
-        {
-          "date": "2020-06-24",
-          "target": 0
-        },
-        {
-          "date": "2020-06-27",
-          "target": 0
-        },
-        {
-          "date": "2020-06-30",
-          "target": 0
-        },
-        {
-          "date": "2020-07-03",
-          "target": 0
-        },
-        {
-          "date": "2020-07-06",
-          "target": 0
-        },
-        {
-          "date": "2020-07-09",
-          "target": 0
-        },
-        {
-          "date": "2020-07-12",
-          "target": 0
-        },
-        {
-          "date": "2020-07-15",
-          "target": 0
-        },
-        {
-          "date": "2020-07-18",
-          "target": 0
-        },
-        {
-          "date": "2020-07-21",
-          "target": 0
-        },
-        {
-          "date": "2020-07-24",
-          "target": 0
-        },
-        {
-          "date": "2020-07-27",
-          "target": 0
-        },
-        {
-          "date": "2020-07-30",
-          "target": 0
-        },
-        {
-          "date": "2020-08-02",
-          "target": 0
-        },
-        {
-          "date": "2020-08-05",
-          "target": 0
-        },
-        {
-          "date": "2020-08-08",
-          "target": 0
-        },
-        {
-          "date": "2020-08-11",
-          "target": 0
-        },
-        {
-          "date": "2020-08-14",
-          "target": 0
-        },
-        {
-          "date": "2020-08-17",
-          "target": 0
-        },
-        {
-          "date": "2020-08-20",
-          "target": 0
-        },
-        {
-          "date": "2020-08-23",
-          "target": 0
-        },
-        {
-          "date": "2020-08-26",
-          "target": 0
-        },
-        {
-          "date": "2020-08-29",
-          "target": 0
-        },
-        {
-          "date": "2020-09-01",
-          "target": 0
-        },
-        {
-          "date": "2020-09-04",
-          "target": 0
-        },
-        {
-          "date": "2020-09-07",
-          "target": 0
-        },
-        {
-          "date": "2020-09-10",
-          "target": 0
-        },
-        {
-          "date": "2020-09-13",
-          "target": 0
-        },
-        {
-          "date": "2020-09-16",
-          "target": 0
-        },
-        {
-          "date": "2020-09-19",
-          "target": 0
-        },
-        {
-          "date": "2020-09-22",
-          "target": 0
-        },
-        {
-          "date": "2020-09-25",
-          "target": 0
-        },
-        {
-          "date": "2020-09-28",
-          "target": 0
-        },
-        {
-          "date": "2020-10-01",
-          "target": 0
-        },
-        {
-          "date": "2020-10-04",
-          "target": 0
-        },
-        {
-          "date": "2020-10-07",
-          "target": 0
-        },
-        {
-          "date": "2020-10-10",
-          "target": 0
-        },
-        {
-          "date": "2020-10-13",
-          "target": 0
-        },
-        {
-          "date": "2020-10-16",
-          "target": 0
-        },
-        {
-          "date": "2020-10-19",
-          "target": 0
-        },
-        {
-          "date": "2020-10-22",
-          "target": 0
-        },
-        {
-          "date": "2020-10-25",
-          "target": 0
-        },
-        {
-          "date": "2020-10-28",
-          "target": 0
-        },
-        {
-          "date": "2020-10-31",
-          "target": 0
-        },
-        {
-          "date": "2020-11-03",
-          "target": 0
-        },
-        {
-          "date": "2020-11-06",
-          "target": 0
-        },
-        {
-          "date": "2020-11-09",
-          "target": 0
-        },
-        {
-          "date": "2020-11-12",
-          "target": 0
-        },
-        {
-          "date": "2020-11-15",
-          "target": 0
-        },
-        {
-          "date": "2020-11-18",
-          "target": 0
-        },
-        {
-          "date": "2020-11-21",
-          "target": 0
-        },
-        {
-          "date": "2020-11-24",
-          "target": 0
-        },
-        {
-          "date": "2020-11-27",
-          "target": 0
-        },
-        {
-          "date": "2020-11-30",
-          "target": 0
-        },
-        {
-          "date": "2020-12-03",
-          "target": 0
-        },
-        {
-          "date": "2020-12-06",
-          "target": 0
-        },
-        {
-          "date": "2020-12-09",
-          "target": 0
-        },
-        {
-          "date": "2020-12-12",
-          "target": 0
-        },
-        {
-          "date": "2020-12-15",
-          "target": 0
-        },
-        {
-          "date": "2020-12-18",
-          "target": 0
-        },
-        {
-          "date": "2020-12-21",
-          "target": 0
-        },
-        {
-          "date": "2020-12-24",
-          "target": 0
-        },
-        {
-          "date": "2020-12-27",
-          "target": 0
-        },
-        {
-          "date": "2020-12-30",
-          "target": 0
-        },
-        {
-          "date": "2021-01-02",
-          "target": 0
-        },
-        {
-          "date": "2021-01-05",
-          "target": 0
-        },
-        {
-          "date": "2021-01-08",
-          "target": 0
-        },
-        {
-          "date": "2021-01-11",
-          "target": 0
-        },
-        {
-          "date": "2021-01-14",
-          "target": 0
-        },
-        {
-          "date": "2021-01-17",
-          "target": 0
-        },
-        {
-          "date": "2021-01-20",
-          "target": 0
-        },
-        {
-          "date": "2021-01-23",
-          "target": 0
-        },
-        {
-          "date": "2021-01-26",
-          "target": 0
-        },
-        {
-          "date": "2021-01-29",
-          "target": 0
-        },
-        {
-          "date": "2021-02-01",
-          "target": 0
-        },
-        {
-          "date": "2021-02-04",
-          "target": 0
-        },
-        {
-          "date": "2021-02-07",
-          "target": 0
-        },
-        {
-          "date": "2021-02-10",
-          "target": 0
-        },
-        {
-          "date": "2021-02-13",
-          "target": 0
-        },
-        {
-          "date": "2021-02-16",
-          "target": 0
-        },
-        {
-          "date": "2021-02-19",
-          "target": 0
-        },
-        {
-          "date": "2021-02-22",
-          "target": 0
-        },
-        {
-          "date": "2021-02-25",
-          "target": 0
-        },
-        {
-          "date": "2021-02-28",
-          "target": 0
-        },
-        {
-          "date": "2021-03-03",
-          "target": 0
-        },
-        {
-          "date": "2021-03-06",
-          "target": 0
-        },
-        {
-          "date": "2021-03-09",
-          "target": 0
-        },
-        {
-          "date": "2021-03-12",
-          "target": 0
-        },
-        {
-          "date": "2021-03-15",
-          "target": 0
-        },
-        {
-          "date": "2021-03-18",
-          "target": 0
-        },
-        {
-          "date": "2021-03-21",
-          "target": 0
-        },
-        {
-          "date": "2021-03-24",
-          "target": 0
-        },
-        {
-          "date": "2021-03-27",
-          "target": 0
-        },
-        {
-          "date": "2021-03-30",
-          "target": 0
-        },
-        {
-          "date": "2021-04-02",
-          "target": 0
-        },
-        {
-          "date": "2021-04-05",
-          "target": 0
-        },
-        {
-          "date": "2021-04-08",
-          "target": 0
-        },
-        {
-          "date": "2021-04-11",
-          "target": 0
-        },
-        {
-          "date": "2021-04-14",
-          "target": 0
-        },
-        {
-          "date": "2021-04-17",
-          "target": 0
-        },
-        {
-          "date": "2021-04-20",
-          "target": 0
-        },
-        {
-          "date": "2021-04-23",
-          "target": 0
-        },
-        {
-          "date": "2021-04-26",
-          "target": 0
-        },
-        {
-          "date": "2021-04-29",
-          "target": 0
-        },
-        {
-          "date": "2021-05-02",
-          "target": 0
-        },
-        {
-          "date": "2021-05-05",
-          "target": 0
-        },
-        {
-          "date": "2021-05-08",
-          "target": 0
-        },
-        {
-          "date": "2021-05-11",
-          "target": 0
-        },
-        {
-          "date": "2021-05-14",
-          "target": 0
-        },
-        {
-          "date": "2021-05-17",
-          "target": 0
-        },
-        {
-          "date": "2021-05-20",
-          "target": 0
-        },
-        {
-          "date": "2021-05-23",
-          "target": 0
-        },
-        {
-          "date": "2021-05-26",
-          "target": 0
-        },
-        {
-          "date": "2021-05-29",
-          "target": 0
-        },
-        {
-          "date": "2021-06-01",
-          "target": 0
-        },
-        {
-          "date": "2021-06-04",
-          "target": 0
-        },
-        {
-          "date": "2021-06-07",
-          "target": 0
-        },
-        {
-          "date": "2021-06-10",
-          "target": 0
-        },
-        {
-          "date": "2021-06-13",
-          "target": 0
-        },
-        {
-          "date": "2021-06-16",
-          "target": 0
-        },
-        {
-          "date": "2021-06-19",
-          "target": 0
-        },
-        {
-          "date": "2021-06-22",
-          "target": 0
-        },
-        {
-          "date": "2021-06-25",
-          "target": 0
-        },
-        {
-          "date": "2021-06-28",
-          "target": 0
-        },
-        {
-          "date": "2021-07-01",
-          "target": 0
-        },
-        {
-          "date": "2021-07-04",
-          "target": 0
-        },
-        {
-          "date": "2021-07-07",
-          "target": 0
-        },
-        {
-          "date": "2021-07-10",
-          "target": 0
-        },
-        {
-          "date": "2021-07-13",
-          "target": 0
-        },
-        {
-          "date": "2021-07-16",
-          "target": 0
-        },
-        {
-          "date": "2021-07-19",
-          "target": 0
-        },
-        {
-          "date": "2021-07-22",
-          "target": 0
-        },
-        {
-          "date": "2021-07-25",
-          "target": 0
-        },
-        {
-          "date": "2021-07-28",
-          "target": 0
-        },
-        {
-          "date": "2021-07-31",
-          "target": 0
-        },
-        {
-          "date": "2021-08-03",
-          "target": 0
-        },
-        {
-          "date": "2021-08-06",
-          "target": 0
-        },
-        {
-          "date": "2021-08-09",
-          "target": 0
-        },
-        {
-          "date": "2021-08-12",
-          "target": 0
-        },
-        {
-          "date": "2021-08-15",
-          "target": 0
-        },
-        {
-          "date": "2021-08-18",
-          "target": 0
-        },
-        {
-          "date": "2021-08-21",
-          "target": 0
-        },
-        {
-          "date": "2021-08-24",
-          "target": 0
-        },
-        {
-          "date": "2021-08-27",
-          "target": 0
-        },
-        {
-          "date": "2021-08-30",
-          "target": 0
-        },
-        {
-          "date": "2021-09-02",
-          "target": 0
-        },
-        {
-          "date": "2021-09-05",
-          "target": 0
-        },
-        {
-          "date": "2021-09-08",
-          "target": 0
-        },
-        {
-          "date": "2021-09-11",
-          "target": 0
-        },
-        {
-          "date": "2021-09-14",
-          "target": 0
-        },
-        {
-          "date": "2021-09-17",
-          "target": 0
-        },
-        {
-          "date": "2021-09-20",
-          "target": 0
-        },
-        {
-          "date": "2021-09-23",
-          "target": 0
-        },
-        {
-          "date": "2021-09-26",
-          "target": 0
-        },
-        {
-          "date": "2021-09-29",
-          "target": 0
-        },
-        {
-          "date": "2021-10-02",
-          "target": 0
-        },
-        {
-          "date": "2021-10-05",
-          "target": 0
-        },
-        {
-          "date": "2021-10-08",
-          "target": 0
-        },
-        {
-          "date": "2021-10-11",
-          "target": 0
-        },
-        {
-          "date": "2021-10-14",
-          "target": 0
-        },
-        {
-          "date": "2021-10-17",
-          "target": 0
-        },
-        {
-          "date": "2021-10-20",
-          "target": 0
-        },
-        {
-          "date": "2021-10-23",
-          "target": 0
-        },
-        {
-          "date": "2021-10-26",
-          "target": 0
-        },
-        {
-          "date": "2021-10-29",
-          "target": 0
-        },
-        {
-          "date": "2021-11-01",
-          "target": 0
-        },
-        {
-          "date": "2021-11-04",
-          "target": 0
-        },
-        {
-          "date": "2021-11-07",
-          "target": 0
-        },
-        {
-          "date": "2021-11-10",
-          "target": 0
-        },
-        {
-          "date": "2021-11-13",
-          "target": 0
-        },
-        {
-          "date": "2021-11-16",
-          "target": 0
-        },
-        {
-          "date": "2021-11-19",
-          "target": 0
-        },
-        {
-          "date": "2021-11-22",
-          "target": 0
-        },
-        {
-          "date": "2021-11-25",
-          "target": 0
-        },
-        {
-          "date": "2021-11-28",
-          "target": 0
-        },
-        {
-          "date": "2021-12-01",
-          "target": 0
-        },
-        {
-          "date": "2021-12-04",
-          "target": 0
-        },
-        {
-          "date": "2021-12-07",
-          "target": 0
-        },
-        {
-          "date": "2021-12-10",
-          "target": 0
-        },
-        {
-          "date": "2021-12-13",
-          "target": 0
-        },
-        {
-          "date": "2021-12-16",
-          "target": 0
-        },
-        {
-          "date": "2021-12-19",
-          "target": 0
-        },
-        {
-          "date": "2021-12-22",
-          "target": 0
-        },
-        {
-          "date": "2021-12-25",
-          "target": 0
-        },
-        {
-          "date": "2021-12-28",
-          "target": 0
-        },
-        {
-          "date": "2021-12-31",
-          "target": 0
-        },
-        {
-          "date": "2022-01-03",
-          "target": 0
-        },
-        {
-          "date": "2022-01-06",
-          "target": 0
-        },
-        {
-          "date": "2022-01-09",
-          "target": 0
-        },
-        {
-          "date": "2022-01-12",
-          "target": 0
-        },
-        {
-          "date": "2022-01-15",
-          "target": 0
-        },
-        {
-          "date": "2022-01-18",
-          "target": 0
-        },
-        {
-          "date": "2022-01-21",
-          "target": 0
-        },
-        {
-          "date": "2022-01-24",
-          "target": 0
-        },
-        {
-          "date": "2022-01-27",
-          "target": 0
-        },
-        {
-          "date": "2022-01-30",
-          "target": 0
-        },
-        {
-          "date": "2022-02-02",
-          "target": 0
-        },
-        {
-          "date": "2022-02-05",
-          "target": 0
-        },
-        {
-          "date": "2022-02-08",
-          "target": 0
-        },
-        {
-          "date": "2022-02-11",
-          "target": 0
-        },
-        {
-          "date": "2022-02-14",
-          "target": 0
-        },
-        {
-          "date": "2022-02-17",
-          "target": 0
-        },
-        {
-          "date": "2022-02-20",
-          "target": 0
-        },
-        {
-          "date": "2022-02-23",
-          "target": 0
-        },
-        {
-          "date": "2022-02-26",
-          "target": 0
-        },
-        {
-          "date": "2022-03-01",
-          "target": 0
-        },
-        {
-          "date": "2022-03-04",
-          "target": 0
-        },
-        {
-          "date": "2022-03-07",
-          "target": 0
-        },
-        {
-          "date": "2022-03-10",
-          "target": 0
-        },
-        {
-          "date": "2022-03-13",
-          "target": 0
-        },
-        {
-          "date": "2022-03-16",
-          "target": 0
-        },
-        {
-          "date": "2022-03-19",
-          "target": 0
-        },
-        {
-          "date": "2022-03-22",
-          "target": 0
-        },
-        {
-          "date": "2022-03-25",
-          "target": 0
-        },
-        {
-          "date": "2022-03-28",
-          "target": 0
-        },
-        {
-          "date": "2022-03-31",
-          "target": 0
-        },
-        {
-          "date": "2022-04-03",
-          "target": 0
-        },
-        {
-          "date": "2022-04-06",
-          "target": 0
-        },
-        {
-          "date": "2022-04-09",
-          "target": 0
-        },
-        {
-          "date": "2022-04-12",
-          "target": 0
-        },
-        {
-          "date": "2022-04-15",
-          "target": 1
-        },
-        {
-          "date": "2022-04-18",
-          "target": 0
-        },
-        {
-          "date": "2022-04-21",
-          "target": 0
-        },
-        {
-          "date": "2022-04-24",
-          "target": 0
-        },
-        {
-          "date": "2022-04-27",
-          "target": 10
-        },
-        {
-          "date": "2022-04-30",
-          "target": 6
-        },
-        {
-          "date": "2022-05-03",
-          "target": 2
-        },
-        {
-          "date": "2022-05-06",
-          "target": 2
-        },
-        {
-          "date": "2022-05-09",
-          "target": 1
-        },
-        {
-          "date": "2022-05-12",
-          "target": 5
-        },
-        {
-          "date": "2022-05-15",
-          "target": 5
-        },
-        {
-          "date": "2022-05-18",
-          "target": 7
-        },
-        {
-          "date": "2022-05-21",
-          "target": 2
-        },
-        {
-          "date": "2022-05-24",
-          "target": 16
-        },
-        {
-          "date": "2022-05-27",
-          "target": 2
-        },
-        {
-          "date": "2022-05-30",
-          "target": 11
-        },
-        {
-          "date": "2022-06-02",
-          "target": 12
-        },
-        {
-          "date": "2022-06-05",
-          "target": 7
-        },
-        {
-          "date": "2022-06-08",
-          "target": 12
-        },
-        {
-          "date": "2022-06-11",
-          "target": 2
-        },
-        {
-          "date": "2022-06-14",
-          "target": 13
-        },
-        {
-          "date": "2022-06-17",
-          "target": 8
-        },
-        {
-          "date": "2022-06-20",
-          "target": 16
-        },
-        {
-          "date": "2022-06-23",
-          "target": 17
-        },
-        {
-          "date": "2022-06-26",
-          "target": 13
-        },
-        {
-          "date": "2022-06-29",
-          "target": 15
-        },
-        {
-          "date": "2022-07-02",
-          "target": 0
-        },
-        {
-          "date": "2022-07-05",
-          "target": 2
-        },
-        {
-          "date": "2022-07-08",
-          "target": 0
-        },
-        {
-          "date": "2022-07-11",
-          "target": 1
-        },
-        {
-          "date": "2022-07-14",
-          "target": 5
-        },
-        {
-          "date": "2022-07-17",
-          "target": 1
-        },
-        {
-          "date": "2022-07-20",
-          "target": 4
-        },
-        {
-          "date": "2022-07-23",
-          "target": 1
-        },
-        {
-          "date": "2022-07-26",
-          "target": 2
-        },
-        {
-          "date": "2022-07-29",
-          "target": 1
-        },
-        {
-          "date": "2022-08-01",
-          "target": 0
-        },
-        {
-          "date": "2022-08-04",
-          "target": 2
-        },
-        {
-          "date": "2022-08-07",
-          "target": 0
-        },
-        {
-          "date": "2022-08-10",
-          "target": 0
-        },
-        {
-          "date": "2022-08-13",
-          "target": 0
-        },
-        {
-          "date": "2022-08-16",
-          "target": 0
-        },
-        {
-          "date": "2022-08-19",
-          "target": 0
-        },
-        {
-          "date": "2022-08-22",
-          "target": 3
-        },
-        {
-          "date": "2022-08-25",
-          "target": 0
-        },
-        {
-          "date": "2022-08-28",
-          "target": 0
-        },
-        {
-          "date": "2022-08-31",
-          "target": 1
-        },
-        {
-          "date": "2022-09-03",
-          "target": 0
-        },
-        {
-          "date": "2022-09-06",
-          "target": 1
-        },
-        {
-          "date": "2022-09-09",
-          "target": 0
-        },
-        {
-          "date": "2022-09-12",
-          "target": 0
-        },
-        {
-          "date": "2022-09-15",
-          "target": 0
-        },
-        {
-          "date": "2022-09-18",
-          "target": 3
-        },
-        {
-          "date": "2022-09-21",
-          "target": 3
-        },
-        {
-          "date": "2022-09-24",
-          "target": 1
-        },
-        {
-          "date": "2022-09-27",
-          "target": 10
-        },
-        {
-          "date": "2022-09-30",
-          "target": 7
-        },
-        {
-          "date": "2022-10-03",
-          "target": 0
-        },
-        {
-          "date": "2022-10-06",
-          "target": 0
-        },
-        {
-          "date": "2022-10-09",
-          "target": 0
-        },
-        {
-          "date": "2022-10-12",
-          "target": 0
-        },
-        {
-          "date": "2022-10-15",
-          "target": 0
-        },
-        {
-          "date": "2022-10-18",
-          "target": 1
-        },
-        {
-          "date": "2022-10-21",
-          "target": 0
-        },
-        {
-          "date": "2022-10-24",
-          "target": 2
-        },
-        {
-          "date": "2022-10-27",
-          "target": 0
-        },
-        {
-          "date": "2022-10-30",
-          "target": 0
-        },
-        {
-          "date": "2022-11-02",
-          "target": 1
-        },
-        {
-          "date": "2022-11-05",
-          "target": 0
-        },
-        {
-          "date": "2022-11-08",
-          "target": 1
-        },
-        {
-          "date": "2022-11-11",
-          "target": 0
-        },
-        {
-          "date": "2022-11-14",
-          "target": 1
-        },
-        {
-          "date": "2022-11-17",
-          "target": 2
-        },
-        {
-          "date": "2022-11-20",
-          "target": 1
-        },
-        {
-          "date": "2022-11-23",
-          "target": 0
-        },
-        {
-          "date": "2022-11-26",
-          "target": 0
-        },
-        {
-          "date": "2022-11-29",
-          "target": 3
-        },
-        {
-          "date": "2022-12-02",
-          "target": 1
-        },
-        {
-          "date": "2022-12-05",
-          "target": 3
-        },
-        {
-          "date": "2022-12-08",
-          "target": 4
-        },
-        {
-          "date": "2022-12-11",
-          "target": 2
-        },
-        {
-          "date": "2022-12-14",
-          "target": 9
-        },
-        {
-          "date": "2022-12-17",
-          "target": 11
-        },
-        {
-          "date": "2022-12-20",
-          "target": 26
-        },
-        {
-          "date": "2022-12-23",
-          "target": 1
-        },
-        {
-          "date": "2022-12-26",
-          "target": 0
-        },
-        {
-          "date": "2022-12-29",
-          "target": 0
-        },
-        {
-          "date": "2023-01-01",
-          "target": 0
-        },
-        {
-          "date": "2023-01-04",
-          "target": 0
-        },
-        {
-          "date": "2023-01-07",
-          "target": 0
-        },
-        {
-          "date": "2023-01-10",
-          "target": 3
-        },
-        {
-          "date": "2023-01-13",
-          "target": 0
-        },
-        {
-          "date": "2023-01-16",
-          "target": 0
-        },
-        {
-          "date": "2023-01-19",
-          "target": 0
-        },
-        {
-          "date": "2023-01-22",
-          "target": 1
-        },
-        {
-          "date": "2023-01-25",
-          "target": 0
-        },
-        {
-          "date": "2023-01-28",
-          "target": 1
-        },
-        {
-          "date": "2023-01-31",
-          "target": 0
-        },
-        {
-          "date": "2023-02-03",
-          "target": 0
-        },
-        {
-          "date": "2023-02-06",
-          "target": 2
-        },
-        {
-          "date": "2023-02-09",
-          "target": 1
-        },
-        {
-          "date": "2023-02-12",
-          "target": 0
-        },
-        {
-          "date": "2023-02-15",
-          "target": 0
-        },
-        {
-          "date": "2023-02-18",
-          "target": 0
-        },
-        {
-          "date": "2023-02-21",
-          "target": 1
-        },
-        {
-          "date": "2023-02-24",
-          "target": 2
-        },
-        {
-          "date": "2023-02-27",
-          "target": 0
-        },
-        {
-          "date": "2023-03-02",
-          "target": 0
-        },
-        {
-          "date": "2023-03-05",
-          "target": 1
-        },
-        {
-          "date": "2023-03-08",
-          "target": 4
-        },
-        {
-          "date": "2023-03-11",
-          "target": 0
-        },
-        {
-          "date": "2023-03-14",
-          "target": 5
-        },
-        {
-          "date": "2023-03-17",
-          "target": 1
-        },
-        {
-          "date": "2023-03-20",
-          "target": 2
-        },
-        {
-          "date": "2023-03-23",
-          "target": 17
-        },
-        {
-          "date": "2023-03-26",
-          "target": 7
-        },
-        {
-          "date": "2023-03-29",
-          "target": 14
-        },
-        {
-          "date": "2023-04-01",
-          "target": 0
-        },
-        {
-          "date": "2023-04-04",
-          "target": 0
-        },
-        {
-          "date": "2023-04-07",
-          "target": 1
-        },
-        {
-          "date": "2023-04-10",
-          "target": 0
-        },
-        {
-          "date": "2023-04-13",
-          "target": 0
-        },
-        {
-          "date": "2023-04-16",
-          "target": 0
-        },
-        {
-          "date": "2023-04-19",
-          "target": 1
-        },
-        {
-          "date": "2023-04-22",
-          "target": 0
-        },
-        {
-          "date": "2023-04-25",
-          "target": 8
-        },
-        {
-          "date": "2023-04-28",
-          "target": 2
-        },
-        {
-          "date": "2023-05-01",
-          "target": 0
-        },
-        {
-          "date": "2023-05-04",
-          "target": 1
-        },
-        {
-          "date": "2023-05-07",
-          "target": 5
-        },
-        {
-          "date": "2023-05-10",
-          "target": 6
-        },
-        {
-          "date": "2023-05-13",
-          "target": 1
-        },
-        {
-          "date": "2023-05-16",
-          "target": 4
-        },
-        {
-          "date": "2023-05-19",
-          "target": 1
-        },
-        {
-          "date": "2023-05-22",
-          "target": 5
-        },
-        {
-          "date": "2023-05-25",
-          "target": 8
-        },
-        {
-          "date": "2023-05-28",
-          "target": 3
-        },
-        {
-          "date": "2023-05-31",
-          "target": 15
-        },
-        {
-          "date": "2023-06-03",
-          "target": 3
-        },
-        {
-          "date": "2023-06-06",
-          "target": 3
-        },
-        {
-          "date": "2023-06-09",
-          "target": 7
-        },
-        {
-          "date": "2023-06-12",
-          "target": 7
-        },
-        {
-          "date": "2023-06-15",
-          "target": 15
-        },
-        {
-          "date": "2023-06-18",
-          "target": 3
-        },
-        {
-          "date": "2023-06-21",
-          "target": 13
-        },
-        {
-          "date": "2023-06-24",
-          "target": 5
-        },
-        {
-          "date": "2023-06-27",
-          "target": 19
-        },
-        {
-          "date": "2023-06-30",
-          "target": 3
-        },
-        {
-          "date": "2023-07-03",
-          "target": 3
-        },
-        {
-          "date": "2023-07-06",
-          "target": 3
-        },
-        {
-          "date": "2023-07-09",
-          "target": 1
-        },
-        {
-          "date": "2023-07-12",
-          "target": 2
-        },
-        {
-          "date": "2023-07-15",
-          "target": 0
-        },
-        {
-          "date": "2023-07-18",
-          "target": 3
-        },
-        {
-          "date": "2023-07-21",
-          "target": 0
-        },
-        {
-          "date": "2023-07-24",
-          "target": 3
-        },
-        {
-          "date": "2023-07-27",
-          "target": 5
-        },
-        {
-          "date": "2023-07-30",
-          "target": 0
-        },
-        {
-          "date": "2023-08-02",
-          "target": 2
-        },
-        {
-          "date": "2023-08-05",
-          "target": 0
-        },
-        {
-          "date": "2023-08-08",
-          "target": 0
-        },
-        {
-          "date": "2023-08-11",
-          "target": 0
-        },
-        {
-          "date": "2023-08-14",
-          "target": 0
-        },
-        {
-          "date": "2023-08-17",
-          "target": 0
-        },
-        {
-          "date": "2023-08-20",
-          "target": 3
-        },
-        {
-          "date": "2023-08-23",
-          "target": 0
-        },
-        {
-          "date": "2023-08-26",
-          "target": 0
-        },
-        {
-          "date": "2023-08-29",
-          "target": 4
-        },
-        {
-          "date": "2023-09-01",
-          "target": 0
-        },
-        {
-          "date": "2023-09-04",
-          "target": 2
-        },
-        {
-          "date": "2023-09-07",
-          "target": 0
-        },
-        {
-          "date": "2023-09-10",
-          "target": 0
-        },
-        {
-          "date": "2023-09-13",
-          "target": 1
-        },
-        {
-          "date": "2023-09-16",
-          "target": 0
-        },
-        {
-          "date": "2023-09-19",
-          "target": 2
-        },
-        {
-          "date": "2023-09-22",
-          "target": 4
-        },
-        {
-          "date": "2023-09-25",
-          "target": 1
-        },
-        {
-          "date": "2023-09-28",
-          "target": 14
-        },
-        {
-          "date": "2023-10-01",
-          "target": 2
-        },
-        {
-          "date": "2023-10-04",
-          "target": 2
-        },
-        {
-          "date": "2023-10-07",
-          "target": 0
-        },
-        {
-          "date": "2023-10-10",
-          "target": 0
-        },
-        {
-          "date": "2023-10-13",
-          "target": 0
-        },
-        {
-          "date": "2023-10-16",
-          "target": 0
-        },
-        {
-          "date": "2023-10-19",
-          "target": 0
-        },
-        {
-          "date": "2023-10-22",
-          "target": 2
-        },
-        {
-          "date": "2023-10-25",
-          "target": 4
-        },
-        {
-          "date": "2023-10-28",
-          "target": 2
-        },
-        {
-          "date": "2023-10-31",
-          "target": 4
-        },
-        {
-          "date": "2023-11-03",
-          "target": 0
-        },
-        {
-          "date": "2023-11-06",
-          "target": 0
-        },
-        {
-          "date": "2023-11-09",
-          "target": 3
-        },
-        {
-          "date": "2023-11-12",
-          "target": 1
-        },
-        {
-          "date": "2023-11-15",
-          "target": 5
-        },
-        {
-          "date": "2023-11-18",
-          "target": 1
-        },
-        {
-          "date": "2023-11-21",
-          "target": 6
-        },
-        {
-          "date": "2023-11-24",
-          "target": 0
-        },
-        {
-          "date": "2023-11-27",
-          "target": 14
-        },
-        {
-          "date": "2023-11-30",
-          "target": 8
-        },
-        {
-          "date": "2023-12-03",
-          "target": 2
-        },
-        {
-          "date": "2023-12-06",
-          "target": 11
-        },
-        {
-          "date": "2023-12-09",
-          "target": 3
-        },
-        {
-          "date": "2023-12-12",
-          "target": 9
-        },
-        {
-          "date": "2023-12-15",
-          "target": 3
-        },
-        {
-          "date": "2023-12-18",
-          "target": 9
-        },
-        {
-          "date": "2023-12-21",
-          "target": 4
-        },
-        {
-          "date": "2023-12-24",
-          "target": 0
-        },
-        {
-          "date": "2023-12-27",
-          "target": 1
-        },
-        {
-          "date": "2023-12-30",
-          "target": 0
-        },
-        {
-          "date": "2024-01-02",
-          "target": 1
-        },
-        {
-          "date": "2024-01-05",
-          "target": 0
-        },
-        {
-          "date": "2024-01-08",
-          "target": 2
-        },
-        {
-          "date": "2024-01-11",
-          "target": 5
-        },
-        {
-          "date": "2024-01-14",
-          "target": 1
-        },
-        {
-          "date": "2024-01-17",
-          "target": 4
-        },
-        {
-          "date": "2024-01-20",
-          "target": 0
-        },
-        {
-          "date": "2024-01-23",
-          "target": 4
-        },
-        {
-          "date": "2024-01-26",
-          "target": 0
-        },
-        {
-          "date": "2024-01-29",
-          "target": 2
-        },
-        {
-          "date": "2024-02-01",
-          "target": 0
-        },
-        {
-          "date": "2024-02-04",
-          "target": 1
-        },
-        {
-          "date": "2024-02-07",
-          "target": 1
-        },
-        {
-          "date": "2024-02-10",
-          "target": 0
-        },
-        {
-          "date": "2024-02-13",
-          "target": 3
-        },
-        {
-          "date": "2024-02-16",
-          "target": 0
-        },
-        {
-          "date": "2024-02-19",
-          "target": 4
-        },
-        {
-          "date": "2024-02-22",
-          "target": 3
-        },
-        {
-          "date": "2024-02-25",
-          "target": 1
-        },
-        {
-          "date": "2024-02-28",
-          "target": 5
-        },
-        {
-          "date": "2024-03-02",
-          "target": 0
-        },
-        {
-          "date": "2024-03-05",
-          "target": 2
-        },
-        {
-          "date": "2024-03-08",
-          "target": 2
-        },
-        {
-          "date": "2024-03-11",
-          "target": 2
-        },
-        {
-          "date": "2024-03-14",
-          "target": 8
-        },
-        {
-          "date": "2024-03-17",
-          "target": 1
-        },
-        {
-          "date": "2024-03-20",
-          "target": 9
-        },
-        {
-          "date": "2024-03-23",
-          "target": 0
-        },
-        {
-          "date": "2024-03-26",
-          "target": 13
-        },
-        {
-          "date": "2024-03-29",
-          "target": 6
-        },
-        {
-          "date": "2024-04-01",
-          "target": 2
-        },
-        {
-          "date": "2024-04-04",
-          "target": 0
-        },
-        {
-          "date": "2024-04-07",
-          "target": 2
-        },
-        {
-          "date": "2024-04-10",
-          "target": 4
-        },
-        {
-          "date": "2024-04-13",
-          "target": 0
-        },
-        {
-          "date": "2024-04-16",
-          "target": 0
-        },
-        {
-          "date": "2024-04-19",
-          "target": 0
-        },
-        {
-          "date": "2024-04-22",
-          "target": 2
-        },
-        {
-          "date": "2024-04-25",
-          "target": 5
-        },
-        {
-          "date": "2024-04-28",
-          "target": 6
-        },
-        {
-          "date": "2024-05-01",
-          "target": 1
-        },
-        {
-          "date": "2024-05-04",
-          "target": 3
-        },
-        {
-          "date": "2024-05-07",
-          "target": 1
-        },
-        {
-          "date": "2024-05-10",
-          "target": 0
-        },
-        {
-          "date": "2024-05-13",
-          "target": 3
-        },
-        {
-          "date": "2024-05-16",
-          "target": 4
-        },
-        {
-          "date": "2024-05-19",
-          "target": 3
-        },
-        {
-          "date": "2024-05-22",
-          "target": 10
-        },
-        {
-          "date": "2024-05-25",
-          "target": 0
-        },
-        {
-          "date": "2024-05-28",
-          "target": 8
-        },
-        {
-          "date": "2024-05-31",
-          "target": 2
-        },
-        {
-          "date": "2024-06-03",
-          "target": 1
-        },
-        {
-          "date": "2024-06-06",
-          "target": 4
-        },
-        {
-          "date": "2024-06-09",
-          "target": 3
-        },
-        {
-          "date": "2024-06-12",
-          "target": 13
-        },
-        {
-          "date": "2024-06-15",
-          "target": 0
-        },
-        {
-          "date": "2024-06-18",
-          "target": 7
-        },
-        {
-          "date": "2024-06-21",
-          "target": 10
-        },
-        {
-          "date": "2024-06-24",
-          "target": 5
-        },
-        {
-          "date": "2024-06-27",
-          "target": 14
-        },
-        {
-          "date": "2024-06-30",
-          "target": 3
-        },
-        {
-          "date": "2024-07-03",
-          "target": 0
-        },
-        {
-          "date": "2024-07-06",
-          "target": 1
-        },
-        {
-          "date": "2024-07-09",
-          "target": 2
-        },
-        {
-          "date": "2024-07-12",
-          "target": 0
-        },
-        {
-          "date": "2024-07-15",
-          "target": 0
-        },
-        {
-          "date": "2024-07-18",
-          "target": 1
-        },
-        {
-          "date": "2024-07-21",
-          "target": 1
-        },
-        {
-          "date": "2024-07-24",
-          "target": 2
-        },
-        {
-          "date": "2024-07-27",
-          "target": 3
-        },
-        {
-          "date": "2024-07-30",
-          "target": 4
-        },
-        {
-          "date": "2024-08-02",
-          "target": 0
-        },
-        {
-          "date": "2024-08-05",
-          "target": 0
-        },
-        {
-          "date": "2024-08-08",
-          "target": 3
-        },
-        {
-          "date": "2024-08-11",
-          "target": 1
-        },
-        {
-          "date": "2024-08-14",
-          "target": 0
-        },
-        {
-          "date": "2024-08-17",
-          "target": 0
-        },
-        {
-          "date": "2024-08-20",
-          "target": 0
-        },
-        {
-          "date": "2024-08-23",
-          "target": 0
-        },
-        {
-          "date": "2024-08-26",
-          "target": 2
-        },
-        {
-          "date": "2024-08-29",
-          "target": 2
-        },
-        {
-          "date": "2024-09-01",
-          "target": 1
-        },
-        {
-          "date": "2024-09-04",
-          "target": 1
-        },
-        {
-          "date": "2024-09-07",
-          "target": 1
-        },
-        {
-          "date": "2024-09-10",
-          "target": 6
-        },
-        {
-          "date": "2024-09-13",
-          "target": 1
-        },
-        {
-          "date": "2024-09-16",
-          "target": 1
-        },
-        {
-          "date": "2024-09-19",
-          "target": 1
-        },
-        {
-          "date": "2024-09-22",
-          "target": 5
-        },
-        {
-          "date": "2024-09-25",
-          "target": 5
-        },
-        {
-          "date": "2024-09-28",
-          "target": 3
-        },
-        {
-          "date": "2024-10-01",
-          "target": 2
-        },
-        {
-          "date": "2024-10-04",
-          "target": 1
-        },
-        {
-          "date": "2024-10-07",
-          "target": 1
-        },
-        {
-          "date": "2024-10-10",
-          "target": 1
-        },
-        {
-          "date": "2024-10-13",
-          "target": 3
-        },
-        {
-          "date": "2024-10-16",
-          "target": 5
-        },
-        {
-          "date": "2024-10-19",
-          "target": 0
-        },
-        {
-          "date": "2024-10-22",
-          "target": 0
-        },
-        {
-          "date": "2024-10-25",
-          "target": 0
-        },
-        {
-          "date": "2024-10-28",
-          "target": 1
-        },
-        {
-          "date": "2024-10-31",
-          "target": 4
-        },
-        {
-          "date": "2024-11-03",
-          "target": 0
-        },
-        {
-          "date": "2024-11-06",
-          "target": 2
-        },
-        {
-          "date": "2024-11-09",
-          "target": 0
-        },
-        {
-          "date": "2024-11-12",
-          "target": 2
-        },
-        {
-          "date": "2024-11-15",
-          "target": 1
-        },
-        {
-          "date": "2024-11-18",
-          "target": 0
-        },
-        {
-          "date": "2024-11-21",
-          "target": 0
-        },
-        {
-          "date": "2024-11-24",
-          "target": 3
-        },
-        {
-          "date": "2024-11-27",
-          "target": 3
-        },
-        {
-          "date": "2024-11-30",
-          "target": 0
-        },
-        {
-          "date": "2024-12-03",
-          "target": 8
-        },
-        {
-          "date": "2024-12-06",
-          "target": 3
-        },
-        {
-          "date": "2024-12-09",
-          "target": 2
-        },
-        {
-          "date": "2024-12-12",
-          "target": 8
-        },
-        {
-          "date": "2024-12-15",
-          "target": 3
-        },
-        {
-          "date": "2024-12-18",
-          "target": 7
-        }
-      ]
-    },
-    {
       "scale": "7D",
       "events": [
         {
@@ -15450,6 +12234,231 @@
         {
           "date": "2024-12-03",
           "target": 31
+        }
+      ]
+    },
+    {
+      "scale": "60D",
+      "events": [
+        {
+          "date": "2015-12-21",
+          "target": 21
+        },
+        {
+          "date": "2016-02-19",
+          "target": 31
+        },
+        {
+          "date": "2016-04-19",
+          "target": 55
+        },
+        {
+          "date": "2016-06-18",
+          "target": 42
+        },
+        {
+          "date": "2016-08-17",
+          "target": 15
+        },
+        {
+          "date": "2016-10-16",
+          "target": 38
+        },
+        {
+          "date": "2016-12-15",
+          "target": 45
+        },
+        {
+          "date": "2017-02-13",
+          "target": 74
+        },
+        {
+          "date": "2017-04-14",
+          "target": 76
+        },
+        {
+          "date": "2017-06-13",
+          "target": 52
+        },
+        {
+          "date": "2017-08-12",
+          "target": 21
+        },
+        {
+          "date": "2017-10-11",
+          "target": 28
+        },
+        {
+          "date": "2017-12-10",
+          "target": 42
+        },
+        {
+          "date": "2018-02-08",
+          "target": 39
+        },
+        {
+          "date": "2018-04-09",
+          "target": 67
+        },
+        {
+          "date": "2018-06-08",
+          "target": 82
+        },
+        {
+          "date": "2018-08-07",
+          "target": 34
+        },
+        {
+          "date": "2018-10-06",
+          "target": 20
+        },
+        {
+          "date": "2018-12-05",
+          "target": 35
+        },
+        {
+          "date": "2019-02-03",
+          "target": 54
+        },
+        {
+          "date": "2019-04-04",
+          "target": 69
+        },
+        {
+          "date": "2019-06-03",
+          "target": 9
+        },
+        {
+          "date": "2019-08-02",
+          "target": 0
+        },
+        {
+          "date": "2019-10-01",
+          "target": 0
+        },
+        {
+          "date": "2019-11-30",
+          "target": 0
+        },
+        {
+          "date": "2020-01-29",
+          "target": 0
+        },
+        {
+          "date": "2020-03-29",
+          "target": 0
+        },
+        {
+          "date": "2020-05-28",
+          "target": 0
+        },
+        {
+          "date": "2020-07-27",
+          "target": 0
+        },
+        {
+          "date": "2020-09-25",
+          "target": 0
+        },
+        {
+          "date": "2020-11-24",
+          "target": 0
+        },
+        {
+          "date": "2021-01-23",
+          "target": 0
+        },
+        {
+          "date": "2021-03-24",
+          "target": 0
+        },
+        {
+          "date": "2021-05-23",
+          "target": 0
+        },
+        {
+          "date": "2021-07-22",
+          "target": 0
+        },
+        {
+          "date": "2021-09-20",
+          "target": 0
+        },
+        {
+          "date": "2021-11-19",
+          "target": 0
+        },
+        {
+          "date": "2022-01-18",
+          "target": 0
+        },
+        {
+          "date": "2022-03-19",
+          "target": 32
+        },
+        {
+          "date": "2022-05-18",
+          "target": 161
+        },
+        {
+          "date": "2022-07-17",
+          "target": 16
+        },
+        {
+          "date": "2022-09-15",
+          "target": 29
+        },
+        {
+          "date": "2022-11-14",
+          "target": 67
+        },
+        {
+          "date": "2023-01-13",
+          "target": 13
+        },
+        {
+          "date": "2023-03-14",
+          "target": 70
+        },
+        {
+          "date": "2023-05-13",
+          "target": 122
+        },
+        {
+          "date": "2023-07-12",
+          "target": 24
+        },
+        {
+          "date": "2023-09-10",
+          "target": 38
+        },
+        {
+          "date": "2023-11-09",
+          "target": 81
+        },
+        {
+          "date": "2024-01-08",
+          "target": 38
+        },
+        {
+          "date": "2024-03-08",
+          "target": 66
+        },
+        {
+          "date": "2024-05-07",
+          "target": 91
+        },
+        {
+          "date": "2024-07-06",
+          "target": 23
+        },
+        {
+          "date": "2024-09-04",
+          "target": 42
+        },
+        {
+          "date": "2024-11-03",
+          "target": 42
         }
       ]
     }
