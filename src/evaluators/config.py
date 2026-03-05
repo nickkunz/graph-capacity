@@ -37,6 +37,7 @@ FEAT_X = [
     "random_walk_triangle_weight",
     "random_walk_fourth_moment",
     "adjacency_fourth_moment_per_node",
+    "degree_kurtosis"
 ]
 FEAT_Z = [
     "lag1_autocorr",
