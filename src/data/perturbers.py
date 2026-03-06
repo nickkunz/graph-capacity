@@ -120,42 +120,42 @@ URL_SEISMIC_EVENTS = config['urls']['URL_SEISMIC_EVENTS'].strip('"')
 ## network perturbation (G space)
 ## ----------------------------
 NETWORK_METHODS = {
-    'rewire':      (0.01, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45),
-    'sparsify':    (0.01, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45),
-    'node_sample': (0.01, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45)
+    "rewire":      tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+    "sparsify":    tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+    "node_sample": tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2))
 }
 
 ## --------------------------------
 ## invariant perturbation (x encoding)
 ## --------------------------------
 INVARIANT_METHODS = {
-    'noise':  (0.01, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45),
-    'jitter': (0.01, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45),
-    'subset': (0.99, 0.95, 0.90, 0.85, 0.80, 0.75, 0.70, 0.65, 0.60, 0.55),
+    'noise':  tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+    'jitter': tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+    'subset': tuple(np.round(np.linspace(start = 0.95, stop = 0.65, num = 7), decimals = 2)),
 }
 
 ## ------------------------------
 ## process perturbation (S space)
 ## ------------------------------
 PROCESS_METHODS = {
-    'scaling':       (0.50, 1.00, 1.50, 2.00, 2.50, 3.00, 3.50, 4.00, 4.50, 5.00),
-    'smoothing':     (1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
-    'bootstrapping': (0.01, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45)
+    'scaling':       (0.25, 0.50, 0.75, 1.00, 1.25, 1.50, 1.75),
+    'smoothing':     (3.00, 5.00, 7.00, 9.00, 11.00, 13.00, 15.00),
+    'bootstrapping': tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2))
 }
 
 ## --------------------------------------
 ## signature-level perturbation (z encoding)
 ## --------------------------------------
 SIGNATURE_METHODS = {
-    'noise':  (0.01, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45),
-    'jitter': (0.01, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45),
-    'subset': (0.99, 0.95, 0.90, 0.85, 0.80, 0.75, 0.70, 0.65, 0.60, 0.55),
+    'noise':  tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+    'jitter': tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+    'subset': tuple(np.round(np.linspace(start = 0.95, stop = 0.65, num = 7), decimals = 2)),
 }
 
 ## ----------------------
 ## temporal resolution
 ## ----------------------
-TEMPORAL_SCALES = ('2D', '7D', '14D', '30D', '60D')
+TEMPORAL_SCALES = ('2D', '7D', '14D', '30D', '60D', '90D', '180D')
 
 
 ## helper functions
@@ -438,18 +438,6 @@ def json_perturber():
         logging.info(f"Bitcoin perturbations saved to {bitcoin_path}")
     else:
         logging.info(f"Bitcoin perturbations already exist at {bitcoin_path}. Skipping.")
-
-    ## --- amazon reviews --- ##
-    amazon_path = os.path.join(PATH_PERT, f"{NAME_AMAZON}.json")
-    if not os.path.exists(amazon_path):
-        logging.info("Perturbing Amazon data...")
-        proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
-        proc.run()
-        data = _execute_perturbations(proc = proc, name = NAME_AMAZON)
-        _save_to_json(data = data, path = amazon_path)
-        logging.info(f"Amazon perturbations saved to {amazon_path}")
-    else:
-        logging.info(f"Amazon perturbations already exist at {amazon_path}. Skipping.")
 
     ## --- world bank --- ##
     world_path = os.path.join(PATH_PERT, f"{NAME_WORLD}.json")
@@ -754,6 +742,18 @@ def json_perturber():
         logging.info(f"Rain perturbations saved to {rain_path}")
     else:
         logging.info(f"Rain perturbations already exist at {rain_path}. Skipping.")
+
+    ## --- amazon reviews --- ##
+    amazon_path = os.path.join(PATH_PERT, f"{NAME_AMAZON}.json")
+    if not os.path.exists(amazon_path):
+        logging.info("Perturbing Amazon data...")
+        proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
+        proc.run()
+        data = _execute_perturbations(proc = proc, name = NAME_AMAZON)
+        _save_to_json(data = data, path = amazon_path)
+        logging.info(f"Amazon perturbations saved to {amazon_path}")
+    else:
+        logging.info(f"Amazon perturbations already exist at {amazon_path}. Skipping.")
 
 ## primary execution
 if __name__ == '__main__':
