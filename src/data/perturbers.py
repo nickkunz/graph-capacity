@@ -155,7 +155,11 @@ SIGNATURE_METHODS = {
 ## ----------------------
 ## temporal resolution
 ## ----------------------
-TEMPORAL_SCALES = ('2D', '7D', '14D', '30D', '60D', '90D', '180D')
+TEMPORAL_METHODS = {
+    'aggregation': ('2D', '7D', '14D', '30D', '60D', '90D', '180D'),
+    'jitter':      tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+    'dropout':     tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+}
 
 
 ## helper functions
@@ -342,47 +346,108 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
             is_ordinal = pd.api.types.is_integer_dtype(df_temp[date_col])
 
             if is_ordinal:
-                ## integer day indices: bin directly without synthesizing dates
                 df_temp = df_temp.sort_values(date_col).reset_index(drop = True)
                 day_min = int(df_temp[date_col].min())
                 day_max = int(df_temp[date_col].max())
-
-                for scale in TEMPORAL_SCALES:
-                    scale_days = int(re.match(r'(\d+)', scale).group(1))
-                    bin_edges = list(range(day_min, day_max + scale_days, scale_days))
-                    if len(bin_edges) < 2:
-                        bin_edges = [day_min, day_min + scale_days]
-                    labels = bin_edges[:-1]
-                    df_temp['_bin'] = pd.cut(
-                        df_temp[date_col], bins = bin_edges,
-                        right = False, labels = labels, include_lowest = True
-                    )
-                    agg = df_temp.groupby('_bin', observed = False)[target_col].sum()
-                    records = [
-                        {'day': int(b), 'target': int(v)}
-                        for b, v in agg.items()
-                    ]
-                    temporal_results.append({
-                        'scale': scale,
-                        'events': records
-                    })
-                df_temp.drop(columns = '_bin', inplace = True, errors = 'ignore')
-
             else:
-                ## real dates: resample with native pandas frequency
                 df_temp[date_col] = pd.to_datetime(df_temp[date_col])
                 df_temp = df_temp.set_index(date_col).sort_index()
 
-                for scale in TEMPORAL_SCALES:
-                    resampled = df_temp[target_col].resample(scale).sum()
-                    records = [
-                        {'date': str(dt.date()), 'target': int(val)}
-                        for dt, val in resampled.items()
-                    ]
-                    temporal_results.append({
-                        'scale': scale,
-                        'events': records
-                    })
+            for method, params in TEMPORAL_METHODS.items():
+                for param in params:
+                    try:
+                        if method == 'aggregation':
+                            scale = param
+                            if is_ordinal:
+                                scale_days = int(re.match(r'(\d+)', scale).group(1))
+                                bin_edges = list(range(day_min, day_max + scale_days, scale_days))
+                                if len(bin_edges) < 2:
+                                    bin_edges = [day_min, day_min + scale_days]
+                                labels = bin_edges[:-1]
+                                df_temp['_bin'] = pd.cut(
+                                    df_temp[date_col], bins = bin_edges,
+                                    right = False, labels = labels, include_lowest = True
+                                )
+                                agg = df_temp.groupby('_bin', observed = False)[target_col].sum()
+                                records = [
+                                    {'day': int(b), 'target': int(v)}
+                                    for b, v in agg.items()
+                                ]
+                                df_temp.drop(columns = '_bin', inplace = True, errors = 'ignore')
+                            else:
+                                resampled = df_temp[target_col].resample(scale).sum()
+                                records = [
+                                    {'date': str(dt.date()), 'target': int(val)}
+                                    for dt, val in resampled.items()
+                                ]
+                            temporal_results.append({'method': method, 'intensity': scale, 'events': records})
+
+                        elif method == 'jitter':
+                            intensity = float(param)
+                            if is_ordinal:
+                                days_arr = np.repeat(
+                                    df_temp[date_col].values,
+                                    df_temp[target_col].values.clip(0).astype(int)
+                                )
+                                if len(days_arr) == 0:
+                                    continue
+                                sigma = intensity * max(day_max - day_min, 1)
+                                jittered = np.round(
+                                    days_arr + np.random.normal(0, sigma, size = len(days_arr))
+                                ).astype(int).clip(day_min, day_max)
+                                day_keys, day_vals = np.unique(jittered, return_counts = True)
+                                new_counts = dict(zip(day_keys.tolist(), day_vals.tolist()))
+                                records = [
+                                    {'day': int(d), 'target': int(c)}
+                                    for d, c in sorted(new_counts.items())
+                                ]
+                            else:
+                                daily = df_temp[target_col].resample('1D').sum()
+                                n_days = len(daily)
+                                if n_days == 0:
+                                    continue
+                                event_days = np.repeat(
+                                    np.arange(n_days),
+                                    daily.values.clip(0).astype(int)
+                                )
+                                if len(event_days) == 0:
+                                    continue
+                                sigma = intensity * max(n_days, 1)
+                                jittered = np.round(
+                                    event_days + np.random.normal(0, sigma, size = len(event_days))
+                                ).astype(int).clip(0, n_days - 1)
+                                new_daily = np.zeros(n_days, dtype = int)
+                                idx_keys, idx_vals = np.unique(jittered, return_counts = True)
+                                new_daily[idx_keys] = idx_vals
+                                records = [
+                                    {'date': str(daily.index[i].date()), 'target': int(new_daily[i])}
+                                    for i in range(n_days)
+                                ]
+                            temporal_results.append({'method': method, 'intensity': intensity, 'events': records})
+
+                        elif method == 'dropout':
+                            intensity = float(param)
+                            if is_ordinal:
+                                counts_arr = df_temp[target_col].values.clip(0).astype(int)
+                                survived = np.random.binomial(counts_arr, max(0.0, 1.0 - intensity))
+                                records = [
+                                    {'day': int(df_temp[date_col].iloc[i]), 'target': int(survived[i])}
+                                    for i in range(len(df_temp))
+                                ]
+                            else:
+                                counts_arr = df_temp[target_col].values.clip(0).astype(int)
+                                survived = np.random.binomial(counts_arr, max(0.0, 1.0 - intensity))
+                                dropped = pd.Series(survived.astype(float), index = df_temp.index)
+                                resampled = dropped.resample('1D').sum()
+                                records = [
+                                    {'date': str(dt.date()), 'target': int(val)}
+                                    for dt, val in resampled.items()
+                                ]
+                            temporal_results.append({'method': method, 'intensity': intensity, 'events': records})
+
+                    except Exception as exc:
+                        logging.warning(f"Temporal {method} @ {param} failed for {name}: {exc}")
+                        continue
 
             results['temporal_aggregated'] = temporal_results
             logging.info(f"  Temporal aggregation: {len(temporal_results)} scales")
