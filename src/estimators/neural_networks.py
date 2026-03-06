@@ -154,13 +154,18 @@ class NeuralBase(BaseEstimator, RegressorMixin):
             torch.nn.utils.clip_grad_norm_(self.model_.parameters(), max_norm = 5.0)
             optimizer.step()
             
+        ## store training target range for prediction clipping
+        self.y_min_ = float(y_train.min())
+        self.y_max_ = float(y_train.max())
+
         return self
     
     ## sklearn predict interface
     def predict(self, X: ArrayLike) -> NDArray[np.float32]:
         self.model_.eval()
         with torch.no_grad():
-            return self.model_(torch.FloatTensor(X).to(self.device)).cpu().numpy()
+            preds = self.model_(torch.FloatTensor(X).to(self.device)).cpu().numpy()
+            return np.clip(preds, self.y_min_, self.y_max_)
 
 
 ## quantile neural network
