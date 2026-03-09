@@ -7,8 +7,7 @@ from sklearn.base import BaseEstimator, RegressorMixin
 from src.estimators.config import (
     ASYMMETRY_C,
     ASYMMETRY_R,
-    ALPHA_C,
-    ALPHA_R
+    ALPHA
 )
 
 ## laws regression sklearn regressors
@@ -16,28 +15,26 @@ class LinearLAWS(BaseEstimator):
     def __init__(self, 
         tau_c: float = ASYMMETRY_C,
         tau_r: float = ASYMMETRY_R, 
-        alpha_c: float = ALPHA_C, 
-        alpha_r: float = ALPHA_R, 
+        alpha: float = ALPHA, 
         max_iter: int = 1000,
         tol: float = 0.0001
         ) -> None:
 
         self.tau_c = tau_c
         self.tau_r = tau_r
-        self.alpha_c = alpha_c
-        self.alpha_r = alpha_r
+        self.alpha = alpha
         self.max_iter = max_iter
         self.tol = tol
         self.estimator_c = BaseLAWS(
             tau = tau_c, 
-            alpha = alpha_c,
+            alpha = alpha,
             fit_intercept = True,
             max_iter = max_iter,
             tol = tol
         )
         self.estimator_r = BaseLAWS(
             tau = tau_r, 
-            alpha = alpha_r, 
+            alpha = alpha, 
             fit_intercept = False, 
             max_iter = max_iter, 
             tol = tol

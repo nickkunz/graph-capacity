@@ -8,8 +8,7 @@ from sklearn.linear_model import QuantileRegressor
 from src.estimators.config import (
     ASYMMETRY_C,
     ASYMMETRY_R,
-    ALPHA_C,
-    ALPHA_R
+    ALPHA
 )
 
 ## convex hull sklearn regressors
@@ -18,19 +17,18 @@ class LinearConvex(BaseEstimator):
         self,
         quantile_c: float = ASYMMETRY_C,
         quantile_r: float = ASYMMETRY_R,
-        alpha_c: float = ALPHA_C,
-        alpha_r: float = ALPHA_R,
+        alpha: float = ALPHA,
         beta: ArrayLike | None = None
         ) -> None:
 
         self.estimator_c = BaseConvex(
             quantile = quantile_c, 
-            alpha = alpha_c, 
+            alpha = alpha, 
             beta = beta
         )
         self.estimator_r = BaseConvex(
             quantile = quantile_r, 
-            alpha = alpha_r, 
+            alpha = alpha, 
             beta = beta
         )
 
