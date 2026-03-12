@@ -95,7 +95,7 @@ class NeuralBase(BaseEstimator, RegressorMixin):
         input_dims: int | None,
         hidden_dims: list[int] = [8, 4],
         lr: float = 0.1,
-        epochs: int = 5000,
+        epochs: int = 1000,
         dropout: float = 0.1,
         weight_decay: float = 0.01
         ) -> None:
