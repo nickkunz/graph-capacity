@@ -401,10 +401,15 @@ def _index_perturbs(pert_path: str) -> dict:
                 intensity = rec.get("intensity", rec.get("param"))
                 method = rec.get("method")
 
-                ## temporal aggregation: method is always "aggregation", intensity is the scale
+                ## temporal: explicit method field in new records; fall back to aggregation for old records
                 if pert_type == "temporal":
-                    method = "aggregation"
-                    intensity = rec.get("scale")
+                    if "method" in rec:
+                        method = rec["method"]
+                        intensity = rec.get("intensity", rec.get("scale"))
+                    else:
+                        ## backward compat for records without method field
+                        method = "aggregation"
+                        intensity = rec.get("scale")
 
                 idx_key = (pert_type, method, intensity)
                 if idx_key not in index:
