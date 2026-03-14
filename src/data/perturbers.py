@@ -449,12 +449,12 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
                         logging.warning(f"Temporal {method} @ {param} failed for {name}: {exc}")
                         continue
 
-            results['temporal_aggregated'] = temporal_results
-            logging.info(f"  Temporal aggregation: {len(temporal_results)} scales")
+            results['temporal_perturbed'] = temporal_results
+            logging.info(f"  Temporal perturbations: {len(temporal_results)} scales")
         else:
-            logging.warning(f"  No date/target columns for {name}, skipping temporal aggregation.")
+            logging.warning(f"  No date/target columns for {name}, skipping temporal perturbations.")
     else:
-        logging.warning(f"  No events for {name}, skipping temporal aggregation.")
+        logging.warning(f"  No events for {name}, skipping temporal perturbations.")
 
     return results
 
@@ -809,16 +809,16 @@ def json_perturber():
         logging.info(f"Rain perturbations already exist at {rain_path}. Skipping.")
 
     ## --- amazon reviews --- ##
-    amazon_path = os.path.join(PATH_PERT, f"{NAME_AMAZON}.json")
-    if not os.path.exists(amazon_path):
-        logging.info("Perturbing Amazon data...")
-        proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
-        proc.run()
-        data = _execute_perturbations(proc = proc, name = NAME_AMAZON)
-        _save_to_json(data = data, path = amazon_path)
-        logging.info(f"Amazon perturbations saved to {amazon_path}")
-    else:
-        logging.info(f"Amazon perturbations already exist at {amazon_path}. Skipping.")
+    # amazon_path = os.path.join(PATH_PERT, f"{NAME_AMAZON}.json")
+    # if not os.path.exists(amazon_path):
+    #     logging.info("Perturbing Amazon data...")
+    #     proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
+    #     proc.run()
+    #     data = _execute_perturbations(proc = proc, name = NAME_AMAZON)
+    #     _save_to_json(data = data, path = amazon_path)
+    #     logging.info(f"Amazon perturbations saved to {amazon_path}")
+    # else:
+    #     logging.info(f"Amazon perturbations already exist at {amazon_path}. Skipping.")
 
 ## primary execution
 if __name__ == '__main__':
