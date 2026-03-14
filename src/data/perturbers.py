@@ -188,7 +188,7 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
         graph.simplify()
 
         ## check for fully connected bipartite structure to determine if analytical perturbation can be used
-        network_results = list()
+        network_results: dict[str, list[dict[str, Any]]] = dict()
         analytical = _is_fully_connected_bipartite(graph)
         if analytical:
             degrees = np.array(graph.degree(), dtype=float)
@@ -217,13 +217,13 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
                     except Exception as exc:
                         logging.warning(f"Network {method} @ {intensity:.2f} failed for {name}: {exc}")
                         continue
-                network_results.append({
-                    'method': method,
+                network_results.setdefault(method, []).append({
                     'intensity': float(intensity),
                     'invariants': features
                 })
         results['network_perturbed'] = network_results
-        logging.info(f"  Network perturbation: {len(network_results)} records")
+        total = sum(len(v) for v in network_results.values())
+        logging.info(f"  Network perturbation: {total} records")
     elif pre_inv is not None and dimensions is not None:
         m, n = int(dimensions[0]), int(dimensions[1])
         n_nodes = int(m + n)
@@ -233,7 +233,7 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
             np.full(shape = n, fill_value = float(m), dtype = float),
         ])
         invariants = dict(pre_inv)
-        network_results = list()
+        network_results: dict[str, list[dict[str, Any]]] = dict()
         logging.info(f"  Using analytical perturbation for {name} ({n_nodes:,} nodes, {n_edges:,} edges) [graph-free]")
         for method, intensities in NETWORK_METHODS.items():
             for intensity in intensities:
@@ -249,13 +249,13 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
                 except Exception as exc:
                     logging.warning(f"Analytical {method} @ {intensity:.2f} failed for {name}: {exc}")
                     continue
-                network_results.append({
-                    'method': method,
+                network_results.setdefault(method, []).append({
                     'intensity': float(intensity),
                     'invariants': features
                 })
         results['network_perturbed'] = network_results
-        logging.info(f"  Network perturbation: {len(network_results)} records")
+        total = sum(len(v) for v in network_results.values())
+        logging.info(f"  Network perturbation: {total} records")
     else:
         logging.warning(f"  No graph object for {name}, skipping network perturbation.")
 
@@ -263,7 +263,7 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
     if graph is not None or pre_inv is not None:
         base_inv = GraphInvariants(graph).all(analytical = analytical) if graph is not None else pre_inv
         base_df = pd.DataFrame([base_inv])
-        invariant_results = list()
+        invariant_results: dict[str, list[dict[str, Any]]] = dict()
         for method, params in INVARIANT_METHODS.items():
             for param in params:
                 try:
@@ -277,20 +277,20 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
                 except Exception as exc:
                     logging.warning(f"Invariant {method} @ {param:.3f} failed for {name}: {exc}")
                     continue
-                invariant_results.append({
-                    'method': method,
+                invariant_results.setdefault(method, []).append({
                     'intensity': float(param),
                     'invariants': row
                 })
         results['invariants_perturbed'] = invariant_results
-        logging.info(f"  Invariant perturbation: {len(invariant_results)} records")
+        total = sum(len(v) for v in invariant_results.values())
+        logging.info(f"  Invariant perturbation: {total} records")
 
     ## --- process perturbation --- ##
     events = getattr(proc, 'events', None)
     counts = _extract_counts(events)
 
     if counts is not None and len(counts) > 0:
-        process_results = list()
+        process_results: dict[str, list[dict[str, Any]]] = dict()
         for method, params in PROCESS_METHODS.items():
             for param in params:
                 try:
@@ -298,13 +298,13 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
                 except Exception as exc:
                     logging.warning(f"Process {method} @ {param} failed for {name}: {exc}")
                     continue
-                process_results.append({
-                    'method': method,
+                process_results.setdefault(method, []).append({
                     'intensity': float(param),
                     'signatures': sigs
                 })
         results['process_perturbed'] = process_results
-        logging.info(f"  Process perturbation: {len(process_results)} records")
+        total = sum(len(v) for v in process_results.values())
+        logging.info(f"  Process perturbation: {total} records")
     else:
         logging.warning(f"  No count series for {name}, skipping process perturbation.")
 
@@ -313,7 +313,7 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
         data_temp = pd.DataFrame({"counts": counts, "idx": range(len(counts))})
         base_sigs = ProcessSignatures(data_temp, sort_by = ["idx"], target = "counts").all()
         base_sig_df = pd.DataFrame([base_sigs])
-        sig_pert_results = list()
+        sig_pert_results: dict[str, list[dict[str, Any]]] = dict()
         for method, params in SIGNATURE_METHODS.items():
             for param in params:
                 try:
@@ -327,13 +327,13 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
                 except Exception as exc:
                     logging.warning(f"Signature {method} @ {param:.3f} failed for {name}: {exc}")
                     continue
-                sig_pert_results.append({
-                    'method': method,
+                sig_pert_results.setdefault(method, []).append({
                     'intensity': float(param),
                     'signatures': row
                 })
         results['signatures_perturbed'] = sig_pert_results
-        logging.info(f"  Signature perturbation: {len(sig_pert_results)} records")
+        total = sum(len(v) for v in sig_pert_results.values())
+        logging.info(f"  Signature perturbation: {total} records")
 
     ## --- temporal aggregation --- ##
     if events is not None and isinstance(events, pd.DataFrame) and not events.empty:
@@ -341,7 +341,7 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
         target_col = next((c for c in ('target', 'count') if c in events.columns), None)
 
         if date_col is not None and target_col is not None:
-            temporal_results = list()
+            temporal_results: dict[str, list[dict[str, Any]]] = dict()
             df_temp = events[[date_col, target_col]].copy()
             is_ordinal = pd.api.types.is_integer_dtype(df_temp[date_col])
 
@@ -380,7 +380,7 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
                                     {'date': str(dt.date()), 'target': int(val)}
                                     for dt, val in resampled.items()
                                 ]
-                            temporal_results.append({'method': method, 'intensity': scale, 'events': records})
+                            temporal_results.setdefault(method, []).append({'intensity': scale, 'events': records})
 
                         elif method == 'jitter':
                             intensity = float(param)
@@ -423,7 +423,7 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
                                     {'date': str(daily.index[i].date()), 'target': int(new_daily[i])}
                                     for i in range(n_days)
                                 ]
-                            temporal_results.append({'method': method, 'intensity': intensity, 'events': records})
+                            temporal_results.setdefault(method, []).append({'intensity': intensity, 'events': records})
 
                         elif method == 'dropout':
                             intensity = float(param)
@@ -443,14 +443,15 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
                                     {'date': str(dt.date()), 'target': int(val)}
                                     for dt, val in resampled.items()
                                 ]
-                            temporal_results.append({'method': method, 'intensity': intensity, 'events': records})
+                            temporal_results.setdefault(method, []).append({'intensity': intensity, 'events': records})
 
                     except Exception as exc:
                         logging.warning(f"Temporal {method} @ {param} failed for {name}: {exc}")
                         continue
 
             results['temporal_perturbed'] = temporal_results
-            logging.info(f"  Temporal perturbations: {len(temporal_results)} scales")
+            total = sum(len(v) for v in temporal_results.values())
+            logging.info(f"  Temporal perturbations: {total} records")
         else:
             logging.warning(f"  No date/target columns for {name}, skipping temporal perturbations.")
     else:
