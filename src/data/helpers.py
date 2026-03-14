@@ -72,6 +72,21 @@ def _save_to_json(data: dict, path: str) -> None:
     with open(path, 'w') as fp:
         json.dump(obj = data, fp = fp, indent = 2, default = str)
 
+## load a single key from environment variable or .env file
+def _load_env_var(key: str, env_path: str) -> str | None:
+    try:
+        with open(env_path, 'r') as fp:
+            for line in fp:
+                line = line.strip()
+                if not line or line.startswith('#') or '=' not in line:
+                    continue
+                k, v = line.split('=', 1)
+                if k.strip() == key:
+                    return v.strip().strip('"').strip("'")
+    except FileNotFoundError:
+        return None
+    return None
+
 ## find path for cache directory
 def _cache_dir(namespace: str = "http") -> str:
     path = Path(__file__).resolve().parents[2] / "cache" / namespace
@@ -105,7 +120,7 @@ def _request_with_retry(
     method: str = 'GET',
     params: dict = None,
     json: dict = None,
-    retries: int = 3, 
+    retries: int = 5, 
     timeout: int = 60, 
     sleep: float = 0.5,
     use_cache: bool = True,
@@ -395,10 +410,29 @@ def _index_perturbs(pert_path: str) -> dict:
         ## iterate over defined perturbation types and extract features into index
         for spec in PERT_SPECS:
             json_key, pert_type, feat_key = spec["key"], spec["type"], spec["feat"]
-            for rec in data.get(json_key, []):
-                
-                ## support for both intensity or param field
-                intensity = rec.get("intensity", rec.get("param"))
+
+            # Support both old list-of-records format and new nested format
+            records = data.get(json_key, [])
+            if isinstance(records, dict):
+                nested = []
+                for method, intensities in records.items():
+                    if isinstance(intensities, dict):
+                        for intensity, rec in intensities.items():
+                            if isinstance(rec, dict):
+                                rec = dict(rec)
+                            else:
+                                rec = {}
+                            rec["method"] = method
+                            rec["intensity"] = intensity
+                            nested.append(rec)
+                    elif isinstance(intensities, list):
+                        for rec in intensities:
+                            if isinstance(rec, dict):
+                                rec.setdefault("method", method)
+                                nested.append(rec)
+                records = nested
+
+            for rec in records:
                 method = rec.get("method")
 
                 ## temporal: explicit method field in new records; fall back to aggregation for old records
@@ -410,6 +444,8 @@ def _index_perturbs(pert_path: str) -> dict:
                         ## backward compat for records without method field
                         method = "aggregation"
                         intensity = rec.get("scale")
+                else:
+                    intensity = rec.get("intensity", rec.get("param"))
 
                 idx_key = (pert_type, method, intensity)
                 if idx_key not in index:
