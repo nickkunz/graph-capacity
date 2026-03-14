@@ -15,6 +15,7 @@ if str(root) not in sys.path:
 ## modules
 from src.data.processors import json_processor
 from src.data.perturbers import json_perturber
+from src.data.falsifiers import json_falsifier
 
 ## logging
 logging.basicConfig(
@@ -56,7 +57,7 @@ NAME_AUGER = config['names']['NAME_AUGER']
 NAME_SEISMIC = config['names']['NAME_SEISMIC']
 NAME_RAIN = config['names']['NAME_RAIN']
 
-METADATA = (
+metadata = (
     (NAME_GWOSC, 'Earth & Physical Sciences', 'Cosmology'),
     (NAME_RIVER, 'Earth & Physical Sciences', 'Hydrology'),
     (NAME_AUGER, 'Earth & Physical Sciences', 'Physics'),
@@ -97,8 +98,8 @@ def _rate_max(data, target = 'target'):
     return data_max
 
 ## metadata parsing
-def _parse_metadata(namedata, metadata = METADATA):
-    """ Return domain and discipline for a dataset name from METADATA. """
+def _parse_metadata(namedata, metadata = metadata):
+    """ Return domain and discipline for a dataset name from metadata. """
 
     ## parse metadata for the dataset name
     for name, domain, discipline in metadata:
@@ -109,7 +110,7 @@ def _parse_metadata(namedata, metadata = METADATA):
     return 'Unknown', 'Unknown'
 
 ## metadata insertion
-def _insert_metadata(data, namedata, metadata = METADATA):
+def _insert_metadata(data, namedata, metadata = metadata):
     """ Insert metadata fields and invariant/signature fields into the data. """
 
     ## parse metadata for the dataset name, warning if no match is found
@@ -251,7 +252,7 @@ def _process_per_data(file_path, namedata, invariant_order, signature_order, tar
     data_obs = _insert_metadata(
         data = data_obs,
         namedata = namedata,
-        metadata = METADATA
+        metadata = metadata
     )
 
     ## insert invariant and signature fields
@@ -364,6 +365,15 @@ if __name__ == '__main__':
         logging.info("Data perturber completed.")
     except Exception as e:
         logging.warning(f"Failed to run perturber: {e}.")
+        logging.info("Continuing to create main table from existing data...")
+
+    ## run falsification pipeline to create falsified json payloads
+    try:
+        logging.info("Running data falsifier...")
+        json_falsifier()
+        logging.info("Data falsifier completed.")
+    except Exception as e:
+        logging.warning(f"Failed to run falsifier: {e}.")
         logging.info("Continuing to create main table from existing data...")
 
     ## run main data builder that reads the json files and writes them to disk 
