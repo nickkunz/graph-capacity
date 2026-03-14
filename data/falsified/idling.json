@@ -1,0 +1,746 @@
+{
+  "target_remap": {
+    "invariants": {
+      "n_nodes": 18028,
+      "n_edges": 19259,
+      "n_articulation_points": 3906,
+      "n_bridges": 3934,
+      "diameter": 665.0,
+      "radius": 333.0,
+      "degeneracy": 2,
+      "k_core_size": 14640,
+      "maximum_degree": 7,
+      "degree_variance": 0.2328475774365532,
+      "global_clustering": 0.0008754377188594296,
+      "degree_assortativity": 0.1827944386984225,
+      "degree_entropy": 0.5719914235632917,
+      "joint_degree_entropy": 1.1430185783433209,
+      "degree_skewness": 2.2574232335885114,
+      "degree_kurtosis": 7.978481308322767,
+      "normalized_laplacian_second_moment": 1.4703837372904935,
+      "normalized_laplacian_third_moment": 2.411108107626232,
+      "random_walk_triangle_weight": 4.310424524813254e-05,
+      "random_walk_fourth_moment": 0.33946568483525635,
+      "adjacency_fourth_moment_per_node": 7.4926780563567785
+    },
+    "signatures": {
+      "lag1_autocorr": 0.3608601309373085,
+      "coef_variation": 0.45982255397397925,
+      "fano_factor": 83.64917786810649,
+      "norm_succ_diff": 0.3993218604173382,
+      "hurst_exponent": 0.5931900943851758,
+      "trend_coeff": 0.18132037992435263,
+      "count_skewness": -0.3513634481035414
+    },
+    "events": [
+      {
+        "date": "2025-06-02",
+        "target": 105
+      },
+      {
+        "date": "2025-06-03",
+        "target": 487
+      },
+      {
+        "date": "2025-06-04",
+        "target": 565
+      },
+      {
+        "date": "2025-06-05",
+        "target": 263
+      },
+      {
+        "date": "2025-06-06",
+        "target": 657
+      },
+      {
+        "date": "2025-06-07",
+        "target": 632
+      },
+      {
+        "date": "2025-06-08",
+        "target": 587
+      },
+      {
+        "date": "2025-06-09",
+        "target": 667
+      },
+      {
+        "date": "2025-06-10",
+        "target": 298
+      },
+      {
+        "date": "2025-06-11",
+        "target": 574
+      },
+      {
+        "date": "2025-06-13",
+        "target": 355
+      },
+      {
+        "date": "2025-06-14",
+        "target": 521
+      },
+      {
+        "date": "2025-06-17",
+        "target": 378
+      },
+      {
+        "date": "2025-06-18",
+        "target": 316
+      },
+      {
+        "date": "2025-06-19",
+        "target": 528
+      },
+      {
+        "date": "2025-06-20",
+        "target": 511
+      },
+      {
+        "date": "2025-06-21",
+        "target": 380
+      },
+      {
+        "date": "2025-06-22",
+        "target": 500
+      },
+      {
+        "date": "2025-06-23",
+        "target": 106
+      },
+      {
+        "date": "2025-06-24",
+        "target": 566
+      },
+      {
+        "date": "2025-06-25",
+        "target": 732
+      },
+      {
+        "date": "2025-06-26",
+        "target": 436
+      },
+      {
+        "date": "2025-06-27",
+        "target": 332
+      },
+      {
+        "date": "2025-06-29",
+        "target": 494
+      },
+      {
+        "date": "2025-06-30",
+        "target": 510
+      },
+      {
+        "date": "2025-07-01",
+        "target": 617
+      },
+      {
+        "date": "2025-07-02",
+        "target": 318
+      },
+      {
+        "date": "2025-07-03",
+        "target": 262
+      },
+      {
+        "date": "2025-07-04",
+        "target": 460
+      },
+      {
+        "date": "2025-08-10",
+        "target": 382
+      },
+      {
+        "date": "2025-08-11",
+        "target": 333
+      },
+      {
+        "date": "2025-08-12",
+        "target": 555
+      },
+      {
+        "date": "2025-08-13",
+        "target": 12
+      },
+      {
+        "date": "2025-08-14",
+        "target": 466
+      },
+      {
+        "date": "2025-08-15",
+        "target": 80
+      },
+      {
+        "date": "2025-08-16",
+        "target": 424
+      },
+      {
+        "date": "2025-08-17",
+        "target": 296
+      },
+      {
+        "date": "2025-08-18",
+        "target": 479
+      },
+      {
+        "date": "2025-08-19",
+        "target": 491
+      },
+      {
+        "date": "2025-08-20",
+        "target": 587
+      },
+      {
+        "date": "2025-08-21",
+        "target": 416
+      },
+      {
+        "date": "2025-08-22",
+        "target": 570
+      },
+      {
+        "date": "2025-08-23",
+        "target": 215
+      },
+      {
+        "date": "2025-08-24",
+        "target": 71
+      },
+      {
+        "date": "2025-08-25",
+        "target": 347
+      },
+      {
+        "date": "2025-08-26",
+        "target": 241
+      },
+      {
+        "date": "2025-08-27",
+        "target": 325
+      },
+      {
+        "date": "2025-08-28",
+        "target": 96
+      },
+      {
+        "date": "2025-08-29",
+        "target": 633
+      },
+      {
+        "date": "2025-08-30",
+        "target": 76
+      },
+      {
+        "date": "2025-08-31",
+        "target": 140
+      },
+      {
+        "date": "2025-09-01",
+        "target": 404
+      },
+      {
+        "date": "2025-09-02",
+        "target": 172
+      }
+    ]
+  },
+  "random_generate": {
+    "invariants": {
+      "n_nodes": 13504.418525160501,
+      "n_edges": 36619.61365429715,
+      "n_articulation_points": 5718.3366734306965,
+      "n_bridges": 4710.244953662284,
+      "diameter": 207.50479178844057,
+      "radius": 103.89235054391096,
+      "degeneracy": 0.23233444867279784,
+      "k_core_size": 25361.637548290102,
+      "maximum_degree": 8.415610164404923,
+      "degree_variance": 0.7080725777960455,
+      "global_clustering": 0.020584494295802447,
+      "degree_assortativity": 0.9699098521619943,
+      "degree_entropy": 0.9523001022924382,
+      "joint_degree_entropy": 0.48541509682833656,
+      "degree_skewness": 0.8209118108395562,
+      "degree_kurtosis": 2.9265789074554407,
+      "normalized_laplacian_second_moment": 0.8947056924889748,
+      "normalized_laplacian_third_moment": 2.5304889736749985,
+      "random_walk_triangle_weight": 0.43194501864211576,
+      "random_walk_fourth_moment": 0.2912291401980419,
+      "adjacency_fourth_moment_per_node": 9.168833516009494
+    },
+    "signatures": {
+      "lag1_autocorr": 0.13949386065204183,
+      "coef_variation": 0.29214464853521815,
+      "fano_factor": 61.29173398752275,
+      "norm_succ_diff": 0.45606998421703593,
+      "hurst_exponent": 0.9315172052953857,
+      "trend_coeff": 0.19967378215835974,
+      "count_skewness": 0.5142344384136116
+    },
+    "events": [
+      {
+        "date": "2025-06-02",
+        "target": 460
+      },
+      {
+        "date": "2025-06-03",
+        "target": 424
+      },
+      {
+        "date": "2025-06-04",
+        "target": 479
+      },
+      {
+        "date": "2025-06-05",
+        "target": 298
+      },
+      {
+        "date": "2025-06-06",
+        "target": 511
+      },
+      {
+        "date": "2025-06-07",
+        "target": 632
+      },
+      {
+        "date": "2025-06-08",
+        "target": 316
+      },
+      {
+        "date": "2025-06-09",
+        "target": 96
+      },
+      {
+        "date": "2025-06-10",
+        "target": 521
+      },
+      {
+        "date": "2025-06-11",
+        "target": 332
+      },
+      {
+        "date": "2025-06-13",
+        "target": 215
+      },
+      {
+        "date": "2025-06-14",
+        "target": 262
+      },
+      {
+        "date": "2025-06-17",
+        "target": 263
+      },
+      {
+        "date": "2025-06-18",
+        "target": 355
+      },
+      {
+        "date": "2025-06-19",
+        "target": 76
+      },
+      {
+        "date": "2025-06-20",
+        "target": 436
+      },
+      {
+        "date": "2025-06-21",
+        "target": 494
+      },
+      {
+        "date": "2025-06-22",
+        "target": 587
+      },
+      {
+        "date": "2025-06-23",
+        "target": 347
+      },
+      {
+        "date": "2025-06-24",
+        "target": 105
+      },
+      {
+        "date": "2025-06-25",
+        "target": 325
+      },
+      {
+        "date": "2025-06-26",
+        "target": 296
+      },
+      {
+        "date": "2025-06-27",
+        "target": 71
+      },
+      {
+        "date": "2025-06-29",
+        "target": 416
+      },
+      {
+        "date": "2025-06-30",
+        "target": 500
+      },
+      {
+        "date": "2025-07-01",
+        "target": 318
+      },
+      {
+        "date": "2025-07-02",
+        "target": 378
+      },
+      {
+        "date": "2025-07-03",
+        "target": 333
+      },
+      {
+        "date": "2025-07-04",
+        "target": 140
+      },
+      {
+        "date": "2025-08-10",
+        "target": 466
+      },
+      {
+        "date": "2025-08-11",
+        "target": 510
+      },
+      {
+        "date": "2025-08-12",
+        "target": 555
+      },
+      {
+        "date": "2025-08-13",
+        "target": 574
+      },
+      {
+        "date": "2025-08-14",
+        "target": 566
+      },
+      {
+        "date": "2025-08-15",
+        "target": 528
+      },
+      {
+        "date": "2025-08-16",
+        "target": 587
+      },
+      {
+        "date": "2025-08-17",
+        "target": 617
+      },
+      {
+        "date": "2025-08-18",
+        "target": 380
+      },
+      {
+        "date": "2025-08-19",
+        "target": 172
+      },
+      {
+        "date": "2025-08-20",
+        "target": 12
+      },
+      {
+        "date": "2025-08-21",
+        "target": 491
+      },
+      {
+        "date": "2025-08-22",
+        "target": 487
+      },
+      {
+        "date": "2025-08-23",
+        "target": 633
+      },
+      {
+        "date": "2025-08-24",
+        "target": 657
+      },
+      {
+        "date": "2025-08-25",
+        "target": 106
+      },
+      {
+        "date": "2025-08-26",
+        "target": 80
+      },
+      {
+        "date": "2025-08-27",
+        "target": 382
+      },
+      {
+        "date": "2025-08-28",
+        "target": 565
+      },
+      {
+        "date": "2025-08-29",
+        "target": 570
+      },
+      {
+        "date": "2025-08-30",
+        "target": 732
+      },
+      {
+        "date": "2025-08-31",
+        "target": 667
+      },
+      {
+        "date": "2025-09-01",
+        "target": 404
+      },
+      {
+        "date": "2025-09-02",
+        "target": 241
+      }
+    ]
+  },
+  "vector_generate": {
+    "invariants": {
+      "n_nodes": 18923.47627504865,
+      "n_edges": 18992.716782374417,
+      "n_articulation_points": 4158.9871429821305,
+      "n_bridges": 4533.159945510917,
+      "diameter": 649.4288005808982,
+      "radius": 325.2032393335923,
+      "degeneracy": 2.3158425631014783,
+      "k_core_size": 15763.524443479859,
+      "maximum_degree": 6.671367929845533,
+      "degree_variance": 0.24548095661283947,
+      "global_clustering": 0.0008348683860719455,
+      "degree_assortativity": 0.17428115780951953,
+      "degree_entropy": 0.585831457979458,
+      "joint_degree_entropy": 0.9243270918212091,
+      "degree_skewness": 1.8680362744739056,
+      "degree_kurtosis": 7.529861254127558,
+      "normalized_laplacian_second_moment": 1.3214586964943489,
+      "normalized_laplacian_third_moment": 2.4868765367682704,
+      "random_walk_triangle_weight": 3.9190276003885026e-05,
+      "random_walk_fourth_moment": 0.2915228205183411,
+      "adjacency_fourth_moment_per_node": 8.590841493279264
+    },
+    "signatures": {
+      "lag1_autocorr": 0.3527127644016973,
+      "coef_variation": 0.4629276531284671,
+      "fano_factor": 71.73127642352334,
+      "norm_succ_diff": 0.37758346818369265,
+      "hurst_exponent": 0.5997699125311201,
+      "trend_coeff": 0.16045052064948245,
+      "count_skewness": -0.33816279298638113
+    },
+    "events": [
+      {
+        "date": "2025-06-02",
+        "target": 460
+      },
+      {
+        "date": "2025-06-03",
+        "target": 424
+      },
+      {
+        "date": "2025-06-04",
+        "target": 479
+      },
+      {
+        "date": "2025-06-05",
+        "target": 298
+      },
+      {
+        "date": "2025-06-06",
+        "target": 511
+      },
+      {
+        "date": "2025-06-07",
+        "target": 632
+      },
+      {
+        "date": "2025-06-08",
+        "target": 316
+      },
+      {
+        "date": "2025-06-09",
+        "target": 96
+      },
+      {
+        "date": "2025-06-10",
+        "target": 521
+      },
+      {
+        "date": "2025-06-11",
+        "target": 332
+      },
+      {
+        "date": "2025-06-13",
+        "target": 215
+      },
+      {
+        "date": "2025-06-14",
+        "target": 262
+      },
+      {
+        "date": "2025-06-17",
+        "target": 263
+      },
+      {
+        "date": "2025-06-18",
+        "target": 355
+      },
+      {
+        "date": "2025-06-19",
+        "target": 76
+      },
+      {
+        "date": "2025-06-20",
+        "target": 436
+      },
+      {
+        "date": "2025-06-21",
+        "target": 494
+      },
+      {
+        "date": "2025-06-22",
+        "target": 587
+      },
+      {
+        "date": "2025-06-23",
+        "target": 347
+      },
+      {
+        "date": "2025-06-24",
+        "target": 105
+      },
+      {
+        "date": "2025-06-25",
+        "target": 325
+      },
+      {
+        "date": "2025-06-26",
+        "target": 296
+      },
+      {
+        "date": "2025-06-27",
+        "target": 71
+      },
+      {
+        "date": "2025-06-29",
+        "target": 416
+      },
+      {
+        "date": "2025-06-30",
+        "target": 500
+      },
+      {
+        "date": "2025-07-01",
+        "target": 318
+      },
+      {
+        "date": "2025-07-02",
+        "target": 378
+      },
+      {
+        "date": "2025-07-03",
+        "target": 333
+      },
+      {
+        "date": "2025-07-04",
+        "target": 140
+      },
+      {
+        "date": "2025-08-10",
+        "target": 466
+      },
+      {
+        "date": "2025-08-11",
+        "target": 510
+      },
+      {
+        "date": "2025-08-12",
+        "target": 555
+      },
+      {
+        "date": "2025-08-13",
+        "target": 574
+      },
+      {
+        "date": "2025-08-14",
+        "target": 566
+      },
+      {
+        "date": "2025-08-15",
+        "target": 528
+      },
+      {
+        "date": "2025-08-16",
+        "target": 587
+      },
+      {
+        "date": "2025-08-17",
+        "target": 617
+      },
+      {
+        "date": "2025-08-18",
+        "target": 380
+      },
+      {
+        "date": "2025-08-19",
+        "target": 172
+      },
+      {
+        "date": "2025-08-20",
+        "target": 12
+      },
+      {
+        "date": "2025-08-21",
+        "target": 491
+      },
+      {
+        "date": "2025-08-22",
+        "target": 487
+      },
+      {
+        "date": "2025-08-23",
+        "target": 633
+      },
+      {
+        "date": "2025-08-24",
+        "target": 657
+      },
+      {
+        "date": "2025-08-25",
+        "target": 106
+      },
+      {
+        "date": "2025-08-26",
+        "target": 80
+      },
+      {
+        "date": "2025-08-27",
+        "target": 382
+      },
+      {
+        "date": "2025-08-28",
+        "target": 565
+      },
+      {
+        "date": "2025-08-29",
+        "target": 570
+      },
+      {
+        "date": "2025-08-30",
+        "target": 732
+      },
+      {
+        "date": "2025-08-31",
+        "target": 667
+      },
+      {
+        "date": "2025-09-01",
+        "target": 404
+      },
+      {
+        "date": "2025-09-02",
+        "target": 241
+      }
+    ]
+  }
+}

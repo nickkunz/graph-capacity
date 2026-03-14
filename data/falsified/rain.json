@@ -1,0 +1,566 @@
+{
+  "target_remap": {
+    "invariants": {
+      "n_nodes": 17,
+      "n_edges": 40,
+      "n_articulation_points": 0,
+      "n_bridges": 0,
+      "diameter": 4.0,
+      "radius": 2.0,
+      "degeneracy": 4,
+      "k_core_size": 16,
+      "maximum_degree": 7,
+      "degree_variance": 1.2664359861591694,
+      "global_clustering": 0.4528301886792453,
+      "degree_assortativity": -0.08754758020663149,
+      "degree_entropy": 1.3647193751408024,
+      "joint_degree_entropy": 2.0474240601572955,
+      "degree_skewness": -0.16205083089403174,
+      "degree_kurtosis": 0.9450608515376064,
+      "normalized_laplacian_second_moment": 1.2112418300653596,
+      "normalized_laplacian_third_moment": 1.5572408963585436,
+      "random_walk_triangle_weight": 0.07648459383753503,
+      "random_walk_fourth_moment": 0.11025271293702665,
+      "adjacency_fourth_moment_per_node": 60.0
+    },
+    "signatures": {
+      "lag1_autocorr": 0.2867441998457248,
+      "coef_variation": 1.0665511182269487,
+      "fano_factor": 9.279860505665821,
+      "norm_succ_diff": 0.771926765475058,
+      "hurst_exponent": 0.6253848140831604,
+      "trend_coeff": 0.19985318153341494,
+      "count_skewness": 2.4574807656734987
+    },
+    "events": [
+      {
+        "date": "2024-01-12",
+        "target": 10
+      },
+      {
+        "date": "2024-01-13",
+        "target": 26
+      },
+      {
+        "date": "2024-01-15",
+        "target": 5
+      },
+      {
+        "date": "2024-01-16",
+        "target": 2
+      },
+      {
+        "date": "2024-01-17",
+        "target": 3
+      },
+      {
+        "date": "2024-01-21",
+        "target": 5
+      },
+      {
+        "date": "2024-01-22",
+        "target": 4
+      },
+      {
+        "date": "2024-01-23",
+        "target": 20
+      },
+      {
+        "date": "2024-01-25",
+        "target": 5
+      },
+      {
+        "date": "2024-01-26",
+        "target": 4
+      },
+      {
+        "date": "2024-01-27",
+        "target": 3
+      },
+      {
+        "date": "2024-01-28",
+        "target": 6
+      },
+      {
+        "date": "2024-01-29",
+        "target": 5
+      },
+      {
+        "date": "2024-01-30",
+        "target": 9
+      },
+      {
+        "date": "2024-01-31",
+        "target": 1
+      },
+      {
+        "date": "2024-02-10",
+        "target": 6
+      },
+      {
+        "date": "2024-02-24",
+        "target": 6
+      },
+      {
+        "date": "2024-02-29",
+        "target": 14
+      },
+      {
+        "date": "2024-03-01",
+        "target": 7
+      },
+      {
+        "date": "2024-03-02",
+        "target": 1
+      },
+      {
+        "date": "2024-03-09",
+        "target": 16
+      },
+      {
+        "date": "2024-03-10",
+        "target": 14
+      },
+      {
+        "date": "2024-03-11",
+        "target": 3
+      },
+      {
+        "date": "2024-03-12",
+        "target": 2
+      },
+      {
+        "date": "2024-03-15",
+        "target": 11
+      },
+      {
+        "date": "2024-03-16",
+        "target": 6
+      },
+      {
+        "date": "2024-03-17",
+        "target": 21
+      },
+      {
+        "date": "2024-03-18",
+        "target": 14
+      },
+      {
+        "date": "2024-03-19",
+        "target": 6
+      },
+      {
+        "date": "2024-03-20",
+        "target": 3
+      },
+      {
+        "date": "2024-03-21",
+        "target": 7
+      },
+      {
+        "date": "2024-03-22",
+        "target": 1
+      },
+      {
+        "date": "2024-03-24",
+        "target": 8
+      },
+      {
+        "date": "2024-03-26",
+        "target": 3
+      },
+      {
+        "date": "2024-03-27",
+        "target": 4
+      },
+      {
+        "date": "2024-03-28",
+        "target": 2
+      },
+      {
+        "date": "2024-03-29",
+        "target": 1
+      },
+      {
+        "date": "2024-03-30",
+        "target": 46
+      }
+    ]
+  },
+  "random_generate": {
+    "invariants": {
+      "n_nodes": 12.734364040810325,
+      "n_edges": 76.05714451279329,
+      "n_articulation_points": 0.7319939418114051,
+      "n_bridges": 0.5986584841970366,
+      "diameter": 1.2481491235394921,
+      "radius": 0.6239780813448106,
+      "degeneracy": 0.4646688973455957,
+      "k_core_size": 27.717636664797926,
+      "maximum_degree": 8.415610164404923,
+      "degree_variance": 1.7934571866668,
+      "global_clustering": 0.020584494295802447,
+      "degree_assortativity": 0.9699098521619943,
+      "degree_entropy": 2.272101201187422,
+      "joint_degree_entropy": 0.869496408230211,
+      "degree_skewness": 0.18182496720710062,
+      "degree_kurtosis": 0.346656844515847,
+      "normalized_laplacian_second_moment": 0.7370218622910004,
+      "normalized_laplacian_third_moment": 1.6343443519297938,
+      "random_walk_triangle_weight": 0.43194501864211576,
+      "random_walk_fourth_moment": 0.2912291401980419,
+      "adjacency_fourth_moment_per_node": 73.42234736668554
+    },
+    "signatures": {
+      "lag1_autocorr": 0.13949386065204183,
+      "coef_variation": 0.6231744031585117,
+      "fano_factor": 6.79957360072812,
+      "norm_succ_diff": 0.7041052554938346,
+      "hurst_exponent": 0.9820742452766731,
+      "trend_coeff": 0.19967378215835974,
+      "count_skewness": 2.5274424828967277
+    },
+    "events": [
+      {
+        "date": "2024-01-12",
+        "target": 14
+      },
+      {
+        "date": "2024-01-13",
+        "target": 14
+      },
+      {
+        "date": "2024-01-15",
+        "target": 11
+      },
+      {
+        "date": "2024-01-16",
+        "target": 14
+      },
+      {
+        "date": "2024-01-17",
+        "target": 5
+      },
+      {
+        "date": "2024-01-21",
+        "target": 1
+      },
+      {
+        "date": "2024-01-22",
+        "target": 4
+      },
+      {
+        "date": "2024-01-23",
+        "target": 2
+      },
+      {
+        "date": "2024-01-25",
+        "target": 6
+      },
+      {
+        "date": "2024-01-26",
+        "target": 6
+      },
+      {
+        "date": "2024-01-27",
+        "target": 1
+      },
+      {
+        "date": "2024-01-28",
+        "target": 16
+      },
+      {
+        "date": "2024-01-29",
+        "target": 9
+      },
+      {
+        "date": "2024-01-30",
+        "target": 2
+      },
+      {
+        "date": "2024-01-31",
+        "target": 1
+      },
+      {
+        "date": "2024-02-10",
+        "target": 4
+      },
+      {
+        "date": "2024-02-24",
+        "target": 5
+      },
+      {
+        "date": "2024-02-29",
+        "target": 3
+      },
+      {
+        "date": "2024-03-01",
+        "target": 3
+      },
+      {
+        "date": "2024-03-02",
+        "target": 1
+      },
+      {
+        "date": "2024-03-09",
+        "target": 4
+      },
+      {
+        "date": "2024-03-10",
+        "target": 2
+      },
+      {
+        "date": "2024-03-11",
+        "target": 8
+      },
+      {
+        "date": "2024-03-12",
+        "target": 3
+      },
+      {
+        "date": "2024-03-15",
+        "target": 5
+      },
+      {
+        "date": "2024-03-16",
+        "target": 7
+      },
+      {
+        "date": "2024-03-17",
+        "target": 5
+      },
+      {
+        "date": "2024-03-18",
+        "target": 20
+      },
+      {
+        "date": "2024-03-19",
+        "target": 46
+      },
+      {
+        "date": "2024-03-20",
+        "target": 6
+      },
+      {
+        "date": "2024-03-21",
+        "target": 3
+      },
+      {
+        "date": "2024-03-22",
+        "target": 7
+      },
+      {
+        "date": "2024-03-24",
+        "target": 6
+      },
+      {
+        "date": "2024-03-26",
+        "target": 10
+      },
+      {
+        "date": "2024-03-27",
+        "target": 6
+      },
+      {
+        "date": "2024-03-28",
+        "target": 21
+      },
+      {
+        "date": "2024-03-29",
+        "target": 26
+      },
+      {
+        "date": "2024-03-30",
+        "target": 3
+      }
+    ]
+  },
+  "vector_generate": {
+    "invariants": {
+      "n_nodes": 17.844414060119096,
+      "n_edges": 39.44694279531526,
+      "n_articulation_points": 6.476885381006925e-13,
+      "n_bridges": 1.5230298564080254e-12,
+      "diameter": 3.9063386501106656,
+      "radius": 1.953172608610164,
+      "degeneracy": 4.631685126202957,
+      "k_core_size": 17.227895566644655,
+      "maximum_degree": 6.671367929845533,
+      "degree_variance": 1.3351477425441047,
+      "global_clustering": 0.4318452365518885,
+      "degree_assortativity": -0.09162493150216217,
+      "degree_entropy": 1.397740435146727,
+      "joint_degree_entropy": 1.6556944594836942,
+      "degree_skewness": -0.19000326769229867,
+      "degree_kurtosis": 0.8919212584182614,
+      "normalized_laplacian_second_moment": 1.088563488091258,
+      "normalized_laplacian_third_moment": 1.6061767761474381,
+      "random_walk_triangle_weight": 0.06953960857644072,
+      "random_walk_fourth_moment": 0.09468168148070463,
+      "adjacency_fourth_moment_per_node": 68.79389261352932
+    },
+    "signatures": {
+      "lag1_autocorr": 0.28027019538301085,
+      "coef_variation": 1.0737533464491251,
+      "fano_factor": 7.9577140632896946,
+      "norm_succ_diff": 0.7299044059027356,
+      "hurst_exponent": 0.6323217443974931,
+      "trend_coeff": 0.1768502086961775,
+      "count_skewness": 2.5498078310521124
+    },
+    "events": [
+      {
+        "date": "2024-01-12",
+        "target": 14
+      },
+      {
+        "date": "2024-01-13",
+        "target": 14
+      },
+      {
+        "date": "2024-01-15",
+        "target": 11
+      },
+      {
+        "date": "2024-01-16",
+        "target": 14
+      },
+      {
+        "date": "2024-01-17",
+        "target": 5
+      },
+      {
+        "date": "2024-01-21",
+        "target": 1
+      },
+      {
+        "date": "2024-01-22",
+        "target": 4
+      },
+      {
+        "date": "2024-01-23",
+        "target": 2
+      },
+      {
+        "date": "2024-01-25",
+        "target": 6
+      },
+      {
+        "date": "2024-01-26",
+        "target": 6
+      },
+      {
+        "date": "2024-01-27",
+        "target": 1
+      },
+      {
+        "date": "2024-01-28",
+        "target": 16
+      },
+      {
+        "date": "2024-01-29",
+        "target": 9
+      },
+      {
+        "date": "2024-01-30",
+        "target": 2
+      },
+      {
+        "date": "2024-01-31",
+        "target": 1
+      },
+      {
+        "date": "2024-02-10",
+        "target": 4
+      },
+      {
+        "date": "2024-02-24",
+        "target": 5
+      },
+      {
+        "date": "2024-02-29",
+        "target": 3
+      },
+      {
+        "date": "2024-03-01",
+        "target": 3
+      },
+      {
+        "date": "2024-03-02",
+        "target": 1
+      },
+      {
+        "date": "2024-03-09",
+        "target": 4
+      },
+      {
+        "date": "2024-03-10",
+        "target": 2
+      },
+      {
+        "date": "2024-03-11",
+        "target": 8
+      },
+      {
+        "date": "2024-03-12",
+        "target": 3
+      },
+      {
+        "date": "2024-03-15",
+        "target": 5
+      },
+      {
+        "date": "2024-03-16",
+        "target": 7
+      },
+      {
+        "date": "2024-03-17",
+        "target": 5
+      },
+      {
+        "date": "2024-03-18",
+        "target": 20
+      },
+      {
+        "date": "2024-03-19",
+        "target": 46
+      },
+      {
+        "date": "2024-03-20",
+        "target": 6
+      },
+      {
+        "date": "2024-03-21",
+        "target": 3
+      },
+      {
+        "date": "2024-03-22",
+        "target": 7
+      },
+      {
+        "date": "2024-03-24",
+        "target": 6
+      },
+      {
+        "date": "2024-03-26",
+        "target": 10
+      },
+      {
+        "date": "2024-03-27",
+        "target": 6
+      },
+      {
+        "date": "2024-03-28",
+        "target": 21
+      },
+      {
+        "date": "2024-03-29",
+        "target": 26
+      },
+      {
+        "date": "2024-03-30",
+        "target": 3
+      }
+    ]
+  }
+}
