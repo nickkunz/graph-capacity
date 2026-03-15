@@ -1,109 +1,12 @@
 ## libraries
-import json
 import os
-from pathlib import Path
-
-import numpy as np
+import json
 import pandas as pd
-from typing import Sequence, Dict, Any, Optional
+from pathlib import Path
+from typing import Sequence, Dict, Any
 
-
-## frontier metric columns
-_FEAT_FRONTIER = ["vr", "mv", "ms", "ea", "ei"]
-
-
-## ----------------------------------------------------------------------
-## dataframe-level falsification helpers
-## ----------------------------------------------------------------------
-def _df_falsify_target(
-    data: pd.DataFrame,
-    target: str,
-    rng: np.random.RandomState,
-    ) -> pd.DataFrame:
-
-    """
-    Desc: randomly permute the target column across rows while keeping
-          all feature columns fixed. tests whether the y* <-> (x\', z\')
-          association is necessary.
-    Args:
-        data: original dataframe.
-        target: target column name.
-        rng: seeded random state.
-    Returns:
-        dataframe with target column randomly permuted.
-    """
-
-    out = data.copy()
-    out[target] = rng.permutation(out[target].values)
-    return out
-
-
-def _df_falsify_generate(
-    data: pd.DataFrame,
-    feat_x: list[str],
-    feat_z: list[str],
-    rng: np.random.RandomState,
-    ) -> pd.DataFrame:
-
-    """
-    Desc: replace each feature column with independent uniform draws
-          matching the original column range. keeps y* in place.
-          tests whether arbitrary features can substitute for real
-          graph invariants and process signatures.
-    Args:
-        data: original dataframe.
-        feat_x: graph invariant column names.
-        feat_z: process signature column names.
-        rng: seeded random state.
-    Returns:
-        dataframe with uniformly randomised feature columns and
-        original target unchanged.
-    """
-
-    out = data.copy()
-    n = len(out)
-    for col in feat_x + feat_z:
-        vals = pd.to_numeric(out[col], errors = "coerce").values.astype(float)
-        finite = vals[np.isfinite(vals)]
-        if len(finite) < 2:
-            continue
-        lo, hi = float(finite.min()), float(finite.max())
-        out[col] = rng.uniform(low = lo, high = hi, size = n)
-    return out
-
-
-def _df_falsify_vectors(
-    data: pd.DataFrame,
-    feat_x: list[str],
-    feat_z: list[str],
-    rng: np.random.RandomState,
-    ) -> pd.DataFrame:
-
-    """
-    Desc: replace each feature column with independent normal draws
-          matching the column mean and standard deviation, keeping
-          y* fixed. tests whether statistically plausible feature
-          vectors can substitute for real measurements.
-    Args:
-        data: original dataframe.
-        feat_x: graph invariant column names.
-        feat_z: process signature column names.
-        rng: seeded random state.
-    Returns:
-        dataframe with normally randomised feature columns.
-    """
-
-    out = data.copy()
-    n = len(out)
-    for col in feat_x + feat_z:
-        vals = pd.to_numeric(out[col], errors = "coerce").values.astype(float)
-        finite = vals[np.isfinite(vals)]
-        if len(finite) < 2:
-            continue
-        mu, sigma = float(finite.mean()), float(finite.std())
-        sigma = max(sigma, 1e-12)
-        out[col] = rng.normal(loc = mu, scale = sigma, size = n)
-    return out
+## modules
+from src.evaluators.metrics import FRONTIER_METRICS
 
 
 def _build_falsified_from_json(
@@ -251,7 +154,7 @@ def _eval_falsify_model(
                 "condition": condition,
                 "group": frow["group"],
             }
-            for col in _FEAT_FRONTIER:
+            for col in FRONTIER_METRICS:
                 row[col] = frow[col]
             rows.append(row)
 
@@ -269,7 +172,6 @@ def eval_falsifiability(
     feat_z: Sequence[str],
     target: str = "target",
     group: str = "domain",
-    random_state: int = 42,
     n_jobs: int = -1,
     falsified_dir: Optional[str] = "data/falsified",
     ) -> pd.DataFrame:
@@ -300,7 +202,6 @@ def eval_falsifiability(
         feat_z: process signature feature column names.
         target: target column name.
         group: group column name for logo splitting.
-        random_state: random seed forwarded to falsification methods.
         n_jobs: number of parallel model workers (-1 for all cores).
         falsified_dir: optional directory containing precomputed falsified
             JSON payloads (as produced by `src/data/falsifiers.py`). If
@@ -315,7 +216,6 @@ def eval_falsifiability(
 
     feat_x = list(feat_x)
     feat_z = list(feat_z)
-    rng = np.random.RandomState(seed = random_state)
 
     ## build falsified datasets at the dataframe level
     if falsified_dir:
@@ -334,17 +234,9 @@ def eval_falsifiability(
             falsified_dir = falsified_dir,
         )
     else:
-        falsified = {
-            "target_remap": _df_falsify_target(
-                data = data, target = target, rng = rng,
-            ),
-            "random_generate": _df_falsify_generate(
-                data = data, feat_x = feat_x, feat_z = feat_z, rng = rng,
-            ),
-            "vector_generate": _df_falsify_vectors(
-                data = data, feat_x = feat_x, feat_z = feat_z, rng = rng,
-            ),
-        }
+        raise FileNotFoundError(
+            f"Falsified data directory not found: {falsified_dir}"
+        )
 
     ## build parallel jobs: one per (model, method)
     jobs = []
