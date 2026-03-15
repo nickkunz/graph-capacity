@@ -154,7 +154,7 @@ def _is_fully_connected_bipartite(graph: Any) -> bool:
     n2 = len(types) - n1
     return graph.ecount() == n1 * n2
 
-def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
+def _execute_perturbations(proc: Any, name: str, force: bool = False) -> dict[str, Any]:
     """Run network, process, and temporal perturbations for a given processor."""
     results = dict()
 
@@ -176,6 +176,15 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
             n_edges = graph.ecount()
             logging.info(f"  Using analytical perturbation for {name} ({n_nodes:,} nodes, {n_edges:,} edges)")
         invariants = GraphInvariants(graph).all(analytical = analytical)
+
+        ## force analytical perturbation when specified
+        if not analytical and force:
+            degrees = np.array(graph.degree(), dtype=float)
+            n_nodes = graph.vcount()
+            n_edges = graph.ecount()
+            analytical = True
+            logging.info(f"  Forcing analytical perturbation for {name} ({n_nodes:,} nodes, {n_edges:,} edges)")
+
         for method, intensities in NETWORK_METHODS.items():
             for intensity in intensities:
                 if analytical:
@@ -241,7 +250,7 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
 
     ## --- invariant perturbation --- ##
     if graph is not None or pre_inv is not None:
-        base_inv = GraphInvariants(graph).all(analytical = analytical) if graph is not None else pre_inv
+        base_inv = invariants if graph is not None else pre_inv
         base_df = pd.DataFrame([base_inv])
         invariant_results: dict[str, list[dict[str, Any]]] = dict()
         for method, params in INVARIANT_METHODS.items():
@@ -795,7 +804,7 @@ def json_perturber():
         logging.info("Perturbing Amazon data...")
         proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
         proc.run()
-        data = _execute_perturbations(proc = proc, name = NAME_AMAZON)
+        data = _execute_perturbations(proc = proc, name = NAME_AMAZON, force = True)
         _save_to_json(data = data, path = amazon_path)
         logging.info(f"Amazon perturbations saved to {amazon_path}")
     else:
