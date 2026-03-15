@@ -6,10 +6,21 @@ from sklearn.decomposition import PCA
 from sklearn.isotonic import IsotonicRegression
 from scipy.stats import spearmanr, kendalltau, pearsonr
 
+## constants
+FRONTIER_METRICS = ["vr", "mv", "ms", "ea", "ei"]
+CONSENSUS_METRICS = ["r", "rho", "tau", "dcr", "rbo"]
+ORDERING_METRICS = [
+    "monotonic_index", 
+    "violation_magnitude", 
+    "spearman_rho", 
+    "kendall_tau", 
+    "rank_r2"
+]
+
 ## violation rate
 def _violation_rate(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
-    """ Fraction of points that violate the frontier. """
+    """ VR fraction of points that violate the frontier. """
 
     ## compute violation: true above frontier
     v = np.maximum(0.0, y_true - y_pred)
@@ -20,7 +31,7 @@ def _violation_rate(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 ## mean violation magnitude
 def _mean_violation(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
-    """ Mean size of violations conditional on violating. """
+    """ MV mean size of violations conditional on violating. """
 
     ## compute violation: true above frontier
     v = np.maximum(0.0, y_true - y_pred)
@@ -34,7 +45,7 @@ def _mean_violation(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 ## mean slack
 def _mean_slack(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     
-    """ Average slack (how far below the frontier the data lie). """
+    """ MS average slack (how far below the frontier the data lie). """
 
     ## compute slack: frontier above true
     s = np.maximum(0.0, y_pred - y_true)
@@ -43,7 +54,7 @@ def _mean_slack(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 ## excess area
 def _excess_area(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12) -> float:
     
-    """ Total slack normalized by total observed magnitude. 
+    """ EA total slack normalized by total observed magnitude. 
     High excess area means the frontier is much higher than the data. """
     
     ## compute slack: frontier above true
@@ -54,7 +65,7 @@ def _excess_area(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12) -> 
 ## efficiency index
 def _efficiency_index(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12) -> float:
 
-    """ Efficiency index that combines violation rate.
+    """ EI efficiency index that combines violation rate.
     Mean violation, and excess area. Higher is better. """
 
     ## reuse helper metrics to ensure a single definition of each quantity
@@ -77,15 +88,18 @@ def frontier_metrics(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12)
     """ Compute all frontier metrics and return as a dictionary. """
     
     metrics = {
-        "vr": _violation_rate(y_true, y_pred),
-        "mv": _mean_violation(y_true, y_pred),
-        "ms": _mean_slack(y_true, y_pred),
-        "ea": _excess_area(y_true, y_pred, eps = eps),
+        key: func(y_true, y_pred, eps=eps) if key in {"ea", "ei"} else func(y_true, y_pred)
+        for key, func in [
+            ("vr", _violation_rate),
+            ("mv", _mean_violation),
+            ("ms", _mean_slack),
+            ("ea", _excess_area),
+        ]
     }
     metrics["ei"] = _efficiency_index(
         y_true = y_true,
         y_pred = y_pred,
-        eps = eps,
+        eps = eps
     )
     return metrics
 
