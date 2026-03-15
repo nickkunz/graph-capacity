@@ -116,51 +116,31 @@ URL_AUGER_EVENTS = config['urls']['URL_AUGER_EVENTS'].strip('"')
 URL_SEISMIC_NETWORK = config['urls']['URL_SEISMIC_NETWORK'].strip('"')
 URL_SEISMIC_EVENTS = config['urls']['URL_SEISMIC_EVENTS'].strip('"')
 
-## ----------------------------
-## network perturbation (G space)
-## ----------------------------
 NETWORK_METHODS = {
     "rewire":      tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
     "sparsify":    tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
     "node_sample": tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2))
 }
-
-## --------------------------------
-## invariant perturbation (x encoding)
-## --------------------------------
 INVARIANT_METHODS = {
     'noise':  tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
     'jitter': tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
     'subset': tuple(np.round(np.linspace(start = 0.95, stop = 0.65, num = 7), decimals = 2)),
 }
-
-## ------------------------------
-## process perturbation (S space)
-## ------------------------------
 PROCESS_METHODS = {
     'scaling':       (0.25, 0.50, 0.75, 1.00, 1.25, 1.50, 1.75),
     'smoothing':     (3.00, 5.00, 7.00, 9.00, 11.00, 13.00, 15.00),
     'bootstrapping': tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2))
 }
-
-## --------------------------------------
-## signature-level perturbation (z encoding)
-## --------------------------------------
 SIGNATURE_METHODS = {
     'noise':  tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
     'jitter': tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
     'subset': tuple(np.round(np.linspace(start = 0.95, stop = 0.65, num = 7), decimals = 2)),
 }
-
-## ----------------------
-## temporal resolution
-## ----------------------
 TEMPORAL_METHODS = {
     'aggregation': ('2D', '7D', '14D', '30D', '60D', '90D', '180D'),
     'jitter':      tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
     'dropout':     tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
 }
-
 
 ## helper functions
 def _is_fully_connected_bipartite(graph: Any) -> bool:
@@ -810,16 +790,16 @@ def json_perturber():
         logging.info(f"Rain perturbations already exist at {rain_path}. Skipping.")
 
     ## --- amazon reviews --- ##
-    # amazon_path = os.path.join(PATH_PERT, f"{NAME_AMAZON}.json")
-    # if not os.path.exists(amazon_path):
-    #     logging.info("Perturbing Amazon data...")
-    #     proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
-    #     proc.run()
-    #     data = _execute_perturbations(proc = proc, name = NAME_AMAZON)
-    #     _save_to_json(data = data, path = amazon_path)
-    #     logging.info(f"Amazon perturbations saved to {amazon_path}")
-    # else:
-    #     logging.info(f"Amazon perturbations already exist at {amazon_path}. Skipping.")
+    amazon_path = os.path.join(PATH_PERT, f"{NAME_AMAZON}.json")
+    if not os.path.exists(amazon_path):
+        logging.info("Perturbing Amazon data...")
+        proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
+        proc.run()
+        data = _execute_perturbations(proc = proc, name = NAME_AMAZON)
+        _save_to_json(data = data, path = amazon_path)
+        logging.info(f"Amazon perturbations saved to {amazon_path}")
+    else:
+        logging.info(f"Amazon perturbations already exist at {amazon_path}. Skipping.")
 
 ## primary execution
 if __name__ == '__main__':
