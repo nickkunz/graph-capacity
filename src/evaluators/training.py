@@ -16,7 +16,8 @@ def fit_predict_frontier(
     estimator_c,
     estimator_r,
     target: str = "target",
-    random_state: int | None = None
+    n_repeat: int = 1,
+    random_state: int = 42
 	) -> tuple[np.ndarray, object, object]:
 
     """
@@ -67,28 +68,42 @@ def fit_predict_frontier(
     Z_scaled, _ = _standardizer(Z, feat_z)
     Z_scaled = Z_scaled[feat_z].values.astype(float)
 
-	## ensure fresh parameters for each model
-    model_c = clone(estimator_c)
-    model_r = clone(estimator_r)
+    ## repeat training several times and average predictions
+    if n_repeat < 1:
+        raise ValueError("n_repeat must be >= 1")
 
-    ## set random random_state on estimators if supported
-    if random_state is not None:
-        for m in (model_c, model_r):
-            if hasattr(m, "random_state"):
-                m.set_params(random_state = random_state)
+    y_pred_sum = np.zeros_like(y_star, dtype = float)
+    last_model_c = None
+    last_model_r = None
 
-	## train C on graph invariants
-    model_c.fit(X_scaled, y_star)
-    c_hat = model_c.predict(X_scaled).astype(float)
+    for i in range(n_repeat):
+        ## ensure fresh parameters for each repeat
+        model_c = clone(estimator_c)
+        model_r = clone(estimator_r)
 
-    ## train R on process signatures and residualized target
-    slack = (y_star - c_hat).astype(float)
-    model_r.fit(Z_scaled, slack)
-    r_hat = model_r.predict(Z_scaled).astype(float)
+        ## set random_state on estimators if supported
+        seed = None if random_state is None else int(random_state) + i
+        if seed is not None:
+            for m in (model_c, model_r):
+                if hasattr(m, "random_state"):
+                    m.set_params(random_state = seed)
 
-    ## identifiability constraint: zero-mean log-factor
-    r_hat = (r_hat - np.mean(r_hat)).astype(float)
+        ## train C on graph invariants
+        model_c.fit(X_scaled, y_star)
+        c_hat = model_c.predict(X_scaled).astype(float)
 
-    ## final prediction: y* = log C + log R + epsilon
-    y_pred = (c_hat + r_hat).astype(float)
-    return y_pred, model_c, model_r
+        ## train R on process signatures and residualized target
+        slack = (y_star - c_hat).astype(float)
+        model_r.fit(Z_scaled, slack)
+        r_hat = model_r.predict(Z_scaled).astype(float)
+
+        ## identifiability constraint: zero-mean log-factor
+        r_hat = (r_hat - np.mean(r_hat)).astype(float)
+
+        ## accumulate prediction
+        y_pred_sum += (c_hat + r_hat).astype(float)
+        last_model_c = model_c
+        last_model_r = model_r
+
+    y_pred = (y_pred_sum / float(n_repeat)).astype(float)
+    return y_pred, last_model_c, last_model_r
