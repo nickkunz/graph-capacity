@@ -97,7 +97,8 @@ class NeuralBase(BaseEstimator, RegressorMixin):
         lr: float = 0.1,
         epochs: int = 1000,
         dropout: float = 0.1,
-        weight_decay: float = 0.01
+        weight_decay: float = 0.01,
+        random_state: int | None = None
         ) -> None:
 
         self.net_cls = net_cls
@@ -109,11 +110,16 @@ class NeuralBase(BaseEstimator, RegressorMixin):
         self.quantile = quantile 
         self.dropout = dropout
         self.weight_decay = weight_decay
+        self.random_state = random_state
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.model_ = None
 
     ## sklearn fit interface
     def fit(self, X: ArrayLike, y: ArrayLike) -> "NeuralBase":
+
+        ## seed torch for reproducibility
+        if self.random_state is not None:
+            torch.manual_seed(self.random_state)
 
         ## data prep
         X_train = np.array(X)
