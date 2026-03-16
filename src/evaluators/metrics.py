@@ -1,10 +1,11 @@
 ## libraries
 import dcor
+import warnings
 import numpy as np
 from itertools import combinations
 from sklearn.decomposition import PCA
 from sklearn.isotonic import IsotonicRegression
-from scipy.stats import spearmanr, kendalltau, pearsonr
+from scipy.stats import spearmanr, kendalltau, pearsonr, ConstantInputWarning
 
 ## constants
 FRONTIER_METRICS = ["vr", "mv", "ms", "ea", "ei"]
@@ -108,7 +109,16 @@ def _pearson_r(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
     """ Linear correlation of predicted capacities with true capacities. """
 
-    r, _ = pearsonr(y_true, y_pred)
+    y_true = np.asarray(y_true, dtype = float)
+    y_pred = np.asarray(y_pred, dtype = float)
+    if y_true.size < 2 or y_pred.size < 2:
+        return 0.0
+    if np.std(y_true) == 0.0 or np.std(y_pred) == 0.0:
+        return 0.0
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", category = ConstantInputWarning)
+        r, _ = pearsonr(y_true, y_pred)
     return float(r) if not np.isnan(r) else 0.0
 
 ## spearman rank correlation
@@ -116,7 +126,16 @@ def _spearman_rho(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
     """ Global monotone agreement of predicted capacities. """
 
-    rho, _ = spearmanr(y_true, y_pred)
+    y_true = np.asarray(y_true, dtype = float)
+    y_pred = np.asarray(y_pred, dtype = float)
+    if y_true.size < 2 or y_pred.size < 2:
+        return 0.0
+    if np.std(y_true) == 0.0 or np.std(y_pred) == 0.0:
+        return 0.0
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", category = ConstantInputWarning)
+        rho, _ = spearmanr(y_true, y_pred)
     return float(rho) if not np.isnan(rho) else 0.0
 
 
@@ -125,7 +144,16 @@ def _kendall_tau(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
     """ Pairwise ordering stability (probability of concordant pairs). """
 
-    tau, _ = kendalltau(y_true, y_pred)
+    y_true = np.asarray(y_true, dtype = float)
+    y_pred = np.asarray(y_pred, dtype = float)
+    if y_true.size < 2 or y_pred.size < 2:
+        return 0.0
+    if np.std(y_true) == 0.0 or np.std(y_pred) == 0.0:
+        return 0.0
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", category = ConstantInputWarning)
+        tau, _ = kendalltau(y_true, y_pred)
     return float(tau) if not np.isnan(tau) else 0.0
 
 
