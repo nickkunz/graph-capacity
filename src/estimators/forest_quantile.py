@@ -21,14 +21,16 @@ class ForestQuantile:
 
 ## random forest sklearn framework
 class ForestBase(BaseEstimator, RegressorMixin):
-    def __init__(self, quantile: float, **kwargs: Any) -> None:
+    def __init__(self, quantile: float, random_state: int | None = None, **kwargs: Any) -> None:
         self.quantile = quantile
+        self.random_state = random_state
         self.kwargs: dict[str, Any] = kwargs
 
     ## sklearn fit interface
     def fit(self, X: ArrayLike, y: ArrayLike) -> "ForestBase":
         self.model_ = RandomForestQuantileRegressor(
             q = [self.quantile],  ## quantile must be passed at construction time
+            random_state = self.random_state,
             **self.kwargs
         )
         self.model_.fit(X, y)
