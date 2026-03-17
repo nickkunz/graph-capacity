@@ -307,22 +307,22 @@ def _process_all_data(data_list, invariant_order, signature_order):
     )
 
 ## main processing function
-def data_builder(path_proc: str | Path) -> pd.DataFrame | None:
+def data_builder(path: str | Path) -> pd.DataFrame | None:
 
     """
     Desc:
-        Create main table by loading processed JSON files, extracting the observation
-        with the maximum target value for each dataset, and concatenating results into
+        Create main table by loading JSON files and extracting the observation
+        with the maximum target value for each dataset. Concatenate results into
         a single table with consistent column order.
 
     Args:
-        path_proc: Path to the directory containing processed JSON files.
+        path: Path to the directory containing JSON files.
 
     Returns:
         Main table dataframe, or None if no valid data was processed.
 
     Raises:
-        FileNotFoundError: Processed JSON directory does not exist or no files.
+        FileNotFoundError: JSON directory does not exist or no files.
         ValueError: No valid data from JSON files resulting in an empty main table.
     """
 
@@ -331,13 +331,13 @@ def data_builder(path_proc: str | Path) -> pd.DataFrame | None:
     signature_order = list()
 
     ## find each json file to process
-    json_files = _find_json_payload(path_proc = path_proc)
+    json_files = _find_json_payload(path_proc = path)
     logging.info(f"Found {len(json_files)} JSON files to process.")
 
     ## process each json file and append to list
     for file_name in json_files:
         namedata = os.path.splitext(file_name)[0]
-        file_path = os.path.join(path_proc, file_name)
+        file_path = os.path.join(path, file_name)
         logging.info(f"Processing {file_name}...")
         data_processed = _process_per_data(
             file_path = file_path,
@@ -427,7 +427,7 @@ if __name__ == '__main__':
         os.makedirs(name = os.path.join(root, 'data'), exist_ok = True)
         path_data = os.path.join(root, 'data', 'main.csv')
         logging.info("Creating main table from processed JSON files...")
-        data_main = data_builder(path_proc = os.path.join(root, PATH_PROC))
+        data_main = data_builder(path = os.path.join(root, PATH_PROC))
         if data_main is not None:
             data_saver(data = data_main, path_data = path_data, force = args.force)
         logging.info("Main table creation completed.")
