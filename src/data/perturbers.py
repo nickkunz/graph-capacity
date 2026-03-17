@@ -448,7 +448,7 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False) -> dict[st
 
     return results
 
-## data perturbation pipeline
+## perturbation pipeline
 def json_perturber(force: bool = False):
 
     ## ensure perturbation directory exists
