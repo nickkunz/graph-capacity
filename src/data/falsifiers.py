@@ -38,7 +38,7 @@ def _permute_target_mapping(path_proc: str | Path, random_state: int = 42) -> di
     Desc: 
         Permute the dataset-level target y* across processed data while keeping 
         each dataset's invariants, signatures, and event history fixed.
-        This breaks the f(x', z') -> y* mapping.
+        This breaks the joint (x', z') -> y* mapping.
 
     Args:
         path_proc: project directory containing processed dataset JSON files.
@@ -211,8 +211,8 @@ def _generate_vector_features(path_proc: str | Path, random_state: int = 42) -> 
     """ 
     Desc:
         Generate falsified features by resampling across datasets (bootstrap)
-        and adding gaussian jitter. This keeps marginal distributions plausible
-        while breaking the joint (x,z) -> y mapping.
+        and adding Gaussian noise. This keeps marginal distributions plausible
+        while breaking the joint (x',z') -> y* mapping.
 
     Args:
         path_proc: project directory containing processed dataset JSON files.
@@ -279,9 +279,10 @@ def _generate_vector_features(path_proc: str | Path, random_state: int = 42) -> 
         for key, pool in feature_pools.items():
             if pool.size == 0:
                 continue
-            base = float(rand.choice(pool, size = 1))
+            base = float(rand.choice(pool))
             sigma = max(float(np.nanstd(pool, ddof = 0)), 1e-12)
-            value = float(base + rand.normal(loc = 0.0, scale = sigma, size = 1))
+            noise = float(rand.normal(loc = 0.0, scale = sigma))
+            value = float(base + noise)
             if key in payload['invariants']:
                 rand_inv[key] = value
             if key in payload['signatures']:
@@ -295,71 +296,91 @@ def _generate_vector_features(path_proc: str | Path, random_state: int = 42) -> 
 
     return json_rand
 
-
-
-
-## ----------------------------------------------------------------------
 ## falsification pipeline
-## ----------------------------------------------------------------------
 def json_falsifier(
+    path_proc: str | Path = PATH_PROC,
+    path_fals: str | Path = PATH_FALS,
     random_state: int = 42,
-    force: bool = False,
+    force: bool = False
     ) -> None:
 
     """
-    Desc: run the falsification pipeline across all processed json_data.
-          for each dataset in data/processed/, apply three falsification
-          methods and save results to data/falsified/{name}.json. skips
-          json_data that already have a corresponding falsified file.
+    Desc:
+        Generate a suite of falsified datasets and write them to disk. For each
+        processed JSON file in the directory specified in the `path_proc` argument, 
+        the function produces three falsified variants:
+
+        - `target_remap`: Swaps the per-dataset event list (target history)
+          across datasets while keeping the original features.
+        - `random_generate`: Creates new random feature vectors by sampling each
+          feature independently from the observed min/max range.
+        - `vector_generate`: Generates new feature vectors by bootstrapping the
+          empirical feature distributions and adding Gaussian noise.
+
+        Each falsified output is saved as a JSON file in the directory specified
+        in the argument `path_fals`.
+
     Args:
+        path_proc: directory containing processed JSON files.
+        path_fals: directory to write falsified JSON files.
         random_state: random seed forwarded to all falsification methods.
-        force: if true, overwrite existing falsified json files.
+        force: if true, overwrite existing falsified JSON files.
+
     Returns:
         None.
+
+    Raises:
+        FileNotFoundError: if the specified processed data directory does not
+            exist or contains no JSON files.
+        ValueError: if fewer than two processed JSON files are found in the
+            directory.
     """
 
     ## ensure falsified directory exists
-    os.makedirs(name = PATH_FALS, exist_ok = True)
+    os.makedirs(name = path_fals, exist_ok = True)
 
+    ## falsify datas using each technique
     target_permuted = _permute_target_mapping(
-        path_proc = PATH_PROC,
-        random_state = random_state,
+        path_proc = path_proc,
+        random_state = random_state
     )
-
+    logging.info(f"Generated target remapped falsifications for {len(target_permuted)} datasets.")
+    
     random_generated = _generate_random_features(
-        path_proc = PATH_PROC,
-        random_state = random_state,
+        path_proc = path_proc,
+        random_state = random_state
     )
+    logging.info(f"Generated random feature falsifications for {len(random_generated)} datasets.")
 
     vector_generated = _generate_vector_features(
-        path_proc = PATH_PROC,
-        random_state = random_state,
+        path_proc = path_proc,
+        random_state = random_state
     )
+    logging.info(f"Generated vector feature falsifications for {len(vector_generated)} datasets.")
 
-    logging.info(f"Found {len(target_permuted)} processed json_data.")
-
+    ## save falsified datasets to disk
     for namedata, payload in target_permuted.items():
-        fals_path = os.path.join(PATH_FALS, f"{namedata}.json")
+        path_fals_data = os.path.join(path_fals, f"{namedata}.json")
 
         ## skip if already falsified unless force overwrite is requested
-        if os.path.exists(fals_path) and not force:
+        if os.path.exists(path_fals_data) and not force:
             logging.info(
                 f"{namedata} falsifications already exist at "
-                f"{fals_path}. Skipping."
+                f"{path_fals_data}. Skipping."
             )
             continue
-
         logging.info(f"Falsifying {namedata}...")
 
+        ## construct falsified payload with permuted target and generated features
         data = {
             'target_remap': payload,
             'random_generate': random_generated.get(namedata, dict()),
             'vector_generate': vector_generated.get(namedata, dict()),
         }
 
-        _save_to_json(data = data, path = fals_path)
-        logging.info(f"{namedata} falsifications saved to {fals_path}")
-
+        ## save to disk
+        _save_to_json(data = data, path = path_fals_data)
+        logging.info(f"{namedata} falsifications saved to {path_fals_data}")
 
 ## primary execution
 if __name__ == '__main__':
