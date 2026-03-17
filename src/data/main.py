@@ -100,9 +100,9 @@ def _parse_args():
 
 ## observation rate maximum
 def _rate_max(data, target = 'target'):
-    
+
     """ Return the observation(s) with the maximum value in the target column. """
-    
+
     idx_max = data[target].idxmax()
     data_max = data.loc[[idx_max]].copy()
     data_max.drop(
@@ -114,7 +114,7 @@ def _rate_max(data, target = 'target'):
 
 ## metadata parsing
 def _parse_metadata(namedata, metadata = metadata):
-    
+
     """ Return domain and discipline for a dataset name from metadata. """
 
     ## parse metadata for the dataset name
@@ -127,7 +127,7 @@ def _parse_metadata(namedata, metadata = metadata):
 
 ## metadata insertion
 def _insert_metadata(data, namedata, metadata = metadata):
-    
+
     """ Insert metadata fields and invariant/signature fields into the data. """
 
     ## parse metadata for the dataset name, warning if no match is found
@@ -144,7 +144,7 @@ def _insert_metadata(data, namedata, metadata = metadata):
 
 ## feature insertion
 def _insert_features(data, invariants, invariant_order, signatures, signature_order):
-    
+
     """ Insert invariant and signature fields into the data and track column order. """
 
     ## insert invariants and update column order
@@ -164,7 +164,7 @@ def _insert_features(data, invariants, invariant_order, signatures, signature_or
 
 ## json data discovery
 def _find_json_payload(path_proc):
-    
+
     """ Return sorted JSON filenames from the processed directory. """
 
     ## quality check to ensure processed path exists
@@ -172,7 +172,7 @@ def _find_json_payload(path_proc):
 
 ## json data normalization
 def _load_json_payload(file_path):
-    
+
     """ Load and unpack a processed dataset JSON payload. """
 
     ## quality check to ensure file exists
@@ -187,7 +187,7 @@ def _load_json_payload(file_path):
 
 # event normalization
 def _normalize_events(events, target = 'target'):
-    
+
     """ Ensuring target is numeric and date/day are parsed if present. """
 
     ## quality check to ensure target field and at least one event exists
@@ -236,7 +236,7 @@ def _normalize_events(events, target = 'target'):
 
 ## column reordering
 def _reorder_features(data_main, invariant_order, signature_order):
-    
+
     """ Return data with a consistent output column order. """
 
     ## build ordered feature columns from discovered invariant/signature keys
@@ -253,7 +253,7 @@ def _reorder_features(data_main, invariant_order, signature_order):
 
 ## main processing function per dataset
 def _process_per_data(file_path, namedata, invariant_order, signature_order, target = 'target'):
-    
+
     """ Load and process single JSON payload and output data with the maximum target value. """
 
     ## load json data
@@ -295,7 +295,7 @@ def _process_per_data(file_path, namedata, invariant_order, signature_order, tar
 
 ## main processing function for all datasets
 def _process_all_data(data_list, invariant_order, signature_order):
-    
+
     """ Concatenate all dataset maxima and ensure consistent column order. """
 
     ## concatenate all dataset maxima and ensure consistent column order
@@ -307,7 +307,7 @@ def _process_all_data(data_list, invariant_order, signature_order):
     )
 
 ## main processing function
-def data_builder(path_proc, path_data):
+def data_builder(path_proc: str | Path) -> pd.DataFrame | None:
 
     """
     Desc:
@@ -316,28 +316,22 @@ def data_builder(path_proc, path_data):
         a single table with consistent column order.
 
     Args:
-        path_proc (str): Path to the directory containing processed JSON files.
-        path_data (str): Path to save the resulting main table CSV file.
+        path_proc: Path to the directory containing processed JSON files.
 
     Returns:
-        None: The function saves the main table to disk and does not return any value.
+        Main table dataframe, or None if no valid data was processed.
 
     Raises:
         FileNotFoundError: Processed JSON directory does not exist or no files.
         ValueError: No valid data from JSON files resulting in an empty main table.
     """
 
-    ## check if main table already exists
-    if os.path.exists(path_data):
-        logging.info(f"Main table already exists at {path_data}. Skipping.")
-        return
-
     data_list = list()
     invariant_order = list()
     signature_order = list()
 
     ## find each json file to process
-    json_files = _find_json_payload(path_proc)
+    json_files = _find_json_payload(path_proc = path_proc)
     logging.info(f"Found {len(json_files)} JSON files to process.")
 
     ## process each json file and append to list
@@ -357,7 +351,7 @@ def data_builder(path_proc, path_data):
 
     if not data_list:
         logging.error("No data was processed. Exiting.")
-        return
+        return None
 
     ## concatenate all dataset maxima and ensure consistent column order
     data_main = _process_all_data(data_list, invariant_order, signature_order)
@@ -365,10 +359,35 @@ def data_builder(path_proc, path_data):
     ## clean floating imprecision from processing and replace with exact zero
     numeric = data_main.select_dtypes(include = 'number')
     data_main.loc[:, numeric.columns] = numeric.mask(numeric.abs() < 1e-12, 0.0)
+    return data_main
+
+## main dataframe saver
+def data_saver(data: pd.DataFrame, path_data: str | Path, force: bool = False) -> None:
+
+    """
+    Desc:
+        Save the main table dataframe to disk.
+
+    Args:
+        data: Main table dataframe to save.
+        path_data: Path to save the resulting main table CSV file.
+        force: If true, overwrite an existing output file.
+
+    Returns:
+        None.
+
+    Raises:
+        OSError: If the output file cannot be written.
+    """
+
+    ## check if main table already exists
+    if os.path.exists(path_data) and not force:
+        logging.info(f"Main table already exists at {path_data}. Skipping.")
+        return
 
     ## save main data to disk
-    data_main.to_csv(path_data, index = False)
-    logging.info(f"Main table shape: {data_main.shape}")
+    data.to_csv(path_data, index = False)
+    logging.info(f"Main table shape: {data.shape}")
 
 ## primary execution
 if __name__ == '__main__':
@@ -408,7 +427,9 @@ if __name__ == '__main__':
         os.makedirs(name = os.path.join(root, 'data'), exist_ok = True)
         path_data = os.path.join(root, 'data', 'main.csv')
         logging.info("Creating main table from processed JSON files...")
-        data_builder(path_proc = os.path.join(root, PATH_PROC), path_data = path_data)
+        data_main = data_builder(path_proc = os.path.join(root, PATH_PROC))
+        if data_main is not None:
+            data_saver(data = data_main, path_data = path_data, force = args.force)
         logging.info("Main table creation completed.")
     except Exception as e:
         logging.error(f"Failed to create main table: {e}")
