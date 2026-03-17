@@ -1,4 +1,5 @@
 ## libraries
+import argparse
 import os
 import sys
 import json
@@ -85,32 +86,48 @@ metadata = (
     (NAME_MONTEVIDEO, 'Transportation & Infrastructure', 'Ridership'),
 )
 
+## command-line argument parsing
+def _parse_args():
+    parser = argparse.ArgumentParser(
+        description = "Create the main table from processed datasets, optionally forcing a re-run."
+    )
+    parser.add_argument(
+        "--force",
+        action = "store_true",
+        help = "Re-run all processing steps even if the output already exists.",
+    )
+    return parser.parse_args()
+
 ## observation rate maximum
 def _rate_max(data, target = 'target'):
+    
     """ Return the observation(s) with the maximum value in the target column. """
+    
     idx_max = data[target].idxmax()
     data_max = data.loc[[idx_max]].copy()
     data_max.drop(
-        columns = ['day', 'date'], 
-        inplace = True, 
+        columns = ['day', 'date'],
+        inplace = True,
         errors = 'ignore'
     )
     return data_max
 
 ## metadata parsing
 def _parse_metadata(namedata, metadata = metadata):
+    
     """ Return domain and discipline for a dataset name from metadata. """
 
     ## parse metadata for the dataset name
     for name, domain, discipline in metadata:
         if name == namedata:
             return domain, discipline
-    
+
     ## no name match found
     return 'Unknown', 'Unknown'
 
 ## metadata insertion
 def _insert_metadata(data, namedata, metadata = metadata):
+    
     """ Insert metadata fields and invariant/signature fields into the data. """
 
     ## parse metadata for the dataset name, warning if no match is found
@@ -127,6 +144,7 @@ def _insert_metadata(data, namedata, metadata = metadata):
 
 ## feature insertion
 def _insert_features(data, invariants, invariant_order, signatures, signature_order):
+    
     """ Insert invariant and signature fields into the data and track column order. """
 
     ## insert invariants and update column order
@@ -146,6 +164,7 @@ def _insert_features(data, invariants, invariant_order, signatures, signature_or
 
 ## json data discovery
 def _find_json_payload(path_proc):
+    
     """ Return sorted JSON filenames from the processed directory. """
 
     ## quality check to ensure processed path exists
@@ -153,6 +172,7 @@ def _find_json_payload(path_proc):
 
 ## json data normalization
 def _load_json_payload(file_path):
+    
     """ Load and unpack a processed dataset JSON payload. """
 
     ## quality check to ensure file exists
@@ -167,8 +187,9 @@ def _load_json_payload(file_path):
 
 # event normalization
 def _normalize_events(events, target = 'target'):
-    """ Ensuring target is numeric and date/day are parsed if present. """
     
+    """ Ensuring target is numeric and date/day are parsed if present. """
+
     ## quality check to ensure target field and at least one event exists
     data_obs = pd.DataFrame(events)
     if data_obs.empty or target not in data_obs.columns:
@@ -182,18 +203,18 @@ def _normalize_events(events, target = 'target'):
     ## parse date and day fields if they exist, coercing errors
     if date_has:
         data_obs['date'] = pd.to_datetime(
-            arg = data_obs['date'], 
+            arg = data_obs['date'],
             errors = 'coerce'
         )
     else:
         data_obs['date'] = pd.Series(
             data = pd.NaT,
-            index = data_obs.index, 
+            index = data_obs.index,
             dtype = 'datetime64[ns]'
         )
     if day_has:
         data_obs['day'] = pd.to_numeric(
-            arg = data_obs['day'], 
+            arg = data_obs['day'],
             errors = 'coerce'
         ).astype('Int64')
     else:
@@ -215,6 +236,7 @@ def _normalize_events(events, target = 'target'):
 
 ## column reordering
 def _reorder_features(data_main, invariant_order, signature_order):
+    
     """ Return data with a consistent output column order. """
 
     ## build ordered feature columns from discovered invariant/signature keys
@@ -231,6 +253,7 @@ def _reorder_features(data_main, invariant_order, signature_order):
 
 ## main processing function per dataset
 def _process_per_data(file_path, namedata, invariant_order, signature_order, target = 'target'):
+    
     """ Load and process single JSON payload and output data with the maximum target value. """
 
     ## load json data
@@ -240,7 +263,7 @@ def _process_per_data(file_path, namedata, invariant_order, signature_order, tar
 
     ## normalize events
     data_obs = _normalize_events(
-        events = events, 
+        events = events,
         target = target
     )
 
@@ -272,6 +295,7 @@ def _process_per_data(file_path, namedata, invariant_order, signature_order, tar
 
 ## main processing function for all datasets
 def _process_all_data(data_list, invariant_order, signature_order):
+    
     """ Concatenate all dataset maxima and ensure consistent column order. """
 
     ## concatenate all dataset maxima and ensure consistent column order
@@ -287,22 +311,22 @@ def data_builder(path_proc, path_data):
 
     """
     Desc:
-        Create main table by loading processed JSON files, extracting the observation 
+        Create main table by loading processed JSON files, extracting the observation
         with the maximum target value for each dataset, and concatenating results into
         a single table with consistent column order.
-    
+
     Args:
         path_proc (str): Path to the directory containing processed JSON files.
         path_data (str): Path to save the resulting main table CSV file.
-    
+
     Returns:
         None: The function saves the main table to disk and does not return any value.
-    
+
     Raises:
         FileNotFoundError: Processed JSON directory does not exist or no files.
         ValueError: No valid data from JSON files resulting in an empty main table.
     """
-    
+
     ## check if main table already exists
     if os.path.exists(path_data):
         logging.info(f"Main table already exists at {path_data}. Skipping.")
@@ -311,7 +335,7 @@ def data_builder(path_proc, path_data):
     data_list = list()
     invariant_order = list()
     signature_order = list()
-    
+
     ## find each json file to process
     json_files = _find_json_payload(path_proc)
     logging.info(f"Found {len(json_files)} JSON files to process.")
@@ -349,10 +373,13 @@ def data_builder(path_proc, path_data):
 ## primary execution
 if __name__ == '__main__':
 
+    ## parse command-line arguments
+    args = _parse_args()
+
     ## run json data processor to create payloads for main table creation
     try:
         logging.info("Running data processor...")
-        json_processor(force  = False)
+        json_processor(force = args.force)
         logging.info("Data processor completed.")
     except Exception as e:
         logging.warning(f"Failed to run processor: {e}.")
@@ -361,7 +388,7 @@ if __name__ == '__main__':
     ## run perturbation pipeline to create perturbed json payloads
     try:
         logging.info("Running data perturber...")
-        json_perturber(force = False)
+        json_perturber(force = args.force)
         logging.info("Data perturber completed.")
     except Exception as e:
         logging.warning(f"Failed to run perturber: {e}.")
@@ -370,13 +397,13 @@ if __name__ == '__main__':
     ## run falsification pipeline to create falsified json payloads
     try:
         logging.info("Running data falsifier...")
-        json_falsifier(force = True)
+        json_falsifier(force = args.force)
         logging.info("Data falsifier completed.")
     except Exception as e:
         logging.warning(f"Failed to run falsifier: {e}.")
         logging.info("Continuing to create main table from existing data...")
 
-    ## run main data builder that reads the json files and writes them to disk 
+    ## run main data builder that reads the json files and writes them to disk
     try:
         os.makedirs(name = os.path.join(root, 'data'), exist_ok = True)
         path_data = os.path.join(root, 'data', 'main.csv')
