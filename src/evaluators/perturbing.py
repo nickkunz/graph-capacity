@@ -1,13 +1,14 @@
 ## libraries
 import os
 import sys
-
 import igraph as ig
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
-from typing import Sequence, Optional, Tuple, Dict, Literal
+from typing import Sequence, Optional, Tuple, Dict, Literal, Any
 from sklearn.utils import resample
+from sklearn.base import BaseEstimator
+from joblib import Parallel, delayed
 
 ## directory
 root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -15,6 +16,7 @@ if root not in sys.path:
     sys.path.append(root)
     
 ## modules
+from src.evaluators.metrics import FRONTIER_METRICS
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
 from src.data.helpers import (
@@ -674,3 +676,281 @@ def temporal_perturb(
     data_temp = pd.DataFrame({"counts": counts_binned.values, "idx": range(len(counts_binned))})
     sigs = ProcessSignatures(data_temp, sort_by=["idx"], target="counts")
     return y_val, sigs.all()
+
+
+## ----------------------------------------------------------------------------
+## perturbation evaluation pipeline
+## ----------------------------------------------------------------------------
+
+## feature mapping: perturbation type to feature columns
+_FEAT_MAP = {
+    "network":    "x",
+    "invariants": "x",
+    "process":    "z",
+    "signature":  "z",
+    "temporal":   "z",
+}
+
+## json key to perturbation type
+_KEY_TO_TYPE = {
+    "network_perturbed":    "network",
+    "invariants_perturbed": "invariants",
+    "process_perturbed":    "process",
+    "signatures_perturbed": "signature",
+    "temporal_aggregated":  "temporal",
+}
+
+
+
+def _run_perturbation(
+    model_name: str,
+    model: BaseEstimator,
+    pert_type: str,
+    method: str,
+    intensity: str,
+    pert_df: pd.DataFrame,
+    data: pd.DataFrame,
+    feat_cols: Sequence[str],
+    feat_x: Sequence[str],
+    feat_z: Sequence[str],
+    target: str,
+    ) -> dict | None:
+
+    """
+    Desc: worker for a single (model, perturbation, method, intensity)
+          combination. runs both retrain and frozen logo-cv.
+    Args:
+        model_name: name of the estimator.
+        model: estimator with .estimator_c and .estimator_r attributes.
+        pert_type: perturbation family name.
+        method: perturbation method within the family.
+        intensity: perturbation intensity level.
+        pert_df: perturbed feature dataframe indexed by dataset.
+        data: clean baseline dataframe.
+        feat_cols: feature columns affected by this perturbation type.
+        feat_x: graph invariant feature column names.
+        feat_z: process signature feature column names.
+        target: target column name.
+    Returns:
+        dict with "key", "retrain", "frozen", "meta" or None if skipped.
+    """
+
+    from src.evaluators.resampling import logo_cross_valid, logo_cross_valid_frozen
+
+    lookup = pert_df.set_index("dataset")
+    data_mod = data.copy()
+    for col in feat_cols:
+        if col in lookup.columns:
+            data_mod[col] = data_mod["name"].map(lookup[col])
+
+    ## temporal perturbation: also replace target
+    if pert_type == "temporal" and target in lookup.columns:
+        data_mod[target] = data_mod["name"].map(lookup[target])
+
+    ## drop rows without perturbation data
+    required = list(feat_cols)
+    if pert_type == "temporal":
+        required = required + [target]
+    data_mod = data_mod.dropna(subset = required).reset_index(drop = True)
+    if len(data_mod) < 2:
+        return None
+
+    key = (model_name, pert_type, method, intensity)
+
+    ## retrain robustness: refit under perturbation
+    frontier_rt, _ = logo_cross_valid(
+        data = data_mod,
+        feat_x = feat_x,
+        feat_z = feat_z,
+        estimator_c = model.estimator_c,
+        estimator_r = model.estimator_r,
+        target = target,
+        group = "domain",
+    )
+    frontier_rt["model"] = model_name
+    frontier_rt["perturbation"] = pert_type
+    frontier_rt["method"] = method
+    frontier_rt["intensity"] = intensity
+
+    ## fixed manifold: train on clean, evaluate on perturbed
+    frontier_fr, _, meta = logo_cross_valid_frozen(
+        data_train = data,
+        data_test = data_mod,
+        feat_x = feat_x,
+        feat_z = feat_z,
+        estimator_c = model.estimator_c,
+        estimator_r = model.estimator_r,
+        target = target,
+        group = "domain",
+    )
+    frontier_fr["model"] = model_name
+    frontier_fr["perturbation"] = pert_type
+    frontier_fr["method"] = method
+    frontier_fr["intensity"] = intensity
+
+    return {"key": key, "retrain": frontier_rt, "frozen": frontier_fr, "meta": meta}
+
+
+def _aggregate_frontier(results_dict: dict, track: str) -> pd.DataFrame:
+
+    """
+    Desc: aggregate frontier metrics across groups per perturbation setting.
+    Args:
+        results_dict: mapping of (model, pert_type, method, intensity)
+                      to frontier dataframe.
+        track: label for the evaluation track ("retrain" or "frozen").
+    Returns:
+        dataframe with one row per perturbation setting.
+    """
+
+    rows = []
+    for (model_name, pert_type, method, intensity), frontier in results_dict.items():
+        vals = frontier[FRONTIER_METRICS]
+        row = {
+            "track": track,
+            "model": model_name,
+            "perturbation": pert_type,
+            "method": method,
+            "intensity": intensity,
+        }
+        for col in FRONTIER_METRICS:
+            row[col] = vals[col].mean()
+        rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def eval_perturb(
+    data: pd.DataFrame,
+    models: Dict[str, Any],
+    data_pert: dict,
+    feat_x: Sequence[str],
+    feat_z: Sequence[str],
+    target: str = "target",
+    n_jobs: int = -1,
+    verbose: int = 10,
+    ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+
+    """
+    Desc: run the full perturbation evaluation pipeline. computes baseline
+          logo-cv for each model, then evaluates every perturbation setting
+          under both retrain and frozen tracks. returns aggregated metrics
+          with directed deltas and recovery ratios.
+    Args:
+        data: clean baseline dataframe with features, target, and group columns.
+        models: mapping of model name to estimator with .estimator_c and
+                .estimator_r attributes.
+        data_pert: nested perturbation dict from load_perturbs()
+                   with schema {json_key: {method: {intensity: DataFrame}}}.
+        feat_x: graph invariant feature column names.
+        feat_z: process signature feature column names.
+        target: target column name.
+        n_jobs: number of parallel workers (-1 for all cores).
+        verbose: joblib verbosity level.
+    Returns:
+        tuple of (results_data, perturbed_all, recovery_df).
+        results_data: full aggregated metrics for both tracks including baselines.
+        perturbed_all: non-baseline rows with directed delta columns (d_*).
+        recovery_df: recovery ratios (rho_*) where frozen degradation is
+                     meaningfully positive.
+    """
+
+    from src.evaluators.resampling import logo_cross_valid
+
+    ## resolve feature column mapping
+    feat_lookup = {"x": list(feat_x), "z": list(feat_z)}
+
+    ## baselines (one per model)
+    results_retrain = dict()
+    results_frozen = dict()
+    for model_name, model in models.items():
+        frontier_base, _ = logo_cross_valid(
+            data = data,
+            feat_x = feat_x,
+            feat_z = feat_z,
+            estimator_c = model.estimator_c,
+            estimator_r = model.estimator_r,
+            target = target,
+            group = "domain",
+        )
+        frontier_base["model"] = model_name
+        results_retrain[(model_name, "baseline", None, None)] = frontier_base
+        results_frozen[(model_name, "baseline", None, None)] = frontier_base
+
+    ## build job list
+    jobs = []
+    for json_key, methods in data_pert.items():
+        pert_type = _KEY_TO_TYPE.get(json_key)
+        if pert_type not in _FEAT_MAP:
+            continue
+        feat_cols = feat_lookup[_FEAT_MAP[pert_type]]
+        for method, intensities in methods.items():
+            for intensity, pert_df in intensities.items():
+                for model_name, model in models.items():
+                    jobs.append((
+                        model_name, model, pert_type, method, intensity,
+                        pert_df, data, feat_cols, feat_x, feat_z, target,
+                    ))
+
+    ## parallel execution
+    print(f"Running {len(jobs)} perturbation jobs in parallel...")
+    outputs = Parallel(n_jobs = n_jobs, verbose = verbose)(
+        delayed(_run_perturbation)(*args) for args in jobs
+    )
+
+    ## collect results
+    n_ok = 0
+    for result in outputs:
+        if result is None:
+            continue
+        key = result["key"]
+        results_retrain[key] = result["retrain"]
+        results_frozen[key] = result["frozen"]
+        n_ok += 1
+    print(f"Done. {n_ok} / {len(jobs)} jobs succeeded.")
+
+    ## aggregate frontier metrics across groups
+    results_rt = _aggregate_frontier(results_dict = results_retrain, track = "retrain")
+    results_fr = _aggregate_frontier(results_dict = results_frozen, track = "frozen")
+    results_data = pd.concat(objs = [results_rt, results_fr], ignore_index = True)
+
+    ## baseline lookup
+    baseline_lookup = (
+        results_data.query("perturbation == 'baseline'")
+        .drop_duplicates(subset = ["model"])
+        .set_index("model")[FRONTIER_METRICS]
+    )
+
+    ## directed deltas (positive = degradation)
+    perturbed_all = results_data.query("perturbation != 'baseline'").copy()
+    for col in FRONTIER_METRICS:
+        base = perturbed_all["model"].map(baseline_lookup[col])
+        perturbed_all[f"d_{col}"] = (
+            (base - perturbed_all[col]) if col == "ei"
+            else (perturbed_all[col] - base)
+        )
+
+    ## recovery ratio: rho = 1 - d_retrain / d_frozen
+    feat_delta = [f"d_{c}" for c in FRONTIER_METRICS]
+    idx = ["model", "perturbation", "method", "intensity"]
+    d_frozen = perturbed_all.query("track == 'frozen'").set_index(idx)[feat_delta]
+    d_retrain = perturbed_all.query("track == 'retrain'").set_index(idx)[feat_delta]
+    common = d_frozen.index.intersection(d_retrain.index)
+    d_frozen, d_retrain = d_frozen.loc[common], d_retrain.loc[common]
+
+    eps = pd.DataFrame({
+        f"d_{m}": common.get_level_values("model").map(
+            lambda mod, metric = m: max(0.01 * abs(baseline_lookup.loc[mod, metric]), 1e-6)
+        ) for m in FRONTIER_METRICS
+    }, index = common)
+
+    ## mask: rho is only defined when frozen degradation is meaningfully positive
+    eligible = d_frozen > eps
+    rho = (1 - d_retrain / d_frozen).where(eligible)
+
+    recovery_df = rho.reset_index()
+    recovery_df.columns = [
+        c.replace("d_", "rho_") if c.startswith("d_") else c
+        for c in recovery_df.columns
+    ]
+
+    return results_data, perturbed_all, recovery_df
