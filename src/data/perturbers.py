@@ -331,16 +331,16 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False) -> dict[st
 
         if date_col is not None and target_col is not None:
             temporal_results: dict[str, list[dict[str, Any]]] = dict()
-            df_temp = events[[date_col, target_col]].copy()
-            is_ordinal = pd.api.types.is_integer_dtype(df_temp[date_col])
+            data_temp = events[[date_col, target_col]].copy()
+            is_ordinal = pd.api.types.is_integer_dtype(data_temp[date_col])
 
             if is_ordinal:
-                df_temp = df_temp.sort_values(date_col).reset_index(drop = True)
-                day_min = int(df_temp[date_col].min())
-                day_max = int(df_temp[date_col].max())
+                data_temp = data_temp.sort_values(date_col).reset_index(drop = True)
+                day_min = int(data_temp[date_col].min())
+                day_max = int(data_temp[date_col].max())
             else:
-                df_temp[date_col] = pd.to_datetime(df_temp[date_col])
-                df_temp = df_temp.set_index(date_col).sort_index()
+                data_temp[date_col] = pd.to_datetime(data_temp[date_col])
+                data_temp = data_temp.set_index(date_col).sort_index()
 
             for method, params in TEMPORAL_METHODS.items():
                 for param in params:
@@ -353,18 +353,18 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False) -> dict[st
                                 if len(bin_edges) < 2:
                                     bin_edges = [day_min, day_min + scale_days]
                                 labels = bin_edges[:-1]
-                                df_temp['_bin'] = pd.cut(
-                                    df_temp[date_col], bins = bin_edges,
+                                data_temp['_bin'] = pd.cut(
+                                    data_temp[date_col], bins = bin_edges,
                                     right = False, labels = labels, include_lowest = True
                                 )
-                                agg = df_temp.groupby('_bin', observed = False)[target_col].sum()
+                                agg = data_temp.groupby('_bin', observed = False)[target_col].sum()
                                 records = [
                                     {'day': int(b), 'target': int(v)}
                                     for b, v in agg.items()
                                 ]
-                                df_temp.drop(columns = '_bin', inplace = True, errors = 'ignore')
+                                data_temp.drop(columns = '_bin', inplace = True, errors = 'ignore')
                             else:
-                                resampled = df_temp[target_col].resample(scale).sum()
+                                resampled = data_temp[target_col].resample(scale).sum()
                                 records = [
                                     {'date': str(dt.date()), 'target': int(val)}
                                     for dt, val in resampled.items()
@@ -375,8 +375,8 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False) -> dict[st
                             intensity = float(param)
                             if is_ordinal:
                                 days_arr = np.repeat(
-                                    df_temp[date_col].values,
-                                    df_temp[target_col].values.clip(0).astype(int)
+                                    data_temp[date_col].values,
+                                    data_temp[target_col].values.clip(0).astype(int)
                                 )
                                 if len(days_arr) == 0:
                                     continue
@@ -391,7 +391,7 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False) -> dict[st
                                     for d, c in sorted(new_counts.items())
                                 ]
                             else:
-                                daily = df_temp[target_col].resample('1D').sum()
+                                daily = data_temp[target_col].resample('1D').sum()
                                 n_days = len(daily)
                                 if n_days == 0:
                                     continue
@@ -417,16 +417,16 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False) -> dict[st
                         elif method == 'dropout':
                             intensity = float(param)
                             if is_ordinal:
-                                counts_arr = df_temp[target_col].values.clip(0).astype(int)
+                                counts_arr = data_temp[target_col].values.clip(0).astype(int)
                                 survived = np.random.binomial(counts_arr, max(0.0, 1.0 - intensity))
                                 records = [
-                                    {'day': int(df_temp[date_col].iloc[i]), 'target': int(survived[i])}
-                                    for i in range(len(df_temp))
+                                    {'day': int(data_temp[date_col].iloc[i]), 'target': int(survived[i])}
+                                    for i in range(len(data_temp))
                                 ]
                             else:
-                                counts_arr = df_temp[target_col].values.clip(0).astype(int)
+                                counts_arr = data_temp[target_col].values.clip(0).astype(int)
                                 survived = np.random.binomial(counts_arr, max(0.0, 1.0 - intensity))
-                                dropped = pd.Series(survived.astype(float), index = df_temp.index)
+                                dropped = pd.Series(survived.astype(float), index = data_temp.index)
                                 resampled = dropped.resample('1D').sum()
                                 records = [
                                     {'date': str(dt.date()), 'target': int(val)}
