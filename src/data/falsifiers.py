@@ -358,28 +358,28 @@ def json_falsifier(
     logging.info(f"Generated vector feature falsifications for {len(vector_generated)} datasets.")
 
     ## save falsified datasets to disk
-    for namedata, payload in target_permuted.items():
-        path_fals_data = os.path.join(path_fals, f"{namedata}.json")
+    for name, payload in target_permuted.items():
+        path_fals_data = os.path.join(path_fals, f"{name}.json")
 
         ## skip if already falsified unless force overwrite is requested
         if os.path.exists(path_fals_data) and not force:
             logging.info(
-                f"{namedata} falsifications already exist at "
+                f"{name} falsifications already exist at "
                 f"{path_fals_data}. Skipping."
             )
             continue
-        logging.info(f"Falsifying {namedata}...")
+        logging.info(f"Falsifying {name}...")
 
         ## construct falsified payload with permuted target and generated features
         data = {
             'target_remap': payload,
-            'random_generate': random_generated.get(namedata, dict()),
-            'vector_generate': vector_generated.get(namedata, dict()),
+            'random_generate': random_generated.get(name, dict()),
+            'vector_generate': vector_generated.get(name, dict()),
         }
 
         ## save to disk
         _save_to_json(data = data, path = path_fals_data)
-        logging.info(f"{namedata} falsifications saved to {path_fals_data}")
+        logging.info(f"{name} falsifications saved to {path_fals_data}")
 
 ## primary execution
 if __name__ == '__main__':
