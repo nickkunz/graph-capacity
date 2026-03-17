@@ -32,11 +32,14 @@ PATH_PROC = config['paths']['PATH_PROC'].strip('"')
 PATH_FALS = config['paths']['PATH_FALS'].strip('"')
 
 ## cross-data target remapping
-def _permute_target_mapping(path_proc: str | Path, random_state: int = 42) -> dict[str, dict[str, Any]]:
+def _permute_target_mapping(
+    path_proc: str | Path, 
+    random_state: int = 42
+    ) -> dict[str, dict[str, Any]]:
 
     """
-    Desc: 
-        Permute the dataset-level target y* across processed data while keeping 
+    Desc:
+        Permute the dataset-level target y* across processed data while keeping
         each dataset's invariants, signatures, and event history fixed.
         This breaks the joint (x', z') -> y* mapping.
 
@@ -47,7 +50,7 @@ def _permute_target_mapping(path_proc: str | Path, random_state: int = 42) -> di
     Returns:
         dict keyed by dataset name with falsified payloads containing the
         original invariants/signatures/events and a permuted row target.
-    
+
     Raises:
         FileNotFoundError: if the specified processed data directory does not
             exist or contains no JSON files.
@@ -79,7 +82,7 @@ def _permute_target_mapping(path_proc: str | Path, random_state: int = 42) -> di
             'name': name,
             'invariants': payload.get('invariants', dict()),
             'signatures': payload.get('signatures', dict()),
-            'events': payload.get('events', []),
+            'events': payload.get('events', list()),
         })
 
     ## check for at least two datasets to permute
@@ -109,7 +112,10 @@ def _permute_target_mapping(path_proc: str | Path, random_state: int = 42) -> di
     return json_perm
 
 ## independent uniform feature generation
-def _generate_random_features(path_proc: str | Path, random_state: int = 42) -> dict[str, dict[str, Any]]:
+def _generate_random_features(
+    path_proc: str | Path, 
+    random_state: int = 42
+    ) -> dict[str, dict[str, Any]]:
 
     """
     Desc:
@@ -148,7 +154,7 @@ def _generate_random_features(path_proc: str | Path, random_state: int = 42) -> 
         )
 
     ## read each json file into a list of dictionaries
-    json_data: list[dict[str, Any]] = []
+    json_data: list[dict[str, Any]] = list()
     for file in json_files:
         name = os.path.splitext(file)[0]
         with open(json_path / file, 'r') as fp:
@@ -157,7 +163,7 @@ def _generate_random_features(path_proc: str | Path, random_state: int = 42) -> 
             'name': name,
             'invariants': payload.get('invariants', dict()),
             'signatures': payload.get('signatures', dict()),
-            'events': payload.get('events', []),
+            'events': payload.get('events', list()),
         })
 
     ## compute per-feature ranges across all datasets
@@ -206,9 +212,12 @@ def _generate_random_features(path_proc: str | Path, random_state: int = 42) -> 
     return json_rand
 
 ## cross-data vector feature generation
-def _generate_vector_features(path_proc: str | Path, random_state: int = 42) -> dict[str, dict[str, Any]]:
+def _generate_vector_features(
+    path_proc: str | Path,
+    random_state: int = 42
+    ) -> dict[str, dict[str, Any]]:
 
-    """ 
+    """
     Desc:
         Generate falsified features by resampling across datasets (bootstrap)
         and adding Gaussian noise. This keeps marginal distributions plausible
@@ -242,7 +251,7 @@ def _generate_vector_features(path_proc: str | Path, random_state: int = 42) -> 
         )
 
     ## read each json file into a list of dictionaries
-    json_data: list[dict[str, Any]] = []
+    json_data: list[dict[str, Any]] = list()
     for file in json_files:
         name = os.path.splitext(file)[0]
         with open(json_path / file, 'r') as fp:
@@ -251,7 +260,7 @@ def _generate_vector_features(path_proc: str | Path, random_state: int = 42) -> 
             'name': name,
             'invariants': payload.get('invariants', dict()),
             'signatures': payload.get('signatures', dict()),
-            'events': payload.get('events', []),
+            'events': payload.get('events', list()),
         })
 
     ## build per-feature pools across all datasets for bootstrap resampling
@@ -264,7 +273,7 @@ def _generate_vector_features(path_proc: str | Path, random_state: int = 42) -> 
                 continue
             if not np.isfinite(x):
                 continue
-            feature_pools.setdefault(key, []).append(x)
+            feature_pools.setdefault(key, list()).append(x)
 
     for key, pool in feature_pools.items():
         feature_pools[key] = np.array(pool, dtype=float)
@@ -306,7 +315,7 @@ def json_falsifier(
     """
     Desc:
         Generate a suite of falsified datasets and write them to disk. For each
-        processed JSON file in the directory specified in the `path_proc` argument, 
+        processed JSON file in the directory specified in the `path_proc` argument,
         the function produces three falsified variants:
 
         - `target_remap`: Swaps the per-dataset event list (target history)
@@ -344,7 +353,7 @@ def json_falsifier(
         random_state = random_state
     )
     logging.info(f"Generated target remapped falsifications for {len(target_permuted)} datasets.")
-    
+
     random_generated = _generate_random_features(
         path_proc = path_proc,
         random_state = random_state
