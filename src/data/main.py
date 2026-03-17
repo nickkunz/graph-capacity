@@ -352,7 +352,7 @@ if __name__ == '__main__':
     ## run json data processor to create payloads for main table creation
     try:
         logging.info("Running data processor...")
-        json_processor()
+        json_processor(force  = False)
         logging.info("Data processor completed.")
     except Exception as e:
         logging.warning(f"Failed to run processor: {e}.")
@@ -361,7 +361,7 @@ if __name__ == '__main__':
     ## run perturbation pipeline to create perturbed json payloads
     try:
         logging.info("Running data perturber...")
-        json_perturber()
+        json_perturber(force = False)
         logging.info("Data perturber completed.")
     except Exception as e:
         logging.warning(f"Failed to run perturber: {e}.")
@@ -370,7 +370,7 @@ if __name__ == '__main__':
     ## run falsification pipeline to create falsified json payloads
     try:
         logging.info("Running data falsifier...")
-        json_falsifier()
+        json_falsifier(force = True)
         logging.info("Data falsifier completed.")
     except Exception as e:
         logging.warning(f"Failed to run falsifier: {e}.")
