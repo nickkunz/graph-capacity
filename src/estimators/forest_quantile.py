@@ -9,13 +9,16 @@ from sklearn_quantile import RandomForestQuantileRegressor
 from src.estimators.config import ASYMMETRY_C, ASYMMETRY_R
 
 ## random forest sklearn regressors
-class ForestQuantile:
+class ForestQuantile(BaseEstimator):
     def __init__(
         self,
         quantile_c: float = ASYMMETRY_C,
         quantile_r: float = ASYMMETRY_R,
         **kwargs: Any
         ) -> None:
+        self.quantile_c = quantile_c
+        self.quantile_r = quantile_r
+        self.kwargs: dict[str, Any] = kwargs
         self.estimator_c = ForestBase(quantile = quantile_c, **kwargs)
         self.estimator_r = ForestBase(quantile = quantile_r, **kwargs)
 
