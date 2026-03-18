@@ -21,6 +21,11 @@ class LinearConvex(BaseEstimator):
         beta: ArrayLike | None = None
         ) -> None:
 
+        self.quantile_c = quantile_c
+        self.quantile_r = quantile_r
+        self.alpha = alpha
+        self.beta = beta
+
         self.estimator_c = BaseConvex(
             quantile = quantile_c, 
             alpha = alpha, 
