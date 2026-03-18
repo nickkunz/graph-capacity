@@ -7,7 +7,6 @@ import logging
 import configparser
 import pandas as pd
 from pathlib import Path
-from typing import Any
 
 ## path
 root = Path(__file__).resolve().parents[2]
@@ -583,6 +582,10 @@ def _index_perturbs(path_pert: str) -> dict:
                 index[idx_key][data_name] = obs
     return index
 
+## ----------------------------------------------------------------------------
+## ------ data loading for processed, perturbations, and falsifications -------
+## ----------------------------------------------------------------------------
+
 ## load processed data
 def load_processed_data(path_main: str | Path = PATH_MAIN) -> pd.DataFrame:
 
@@ -676,25 +679,25 @@ def load_falsified_data(path_fals: str | Path = PATH_FALS) -> dict:
         with open(file_path, 'r') as fp:
             payload = json.load(fp)
 
-        per_dataset = dict()
+        dict_data_meth = dict()
         with tempfile.TemporaryDirectory() as temp_dir:
-            for method in methods:
-                if method not in payload or not isinstance(payload[method], dict):
+            for i in methods:
+                if i not in payload or not isinstance(payload[i], dict):
                     continue
                 payload = {
-                    'invariants': payload[method].get('invariants', dict()),
-                    'signatures': payload[method].get('signatures', dict()),
-                    'events': payload[method].get('events', list()),
+                    'invariants': payload[i].get('invariants', dict()),
+                    'signatures': payload[i].get('signatures', dict()),
+                    'events': payload[i].get('events', list()),
                 }
                 out_path = os.path.join(temp_dir, file_path.name)
                 with open(out_path, 'w') as fp:
                     json.dump(payload, fp)
                 data_false = data_builder(path = temp_dir)
                 if data_false is not None and not data_false.empty:
-                    per_dataset[method] = data_false
+                    dict_data_meth[i] = data_false
                 os.remove(out_path)
 
-        if per_dataset:
-            dict_data[name] = per_dataset
+        if dict_data_meth:
+            dict_data[name] = dict_data_meth
 
     return dict_data
