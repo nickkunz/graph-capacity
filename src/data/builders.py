@@ -321,15 +321,13 @@ def data_builder(path: str | Path) -> pd.DataFrame | None:
         ValueError: No valid data from JSON files resulting in an empty main table.
     """
 
+    ## find each json file to process
+    json_files = _find_json_payload(path_proc = path)
+
+    ## process each json file and append to list
     data_list = list()
     invariant_order = list()
     signature_order = list()
-
-    ## find each json file to process
-    json_files = _find_json_payload(path_proc = path)
-    logging.info(f"Found {len(json_files)} JSON files to process.")
-
-    ## process each json file and append to list
     for file_name in json_files:
         namedata = os.path.splitext(file_name)[0]
         file_path = os.path.join(path, file_name)
