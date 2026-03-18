@@ -839,7 +839,7 @@ def eval_perturb(
         data: clean baseline dataframe with features, target, and group columns.
         models: mapping of model name to estimator with .estimator_c and
                 .estimator_r attributes.
-        data_pert: nested perturbation dict from load_perturbs()
+        data_pert: nested perturbation dict from load_perturbed_data()
                    with schema {json_key: {method: {intensity: DataFrame}}}.
         feat_x: graph invariant feature column names.
         feat_z: process signature feature column names.
