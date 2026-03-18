@@ -7,6 +7,7 @@ import logging
 import configparser
 import pandas as pd
 from pathlib import Path
+from typing import Any
 
 ## path
 root = Path(__file__).resolve().parents[2]
@@ -28,6 +29,7 @@ config.read(os.path.join(root, 'conf', 'settings.ini'))
 ## constants
 PATH_PROC = config['paths']['PATH_PROC'].strip('"')
 PATH_PERT = config['paths']['PATH_PERT'].strip('"')
+PATH_FALS = config['paths']['PATH_FALS'].strip('"')
 PATH_MAIN = os.path.join(root, 'data', 'main.csv')
 
 PERT_SPEC = [
@@ -502,13 +504,13 @@ def _insert_features(data, invariants, invariant_order, signatures, signature_or
     return data
 
 ## collect perturbed data from json files
-def _index_perturbs(pert_path: str) -> dict:
+def _index_perturbs(path_pert: str) -> dict:
 
     """ Iterate over all perturbation json files and extract features into an index. """
 
     ## iterate over all json files in the perturbation directory
     index = dict()
-    path = Path(pert_path)
+    path = Path(path_pert)
     for json_path in sorted(path.glob("*.json")):
         data_name = json_path.stem
         with open(json_path, "r") as f:
@@ -582,14 +584,15 @@ def _index_perturbs(pert_path: str) -> dict:
     return index
 
 ## load processed data
-def load_processed_data(filepath: str | Path = PATH_MAIN) -> pd.DataFrame:
+def load_processed_data(path_main: str | Path = PATH_MAIN) -> pd.DataFrame:
 
     """ Load the main dataframe from disk. """
 
-    return pd.read_csv(filepath_or_buffer = filepath)
+    return pd.read_csv(filepath_or_buffer = path_main)
 
 ## create perturbation data from indexed perturbation data
-def load_perturbed_data(pert_path: str | None = None) -> dict:
+def load_perturbed_data(
+    path_pert: str | Path = PATH_PERT) -> dict[str, dict[str, dict[Any, pd.DataFrame]]]:
 
     """
     Desc:
@@ -598,7 +601,7 @@ def load_perturbed_data(pert_path: str | None = None) -> dict:
         intensity.
 
     Args:
-        pert_path: Path to perturbation JSON directory. If None, defaults
+        path_pert: Path to perturbation JSON directory. If None, defaults
                    to the configured perturbation directory.
 
     Returns:
@@ -609,17 +612,13 @@ def load_perturbed_data(pert_path: str | None = None) -> dict:
         ValueError: no perturbation JSON files were found.
     """
 
-    ## fallback to default path if not provided
-    if pert_path is None:
-        pert_path = os.path.join(root, PATH_PERT)
-
     ## deterministic sort for mixed key types
     def _sort_key(key: tuple) -> tuple[str, str, str]:
         return tuple(str(v) for v in key)
 
     ## build tables from indexed perturbation data
     data_dict = dict()
-    index = _index_perturbs(pert_path)
+    index = _index_perturbs(path_pert)
     for key in sorted(index.keys(), key = _sort_key):
         pert_type, method, intensity = key
         data = pd.DataFrame(list(index[key].values()))
@@ -636,19 +635,19 @@ def load_perturbed_data(pert_path: str | None = None) -> dict:
     _type_to_key = {spec["type"]: spec["key"] for spec in PERT_SPEC}
 
     ## payload schema: {json_key: {method: {intensity: DataFrame}}}
-    dict_payload = dict()
+    dict_data = dict()
     for (pert_type, method, intensity), data in data_dict.items():
         json_key = _type_to_key.get(pert_type, pert_type)
-        if json_key not in dict_payload:
-            dict_payload[json_key] = dict()
-        if method not in dict_payload[json_key]:
-            dict_payload[json_key][method] = dict()
-        dict_payload[json_key][method][intensity] = data
-    logger.info(f"Created {len(dict_payload)} perturbation groups from {pert_path}")
-    return dict_payload
+        if json_key not in dict_data:
+            dict_data[json_key] = dict()
+        if method not in dict_data[json_key]:
+            dict_data[json_key][method] = dict()
+        dict_data[json_key][method][intensity] = data
+    logger.info(f"Created {len(dict_data)} perturbation groups from {path_pert}")
+    return dict_data
 
 ## load falsified data
-def load_falsified_data(path_fals: str | Path, methods: list[str] | None = None) -> dict[str, dict[str, pd.DataFrame]]:
+def load_falsified_data(path_fals: str | Path = PATH_FALS) -> dict[str, dict[str, pd.DataFrame]]:
 
     """
     Desc:
@@ -657,8 +656,6 @@ def load_falsified_data(path_fals: str | Path, methods: list[str] | None = None)
 
     Args:
         path_fals: directory containing falsified dataset json files.
-        methods: optional list of falsification method keys to load.
-                 If None, the keys are inferred from the directory contents.
 
     Returns:
         dict mapping dataset name to a nested dict of falsification method
@@ -669,41 +666,36 @@ def load_falsified_data(path_fals: str | Path, methods: list[str] | None = None)
                            has no json files.
     """
 
-    ## list json files, validating the directory and contents
+    ## list json files in falsification directory with validation
     json_files = _list_json_files(path_fals)
+    methods = _list_json_keys(path_fals)
 
-    ## infer falsification method keys from the payload schema when omitted
-    if methods is None:
-        methods = _list_json_keys(path_fals)
-
-    falsified = dict()
+    ## build falsified dataframes by processing each json file with data_builder()
+    dict_data = dict()
     for file_path in json_files:
         name = file_path.stem
         with open(file_path, 'r') as fp:
             payload = json.load(fp)
 
         per_dataset = dict()
-        with tempfile.TemporaryDirectory() as tmpdir:
+        with tempfile.TemporaryDirectory() as temp_dir:
             for method in methods:
                 if method not in payload or not isinstance(payload[method], dict):
                     continue
-
-                out = {
+                payload = {
                     'invariants': payload[method].get('invariants', dict()),
                     'signatures': payload[method].get('signatures', dict()),
                     'events': payload[method].get('events', list()),
                 }
-                out_path = os.path.join(tmpdir, file_path.name)
+                out_path = os.path.join(temp_dir, file_path.name)
                 with open(out_path, 'w') as fp:
-                    json.dump(out, fp)
-
-                data_false = data_builder(path = tmpdir)
+                    json.dump(payload, fp)
+                data_false = data_builder(path = temp_dir)
                 if data_false is not None and not data_false.empty:
                     per_dataset[method] = data_false
-
                 os.remove(out_path)
 
         if per_dataset:
-            falsified[name] = per_dataset
+            dict_data[name] = per_dataset
 
-    return falsified
+    return dict_data
