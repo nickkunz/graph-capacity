@@ -392,4 +392,4 @@ def json_falsifier(
 
 ## primary execution
 if __name__ == '__main__':
-    json_falsifier(force = False)
+    json_falsifier(force = True)
