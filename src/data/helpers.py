@@ -380,6 +380,137 @@ def _to_datetime(values: pd.Series | None) -> pd.Series | None:
         return pd.to_datetime(values, unit = 's')
     return pd.to_datetime(values)
 
+## list json files in a directory with validation
+def _list_json_files(path):
+
+    ## validate path, directory status, and presence of json files
+    path = Path(root) / path
+    if not path.exists():
+        raise FileNotFoundError(f"Data directory does not exist: {path}")
+    if not path.is_dir():
+        raise NotADirectoryError(f"Path is not a directory: {path}")
+
+    ## list and sort json files and ensure at least one is found
+    json_files = sorted([f for f in path.iterdir() if f.suffix == '.json'])
+    if not json_files:
+        raise ValueError(f"No JSON files found in directory: {path}")
+
+    return json_files
+
+## shared json key lister with consistency check across files
+def _list_json_keys(path: str | Path) -> list[str]:
+
+    ## list json files in directory with validation
+    json_files = _list_json_files(path = path)
+
+    ## track common keys across all json files 
+    common_keys: set[str] | None = None
+    inconsistent = False
+    for json_file in json_files:
+        with open(json_file, 'r') as fp:
+            payload = json.load(fp)
+        keys = set(payload.keys())
+        if common_keys is None:
+            common_keys = keys
+        else:
+            if common_keys != keys:
+                inconsistent = True
+            common_keys &= keys
+
+    ## return sorted list of common keys or empty list if none found
+    if common_keys is None:
+        return list()
+    if inconsistent:
+        raise ValueError(
+            "Inconsistent JSON payload keys across files. "
+            f"Common keys: {sorted(common_keys)}"
+        )
+    return sorted(common_keys)
+
+## json data normalization
+def _load_json_payload(file_path):
+
+    """ Load and unpack a processed dataset JSON payload. """
+
+    ## quality check to ensure file exists
+    with open(file_path, 'r') as f:
+        data = json.load(f)
+
+    return (
+        data.get('invariants', {}),
+        data.get('signatures', {}),
+        data.get('events', list())
+    )
+
+## event normalization
+def _normalize_events(events, target = 'target'):
+
+    """ Ensuring target is numeric and date/day are parsed if present. """
+
+    ## quality check to ensure target field and at least one event exists
+    data_obs = pd.DataFrame(events)
+    if data_obs.empty or target not in data_obs.columns:
+        return None
+
+    ## detect date and day fields
+    data_obs = data_obs.reset_index(drop = True).copy()
+    date_has = 'date' in data_obs.columns
+    day_has = 'day' in data_obs.columns
+
+    ## parse date and day fields if they exist, coercing errors
+    if date_has:
+        data_obs['date'] = pd.to_datetime(
+            arg = data_obs['date'],
+            errors = 'coerce'
+        )
+    else:
+        data_obs['date'] = pd.Series(
+            data = pd.NaT,
+            index = data_obs.index,
+            dtype = 'datetime64[ns]'
+        )
+    if day_has:
+        data_obs['day'] = pd.to_numeric(
+            arg = data_obs['day'],
+            errors = 'coerce'
+        ).astype('Int64')
+    else:
+        data_obs['day'] = pd.Series(
+            data = pd.NA,
+            index = data_obs.index,
+            dtype = 'Int64'
+        )
+
+    ## ensure target field is numeric
+    data_obs[target] = pd.to_numeric(data_obs[target], errors = 'coerce')
+
+    ## drop events with missing target or date/day values
+    subset = [target] + (['day'] if day_has else list())
+    data_obs = data_obs.dropna(subset = subset)
+
+    ## return None if no valid events remain
+    return None if data_obs.empty else data_obs
+
+## feature insertion
+def _insert_features(data, invariants, invariant_order, signatures, signature_order):
+
+    """ Insert invariant and signature fields into the data and track column order. """
+
+    ## insert invariants and update column order
+    data = data.copy()
+    for key, value in invariants.items():
+        data[key] = value
+        if key not in invariant_order:
+            invariant_order.append(key)
+
+    ## insert signatures and update column order
+    for key, value in signatures.items():
+        data[key] = value
+        if key not in signature_order:
+            signature_order.append(key)
+
+    return data
+
 
 # -----------------------------------------------------------------------------
 # perturbation table helpers
