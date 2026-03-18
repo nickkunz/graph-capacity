@@ -352,9 +352,7 @@ def data_builder(path: str | Path) -> pd.DataFrame | None:
 
     ## clean floating imprecision from processing and replace with exact zero
     numeric = data_main.select_dtypes(include = 'number')
-    data_main.loc[:, numeric.columns] = numeric.mask(numeric.abs() < 1e-12, 0.0)
-    logging.info(f"Finished processing table with shape: {data_main.shape}")
-    
+    data_main.loc[:, numeric.columns] = numeric.mask(numeric.abs() < 1e-12, 0.0)    
     return data_main
 
 ## main dataframe saver
