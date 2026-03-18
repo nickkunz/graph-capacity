@@ -36,10 +36,10 @@ def _drop_nan_rows(
     
     Returns:
         tuple of (X_clean, Z_clean, y_clean, kept_mask).
-    
-    Raises:
-        ValueError if input lengths are inconsistent or if feat_x/feat_z are empty.
 
+    Raises:
+        ValueError propagated if feature lists are empty or fold-local inputs 
+        are inconsistent.
     """
 
     ## validate inputs
