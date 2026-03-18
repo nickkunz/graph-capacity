@@ -331,7 +331,7 @@ def data_builder(path: str | Path) -> pd.DataFrame | None:
     for file_name in json_files:
         namedata = os.path.splitext(file_name)[0]
         file_path = os.path.join(path, file_name)
-        logging.info(f"Processing {file_name}...")
+        logging.info(f"Started processing {file_name}...")
         data_processed = _process_per_data(
             file_path = file_path,
             namedata = namedata,
@@ -341,6 +341,7 @@ def data_builder(path: str | Path) -> pd.DataFrame | None:
         if data_processed is None:
             continue
         data_list.append(data_processed)
+        logging.info(f"Finished processing {file_name}.")
 
     if not data_list:
         logging.error("No data was processed. Exiting.")
@@ -352,6 +353,8 @@ def data_builder(path: str | Path) -> pd.DataFrame | None:
     ## clean floating imprecision from processing and replace with exact zero
     numeric = data_main.select_dtypes(include = 'number')
     data_main.loc[:, numeric.columns] = numeric.mask(numeric.abs() < 1e-12, 0.0)
+    logging.info(f"Finished processing table with shape: {data_main.shape}")
+    
     return data_main
 
 ## main dataframe saver
@@ -366,7 +369,7 @@ def data_saver(data: pd.DataFrame, path_data: str | Path, force: bool = False) -
 
     ## save main data to disk
     data.to_csv(path_data, index = False)
-    logging.info(f"Main table shape: {data.shape}")
+    logging.info(f"Main table saved at {path_data} with shape: {data.shape}")
 
 
 ## list json files in a directory with validation
