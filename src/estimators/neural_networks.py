@@ -12,7 +12,7 @@ from sklearn.base import BaseEstimator, RegressorMixin
 from src.estimators.config import ASYMMETRY_C, ASYMMETRY_R
 
 ## neural network sklearn regressors
-class NeuralQuantile:
+class NeuralQuantile(BaseEstimator):
     def __init__(
         self, 
         quantile_c: float = ASYMMETRY_C,
@@ -20,6 +20,11 @@ class NeuralQuantile:
         input_dims: int | None = None, 
         **kwargs: Any
         ) -> None:
+
+        self.quantile_c = quantile_c
+        self.quantile_r = quantile_r
+        self.input_dims = input_dims
+        self.kwargs: dict[str, Any] = kwargs
 
         self.estimator_c = NeuralBase(
             net_cls = QuantileNet,
@@ -36,7 +41,7 @@ class NeuralQuantile:
             **kwargs
         )
 
-class NeuralExpectile:
+class NeuralExpectile(BaseEstimator):
     def __init__(
         self, 
         quantile_c: float = ASYMMETRY_C, 
@@ -44,6 +49,11 @@ class NeuralExpectile:
         input_dims: int | None = None, 
         **kwargs: Any
         ) -> None:
+
+        self.quantile_c = quantile_c
+        self.quantile_r = quantile_r
+        self.input_dims = input_dims
+        self.kwargs: dict[str, Any] = kwargs
         
         self.estimator_c = NeuralBase(
             net_cls = ExpectileNet,
@@ -60,7 +70,7 @@ class NeuralExpectile:
             **kwargs
         )
 
-class NeuralConvex:
+class NeuralConvex(BaseEstimator):
     def __init__(
         self, 
         quantile_c: float = ASYMMETRY_C, 
@@ -68,6 +78,11 @@ class NeuralConvex:
         input_dims: int | None = None, 
         **kwargs: Any
         ) -> None:
+
+        self.quantile_c = quantile_c
+        self.quantile_r = quantile_r
+        self.input_dims = input_dims
+        self.kwargs: dict[str, Any] = kwargs
 
         self.estimator_c = NeuralBase(
             net_cls = ConvexNet,
