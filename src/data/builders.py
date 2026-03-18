@@ -648,19 +648,20 @@ def load_perturbed_data(path_pert: str | Path = PATH_PERT) -> dict:
     return dict_data
 
 ## load falsified data
-def load_falsified_data(path_fals: str | Path = PATH_FALS) -> dict:
+def load_falsified_data(path_fals: str | Path = PATH_FALS) -> dict[str, pd.DataFrame]:
 
     """
     Desc:
         Load precomputed falsified datasets from disk using data_builder
-        to construct per-dataset evaluation dataframes per falsification method.
+        to construct one dataframe per falsification method containing all
+        datasets.
 
     Args:
         path_fals: directory containing falsified dataset json files.
 
     Returns:
-        dict mapping dataset name to a nested dict of falsification method
-        names to dataframes.
+        dict mapping falsification method name to a dataframe with one row
+        per dataset.
 
     Raises:
         FileNotFoundError: falsified data directory does not exist or
@@ -671,32 +672,27 @@ def load_falsified_data(path_fals: str | Path = PATH_FALS) -> dict:
     json_files = _list_json_files(path_fals)
     methods = _list_json_keys(path_fals)
 
-    ## build falsified dataframes by processing each json file with data_builder()
+    ## build one dataframe per method across all datasets
     dict_data = dict()
-    for file_path in json_files:
-        name = file_path.stem
-        with open(file_path, 'r') as fp:
-            payload = json.load(fp)
-
-        dict_data_meth = dict()
+    for method in methods:
         with tempfile.TemporaryDirectory() as temp_dir:
-            for i in methods:
-                if i not in payload or not isinstance(payload[i], dict):
+            for file_path in json_files:
+                with open(file_path, 'r') as fp:
+                    payload = json.load(fp)
+                if method not in payload or not isinstance(payload[method], dict):
                     continue
-                payload = {
-                    'invariants': payload[i].get('invariants', dict()),
-                    'signatures': payload[i].get('signatures', dict()),
-                    'events': payload[i].get('events', list()),
+                method_payload = {
+                    'invariants': payload[method].get('invariants', dict()),
+                    'signatures': payload[method].get('signatures', dict()),
+                    'events': payload[method].get('events', list()),
                 }
                 out_path = os.path.join(temp_dir, file_path.name)
                 with open(out_path, 'w') as fp:
-                    json.dump(payload, fp)
-                data_false = data_builder(path = temp_dir)
-                if data_false is not None and not data_false.empty:
-                    dict_data_meth[i] = data_false
-                os.remove(out_path)
+                    json.dump(method_payload, fp)
 
-        if dict_data_meth:
-            dict_data[name] = dict_data_meth
+            data_false = data_builder(path = temp_dir)
+            if data_false is not None and not data_false.empty:
+                dict_data[method] = data_false
 
+    logger.info(f"Loaded {len(dict_data)} falsification methods from {path_fals}")
     return dict_data
