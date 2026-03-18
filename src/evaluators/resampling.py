@@ -11,7 +11,6 @@ from src.vectorizers.scalers import _log_transformer, _standardizer
 from src.evaluators.metrics import frontier_metrics
 
 
-
 ## ----------------------------------------------------------------------------
 ## fold-local helpers
 ## ----------------------------------------------------------------------------
@@ -24,18 +23,34 @@ def _drop_nan_rows(
     ) -> tuple[pd.DataFrame, pd.DataFrame, np.ndarray, np.ndarray]:
 
     """
-    Desc: drop rows containing nans in any feature or target column.
-          returns the cleaned arrays and a boolean mask of kept rows.
+    Desc:
+        Omits rows containing nans in any feature or target column.
+        Returns the cleaned arrays and a boolean mask of kept rows.
+
     Args:
         X: graph invariant features.
         Z: process signature features.
         y: target array (same length as X/Z).
         feat_x: graph invariant column names.
         feat_z: process signature column names.
+    
     Returns:
         tuple of (X_clean, Z_clean, y_clean, kept_mask).
+    
+    Raises:
+        ValueError if input lengths are inconsistent or if feat_x/feat_z are empty.
+
     """
 
+    ## validate inputs
+    if not feat_x:
+        raise ValueError("feat_x must contain at least one column name.")
+    if not feat_z:
+        raise ValueError("feat_z must contain at least one column name.")
+    if len(X) != len(Z) or len(X) != len(y):
+        raise ValueError("X, Z, and y must have the same length.")
+
+    ## create mask of rows without nans in any feature or target column
     mask = (
         X[feat_x].notna().all(axis = 1)
         & Z[feat_z].notna().all(axis = 1)
@@ -45,9 +60,9 @@ def _drop_nan_rows(
 
 
 ## ----------------------------------------------------------------------------
-## additive fold worker
+## retrained-manifold worker
 ## ----------------------------------------------------------------------------
-def _run_additive_fold(
+def _run_retrain_fold(
     train_idx: np.ndarray,
     test_idx: np.ndarray,
     X: pd.DataFrame,
@@ -62,9 +77,11 @@ def _run_additive_fold(
     ) -> dict | None:
 
     """
-    Desc: execute a single additive C(X) + R(Z) cross-validation fold.
-          trains capacity and residual estimators on the training split
-          and evaluates frontier metrics on the test split.
+    Desc: 
+        Execute a single retrained f_C(X) + f_R(Z) cross-validation fold.
+        Retrains capacity and residual estimators on the training split and 
+        evaluates frontier metrics on the test split.
+
     Args:
         train_idx: training indices.
         test_idx: test indices.
@@ -77,9 +94,13 @@ def _run_additive_fold(
         estimator_r: residual estimator (cloned internally).
         random_state: random seed forwarded to estimators when supported.
         group_name: optional group label for the fold.
+    
     Returns:
         dict with frontier metrics, predictions, and index mapping,
         or none if the fold is skipped due to insufficient data.
+
+    Raises:
+        ValueError if input lengths are inconsistent or if feat_x/feat_z are empty.
     """
 
     ## split training data
@@ -161,7 +182,7 @@ def _run_additive_fold(
 
 
 ## ----------------------------------------------------------------------------
-## frozen-manifold fold worker
+## frozen-manifold worker
 ## ----------------------------------------------------------------------------
 def _run_frozen_fold(
     train_idx: np.ndarray,
@@ -345,7 +366,7 @@ def logo_cross_valid(
 
     ## parallel fold execution
     fold_results = Parallel(n_jobs = n_jobs)(
-        delayed(_run_additive_fold)(
+        delayed(_run_retrain_fold)(
             train_idx = train_idx,
             test_idx = test_idx,
             X = X,
@@ -565,7 +586,7 @@ def kfold_cross_valid(
 
     ## parallel fold execution (all folds dispatched at once)
     fold_results = Parallel(n_jobs = n_jobs)(
-        delayed(_run_additive_fold)(
+        delayed(_run_retrain_fold)(
             train_idx = train_idx,
             test_idx = test_idx,
             X = X,
