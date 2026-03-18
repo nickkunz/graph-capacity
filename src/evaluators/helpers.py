@@ -1,8 +1,10 @@
 ## libraries
 import pandas as pd
 from typing import Dict, Any
+from pathlib import Path
 
 ## modules
+from src.data.helpers import _list_json_files, _list_json_keys
 from src.estimators.linear_quantile import LinearQuantile
 from src.estimators.linear_laws import LinearLAWS
 from src.estimators.linear_convex import LinearConvex
@@ -14,10 +16,6 @@ from src.estimators.neural_networks import (
     NeuralExpectile,
     NeuralConvex
 )
-
-## load main data
-def load_data(filepath: str = "../data/main.csv") -> pd.DataFrame:
-    return pd.read_csv(filepath)
 
 ## load all estimators
 def load_models(input_dims: int = None) -> Dict[str, Any]:
@@ -37,3 +35,4 @@ def load_models(input_dims: int = None) -> Dict[str, Any]:
         "neural_expectile": NeuralExpectile(input_dims = input_dims),
         "neural_convex": NeuralConvex(input_dims = input_dims),
     }
+
