@@ -591,8 +591,7 @@ def load_processed_data(path_main: str | Path = PATH_MAIN) -> pd.DataFrame:
     return pd.read_csv(filepath_or_buffer = path_main)
 
 ## create perturbation data from indexed perturbation data
-def load_perturbed_data(
-    path_pert: str | Path = PATH_PERT) -> dict[str, dict[str, dict[Any, pd.DataFrame]]]:
+def load_perturbed_data(path_pert: str | Path = PATH_PERT) -> dict:
 
     """
     Desc:
@@ -647,7 +646,7 @@ def load_perturbed_data(
     return dict_data
 
 ## load falsified data
-def load_falsified_data(path_fals: str | Path = PATH_FALS) -> dict[str, dict[str, pd.DataFrame]]:
+def load_falsified_data(path_fals: str | Path = PATH_FALS) -> dict:
 
     """
     Desc:
