@@ -694,5 +694,5 @@ def load_falsified_data(path_fals: str | Path = PATH_FALS) -> dict[str, pd.DataF
             if data_false is not None and not data_false.empty:
                 dict_data[method] = data_false
 
-    logger.info(f"Loaded {len(dict_data)} falsification methods from {path_fals}")
+    logger.info(f"Successfully loaded falsification payloads from '{path_fals}'")
     return dict_data
