@@ -38,8 +38,7 @@ def _drop_nan_rows(
         tuple of (X_clean, Z_clean, y_clean, kept_mask).
 
     Raises:
-        ValueError propagated if feature lists are empty or fold-local inputs 
-        are inconsistent.
+        ValueError if feature lists are empty or fold-local inputs are inconsistent.
     """
 
     ## validate inputs
@@ -100,7 +99,8 @@ def _run_retrain_fold(
         or none if the fold is skipped due to insufficient data.
 
     Raises:
-        ValueError if input lengths are inconsistent or if feat_x/feat_z are empty.
+        ValueError propagated from _drop_nan_rows if fold-local inputs are
+        inconsistent or if feat_x/feat_z are empty.
     """
 
     ## split training data
@@ -221,6 +221,10 @@ def _run_frozen_fold(
     Returns:
         dict with frontier metrics, predictions, and index mapping,
         or dict with skipped group name if fold cannot be evaluated.
+
+    Raises:
+        ValueError propagated from _drop_nan_rows if fold-local inputs are
+        inconsistent or if feat_x/feat_z are empty.
     """
 
     ## split training data (always from clean data)
@@ -340,6 +344,12 @@ def logo_cross_valid(
         n_jobs: number of parallel jobs for fold execution (-1 for all cores).
     Returns:
         tuple of (frontier results dataframe, predicted values array).
+
+    Raises:
+        ValueError if feat_x or feat_z is empty.
+        AssertionError if any logo test fold contains multiple groups.
+        ValueError propagated from _drop_nan_rows if fold-local inputs are
+        inconsistent.
     """
 
     ## validate inputs
@@ -431,6 +441,12 @@ def logo_cross_valid_frozen(
         tuple of (frontier results dataframe, predicted values array,
         metadata dict with n_groups_evaluated, n_groups_skipped, and
         groups_evaluated).
+
+    Raises:
+        ValueError if feat_x or feat_z is empty.
+        AssertionError if any logo test fold contains multiple groups.
+        ValueError propagated from _drop_nan_rows if fold-local inputs are
+        inconsistent.
     """
 
     ## validate inputs
@@ -541,6 +557,13 @@ def kfold_cross_valid(
         with metrics averaged across all iterations. when detail is true,
         it contains one row per iteration with fold-averaged metrics.
         the prediction array is averaged across iterations in both cases.
+
+    Raises:
+        ValueError if feat_x or feat_z is empty.
+        ValueError if n_splits < 2 or n_repeats < 1.
+        ValueError if n_repeats > 1 and shuffle is False.
+        ValueError propagated from _drop_nan_rows if fold-local inputs are
+        inconsistent.
     """
 
     ## validate inputs
