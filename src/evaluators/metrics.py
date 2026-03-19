@@ -76,11 +76,11 @@ def _efficiency_index(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12
 
     ## transform to [0, 1] range with smooth saturation
     minus_vr = np.clip(1.0 - vr, eps, 1.0)
-    ea_score = 1.0 / (1.0 + ea)
     mv_score = 1.0 / (1.0 + mv + eps)
+    ea_score = 1.0 / (1.0 + ea)
 
     ## geometric mean via log-space (numerically stable)
-    log_ei = (np.log(minus_vr) + np.log(ea_score) + np.log(mv_score)) / 3.0
+    log_ei = (np.log(minus_vr) + np.log(mv_score) + np.log(ea_score)) / 3.0
     return float(np.exp(log_ei))
 
 ## joint frontier metrics
