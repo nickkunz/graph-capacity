@@ -66,8 +66,8 @@ def _excess_area(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12) -> 
 ## efficiency index
 def _efficiency_index(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12) -> float:
 
-    """ EI efficiency index that combines violation rate.
-    Mean violation, and excess area. Higher is better. """
+    """ EI efficiency index that combines violation rate, mean violation,
+    and excess area. Higher is better. """
 
     ## reuse helper metrics to ensure a single definition of each quantity
     vr = _violation_rate(y_true = y_true, y_pred = y_pred)

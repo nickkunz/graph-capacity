@@ -198,6 +198,7 @@ def _run_frozen_fold(
     estimator_r: BaseEstimator,
     target: str = "target",
     group: str = "domain",
+    random_state: int | None = None,
     ) -> dict:
 
     """
@@ -275,6 +276,12 @@ def _run_frozen_fold(
     ## ensure fresh parameters for each fold
     model_c = clone(estimator_c)
     model_r = clone(estimator_r)
+
+    ## set random_state on estimators if supported
+    if random_state is not None:
+        for m in (model_c, model_r):
+            if hasattr(m, "random_state"):
+                m.set_params(random_state = random_state)
 
     ## train C on graph invariants
     model_c.fit(X_train_scaled, y_train)
@@ -416,6 +423,7 @@ def logo_cross_valid_frozen(
     estimator_r: BaseEstimator,
     target: str = "target",
     group: str = "domain",
+    random_state: int | None = None,
     n_jobs: int = -1,
     ) -> tuple[pd.DataFrame, np.ndarray, dict]:
 
@@ -436,6 +444,7 @@ def logo_cross_valid_frozen(
         estimator_r: residual estimator (cloned per fold).
         target: target column name.
         group: group column name for logo splitting.
+        random_state: random seed forwarded to cloned estimators when supported.
         n_jobs: number of parallel jobs for fold execution (-1 for all cores).
     Returns:
         tuple of (frontier results dataframe, predicted values array,
@@ -487,6 +496,7 @@ def logo_cross_valid_frozen(
             estimator_r = estimator_r,
             target = target,
             group = group,
+            random_state = random_state,
         )
         for train_idx, test_idx in fold_splits
     )
