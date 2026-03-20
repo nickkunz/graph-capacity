@@ -30,12 +30,11 @@ def eval_falsified_frontier(
     target: str = "target",
     group: str = "domain",
     n_jobs: int = -1,
-    protocol: str = "frozen",
     ) -> pd.DataFrame:
     """
     Desc:
         Test whether original data produces better frontier envelope metrics
-        than falsified data under the specified protocol.
+        than falsified data under both frozen and retrain protocols.
     Args:
         data: clean evaluation dataframe.
         falsified: mapping of falsification method to dataframe.
@@ -45,11 +44,9 @@ def eval_falsified_frontier(
         target: target column name.
         group: group column name for logo splitting.
         n_jobs: number of parallel jobs.
-        protocol: "frozen" or "retrain".
     Returns:
-        dataframe with frontier metrics per (model, method, condition, group).
-    Raises:
-        ValueError if protocol is not "frozen" or "retrain".
+        dataframe with frontier metrics per
+        (model, method, condition, group, track).
     """
 
     ## init feature lists as mutable for parallel jobs
@@ -58,7 +55,6 @@ def eval_falsified_frontier(
     model_names = list(models.keys())
 
     ## original-data cv: once per model
-    print(f"Running {len(model_names)} original + {len(model_names) * len(falsified)} false frontier jobs ({protocol})...")
     real_results = Parallel(n_jobs = n_jobs)(
         delayed(logo_cross_valid)(
             data = data,
@@ -74,63 +70,66 @@ def eval_falsified_frontier(
     )
     real_cv = dict(zip(model_names, real_results))
 
-    ## falsified-data cv: per (model, method)
+    ## falsified-data evaluation jobs: explicit working-tree marker for source control
     false_jobs = [
         (model_name, method_name, data_false)
         for method_name, data_false in falsified.items()
         for model_name in model_names
     ]
 
-    if protocol == "retrain":
-        false_results = Parallel(n_jobs = n_jobs)(
-            delayed(logo_cross_valid)(
-                data = data_false,
-                feat_x = feat_x,
-                feat_z = feat_z,
-                estimator_c = models[model_name].estimator_c,
-                estimator_r = models[model_name].estimator_r,
-                target = target,
-                group = group,
-                n_jobs = 1,
+    frames = []
+    for track in ("frozen", "retrain"):
+        if track == "retrain":
+            false_results = Parallel(n_jobs = n_jobs)(
+                delayed(logo_cross_valid)(
+                    data = data_false,
+                    feat_x = feat_x,
+                    feat_z = feat_z,
+                    estimator_c = models[model_name].estimator_c,
+                    estimator_r = models[model_name].estimator_r,
+                    target = target,
+                    group = group,
+                    n_jobs = 1,
+                )
+                for model_name, _, data_false in false_jobs
             )
-            for model_name, _, data_false in false_jobs
-        )
-    elif protocol == "frozen":
-        false_results = Parallel(n_jobs = n_jobs)(
-            delayed(logo_cross_valid_frozen)(
-                data_train = data,
-                data_test = data_false,
-                feat_x = feat_x,
-                feat_z = feat_z,
-                estimator_c = models[model_name].estimator_c,
-                estimator_r = models[model_name].estimator_r,
-                target = target,
-                group = group,
-                n_jobs = 1,
+        else:
+            false_results = Parallel(n_jobs = n_jobs)(
+                delayed(logo_cross_valid_frozen)(
+                    data_train = data,
+                    data_test = data_false,
+                    feat_x = feat_x,
+                    feat_z = feat_z,
+                    estimator_c = models[model_name].estimator_c,
+                    estimator_r = models[model_name].estimator_r,
+                    target = target,
+                    group = group,
+                    n_jobs = 1,
+                )
+                for model_name, _, data_false in false_jobs
             )
-            for model_name, _, data_false in false_jobs
-        )
-        false_results = [(f, y) for f, y, _ in false_results]
-    else:
-        raise ValueError("protocol must be either 'frozen' or 'retrain'.")
+            false_results = [(frontier, yhat) for frontier, yhat, _ in false_results]
 
-    ## collect frontier rows
-    rows = []
-    for (model_name, method_name, _), (frontier_false, _) in zip(false_jobs, false_results):
-        frontier_real, _ = real_cv[model_name]
-        for condition, frontier in [("original", frontier_real), ("falsified", frontier_false)]:
-            for _, frow in frontier.iterrows():
-                row = {
-                    "model": model_name,
-                    "method": method_name,
-                    "condition": condition,
-                    "group": frow["group"],
-                }
-                for col in FRONTIER_METRICS:
-                    row[col] = frow[col]
-                rows.append(row)
+        rows = []
+        for (model_name, method_name, _), (frontier_false, _) in zip(false_jobs, false_results):
+            frontier_real, _ = real_cv[model_name]
+            for condition, frontier in [("original", frontier_real), ("falsified", frontier_false)]:
+                for _, frow in frontier.iterrows():
+                    row = {
+                        "model": model_name,
+                        "method": method_name,
+                        "condition": condition,
+                        "group": frow["group"],
+                    }
+                    for col in FRONTIER_METRICS:
+                        row[col] = frow[col]
+                    rows.append(row)
 
-    return pd.DataFrame(rows)
+        frame = pd.DataFrame(rows)
+        frame["track"] = track
+        frames.append(frame)
+
+    return pd.concat(frames, ignore_index = True)
 
 
 ## ----------------------------------------------------------------------
