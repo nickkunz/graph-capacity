@@ -29,6 +29,7 @@ def eval_falsified_frontier(
     feat_z: Sequence[str],
     target: str = "target",
     group: str = "domain",
+    random_state: int = 42,
     n_jobs: int = -1,
     ) -> pd.DataFrame:
     
@@ -45,6 +46,7 @@ def eval_falsified_frontier(
         feat_z: process signature column names.
         target: target column name.
         group: group column name for logo splitting.
+        random_state: random seed forwarded to cv estimators when supported.
         n_jobs: number of parallel jobs.
     
     Returns:
@@ -69,6 +71,7 @@ def eval_falsified_frontier(
             estimator_r = models[name].estimator_r,
             target = target,
             group = group,
+            random_state = random_state,
             n_jobs = 1,
         )
         for name in model_names
@@ -94,6 +97,7 @@ def eval_falsified_frontier(
                     estimator_r = models[model_name].estimator_r,
                     target = target,
                     group = group,
+                    random_state = random_state,
                     n_jobs = 1,  ## avoid over-subscription of parallel jobs
                 )
                 for model_name, _, data in false_jobs
@@ -109,6 +113,7 @@ def eval_falsified_frontier(
                     estimator_r = models[model_name].estimator_r,
                     target = target,
                     group = group,
+                    random_state = random_state,
                     n_jobs = 1,  ## avoid over-subscription of parallel jobs
                 )
                 for model_name, _, data_test in false_jobs
@@ -148,6 +153,7 @@ def eval_falsified_alignment(
     feat_z: Sequence[str],
     target: str = "target",
     group: str = "domain",
+    random_state: int | None = None,
     n_jobs: int = -1,
     protocol: str = "frozen",
     ) -> pd.DataFrame:
@@ -163,6 +169,7 @@ def eval_falsified_alignment(
         feat_z: process signature column names.
         target: target column name.
         group: group column name for logo splitting.
+        random_state: random seed forwarded to cv estimators when supported.
         n_jobs: number of parallel jobs.
         protocol: "frozen" or "retrain".
     Returns:
@@ -187,6 +194,7 @@ def eval_falsified_alignment(
             estimator_r = models[name].estimator_r,
             target = target,
             group = group,
+            random_state = random_state,
             n_jobs = 1,
         )
         for name in model_names
@@ -210,6 +218,7 @@ def eval_falsified_alignment(
                 estimator_r = models[model_name].estimator_r,
                 target = target,
                 group = group,
+                random_state = random_state,
                 n_jobs = 1,
             )
             for model_name, _, data_false in false_jobs
@@ -225,6 +234,7 @@ def eval_falsified_alignment(
                 estimator_r = models[model_name].estimator_r,
                 target = target,
                 group = group,
+                random_state = random_state,
                 n_jobs = 1,
             )
             for model_name, _, data_false in false_jobs
@@ -277,6 +287,7 @@ def eval_falsified_consensus(
     feat_z: Sequence[str],
     target: str = "target",
     group: str = "domain",
+    random_state: int | None = None,
     n_jobs: int = -1,
     protocol: str = "frozen",
     ) -> pd.DataFrame:
@@ -292,6 +303,7 @@ def eval_falsified_consensus(
         feat_z: process signature column names.
         target: target column name.
         group: group column name for logo splitting.
+        random_state: random seed forwarded to cv estimators when supported.
         n_jobs: number of parallel jobs.
         protocol: "frozen" or "retrain".
     Returns:
@@ -317,6 +329,7 @@ def eval_falsified_consensus(
             estimator_r = models[name].estimator_r,
             target = target,
             group = group,
+            random_state = random_state,
             n_jobs = 1,
         )
         for name in model_names
@@ -343,6 +356,7 @@ def eval_falsified_consensus(
                 estimator_r = models[model_name].estimator_r,
                 target = target,
                 group = group,
+                random_state = random_state,
                 n_jobs = 1,
             )
             for model_name, _, data_false in false_jobs
@@ -358,6 +372,7 @@ def eval_falsified_consensus(
                 estimator_r = models[model_name].estimator_r,
                 target = target,
                 group = group,
+                random_state = random_state,
                 n_jobs = 1,
             )
             for model_name, _, data_false in false_jobs
