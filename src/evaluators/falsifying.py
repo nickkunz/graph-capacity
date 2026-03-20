@@ -22,8 +22,8 @@ from src.evaluators.resampling import logo_cross_valid, logo_cross_valid_frozen
 ## frontier falsifiability test
 ## ----------------------------------------------------------------------
 def eval_falsified_frontier(
-    data: pd.DataFrame,
-    falsified: dict[str, pd.DataFrame],
+    data_orig: pd.DataFrame,
+    data_fals: dict[str, pd.DataFrame],
     models: Dict[str, Any],
     feat_x: Sequence[str],
     feat_z: Sequence[str],
@@ -31,12 +31,14 @@ def eval_falsified_frontier(
     group: str = "domain",
     n_jobs: int = -1,
     ) -> pd.DataFrame:
+    
     """
     Desc:
         Test whether original data produces better frontier envelope metrics
         than falsified data under both frozen and retrain protocols.
+    
     Args:
-        data: clean evaluation dataframe.
+        original: clean evaluation dataframe.
         falsified: mapping of falsification method to dataframe.
         models: mapping of model name to estimator bundle.
         feat_x: graph invariant column names.
@@ -44,9 +46,12 @@ def eval_falsified_frontier(
         target: target column name.
         group: group column name for logo splitting.
         n_jobs: number of parallel jobs.
+    
     Returns:
-        dataframe with frontier metrics per
-        (model, method, condition, group, track).
+        dataframe with frontier metrics per model, method, condition, group, track.
+
+    Raises:
+        N/A
     """
 
     ## init feature lists as mutable for parallel jobs
@@ -57,7 +62,7 @@ def eval_falsified_frontier(
     ## original-data cv: once per model
     real_results = Parallel(n_jobs = n_jobs)(
         delayed(logo_cross_valid)(
-            data = data,
+            data = data_orig,
             feat_x = feat_x,
             feat_z = feat_z,
             estimator_c = models[name].estimator_c,
@@ -72,8 +77,8 @@ def eval_falsified_frontier(
 
     ## falsified-data evaluation jobs: explicit working-tree marker for source control
     false_jobs = [
-        (model_name, method_name, data_false)
-        for method_name, data_false in falsified.items()
+        (model_name, method_name, data_test)
+        for method_name, data_test in data_fals.items()
         for model_name in model_names
     ]
 
@@ -82,35 +87,35 @@ def eval_falsified_frontier(
         if track == "retrain":
             false_results = Parallel(n_jobs = n_jobs)(
                 delayed(logo_cross_valid)(
-                    data = data_false,
+                    data = data,
                     feat_x = feat_x,
                     feat_z = feat_z,
                     estimator_c = models[model_name].estimator_c,
                     estimator_r = models[model_name].estimator_r,
                     target = target,
                     group = group,
-                    n_jobs = 1,
+                    n_jobs = 1,  ## avoid over-subscription of parallel jobs
                 )
-                for model_name, _, data_false in false_jobs
+                for model_name, _, data in false_jobs
             )
         else:
             false_results = Parallel(n_jobs = n_jobs)(
                 delayed(logo_cross_valid_frozen)(
-                    data_train = data,
-                    data_test = data_false,
+                    data_train = data_orig,
+                    data_test = data_test,
                     feat_x = feat_x,
                     feat_z = feat_z,
                     estimator_c = models[model_name].estimator_c,
                     estimator_r = models[model_name].estimator_r,
                     target = target,
                     group = group,
-                    n_jobs = 1,
+                    n_jobs = 1,  ## avoid over-subscription of parallel jobs
                 )
-                for model_name, _, data_false in false_jobs
+                for model_name, _, data_test in false_jobs
             )
             false_results = [(frontier, yhat) for frontier, yhat, _ in false_results]
 
-        rows = []
+        obs = list()
         for (model_name, method_name, _), (frontier_false, _) in zip(false_jobs, false_results):
             frontier_real, _ = real_cv[model_name]
             for condition, frontier in [("original", frontier_real), ("falsified", frontier_false)]:
@@ -123,9 +128,9 @@ def eval_falsified_frontier(
                     }
                     for col in FRONTIER_METRICS:
                         row[col] = frow[col]
-                    rows.append(row)
+                    obs.append(row)
 
-        frame = pd.DataFrame(rows)
+        frame = pd.DataFrame(obs)
         frame["track"] = track
         frames.append(frame)
 
@@ -228,8 +233,8 @@ def eval_falsified_alignment(
     else:
         raise ValueError("protocol must be either 'frozen' or 'retrain'.")
 
-    ## collect alignment rows
-    rows = []
+    ## collect alignment obs
+    obs = []
     for (model_name, method_name, data_false), (_, y_pred_false) in zip(false_jobs, false_results):
         _, y_pred_real = real_cv[model_name]
         for condition, y_pred, data_eval in [
@@ -256,9 +261,9 @@ def eval_falsified_alignment(
                 }
                 for col in CONSENSUS_METRICS:
                     row[col] = mvals[col]
-                rows.append(row)
+                obs.append(row)
 
-    return pd.DataFrame(rows)
+    return pd.DataFrame(obs)
 
 
 ## ----------------------------------------------------------------------
@@ -367,7 +372,7 @@ def eval_falsified_consensus(
         pred_false[(method_name, model_name)] = np.asarray(y_pred_false, dtype = float)
 
     ## pairwise consensus per group
-    rows = []
+    obs = []
     for method_name, data_false in falsified.items():
         for model_i, model_j in combinations(model_names, 2):
             for condition, pred_map, data_eval in [
@@ -387,7 +392,7 @@ def eval_falsified_consensus(
                         y_true = y_i[mask],
                         y_pred = y_j[mask],
                     )
-                    rows.append({
+                    obs.append({
                         "method": method_name,
                         "condition": condition,
                         "group": group_name,
@@ -396,4 +401,4 @@ def eval_falsified_consensus(
                         **mvals,
                     })
 
-    return pd.DataFrame(rows)
+    return pd.DataFrame(obs)
