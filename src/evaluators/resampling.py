@@ -71,7 +71,7 @@ def _run_retrain_fold(
     feat_z: list[str],
     estimator_c: BaseEstimator,
     estimator_r: BaseEstimator,
-    random_state: int | None = None,
+    random_state: int = 42,
     group_name: str | None = None,
     ) -> dict | None:
 
@@ -198,7 +198,7 @@ def _run_frozen_fold(
     estimator_r: BaseEstimator,
     target: str = "target",
     group: str = "domain",
-    random_state: int | None = None,
+    random_state: int = 42,
     ) -> dict:
 
     """
@@ -330,7 +330,7 @@ def logo_cross_valid(
     estimator_r: BaseEstimator,
     target: str = "target",
     group: str = "domain",
-    random_state: int | None = None,
+    random_state: int = 42,
     n_jobs: int = -1,
     ) -> tuple[pd.DataFrame, np.ndarray]:
 
@@ -423,7 +423,7 @@ def logo_cross_valid_frozen(
     estimator_r: BaseEstimator,
     target: str = "target",
     group: str = "domain",
-    random_state: int | None = None,
+    random_state: int = 42,
     n_jobs: int = -1,
     ) -> tuple[pd.DataFrame, np.ndarray, dict]:
 
@@ -538,7 +538,7 @@ def kfold_cross_valid(
     n_splits: int = 10,
     n_repeats: int = 1,
     shuffle: bool = True,
-    random_state: int | None = None,
+    random_state: int = 42,
     n_jobs: int = -1,
     detail: bool = False,
     ) -> tuple[pd.DataFrame, np.ndarray]:
