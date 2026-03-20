@@ -22,7 +22,7 @@ from src.evaluators.resampling import logo_cross_valid, logo_cross_valid_frozen
 ## frontier falsifiability test
 ## ----------------------------------------------------------------------
 def eval_falsified_frontier(
-    data_orig: pd.DataFrame,
+    data_proc: pd.DataFrame,
     data_fals: dict[str, pd.DataFrame],
     models: Dict[str, Any],
     feat_x: Sequence[str],
@@ -64,7 +64,7 @@ def eval_falsified_frontier(
     ## original-data cv: once per model
     real_results = Parallel(n_jobs = n_jobs)(
         delayed(logo_cross_valid)(
-            data = data_orig,
+            data = data_proc,
             feat_x = feat_x,
             feat_z = feat_z,
             estimator_c = models[name].estimator_c,
@@ -105,7 +105,7 @@ def eval_falsified_frontier(
         else:
             false_results = Parallel(n_jobs = n_jobs)(
                 delayed(logo_cross_valid_frozen)(
-                    data_train = data_orig,
+                    data_train = data_proc,
                     data_test = data_test,
                     feat_x = feat_x,
                     feat_z = feat_z,
