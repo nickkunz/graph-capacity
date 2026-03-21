@@ -250,7 +250,7 @@ def eval_falsified_alignment(
 
                 for group_name in pd.unique(groups):
                     mask = (groups == group_name) & valid
-                    if int(np.sum(mask)) < 2:
+                    if int(np.sum(mask)) == 0:
                         continue
                     mvals = consensus_metrics(
                         y_true = y_true[mask],
@@ -392,7 +392,7 @@ def eval_falsified_consensus(
 
                     for group_name in pd.unique(groups):
                         mask = (groups == group_name) & valid
-                        if int(np.sum(mask)) < 2:
+                        if int(np.sum(mask)) == 0:
                             continue
                         mvals = consensus_metrics(
                             y_true = y_i[mask],
