@@ -7,8 +7,8 @@ from sklearn.model_selection import LeaveOneGroupOut, KFold, RepeatedKFold
 from joblib import Parallel, delayed
 
 ## modules
-from src.vectorizers.scalers import _log_transformer, _standardizer
 from src.evaluators.metrics import frontier_metrics
+from src.vectorizers.scalers import _log_transformer, _standardizer
 
 
 ## ----------------------------------------------------------------------------
@@ -525,9 +525,9 @@ def logo_cross_valid_frozen(
     return pd.DataFrame(frontier_results), y_pred_out, metadata
 
 
-## -----------------------
+## ----------------------------------------------------------------------------
 ## k-fold cross validation
-## -----------------------
+## ----------------------------------------------------------------------------
 def kfold_cross_valid(
     data: pd.DataFrame,
     feat_x: Sequence[str],
@@ -536,7 +536,7 @@ def kfold_cross_valid(
     estimator_r: BaseEstimator,
     target: str = "target",
     n_splits: int = 10,
-    n_repeats: int = 1,
+    n_repeats: int = 30,
     shuffle: bool = True,
     random_state: int = 42,
     n_jobs: int = -1,
