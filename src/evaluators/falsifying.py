@@ -17,6 +17,7 @@ if str(root) not in sys.path:
 from src.vectorizers.scalers import _log_transformer
 from src.evaluators.metrics import consensus_metrics, FRONTIER_METRICS, CONSENSUS_METRICS
 from src.evaluators.resampling import logo_cross_valid, logo_cross_valid_frozen
+from src.evaluators.training import fit_predict_frontier
 
 
 ## ----------------------------------------------------------------------
@@ -178,8 +179,8 @@ def eval_falsified_alignment(
     feat_z = list(feat_z)
     model_names = list(models.keys())
 
-    ## original-data cv: once per model
-    real_results = Parallel(n_jobs = n_jobs)(
+    ## original-data cv (retrain track): once per model
+    real_results_retrain = Parallel(n_jobs = n_jobs)(
         delayed(logo_cross_valid)(
             data = data_proc,
             feat_x = feat_x,
@@ -193,7 +194,7 @@ def eval_falsified_alignment(
         )
         for name in model_names
     )
-    real_cv = dict(zip(model_names, real_results))
+    real_cv = dict(zip(model_names, real_results_retrain))
 
     ## falsified-data cv: per (model, method)
     false_jobs = [
@@ -311,23 +312,22 @@ def eval_falsified_consensus(
     feat_z = list(feat_z)
     model_names = list(models.keys())
 
-    ## original-data cv: once per model
+    ## original-data full-fit predictions (aligned with consensus notebook)
     real_results = Parallel(n_jobs = n_jobs)(
-        delayed(logo_cross_valid)(
+        delayed(fit_predict_frontier)(
             data = data_proc,
             feat_x = feat_x,
             feat_z = feat_z,
             estimator_c = models[name].estimator_c,
             estimator_r = models[name].estimator_r,
             target = target,
-            group = group,
+            n_repeat = 30,
             random_state = random_state,
-            n_jobs = 1,
         )
         for name in model_names
     )
     pred_real = {
-        name: np.asarray(r[1], dtype = float)
+        name: np.asarray(r[0], dtype = float)
         for name, r in zip(model_names, real_results)
     }
 
@@ -387,25 +387,21 @@ def eval_falsified_consensus(
                 ]:
                     y_i = pred_map[model_i]
                     y_j = pred_map[model_j]
-                    groups = data_eval[group].values
                     valid = np.isfinite(y_i) & np.isfinite(y_j)
-
-                    for group_name in pd.unique(groups):
-                        mask = (groups == group_name) & valid
-                        if int(np.sum(mask)) == 0:
-                            continue
-                        mvals = consensus_metrics(
-                            y_true = y_i[mask],
-                            y_pred = y_j[mask],
-                        )
-                        obs.append({
-                            "method": method_name,
-                            "condition": condition,
-                            "group": group_name,
-                            "model_i": model_i,
-                            "model_j": model_j,
-                            **mvals,
-                        })
+                    if int(np.sum(valid)) == 0:
+                        continue
+                    mvals = consensus_metrics(
+                        y_true = y_i[valid],
+                        y_pred = y_j[valid],
+                    )
+                    obs.append({
+                        "method": method_name,
+                        "condition": condition,
+                        "group": "all",
+                        "model_i": model_i,
+                        "model_j": model_j,
+                        **mvals,
+                    })
 
         frame = pd.DataFrame(obs)
         frame["track"] = track
@@ -526,7 +522,7 @@ def stat_falsified_test(
         summary = summary.rename(columns = {
             "Median Original": f"Median {tag} (Original)",
             "Median Falsified": f"Median {tag} (Falsified)",
-            "Median Δ": f"Median Δ{tag}",
+            "Median Δ": f"Median Δ {tag}",
         }).drop(columns = ["metric"])
     else:
         summary = summary.rename(columns = {"metric": "Metric"})
