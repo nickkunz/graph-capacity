@@ -2,7 +2,7 @@
 import sys
 import numpy as np
 import pandas as pd
-from typing import Dict, Any, Sequence, Mapping
+from typing import Dict, Any, Sequence
 from pathlib import Path
 from itertools import combinations
 from joblib import Parallel, delayed
@@ -204,7 +204,6 @@ def eval_falsified_frontier(
 
     return pd.concat(frames, ignore_index = True)
 
-
 ## ----------------------------------------------------------------------
 ## target-alignment falsifiability test
 ## ----------------------------------------------------------------------
@@ -365,7 +364,6 @@ def eval_falsified_alignment(
 
     return pd.concat(frames, ignore_index = True)
 
-
 ## ----------------------------------------------------------------------------
 ## pairwise consensus falsifiability test
 ## ----------------------------------------------------------------------------
@@ -494,10 +492,9 @@ def eval_falsified_consensus(
 
     return pd.concat(frames, ignore_index = True)
 
-
-## ----------------------------------------------------------------------
+## ----------------------------------------------------------------------------
 ## summarize falsification tests
-## ----------------------------------------------------------------------
+## ----------------------------------------------------------------------------
 def stat_falsified_test(
     results: pd.DataFrame,
     feat_value: Sequence[str] | None = None,
@@ -506,7 +503,6 @@ def stat_falsified_test(
     label_cond: str = "condition",
     label_orig: str = "original",
     label_fals: str = "falsified",
-    group_order: Mapping[str, Sequence[str]] | None = None,
     decimals: int = 4,
     index: bool = True,
     ) -> pd.DataFrame:
@@ -608,7 +604,7 @@ def stat_falsified_test(
     ## convert group/metric labels to display names
     summary = summary.rename(columns = {c: c.title() for c in feat_group})
     if len(feat_value) == 1:
-        tag = feat_value[0].upper()
+        tag = feat_value[0]
         summary = summary.rename(columns = {
             "Median Original": f"Median {tag} (Original)",
             "Median Falsified": f"Median {tag} (Falsified)",
@@ -617,12 +613,19 @@ def stat_falsified_test(
     else:
         summary = summary.rename(columns = {"metric": "Metric"})
 
-    ## apply optional ordering, then format numeric output
-    if group_order:
-        for col, order_vals in group_order.items():
-            dcol = col.title()
-            if dcol in summary.columns:
-                summary[dcol] = pd.Categorical(summary[dcol], categories = list(order_vals), ordered = True)
+    ## apply native display ordering, then format numeric output
+    if "Track" in summary.columns:
+        summary["Track"] = pd.Categorical(
+            summary["Track"],
+            categories = ["original", "frozen", "retrain"],
+            ordered = True,
+        )
+    if "Method" in summary.columns:
+        summary["Method"] = pd.Categorical(
+            summary["Method"],
+            categories = ["original", "target_remap", "random_generate", "vector_generate"],
+            ordered = True,
+        )
     if group_display:
         summary = summary.sort_values(group_display).reset_index(drop = True)
 
@@ -642,4 +645,63 @@ def stat_falsified_test(
         value_cols_order = [med_o, med_f, med_d, *tail_cols]
 
     summary = summary.reindex(columns = group_display + [c for c in value_cols_order if c in summary.columns])
-    return summary.set_index(group_display) if (index and group_display) else summary
+    summary = summary.set_index(group_display) if (index and group_display) else summary
+    summary = summary.astype(object).where(pd.notna(summary), '-')
+    return summary
+
+## falsified summary with metric medians only
+def stat_falsified_summary(
+    results: pd.DataFrame,
+    metrics: Sequence[str] = FRONTIER_METRICS,
+    feat_group: Sequence[str] = ["track", "method"],
+    subset_cols: Sequence[str] | None = None,
+    label_cond: str = "condition",
+    label_orig: str = "original",
+    track_order: Sequence[str] = ("original", "frozen", "retrain"),
+    method_order: Sequence[str] = ("original", "target_remap", "random_generate", "vector_generate"),
+    decimals: int = 4,
+    ) -> pd.DataFrame:
+    
+    """
+    Desc:
+        Compute a grouped median summary of falsification results for display.
+
+    Args:
+        results: output of an eval_falsified_* function.
+        metrics: metrics to aggregate (e.g. FRONTIER_METRICS or CONSENSUS_METRICS).
+        feat_group: grouping columns for the summary (default ["track", "method"]).
+        subset_cols: columns used to deduplicate original rows before concat.
+            Defaults to model/group columns inferred from the DataFrame.
+        label_cond: condition column name.
+        label_orig: original condition value.
+        label_fals: falsified condition value.
+        track_order: ordered categories for track.
+        method_order: ordered categories for method.
+        decimals: number of decimals to round.
+
+    Returns:
+        grouped median summary DataFrame.
+    """
+
+    feat_group = list(feat_group or ["track", "method"])
+
+    if subset_cols is None:
+        subset_cols = [c for c in results.columns if c == "group" or c.startswith("model")]
+
+    original = (
+        results
+        .query(f"{label_cond} == @label_orig")
+        .drop_duplicates(subset = subset_cols, ignore_index = True)
+        .assign(track = label_orig, method = label_orig)
+    )
+    falsified = results.query(f"{label_cond} == @label_fals")
+
+    source = pd.concat([original, falsified], ignore_index = True)
+    source["track"] = pd.Categorical(source["track"], categories = list(track_order), ordered = True)
+    source["method"] = pd.Categorical(source["method"], categories = list(method_order), ordered = True)
+
+    summary = source.groupby(by = feat_group, observed = True)[metrics].median()
+    if decimals is not None:
+        summary = summary.round(decimals)
+
+    return summary
