@@ -2,14 +2,13 @@
 import numpy as np
 import pandas as pd
 from typing import Sequence
+from joblib import Parallel, delayed
 from sklearn.base import BaseEstimator, clone
 from sklearn.model_selection import LeaveOneGroupOut, KFold, RepeatedKFold
-from joblib import Parallel, delayed
 
 ## modules
 from src.evaluators.metrics import frontier_metrics
 from src.vectorizers.scalers import _log_transformer, _standardizer
-
 
 ## ----------------------------------------------------------------------------
 ## fold-local helpers
@@ -180,7 +179,6 @@ def _run_retrain_fold(
         "y_pred": y_pred,
     }
 
-
 ## ----------------------------------------------------------------------------
 ## frozen-manifold worker
 ## ----------------------------------------------------------------------------
@@ -318,7 +316,6 @@ def _run_frozen_fold(
         "y_pred": y_pred,
     }
 
-
 ## ----------------------------------------------------------------------------
 ## leave-one-group-out cross validation
 ## ----------------------------------------------------------------------------
@@ -409,7 +406,6 @@ def logo_cross_valid(
         frontier_results.append({"group": result["group_name"], **result["frontier"]})
 
     return pd.DataFrame(frontier_results), y_pred_out
-
 
 ## ----------------------------------------------------------------------------
 ## frozen-manifold leave-one-group-out cv
@@ -523,7 +519,6 @@ def logo_cross_valid_frozen(
     }
 
     return pd.DataFrame(frontier_results), y_pred_out, metadata
-
 
 ## ----------------------------------------------------------------------------
 ## k-fold cross validation
