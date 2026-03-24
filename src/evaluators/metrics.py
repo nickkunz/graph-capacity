@@ -9,7 +9,7 @@ from scipy.stats import spearmanr, kendalltau, pearsonr, ConstantInputWarning
 
 ## constants
 FRONTIER_METRICS = ["vr", "mv", "ms", "ea", "ei"]
-CONSENSUS_METRICS = ["rho", "tau", "rbo", "dcr", "r"]
+CONSENSUS_METRICS = ["r", "rho", "tau", "rbo", "dcr"]
 ORDERING_METRICS = [
     "monotonic_index", 
     "violation_magnitude", 
