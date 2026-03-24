@@ -499,7 +499,7 @@ def eval_falsified_consensus(
 ## ----------------------------------------------------------------------------
 def stat_falsified_test(
     results: pd.DataFrame,
-    feat_value: Sequence[str] | None = None,
+    feat_value: Sequence[str],
     feat_pairs: Sequence[str] | None = None,
     feat_group: Sequence[str] = ["track", "method"],
     label_cond: str = "condition",
@@ -543,7 +543,8 @@ def stat_falsified_test(
     feat_value = list(feat_value)
     feat_group = list(feat_group or list())
     group_display = [c.title() for c in feat_group]
-    tail_cols = ["Wilcoxon W", "Rank-biserial r", "One-sided p", "Holm-adjusted p", "Sig."]
+    p_label = "Two-sided p" if wilcoxon_alternative == "two-sided" else "One-sided p"
+    tail_cols = ["Wilcoxon W", "Rank-biserial r", p_label, "Holm-adjusted p", "Sig."]
 
     ## infer pairing columns from non-metric/non-group fields when not provided
     reserved = set(feat_value) | {label_cond} | set(feat_group)
@@ -590,11 +591,11 @@ def stat_falsified_test(
         "Median Δ",
         "Wilcoxon W",
         "Rank-biserial r",
-        "One-sided p",
+        p_label,
     ])
 
     ## holm-bonferroni correction with monotonic adjustment
-    p_vals = summary["One-sided p"].to_numpy(copy = True)
+    p_vals = summary[p_label].to_numpy(copy = True)
     valid_p = np.isfinite(p_vals)
     holm = np.full(shape = len(p_vals), fill_value = np.nan, dtype = float)
     if np.any(valid_p):
