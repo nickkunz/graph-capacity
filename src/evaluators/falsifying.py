@@ -568,7 +568,7 @@ def stat_falsified_test(
                 w_stat, r_eff, p_val = np.nan, np.nan, np.nan
             else:
                 w_stat, p_val = wilcoxon(x, y, alternative = "greater")
-                r_eff = abs(1.0 - (2.0 * w_stat) / (n * (n + 1) / 2))
+                r_eff = 1.0 - (2.0 * w_stat) / (n * (n + 1) / 2)
 
             rows.append((*group_key, metric, med_o, med_f, med_d, w_stat, r_eff, float(p_val)))
 
@@ -657,6 +657,7 @@ def stat_falsified_summary(
     subset_cols: Sequence[str] | None = None,
     label_cond: str = "condition",
     label_orig: str = "original",
+    label_fals: str = "falsified",
     track_order: Sequence[str] = ("original", "frozen", "retrain"),
     method_order: Sequence[str] = ("original", "target_remap", "random_generate", "vector_generate"),
     decimals: int = 4,
@@ -689,12 +690,11 @@ def stat_falsified_summary(
         subset_cols = [c for c in results.columns if c == "group" or c.startswith("model")]
 
     original = (
-        results
-        .query(f"{label_cond} == @label_orig")
+        results.loc[results[label_cond] == label_orig]
         .drop_duplicates(subset = subset_cols, ignore_index = True)
         .assign(track = label_orig, method = label_orig)
     )
-    falsified = results.query(f"{label_cond} == @label_fals")
+    falsified = results.loc[results[label_cond] == label_fals]
 
     source = pd.concat([original, falsified], ignore_index = True)
     source["track"] = pd.Categorical(source["track"], categories = list(track_order), ordered = True)
