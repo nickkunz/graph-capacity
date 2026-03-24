@@ -60,7 +60,7 @@ def _excess_area(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12) -> 
     
     ## compute slack: frontier above true
     s = np.maximum(0.0, y_pred - y_true)
-    denom = np.sum(y_true) + eps
+    denom = np.sum(np.abs(y_true)) + eps
     return float(np.sum(s) / denom)
 
 ## efficiency index
