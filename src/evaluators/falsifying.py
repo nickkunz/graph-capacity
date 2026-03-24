@@ -42,19 +42,19 @@ def eval_falsified_frontier(
         than falsified data under both frozen and retrain protocols.
     
     Args:
-        original: clean evaluation dataframe.
-        falsified: mapping of falsification method to dataframe.
-        models: mapping of model name to estimator bundle.
-        feat_x: graph invariant column names.
-        feat_z: process signature column names.
-        target: target column name.
-        n_repeat: number of repeated cv fits to average across seeds.
-        group: group column name for logo splitting.
-        random_state: random seed forwarded to cv estimators when supported.
-        n_jobs: number of parallel jobs.
-    
+        data_proc: clean evaluation dataframe used for original model training.
+        data_fals: mapping from falsification method name to falsified dataframe.
+        models: mapping from model name to estimator bundle with `estimator_c` and `estimator_r`.
+        feat_x: graph invariant feature column names for frontier model.
+        feat_z: process signature feature column names for the residual model.
+        target: target variable column name (default "target").
+        group: group column name for leave-one-group-out splits (default "domain").
+        n_repeat: number of repeated CV seeds to average predictions (default 30).
+        random_state: base random state for seed reproducibility (default 42).
+        n_jobs: number of parallel jobs for cross-validation (default -1, all cores).
+
     Returns:
-        dataframe with frontier metrics per model, method, condition, group, track.
+        dataframe with frontier metrics per model/method/condition/group/track.
     """
 
     ## init feature lists as mutable for parallel jobs
@@ -226,16 +226,16 @@ def eval_falsified_alignment(
         cross-validated predictions and global aggregation across all valid
         observations.
     Args:
-        data_proc: clean evaluation dataframe.
-        data_fals: mapping of falsification method to dataframe.
-        models: mapping of model name to estimator bundle.
-        feat_x: graph invariant column names.
-        feat_z: process signature column names.
-        target: target column name.
-        n_repeat: number of repeated cv fits to average across seeds.
-        group: group column name for logo splitting.
-        random_state: random seed forwarded to cv estimators when supported.
-        n_jobs: number of parallel jobs.
+        data_proc: clean evaluation dataframe used for original model training.
+        data_fals: mapping from falsification method name to falsified dataframe.
+        models: mapping from model name to estimator bundle with `estimator_c` and `estimator_r`.
+        feat_x: graph invariant feature column names for frontier model.
+        feat_z: process signature feature column names for the residual model.
+        target: target variable column name (default "target").
+        group: group column name for leave-one-group-out splits (default "domain").
+        n_repeat: number of repeated CV seeds to average predictions (default 30).
+        random_state: base random state for seed reproducibility (default 42).
+        n_jobs: number of parallel jobs for cross-validation (default -1, all cores).
     Returns:
         dataframe with consensus metrics per
         (model, method, condition, group, track).
@@ -385,15 +385,15 @@ def eval_falsified_consensus(
         treating pairwise consensus as a fitted-frontier agreement analysis
         rather than a predictive resampling test.
     Args:
-        data_proc: clean evaluation dataframe.
-        data_fals: mapping of falsification method to dataframe.
-        models: mapping of model name to estimator bundle.
-        feat_x: graph invariant column names.
-        feat_z: process signature column names.
-        target: target column name.
-        n_repeat: number of repeated fits to average.
-        random_state: random seed forwarded to cv estimators when supported.
-        n_jobs: number of parallel jobs.
+        data_proc: clean evaluation dataframe used for original model fitting.
+        data_fals: mapping from falsification method name to falsified dataframe.
+        models: mapping from model name to estimator bundle with `estimator_c` and `estimator_r`.
+        feat_x: graph invariant feature column names for frontier model.
+        feat_z: process signature feature column names for the residual model.
+        target: target variable column name (default "target").
+        n_repeat: number of repeated fits to average (default 30).
+        random_state: random state forwarded to estimator fitting (default 42).
+        n_jobs: parallel job count (default -1, all cores).
     Returns:
         dataframe with pairwise consensus metrics per
         (method, condition, group, model_i, model_j, track).
@@ -517,15 +517,19 @@ def stat_falsified_test(
         results: output of any eval_falsified_* function.
         feat_value: metric columns to test (e.g. FRONTIER_METRICS or
             CONSENSUS_METRICS).
-        feat_group: columns whose unique combinations define independent
-            tests (e.g. ["track", "method"] or ["method"]). None -> one
-            global test.
         feat_pairs: columns that align an original row with its falsified
             counterpart (e.g. ["model", "group"]). None -> inferred as
             every non-metric, non-condition, non-group column.
+        feat_group: columns whose unique combinations define independent
+            tests (e.g. ["track", "method"] or ["method"]). None -> one
+            global test.
         label_cond: column that flags original vs falsified.
         label_orig: value in label_cond for original data.
         label_fals: value in label_cond for falsified data.
+        wilcoxon_alternative: Wilcoxon test alternative hypothesis. One of
+            "greater", "less", or "two-sided".
+        decimals: number of decimals to round in output table.
+        index: if True, set group columns as DataFrame index.
     Returns:
         Display-ready table with columns:
         [*feat_group, Metric?, Median <M> (Original), Median <M> (Falsified),
