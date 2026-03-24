@@ -507,7 +507,6 @@ def stat_falsified_test(
     label_fals: str = "falsified",
     decimals: int = 4,
     index: bool = True,
-    wilcoxon_alternative: str = "greater",
     ) -> pd.DataFrame:
     
     """
@@ -528,14 +527,12 @@ def stat_falsified_test(
         label_cond: column that flags original vs falsified.
         label_orig: value in label_cond for original data.
         label_fals: value in label_cond for falsified data.
-        wilcoxon_alternative: Wilcoxon test alternative hypothesis. One of
-            "greater", "less", or "two-sided".
         decimals: number of decimals to round in output table.
         index: if True, set group columns as DataFrame index.
     Returns:
         Display-ready table with columns:
         [*feat_group, Metric?, Median <M> (Original), Median <M> (Falsified),
-         Median Δ<M>, Wilcoxon W, Rank-biserial r, One-sided p,
+         Median Δ<M>, Positive Δ, Wilcoxon W, Rank-biserial r, One-sided p,
          Holm-adjusted p, Sig.]
         where Metric is only included when len(feat_value) > 1.
     """
@@ -543,7 +540,7 @@ def stat_falsified_test(
     feat_value = list(feat_value)
     feat_group = list(feat_group or list())
     group_display = [c.title() for c in feat_group]
-    p_label = "Two-sided p" if wilcoxon_alternative == "two-sided" else "One-sided p"
+    p_label = "One-sided p"
     tail_cols = ["Wilcoxon W", "Rank-biserial r", p_label, "Holm-adjusted p", "Sig."]
 
     ## infer pairing columns from non-metric/non-group fields when not provided
@@ -556,6 +553,21 @@ def stat_falsified_test(
         on = feat_group + pair_cols,
         suffixes = ("_orig", "_fals"),
     )
+
+    ## compute per-group directional consistency across all metrics
+    group_signs = dict()
+    for group_key, grp in (merged.groupby(feat_group, sort = False) if feat_group else [((), merged)]):
+        group_key = group_key if isinstance(group_key, tuple) else (group_key,)
+        signs = dict()
+        for metric in feat_value:
+            x = grp[f"{metric}_orig"].to_numpy(dtype = float)
+            y = grp[f"{metric}_fals"].to_numpy(dtype = float)
+            valid = np.isfinite(x) & np.isfinite(y)
+            n_pos = int(np.sum((x - y)[valid] > 0))
+            n_valid = int(np.sum(valid))
+            signs[metric] = (n_pos, n_valid)
+        group_signs[group_key] = signs
+
     groups = merged.groupby(feat_group, sort = False) if feat_group else [((), merged)]
 
     ## compute paired stats per group x metric
@@ -568,27 +580,30 @@ def stat_falsified_test(
             valid = np.isfinite(x) & np.isfinite(y)
             x, y = x[valid], y[valid]
             n = len(x)
+            n_pos, n_valid = group_signs[group_key][metric]
             med_o, med_f, med_d = (
                 (float(np.median(x)), float(np.median(y)), float(np.median(x - y))) if n else (np.nan, np.nan, np.nan)
             )
 
-            if n < 2 or np.allclose(x, y):
+            n_eff = int(np.sum(x != y))
+            if n < 2 or n_eff < 2:
                 w_stat, r_eff, p_val = np.nan, np.nan, np.nan
             else:
-                                
-                ## effectively wilcoxon removes zero differences by default
-                ## so n should be the number of non-zero differences
-                w_stat, p_val = wilcoxon(x, y, alternative = wilcoxon_alternative)
-                n_eff = np.sum(x != y)
-                r_eff = (2.0 * w_stat) / (n_eff * (n_eff + 1) / 2) - 1.0
 
-            rows.append((*group_key, metric, med_o, med_f, med_d, w_stat, r_eff, float(p_val)))
+                ## strict one-sided test for original > falsified
+                ## returns W = sum of ranks of positive differences
+                w_stat, p_val = wilcoxon(x, y, alternative = "greater")
+                w_plus = w_stat
+                r_eff = (4.0 * w_plus / (n_eff * (n_eff + 1))) - 1.0
+
+            rows.append((*group_key, metric, med_o, med_f, med_d, f"{n_pos}/{n_valid}", w_stat, r_eff, float(p_val)))
 
     summary = pd.DataFrame(rows, columns = feat_group + [
         "metric",
         "Median Original",
         "Median Falsified",
         "Median Δ",
+        "Positive Δ",
         "Wilcoxon W",
         "Rank-biserial r",
         p_label,
@@ -649,12 +664,12 @@ def stat_falsified_test(
 
     ## keep a stable display column order for single- and multi-metric outputs
     if "Metric" in summary.columns:
-        value_cols_order = ["Metric", "Median Original", "Median Falsified", "Median Δ", *tail_cols]
+        value_cols_order = ["Metric", "Median Original", "Median Falsified", "Median Δ", "Positive Δ", *tail_cols]
     else:
         med_o = next((c for c in summary.columns if c.startswith("Median ") and c.endswith("(Original)")), "Median Original")
         med_f = next((c for c in summary.columns if c.startswith("Median ") and c.endswith("(Falsified)")), "Median Falsified")
         med_d = next((c for c in summary.columns if c.startswith("Median Δ")), "Median Δ")
-        value_cols_order = [med_o, med_f, med_d, *tail_cols]
+        value_cols_order = [med_o, med_f, med_d, "Positive Δ", *tail_cols]
 
     summary = summary.reindex(columns = group_display + [c for c in value_cols_order if c in summary.columns])
     summary = summary.set_index(group_display) if (index and group_display) else summary
