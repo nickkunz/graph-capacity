@@ -39,9 +39,10 @@ def _permute_target_mapping(
 
     """
     Desc:
-        Permute the dataset-level target y* across processed data while keeping
-        each dataset's invariants, signatures, and event history fixed.
-        This breaks the joint (x', z') -> y* mapping.
+        Permute the dataset-level target y* across processed data by
+        swapping the entire event list (including targets) from another
+        dataset while keeping each dataset's invariants and signatures
+        fixed. This breaks the joint (x', z') -> y* mapping.
 
     Args:
         path_proc: project directory containing processed dataset JSON files.
