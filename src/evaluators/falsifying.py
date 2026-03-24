@@ -563,8 +563,7 @@ def stat_falsified_test(
     metric_label = ", ".join(feat_value) if len(feat_value) > 1 else feat_value[0]
     print(f"=== Falsifiability: Original vs Falsified Median {metric_label} (n = {n}) ===")
     print(f"H₁: Original data produces higher median {metric_label} than falsified data")
-    print("Each row tests one falsification method against original data\n")
-    print("*** p = 0.00, ** p < 0.01, * p < 0.05")
+    print("*** p < 0.001, ** p < 0.01, * p < 0.05")
 
     groups = merged.groupby(feat_group, sort = False) if feat_group else [((), merged)]
 
