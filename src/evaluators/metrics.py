@@ -202,7 +202,9 @@ def _rank_biased_overlap(y_true: np.ndarray, y_pred: np.ndarray, p: float) -> fl
         
         if weight < 1e-6:
             break
-            
+
+    ## extrapolated tail term for finite lists (standard RBO)
+    score += weight * (overlap / n) if n > 0 else 0.0
     return float(score * (1.0 - p))
 
 ## joint consensus metrics
