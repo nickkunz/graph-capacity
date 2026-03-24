@@ -19,6 +19,8 @@ def eval_order(
     estimator_r: BaseEstimator,
     vect_k: Literal["feat_x", "feat_z"] = "feat_x",
     target: str = "target",
+    n_repeat: int = 30,
+    random_state: int = 42
     ) -> Dict[str, float]:
     
     """
@@ -71,7 +73,7 @@ def eval_order(
     kappa = compute_kappa(K_vect = K_train)
 
     ## prediction surface
-    y_pred, _, _ = fit_predict_frontier(
+    fit_result = fit_predict_frontier(
         data = data,
         feat_x = feat_x,
         feat_z = feat_z,
@@ -83,5 +85,5 @@ def eval_order(
     ## evaluate structural order
     return structural_ordering(
         kappa = kappa,
-        y_pred = y_pred
+        y_pred = fit_result["y_pred"]
     )
