@@ -6,7 +6,7 @@ from pathlib import Path
 from itertools import combinations
 from typing import Dict, Any, Sequence
 from joblib import Parallel, delayed
-from scipy.stats import wilcoxon
+from scipy.stats import rankdata, wilcoxon
 
 ## path
 root = Path(__file__).resolve().parents[2]
@@ -554,20 +554,6 @@ def stat_falsified_test(
         suffixes = ("_orig", "_fals"),
     )
 
-    ## compute per-group directional consistency across all metrics
-    group_signs = dict()
-    for group_key, grp in (merged.groupby(feat_group, sort = False) if feat_group else [((), merged)]):
-        group_key = group_key if isinstance(group_key, tuple) else (group_key,)
-        signs = dict()
-        for metric in feat_value:
-            x = grp[f"{metric}_orig"].to_numpy(dtype = float)
-            y = grp[f"{metric}_fals"].to_numpy(dtype = float)
-            valid = np.isfinite(x) & np.isfinite(y)
-            n_pos = int(np.sum((x - y)[valid] > 0))
-            n_valid = int(np.sum(valid))
-            signs[metric] = (n_pos, n_valid)
-        group_signs[group_key] = signs
-
     groups = merged.groupby(feat_group, sort = False) if feat_group else [((), merged)]
 
     ## compute paired stats per group x metric
@@ -580,12 +566,14 @@ def stat_falsified_test(
             valid = np.isfinite(x) & np.isfinite(y)
             x, y = x[valid], y[valid]
             n = len(x)
-            n_pos, n_valid = group_signs[group_key][metric]
+            d = x - y
+            n_pos = int(np.sum(d > 0))
+            n_valid = n
             med_o, med_f, med_d = (
-                (float(np.median(x)), float(np.median(y)), float(np.median(x - y))) if n else (np.nan, np.nan, np.nan)
+                (float(np.median(x)), float(np.median(y)), float(np.median(d))) if n else (np.nan, np.nan, np.nan)
             )
 
-            n_eff = int(np.sum(x != y))
+            n_eff = int(np.sum(d != 0))
             if n < 2 or n_eff < 2:
                 w_stat, r_eff, p_val = np.nan, np.nan, np.nan
             else:
@@ -593,8 +581,14 @@ def stat_falsified_test(
                 ## strict one-sided test for original > falsified
                 ## returns W = sum of ranks of positive differences
                 w_stat, p_val = wilcoxon(x, y, alternative = "greater")
-                w_plus = w_stat
-                r_eff = (4.0 * w_plus / (n_eff * (n_eff + 1))) - 1.0
+
+                ## rank-biserial r from signed differences (kerby 2014)
+                ## r > 0 means original > falsified, independent of scipy convention
+                d_nz = d[d != 0]
+                ranks = rankdata(np.abs(d_nz), method = "average")
+                pos_rank_sum = float(np.sum(ranks[d_nz > 0]))
+                neg_rank_sum = float(np.sum(ranks[d_nz < 0]))
+                r_eff = (pos_rank_sum - neg_rank_sum) / float(np.sum(ranks))
 
             rows.append((*group_key, metric, med_o, med_f, med_d, f"{n_pos}/{n_valid}", w_stat, r_eff, float(p_val)))
 
