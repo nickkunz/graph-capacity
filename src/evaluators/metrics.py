@@ -171,14 +171,20 @@ def _distance_corr(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 def _rank_biased_overlap(y_true: np.ndarray, y_pred: np.ndarray, p: float) -> float:
 
     """ Frontier-focused agreement; emphasizes the top of the ranking. """
+
+    if not 0.0 <= p < 1.0:
+        raise ValueError("p must satisfy 0 <= p < 1.")
     
     s = np.argsort(y_true)[::-1]
     t = np.argsort(y_pred)[::-1]
     n = len(s)
+    if n == 0:
+        return 0.0
     
     score = 0.0
     weight = 1.0
     overlap = 0
+    last_agreement = 0.0
     seen_s = set()
     seen_t = set()
     
@@ -197,14 +203,16 @@ def _rank_biased_overlap(y_true: np.ndarray, y_pred: np.ndarray, p: float) -> fl
         seen_s.add(idx_s)
         seen_t.add(idx_t)
         
-        score += weight * (overlap / d)
+        agreement = overlap / d
+        score += weight * agreement
+        last_agreement = agreement
         weight *= p
         
         if weight < 1e-6:
             break
 
-    ## extrapolated tail term for finite lists (standard RBO)
-    tail = weight * (overlap / n) if n > 0 else 0.0
+    ## extrapolate the unobserved tail from the last evaluated agreement level
+    tail = weight * last_agreement
     return float((1.0 - p) * score + tail)
 
 ## joint consensus metrics
