@@ -505,6 +505,7 @@ def stat_falsified_test(
     label_fals: str = "falsified",
     decimals: int = 4,
     index: bool = True,
+    wilcoxon_alternative: str = "greater",
     ) -> pd.DataFrame:
     
     """
@@ -567,7 +568,7 @@ def stat_falsified_test(
             if n < 2 or np.allclose(x, y):
                 w_stat, r_eff, p_val = np.nan, np.nan, np.nan
             else:
-                w_stat, p_val = wilcoxon(x, y, alternative = "greater")
+                w_stat, p_val = wilcoxon(x, y, alternative = wilcoxon_alternative)
                 r_eff = 1.0 - (2.0 * w_stat) / (n * (n + 1) / 2)
 
             rows.append((*group_key, metric, med_o, med_f, med_d, w_stat, r_eff, float(p_val)))
