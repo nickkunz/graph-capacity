@@ -9,11 +9,11 @@ from scipy.stats import spearmanr, kendalltau, pearsonr, ConstantInputWarning
 
 ## constants
 FRONTIER_METRICS = ["vr", "mv", "ms", "ea", "ei"]
-CONSENSUS_METRICS = ["r", "rho", "tau", "dcr", "rbo"]
+CONSENSUS_METRICS = ["rho", "tau", "rbo", "dcr", "r"]
 ORDERING_METRICS = [
     "monotonic_index", 
     "violation_magnitude", 
-    "spearman_rho", 
+    "spearman_rho",
     "kendall_tau", 
     "rank_r2"
 ]
