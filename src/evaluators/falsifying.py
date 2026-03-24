@@ -532,7 +532,7 @@ def stat_falsified_test(
     Returns:
         Display-ready table with columns:
         [*feat_group, Metric?, Median <M> (Original), Median <M> (Falsified),
-         Median Δ<M>, Positive Δ, Wilcoxon W, Rank-biserial r, One-sided p,
+         Median Δ<M>, Positive Δ, Wilcoxon W+, Rank-biserial r, One-sided p,
          Holm-adjusted p, Sig.]
         where Metric is only included when len(feat_value) > 1.
     """
@@ -541,7 +541,7 @@ def stat_falsified_test(
     feat_group = list(feat_group or list())
     group_display = [c.title() for c in feat_group]
     p_label = "One-sided p"
-    tail_cols = ["Wilcoxon W", "Rank-biserial r", p_label, "Holm-adjusted p", "Sig."]
+    tail_cols = ["Wilcoxon W+", "Rank-biserial r", p_label, "Holm-adjusted p", "Sig."]
 
     ## infer pairing columns from non-metric/non-group fields when not provided
     reserved = set(feat_value) | {label_cond} | set(feat_group)
@@ -553,6 +553,18 @@ def stat_falsified_test(
         on = feat_group + pair_cols,
         suffixes = ("_orig", "_fals"),
     )
+
+    # compute sample size per test block for reporting
+    if feat_group:
+        n = merged.drop_duplicates(subset = feat_group + pair_cols).shape[0]
+    else:
+        n = merged.drop_duplicates(subset = pair_cols).shape[0]
+
+    metric_label = ", ".join(feat_value) if len(feat_value) > 1 else feat_value[0]
+    print(f"=== Falsifiability: Real vs Falsified Data (n = {n}) ===")
+    print(f"H₁: Real data produces higher {metric_label} than falsified data")
+    print("Each row tests one falsification method against real data\n")
+    print("*** p = 0.00, ** p < 0.01, * p < 0.05")
 
     groups = merged.groupby(feat_group, sort = False) if feat_group else [((), merged)]
 
@@ -598,7 +610,7 @@ def stat_falsified_test(
         "Median Falsified",
         "Median Δ",
         "Positive Δ",
-        "Wilcoxon W",
+        "Wilcoxon W+",
         "Rank-biserial r",
         p_label,
     ])
@@ -650,9 +662,9 @@ def stat_falsified_test(
     if group_display:
         summary = summary.sort_values(group_display).reset_index(drop = True)
 
-    if "Wilcoxon W" in summary.columns:
-        summary["Wilcoxon W"] = summary["Wilcoxon W"].round(0).astype("Int64")
-    round_cols = [c for c in summary.select_dtypes(include = [np.number]).columns if c != "Wilcoxon W"]
+    if "Wilcoxon W+" in summary.columns:
+        summary["Wilcoxon W+"] = summary["Wilcoxon W+"].round(0).astype("Int64")
+    round_cols = [c for c in summary.select_dtypes(include = [np.number]).columns if c != "Wilcoxon W+"]
     if round_cols:
         summary[round_cols] = summary[round_cols].round(decimals)
 
