@@ -15,14 +15,14 @@ if str(root) not in sys.path:
 
 ## modules
 from src.vectorizers.scalers import _log_transformer
-from src.evaluators.metrics import consensus_metrics, FRONTIER_METRICS, CONSENSUS_METRICS
-from src.evaluators.resampling import logo_cross_valid, logo_cross_valid_frozen
 from src.evaluators.training import fit_predict_frontier
+from src.evaluators.resampling import logo_cross_valid, logo_cross_valid_frozen
+from src.evaluators.metrics import consensus_metrics, frontier_metrics
+from src.evaluators.metrics import FRONTIER_METRICS, CONSENSUS_METRICS
 
-
-## ----------------------------------------------------------------------
+## ----------------------------------------------------------------------------
 ## frontier falsifiability test
-## ----------------------------------------------------------------------
+## ----------------------------------------------------------------------------
 def eval_falsified_frontier(
     data_proc: pd.DataFrame,
     data_fals: dict[str, pd.DataFrame],
@@ -31,6 +31,7 @@ def eval_falsified_frontier(
     feat_z: Sequence[str],
     target: str = "target",
     group: str = "domain",
+    n_repeat: int = 30,
     random_state: int = 42,
     n_jobs: int = -1,
     ) -> pd.DataFrame:
@@ -47,6 +48,7 @@ def eval_falsified_frontier(
         feat_x: graph invariant column names.
         feat_z: process signature column names.
         target: target column name.
+        n_repeat: number of repeated cv fits to average across seeds.
         group: group column name for logo splitting.
         random_state: random seed forwarded to cv estimators when supported.
         n_jobs: number of parallel jobs.
@@ -59,8 +61,13 @@ def eval_falsified_frontier(
     feat_x = list(feat_x)
     feat_z = list(feat_z)
     model_names = list(models.keys())
+    if n_repeat < 1:
+        raise ValueError("n_repeat must be >= 1")
 
-    ## original-data cv: once per model
+    y_true_proc = _log_transformer(data_proc[target]).astype(float).values
+    groups_proc = data_proc[group].values
+
+    ## original-data cv: repeated across seeds, then average predictions
     real_results = Parallel(n_jobs = n_jobs)(
         delayed(logo_cross_valid)(
             data = data_proc,
@@ -70,12 +77,38 @@ def eval_falsified_frontier(
             estimator_r = models[name].estimator_r,
             target = target,
             group = group,
-            random_state = random_state,
+            random_state = None if random_state is None else int(random_state) + repeat_idx,
             n_jobs = 1,
         )
         for name in model_names
+        for repeat_idx in range(n_repeat)
     )
-    real_cv = dict(zip(model_names, real_results))
+    real_cv = dict()
+    for model_idx, model_name in enumerate(model_names):
+        start = model_idx * n_repeat
+        runs = real_results[start:start + n_repeat]
+        pred_stack = np.vstack([y_pred for _, y_pred in runs])
+        valid_pred = np.isfinite(pred_stack)
+        y_pred_mean = np.full(shape = pred_stack.shape[1], fill_value = np.nan, dtype = float)
+        valid_cols = np.any(valid_pred, axis = 0)
+        if np.any(valid_cols):
+            y_pred_mean[valid_cols] = np.nanmean(pred_stack[:, valid_cols], axis = 0)
+
+        frontier_rows = []
+        for group_name in pd.unique(groups_proc):
+            mask = (
+                (groups_proc == group_name)
+                & np.isfinite(y_true_proc)
+                & np.isfinite(y_pred_mean)
+            )
+            if int(np.sum(mask)) == 0:
+                continue
+            frontier_rows.append({
+                "group": group_name,
+                **frontier_metrics(y_true = y_true_proc[mask], y_pred = y_pred_mean[mask]),
+            })
+
+        real_cv[model_name] = (pd.DataFrame(frontier_rows), y_pred_mean)
 
     ## falsified-data evaluation jobs: explicit working-tree marker for source control
     false_jobs = [
@@ -96,10 +129,11 @@ def eval_falsified_frontier(
                     estimator_r = models[model_name].estimator_r,
                     target = target,
                     group = group,
-                    random_state = random_state,
+                    random_state = None if random_state is None else int(random_state) + repeat_idx,
                     n_jobs = 1,  ## avoid over-subscription of parallel jobs
                 )
                 for model_name, _, data in false_jobs
+                for repeat_idx in range(n_repeat)
             )
         else:
             false_results = Parallel(n_jobs = n_jobs)(
@@ -112,15 +146,45 @@ def eval_falsified_frontier(
                     estimator_r = models[model_name].estimator_r,
                     target = target,
                     group = group,
-                    random_state = random_state,
+                    random_state = None if random_state is None else int(random_state) + repeat_idx,
                     n_jobs = 1,  ## avoid over-subscription of parallel jobs
                 )
                 for model_name, _, data_test in false_jobs
+                for repeat_idx in range(n_repeat)
             )
             false_results = [(frontier, yhat) for frontier, yhat, _ in false_results]
 
+        false_results_mean = []
+        for job_idx, (_, _, data_eval) in enumerate(false_jobs):
+            start = job_idx * n_repeat
+            runs = false_results[start:start + n_repeat]
+            pred_stack = np.vstack([y_pred for _, y_pred in runs])
+            valid_pred = np.isfinite(pred_stack)
+            y_pred_mean = np.full(shape = pred_stack.shape[1], fill_value = np.nan, dtype = float)
+            valid_cols = np.any(valid_pred, axis = 0)
+            if np.any(valid_cols):
+                y_pred_mean[valid_cols] = np.nanmean(pred_stack[:, valid_cols], axis = 0)
+
+            y_true_eval = _log_transformer(data_eval[target]).astype(float).values
+            groups_eval = data_eval[group].values
+            frontier_rows = []
+            for group_name in pd.unique(groups_eval):
+                mask = (
+                    (groups_eval == group_name)
+                    & np.isfinite(y_true_eval)
+                    & np.isfinite(y_pred_mean)
+                )
+                if int(np.sum(mask)) == 0:
+                    continue
+                frontier_rows.append({
+                    "group": group_name,
+                    **frontier_metrics(y_true = y_true_eval[mask], y_pred = y_pred_mean[mask]),
+                })
+
+            false_results_mean.append((pd.DataFrame(frontier_rows), y_pred_mean))
+
         obs = list()
-        for (model_name, method_name, _), (frontier_false, _) in zip(false_jobs, false_results):
+        for (model_name, method_name, _), (frontier_false, _) in zip(false_jobs, false_results_mean):
             frontier_real, _ = real_cv[model_name]
             for condition, frontier in [("original", frontier_real), ("falsified", frontier_false)]:
                 for _, frow in frontier.iterrows():
@@ -152,13 +216,16 @@ def eval_falsified_alignment(
     feat_z: Sequence[str],
     target: str = "target",
     group: str = "domain",
+    n_repeat: int = 30,
     random_state: int = 42,
     n_jobs: int = -1,
     ) -> pd.DataFrame:
     """
     Desc:
         Test whether original data produces better target-prediction alignment
-        than falsified data under both frozen and retrain protocols.
+        than falsified data under both frozen and retrain protocols, using
+        cross-validated predictions and global aggregation across all valid
+        observations.
     Args:
         data_proc: clean evaluation dataframe.
         data_fals: mapping of falsification method to dataframe.
@@ -166,6 +233,7 @@ def eval_falsified_alignment(
         feat_x: graph invariant column names.
         feat_z: process signature column names.
         target: target column name.
+        n_repeat: number of repeated cv fits to average across seeds.
         group: group column name for logo splitting.
         random_state: random seed forwarded to cv estimators when supported.
         n_jobs: number of parallel jobs.
@@ -178,9 +246,11 @@ def eval_falsified_alignment(
     feat_x = list(feat_x)
     feat_z = list(feat_z)
     model_names = list(models.keys())
+    if n_repeat < 1:
+        raise ValueError("n_repeat must be >= 1")
 
-    ## original-data cv (retrain track): once per model
-    real_results_retrain = Parallel(n_jobs = n_jobs)(
+    ## original-data cv: repeated across seeds, then average predictions
+    real_results = Parallel(n_jobs = n_jobs)(
         delayed(logo_cross_valid)(
             data = data_proc,
             feat_x = feat_x,
@@ -189,12 +259,23 @@ def eval_falsified_alignment(
             estimator_r = models[name].estimator_r,
             target = target,
             group = group,
-            random_state = random_state,
+            random_state = None if random_state is None else int(random_state) + repeat_idx,
             n_jobs = 1,
         )
         for name in model_names
+        for repeat_idx in range(n_repeat)
     )
-    real_cv = dict(zip(model_names, real_results_retrain))
+    real_cv = dict()
+    for model_idx, model_name in enumerate(model_names):
+        start = model_idx * n_repeat
+        runs = real_results[start:start + n_repeat]
+        pred_stack = np.vstack([y_pred for _, y_pred in runs])
+        valid_pred = np.isfinite(pred_stack)
+        y_pred_mean = np.full(shape = pred_stack.shape[1], fill_value = np.nan, dtype = float)
+        valid_cols = np.any(valid_pred, axis = 0)
+        if np.any(valid_cols):
+            y_pred_mean[valid_cols] = np.nanmean(pred_stack[:, valid_cols], axis = 0)
+        real_cv[model_name] = y_pred_mean
 
     ## falsified-data cv: per (model, method)
     false_jobs = [
@@ -215,10 +296,11 @@ def eval_falsified_alignment(
                     estimator_r = models[model_name].estimator_r,
                     target = target,
                     group = group,
-                    random_state = random_state,
+                    random_state = None if random_state is None else int(random_state) + repeat_idx,
                     n_jobs = 1,
                 )
                 for model_name, _, data_false in false_jobs
+                for repeat_idx in range(n_repeat)
             )
         else:
             false_results = Parallel(n_jobs = n_jobs)(
@@ -231,41 +313,51 @@ def eval_falsified_alignment(
                     estimator_r = models[model_name].estimator_r,
                     target = target,
                     group = group,
-                    random_state = random_state,
+                    random_state = None if random_state is None else int(random_state) + repeat_idx,
                     n_jobs = 1,
                 )
                 for model_name, _, data_false in false_jobs
+                for repeat_idx in range(n_repeat)
             )
             false_results = [(f, y) for f, y, _ in false_results]
 
+        false_results_mean = []
+        for job_idx in range(len(false_jobs)):
+            start = job_idx * n_repeat
+            runs = false_results[start:start + n_repeat]
+            pred_stack = np.vstack([y_pred for _, y_pred in runs])
+            valid_pred = np.isfinite(pred_stack)
+            y_pred_mean = np.full(shape = pred_stack.shape[1], fill_value = np.nan, dtype = float)
+            valid_cols = np.any(valid_pred, axis = 0)
+            if np.any(valid_cols):
+                y_pred_mean[valid_cols] = np.nanmean(pred_stack[:, valid_cols], axis = 0)
+            false_results_mean.append(y_pred_mean)
+
         obs = []
-        for (model_name, method_name, data_false), (_, y_pred_false) in zip(false_jobs, false_results):
-            _, y_pred_real = real_cv[model_name]
+        for (model_name, method_name, data_false), y_pred_false in zip(false_jobs, false_results_mean):
+            y_pred_real = real_cv[model_name]
             for condition, y_pred, data_eval in [
                 ("original", y_pred_real, data_proc),
                 ("falsified", y_pred_false, data_false),
             ]:
                 y_true = _log_transformer(data_eval[target]).astype(float).values
-                groups = data_eval[group].values
                 valid = np.isfinite(y_true) & np.isfinite(y_pred)
+                if int(np.sum(valid)) < 2:
+                    continue
 
-                for group_name in pd.unique(groups):
-                    mask = (groups == group_name) & valid
-                    if int(np.sum(mask)) == 0:
-                        continue
-                    mvals = consensus_metrics(
-                        y_true = y_true[mask],
-                        y_pred = y_pred[mask],
-                    )
-                    row = {
-                        "model": model_name,
-                        "method": method_name,
-                        "condition": condition,
-                        "group": group_name,
-                    }
-                    for col in CONSENSUS_METRICS:
-                        row[col] = mvals[col]
-                    obs.append(row)
+                mvals = consensus_metrics(
+                    y_true = y_true[valid],
+                    y_pred = y_pred[valid],
+                )
+                row = {
+                    "model": model_name,
+                    "method": method_name,
+                    "condition": condition,
+                    "group": "all",
+                }
+                for col in CONSENSUS_METRICS:
+                    row[col] = mvals[col]
+                obs.append(row)
 
         frame = pd.DataFrame(obs)
         frame["track"] = track
@@ -274,9 +366,9 @@ def eval_falsified_alignment(
     return pd.concat(frames, ignore_index = True)
 
 
-## ----------------------------------------------------------------------
+## ----------------------------------------------------------------------------
 ## pairwise consensus falsifiability test
-## ----------------------------------------------------------------------
+## ----------------------------------------------------------------------------
 def eval_falsified_consensus(
     data_proc: pd.DataFrame,
     data_fals: dict[str, pd.DataFrame],
@@ -284,14 +376,16 @@ def eval_falsified_consensus(
     feat_x: Sequence[str],
     feat_z: Sequence[str],
     target: str = "target",
-    group: str = "domain",
-    random_state: int = 42,
+    n_repeat: int = 30,
     n_jobs: int = -1,
+    random_state: int = 42,
     ) -> pd.DataFrame:
     """
     Desc:
         Test whether original data produces higher inter-model frontier
-        consensus than falsified data under both frozen and retrain protocols.
+        consensus than falsified data under both frozen and retrain protocols,
+        treating pairwise consensus as a fitted-frontier agreement analysis
+        rather than a predictive resampling test.
     Args:
         data_proc: clean evaluation dataframe.
         data_fals: mapping of falsification method to dataframe.
@@ -299,7 +393,7 @@ def eval_falsified_consensus(
         feat_x: graph invariant column names.
         feat_z: process signature column names.
         target: target column name.
-        group: group column name for logo splitting.
+        n_repeat: number of repeated fits to average.
         random_state: random seed forwarded to cv estimators when supported.
         n_jobs: number of parallel jobs.
     Returns:
@@ -312,7 +406,7 @@ def eval_falsified_consensus(
     feat_z = list(feat_z)
     model_names = list(models.keys())
 
-    ## original-data full-fit predictions (aligned with consensus notebook)
+    ## original-data full fit: once per model
     real_results = Parallel(n_jobs = n_jobs)(
         delayed(fit_predict_frontier)(
             data = data_proc,
@@ -321,15 +415,16 @@ def eval_falsified_consensus(
             estimator_c = models[name].estimator_c,
             estimator_r = models[name].estimator_r,
             target = target,
-            n_repeat = 30,
+            n_repeat = n_repeat,
             random_state = random_state,
         )
         for name in model_names
     )
     pred_real = {
-        name: np.asarray(r[0], dtype = float)
+        name: np.asarray(r["y_pred"], dtype = float)
         for name, r in zip(model_names, real_results)
     }
+    fit_real = dict(zip(model_names, real_results))
 
     ## falsified-data cv: all (model, method) pairs
     false_jobs = [
@@ -342,41 +437,31 @@ def eval_falsified_consensus(
     for track in ("frozen", "retrain"):
         if track == "retrain":
             false_results = Parallel(n_jobs = n_jobs)(
-                delayed(logo_cross_valid)(
+                delayed(fit_predict_frontier)(
                     data = data_false,
                     feat_x = feat_x,
                     feat_z = feat_z,
                     estimator_c = models[model_name].estimator_c,
                     estimator_r = models[model_name].estimator_r,
                     target = target,
-                    group = group,
+                    n_repeat = n_repeat,
                     random_state = random_state,
-                    n_jobs = 1,
                 )
                 for model_name, _, data_false in false_jobs
             )
         else:
-            false_results = Parallel(n_jobs = n_jobs)(
-                delayed(logo_cross_valid_frozen)(
-                    data_train = data_proc,
-                    data_test = data_false,
-                    feat_x = feat_x,
-                    feat_z = feat_z,
-                    estimator_c = models[model_name].estimator_c,
-                    estimator_r = models[model_name].estimator_r,
-                    target = target,
-                    group = group,
-                    random_state = random_state,
-                    n_jobs = 1,
+            false_results = [
+                fit_predict_frontier(
+                    data = data_false,
+                    fit_result = fit_real[model_name],
                 )
                 for model_name, _, data_false in false_jobs
-            )
-            false_results = [(f, y) for f, y, _ in false_results]
+            ]
 
         ## index falsified predictions by (method, model)
         pred_false = {}
-        for (model_name, method_name, _), (_, y_pred_false) in zip(false_jobs, false_results):
-            pred_false[(method_name, model_name)] = np.asarray(y_pred_false, dtype = float)
+        for (model_name, method_name, _), fit_false in zip(false_jobs, false_results):
+            pred_false[(method_name, model_name)] = np.asarray(fit_false["y_pred"], dtype = float)
 
         obs = []
         for method_name, data_false in data_fals.items():
@@ -484,7 +569,7 @@ def stat_falsified_test(
             )
 
             if n < 2 or np.allclose(x, y):
-                w_stat, r_eff, p_val = np.nan, np.nan, 1.0
+                w_stat, r_eff, p_val = np.nan, np.nan, np.nan
             else:
                 w_stat, p_val = wilcoxon(x, y, alternative = "greater")
                 r_eff = abs(1.0 - (2.0 * w_stat) / (n * (n + 1) / 2))
@@ -503,16 +588,21 @@ def stat_falsified_test(
 
     ## holm-bonferroni correction with monotonic adjustment
     p_vals = summary["One-sided p"].to_numpy(copy = True)
-    m = len(p_vals)
-    order = np.argsort(p_vals)
+    valid_p = np.isfinite(p_vals)
+    holm = np.full(shape = len(p_vals), fill_value = np.nan, dtype = float)
+    if np.any(valid_p):
+        p_valid = p_vals[valid_p]
+        m = len(p_valid)
+        order = np.argsort(p_valid)
 
-    ## holm adjusted p-values are cumulative maxima of scaled sorted p-values
-    holm_sorted = np.maximum.accumulate(p_vals[order] * (m - np.arange(m)))
-    holm = np.empty(m, dtype = float)
-    holm[order] = np.minimum(holm_sorted, 1.0)
+        ## holm adjusted p-values are cumulative maxima of scaled sorted p-values
+        holm_sorted = np.maximum.accumulate(p_valid[order] * (m - np.arange(m)))
+        holm_valid = np.empty(m, dtype = float)
+        holm_valid[order] = np.minimum(holm_sorted, 1.0)
+        holm[valid_p] = holm_valid
     summary["Holm-adjusted p"] = holm
     summary["Sig."] = summary["Holm-adjusted p"].map(
-        lambda p: "***" if p < 0.001 else "**" if p < 0.01 else "*" if p < 0.05 else ""
+        lambda p: np.nan if not np.isfinite(p) else "***" if p < 0.001 else "**" if p < 0.01 else "*" if p < 0.05 else ""
     )
 
     ## convert group/metric labels to display names
