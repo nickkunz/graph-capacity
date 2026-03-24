@@ -204,9 +204,9 @@ def eval_falsified_frontier(
 
     return pd.concat(frames, ignore_index = True)
 
-## ----------------------------------------------------------------------
+## ----------------------------------------------------------------------------
 ## target-alignment falsifiability test
-## ----------------------------------------------------------------------
+## ----------------------------------------------------------------------------
 def eval_falsified_alignment(
     data_proc: pd.DataFrame,
     data_fals: dict[str, pd.DataFrame],
@@ -498,8 +498,8 @@ def eval_falsified_consensus(
 def stat_falsified_test(
     results: pd.DataFrame,
     feat_value: Sequence[str] | None = None,
-    feat_group: Sequence[str] | None = None,
     feat_pairs: Sequence[str] | None = None,
+    feat_group: Sequence[str] = ["track", "method"],
     label_cond: str = "condition",
     label_orig: str = "original",
     label_fals: str = "falsified",
@@ -652,7 +652,7 @@ def stat_falsified_test(
 ## falsified summary with metric medians only
 def stat_falsified_summary(
     results: pd.DataFrame,
-    metrics: Sequence[str] = FRONTIER_METRICS,
+    metrics: Sequence[str],
     feat_group: Sequence[str] = ["track", "method"],
     subset_cols: Sequence[str] | None = None,
     label_cond: str = "condition",
