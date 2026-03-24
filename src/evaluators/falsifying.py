@@ -573,7 +573,7 @@ def stat_falsified_test(
                 w_stat, r_eff, p_val = np.nan, np.nan, np.nan
             else:
                 w_stat, p_val = wilcoxon(x, y, alternative = wilcoxon_alternative)
-                r_eff = 1.0 - (2.0 * w_stat) / (n * (n + 1) / 2)
+                r_eff = (2.0 * w_stat) / (n * (n + 1) / 2) - 1.0
 
             rows.append((*group_key, metric, med_o, med_f, med_d, w_stat, r_eff, float(p_val)))
 
