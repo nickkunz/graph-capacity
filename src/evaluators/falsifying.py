@@ -572,10 +572,10 @@ def stat_falsified_test(
             if n < 2 or np.allclose(x, y):
                 w_stat, r_eff, p_val = np.nan, np.nan, np.nan
             else:
-                w_stat, p_val = wilcoxon(x, y, alternative = wilcoxon_alternative)
-                
+                                
                 ## effectively wilcoxon removes zero differences by default
                 ## so n should be the number of non-zero differences
+                w_stat, p_val = wilcoxon(x, y, alternative = wilcoxon_alternative)
                 n_eff = np.sum(x != y)
                 r_eff = (2.0 * w_stat) / (n_eff * (n_eff + 1) / 2) - 1.0
 
