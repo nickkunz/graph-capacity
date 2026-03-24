@@ -94,7 +94,7 @@ def eval_falsified_frontier(
         if np.any(valid_cols):
             y_pred_mean[valid_cols] = np.nanmean(pred_stack[:, valid_cols], axis = 0)
 
-        frontier_rows = []
+        frontier_rows = list()
         for group_name in pd.unique(groups_proc):
             mask = (
                 (groups_proc == group_name)
@@ -117,7 +117,7 @@ def eval_falsified_frontier(
         for model_name in model_names
     ]
 
-    frames = []
+    frames = list()
     for track in ("frozen", "retrain"):
         if track == "retrain":
             false_results = Parallel(n_jobs = n_jobs)(
@@ -154,7 +154,7 @@ def eval_falsified_frontier(
             )
             false_results = [(frontier, yhat) for frontier, yhat, _ in false_results]
 
-        false_results_mean = []
+        false_results_mean = list()
         for job_idx, (_, _, data_eval) in enumerate(false_jobs):
             start = job_idx * n_repeat
             runs = false_results[start:start + n_repeat]
@@ -167,7 +167,7 @@ def eval_falsified_frontier(
 
             y_true_eval = _log_transformer(data_eval[target]).astype(float).values
             groups_eval = data_eval[group].values
-            frontier_rows = []
+            frontier_rows = list()
             for group_name in pd.unique(groups_eval):
                 mask = (
                     (groups_eval == group_name)
@@ -283,7 +283,7 @@ def eval_falsified_alignment(
         for model_name in model_names
     ]
 
-    frames = []
+    frames = list()
     for track in ("frozen", "retrain"):
         if track == "retrain":
             false_results = Parallel(n_jobs = n_jobs)(
@@ -320,7 +320,7 @@ def eval_falsified_alignment(
             )
             false_results = [(f, y) for f, y, _ in false_results]
 
-        false_results_mean = []
+        false_results_mean = list()
         for job_idx in range(len(false_jobs)):
             start = job_idx * n_repeat
             runs = false_results[start:start + n_repeat]
@@ -332,7 +332,7 @@ def eval_falsified_alignment(
                 y_pred_mean[valid_cols] = np.nanmean(pred_stack[:, valid_cols], axis = 0)
             false_results_mean.append(y_pred_mean)
 
-        obs = []
+        obs = list()
         for (model_name, method_name, data_false), y_pred_false in zip(false_jobs, false_results_mean):
             y_pred_real = real_cv[model_name]
             for condition, y_pred, data_eval in [
@@ -431,7 +431,7 @@ def eval_falsified_consensus(
         for model_name in model_names
     ]
 
-    frames = []
+    frames = list()
     for track in ("frozen", "retrain"):
         if track == "retrain":
             false_results = Parallel(n_jobs = n_jobs)(
@@ -461,7 +461,7 @@ def eval_falsified_consensus(
         for (model_name, method_name, _), fit_false in zip(false_jobs, false_results):
             pred_false[(method_name, model_name)] = np.asarray(fit_false["y_pred"], dtype = float)
 
-        obs = []
+        obs = list()
         for method_name, data_false in data_fals.items():
             for model_i, model_j in combinations(model_names, 2):
                 for condition, pred_map, data_eval in [
@@ -539,7 +539,7 @@ def stat_falsified_test(
     """
     
     feat_value = list(feat_value)
-    feat_group = list(feat_group or [])
+    feat_group = list(feat_group or list())
     group_display = [c.title() for c in feat_group]
     tail_cols = ["Wilcoxon W", "Rank-biserial r", "One-sided p", "Holm-adjusted p", "Sig."]
 
@@ -556,7 +556,7 @@ def stat_falsified_test(
     groups = merged.groupby(feat_group, sort = False) if feat_group else [((), merged)]
 
     ## compute paired stats per group x metric
-    rows = []
+    rows = list()
     for group_key, grp in groups:
         group_key = group_key if isinstance(group_key, tuple) else (group_key,)
         for metric in feat_value:
@@ -573,7 +573,11 @@ def stat_falsified_test(
                 w_stat, r_eff, p_val = np.nan, np.nan, np.nan
             else:
                 w_stat, p_val = wilcoxon(x, y, alternative = wilcoxon_alternative)
-                r_eff = (2.0 * w_stat) / (n * (n + 1) / 2) - 1.0
+                
+                ## effectively wilcoxon removes zero differences by default
+                ## so n should be the number of non-zero differences
+                n_eff = np.sum(x != y)
+                r_eff = (2.0 * w_stat) / (n_eff * (n_eff + 1) / 2) - 1.0
 
             rows.append((*group_key, metric, med_o, med_f, med_d, w_stat, r_eff, float(p_val)))
 
