@@ -554,14 +554,11 @@ def stat_falsified_test(
         suffixes = ("_orig", "_fals"),
     )
 
-    # compute sample size per test block for reporting
-    if feat_group:
-        n = merged.drop_duplicates(subset = feat_group + pair_cols).shape[0]
-    else:
-        n = merged.drop_duplicates(subset = pair_cols).shape[0]
+    # compute total paired comparisons for header reporting
+    n_pairs = merged.shape[0]
 
-    metric_label = ", ".join(feat_value) if len(feat_value) > 1 else feat_value[0]
-    print(f"=== Falsifiability: Original vs Falsified Median {metric_label} (n = {n}) ===")
+    metric_label = feat_value[0] if len(feat_value) == 1 else ", ".join(feat_value)
+    print(f"=== Falsifiability: Original vs Falsified Median {metric_label} (n = {n_pairs}) ===")
     print(f"H₁: Original data produces higher median {metric_label} than falsified data")
     print("*** p < 0.001, ** p < 0.01, * p < 0.05")
 
@@ -579,7 +576,6 @@ def stat_falsified_test(
             n = len(x)
             d = x - y
             n_pos = int(np.sum(d > 0))
-            n_valid = n
             med_o, med_f, med_d = (
                 (float(np.median(x)), float(np.median(y)), float(np.median(d))) if n else (np.nan, np.nan, np.nan)
             )
@@ -601,7 +597,9 @@ def stat_falsified_test(
                 neg_rank_sum = float(np.sum(ranks[d_nz < 0]))
                 r_eff = (pos_rank_sum - neg_rank_sum) / float(np.sum(ranks))
 
-            rows.append((*group_key, metric, med_o, med_f, med_d, f"{n_pos}/{n_valid}", w_stat, r_eff, float(p_val)))
+            # store the proportion of positive paired differences for the display table
+            positive_delta = float(n_pos) / float(n) if n > 0 else np.nan
+            rows.append((*group_key, metric, med_o, med_f, med_d, positive_delta, w_stat, r_eff, float(p_val)))
 
     summary = pd.DataFrame(rows, columns = feat_group + [
         "metric",
