@@ -7,7 +7,7 @@ import pandas as pd
 import igraph as ig
 from pathlib import Path
 from io import StringIO
-from tqdm.auto import tqdm
+from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Optional, Dict, Any
 
