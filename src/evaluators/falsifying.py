@@ -554,8 +554,14 @@ def stat_falsified_test(
         suffixes = ("_orig", "_fals"),
     )
 
-    # compute total paired comparisons for header reporting
-    n_pairs = merged.shape[0]
+    ## compute paired comparisons per independent test block for header reporting
+    if feat_group:
+        n_pairs_by_group = merged.groupby(feat_group, sort = False).size()
+        unique_n_pairs = pd.unique(n_pairs_by_group)
+    else:
+        unique_n_pairs = np.array([merged.shape[0]])
+
+    n_pairs = int(unique_n_pairs[0]) if len(unique_n_pairs) == 1 else f"{int(np.min(unique_n_pairs))}-{int(np.max(unique_n_pairs))}"
 
     metric_label = feat_value[0] if len(feat_value) == 1 else ", ".join(feat_value)
     print(f"=== Falsifiability: Original vs Falsified Median {metric_label} (n = {n_pairs}) ===")
