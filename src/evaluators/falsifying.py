@@ -387,17 +387,17 @@ def eval_falsified_consensus(
         treating pairwise consensus as a fitted-frontier agreement analysis
         rather than a predictive resampling test.
     Args:
-        data_proc: clean evaluation dataframe used for original model fitting.
-        data_fals: mapping from falsification method name to falsified dataframe.
-        models: mapping from model name to estimator bundle with `estimator_c` and `estimator_r`.
-        feat_x: graph invariant feature column names for frontier model.
-        feat_z: process signature feature column names for the residual model.
-        target: target variable column name (default "target").
-        n_repeat: number of repeated fits to average (default 30).
-        random_state: random state forwarded to estimator fitting (default 42).
-        n_jobs: parallel job count (default -1, all cores).
+        data_proc: Clean evaluation dataframe used for original model fitting.
+        data_fals: Mapping from falsification method name to falsified dataframe.
+        models: Mapping from model name to estimator bundle with `estimator_c` and `estimator_r`.
+        feat_x: Graph invariant feature column names for frontier model.
+        feat_z: Process signature feature column names for the residual model.
+        target: Target variable column name (default "target").
+        n_repeat: Number of repeated fits to average (default 30).
+        random_state: Random state forwarded to estimator fitting (default 42).
+        n_jobs: Parallel job count (default -1, all cores).
     Returns:
-        dataframe with pairwise consensus metrics per
+        DataFrame with pairwise consensus metrics per
         (method, condition, group, model_i, model_j, track).
     """
 
@@ -514,27 +514,29 @@ def stat_falsified_test(
         Paired Wilcoxon signed-rank summary comparing original vs falsified
         conditions. Works for frontier, alignment, and pairwise consensus
         outputs by parameterising metric, grouping, and pairing columns.
+    
     Args:
-        results: output of any eval_falsified_* function.
-        feat_value: metric columns to test (e.g. FRONTIER_METRICS or
+        results: Output of any eval_falsified_* function.
+        feat_value: Metric columns to test (e.g. FRONTIER_METRICS or
             CONSENSUS_METRICS).
-        feat_pairs: columns that align an original row with its falsified
+        feat_pairs: Columns that align an original row with its falsified
             counterpart (e.g. ["model", "group"]). None -> inferred as
             every non-metric, non-condition, non-group column.
-        feat_group: columns whose unique combinations define independent
+        feat_group: Columns whose unique combinations define independent
             tests (e.g. ["track", "method"] or ["method"]). None -> one
             global test.
-        label_cond: column that flags original vs falsified.
-        label_orig: value in label_cond for original data.
-        label_fals: value in label_cond for falsified data.
-        decimals: number of decimals to round in output table.
-        index: if True, set group columns as DataFrame index.
+        label_cond: Column that flags original vs falsified.
+        label_orig: Value in label_cond for original data.
+        label_fals: Value in label_cond for falsified data.
+        decimals: Number of decimals to round in output table.
+        index: If True, set group columns as DataFrame index.
+    
     Returns:
         Display-ready table with columns:
         [*feat_group, Metric?, Median <M> (Original), Median <M> (Falsified),
-         Median Δ<M>, Positive Δ, Wilcoxon W+, Rank-biserial r, One-sided p,
-         Holm-adjusted p, Sig.]
-        where Metric is only included when len(feat_value) > 1.
+        Median Δ<M>, Positive Δ, Wilcoxon W+, Rank-biserial r, One-sided p,
+        Holm-adjusted p, Sig.] where Metric is only included when 
+        len(feat_value) > 1.
     """
     
     feat_value = list(feat_value)
@@ -704,20 +706,20 @@ def stat_falsified_summary(
         Compute a grouped median summary of falsification results for display.
 
     Args:
-        results: output of an eval_falsified_* function.
-        metrics: metrics to aggregate (e.g. FRONTIER_METRICS or CONSENSUS_METRICS).
-        feat_group: grouping columns for the summary (default ["track", "method"]).
-        subset_cols: columns used to deduplicate original rows before concat.
+        results: Output of an eval_falsified_* function.
+        metrics: Metrics to aggregate (e.g. FRONTIER_METRICS or CONSENSUS_METRICS).
+        feat_group: Grouping columns for the summary (default ["track", "method"]).
+        subset_cols: Columns used to deduplicate original rows before concat.
             Defaults to model/group columns inferred from the DataFrame.
-        label_cond: condition column name.
-        label_orig: original condition value.
-        label_fals: falsified condition value.
-        track_order: ordered categories for track.
-        method_order: ordered categories for method.
-        decimals: number of decimals to round.
+        label_cond: Condition column name.
+        label_orig: Original condition value.
+        label_fals: Falsified condition value.
+        track_order: Ordered categories for track.
+        method_order: Ordered categories for method.
+        decimals: Number of decimals to round.
 
     Returns:
-        grouped median summary DataFrame.
+        DataFrame: [*feat_group, *metrics] with median metric values per group and condition.
     """
 
     feat_group = list(feat_group or ["track", "method"])
