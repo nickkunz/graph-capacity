@@ -36,7 +36,7 @@ PERT_SPEC = [
     {"key": "invariants_perturbed", "type": "invariants", "feat": "invariants"},
     {"key": "process_perturbed",    "type": "process",    "feat": "signatures"},
     {"key": "signatures_perturbed", "type": "signature",  "feat": "signatures"},
-    {"key": "temporal_aggregated",  "type": "temporal",   "feat": "events"},
+    {"key": "temporal_perturbed",   "type": "temporal",   "feat": "events"},
 ]
 
 NAME_AMAZON = config['names']['NAME_AMAZON']
@@ -508,7 +508,7 @@ def _index_perturbs(path_pert: str) -> dict:
 
     ## iterate over all json files in the perturbation directory
     index = dict()
-    path = Path(path_pert)
+    path = Path(root) / path_pert
     for json_path in sorted(path.glob("*.json")):
         data_name = json_path.stem
         with open(json_path, "r") as f:
@@ -518,7 +518,7 @@ def _index_perturbs(path_pert: str) -> dict:
         for spec in PERT_SPEC:
             json_key, pert_type, feat_key = spec["key"], spec["type"], spec["feat"]
 
-            # Support both old list-of-records format and new nested format
+            ## extract records for the perturbation type, handling both old and new formats
             records = data.get(json_key, [])
             if isinstance(records, dict):
                 nested = []
@@ -582,7 +582,7 @@ def _index_perturbs(path_pert: str) -> dict:
     return index
 
 ## ----------------------------------------------------------------------------
-## ------ data loading for processed, perturbations, and falsifications -------
+## data loading for processed, perturbations, and falsifications
 ## ----------------------------------------------------------------------------
 
 ## load processed data
