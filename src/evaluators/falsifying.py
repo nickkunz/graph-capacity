@@ -565,7 +565,7 @@ def stat_falsified_test(
 
     n_pairs = int(unique_n_pairs[0]) if len(unique_n_pairs) == 1 else f"{int(np.min(unique_n_pairs))}-{int(np.max(unique_n_pairs))}"
 
-    metric_label = feat_value[0] if len(feat_value) == 1 else ", ".join(feat_value)
+    metric_label = feat_value[0].upper() if len(feat_value) == 1 else ", ".join(v.upper() for v in feat_value)
     print(f"=== Falsifiability: Original vs Falsified Median {metric_label} (n = {n_pairs}) ===")
     print(f"H₁: Original data produces higher median {metric_label} than falsified data")
     print("*** p < 0.001, ** p < 0.01, * p < 0.05")
@@ -642,7 +642,7 @@ def stat_falsified_test(
     ## convert group/metric labels to display names
     summary = summary.rename(columns = {c: c.title() for c in feat_group})
     if len(feat_value) == 1:
-        tag = feat_value[0]
+        tag = feat_value[0].upper()
         summary = summary.rename(columns = {
             "Median Original": f"Median {tag} (Original)",
             "Median Falsified": f"Median {tag} (Falsified)",
