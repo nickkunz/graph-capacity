@@ -2,9 +2,9 @@
 import numpy as np
 import pandas as pd
 from typing import Sequence
-from joblib import Parallel, delayed
 from sklearn.base import BaseEstimator, clone
 from sklearn.model_selection import LeaveOneGroupOut, KFold, RepeatedKFold
+from joblib import Parallel, delayed
 
 ## modules
 from src.evaluators.metrics import frontier_metrics
