@@ -1,28 +1,33 @@
 ## libraries
-import os
 import sys
+import warnings
 import igraph as ig
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
-from contextlib import contextmanager
+from pathlib import Path
 from typing import Sequence, Optional, Tuple, Dict, Literal, Any
 from sklearn.utils import resample
 from sklearn.base import BaseEstimator
-from joblib import Parallel, delayed, parallel
+from joblib import parallel, Parallel, delayed
 from joblib.parallel import BatchCompletionCallBack
+from contextlib import contextmanager
 from scipy.stats import rankdata, wilcoxon
 from tqdm import tqdm
 
-## directory
-root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-if root not in sys.path:
-    sys.path.append(root)
+## path
+root = Path(__file__).resolve().parents[2]
+if str(root) not in sys.path:
+    sys.path.append(str(root))
     
 ## modules
 from src.evaluators.metrics import FRONTIER_METRICS
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
+from src.evaluators.resampling import (
+    logo_cross_valid,
+    logo_cross_valid_frozen
+)
 from src.data.helpers import (
     _force_finite, 
     _force_finite_dict,
@@ -733,7 +738,9 @@ def _run_perturbation(
     feat_cols: Sequence[str],
     feat_x: Sequence[str],
     feat_z: Sequence[str],
+    group: str,
     target: str,
+    random_state: int | None,
     ) -> dict | None:
 
     """
@@ -750,12 +757,12 @@ def _run_perturbation(
         feat_cols: feature columns affected by this perturbation type.
         feat_x: graph invariant feature column names.
         feat_z: process signatures feature column names.
+        group: group column name.
         target: target column name.
+        random_state: base random state for repeat reproducibility.
     Returns:
-        dict with "key", "retrain", "frozen", "meta" or None if skipped.
+        dict with "key", "retrain", "frozen" or None if skipped.
     """
-
-    from src.evaluators.resampling import logo_cross_valid, logo_cross_valid_frozen
 
     lookup = pert_df.set_index("dataset")
     data_mod = data.copy()
@@ -785,7 +792,9 @@ def _run_perturbation(
         estimator_c = model.estimator_c,
         estimator_r = model.estimator_r,
         target = target,
-        group = "domain",
+        group = group,
+        random_state = random_state,
+        n_jobs = 1,
     )
     frontier_rt["model"] = model_name
     frontier_rt["perturbation"] = pert_type
@@ -793,7 +802,7 @@ def _run_perturbation(
     frontier_rt["intensity"] = intensity
 
     ## fixed manifold: train on clean, evaluate on perturbed
-    frontier_fr, _, meta = logo_cross_valid_frozen(
+    frontier_fr, _, _ = logo_cross_valid_frozen(
         data_train = data,
         data_test = data_mod,
         feat_x = feat_x,
@@ -801,16 +810,18 @@ def _run_perturbation(
         estimator_c = model.estimator_c,
         estimator_r = model.estimator_r,
         target = target,
-        group = "domain",
+        group = group,
+        random_state = random_state,
+        n_jobs = 1,
     )
     frontier_fr["model"] = model_name
     frontier_fr["perturbation"] = pert_type
     frontier_fr["method"] = method
     frontier_fr["intensity"] = intensity
 
-    return {"key": key, "retrain": frontier_rt, "frozen": frontier_fr, "meta": meta}
+    return {"key": key, "retrain": frontier_rt, "frozen": frontier_fr}
 
-
+## aggregate frontier metrics across groups for each perturbation setting
 def _aggregate_frontier(results_dict: dict, track: str) -> pd.DataFrame:
 
     """
@@ -841,13 +852,15 @@ def _aggregate_frontier(results_dict: dict, track: str) -> pd.DataFrame:
 ## ----------------------------------------------------------------------------
 ## main evaluation pipeline
 ## ----------------------------------------------------------------------------
-def eval_perturb(
+def eval_perturbed(
     data: pd.DataFrame,
     models: Dict[str, Any],
     data_pert: dict,
     feat_x: Sequence[str],
     feat_z: Sequence[str],
+    group: str = "domain",
     target: str = "target",
+    random_state: int | None = 42,
     n_jobs: int = -1
     ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
 
@@ -864,18 +877,17 @@ def eval_perturb(
                    with schema {json_key: {method: {intensity: DataFrame}}}.
         feat_x: graph invariant feature column names.
         feat_z: process signatures feature column names.
+        group: group column name.
         target: target column name.
+        random_state: base random state for seed reproducibility (default 42).
         n_jobs: number of parallel workers (-1 for all cores).
-        verbose: joblib verbosity level.
     Returns:
         tuple of (results_data, perturbed_all, recovery_df).
         results_data: full aggregated metrics for both tracks including baselines.
-        perturbed_all: non-baseline rows with directed delta columns (d_*).
+        perturbed_all: non-baseline rows with directed delta columns (Δ *).
         recovery_df: recovery ratios (rho_*) where frozen degradation is
                      meaningfully positive.
     """
-
-    from src.evaluators.resampling import logo_cross_valid
 
     ## resolve feature column mapping
     feat_lookup = {"x": list(feat_x), "z": list(feat_z)}
@@ -891,7 +903,9 @@ def eval_perturb(
             estimator_c = model.estimator_c,
             estimator_r = model.estimator_r,
             target = target,
-            group = "domain",
+            group = group,
+            random_state = random_state,
+            n_jobs = 1,
         )
         frontier_base["model"] = model_name
         results_retrain[(model_name, "baseline", None, None)] = frontier_base
@@ -909,15 +923,22 @@ def eval_perturb(
                 for model_name, model in models.items():
                     jobs.append((
                         model_name, model, pert_type, method, intensity,
-                        pert_df, data, feat_cols, feat_x, feat_z, target,
+                        pert_df, data, feat_cols, feat_x, feat_z, group, target,
+                        random_state,
                     ))
 
     ## parallel execution
     if jobs:
-        with _tqdm_joblib(total = len(jobs), desc = "Perturbation training"):
-            outputs = Parallel(n_jobs = n_jobs, verbose = 0)(
-                delayed(_run_perturbation)(*args) for args in jobs
+        with warnings.catch_warnings():
+            warnings.filterwarnings(
+                action = "ignore",
+                message = ".*A worker stopped while some jobs were given to the executor.*",
+                category = UserWarning,
             )
+            with _tqdm_joblib(total = len(jobs), desc = "Perturbation training"):
+                outputs = Parallel(n_jobs = n_jobs, verbose = 0)(
+                    delayed(_run_perturbation)(*args) for args in jobs
+                )
     else:
         outputs = list()
 
@@ -946,13 +967,13 @@ def eval_perturb(
     perturbed_all = results_data.query("perturbation != 'baseline'").copy()
     for col in FRONTIER_METRICS:
         base = perturbed_all["model"].map(baseline_lookup[col])
-        perturbed_all[f"d_{col}"] = (
+        perturbed_all[f"Δ {col.upper()}"] = (
             (base - perturbed_all[col]) if col == "ei"
             else (perturbed_all[col] - base)
         )
 
     ## recovery ratio: rho = 1 - d_retrain / d_frozen
-    feat_delta = [f"d_{c}" for c in FRONTIER_METRICS]
+    feat_delta = [f"Δ {c.upper()}" for c in FRONTIER_METRICS]
     idx = ["model", "perturbation", "method", "intensity"]
     d_frozen = perturbed_all.query("track == 'frozen'").set_index(idx)[feat_delta].apply(pd.to_numeric)
     d_retrain = perturbed_all.query("track == 'retrain'").set_index(idx)[feat_delta].apply(pd.to_numeric)
@@ -960,7 +981,7 @@ def eval_perturb(
     d_frozen, d_retrain = d_frozen.loc[common], d_retrain.loc[common]
 
     eps = pd.DataFrame({
-        f"d_{m}": common.get_level_values("model").map(
+        f"Δ {m.upper()}": common.get_level_values("model").map(
             lambda mod, metric = m: max(0.01 * abs(baseline_lookup.loc[mod, metric]), 1e-6)
         ).astype(float) for m in FRONTIER_METRICS
     }, index = common)
@@ -971,11 +992,15 @@ def eval_perturb(
 
     recovery_df = rho.reset_index()
     recovery_df.columns = [
-        c.replace("d_", "rho_") if c.startswith("d_") else c
+        c.replace("Δ ", "ρ ") if c.startswith("Δ ") else c
         for c in recovery_df.columns
     ]
 
     return results_data, perturbed_all, recovery_df
+
+
+def eval_perturb(*args, **kwargs):
+    return eval_perturbed(*args, **kwargs)
 
 ## ----------------------------------------------------------------------------
 ## summarize perturbation tests
@@ -985,6 +1010,7 @@ def stat_perturbed_test(
     feat_value: Sequence[str],
     feat_pairs: Sequence[str] | None = None,
     feat_group: Sequence[str] = ["track", "method"],
+    pert_type: str | None = None,
     label_pert: str = "perturbation",
     label_base: str = "baseline",
     decimals: int = 4,
@@ -1004,6 +1030,9 @@ def stat_perturbed_test(
             row. Defaults to ["model"].
         feat_group: Columns whose unique combinations define independent
             tests (default ["track", "method"]).
+        pert_type: Perturbation type to restrict to (e.g. "network",
+            "invariants", "process", "signatures", "temporal").
+            None -> use all perturbation types.
         label_pert: Column that flags baseline vs perturbed rows.
         label_base: Value in label_pert for baseline rows.
         decimals: Number of decimal places for display (default 4).
@@ -1012,9 +1041,15 @@ def stat_perturbed_test(
     Returns:
         Display-ready table with columns:
         [*feat_group, Metric?, Median <M> (Original), Median <M> (Perturbed),
-        Median Δ<M>, Positive Δ, Wilcoxon W+, Rank-biserial r, One-sided p,
+        Median Δ <M>, Positive Δ , Wilcoxon W+, Rank-biserial r, One-sided p,
         Holm-adjusted p, Sig.].
     """
+
+    ## filter to a single perturbation type when specified
+    if pert_type is not None:
+        results = results.loc[
+            results[label_pert].isin([label_base, pert_type])
+        ].copy()
 
     feat_value = list(feat_value)
     feat_group = list(feat_group or [])
@@ -1024,13 +1059,6 @@ def stat_perturbed_test(
     pair_cols = list(feat_pairs) if feat_pairs is not None else ["model"]
 
     data = results.copy()
-
-    ## disambiguate repeated method names across perturbation families
-    if "method" in feat_group and "perturbation" not in feat_group and {"method", label_pert}.issubset(data.columns):
-        mask = data[label_pert] != label_base
-        data.loc[mask, "method"] = (
-            data.loc[mask, label_pert].astype(str) + ":" + data.loc[mask, "method"].astype(str)
-        )
 
     baseline = data.loc[data[label_pert] == label_base].copy()
     perturbed = data.loc[data[label_pert] != label_base].copy()
@@ -1055,7 +1083,7 @@ def stat_perturbed_test(
     else:
         n_display = f"{int(np.min(unique_n))}-{int(np.max(unique_n))}"
 
-    metric_label = feat_value[0] if len(feat_value) == 1 else ", ".join(feat_value)
+    metric_label = feat_value[0].upper() if len(feat_value) == 1 else ", ".join(v.upper() for v in feat_value)
     print(f"=== Perturbation: Original vs Perturbed Median {metric_label} (n = {n_display}) ===")
     print(f"H₁: Perturbation lowers median {metric_label}")
     print("*** p < 0.001, ** p < 0.01, * p < 0.05")
@@ -1102,8 +1130,8 @@ def stat_perturbed_test(
         "metric",
         "Median Original",
         "Median Perturbed",
-        "Median Δ",
-        "Positive Δ",
+        "Median Δ ",
+        "Positive Δ ",
         "Wilcoxon W+",
         "Rank-biserial r",
         p_label,
@@ -1130,11 +1158,11 @@ def stat_perturbed_test(
     ## convert group/metric labels to display names
     summary = summary.rename(columns = {c: c.replace("_", " ").title() for c in feat_group})
     if len(feat_value) == 1:
-        tag = feat_value[0]
+        tag = feat_value[0].upper()
         summary = summary.rename(columns = {
             "Median Original": f"Median {tag} (Original)",
             "Median Perturbed": f"Median {tag} (Perturbed)",
-            "Median Δ": f"Median Δ {tag}",
+            "Median Δ ": f"Median Δ  {tag}",
         }).drop(columns = ["metric"])
     else:
         summary = summary.rename(columns = {"metric": "Metric"})
@@ -1171,12 +1199,12 @@ def stat_perturbed_test(
 
     ## keep a stable display column order
     if "Metric" in summary.columns:
-        value_cols_order = ["Metric", "Median Original", "Median Perturbed", "Median Δ", "Positive Δ", *tail_cols]
+        value_cols_order = ["Metric", "Median Original", "Median Perturbed", "Median Δ ", "Positive Δ ", *tail_cols]
     else:
         med_o = next((c for c in summary.columns if c.startswith("Median ") and c.endswith("(Original)")), "Median Original")
         med_p = next((c for c in summary.columns if c.startswith("Median ") and c.endswith("(Perturbed)")), "Median Perturbed")
-        med_d = next((c for c in summary.columns if c.startswith("Median Δ")), "Median Δ")
-        value_cols_order = [med_o, med_p, med_d, "Positive Δ", *tail_cols]
+        med_d = next((c for c in summary.columns if c.startswith("Median Δ ")), "Median Δ ")
+        value_cols_order = [med_o, med_p, med_d, "Positive Δ ", *tail_cols]
 
     summary = summary.reindex(columns = group_display + [c for c in value_cols_order if c in summary.columns])
     summary = summary.set_index(group_display) if (index and group_display) else summary
@@ -1200,7 +1228,7 @@ def stat_perturbed_summary(
     Args:
         results: Output of eval_perturb (results_data, perturbed_all, or
             recovery_df).
-        metrics: Metric columns to aggregate. Defaults to d_* or rho_*
+        metrics: Metric columns to aggregate. Defaults to Δ * or rho_*
             columns detected from the dataframe.
         feat_group: Grouping columns for the summary
             (default ["track", "perturbation"]).
@@ -1215,8 +1243,8 @@ def stat_perturbed_summary(
 
     feat_group = list(feat_group or ["track", "perturbation"])
     if metrics is None:
-        rho_cols = [c for c in results.columns if c.startswith("rho_")]
-        d_cols = [c for c in results.columns if c.startswith("d_")]
+        rho_cols = [c for c in results.columns if c.startswith("ρ ")]
+        d_cols = [c for c in results.columns if c.startswith("Δ ")]
         metrics = rho_cols if rho_cols else d_cols
     metrics = list(metrics)
 
