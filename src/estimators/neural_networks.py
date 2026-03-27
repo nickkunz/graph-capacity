@@ -17,13 +17,15 @@ class NeuralQuantile(BaseEstimator):
         self, 
         quantile_c: float = ASYMMETRY_C,
         quantile_r: float = ASYMMETRY_R,
-        input_dims: int | None = None, 
+        input_dims: int | None = None,
+        random_state: int = 42,
         **kwargs: Any
         ) -> None:
 
         self.quantile_c = quantile_c
         self.quantile_r = quantile_r
         self.input_dims = input_dims
+        self.random_state = random_state
         self.kwargs: dict[str, Any] = kwargs
 
         self.estimator_c = NeuralBase(
@@ -31,6 +33,7 @@ class NeuralQuantile(BaseEstimator):
             loss_fn = quantile_loss,
             quantile = quantile_c,
             input_dims = input_dims,
+            random_state = random_state,
             **kwargs
         )
         self.estimator_r = NeuralBase(
@@ -38,6 +41,7 @@ class NeuralQuantile(BaseEstimator):
             loss_fn = quantile_loss,
             quantile = quantile_r,
             input_dims = input_dims,
+            random_state = random_state,
             **kwargs
         )
 
@@ -46,13 +50,15 @@ class NeuralExpectile(BaseEstimator):
         self, 
         quantile_c: float = ASYMMETRY_C, 
         quantile_r: float = ASYMMETRY_R, 
-        input_dims: int | None = None, 
+        input_dims: int | None = None,
+        random_state: int = 42,
         **kwargs: Any
         ) -> None:
 
         self.quantile_c = quantile_c
         self.quantile_r = quantile_r
         self.input_dims = input_dims
+        self.random_state = random_state
         self.kwargs: dict[str, Any] = kwargs
         
         self.estimator_c = NeuralBase(
@@ -60,6 +66,7 @@ class NeuralExpectile(BaseEstimator):
             loss_fn = expectile_loss,
             quantile = quantile_c,
             input_dims = input_dims,
+            random_state = random_state,
             **kwargs
         )
         self.estimator_r = NeuralBase(
@@ -67,6 +74,7 @@ class NeuralExpectile(BaseEstimator):
             loss_fn = expectile_loss,
             quantile = quantile_r,
             input_dims = input_dims,
+            random_state = random_state,
             **kwargs
         )
 
@@ -75,13 +83,15 @@ class NeuralConvex(BaseEstimator):
         self, 
         quantile_c: float = ASYMMETRY_C, 
         quantile_r: float = ASYMMETRY_R, 
-        input_dims: int | None = None, 
+        input_dims: int | None = None,
+        random_state: int = 42,
         **kwargs: Any
         ) -> None:
 
         self.quantile_c = quantile_c
         self.quantile_r = quantile_r
         self.input_dims = input_dims
+        self.random_state = random_state
         self.kwargs: dict[str, Any] = kwargs
 
         self.estimator_c = NeuralBase(
@@ -89,6 +99,7 @@ class NeuralConvex(BaseEstimator):
             loss_fn = quantile_loss,
             quantile = quantile_c,
             input_dims = input_dims,
+            random_state = random_state,
             **kwargs
         )
         self.estimator_r = NeuralBase(
@@ -96,6 +107,7 @@ class NeuralConvex(BaseEstimator):
             loss_fn = quantile_loss,
             quantile = quantile_r,
             input_dims = input_dims,
+            random_state = random_state,
             **kwargs
         )
 
@@ -113,7 +125,7 @@ class NeuralBase(BaseEstimator, RegressorMixin):
         epochs: int = 1000,
         dropout: float = 0.1,
         weight_decay: float = 0.01,
-        random_state: int | None = None
+        random_state: int = 42
         ) -> None:
 
         self.net_cls = net_cls
