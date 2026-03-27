@@ -145,8 +145,11 @@ class NeuralBase(BaseEstimator, RegressorMixin):
     def fit(self, X: ArrayLike, y: ArrayLike) -> "NeuralBase":
 
         ## seed torch for reproducibility
-        if self.random_state is not None:
-            torch.manual_seed(self.random_state)
+        torch.manual_seed(self.random_state)
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed_all(self.random_state)
+            torch.backends.cudnn.deterministic = True
+            torch.backends.cudnn.benchmark = False
 
         ## data prep
         X_train = np.array(X)
