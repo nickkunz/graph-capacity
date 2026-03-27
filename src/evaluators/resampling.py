@@ -139,10 +139,9 @@ def _run_retrain_fold(
     model_r = clone(estimator_r)
 
     ## set random_state on estimators if supported
-    if random_state is not None:
-        for m in (model_c, model_r):
-            if hasattr(m, "random_state"):
-                m.set_params(random_state = random_state)
+    for m in (model_c, model_r):
+        if hasattr(m, "random_state"):
+            m.set_params(random_state = random_state)
 
     ## train C on graph invariants
     model_c.fit(X_train_scaled, y_train)
@@ -278,10 +277,9 @@ def _run_frozen_fold(
     model_r = clone(estimator_r)
 
     ## set random_state on estimators if supported
-    if random_state is not None:
-        for m in (model_c, model_r):
-            if hasattr(m, "random_state"):
-                m.set_params(random_state = random_state)
+    for m in (model_c, model_r):
+        if hasattr(m, "random_state"):
+            m.set_params(random_state = random_state)
 
     ## train C on graph invariants
     model_c.fit(X_train_scaled, y_train)
@@ -391,12 +389,6 @@ def logo_cross_valid(
     for _, test_idx in fold_splits:
         assert len(np.unique(groups[test_idx])) == 1, "logo fold contains multiple groups"
 
-    ## repeat seed per iteration
-    def _repeat_seed(repeat: int) -> int | None:
-        if random_state is None:
-            return None
-        return random_state + repeat
-
     ## parallel fold execution across all repeats
     fold_results = Parallel(n_jobs = n_jobs)(
         delayed(_run_retrain_fold)(
@@ -409,7 +401,7 @@ def logo_cross_valid(
             feat_z = feat_z,
             estimator_c = estimator_c,
             estimator_r = estimator_r,
-            random_state = _repeat_seed(repeat),
+            random_state = random_state + repeat,
             group_name = groups[test_idx][0],
         )
         for repeat in range(n_repeats)
@@ -525,12 +517,6 @@ def logo_cross_valid_frozen(
     for _, test_idx in fold_splits:
         assert len(np.unique(groups[test_idx])) == 1, "logo fold contains multiple groups"
 
-    ## repeat seed per iteration
-    def _repeat_seed(repeat: int) -> int | None:
-        if random_state is None:
-            return None
-        return random_state + repeat
-
     ## parallel fold execution across all repeats
     fold_results = Parallel(n_jobs = n_jobs)(
         delayed(_run_frozen_fold)(
@@ -547,7 +533,7 @@ def logo_cross_valid_frozen(
             estimator_r = estimator_r,
             target = target,
             group = group,
-            random_state = _repeat_seed(repeat),
+            random_state = random_state + repeat,
         )
         for repeat in range(n_repeats)
         for train_idx, test_idx in fold_splits
@@ -679,12 +665,6 @@ def kfold_cross_valid(
 
     fold_splits = list(splitter.split(X.values))
 
-    ## iteration seed per fold for estimator random_state
-    def _iter_seed(fold_id):
-        if random_state is None:
-            return None
-        return random_state + fold_id // n_splits
-
     ## parallel fold execution (all folds dispatched at once)
     fold_results = Parallel(n_jobs = n_jobs)(
         delayed(_run_retrain_fold)(
@@ -697,7 +677,7 @@ def kfold_cross_valid(
             feat_z = feat_z,
             estimator_c = estimator_c,
             estimator_r = estimator_r,
-            random_state = _iter_seed(fold_id),
+            random_state = random_state + fold_id // n_splits,
         )
         for fold_id, (train_idx, test_idx) in enumerate(fold_splits)
     )
