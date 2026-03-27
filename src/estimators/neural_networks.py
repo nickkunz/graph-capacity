@@ -1,4 +1,5 @@
 ## libraries
+import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -147,6 +148,8 @@ class NeuralBase(BaseEstimator, RegressorMixin):
         ## seed torch for reproducibility
         torch.manual_seed(self.random_state)
         if torch.cuda.is_available():
+            os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
+            torch.use_deterministic_algorithms(True, warn_only = True)
             torch.cuda.manual_seed_all(self.random_state)
             torch.backends.cudnn.deterministic = True
             torch.backends.cudnn.benchmark = False
