@@ -2,9 +2,9 @@
 import numpy as np
 import pandas as pd
 from typing import Sequence
+from joblib import Parallel, delayed
 from sklearn.base import BaseEstimator, clone
 from sklearn.model_selection import LeaveOneGroupOut, KFold, RepeatedKFold
-from joblib import Parallel, delayed
 
 ## modules
 from src.evaluators.metrics import frontier_metrics
@@ -200,23 +200,25 @@ def _run_frozen_fold(
     ) -> dict:
 
     """
-    Desc: execute a single frozen-manifold logo fold. trains on clean
+    Desc: Execute a single frozen-manifold logo fold. Trains on clean
           training data and evaluates on perturbed test data for the
           held-out group.
+
     Args:
-        train_idx: training indices into X/Z/y_star.
-        test_idx: test indices (used for group identification).
-        X: graph invariant features from training data.
-        Z: process signature features from training data.
-        y_star: log-transformed target from training data.
-        groups: group labels from training data.
-        data_test: perturbed evaluation dataframe with same schema.
-        feat_x: graph invariant column names.
-        feat_z: process signature column names.
-        estimator_c: capacity estimator (cloned internally).
-        estimator_r: residual estimator (cloned internally).
-        target: target column name.
-        group: group column name.
+        train_idx: Training indices into X/Z/y_star.
+        test_idx: Test indices (used for group identification).
+        X: Graph invariant features from training data.
+        Z: Process signature features from training data.
+        y_star: Log-transformed target from training data.
+        groups: Group labels from training data.
+        data_test: Perturbed evaluation dataframe with same schema.
+        feat_x: Graph invariant column names.
+        feat_z: Process signature column names.
+        estimator_c: Capacity estimator (cloned internally).
+        estimator_r: Residual estimator (cloned internally).
+        target: Target column name.
+        group: Group column name.
+
     Returns:
         dict with frontier metrics, predictions, and index mapping,
         or dict with skipped group name if fold cannot be evaluated.
@@ -327,30 +329,39 @@ def logo_cross_valid(
     estimator_r: BaseEstimator,
     target: str = "target",
     group: str = "domain",
+    n_repeats: int = 10,
     random_state: int = 42,
     n_jobs: int = -1,
     ) -> tuple[pd.DataFrame, np.ndarray]:
 
     """
-    Desc: leave-one-group-out cross validation (retrain). trains and evaluates
-          on data using standard logo cv. transforms are always fit on the
-          training fold only. estimators are cloned per fold. rows with nans
-          are dropped per fold using training-fold-only statistics.
+    Desc: Leave-one-group-out cross validation (retrain). Trains and evaluates
+          on data using standard logo cv. When n_repeats > 1, the full logo
+          procedure is repeated with different random seeds to average out
+          stochastic learner variance; frontier metrics are averaged per group
+          across repeats. Transforms are always fit on the training fold only.
+          Estimators are cloned per fold. Rows with nans are dropped per fold
+          using training-fold-only statistics.
     Args:
-        data: training data with features, target, and group columns.
-        feat_x: graph invariant feature column names.
-        feat_z: process signature feature column names.
-        estimator_c: capacity estimator (cloned per fold).
-        estimator_r: residual estimator (cloned per fold).
-        target: target column name.
-        group: group column name for logo splitting.
-        random_state: random seed forwarded to cloned estimators when supported.
-        n_jobs: number of parallel jobs for fold execution (-1 for all cores).
+        data: Training data with features, target, and group columns.
+        feat_x: Graph invariant feature column names.
+        feat_z: Process signature feature column names.
+        estimator_c: Capacity estimator (cloned per fold).
+        estimator_r: Residual estimator (cloned per fold).
+        target: Target column name.
+        group: Group column name for logo splitting.
+        n_repeats: Number of times to repeat the full logo procedure with
+            different random seeds. Defaults to 1 (single pass).
+        random_state: Random seed forwarded to cloned estimators when supported.
+            Each repeat offsets the seed by the repeat index.
+        n_jobs: Number of parallel jobs for fold execution (-1 for all cores).
     Returns:
-        tuple of (frontier results dataframe, predicted values array).
+        Tuple of (frontier results dataframe, predicted values array).
+        Frontier metrics are averaged across repeats per group.
 
     Raises:
         ValueError if feat_x or feat_z is empty.
+        ValueError if n_repeats < 1.
         AssertionError if any logo test fold contains multiple groups.
         ValueError propagated from _drop_nan_rows if fold-local inputs are
         inconsistent.
@@ -361,6 +372,8 @@ def logo_cross_valid(
         raise ValueError("feat_x must contain at least one column name.")
     if not feat_z:
         raise ValueError("feat_z must contain at least one column name.")
+    if n_repeats < 1:
+        raise ValueError("n_repeats must be at least 1.")
 
     ## init variables from training data
     feat_x = list(feat_x)
@@ -370,7 +383,7 @@ def logo_cross_valid(
     y_star = _log_transformer(data[target]).astype(float)
     groups = data[group].values
 
-    ## cross-validation splits
+    ## cross-validation splits (fixed across repeats)
     logo = LeaveOneGroupOut()
     fold_splits = list(logo.split(X = X.values, y = y_star.values, groups = groups))
 
@@ -378,7 +391,13 @@ def logo_cross_valid(
     for _, test_idx in fold_splits:
         assert len(np.unique(groups[test_idx])) == 1, "logo fold contains multiple groups"
 
-    ## parallel fold execution
+    ## repeat seed per iteration
+    def _repeat_seed(repeat: int) -> int | None:
+        if random_state is None:
+            return None
+        return random_state + repeat
+
+    ## parallel fold execution across all repeats
     fold_results = Parallel(n_jobs = n_jobs)(
         delayed(_run_retrain_fold)(
             train_idx = train_idx,
@@ -390,20 +409,38 @@ def logo_cross_valid(
             feat_z = feat_z,
             estimator_c = estimator_c,
             estimator_r = estimator_r,
-            random_state = random_state,
+            random_state = _repeat_seed(repeat),
             group_name = groups[test_idx][0],
         )
+        for repeat in range(n_repeats)
         for train_idx, test_idx in fold_splits
     )
 
-    ## merge results
-    y_pred_out = np.full(shape = len(data), fill_value = np.nan)
-    frontier_results = list()
+    ## accumulate predictions and frontier metrics across repeats
+    y_pred_sum = np.zeros(shape = len(data), dtype = float)
+    y_pred_count = np.zeros(shape = len(data), dtype = int)
+    group_frontiers: dict[str, list[dict]] = dict()
+
     for result in fold_results:
         if result is None:
             continue
-        y_pred_out[result["kept_indices"]] = result["y_pred"]
-        frontier_results.append({"group": result["group_name"], **result["frontier"]})
+        y_pred_sum[result["kept_indices"]] += result["y_pred"]
+        y_pred_count[result["kept_indices"]] += 1
+        grp = result["group_name"]
+        if grp not in group_frontiers:
+            group_frontiers[grp] = list()
+        group_frontiers[grp].append(result["frontier"])
+
+    ## average frontier metrics per group across repeats
+    frontier_results = list()
+    for grp in sorted(group_frontiers.keys()):
+        metrics_avg = pd.DataFrame(group_frontiers[grp]).mean().to_dict()
+        frontier_results.append({"group": grp, **metrics_avg})
+
+    ## average predictions across repeats
+    y_pred_out = np.full(shape = len(data), fill_value = np.nan)
+    valid_pred = y_pred_count > 0
+    y_pred_out[valid_pred] = y_pred_sum[valid_pred] / y_pred_count[valid_pred]
 
     return pd.DataFrame(frontier_results), y_pred_out
 
@@ -419,36 +456,46 @@ def logo_cross_valid_frozen(
     estimator_r: BaseEstimator,
     target: str = "target",
     group: str = "domain",
+    n_repeats: int = 10,
     random_state: int = 42,
     n_jobs: int = -1,
     ) -> tuple[pd.DataFrame, np.ndarray, dict]:
 
     """
-    Desc: frozen-manifold leave-one-group-out cross validation. trains on
+    Desc: Frozen-manifold leave-one-group-out cross validation. Trains on
           data_train and evaluates on data_test, isolating geometric sensitivity
-          from estimator adaptation. all preprocessing (log transform,
-          standardization) is fit exclusively on the training fold and applied
-          to data_test without refitting. estimators are cloned per fold.
-          rows with nans are dropped per fold using training-fold-only
-          statistics.
+          from estimator adaptation. When n_repeats > 1, the full logo
+          procedure is repeated with different random seeds to average out
+          stochastic learner variance; frontier metrics are averaged per group
+          across repeats. All preprocessing (log transform, standardization)
+          is fit exclusively on the training fold and applied to data_test
+          without refitting. Estimators are cloned per fold. Rows with nans
+          are dropped per fold using training-fold-only statistics.
+    
     Args:
-        data_train: clean training data with features, target, and group columns.
-        data_test: perturbed evaluation data with the same schema.
-        feat_x: graph invariant feature column names.
-        feat_z: process signature feature column names.
-        estimator_c: capacity estimator (cloned per fold).
-        estimator_r: residual estimator (cloned per fold).
-        target: target column name.
-        group: group column name for logo splitting.
-        random_state: random seed forwarded to cloned estimators when supported.
-        n_jobs: number of parallel jobs for fold execution (-1 for all cores).
+        data_train: Clean training data with features, target, and group columns.
+        data_test: Perturbed evaluation data with the same schema.
+        feat_x: Graph invariant feature column names.
+        feat_z: Process signature feature column names.
+        estimator_c: Capacity estimator (cloned per fold).
+        estimator_r: Residual estimator (cloned per fold).
+        target: Target column name.
+        group: Group column name for logo splitting.
+        n_repeats: Number of times to repeat the full logo procedure with
+            different random seeds. Defaults to 10.
+        random_state: Random seed forwarded to cloned estimators when supported.
+            Each repeat offsets the seed by the repeat index.
+        n_jobs: Number of parallel jobs for fold execution (-1 for all cores).
+    
     Returns:
-        tuple of (frontier results dataframe, predicted values array,
+        Tuple of (frontier results dataframe, predicted values array,
         metadata dict with n_groups_evaluated, n_groups_skipped, and
-        groups_evaluated).
+        groups_evaluated). Frontier metrics are averaged across repeats
+        per group.
 
     Raises:
         ValueError if feat_x or feat_z is empty.
+        ValueError if n_repeats < 1.
         AssertionError if any logo test fold contains multiple groups.
         ValueError propagated from _drop_nan_rows if fold-local inputs are
         inconsistent.
@@ -459,6 +506,8 @@ def logo_cross_valid_frozen(
         raise ValueError("feat_x must contain at least one column name.")
     if not feat_z:
         raise ValueError("feat_z must contain at least one column name.")
+    if n_repeats < 1:
+        raise ValueError("n_repeats must be at least 1.")
 
     ## init variables from training data
     feat_x = list(feat_x)
@@ -468,7 +517,7 @@ def logo_cross_valid_frozen(
     y_star = _log_transformer(data_train[target]).astype(float)
     groups = data_train[group].values
 
-    ## cross-validation splits
+    ## cross-validation splits (fixed across repeats)
     logo = LeaveOneGroupOut()
     fold_splits = list(logo.split(X = X.values, y = y_star.values, groups = groups))
 
@@ -476,7 +525,13 @@ def logo_cross_valid_frozen(
     for _, test_idx in fold_splits:
         assert len(np.unique(groups[test_idx])) == 1, "logo fold contains multiple groups"
 
-    ## parallel fold execution
+    ## repeat seed per iteration
+    def _repeat_seed(repeat: int) -> int | None:
+        if random_state is None:
+            return None
+        return random_state + repeat
+
+    ## parallel fold execution across all repeats
     fold_results = Parallel(n_jobs = n_jobs)(
         delayed(_run_frozen_fold)(
             train_idx = train_idx,
@@ -492,30 +547,48 @@ def logo_cross_valid_frozen(
             estimator_r = estimator_r,
             target = target,
             group = group,
-            random_state = random_state,
+            random_state = _repeat_seed(repeat),
         )
+        for repeat in range(n_repeats)
         for train_idx, test_idx in fold_splits
     )
 
-    ## merge results
-    y_pred_out = np.full(shape = len(data_test), fill_value = np.nan)
-    frontier_results = list()
-    groups_evaluated = list()
-    groups_skipped = list()
+    ## accumulate predictions and frontier metrics across repeats
+    y_pred_sum = np.zeros(shape = len(data_test), dtype = float)
+    y_pred_count = np.zeros(shape = len(data_test), dtype = int)
+    group_frontiers: dict[str, list[dict]] = dict()
+    groups_evaluated_set: set[str] = set()
+    groups_skipped_set: set[str] = set()
+
     for result in fold_results:
         if "skipped" in result:
-            groups_skipped.append(result["skipped"])
+            groups_skipped_set.add(result["skipped"])
             continue
-        y_pred_out[result["kept_indices"]] = result["y_pred"]
-        frontier_results.append({"group": result["group_name"], **result["frontier"]})
-        groups_evaluated.append(result["group_name"])
+        y_pred_sum[result["kept_indices"]] += result["y_pred"]
+        y_pred_count[result["kept_indices"]] += 1
+        grp = result["group_name"]
+        groups_evaluated_set.add(grp)
+        if grp not in group_frontiers:
+            group_frontiers[grp] = list()
+        group_frontiers[grp].append(result["frontier"])
+
+    ## average frontier metrics per group across repeats
+    frontier_results = list()
+    for grp in sorted(group_frontiers.keys()):
+        metrics_avg = pd.DataFrame(group_frontiers[grp]).mean().to_dict()
+        frontier_results.append({"group": grp, **metrics_avg})
+
+    ## average predictions across repeats
+    y_pred_out = np.full(shape = len(data_test), fill_value = np.nan)
+    valid_pred = y_pred_count > 0
+    y_pred_out[valid_pred] = y_pred_sum[valid_pred] / y_pred_count[valid_pred]
 
     ## metadata for group coverage tracking
     metadata = {
-        "n_groups_evaluated": len(groups_evaluated),
-        "n_groups_skipped": len(groups_skipped),
-        "groups_evaluated": sorted(groups_evaluated),
-        "groups_skipped": sorted(groups_skipped),
+        "n_groups_evaluated": len(groups_evaluated_set),
+        "n_groups_skipped": len(groups_skipped_set - groups_evaluated_set),
+        "groups_evaluated": sorted(groups_evaluated_set),
+        "groups_skipped": sorted(groups_skipped_set - groups_evaluated_set),
     }
 
     return pd.DataFrame(frontier_results), y_pred_out, metadata
@@ -531,7 +604,7 @@ def kfold_cross_valid(
     estimator_r: BaseEstimator,
     target: str = "target",
     n_splits: int = 10,
-    n_repeats: int = 30,
+    n_repeats: int = 10,
     shuffle: bool = True,
     random_state: int = 42,
     n_jobs: int = -1,
@@ -539,29 +612,29 @@ def kfold_cross_valid(
     ) -> tuple[pd.DataFrame, np.ndarray]:
 
     """
-    Desc: k-fold cross validation. transforms are fit on the training fold
-          only. estimators are cloned per fold. rows with nans are dropped
+    Desc: k-fold cross validation. Transforms are fit on the training fold
+          only. Estimators are cloned per fold. Rows with nans are dropped
           per fold using training-fold-only statistics.
     Args:
-        data: training data with features, target, and group columns.
-        feat_x: graph invariant feature column names.
-        feat_z: process signature feature column names.
-        estimator_c: capacity estimator (cloned per fold).
-        estimator_r: residual estimator (cloned per fold).
-        target: target column name.
-        n_splits: number of folds.
-        n_repeats: number of repeated k-fold iterations.
-        shuffle: whether to shuffle before splitting.
-        random_state: random seed for reproducibility.
-        n_jobs: number of parallel jobs for fold execution (-1 for all cores).
-        detail: if true, return one row per iteration. if false (default),
+        data: Training data with features, target, and group columns.
+        feat_x: Graph invariant feature column names.
+        feat_z: Process signature feature column names.
+        estimator_c: Capacity estimator (cloned per fold).
+        estimator_r: Residual estimator (cloned per fold).
+        target: Target column name.
+        n_splits: Number of folds.
+        n_repeats: Number of repeated k-fold iterations.
+        shuffle: Whether to shuffle before splitting.
+        random_state: Random seed for reproducibility.
+        n_jobs: Number of parallel jobs for fold execution (-1 for all cores).
+        detail: If true, return one row per iteration. If false (default),
                 return a single row with metrics averaged across iterations.
     Returns:
-        tuple of (frontier results dataframe, predicted values array).
-        when detail is false, the frontier dataframe contains a single row
-        with metrics averaged across all iterations. when detail is true,
+        Tuple of (frontier results dataframe, predicted values array).
+        When detail is false, the frontier dataframe contains a single row
+        with metrics averaged across all iterations. When detail is true,
         it contains one row per iteration with fold-averaged metrics.
-        the prediction array is averaged across iterations in both cases.
+        The prediction array is averaged across iterations in both cases.
 
     Raises:
         ValueError if feat_x or feat_z is empty.
