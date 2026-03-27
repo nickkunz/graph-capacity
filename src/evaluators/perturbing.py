@@ -1,5 +1,6 @@
 ## libraries
 import sys
+import random
 import warnings
 import igraph as ig
 import numpy as np
@@ -345,6 +346,7 @@ def network_perturb(
     method: str = "rewire",
     intensity: float = 0.1,
     n_swaps: Optional[int] = None,
+    random_state: int = 42,
     ) -> dict:
     
     """
@@ -364,6 +366,9 @@ def network_perturb(
         ValueError: If method is unknown.
     """
 
+    ## rng init
+    rng = np.random.default_rng(random_state)
+
     ## init graph
     G = graph.copy()
     n_edges = G.ecount()
@@ -373,20 +378,21 @@ def network_perturb(
     if method == "rewire":
         if n_swaps is None:
             n_swaps = max(1, int(n_edges * intensity)) if intensity > 0 else 0
+        ig.set_random_number_generator(random.Random(random_state))
         G.rewire(n = n_swaps, mode = "simple")
 
     ## sparsification (remove edges)
     elif method == "sparsify":
         n_remove = int(n_edges * intensity)
         if n_remove > 0:
-            edges_to_remove = np.random.choice(n_edges, n_remove, replace = False)
+            edges_to_remove = rng.choice(n_edges, n_remove, replace = False)
             G.delete_edges(edges_to_remove)
 
     ## node sampling (remove nodes)
     elif method == "node_sample":
         n_remove = int(n_nodes * intensity)
         if n_remove > 0 and n_remove < n_nodes:
-            nodes_to_remove = np.random.choice(n_nodes, n_remove, replace = False).tolist()
+            nodes_to_remove = rng.choice(n_nodes, n_remove, replace = False).tolist()
             G.delete_vertices(nodes_to_remove)
 
     ## densification (add edges)
@@ -396,7 +402,7 @@ def network_perturb(
             existing = set(tuple(sorted(e.tuple)) for e in G.es)
             added = 0
             while added < n_add:
-                u, v = np.random.randint(0, n_nodes, 2)
+                u, v = rng.integers(0, n_nodes, size = 2)
                 if u != v:
                     edge = tuple(sorted((u, v)))
                     if edge not in existing:
@@ -418,6 +424,7 @@ def invariant_perturb(
     method: str = "noise",
     noise: float = 0.05,
     subset: float = 0.8,
+    random_state: int = 42,
     ) -> pd.DataFrame:
     
     """
@@ -437,6 +444,8 @@ def invariant_perturb(
         ValueError: If method is unknown.
     """
 
+    rng = np.random.default_rng(random_state)
+
     ## copy to avoid modifying original
     X_new = X.copy()
 
@@ -447,11 +456,11 @@ def invariant_perturb(
             if not (std > 0):
                 std = float(np.mean(np.abs(X_new[col])))
             if std > 0:
-                X_new[col] += np.random.normal(0, std * noise, size = len(X_new))
+                X_new[col] += rng.normal(0, std * noise, size = len(X_new))
 
     ## multiplicative jitter to simulate measurement error
     elif method == "jitter":
-        jitter = np.random.normal(0, noise, size = X_new.shape)
+        jitter = rng.normal(0, noise, size = X_new.shape)
         X_new *= (1 + jitter)
 
         ## clip only inherently non-negative invariants
@@ -463,13 +472,13 @@ def invariant_perturb(
     elif method == "subset":
         n_features = X_new.shape[1]
         n_keep = int(n_features * subset)
-        drop_indices = np.random.choice(
+        drop_indices = rng.choice(
             X_new.columns,
             size = n_features - n_keep,
             replace = False
         )
         for col in drop_indices:
-            X_new[col] = np.random.permutation(X_new[col].values)
+            X_new[col] = rng.permutation(X_new[col].values)
 
     else:
         raise ValueError(f"unknown invariant perturbation method: {method}")
@@ -483,6 +492,7 @@ def process_perturb(
     counts: np.ndarray,
     method: str = "scaling",
     param: float = 1.0,
+    random_state: int = 42,
     ) -> dict:
     
     """
@@ -500,6 +510,8 @@ def process_perturb(
     Raises:
         ValueError: If method is unknown.
     """
+
+    rng = np.random.default_rng(random_state)
 
     ## copy counts to avoid modifying original
     S_new = counts.copy().astype(float)
@@ -525,9 +537,9 @@ def process_perturb(
     elif method == "bootstrapping":
         n = len(S_new)
         k = max(1, int(round(n * float(param))))
-        S_new = np.random.choice(S_new, size = k, replace = True)
+        S_new = rng.choice(S_new, size = k, replace = True)
         if k < n:
-            S_new = np.concatenate([S_new, np.random.choice(S_new, size = n - k, replace = True)])
+            S_new = np.concatenate([S_new, rng.choice(S_new, size = n - k, replace = True)])
 
     else:
         raise ValueError(f"unknown process perturbation method: {method}")
@@ -546,6 +558,7 @@ def signature_perturb(
     y: pd.Series,
     method: str = "bootstrap",
     fraction: float = 1.0,
+    random_state: int = 42,
     ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series]:
     """
     Desc:
@@ -564,22 +577,23 @@ def signature_perturb(
 
     n_samples = len(y)
     indices = np.arange(n_samples)
+    rng = np.random.default_rng(random_state)
 
     if method == "bootstrap":
         ## bootstrap keeps original sample size
-        new_indices = resample(indices, n_samples = n_samples, replace = True)
+        new_indices = resample(indices, n_samples = n_samples, replace = True, random_state = random_state)
 
     elif method == "subsample":
         ## subsample uses fraction
         new_n = int(max(1, np.floor(n_samples * fraction)))
-        new_indices = resample(indices, n_samples = new_n, replace = False)
+        new_indices = resample(indices, n_samples = new_n, replace = False, random_state = random_state)
 
     elif method == "additive_noise":
         ## additive gaussian noise scaled by y standard deviation
         y_new = y.copy().astype(float)
         std = float(y_new.std())
         if std > 0:
-            noise = np.random.normal(0, std * fraction, size = n_samples)
+            noise = rng.normal(0, std * fraction, size = n_samples)
             y_new = y_new + noise
             y_new = np.maximum(y_new, 0.0)  # counts are non-negative
         return X.copy(), Z.copy(), pd.Series(y_new, name = y.name)
@@ -740,7 +754,7 @@ def _run_perturbation(
     feat_z: Sequence[str],
     group: str,
     target: str,
-    random_state: int | None,
+    random_state: int,
     ) -> dict | None:
 
     """
@@ -860,7 +874,7 @@ def eval_perturbed(
     feat_z: Sequence[str],
     group: str = "domain",
     target: str = "target",
-    random_state: int | None = 42,
+    random_state: int = 42,
     n_jobs: int = -1
     ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
 
