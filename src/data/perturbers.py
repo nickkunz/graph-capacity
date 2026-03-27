@@ -154,9 +154,10 @@ def _is_fully_connected_bipartite(graph: Any) -> bool:
     n2 = len(types) - n1
     return graph.ecount() == n1 * n2
 
-def _execute_perturbations(proc: Any, name: str, force: bool = False) -> dict[str, Any]:
+def _execute_perturbations(proc: Any, name: str, force: bool = False, random_state: int = 42) -> dict[str, Any]:
     """Run network, process, and temporal perturbations for a given processor."""
     results = dict()
+    rng = np.random.default_rng(random_state)
 
     ## --- network perturbation --- ##
     graph = getattr(proc, 'graph', None)
@@ -202,7 +203,7 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False) -> dict[st
                         continue
                 else:
                     try:
-                        features = network_perturb(graph, method = method, intensity = float(intensity))
+                        features = network_perturb(graph, method = method, intensity = float(intensity), random_state = random_state)
                     except Exception as exc:
                         logging.warning(f"Network {method} @ {intensity:.2f} failed for {name}: {exc}")
                         continue
@@ -261,6 +262,7 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False) -> dict[st
                         method = method,
                         noise = float(param) if method != 'subset' else 0.05,
                         subset = float(param) if method == 'subset' else 0.8,
+                        random_state = random_state,
                     )
                     row = perturbed_df.iloc[0].to_dict()
                 except Exception as exc:
@@ -283,7 +285,7 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False) -> dict[st
         for method, params in PROCESS_METHODS.items():
             for param in params:
                 try:
-                    sigs = process_perturb(counts, method = method, param = float(param))
+                    sigs = process_perturb(counts, method = method, param = float(param), random_state = random_state)
                 except Exception as exc:
                     logging.warning(f"Process {method} @ {param} failed for {name}: {exc}")
                     continue
@@ -311,6 +313,7 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False) -> dict[st
                         method = method,
                         noise = float(param) if method != 'subset' else 0.05,
                         subset = float(param) if method == 'subset' else 0.8,
+                        random_state = random_state,
                     )
                     row = perturbed_df.iloc[0].to_dict()
                 except Exception as exc:
@@ -382,7 +385,7 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False) -> dict[st
                                     continue
                                 sigma = intensity * max(day_max - day_min, 1)
                                 jittered = np.round(
-                                    days_arr + np.random.normal(0, sigma, size = len(days_arr))
+                                    days_arr + rng.normal(0, sigma, size = len(days_arr))
                                 ).astype(int).clip(day_min, day_max)
                                 day_keys, day_vals = np.unique(jittered, return_counts = True)
                                 new_counts = dict(zip(day_keys.tolist(), day_vals.tolist()))
@@ -403,7 +406,7 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False) -> dict[st
                                     continue
                                 sigma = intensity * max(n_days, 1)
                                 jittered = np.round(
-                                    event_days + np.random.normal(0, sigma, size = len(event_days))
+                                    event_days + rng.normal(0, sigma, size = len(event_days))
                                 ).astype(int).clip(0, n_days - 1)
                                 new_daily = np.zeros(n_days, dtype = int)
                                 idx_keys, idx_vals = np.unique(jittered, return_counts = True)
@@ -418,14 +421,14 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False) -> dict[st
                             intensity = float(param)
                             if is_ordinal:
                                 counts_arr = data_temp[target_col].values.clip(0).astype(int)
-                                survived = np.random.binomial(counts_arr, max(0.0, 1.0 - intensity))
+                                survived = rng.binomial(counts_arr, max(0.0, 1.0 - intensity))
                                 records = [
                                     {'day': int(data_temp[date_col].iloc[i]), 'target': int(survived[i])}
                                     for i in range(len(data_temp))
                                 ]
                             else:
                                 counts_arr = data_temp[target_col].values.clip(0).astype(int)
-                                survived = np.random.binomial(counts_arr, max(0.0, 1.0 - intensity))
+                                survived = rng.binomial(counts_arr, max(0.0, 1.0 - intensity))
                                 dropped = pd.Series(survived.astype(float), index = data_temp.index)
                                 resampled = dropped.resample('1D').sum()
                                 records = [
