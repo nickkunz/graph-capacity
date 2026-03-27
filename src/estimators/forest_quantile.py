@@ -14,17 +14,19 @@ class ForestQuantile(BaseEstimator):
         self,
         quantile_c: float = ASYMMETRY_C,
         quantile_r: float = ASYMMETRY_R,
+        random_state: int = 42,
         **kwargs: Any
         ) -> None:
         self.quantile_c = quantile_c
         self.quantile_r = quantile_r
+        self.random_state = random_state
         self.kwargs: dict[str, Any] = kwargs
-        self.estimator_c = ForestBase(quantile = quantile_c, **kwargs)
-        self.estimator_r = ForestBase(quantile = quantile_r, **kwargs)
+        self.estimator_c = ForestBase(quantile = quantile_c, random_state = random_state, **kwargs)
+        self.estimator_r = ForestBase(quantile = quantile_r, random_state = random_state, **kwargs)
 
 ## random forest sklearn framework
 class ForestBase(BaseEstimator, RegressorMixin):
-    def __init__(self, quantile: float, random_state: int | None = None, **kwargs: Any) -> None:
+    def __init__(self, quantile: float, random_state: int = 42, **kwargs: Any) -> None:
         self.quantile = quantile
         self.random_state = random_state
         self.kwargs: dict[str, Any] = kwargs
