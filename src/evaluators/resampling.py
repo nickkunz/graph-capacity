@@ -11,6 +11,25 @@ from src.evaluators.metrics import frontier_metrics
 from src.vectorizers.scalers import _log_transformer, _standardizer
 
 ## ----------------------------------------------------------------------------
+## result formatting helper
+## ----------------------------------------------------------------------------
+def _to_results_frame(results_dict: dict) -> pd.DataFrame:
+    """
+    Desc:
+        Converts a dictionary of CV frontiers into a single formatted DataFrame,
+        moving the "model" column to the front.
+        
+    Args:
+        results_dict: Dict mapping model names to their frontier dataframes.
+        
+    Returns:
+        A concatenated DataFrame with the 'model' column moved to index 0.
+    """
+    frame = pd.concat(results_dict.values(), ignore_index = True)
+    feat = ["model"] + [c for c in frame.columns if c != "model"]
+    return frame[feat]
+
+## ----------------------------------------------------------------------------
 ## fold-local helpers
 ## ----------------------------------------------------------------------------
 def _drop_nan_rows(
@@ -55,7 +74,6 @@ def _drop_nan_rows(
         & ~np.isnan(y)
     )
     return X.loc[mask], Z.loc[mask], y[mask.values], mask.values
-
 
 ## ----------------------------------------------------------------------------
 ## retrained-manifold worker
