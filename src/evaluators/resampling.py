@@ -1,4 +1,3 @@
-
 ## libraries
 import numpy as np
 import pandas as pd
@@ -81,7 +80,7 @@ def results_cross_valid(
     if decimals is not None:
         return result.style.set_table_styles([
             {"selector": "th.row_heading, th.index_name",
-             "props": [("text-align", "left")]}
+             "props": [("text-align", "left"), ("vertical-align", "top")]}
         ]).format(precision = decimals)
     return result
 
