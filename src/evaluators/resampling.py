@@ -1,3 +1,4 @@
+
 ## libraries
 import numpy as np
 import pandas as pd
@@ -5,6 +6,7 @@ from typing import Sequence
 from joblib import Parallel, delayed
 from sklearn.base import BaseEstimator, clone
 from sklearn.model_selection import LeaveOneGroupOut, KFold, RepeatedKFold
+from __future__ import annotations
 
 ## modules
 from src.evaluators.metrics import frontier_metrics
@@ -13,19 +15,19 @@ from src.vectorizers.scalers import _log_transformer, _standardizer
 ## ----------------------------------------------------------------------------
 ## result formatting helpers
 ## ----------------------------------------------------------------------------
-def compile_cross_valid(results_dict: dict) -> pd.DataFrame:
+def compile_cross_valid(results: dict) -> pd.DataFrame:
     """
     Desc:
         Converts a dictionary of CV frontiers into a single formatted DataFrame,
         moving the "model" column to the front.
         
     Args:
-        results_dict: Dict mapping model names to their frontier dataframes.
+        results: Dict mapping model names to their frontier dataframes.
         
     Returns:
         A concatenated DataFrame with the 'model' column moved to index 0.
     """
-    frame = pd.concat(results_dict.values(), ignore_index = True)
+    frame = pd.concat(results.values(), ignore_index = True)
     feat = ["model"] + [c for c in frame.columns if c != "model"]
     return frame[feat]
 
