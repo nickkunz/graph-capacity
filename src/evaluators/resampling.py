@@ -11,9 +11,9 @@ from src.evaluators.metrics import frontier_metrics
 from src.vectorizers.scalers import _log_transformer, _standardizer
 
 ## ----------------------------------------------------------------------------
-## result formatting helper
+## result formatting helpers
 ## ----------------------------------------------------------------------------
-def _to_results_frame(results_dict: dict) -> pd.DataFrame:
+def compile_cross_valid(results_dict: dict) -> pd.DataFrame:
     """
     Desc:
         Converts a dictionary of CV frontiers into a single formatted DataFrame,
@@ -28,6 +28,60 @@ def _to_results_frame(results_dict: dict) -> pd.DataFrame:
     frame = pd.concat(results_dict.values(), ignore_index = True)
     feat = ["model"] + [c for c in frame.columns if c != "model"]
     return frame[feat]
+
+## summarizes one or more CV result dicts into table
+def results_cross_valid(
+    *results: dict[str, pd.DataFrame],
+    keys: list[str] | None = None,
+    decimals: int | None = None,
+    ) -> pd.DataFrame | "pd.io.formats.style.Styler":
+
+    """
+    Desc:
+        Compiles one or more dictionaries of CV results into a single DataFrame.
+        With a single dict, concatenates frontiers and moves "model" to the front.
+        With multiple dicts and keys, groups each dict by model, computes means,
+        and builds a multi-index summary table.
+
+    Args:
+        *results: one or more dicts mapping names to DataFrames.
+        keys: optional list of group labels (one per dict) for multi-index rows.
+        decimals: if set, returns a styled table with left-justified index and
+            the given decimal precision. If None, returns a plain DataFrame.
+
+    Returns:
+        A DataFrame (or Styler when decimals is set) of compiled CV results.
+    """
+
+    ## single dict: concatenate and reorder columns
+    if len(results) == 1 and keys is None:
+        frame = pd.concat(results[0].values(), ignore_index = True)
+        feat = ["model"] + [c for c in frame.columns if c != "model"]
+        result = frame[feat]
+
+    ## multiple dicts with keys: grouped summary table
+    else:
+        if keys is None:
+            keys = [f"Group {i}" for i in range(len(results))]
+        blocks = []
+        for key, table in zip(keys, results):
+            for label, df in table.items():
+                ## unwrap styler to dataframe if needed
+                if hasattr(df, "data"):
+                    df = df.data
+                summary = df.select_dtypes(include = "number").mean()
+                summary.name = (key, label)
+                blocks.append(summary)
+        result = pd.DataFrame(blocks)
+        result.index = pd.MultiIndex.from_tuples(result.index, names = ["procedure", "method"])
+
+    ## optionally return styled output
+    if decimals is not None:
+        return result.style.set_table_styles([
+            {"selector": "th.row_heading, th.index_name",
+             "props": [("text-align", "left")]}
+        ]).format(precision = decimals)
+    return result
 
 ## ----------------------------------------------------------------------------
 ## fold-local helpers
@@ -741,3 +795,4 @@ def kfold_cross_valid(
         frontier_df = pd.DataFrame([frontier_df[metric_cols].mean().to_dict()])
 
     return frontier_df, y_pred_out
+
