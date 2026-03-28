@@ -74,9 +74,13 @@ def _efficiency_index(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12
     mv = _mean_violation(y_true = y_true, y_pred = y_pred)
     ea = _excess_area(y_true = y_true, y_pred = y_pred, eps = eps)
 
+    ## normalize mv by mean target magnitude to make dimensionless
+    mean_target = np.mean(np.abs(y_true)) + eps
+    mv_norm = mv / mean_target
+
     ## transform to [0, 1] range with smooth saturation
     minus_vr = np.clip(1.0 - vr, eps, 1.0)
-    mv_score = 1.0 / (1.0 + mv + eps)
+    mv_score = 1.0 / (1.0 + mv_norm)
     ea_score = 1.0 / (1.0 + ea)
 
     ## geometric mean via log-space (numerically stable)
