@@ -72,7 +72,10 @@ def results_cross_valid(
                 ## unwrap styler to dataframe if needed
                 if hasattr(df, "data"):
                     df = df.data
-                summary = df.select_dtypes(include = "number").mean()
+                summary = df.select_dtypes(include = "number").drop(
+                    columns = ["iteration", "repeat", "fold", "n_folds_used"],
+                    errors = "ignore",
+                ).mean()
                 summary.name = (key, label)
                 blocks.append(summary)
         result = pd.DataFrame(blocks)
@@ -694,7 +697,7 @@ def kfold_cross_valid(
         Tuple of (frontier results dataframe, predicted values array).
         When detail is false, the frontier dataframe contains a single row
         with metrics averaged across all iterations. When detail is true,
-        it contains one row per iteration with fold-averaged metrics.
+        it contains one row per evaluated fold with repeat/fold identifiers.
         The prediction array is averaged across iterations in both cases.
 
     Raises:
@@ -760,42 +763,51 @@ def kfold_cross_valid(
     ## accumulate predictions and group frontier dicts by iteration
     y_pred_sum = np.zeros(shape = len(data), dtype = float)
     y_pred_count = np.zeros(shape = len(data), dtype = int)
+    fold_frontiers = list()
     iteration_frontiers = dict()
 
     for fold_id, result in enumerate(fold_results):
         if result is None:
             continue
         iteration = fold_id // n_splits
+        fold = fold_id % n_splits
         y_pred_sum[result["kept_indices"]] += result["y_pred"]
         y_pred_count[result["kept_indices"]] += 1
+
+        fold_frontiers.append({
+            "repeat": iteration + 1,
+            "fold": fold + 1,
+            **result["frontier"],
+        })
 
         if iteration not in iteration_frontiers:
             iteration_frontiers[iteration] = list()
         iteration_frontiers[iteration].append(result["frontier"])
-
-    ## build frontier results (one row per iteration)
-    frontier_results = list()
-    for iteration in sorted(iteration_frontiers.keys()):
-        folds = iteration_frontiers[iteration]
-        frontier_mean = pd.DataFrame(folds).mean().to_dict()
-        frontier_results.append({
-            "iteration": iteration + 1,
-            "n_folds_used": len(folds),
-            **frontier_mean,
-        })
 
     ## average predictions over repeated out-of-fold appearances
     y_pred_out = np.full(shape = len(data), fill_value = np.nan)
     valid_pred = y_pred_count > 0
     y_pred_out[valid_pred] = y_pred_sum[valid_pred] / y_pred_count[valid_pred]
 
-    ## build frontier dataframe
-    frontier_df = pd.DataFrame(frontier_results)
+    ## return one row per evaluated fold when detailed output is requested
+    if detail:
+        frontier_df = pd.DataFrame(fold_frontiers)
+    else:
+        frontier_results = list()
+        for iteration in sorted(iteration_frontiers.keys()):
+            folds = iteration_frontiers[iteration]
+            frontier_mean = pd.DataFrame(folds).mean().to_dict()
+            frontier_results.append({
+                "iteration": iteration + 1,
+                "n_folds_used": len(folds),
+                **frontier_mean,
+            })
 
-    ## aggregate to a single row unless detailed per-iteration output requested
-    if not detail and len(frontier_df) > 0:
-        metric_cols = [c for c in frontier_df.columns if c not in ("iteration", "n_folds_used")]
-        frontier_df = pd.DataFrame([frontier_df[metric_cols].mean().to_dict()])
+        frontier_df = pd.DataFrame(frontier_results)
+
+        if len(frontier_df) > 0:
+            metric_cols = [c for c in frontier_df.columns if c not in ("iteration", "n_folds_used")]
+            frontier_df = pd.DataFrame([frontier_df[metric_cols].mean().to_dict()])
 
     return frontier_df, y_pred_out
 
