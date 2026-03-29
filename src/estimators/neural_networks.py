@@ -1,6 +1,7 @@
 ## libraries
 import os
 import torch
+import random
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
@@ -146,13 +147,20 @@ class NeuralBase(BaseEstimator, RegressorMixin):
     def fit(self, X: ArrayLike, y: ArrayLike) -> "NeuralBase":
 
         ## seed torch for reproducibility
-        torch.manual_seed(self.random_state)
+        seed = int(self.random_state)
+        random.seed(seed)
+        np.random.seed(seed)
+        torch.manual_seed(seed)
+        torch.use_deterministic_algorithms(True, warn_only = True)
+
         if torch.cuda.is_available():
             os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
-            torch.use_deterministic_algorithms(True, warn_only = True)
-            torch.cuda.manual_seed_all(self.random_state)
+            torch.cuda.manual_seed(seed)
+            torch.cuda.manual_seed_all(seed)
             torch.backends.cudnn.deterministic = True
             torch.backends.cudnn.benchmark = False
+            torch.backends.cuda.matmul.allow_tf32 = False
+            torch.backends.cudnn.allow_tf32 = False
 
         ## data prep
         X_train = np.array(X)
