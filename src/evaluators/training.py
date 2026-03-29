@@ -5,7 +5,10 @@ from typing import Any, Mapping, Sequence
 from sklearn.base import clone
 
 ## modules
-from src.vectorizers.scalers import _log_transformer, _standardizer
+from src.vectorizers.scalers import (
+    _log_transformer,
+    _standardizer
+)
 
 ## ----------------------------------------------------------------------------
 ## fit and predict frontier
