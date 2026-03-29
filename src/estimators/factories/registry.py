@@ -15,7 +15,7 @@ from src.estimators.neural_networks import (
 )
 
 ## load all estimators
-def load_estimators(input_dims: int = None) -> Dict[str, Any]:
+def load_estimators(input_dims: int | None = None, random_state: int = 42) -> Dict[str, Any]:
     return {
         ## linear parametric
         "linear_quantile": LinearQuantile(),
@@ -23,12 +23,12 @@ def load_estimators(input_dims: int = None) -> Dict[str, Any]:
         "linear_laws": LinearLAWS(),
 
         ## non-parametric ensembles
-        "forest_quantile": ForestQuantile(),
-        "boosted_quantile": BoostingQuantile(),
-        "xgboost_quantile": XGBoostQuantile(),
+        "forest_quantile": ForestQuantile(random_state = random_state),
+        "boosted_quantile": BoostingQuantile(random_state = random_state),
+        "xgboost_quantile": XGBoostQuantile(random_state = random_state),
 
         ## neural networks
-        "neural_quantile": NeuralQuantile(input_dims = input_dims),
-        "neural_expectile": NeuralExpectile(input_dims = input_dims),
-        "neural_convex": NeuralConvex(input_dims = input_dims),
+        "neural_quantile": NeuralQuantile(input_dims = input_dims, random_state = random_state),
+        "neural_expectile": NeuralExpectile(input_dims = input_dims, random_state = random_state),
+        "neural_convex": NeuralConvex(input_dims = input_dims, random_state = random_state),
     }
