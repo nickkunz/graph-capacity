@@ -69,10 +69,10 @@ def _efficiency_index(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12
     """ EI efficiency index that combines violation rate, mean violation,
     and excess area. Higher is better. """
 
-    ## reuse helper metrics to ensure a single definition of each quantity
+    ## reuse helper metrics
     vr = _violation_rate(y_true = y_true, y_pred = y_pred)
     mv = _mean_violation(y_true = y_true, y_pred = y_pred)
-    ea = _excess_area(y_true = y_true, y_pred = y_pred, eps = eps)
+    ms = _mean_slack(y_true = y_true, y_pred = y_pred)
 
     ## normalize mv by mean target magnitude to make dimensionless
     mean_target = np.mean(np.abs(y_true)) + eps
@@ -81,10 +81,10 @@ def _efficiency_index(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12
     ## transform to [0, 1] range with smooth saturation
     minus_vr = np.clip(1.0 - vr, eps, 1.0)
     mv_score = 1.0 / (1.0 + mv_norm)
-    ea_score = 1.0 / (1.0 + ea)
+    ms_score = 1.0 / (1.0 + ms)
 
     ## geometric mean via log-space (numerically stable)
-    log_ei = (np.log(minus_vr) + np.log(mv_score) + np.log(ea_score)) / 3.0
+    log_ei = (np.log(minus_vr) + np.log(mv_score) + np.log(ms_score)) / 3.0
     return float(np.exp(log_ei))
 
 ## joint frontier metrics
