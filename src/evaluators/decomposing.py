@@ -3,10 +3,8 @@ import numpy as np
 import pandas as pd
 from typing import Sequence, Dict, Any
 
-
-## frontier metric columns
-_FEAT_FRONTIER = ["vr", "mv", "ms", "ea", "ei"]
-
+## modules
+from src.evaluators.metrics import FRONTIER_METRICS
 
 ## --------------------------------------------------------------------------
 ## single-stage fold worker
@@ -271,7 +269,7 @@ def _eval_separability_model(
     ]:
         for _, frow in frontier.iterrows():
             row = {"model": model_name, "specification": spec, "group": frow["group"]}
-            for col in _FEAT_FRONTIER:
+            for col in FRONTIER_METRICS:
                 row[col] = frow[col]
             results.append(row)
 
@@ -644,7 +642,7 @@ def _eval_exhaustiveness_model(
                 "residual_features": feat_label,
                 "group": result["group_name"],
                 "r_squared": result["r_squared"],
-                **{c: result["frontier"][c] for c in _FEAT_FRONTIER},
+                **{c: result["frontier"][c] for c in FRONTIER_METRICS},
             })
 
         for i in range(len(data)):
