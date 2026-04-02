@@ -4,17 +4,21 @@ import warnings
 import numpy as np
 from itertools import combinations
 from sklearn.decomposition import PCA
-from sklearn.isotonic import IsotonicRegression
-from scipy.stats import spearmanr, kendalltau, pearsonr, ConstantInputWarning
+from scipy.stats import ConstantInputWarning
+from scipy.stats import (
+    spearmanr, 
+    kendalltau, 
+    pearsonr
+)
 
 ## constants
-FRONTIER_METRICS = ["vr", "mv", "ms", "ea", "ei"]
+FRONTIER_METRICS = ["vr", "mv", "ms", "ei"]
 CONSENSUS_METRICS = ["r", "rho", "tau", "rbo", "dcr"]
 ORDERING_METRICS = [
-    "monotonic_index", 
-    "violation_magnitude", 
+    "monotonic_index",
+    "violation_magnitude",
     "spearman_rho",
-    "kendall_tau", 
+    "kendall_tau",
     "rank_r2"
 ]
 
@@ -67,24 +71,20 @@ def _excess_area(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12) -> 
 def _efficiency_index(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12) -> float:
 
     """ EI efficiency index that combines violation rate, mean violation,
-    and excess area. Higher is better. """
+    and mean slack via geometric mean. Higher is better. """
 
     ## reuse helper metrics
     vr = _violation_rate(y_true = y_true, y_pred = y_pred)
     mv = _mean_violation(y_true = y_true, y_pred = y_pred)
     ms = _mean_slack(y_true = y_true, y_pred = y_pred)
 
-    ## normalize mv by mean target magnitude to make dimensionless
-    mean_target = np.mean(np.abs(y_true)) + eps
-    mv_norm = mv / mean_target
-
-    ## transform to [0, 1] range with smooth saturation
-    minus_vr = np.clip(1.0 - vr, eps, 1.0)
-    mv_score = 1.0 / (1.0 + mv_norm)
+    ## transform to [0, 1] scores (higher is better), clipped away from 0
+    vr_score = np.clip(1.0 - vr, eps, 1.0)
+    mv_score = 1.0 / (1.0 + mv)
     ms_score = 1.0 / (1.0 + ms)
 
     ## geometric mean via log-space (numerically stable)
-    log_ei = (np.log(minus_vr) + np.log(mv_score) + np.log(ms_score)) / 3.0
+    log_ei = (np.log(vr_score) + np.log(mv_score) + np.log(ms_score)) / 3.0
     return float(np.exp(log_ei))
 
 ## joint frontier metrics
@@ -93,12 +93,11 @@ def frontier_metrics(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12)
     """ Compute all frontier metrics and return as a dictionary. """
     
     metrics = {
-        key: func(y_true, y_pred, eps=eps) if key in {"ea", "ei"} else func(y_true, y_pred)
+        key: func(y_true, y_pred)
         for key, func in [
             ("vr", _violation_rate),
             ("mv", _mean_violation),
             ("ms", _mean_slack),
-            ("ea", _excess_area),
         ]
     }
     metrics["ei"] = _efficiency_index(
