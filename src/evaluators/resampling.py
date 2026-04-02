@@ -68,11 +68,11 @@ def results_cross_valid(
             keys = [f"Group {i}" for i in range(len(results))]
         blocks = []
         for key, table in zip(keys, results):
-            for label, df in table.items():
+            for label, data in table.items():
                 ## unwrap styler to dataframe if needed
-                if hasattr(df, "data"):
-                    df = df.data
-                summary = df.select_dtypes(include = "number").drop(
+                if hasattr(data, "data"):
+                    data = data.data
+                summary = data.select_dtypes(include = "number").drop(
                     columns = ["iteration", "repeat", "fold", "n_folds_used"],
                     errors = "ignore",
                 ).mean()
