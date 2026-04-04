@@ -791,7 +791,7 @@ def kfold_cross_valid(
 
     ## return one row per evaluated fold when detailed output is requested
     if detail:
-        frontier_df = pd.DataFrame(fold_frontiers)
+        frontier_data = pd.DataFrame(fold_frontiers)
     else:
         frontier_results = list()
         for iteration in sorted(iteration_frontiers.keys()):
@@ -803,11 +803,11 @@ def kfold_cross_valid(
                 **frontier_mean,
             })
 
-        frontier_df = pd.DataFrame(frontier_results)
+        frontier_data = pd.DataFrame(frontier_results)
 
-        if len(frontier_df) > 0:
-            metric_cols = [c for c in frontier_df.columns if c not in ("iteration", "n_folds_used")]
-            frontier_df = pd.DataFrame([frontier_df[metric_cols].mean().to_dict()])
+        if len(frontier_data) > 0:
+            metric_cols = [c for c in frontier_data.columns if c not in ("iteration", "n_folds_used")]
+            frontier_data = pd.DataFrame([frontier_data[metric_cols].mean().to_dict()])
 
-    return frontier_df, y_pred_out
+    return frontier_data, y_pred_out
 
