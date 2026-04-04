@@ -68,22 +68,33 @@ def _excess_area(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12) -> 
     return float(np.sum(s) / denom)
 
 ## efficiency index
-def _efficiency_index(y_true: np.ndarray, y_pred: np.ndarray, eps: float = 1e-12) -> float:
+def _efficiency_index(
+    y_true: np.ndarray,
+    y_pred: np.ndarray,
+    eps: float = 1e-12,
+    ) -> float:
 
     """ EI efficiency index that combines violation rate, mean violation,
-    and mean slack via geometric mean. Higher is better. """
+    and mean slack via geometric mean. MV and MS are normalized by the
+    mean absolute target magnitude, making the score relative to the
+    scale of the evaluated sample. Higher is better. """
 
     ## reuse helper metrics
     vr = _violation_rate(y_true = y_true, y_pred = y_pred)
     mv = _mean_violation(y_true = y_true, y_pred = y_pred)
     ms = _mean_slack(y_true = y_true, y_pred = y_pred)
 
-    ## transform to [0, 1] scores (higher is better), clipped away from 0
-    vr_score = np.clip(1.0 - vr, eps, 1.0)
-    mv_score = 1.0 / (1.0 + mv)
-    ms_score = 1.0 / (1.0 + ms)
+    ## normalize violation and slack magnitudes by sample target magnitude
+    mean_target = np.mean(np.abs(y_true)) + eps
+    mv_norm = mv / mean_target
+    ms_norm = ms / mean_target
 
-    ## geometric mean via log-space (numerically stable)
+    ## transform to bounded scores in (0, 1]
+    vr_score = np.clip(1.0 - vr, eps, 1.0)
+    mv_score = 1.0 / (1.0 + mv_norm)
+    ms_score = 1.0 / (1.0 + ms_norm)
+
+    ## geometric mean via log-space
     log_ei = (np.log(vr_score) + np.log(mv_score) + np.log(ms_score)) / 3.0
     return float(np.exp(log_ei))
 
