@@ -72,10 +72,14 @@ def results_cross_valid(
                 ## unwrap styler to dataframe if needed
                 if hasattr(data, "data"):
                     data = data.data
-                summary = data.select_dtypes(include = "number").drop(
+                numeric = data.select_dtypes(include = "number").drop(
                     columns = ["iteration", "repeat", "fold", "n_folds_used"],
                     errors = "ignore",
-                ).mean()
+                )
+                if "model" in data.columns:
+                    summary = numeric.groupby(data["model"]).mean().median()
+                else:
+                    summary = numeric.median()
                 summary.name = (key, label)
                 blocks.append(summary)
         result = pd.DataFrame(blocks)
