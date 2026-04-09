@@ -32,9 +32,10 @@ def compile_cross_valid(results: dict) -> pd.DataFrame:
     feat = ["model"] + [c for c in frame.columns if c != "model"]
     return frame[feat]
 
-## summarizes one or more CV result dicts into table
+## summarizes one or more cv result dicts into table
 def results_cross_valid(
     *results: dict[str, pd.DataFrame],
+    indicies: tuple[str, str] = ("procedure", "method"),
     keys: list[str] | None = None,
     decimals: int | None = None,
     ) -> pd.DataFrame | "pd.io.formats.style.Styler":
@@ -51,6 +52,7 @@ def results_cross_valid(
         keys: optional list of group labels (one per dict) for multi-index rows.
         decimals: if set, returns a styled table with left-justified index and
             the given decimal precision. If None, returns a plain DataFrame.
+        indicies: names for the multi-index levels. Defaults to ("procedure", "method").
 
     Returns:
         A DataFrame (or Styler when decimals is set) of compiled CV results.
@@ -69,7 +71,6 @@ def results_cross_valid(
         blocks = []
         for key, table in zip(keys, results):
             for label, data in table.items():
-                ## unwrap styler to dataframe if needed
                 if hasattr(data, "data"):
                     data = data.data
                 numeric = data.select_dtypes(include = "number").drop(
@@ -77,13 +78,30 @@ def results_cross_valid(
                     errors = "ignore",
                 )
                 if "model" in data.columns:
-                    summary = numeric.groupby(data["model"]).mean().median()
+                    model_means = numeric.groupby(data["model"]).mean()
+                    summary = model_means.median()
+                    ei_q1 = model_means["ei"].quantile(0.25)
+                    ei_q3 = model_means["ei"].quantile(0.75)
                 else:
                     summary = numeric.median()
+                    ei_q1 = numeric["ei"].quantile(0.25)
+                    ei_q3 = numeric["ei"].quantile(0.75)
+
+                ## format ei with iqr
+                summary = summary.astype(object)
+                if decimals is not None:
+                    summary["ei"] = f"{summary['ei']:.{decimals}f} [{ei_q1:.{decimals}f}–{ei_q3:.{decimals}f}]"
+                else:
+                    summary["ei"] = f"{summary['ei']} [{ei_q1}–{ei_q3}]"
                 summary.name = (key, label)
                 blocks.append(summary)
         result = pd.DataFrame(blocks)
-        result.index = pd.MultiIndex.from_tuples(result.index, names = ["procedure", "method"])
+        result.index = pd.MultiIndex.from_tuples(result.index, names = indicies)
+
+        ## reorder columns with ei first
+        cols = result.columns.tolist()
+        cols.remove("ei")
+        result = result[["ei"] + cols]
 
     ## optionally return styled output
     if decimals is not None:
