@@ -759,7 +759,8 @@ def _run_perturbation(
 
     """
     Desc: worker for a single (model, perturbation, method, intensity)
-          combination. runs both retrain and frozen logo-cv.
+          combination. runs frozen logo-cv (train on clean, evaluate on
+          perturbed).
     Args:
         model_name: name of the estimator.
         model: estimator with .estimator_c and .estimator_r attributes.
@@ -775,7 +776,7 @@ def _run_perturbation(
         target: target column name.
         random_state: base random state for repeat reproducibility.
     Returns:
-        dict with "key", "retrain", "frozen" or None if skipped.
+        dict with "key" and "frozen", or None if skipped.
     """
 
     lookup = pert_df.set_index("dataset")
@@ -798,24 +799,7 @@ def _run_perturbation(
 
     key = (model_name, pert_type, method, intensity)
 
-    ## retrain robustness: refit under perturbation
-    frontier_rt, _ = logo_cross_valid(
-        data = data_mod,
-        feat_x = feat_x,
-        feat_z = feat_z,
-        estimator_c = model.estimator_c,
-        estimator_r = model.estimator_r,
-        target = target,
-        group = group,
-        random_state = random_state,
-        n_jobs = 1,
-    )
-    frontier_rt["model"] = model_name
-    frontier_rt["perturbation"] = pert_type
-    frontier_rt["method"] = method
-    frontier_rt["intensity"] = intensity
-
-    ## fixed manifold: train on clean, evaluate on perturbed
+    ## frozen manifold: train on clean, evaluate on perturbed
     frontier_fr, _, _ = logo_cross_valid_frozen(
         data_train = data,
         data_test = data_mod,
@@ -833,7 +817,7 @@ def _run_perturbation(
     frontier_fr["method"] = method
     frontier_fr["intensity"] = intensity
 
-    return {"key": key, "retrain": frontier_rt, "frozen": frontier_fr}
+    return {"key": key, "frozen": frontier_fr}
 
 ## aggregate frontier metrics across groups for each perturbation setting
 def _aggregate_frontier(results_dict: dict, track: str) -> pd.DataFrame:
@@ -843,7 +827,7 @@ def _aggregate_frontier(results_dict: dict, track: str) -> pd.DataFrame:
     Args:
         results_dict: mapping of (model, pert_type, method, intensity)
                       to frontier dataframe.
-        track: label for the evaluation track ("retrain" or "frozen").
+        track: label for the evaluation track (default "frozen").
     Returns:
         dataframe with one row per perturbation setting.
     """
@@ -876,13 +860,13 @@ def eval_perturbed(
     target: str = "target",
     random_state: int = 42,
     n_jobs: int = -1
-    ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    ) -> tuple[pd.DataFrame, pd.DataFrame]:
 
     """
     Desc: run the full perturbation evaluation pipeline. computes baseline
           logo-cv for each model, then evaluates every perturbation setting
-          under both retrain and frozen tracks. returns aggregated metrics
-          with directed deltas and recovery ratios.
+          under frozen track (train on clean, evaluate on perturbed).
+          returns aggregated metrics with directed deltas.
     Args:
         data: clean baseline dataframe with features, target, and group columns.
         models: mapping of model name to estimator with .estimator_c and
@@ -896,18 +880,15 @@ def eval_perturbed(
         random_state: base random state for seed reproducibility (default 42).
         n_jobs: number of parallel workers (-1 for all cores).
     Returns:
-        tuple of (results_data, perturbed_all, recovery_df).
-        results_data: full aggregated metrics for both tracks including baselines.
+        tuple of (results_data, perturbed_all).
+        results_data: full aggregated metrics for frozen track including baselines.
         perturbed_all: non-baseline rows with directed delta columns (Δ *).
-        recovery_df: recovery ratios (rho_*) where frozen degradation is
-                     meaningfully positive.
     """
 
     ## resolve feature column mapping
     feat_lookup = {"x": list(feat_x), "z": list(feat_z)}
 
     ## baselines (one per model)
-    results_retrain = dict()
     results_frozen = dict()
     for model_name, model in models.items():
         frontier_base, _ = logo_cross_valid(
@@ -922,7 +903,6 @@ def eval_perturbed(
             n_jobs = 1,
         )
         frontier_base["model"] = model_name
-        results_retrain[(model_name, "baseline", None, None)] = frontier_base
         results_frozen[(model_name, "baseline", None, None)] = frontier_base
 
     ## build job list
@@ -962,13 +942,10 @@ def eval_perturbed(
         if result is None:
             continue
         key = result["key"]
-        results_retrain[key] = result["retrain"]
         results_frozen[key] = result["frozen"]
         n_ok += 1
     ## aggregate frontier metrics across groups
-    results_rt = _aggregate_frontier(results_dict = results_retrain, track = "retrain")
-    results_fr = _aggregate_frontier(results_dict = results_frozen, track = "frozen")
-    results_data = pd.concat(objs = [results_rt, results_fr], ignore_index = True)
+    results_data = _aggregate_frontier(results_dict = results_frozen, track = "frozen")
 
     ## baseline lookup
     baseline_lookup = (
@@ -986,31 +963,8 @@ def eval_perturbed(
             else (perturbed_all[col] - base)
         )
 
-    ## recovery ratio: rho = 1 - d_retrain / d_frozen
-    feat_delta = [f"Δ {c.upper()}" for c in FRONTIER_METRICS]
-    idx = ["model", "perturbation", "method", "intensity"]
-    d_frozen = perturbed_all.query("track == 'frozen'").set_index(idx)[feat_delta].apply(pd.to_numeric)
-    d_retrain = perturbed_all.query("track == 'retrain'").set_index(idx)[feat_delta].apply(pd.to_numeric)
-    common = d_frozen.index.intersection(d_retrain.index)
-    d_frozen, d_retrain = d_frozen.loc[common], d_retrain.loc[common]
 
-    eps = pd.DataFrame({
-        f"Δ {m.upper()}": common.get_level_values("model").map(
-            lambda mod, metric = m: max(0.01 * abs(baseline_lookup.loc[mod, metric]), 1e-6)
-        ).astype(float) for m in FRONTIER_METRICS
-    }, index = common)
-
-    ## mask: rho is only defined when frozen degradation is meaningfully positive
-    eligible = d_frozen > eps
-    rho = (1 - d_retrain / d_frozen).where(eligible)
-
-    recovery_df = rho.reset_index()
-    recovery_df.columns = [
-        c.replace("Δ ", "ρ ") if c.startswith("Δ ") else c
-        for c in recovery_df.columns
-    ]
-
-    return results_data, perturbed_all, recovery_df
+    return results_data, perturbed_all
 
 
 def eval_perturb(*args, **kwargs):
@@ -1185,7 +1139,7 @@ def stat_perturbed_test(
     if "Track" in summary.columns:
         summary["Track"] = pd.Categorical(
             summary["Track"],
-            categories = ["frozen", "retrain"],
+            categories = ["frozen"],
             ordered = True,
         )
     if "Perturbation" in summary.columns:
@@ -1230,7 +1184,7 @@ def stat_perturbed_summary(
     results: pd.DataFrame,
     metrics: Sequence[str] | None = None,
     feat_group: Sequence[str] = ["track", "perturbation"],
-    track_order: Sequence[str] = ("baseline", "frozen", "retrain"),
+    track_order: Sequence[str] = ("baseline", "frozen"),
     perturbation_order: Sequence[str] | None = None,
     decimals: int = 4,
     ) -> pd.DataFrame:
@@ -1240,9 +1194,8 @@ def stat_perturbed_summary(
         Compute a grouped median summary of perturbation results for display.
 
     Args:
-        results: Output of eval_perturb (results_data, perturbed_all, or
-            recovery_df).
-        metrics: Metric columns to aggregate. Defaults to Δ * or rho_*
+        results: Output of eval_perturb (results_data or perturbed_all).
+        metrics: Metric columns to aggregate. Defaults to Δ *
             columns detected from the dataframe.
         feat_group: Grouping columns for the summary
             (default ["track", "perturbation"]).
@@ -1353,6 +1306,11 @@ def stat_perturbed_tost(
         how = "inner",
     )
 
+    ## restore feat_group columns that were suffixed during merge
+    for col in feat_group:
+        if col not in merged.columns and f"{col}_pert" in merged.columns:
+            merged[col] = merged[f"{col}_pert"]
+
     groups = merged.groupby(feat_group, sort = False) if feat_group else [((), merged)]
 
     rows = list()
@@ -1419,150 +1377,6 @@ def stat_perturbed_tost(
 
     print(f"=== TOST Equivalence: |Δ EI| < {delta} (n = {n}) ===")
     print(f"H₁: Perturbation effect is negligibly small (within ±{delta})")
-    print("*** p < 0.001, ** p < 0.01, * p < 0.05")
-
-    return summary
-
-
-## ----------------------------------------------------------------------------
-## paired wilcoxon test for retrain vs frozen recoverability
-## ----------------------------------------------------------------------------
-def stat_perturbed_recovery_test(
-    results: pd.DataFrame,
-    feat_value: Sequence[str],
-    feat_pairs: Sequence[str] | None = None,
-    feat_group: Sequence[str] = ["perturbation"],
-    pert_type: str | None = None,
-    label_pert: str = "perturbation",
-    label_base: str = "baseline",
-    decimals: int = 4,
-    index: bool = True,
-    ) -> pd.DataFrame:
-
-    """
-    Desc:
-        Paired one-sided Wilcoxon signed-rank test comparing retrain EI
-        vs frozen EI under perturbation. Significance means the frontier
-        is recoverable: retraining on perturbed data restores EI.
-
-    Args:
-        results: Full aggregated output from eval_perturb, including
-            both track labels.
-        feat_value: Metric columns to test (e.g. ["ei"]).
-        feat_pairs: Columns aligning retrain to frozen rows.
-            Defaults to ["model", "method"].
-        feat_group: Grouping columns (default ["perturbation"]).
-        pert_type: Perturbation family to restrict to.
-        label_pert: Perturbation label column.
-        label_base: Baseline label.
-        decimals: Display rounding.
-        index: Whether to set group columns as index.
-
-    Returns:
-        DataFrame with Wilcoxon results [*group, n, Median EI (Retrain),
-        Median EI (Frozen), Median Δ EI, Wilcoxon W+, Rank-biserial r,
-        One-sided p, Holm-adjusted p, Sig].
-    """
-
-    data = results.copy()
-
-    ## exclude baselines
-    data = data.loc[data[label_pert] != label_base].copy()
-
-    ## filter to a single perturbation type when specified
-    if pert_type is not None:
-        data = data.loc[data[label_pert] == pert_type].copy()
-
-    feat_value = list(feat_value)
-    feat_group = list(feat_group or [])
-    group_display = [c.replace("_", " ").title() for c in feat_group]
-    pair_cols = list(feat_pairs) if feat_pairs is not None else ["model", "method"]
-
-    retrain = data.loc[data["track"] == "retrain"].copy()
-    frozen = data.loc[data["track"] == "frozen"].copy()
-
-    merged = retrain.merge(
-        right = frozen,
-        on = [*pair_cols, label_pert],
-        suffixes = ("_rt", "_fr"),
-        how = "inner",
-    )
-
-    groups = merged.groupby(feat_group, sort = False) if feat_group else [((), merged)]
-
-    rows = list()
-    for group_key, grp in groups:
-        group_key = group_key if isinstance(group_key, tuple) else (group_key,)
-        for metric in feat_value:
-            x_rt = grp[f"{metric}_rt"].to_numpy(dtype = float)
-            x_fr = grp[f"{metric}_fr"].to_numpy(dtype = float)
-            valid = np.isfinite(x_rt) & np.isfinite(x_fr)
-            x_rt, x_fr = x_rt[valid], x_fr[valid]
-            n = len(x_rt)
-            d = x_rt - x_fr
-
-            if n < 2 or np.sum(d != 0) < 2:
-                med_rt = float(np.median(x_rt)) if n else np.nan
-                med_fr = float(np.median(x_fr)) if n else np.nan
-                med_d = float(np.median(d)) if n else np.nan
-                w_stat, r_eff, p_val = np.nan, np.nan, np.nan
-            else:
-                med_rt = float(np.median(x_rt))
-                med_fr = float(np.median(x_fr))
-                med_d = float(np.median(d))
-
-                ## one-sided: retrain > frozen
-                w_stat, p_val = wilcoxon(x_rt, x_fr, alternative = "greater")
-
-                ## rank-biserial r
-                d_nz = d[d != 0]
-                ranks = rankdata(np.abs(d_nz), method = "average")
-                r_pos = float(ranks[d_nz > 0].sum())
-                r_neg = float(ranks[d_nz < 0].sum())
-                r_eff = (r_pos - r_neg) / (r_pos + r_neg) if (r_pos + r_neg) > 0 else 0.0
-
-            n_pos = int(np.sum(d > 0))
-
-            row = dict(zip(feat_group, group_key))
-            tag = metric.upper()
-            row["n"] = n
-            row[f"Median {tag} (Retrain)"] = round(med_rt, decimals)
-            row[f"Median {tag} (Frozen)"] = round(med_fr, decimals)
-            row[f"Median Δ {tag}"] = round(med_d, decimals)
-            row["Positive Δ"] = f"{n_pos}/{n}" if n else "-"
-            row["Wilcoxon W+"] = int(w_stat) if np.isfinite(w_stat) else np.nan
-            row["Rank-biserial r"] = round(r_eff, decimals) if np.isfinite(r_eff) else np.nan
-            row["One-sided p"] = round(p_val, decimals) if np.isfinite(p_val) else np.nan
-            rows.append(row)
-
-    summary = pd.DataFrame(rows)
-
-    ## holm-bonferroni correction
-    p_label = "One-sided p"
-    p_vals = summary[p_label].to_numpy(dtype = float, copy = True)
-    valid_p = np.isfinite(p_vals)
-    holm = np.full(len(p_vals), np.nan, dtype = float)
-    if np.any(valid_p):
-        p_valid = p_vals[valid_p]
-        m = len(p_valid)
-        order = np.argsort(p_valid)
-        holm_sorted = np.maximum.accumulate(p_valid[order] * (m - np.arange(m)))
-        holm_valid = np.empty(m, dtype = float)
-        holm_valid[order] = np.minimum(holm_sorted, 1.0)
-        holm[valid_p] = holm_valid
-    summary["Holm-adjusted p"] = holm
-    summary["Sig"] = summary["Holm-adjusted p"].map(
-        lambda p: np.nan if not np.isfinite(p) else "***" if p < 0.001 else "**" if p < 0.01 else "*" if p < 0.05 else ""
-    )
-
-    ## display formatting
-    summary = summary.rename(columns = {c: c.replace("_", " ").title() for c in feat_group})
-    summary = summary.astype(object).where(pd.notna(summary), "-")
-    if index and group_display:
-        summary = summary.set_index(group_display)
-
-    print(f"=== Recovery: Retrain vs Frozen EI (n = {n}) ===")
-    print("H₁: Retraining recovers frontier EI (retrain > frozen)")
     print("*** p < 0.001, ** p < 0.01, * p < 0.05")
 
     return summary
