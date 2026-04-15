@@ -118,7 +118,7 @@ URL_SEISMIC_EVENTS = config['urls']['URL_SEISMIC_EVENTS'].strip('"')
 
 NETWORK_METHODS = {
     "rewire":      tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
-    "sparsify":    tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+    "densify":     tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
     "node_sample": tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2))
 }
 INVARIANT_METHODS = {
@@ -195,7 +195,7 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False, random_sta
                             degrees = degrees,
                             n_nodes = n_nodes,
                             n_edges = n_edges,
-                            method = {"rewire": "degree_preserving_rewire", "sparsify": "bernoulli_edge_thinning", "node_sample": "uniform_node_sampling"}[method],
+                            method = {"rewire": "degree_preserving_rewire", "densify": "bernoulli_edge_densification", "node_sample": "uniform_node_sampling"}[method],
                             intensity = float(intensity),
                         )
                     except Exception as exc:
@@ -233,7 +233,7 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False, random_sta
                         degrees = degrees,
                         n_nodes = n_nodes,
                         n_edges = n_edges,
-                        method = {"rewire": "degree_preserving_rewire", "sparsify": "bernoulli_edge_thinning", "node_sample": "uniform_node_sampling"}[method],
+                        method = {"rewire": "degree_preserving_rewire", "densify": "bernoulli_edge_densification", "node_sample": "uniform_node_sampling"}[method],
                         intensity = float(intensity),
                     )
                 except Exception as exc:
