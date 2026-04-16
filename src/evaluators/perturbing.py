@@ -162,69 +162,6 @@ def _rewire_estimate(
 
     return out
 
-## bernoulli edge thinning
-def _thinning_estimate(
-    invariants: Dict[str, float],
-    degrees: np.ndarray,
-    n_nodes: int,
-    n_edges: int,
-    intensity: float,
-) -> Dict[str, float]:
-    """
-    Desc:
-        Estimates invariants after independent edge retention with
-        p = 1 - intensity via Binomial thinning of the degree sequence.
-
-    Args:
-        invariants: Observed invariant dict.
-        degrees: 1-d array of vertex degrees.
-        n_nodes: Number of vertices.
-        n_edges: Number of edges.
-        intensity: Perturbation strength in [0, 1].
-
-    Returns:
-        Dict of estimated invariants.
-    """
-    p = 1.0 - _clip_unit_interval(float(intensity))
-    keys = list(invariants.keys())
-
-    if p <= 0.0:
-        return {k: 0.0 for k in keys}
-    if p >= 1.0:
-        return dict(invariants)
-
-    degree = np.asarray(degrees).reshape(-1).astype(float)
-
-    ## thinned degree sequence and effective edge count
-    degree_p = degree * p
-    n_edge_p = float(n_edges) * p
-
-    ## core invariants from the thinned degree sequence
-    out = _degree_invariants(degree_p, n_nodes, n_edge_p, keys)
-
-    ## overrides that need the original base values
-    out["n_articulation_points"] = float(
-        invariants.get("n_articulation_points", 0.0)
-    ) / max(p, 1e-9)
-
-    out["n_bridges"] = float(
-        invariants.get("n_bridges", 0.0)
-    ) / max(p, 1e-9)
-
-    out["global_clustering"] = float(
-        invariants.get("global_clustering", 0.0)
-    ) * p
-
-    out["degree_assortativity"] = float(
-        invariants.get("degree_assortativity", 0.0)
-    )
-
-    ## preserve key set
-    for k in keys:
-        out.setdefault(k, float(invariants.get(k, 0.0)))
-
-    return out
-
 ## node sampling estimate (analytical)
 def _node_sample_estimate(
     invariants: Dict[str, float],
@@ -288,6 +225,77 @@ def _node_sample_estimate(
 
     return out
 
+
+## bernoulli edge densification (analytical)
+def _densify_estimate(
+    invariants: Dict[str, float],
+    degrees: np.ndarray,
+    n_nodes: int,
+    n_edges: int,
+    intensity: float,
+) -> Dict[str, float]:
+    """
+    Desc:
+        Estimates invariants after adding random edges uniformly among
+        non-edges. The `intensity` fraction of existing edges is the
+        *expected number of new edges* to add, drawn from the complement
+        graph via independent Bernoulli trials.
+
+    Args:
+        invariants: Observed invariant dict.
+        degrees: 1-d array of vertex degrees.
+        n_nodes: Number of vertices.
+        n_edges: Number of edges.
+        intensity: Perturbation strength in [0, 1] as a fraction of |E|.
+
+    Returns:
+        Dict of estimated invariants.
+    """
+    x = _clip_unit_interval(float(intensity))
+    keys = list(invariants.keys())
+
+    if x <= 0.0:
+        return dict(invariants)
+
+    degree = np.asarray(degrees).reshape(-1).astype(float)
+
+    ## number of edges to add and complement size
+    n_add = float(n_edges) * x
+    max_edges = float(n_nodes * (n_nodes - 1)) / 2.0
+    n_complement = max(max_edges - float(n_edges), 1.0)
+
+    ## per non-edge addition probability
+    q = min(n_add / n_complement, 1.0)
+
+    ## densified degree sequence: each node gains non-neighbour edges
+    degree_q = degree + (float(n_nodes - 1) - degree) * q
+    n_edge_q = float(n_edges) + n_add
+
+    out = _degree_invariants(degree_q, n_nodes, n_edge_q, keys)
+
+    ## overrides for structural invariants
+    out["n_articulation_points"] = float(
+        invariants.get("n_articulation_points", 0.0)
+    ) * max(1.0 - q, 0.0)
+
+    out["n_bridges"] = float(
+        invariants.get("n_bridges", 0.0)
+    ) * max(1.0 - q, 0.0)
+
+    ## clustering increases with densification: added edges create
+    ## new triangles; approximate via ER triangle probability
+    base_clustering = float(invariants.get("global_clustering", 0.0))
+    out["global_clustering"] = min(base_clustering + (1.0 - base_clustering) * q, 1.0)
+
+    out["degree_assortativity"] = float(
+        invariants.get("degree_assortativity", 0.0)
+    ) * max(1.0 - q, 0.0)
+
+    for k in keys:
+        out.setdefault(k, float(invariants.get(k, 0.0)))
+
+    return out
+
 ## ----------------------------------------------------------------------------
 ## analytical perturbation
 ## ----------------------------------------------------------------------------
@@ -296,7 +304,7 @@ def analytical_perturb(
     degrees: np.ndarray,
     n_nodes: int,
     n_edges: int,
-    method: Literal["degree_preserving_rewire", "bernoulli_edge_thinning"] = "degree_preserving_rewire",
+    method: Literal["degree_preserving_rewire", "uniform_node_sampling", "bernoulli_edge_densification"] = "degree_preserving_rewire",
     intensity: float = 0.1,
     ) -> Dict[str, float]:
     
@@ -328,12 +336,12 @@ def analytical_perturb(
         out = _rewire_estimate(invariants, degree, n_nodes, n_edges, x)
         return _force_finite_dict(out)
 
-    if method == "bernoulli_edge_thinning":
-        out = _thinning_estimate(invariants, degree, n_nodes, n_edges, x)
-        return _force_finite_dict(out)
-
     if method == "uniform_node_sampling":
         out = _node_sample_estimate(invariants, degree, n_nodes, n_edges, x)
+        return _force_finite_dict(out)
+
+    if method == "bernoulli_edge_densification":
+        out = _densify_estimate(invariants, degree, n_nodes, n_edges, x)
         return _force_finite_dict(out)
 
     raise ValueError(f"unsupported perturbation model: {method}")
@@ -355,7 +363,7 @@ def network_perturb(
 
     Args:
         graph: Original igraph.Graph object.
-        method: Perturbation method ('rewire', 'sparsify', 'node_sample', 'densify').
+        method: Perturbation method ('rewire', 'node_sample', 'densify').
         intensity: Fraction of edges/nodes to modify.
         n_swaps: Number of rewiring swaps (for rewire). Defaults to |n_edges| * intensity.
 
@@ -381,13 +389,6 @@ def network_perturb(
         ig.set_random_number_generator(random.Random(random_state))
         G.rewire(n = n_swaps, mode = "simple")
 
-    ## sparsification (remove edges)
-    elif method == "sparsify":
-        n_remove = int(n_edges * intensity)
-        if n_remove > 0:
-            edges_to_remove = rng.choice(n_edges, n_remove, replace = False)
-            G.delete_edges(edges_to_remove)
-
     ## node sampling (remove nodes)
     elif method == "node_sample":
         n_remove = int(n_nodes * intensity)
@@ -400,15 +401,16 @@ def network_perturb(
         n_add = int(n_edges * intensity)
         if n_add > 0:
             existing = set(tuple(sorted(e.tuple)) for e in G.es)
-            added = 0
-            while added < n_add:
-                u, v = rng.integers(0, n_nodes, size = 2)
-                if u != v:
-                    edge = tuple(sorted((u, v)))
-                    if edge not in existing:
-                        G.add_edge(u, v)
-                        existing.add(edge)
-                        added += 1
+            complement = [
+                (u, v) for u in range(n_nodes)
+                for v in range(u + 1, n_nodes)
+                if (u, v) not in existing
+            ]
+            if len(complement) > 0:
+                n_add = min(n_add, len(complement))
+                chosen = rng.choice(len(complement), size = n_add, replace = False)
+                for idx in chosen:
+                    G.add_edge(*complement[idx])
 
     else:
         raise ValueError(f"unknown network perturbation method: {method}")
@@ -737,7 +739,6 @@ KEY_TO_TYPE = {
     "process_perturbed":    "process",
     "signatures_perturbed": "signatures",
     "temporal_perturbed":   "temporal",
-    "temporal_aggregated":  "temporal",
 }
 
 ## worker for a single perturbation setting
@@ -759,8 +760,7 @@ def _run_perturbation(
 
     """
     Desc: worker for a single (model, perturbation, method, intensity)
-          combination. runs frozen logo-cv (train on clean, evaluate on
-          perturbed).
+          combination. runs frozen + retrain logo-cv.
     Args:
         model_name: name of the estimator.
         model: estimator with .estimator_c and .estimator_r attributes.
@@ -776,7 +776,7 @@ def _run_perturbation(
         target: target column name.
         random_state: base random state for repeat reproducibility.
     Returns:
-        dict with "key" and "frozen", or None if skipped.
+        dict with "key", "frozen", and "retrain", or None if skipped.
     """
 
     lookup = pert_df.set_index("dataset")
@@ -817,7 +817,24 @@ def _run_perturbation(
     frontier_fr["method"] = method
     frontier_fr["intensity"] = intensity
 
-    return {"key": key, "frozen": frontier_fr}
+    ## retrain manifold: train on perturbed, evaluate on perturbed
+    frontier_rt, _ = logo_cross_valid(
+        data = data_mod,
+        feat_x = feat_x,
+        feat_z = feat_z,
+        estimator_c = model.estimator_c,
+        estimator_r = model.estimator_r,
+        target = target,
+        group = group,
+        random_state = random_state,
+        n_jobs = 1,
+    )
+    frontier_rt["model"] = model_name
+    frontier_rt["perturbation"] = pert_type
+    frontier_rt["method"] = method
+    frontier_rt["intensity"] = intensity
+
+    return {"key": key, "frozen": frontier_fr, "retrain": frontier_rt}
 
 ## aggregate frontier metrics across groups for each perturbation setting
 def _aggregate_frontier(results_dict: dict, track: str) -> pd.DataFrame:
@@ -860,13 +877,13 @@ def eval_perturbed(
     target: str = "target",
     random_state: int = 42,
     n_jobs: int = -1
-    ) -> tuple[pd.DataFrame, pd.DataFrame]:
+    ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
 
     """
     Desc: run the full perturbation evaluation pipeline. computes baseline
           logo-cv for each model, then evaluates every perturbation setting
-          under frozen track (train on clean, evaluate on perturbed).
-          returns aggregated metrics with directed deltas.
+          under frozen + retrain tracks. returns aggregated metrics with
+          directed deltas and recovery ratios.
     Args:
         data: clean baseline dataframe with features, target, and group columns.
         models: mapping of model name to estimator with .estimator_c and
@@ -880,9 +897,11 @@ def eval_perturbed(
         random_state: base random state for seed reproducibility (default 42).
         n_jobs: number of parallel workers (-1 for all cores).
     Returns:
-        tuple of (results_data, perturbed_all).
-        results_data: full aggregated metrics for frozen track including baselines.
+        tuple of (results_data, perturbed_all, recovery_df).
+        results_data: full aggregated metrics for both tracks including baselines.
         perturbed_all: non-baseline rows with directed delta columns (Δ *).
+        recovery_df: recovery ratios (ρ *) measuring fraction of frozen-track
+            degradation eliminated by retraining.
     """
 
     ## resolve feature column mapping
@@ -890,6 +909,7 @@ def eval_perturbed(
 
     ## baselines (one per model)
     results_frozen = dict()
+    results_retrain = dict()
     for model_name, model in models.items():
         frontier_base, _ = logo_cross_valid(
             data = data,
@@ -904,6 +924,7 @@ def eval_perturbed(
         )
         frontier_base["model"] = model_name
         results_frozen[(model_name, "baseline", None, None)] = frontier_base
+        results_retrain[(model_name, "baseline", None, None)] = frontier_base
 
     ## build job list
     jobs = []
@@ -943,13 +964,17 @@ def eval_perturbed(
             continue
         key = result["key"]
         results_frozen[key] = result["frozen"]
+        results_retrain[key] = result["retrain"]
         n_ok += 1
-    ## aggregate frontier metrics across groups
-    results_data = _aggregate_frontier(results_dict = results_frozen, track = "frozen")
+
+    ## aggregate frontier metrics across groups for both tracks
+    agg_frozen = _aggregate_frontier(results_dict = results_frozen, track = "frozen")
+    agg_retrain = _aggregate_frontier(results_dict = results_retrain, track = "retrain")
+    results_data = pd.concat([agg_frozen, agg_retrain], ignore_index = True)
 
     ## baseline lookup
     baseline_lookup = (
-        results_data.query("perturbation == 'baseline'")
+        agg_frozen.query("perturbation == 'baseline'")
         .drop_duplicates(subset = ["model"])
         .set_index("model")[FRONTIER_METRICS]
     )
@@ -963,8 +988,25 @@ def eval_perturbed(
             else (perturbed_all[col] - base)
         )
 
+    ## recovery ratios: fraction of frozen degradation eliminated by retraining
+    delta_cols = [f"Δ {c.upper()}" for c in FRONTIER_METRICS]
+    frozen_deltas = (
+        perturbed_all.query("track == 'frozen'")
+        .set_index(["model", "perturbation", "method", "intensity"])[delta_cols]
+    )
+    retrain_deltas = (
+        perturbed_all.query("track == 'retrain'")
+        .set_index(["model", "perturbation", "method", "intensity"])[delta_cols]
+    )
+    common_idx = frozen_deltas.index.intersection(retrain_deltas.index)
+    fr = frozen_deltas.loc[common_idx]
+    rt = retrain_deltas.loc[common_idx]
+    recovery = (fr - rt) / fr.replace(0, np.nan)
+    recovery.columns = [c.replace("Δ", "ρ") for c in recovery.columns]
+    recovery_df = recovery.reset_index()
+    recovery_df["perturbation"] = recovery_df["perturbation"].astype(str)
 
-    return results_data, perturbed_all
+    return results_data, perturbed_all, recovery_df
 
 
 def eval_perturb(*args, **kwargs):
@@ -999,7 +1041,7 @@ def stat_perturbed_test(
         feat_group: Columns whose unique combinations define independent
             tests (default ["track", "method"]).
         pert_type: Perturbation type to restrict to (e.g. "network",
-            "invariants", "process", "signatures", "temporal").
+            "invariants", "process", "signatures").
             None -> use all perturbation types.
         label_pert: Column that flags baseline vs perturbed rows.
         label_base: Value in label_pert for baseline rows.
@@ -1139,7 +1181,7 @@ def stat_perturbed_test(
     if "Track" in summary.columns:
         summary["Track"] = pd.Categorical(
             summary["Track"],
-            categories = ["frozen"],
+            categories = ["frozen", "retrain"],
             ordered = True,
         )
     if "Perturbation" in summary.columns:
@@ -1184,7 +1226,7 @@ def stat_perturbed_summary(
     results: pd.DataFrame,
     metrics: Sequence[str] | None = None,
     feat_group: Sequence[str] = ["track", "perturbation"],
-    track_order: Sequence[str] = ("baseline", "frozen"),
+    track_order: Sequence[str] = ("baseline", "frozen", "retrain"),
     perturbation_order: Sequence[str] | None = None,
     decimals: int = 4,
     ) -> pd.DataFrame:
