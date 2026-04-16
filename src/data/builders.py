@@ -36,6 +36,7 @@ PERT_SPEC = [
     {"key": "invariants_perturbed", "type": "invariants", "feat": "invariants"},
     {"key": "process_perturbed",    "type": "process",    "feat": "signatures"},
     {"key": "signatures_perturbed", "type": "signature",  "feat": "signatures"},
+    {"key": "temporal_perturbed",   "type": "temporal",   "feat": None},
 ]
 
 NAME_AMAZON = config['names']['NAME_AMAZON']
