@@ -233,7 +233,7 @@ def _densify_estimate(
     n_nodes: int,
     n_edges: int,
     intensity: float,
-) -> Dict[str, float]:
+    ) -> Dict[str, float]:
     """
     Desc:
         Estimates invariants after adding random edges uniformly among
@@ -1008,10 +1008,6 @@ def eval_perturbed(
 
     return results_data, perturbed_all, recovery_df
 
-
-def eval_perturb(*args, **kwargs):
-    return eval_perturbed(*args, **kwargs)
-
 ## ----------------------------------------------------------------------------
 ## summarize perturbation tests
 ## ----------------------------------------------------------------------------
@@ -1220,6 +1216,77 @@ def stat_perturbed_test(
     summary = summary.set_index(group_display) if (index and group_display) else summary
     summary = summary.astype(object).where(pd.notna(summary), '-')
     return summary
+
+## ----------------------------------------------------------------------------
+## maximum-intensity selector for perturbation results
+## ----------------------------------------------------------------------------
+def select_max_intensity(
+    results: pd.DataFrame,
+    intensity_col: str = "intensity",
+    label_pert: str = "perturbation",
+    label_base: str = "baseline",
+    feat_group: Sequence[str] | None = None,
+    perturbation_order: Sequence[str] | None = None,
+    ) -> pd.DataFrame:
+
+    """
+    Desc:
+        Keep baseline rows and the strongest shared perturbation
+        setting for each perturbation family and method. This is a
+        single-pass filter: it computes the maximum intensity per
+        group directly from the data, then retains only those rows.
+
+    Args:
+        results: Full eval_perturbed output including baseline rows,
+            or a per-observation delta frame (perturbed_all). If
+            baseline rows are present they are preserved unchanged.
+        intensity_col: Intensity column name.
+        label_pert: Column that distinguishes baseline from perturbed rows.
+        label_base: Value in label_pert that marks baseline rows.
+        feat_group: Columns defining the shared intensity ladder
+            (default ["perturbation", "method"]).
+        perturbation_order: Allowed perturbation families. Rows whose
+            perturbation label is not in this list are dropped. None
+            keeps all non-baseline families.
+
+    Returns:
+        DataFrame containing baseline rows (if any) plus the strongest-
+        intensity rows for each group.
+    """
+
+    feat_group = list(feat_group or ["perturbation", "method"])
+    data = results.copy()
+
+    baseline = data.loc[data[label_pert] == label_base]
+    perturbed = data.loc[data[label_pert] != label_base].copy()
+
+    if perturbation_order is not None:
+        perturbed = perturbed.loc[
+            perturbed[label_pert].isin(perturbation_order)
+        ]
+
+    perturbed[intensity_col] = pd.to_numeric(
+        perturbed[intensity_col],
+        errors = "coerce",
+    )
+
+    max_int = (
+        perturbed
+        .groupby(feat_group, as_index = False)[intensity_col]
+        .max()
+    )
+    strongest = perturbed.merge(
+        max_int,
+        on = feat_group + [intensity_col],
+        how = "inner",
+    )
+
+    return pd.concat(
+        [baseline, strongest],
+        ignore_index = True,
+    )
+
+
 
 ## perturbation summary with metric medians only
 def stat_perturbed_summary(
