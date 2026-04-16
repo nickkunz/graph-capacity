@@ -877,7 +877,7 @@ def eval_perturbed(
     target: str = "target",
     random_state: int = 42,
     n_jobs: int = -1
-    ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    ) -> tuple[pd.DataFrame, pd.DataFrame]:
 
     """
     Desc: run the full perturbation evaluation pipeline. computes baseline
@@ -897,10 +897,10 @@ def eval_perturbed(
         random_state: base random state for seed reproducibility (default 42).
         n_jobs: number of parallel workers (-1 for all cores).
     Returns:
-        tuple of (results_data, perturbed_all, recovery_df).
-        results_data: full aggregated metrics for both tracks including baselines.
-        perturbed_all: non-baseline rows with directed delta columns (Δ *).
-        recovery_df: recovery ratios (ρ *) measuring fraction of frozen-track
+        tuple of (results_data, recovery_data).
+        results_data: full aggregated metrics for both tracks including baselines,
+            with directed delta columns (Δ *) for non-baseline rows (NaN for baseline).
+        recovery_data: recovery ratios (ρ *) measuring fraction of frozen-track
             degradation eliminated by retraining.
     """
 
@@ -979,23 +979,21 @@ def eval_perturbed(
         .set_index("model")[FRONTIER_METRICS]
     )
 
-    ## directed deltas (positive = degradation)
-    perturbed_all = results_data.query("perturbation != 'baseline'").copy()
+    ## directed deltas (positive = degradation; NaN for baseline rows)
     for col in FRONTIER_METRICS:
-        base = perturbed_all["model"].map(baseline_lookup[col])
-        perturbed_all[f"Δ {col.upper()}"] = (
-            (base - perturbed_all[col]) if col == "ei"
-            else (perturbed_all[col] - base)
-        )
+        base = results_data["model"].map(baseline_lookup[col])
+        delta = (base - results_data[col]) if col == "ei" else (results_data[col] - base)
+        results_data[f"Δ {col.upper()}"] = delta.where(results_data["perturbation"] != "baseline")
 
     ## recovery ratios: fraction of frozen degradation eliminated by retraining
     delta_cols = [f"Δ {c.upper()}" for c in FRONTIER_METRICS]
+    pert_rows = results_data.query("perturbation != 'baseline'")
     frozen_deltas = (
-        perturbed_all.query("track == 'frozen'")
+        pert_rows.query("track == 'frozen'")
         .set_index(["model", "perturbation", "method", "intensity"])[delta_cols]
     )
     retrain_deltas = (
-        perturbed_all.query("track == 'retrain'")
+        pert_rows.query("track == 'retrain'")
         .set_index(["model", "perturbation", "method", "intensity"])[delta_cols]
     )
     common_idx = frozen_deltas.index.intersection(retrain_deltas.index)
@@ -1003,13 +1001,13 @@ def eval_perturbed(
     rt = retrain_deltas.loc[common_idx]
     recovery = (fr - rt) / fr.replace(0, np.nan)
     recovery.columns = [c.replace("Δ", "ρ") for c in recovery.columns]
-    recovery_df = recovery.reset_index()
-    recovery_df["perturbation"] = recovery_df["perturbation"].astype(str)
+    recovery_data = recovery.reset_index()
+    recovery_data["perturbation"] = recovery_data["perturbation"].astype(str)
 
-    return results_data, perturbed_all, recovery_df
+    return results_data, recovery_data
 
 ## ----------------------------------------------------------------------------
-## summarize perturbation tests
+## statistical testing with summary tables
 ## ----------------------------------------------------------------------------
 def stat_perturbed_test(
     results: pd.DataFrame,
@@ -1226,7 +1224,7 @@ def select_max_intensity(
     label_pert: str = "perturbation",
     label_base: str = "baseline",
     feat_group: Sequence[str] | None = None,
-    perturbation_order: Sequence[str] | None = None,
+    perturb_order: Sequence[str] | None = None,
     ) -> pd.DataFrame:
 
     """
@@ -1245,7 +1243,7 @@ def select_max_intensity(
         label_base: Value in label_pert that marks baseline rows.
         feat_group: Columns defining the shared intensity ladder
             (default ["perturbation", "method"]).
-        perturbation_order: Allowed perturbation families. Rows whose
+        perturb_order: Allowed perturbation families. Rows whose
             perturbation label is not in this list are dropped. None
             keeps all non-baseline families.
 
@@ -1260,9 +1258,9 @@ def select_max_intensity(
     baseline = data.loc[data[label_pert] == label_base]
     perturbed = data.loc[data[label_pert] != label_base].copy()
 
-    if perturbation_order is not None:
+    if perturb_order is not None:
         perturbed = perturbed.loc[
-            perturbed[label_pert].isin(perturbation_order)
+            perturbed[label_pert].isin(perturb_order)
         ]
 
     perturbed[intensity_col] = pd.to_numeric(
@@ -1285,68 +1283,6 @@ def select_max_intensity(
         [baseline, strongest],
         ignore_index = True,
     )
-
-
-
-## perturbation summary with metric medians only
-def stat_perturbed_summary(
-    results: pd.DataFrame,
-    metrics: Sequence[str] | None = None,
-    feat_group: Sequence[str] = ["track", "perturbation"],
-    track_order: Sequence[str] = ("baseline", "frozen", "retrain"),
-    perturbation_order: Sequence[str] | None = None,
-    decimals: int = 4,
-    ) -> pd.DataFrame:
-
-    """
-    Desc:
-        Compute a grouped median summary of perturbation results for display.
-
-    Args:
-        results: Output of eval_perturb (results_data or perturbed_all).
-        metrics: Metric columns to aggregate. Defaults to Δ *
-            columns detected from the dataframe.
-        feat_group: Grouping columns for the summary
-            (default ["track", "perturbation"]).
-        track_order: Ordered categories for track column.
-        perturbation_order: Ordered categories for perturbation column.
-            None -> inferred from data.
-        decimals: Number of decimal places to round.
-
-    Returns:
-        DataFrame: [*feat_group, *metrics] with median metric values per group.
-    """
-
-    feat_group = list(feat_group or ["track", "perturbation"])
-    if metrics is None:
-        rho_cols = [c for c in results.columns if c.startswith("ρ ")]
-        d_cols = [c for c in results.columns if c.startswith("Δ ")]
-        metrics = rho_cols if rho_cols else d_cols
-    metrics = list(metrics)
-
-    source = results.copy()
-    if "track" in source.columns and "track" in feat_group:
-        source["track"] = pd.Categorical(
-            source["track"],
-            categories = list(track_order),
-            ordered = True,
-        )
-    if "perturbation" in source.columns and "perturbation" in feat_group:
-        if perturbation_order is None:
-            perturbation_order = list(pd.unique(results["perturbation"]))
-        source["perturbation"] = pd.Categorical(
-            source["perturbation"],
-            categories = list(perturbation_order),
-            ordered = True,
-        )
-
-    available = [m for m in metrics if m in source.columns]
-    summary = source.groupby(by = feat_group, observed = True)[available].median()
-    if decimals is not None:
-        summary = summary.round(decimals)
-
-    return summary
-
 
 ## ----------------------------------------------------------------------------
 ## tost equivalence test for perturbation stability
@@ -1489,3 +1425,63 @@ def stat_perturbed_tost(
     print("*** p < 0.001, ** p < 0.01, * p < 0.05")
 
     return summary
+
+
+# ## perturbation delta summary with metric medians only
+# def stat_perturbed_delta(
+#     results: pd.DataFrame,
+#     metrics: Sequence[str] | None = None,
+#     feat_group: Sequence[str] = ["track", "perturbation"],
+#     track_order: Sequence[str] = ("baseline", "frozen", "retrain"),
+#     perturb_order: Sequence[str] | None = None,
+#     decimals: int = 4,
+#     ) -> pd.DataFrame:
+
+#     """
+#     Desc:
+#         Compute a grouped median summary of perturbation results for display.
+
+#     Args:
+#         results: Output of eval_perturb (results_data or perturbed_all).
+#         metrics: Metric columns to aggregate. Defaults to Δ *
+#             columns detected from the dataframe.
+#         feat_group: Grouping columns for the summary
+#             (default ["track", "perturbation"]).
+#         track_order: Ordered categories for track column.
+#         perturb_order: Ordered categories for perturbation column.
+#             None -> inferred from data.
+#         decimals: Number of decimal places to round.
+
+#     Returns:
+#         DataFrame: [*feat_group, *metrics] with median metric values per group.
+#     """
+
+#     feat_group = list(feat_group or ["track", "perturbation"])
+#     if metrics is None:
+#         rho_cols = [c for c in results.columns if c.startswith("ρ ")]
+#         d_cols = [c for c in results.columns if c.startswith("Δ ")]
+#         metrics = rho_cols if rho_cols else d_cols
+#     metrics = list(metrics)
+
+#     source = results.copy()
+#     if "track" in source.columns and "track" in feat_group:
+#         source["track"] = pd.Categorical(
+#             source["track"],
+#             categories = list(track_order),
+#             ordered = True,
+#         )
+#     if "perturbation" in source.columns and "perturbation" in feat_group:
+#         if perturb_order is None:
+#             perturb_order = list(pd.unique(results["perturbation"]))
+#         source["perturbation"] = pd.Categorical(
+#             source["perturbation"],
+#             categories = list(perturb_order),
+#             ordered = True,
+#         )
+
+#     available = [m for m in metrics if m in source.columns]
+#     summary = source.groupby(by = feat_group, observed = True)[available].median()
+#     if decimals is not None:
+#         summary = summary.round(decimals)
+
+#     return summary
