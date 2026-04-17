@@ -1015,6 +1015,7 @@ def stat_perturbed_test(
     feat_pairs: Sequence[str] | None = None,
     feat_group: Sequence[str] = ["track", "method"],
     pert_type: str | None = None,
+    track: str | Sequence[str] | None = None,
     label_pert: str = "perturbation",
     label_base: str = "baseline",
     decimals: int = 4,
@@ -1039,6 +1040,8 @@ def stat_perturbed_test(
             None -> use all perturbation types.
         label_pert: Column that flags baseline vs perturbed rows.
         label_base: Value in label_pert for baseline rows.
+        track: Evaluation track to restrict to (e.g. "frozen", "retrain").
+            None -> use all tracks.
         decimals: Number of decimal places for display (default 4).
         index: If True, set group columns as DataFrame index.
 
@@ -1046,7 +1049,7 @@ def stat_perturbed_test(
         Display-ready table with columns:
         [*feat_group, Metric?, Median <M> (Original), Median <M> (Perturbed),
         Median Δ <M>, Positive Δ , Wilcoxon W+, Rank-biserial r, One-sided p,
-        Holm-adjusted p, Sig.].
+        Holm-adj. p, Sig.].
     """
 
     ## filter to a single perturbation type when specified
@@ -1055,11 +1058,16 @@ def stat_perturbed_test(
             results[label_pert].isin([label_base, pert_type])
         ].copy()
 
+    ## filter to specified track(s)
+    if track is not None and "track" in results.columns:
+        track_vals = [track] if isinstance(track, str) else list(track)
+        results = results.loc[results["track"].isin(track_vals)].copy()
+
     feat_value = list(feat_value)
     feat_group = list(feat_group or [])
     group_display = [c.replace("_", " ").title() for c in feat_group]
     p_label = "One-sided p"
-    tail_cols = ["Wilcoxon W+", "Rank-biserial r", p_label, "Holm-adjusted p", "Sig"]
+    tail_cols = ["Wilcoxon W+", "Rank-biserial r", p_label, "Holm-adj. p", "Sig"]
     pair_cols = list(feat_pairs) if feat_pairs is not None else ["model"]
 
     data = results.copy()
@@ -1143,19 +1151,19 @@ def stat_perturbed_test(
 
     ## holm-bonferroni correction with monotonic adjustment
     summary[p_label] = pd.to_numeric(summary[p_label], errors = "coerce")
-    p_vals = summary[p_label].to_numpy(dtype = float, copy = True)
-    valid_p = np.isfinite(p_vals)
-    holm = np.full(shape = len(p_vals), fill_value = np.nan, dtype = float)
-    if np.any(valid_p):
-        p_valid = p_vals[valid_p]
+    p_value = summary[p_label].to_numpy(dtype = float, copy = True)
+    p_valid = np.isfinite(p_value)
+    holm = np.full(shape = len(p_value), fill_value = np.nan, dtype = float)
+    if np.any(p_valid):
+        p_valid = p_value[p_valid]
         m = len(p_valid)
         order = np.argsort(p_valid)
         holm_sorted = np.maximum.accumulate(p_valid[order] * (m - np.arange(m)))
         holm_valid = np.empty(m, dtype = float)
         holm_valid[order] = np.minimum(holm_sorted, 1.0)
-        holm[valid_p] = holm_valid
-    summary["Holm-adjusted p"] = holm
-    summary["Sig"] = summary["Holm-adjusted p"].map(
+        holm[p_valid] = holm_valid
+    summary["Holm-adj. p"] = holm
+    summary["Sig"] = summary["Holm-adj. p"].map(
         lambda p: np.nan if not np.isfinite(p) else "***" if p < 0.001 else "**" if p < 0.01 else "*" if p < 0.05 else ""
     )
 
@@ -1215,74 +1223,71 @@ def stat_perturbed_test(
     summary = summary.astype(object).where(pd.notna(summary), '-')
     return summary
 
-## ----------------------------------------------------------------------------
-## maximum-intensity selector for perturbation results
-## ----------------------------------------------------------------------------
-def select_max_intensity(
+## empirical equivalence margin
+def spec_delta(
     results: pd.DataFrame,
-    intensity_col: str = "intensity",
+    feat_value: Sequence[str],
+    track: str | Sequence[str] | None = None,
     label_pert: str = "perturbation",
     label_base: str = "baseline",
-    feat_group: Sequence[str] | None = None,
-    perturb_order: Sequence[str] | None = None,
-    ) -> pd.DataFrame:
+    method: Literal["mad", "iqr", "max"] = "iqr",
+    scale: float = 0.5,
+    decimals: int = 2,
+    ) -> float:
 
     """
     Desc:
-        Keep baseline rows and the strongest shared perturbation
-        setting for each perturbation family and method. This is a
-        single-pass filter: it computes the maximum intensity per
-        group directly from the data, then retains only those rows.
+        Compute a data-driven equivalence margin (delta) from the natural
+        variability of baseline metric values across learners. Delta is
+        anchored entirely to clean-data performance, making it pre-
+        specifiable and independent of any perturbation effect.
 
     Args:
-        results: Full eval_perturbed output including baseline rows,
-            or a per-observation delta frame (perturbed_all). If
-            baseline rows are present they are preserved unchanged.
-        intensity_col: Intensity column name.
-        label_pert: Column that distinguishes baseline from perturbed rows.
-        label_base: Value in label_pert that marks baseline rows.
-        feat_group: Columns defining the shared intensity ladder
-            (default ["perturbation", "method"]).
-        perturb_order: Allowed perturbation families. Rows whose
-            perturbation label is not in this list are dropped. None
-            keeps all non-baseline families.
+        results: Full aggregated output from eval_perturb, including
+            baseline rows.
+        feat_value: Metric columns (e.g. ["ei"]).
+        feat_pairs: Unused (kept for API compatibility).
+        track: Evaluation track to restrict to.
+        label_pert: Perturbation label column.
+        label_base: Baseline label.
+        method: Dispersion estimator ("mad" for median absolute deviation,
+            "iqr" for interquartile range, "max" for range).
+        scale: Multiplier applied to the dispersion estimate
+            (default 0.5).
+        decimals: Number of decimal places to round the result
+            (default 2).
 
     Returns:
-        DataFrame containing baseline rows (if any) plus the strongest-
-        intensity rows for each group.
+        Scalar equivalence margin delta.
     """
 
-    feat_group = list(feat_group or ["perturbation", "method"])
     data = results.copy()
 
+    if track is not None and "track" in data.columns:
+        track_vals = [track] if isinstance(track, str) else list(track)
+        data = data.loc[data["track"].isin(track_vals)]
+
     baseline = data.loc[data[label_pert] == label_base]
-    perturbed = data.loc[data[label_pert] != label_base].copy()
 
-    if perturb_order is not None:
-        perturbed = perturbed.loc[
-            perturbed[label_pert].isin(perturb_order)
-        ]
+    vals = np.concatenate([
+        baseline[m].to_numpy(dtype=float) for m in feat_value
+    ])
+    vals = vals[np.isfinite(vals)]
 
-    perturbed[intensity_col] = pd.to_numeric(
-        perturbed[intensity_col],
-        errors = "coerce",
-    )
+    if len(vals) < 2:
+        return 0.05  # fallback
 
-    max_int = (
-        perturbed
-        .groupby(feat_group, as_index = False)[intensity_col]
-        .max()
-    )
-    strongest = perturbed.merge(
-        max_int,
-        on = feat_group + [intensity_col],
-        how = "inner",
-    )
+    if method == "mad":
+        dispersion = float(np.median(np.abs(vals - np.median(vals))))
+    elif method == "iqr":
+        dispersion = float(np.percentile(vals, 75) - np.percentile(vals, 25))
+    elif method == "max":
+        dispersion = float(np.max(vals) - np.min(vals))
+    else:
+        raise ValueError(f"unknown method: {method}")
 
-    return pd.concat(
-        [baseline, strongest],
-        ignore_index = True,
-    )
+    return round(max(float(scale * dispersion), 1e-6), decimals)
+
 
 ## ----------------------------------------------------------------------------
 ## tost equivalence test for perturbation stability
@@ -1293,6 +1298,7 @@ def stat_perturbed_tost(
     feat_pairs: Sequence[str] | None = None,
     feat_group: Sequence[str] = ["track"],
     pert_type: str | None = None,
+    track: str | Sequence[str] | None = None,
     delta: float = 0.05,
     label_pert: str = "perturbation",
     label_base: str = "baseline",
@@ -1316,6 +1322,8 @@ def stat_perturbed_tost(
         feat_group: Columns whose unique combinations define independent
             tests (default ["track"]).
         pert_type: Perturbation family to restrict to (e.g. "network").
+        track: Evaluation track to restrict to (e.g. "frozen", "retrain").
+            None -> use all tracks.
         delta: Equivalence margin on the metric scale. The null hypothesis
             is |Δ| >= delta; rejection means |Δ| < delta.
         label_pert: Perturbation label column.
@@ -1324,8 +1332,8 @@ def stat_perturbed_tost(
         index: Whether to set group columns as index.
 
     Returns:
-        DataFrame with columns: [*group, Metric, n, Median Δ, TOST p,
-            Holm-adjusted p, Sig, δ].
+        DataFrame with columns: [*group, Median Δ, TOST p,
+            Holm-adj. p, Decision].
     """
 
     ## filter to a single perturbation type when specified
@@ -1334,10 +1342,17 @@ def stat_perturbed_tost(
             results[label_pert].isin([label_base, pert_type])
         ].copy()
 
+    ## filter to specified track(s)
+    if track is not None and "track" in results.columns:
+        track_vals = [track] if isinstance(track, str) else list(track)
+        results = results.loc[results["track"].isin(track_vals)].copy()
+
     feat_value = list(feat_value)
     feat_group = list(feat_group or [])
     group_display = [c.replace("_", " ").title() for c in feat_group]
     pair_cols = list(feat_pairs) if feat_pairs is not None else ["model"]
+
+    metric_label = feat_value[0].upper() if len(feat_value) == 1 else ", ".join(v.upper() for v in feat_value)
 
     data = results.copy()
     baseline = data.loc[data[label_pert] == label_base].copy()
@@ -1357,6 +1372,19 @@ def stat_perturbed_tost(
             merged[col] = merged[f"{col}_pert"]
 
     groups = merged.groupby(feat_group, sort = False) if feat_group else [((), merged)]
+
+    ## compute n per group for header
+    if feat_group:
+        n_pairs_by_group = merged.groupby(feat_group, sort = False).size()
+        unique_n = np.array(pd.unique(n_pairs_by_group), dtype = float)
+    else:
+        unique_n = np.array([merged.shape[0]], dtype = float)
+    if len(unique_n) == 0:
+        n_display = 0
+    elif len(unique_n) == 1:
+        n_display = int(unique_n[0])
+    else:
+        n_display = f"{int(np.min(unique_n))}-{int(np.max(unique_n))}"
 
     rows = list()
     for group_key, grp in groups:
@@ -1384,35 +1412,49 @@ def stat_perturbed_tost(
                 ## tost p-value is the maximum of the two one-sided p-values
                 p_tost = max(p_upper, p_lower)
 
+            ## rank-biserial r effect size
+            if n >= 2:
+                w_plus, _ = wilcoxon(d, alternative = "greater")
+                t_sum = n * (n + 1) / 2
+                r_rb = (2 * w_plus / t_sum) - 1
+            else:
+                r_rb = np.nan
+
             row = dict(zip(feat_group, group_key))
             tag = metric.upper()
-            row["Metric"] = tag
-            row["n"] = n
             row[f"Median Δ {tag}"] = round(med_d, decimals)
-            row["TOST p (upper)"] = round(p_upper, decimals) if np.isfinite(p_upper) else np.nan
-            row["TOST p (lower)"] = round(p_lower, decimals) if np.isfinite(p_lower) else np.nan
+            row["Rank-biserial r"] = round(r_rb, decimals) if np.isfinite(r_rb) else np.nan
             row["TOST p"] = round(p_tost, decimals) if np.isfinite(p_tost) else np.nan
-            row["δ"] = delta
             rows.append(row)
 
     summary = pd.DataFrame(rows)
 
     ## holm-bonferroni correction
-    p_vals = summary["TOST p"].to_numpy(dtype = float, copy = True)
-    valid_p = np.isfinite(p_vals)
-    holm = np.full(len(p_vals), np.nan, dtype = float)
-    if np.any(valid_p):
-        p_valid = p_vals[valid_p]
+    p_value = summary["TOST p"].to_numpy(dtype = float, copy = True)
+    p_valid = np.isfinite(p_value)
+    holm = np.full(len(p_value), np.nan, dtype = float)
+    if np.any(p_valid):
+        p_valid = p_value[p_valid]
         m = len(p_valid)
         order = np.argsort(p_valid)
         holm_sorted = np.maximum.accumulate(p_valid[order] * (m - np.arange(m)))
         holm_valid = np.empty(m, dtype = float)
         holm_valid[order] = np.minimum(holm_sorted, 1.0)
-        holm[valid_p] = holm_valid
-    summary["Holm-adjusted p"] = holm
-    summary["Sig"] = summary["Holm-adjusted p"].map(
-        lambda p: np.nan if not np.isfinite(p) else "***" if p < 0.001 else "**" if p < 0.01 else "*" if p < 0.05 else ""
+        holm[np.isfinite(p_value)] = holm_valid
+    summary["Holm-adj. p"] = holm
+    summary["Sig."] = summary["Holm-adj. p"].map(
+        lambda p: "-" if not np.isfinite(p) else "***" if p < 0.001 else "**" if p < 0.01 else "*" if p < 0.05 else ""
     )
+    summary["Eq."] = summary["Sig."].map(
+        lambda s: "-" if s == "-" else "Yes" if s != "" else "No"
+    )
+
+    ## force fixed-decimal string formatting for numeric display columns
+    num_cols = [c for c in summary.columns if c.startswith("Median") or c in ["Rank-biserial r", "TOST p", "Holm-adj. p"]]
+    for col in num_cols:
+        summary[col] = summary[col].apply(
+            lambda v: f"{float(v):.{decimals}f}" if pd.notna(v) and np.isfinite(float(v)) else v
+        )
 
     ## display formatting
     summary = summary.rename(columns = {c: c.replace("_", " ").title() for c in feat_group})
@@ -1420,12 +1462,88 @@ def stat_perturbed_tost(
     if index and group_display:
         summary = summary.set_index(group_display)
 
-    print(f"=== TOST Equivalence: |Δ EI| < {delta} (n = {n}) ===")
-    print(f"H₁: Perturbation effect is negligibly small (within ±{delta})")
+    print(f"TOST Equivalence (Wilcoxon Signed-Rank): n = {n_display}, δ = {delta}")
+    print(f"H₀: |Δ {metric_label}| ≥ δ")
+    print(f"H₁: |Δ {metric_label}| < δ")
+    print(f"Median Δ {metric_label}: Median of paired differences, not the difference of marginal medians")
+    print(f"Rank-biserial r: Paired effect size, equivalence determined by TOST")
+    print(f"TOST p: max(Upper p, Lower p)")
+    print(f"Holm-adj. p: Holm-Bonferroni adjusted TOST p-value")
+    print("Significance codes reflect Holm-adj. p")
     print("*** p < 0.001, ** p < 0.01, * p < 0.05")
 
     return summary
 
+## ----------------------------------------------------------------------------
+## maximum-intensity selector for perturbation results
+## ----------------------------------------------------------------------------
+def find_perturbed_max(
+    results: pd.DataFrame,
+    intensity_col: str = "intensity",
+    label_pert: str = "perturbation",
+    label_base: str = "baseline",
+    feat_group: Sequence[str] | None = None,
+    pert_order: Sequence[str] | None = None,
+    ) -> pd.DataFrame:
+
+    """
+    Desc:
+        Keep baseline rows and the strongest shared perturbation
+        setting for each perturbation family and method. This is a
+        single-pass filter: it computes the maximum intensity per
+        group directly from the data, then retains only those rows.
+        group directly from the data, then retains only those rows. Perturbation
+        families are filtered according to `pert_order`.
+    
+    Args:
+        results: Full eval_perturbed output including baseline rows,
+            or a per-observation delta frame (perturbed_all). If
+            baseline rows are present they are preserved unchanged.
+        intensity_col: Intensity column name.
+        label_pert: Column that distinguishes baseline from perturbed rows.
+        label_base: Value in label_pert that marks baseline rows.
+        feat_group: Columns defining the shared intensity ladder
+            (default ["perturbation", "method"]).
+        pert_order: Allowed perturbation families. Rows whose
+            perturbation label is not in this list are dropped. None
+            keeps all non-baseline families.
+
+    Returns:
+        DataFrame containing baseline rows (if any) plus the strongest-
+        intensity rows for each group.
+    """
+    
+    data = results.copy()
+    feat_group = list(feat_group or ["perturbation", "method"])
+    
+    baseline = data.loc[data[label_pert] == label_base]
+    perturbed = data.loc[data[label_pert] != label_base].copy()
+
+    if pert_order is not None:
+        perturbed = perturbed.loc[
+            perturbed[label_pert].isin(pert_order)
+        ]
+
+    perturbed[intensity_col] = pd.to_numeric(
+        perturbed[intensity_col],
+        errors = "coerce",
+    )
+
+    max_int = (
+        perturbed
+        .groupby(feat_group, as_index = False)[intensity_col]
+        .max()
+    )
+    strongest = perturbed.merge(
+        max_int,
+        on = feat_group + [intensity_col],
+        how = "inner",
+    )
+
+    return pd.concat(
+        [baseline, strongest],
+        ignore_index = True,
+    )
 
 # ## perturbation delta summary with metric medians only
 # def stat_perturbed_delta(
