@@ -1223,8 +1223,8 @@ def stat_perturbed_test(
     summary = summary.astype(object).where(pd.notna(summary), '-')
     return summary
 
-## empirical equivalence margin
-def spec_delta(
+## specify delta from baseline variability across learners
+def spec_marginal_delta(
     results: pd.DataFrame,
     feat_value: Sequence[str],
     track: str | Sequence[str] | None = None,
@@ -1239,8 +1239,8 @@ def spec_delta(
     Desc:
         Compute a data-driven equivalence margin (delta) from the natural
         variability of baseline metric values across learners. Delta is
-        anchored entirely to clean-data performance, making it pre-
-        specifiable and independent of any perturbation effect.
+        anchored entirely to original data performance. It is pre-specifed
+        and independent of any perturbation effect.
 
     Args:
         results: Full aggregated output from eval_perturb, including
@@ -1352,13 +1352,22 @@ def stat_perturbed_tost(
     group_display = [c.replace("_", " ").title() for c in feat_group]
     pair_cols = list(feat_pairs) if feat_pairs is not None else ["model"]
 
-    metric_label = feat_value[0].upper() if len(feat_value) == 1 else ", ".join(v.upper() for v in feat_value)
-
+    ## normalize group and pairing columns for the merge
+    metric_label = (
+        feat_value[0].upper()
+        if len(feat_value) == 1
+        else ", ".join(v.upper() for v in feat_value)
+    )
     data = results.copy()
     baseline = data.loc[data[label_pert] == label_base].copy()
     perturbed = data.loc[data[label_pert] != label_base].copy()
-    merge_keys = ["track", *pair_cols] if "track" in data.columns else list(pair_cols)
+    merge_keys = (
+        ["track", *pair_cols]
+        if "track" in data.columns
+        else list(pair_cols)
+    )
 
+    ## pair baseline and perturbed rows by track+model (or custom pair cols)
     merged = baseline.merge(
         right = perturbed,
         on = merge_keys,
@@ -1366,14 +1375,17 @@ def stat_perturbed_tost(
         how = "inner",
     )
 
-    ## restore feat_group columns that were suffixed during merge
+    ## restore group columns lost to merge suffixing
     for col in feat_group:
         if col not in merged.columns and f"{col}_pert" in merged.columns:
             merged[col] = merged[f"{col}_pert"]
+    groups = (
+        merged.groupby(feat_group, sort = False)
+        if feat_group
+        else [((), merged)]
+    )
 
-    groups = merged.groupby(feat_group, sort = False) if feat_group else [((), merged)]
-
-    ## compute n per group for header
+    ## compute sample size range for header display
     if feat_group:
         n_pairs_by_group = merged.groupby(feat_group, sort = False).size()
         unique_n = np.array(pd.unique(n_pairs_by_group), dtype = float)
@@ -1401,18 +1413,18 @@ def stat_perturbed_tost(
             if n < 2:
                 p_upper = p_lower = p_tost = np.nan
             else:
-                ## upper test: H0: Δ >= delta  =>  test (x - y - delta) < 0
+                ## upper test: are values less than delta?
                 d_upper = d - delta
                 _, p_upper = wilcoxon(d_upper, alternative = "less")
 
-                ## lower test: H0: Δ <= -delta  =>  test (x - y + delta) > 0
+                ## lower test: are values greater than -delta?
                 d_lower = d + delta
                 _, p_lower = wilcoxon(d_lower, alternative = "greater")
 
-                ## tost p-value is the maximum of the two one-sided p-values
+                ## tost p = worst-case one-sided p-value
                 p_tost = max(p_upper, p_lower)
 
-            ## rank-biserial r effect size
+            ## paired rank-biserial effect size from wilcoxon
             if n >= 2:
                 w_plus, _ = wilcoxon(d, alternative = "greater")
                 t_sum = n * (n + 1) / 2
@@ -1429,7 +1441,7 @@ def stat_perturbed_tost(
 
     summary = pd.DataFrame(rows)
 
-    ## holm-bonferroni correction
+    ## holm-bonferroni step-down adjustment
     p_value = summary["TOST p"].to_numpy(dtype = float, copy = True)
     p_valid = np.isfinite(p_value)
     holm = np.full(len(p_value), np.nan, dtype = float)
@@ -1449,14 +1461,14 @@ def stat_perturbed_tost(
         lambda s: "-" if s == "-" else "Yes" if s != "" else "No"
     )
 
-    ## force fixed-decimal string formatting for numeric display columns
+    ## fixed decimal formatting for display
     num_cols = [c for c in summary.columns if c.startswith("Median") or c in ["Rank-biserial r", "TOST p", "Holm-adj. p"]]
     for col in num_cols:
         summary[col] = summary[col].apply(
             lambda v: f"{float(v):.{decimals}f}" if pd.notna(v) and np.isfinite(float(v)) else v
         )
 
-    ## display formatting
+    ## final display cleanup
     summary = summary.rename(columns = {c: c.replace("_", " ").title() for c in feat_group})
     summary = summary.astype(object).where(pd.notna(summary), "-")
     if index and group_display:
