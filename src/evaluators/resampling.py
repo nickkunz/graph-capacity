@@ -17,6 +17,7 @@ from src.vectorizers.scalers import _log_transformer, _standardizer
 ## result formatting helpers
 ## ----------------------------------------------------------------------------
 def compile_cross_valid(results: dict) -> pd.DataFrame:
+    
     """
     Desc:
         Converts a dictionary of CV frontiers into a single formatted DataFrame,
@@ -28,6 +29,7 @@ def compile_cross_valid(results: dict) -> pd.DataFrame:
     Returns:
         A concatenated DataFrame with the 'model' column moved to index 0.
     """
+    
     frame = pd.concat(results.values(), ignore_index = True)
     feat = ["model"] + [c for c in frame.columns if c != "model"]
     return frame[feat]
@@ -37,6 +39,8 @@ def results_cross_valid(
     *results: dict[str, pd.DataFrame],
     indicies: tuple[str, str] = ("procedure", "method"),
     keys: list[str] | None = None,
+    n_repeats: int | None = None,
+    random_state: int | None = None,
     decimals: int | None = None,
     ) -> pd.DataFrame | "pd.io.formats.style.Styler":
 
@@ -50,6 +54,8 @@ def results_cross_valid(
     Args:
         *results: one or more dicts mapping names to DataFrames.
         keys: optional list of group labels (one per dict) for multi-index rows.
+        n_repeats: optional number of repeats used in CV, for printing only.
+        random_state: optional base random seed used in CV, for printing only.
         decimals: if set, returns a styled table with left-justified index and
             the given decimal precision. If None, returns a plain DataFrame.
         indicies: names for the multi-index levels. Defaults to ("procedure", "method").
@@ -68,6 +74,19 @@ def results_cross_valid(
     else:
         if keys is None:
             keys = [f"Group {i}" for i in range(len(results))]
+
+        ## print summary header
+        first_data = next(iter(results[0].values()))
+        n_models = first_data["model"].nunique() if "model" in first_data.columns else None
+        if n_repeats is None and "repeat" in first_data.columns:
+            n_repeats = int(first_data["repeat"].nunique())
+        if n_repeats is not None and random_state is not None:
+            print(f"Cross-Validation: {n_models} models, {n_repeats} repeats (seeds {random_state}–{random_state + n_repeats - 1})")
+        else:
+            print(f"Cross-Validation: {n_models} models")
+        print("Across-model aggregation: median of model-level means")
+        print("Resampling: LOGO splits are fixed across repeats; random k-fold splits are reshuffled across repeats")
+        print("Weighting: groups, folds, repeats, and models are equally weighted; results are not observation-weighted")
         blocks = []
         for key, table in zip(keys, results):
             for label, data in table.items():
@@ -102,6 +121,10 @@ def results_cross_valid(
         cols = result.columns.tolist()
         cols.remove("ei")
         result = result[["ei"] + cols]
+
+        ## capitalize core metrics
+        rename_map = {c: c.upper() for c in ["ei", "vr", "mv", "ms"] if c in result.columns}
+        result = result.rename(columns = rename_map)
 
     ## optionally return styled output
     if decimals is not None:
@@ -299,9 +322,10 @@ def _run_frozen_fold(
     ) -> dict:
 
     """
-    Desc: Execute a single frozen-manifold logo fold. Trains on clean
-          training data and evaluates on perturbed test data for the
-          held-out group.
+    Desc: 
+        Execute a single frozen-manifold logo fold. Trains on clean
+        training data and evaluates on perturbed test data for the
+        held-out group.
 
     Args:
         train_idx: Training indices into X/Z/y_star.
@@ -433,13 +457,15 @@ def logo_cross_valid(
     ) -> tuple[pd.DataFrame, np.ndarray]:
 
     """
-    Desc: Leave-one-group-out cross validation (retrain). Trains and evaluates
-          on data using standard logo cv. When n_repeats > 1, the full logo
-          procedure is repeated with different random seeds to average out
-          stochastic learner variance; frontier metrics are averaged per group
-          across repeats. Transforms are always fit on the training fold only.
-          Estimators are cloned per fold. Rows with nans are dropped per fold
-          using training-fold-only statistics.
+    Desc: 
+        Leave-one-group-out cross validation (retrain). Trains and evaluates
+        on data using standard logo cv. When n_repeats > 1, the full logo
+        procedure is repeated with different random seeds to average out
+        stochastic learner variance; frontier metrics are averaged per group
+        across repeats. Transforms are always fit on the training fold only.
+        Estimators are cloned per fold. Rows with nans are dropped per fold
+        using training-fold-only statistics.
+    
     Args:
         data: Training data with features, target, and group columns.
         feat_x: Graph invariant feature column names.
@@ -453,6 +479,7 @@ def logo_cross_valid(
         random_state: Random seed forwarded to cloned estimators when supported.
             Each repeat offsets the seed by the repeat index.
         n_jobs: Number of parallel jobs for fold execution (-1 for all cores).
+    
     Returns:
         Tuple of (frontier results dataframe, predicted values array).
         Frontier metrics are averaged across repeats per group.
