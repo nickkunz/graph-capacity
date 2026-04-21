@@ -10,7 +10,7 @@ from sklearn.base import BaseEstimator, clone
 from sklearn.model_selection import LeaveOneGroupOut, KFold, RepeatedKFold
 
 ## modules
-from src.evaluators.metrics import frontier_metrics
+from src.evaluators.metrics import frontier_metrics, FRONTIER_METRICS
 from src.vectorizers.scalers import _log_transformer, _standardizer
 
 ## ----------------------------------------------------------------------------
@@ -123,7 +123,7 @@ def results_cross_valid(
         result = result[["ei"] + cols]
 
         ## capitalize core metrics
-        rename_map = {c: c.upper() for c in ["ei", "vr", "mv", "ms"] if c in result.columns}
+        rename_map = {c: c.upper() for c in FRONTIER_METRICS if c in result.columns}
         result = result.rename(columns = rename_map)
 
     ## optionally return styled output
