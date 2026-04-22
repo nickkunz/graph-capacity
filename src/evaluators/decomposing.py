@@ -1,10 +1,43 @@
 ## libraries
 import numpy as np
 import pandas as pd
-from typing import Sequence, Dict, Any
+from tqdm import tqdm
+from joblib import parallel
+from contextlib import contextmanager
+from joblib.parallel import BatchCompletionCallBack
+from typing import Sequence, Dict, Any, Iterator
 
 ## modules
 from src.evaluators.metrics import FRONTIER_METRICS
+
+## joblib progress bar bridge
+@contextmanager
+def _tqdm_joblib(total: int, desc: str) -> Iterator[Any]:
+
+    """
+    Desc: bridge joblib completion callbacks into a simple tqdm progress bar.
+    Args:
+        total: total number of parallel jobs.
+        desc: progress bar label.
+    Returns:
+        Iterator over the active tqdm progress bar context.
+    """
+
+    pbar = tqdm(total = total, desc = desc, unit = "model")
+
+    class _TqdmBatchCompletionCallback(BatchCompletionCallBack):
+        def __call__(self, *args, **kwargs):
+            pbar.update(n = self.batch_size)
+            return super().__call__(*args, **kwargs)
+
+    batch_callback = parallel.BatchCompletionCallBack
+    parallel.BatchCompletionCallBack = _TqdmBatchCompletionCallback
+
+    try:
+        yield pbar
+    finally:
+        parallel.BatchCompletionCallBack = batch_callback
+        pbar.close()
 
 ## --------------------------------------------------------------------------
 ## single-stage fold worker
@@ -185,8 +218,6 @@ def _eval_separability_model(
 
     from src.evaluators.resampling import logo_cross_valid
 
-    print(f"  {model_name}: additive...", end = " ", flush = True)
-
     frontier_a, y_pred_a = logo_cross_valid(
         data = data,
         feat_x = feat_x,
@@ -197,8 +228,6 @@ def _eval_separability_model(
         group = group,
         n_jobs = 1,
     )
-
-    print("interaction...", end = " ", flush = True)
 
     frontier_b, y_pred_b = logo_cross_valid(
         data = data_aug,
@@ -211,8 +240,6 @@ def _eval_separability_model(
         n_jobs = 1,
     )
 
-    print("joint...", end = " ", flush = True)
-
     feat_joint = feat_x + feat_z
     frontier_c, y_pred_c = _single_stage_logo_cv(
         data = data,
@@ -222,8 +249,6 @@ def _eval_separability_model(
         group = group,
         n_jobs = 1,
     )
-
-    print("interaction_joint...", end = " ", flush = True)
 
     feat_int_joint = feat_x + feat_z + interaction_cols
     frontier_d, y_pred_d = _single_stage_logo_cv(
@@ -235,8 +260,6 @@ def _eval_separability_model(
         n_jobs = 1,
     )
 
-    print("capacity_only...", end = " ", flush = True)
-
     frontier_f, y_pred_f = _single_stage_logo_cv(
         data = data,
         feats = feat_x,
@@ -246,8 +269,6 @@ def _eval_separability_model(
         n_jobs = 1,
     )
 
-    print("dynamics_only...", end = " ", flush = True)
-
     frontier_g, y_pred_g = _single_stage_logo_cv(
         data = data,
         feats = feat_z,
@@ -256,8 +277,6 @@ def _eval_separability_model(
         group = group,
         n_jobs = 1,
     )
-
-    print("done.")
 
     results = []
     predictions = []
@@ -519,24 +538,30 @@ def eval_separability(
     y_star_all = _log_transformer(data[target]).astype(float).values
     groups_all = data[group].values
     names_all = data["name"].values if "name" in data.columns else np.arange(len(data))
-    model_outputs = Parallel(n_jobs = n_jobs)(
-        delayed(_eval_separability_model)(
-            model_name = model_name,
-            model = model,
-            data = data,
-            data_aug = data_aug,
-            feat_x = feat_x,
-            feat_z = feat_z,
-            feat_z_aug = feat_z_aug,
-            interaction_cols = interaction_cols,
-            target = target,
-            group = group,
-            y_star_all = y_star_all,
-            groups_all = groups_all,
-            names_all = names_all,
-        )
-        for model_name, model in models.items()
-    )
+    model_items = list(models.items())
+
+    if model_items:
+        with _tqdm_joblib(total = len(model_items), desc = "Separability evaluation"):
+            model_outputs = Parallel(n_jobs = n_jobs, verbose = 0)(
+                delayed(_eval_separability_model)(
+                    model_name = model_name,
+                    model = model,
+                    data = data,
+                    data_aug = data_aug,
+                    feat_x = feat_x,
+                    feat_z = feat_z,
+                    feat_z_aug = feat_z_aug,
+                    interaction_cols = interaction_cols,
+                    target = target,
+                    group = group,
+                    y_star_all = y_star_all,
+                    groups_all = groups_all,
+                    names_all = names_all,
+                )
+                for model_name, model in model_items
+            )
+    else:
+        model_outputs = list()
 
     results = []
     predictions = []
