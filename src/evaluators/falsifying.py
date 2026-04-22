@@ -355,8 +355,8 @@ def eval_falsified_alignment(
                     "condition": condition,
                     "group": "all",
                 }
-                for col in CONSENSUS_METRICS:
-                    row[col] = mvals[col]
+                for col, value in mvals.items():
+                    row[col] = value
                 obs.append(row)
 
         frame = pd.DataFrame(obs)
@@ -479,14 +479,16 @@ def eval_falsified_consensus(
                         y_true = y_i[valid],
                         y_pred = y_j[valid],
                     )
-                    obs.append({
+                    row = {
                         "method": method_name,
                         "condition": condition,
                         "group": "all",
                         "model_i": model_i,
                         "model_j": model_j,
-                        **mvals,
-                    })
+                    }
+                    for col, value in mvals.items():
+                        row[col] = value
+                    obs.append(row)
 
         frame = pd.DataFrame(obs)
         frame["track"] = track
@@ -533,9 +535,8 @@ def stat_falsified_test(
     
     Returns:
         Display-ready table with columns:
-        [*feat_group, Metric?, Median <M> (Original), Median <M> (Falsified),
-        Median Δ<M>, Positive Δ, Wilcoxon W+, Rank-biserial r, One-sided p,
-        Holm-adjusted p, Sig.] where Metric is only included when 
+        [*feat_group, Metric?, Median Δ<M>, Rank-biserial r, One-sided p,
+        Holm-adj. p, Sig., Diff.] where Metric is only included when
         len(feat_value) > 1.
     """
     
@@ -543,7 +544,7 @@ def stat_falsified_test(
     feat_group = list(feat_group or list())
     group_display = [c.title() for c in feat_group]
     p_label = "One-sided p"
-    tail_cols = ["Wilcoxon W+", "Rank-biserial r", p_label, "Holm-adjusted p", "Sig."]
+    tail_cols = ["Rank-biserial r", p_label, "Holm-adj. p", "Sig.", "Diff."]
 
     ## infer pairing columns from non-metric/non-group fields when not provided
     reserved = set(feat_value) | {label_cond} | set(feat_group)
@@ -566,8 +567,15 @@ def stat_falsified_test(
     n_pairs = int(unique_n_pairs[0]) if len(unique_n_pairs) == 1 else f"{int(np.min(unique_n_pairs))}-{int(np.max(unique_n_pairs))}"
 
     metric_label = feat_value[0].upper() if len(feat_value) == 1 else ", ".join(v.upper() for v in feat_value)
-    print(f"=== Falsifiability: Original vs Falsified Median {metric_label} (n = {n_pairs}) ===")
-    print(f"H₁: Original data produces higher median {metric_label} than falsified data")
+    print(f"Wilcoxon Signed-Rank (One-Sided): n = {n_pairs}")
+    print(f"H₀: Δ {metric_label} ≤ 0")
+    print(f"H₁: Δ {metric_label} > 0")
+    print(f"Median Δ {metric_label}: Median of paired differences, not the difference of marginal medians")
+    print("Rank-biserial r: Paired effect size, positive values favor original")
+    print("One-sided p: Wilcoxon signed-rank p-value for H₁")
+    print("Holm-adj. p: Holm-Bonferroni adjusted one-sided p-value")
+    print("Diff.: Yes if Holm-adj. p < 0.05 and Median Δ > 0")
+    print("Significance codes reflect Holm-adj. p")
     print("*** p < 0.001, ** p < 0.01, * p < 0.05")
 
     groups = merged.groupby(feat_group, sort = False) if feat_group else [((), merged)]
@@ -583,19 +591,15 @@ def stat_falsified_test(
             x, y = x[valid], y[valid]
             n = len(x)
             d = x - y
-            n_pos = int(np.sum(d > 0))
-            med_o, med_f, med_d = (
-                (float(np.median(x)), float(np.median(y)), float(np.median(d))) if n else (np.nan, np.nan, np.nan)
-            )
+            med_d = float(np.median(d)) if n else np.nan
 
             n_eff = int(np.sum(d != 0))
             if n < 2 or n_eff < 2:
-                w_stat, r_eff, p_val = np.nan, np.nan, np.nan
+                r_eff, p_val = np.nan, np.nan
             else:
 
                 ## strict one-sided test for original > falsified
-                ## returns W = sum of ranks of positive differences
-                w_stat, p_val = wilcoxon(x, y, alternative = "greater")
+                _, p_val = wilcoxon(x, y, alternative = "greater")
 
                 ## rank-biserial r from signed differences (kerby 2014)
                 ## r > 0 means original > falsified, independent of scipy convention
@@ -605,17 +609,11 @@ def stat_falsified_test(
                 neg_rank_sum = float(np.sum(ranks[d_nz < 0]))
                 r_eff = (pos_rank_sum - neg_rank_sum) / float(np.sum(ranks))
 
-            # store the proportion of positive paired differences for the display table
-            positive_delta = float(n_pos) / float(n) if n > 0 else np.nan
-            rows.append((*group_key, metric, med_o, med_f, med_d, positive_delta, w_stat, r_eff, float(p_val)))
+            rows.append((*group_key, metric, med_d, r_eff, float(p_val)))
 
     summary = pd.DataFrame(rows, columns = feat_group + [
         "metric",
-        "Median Original",
-        "Median Falsified",
         "Median Δ",
-        "Positive Δ",
-        "Wilcoxon W+",
         "Rank-biserial r",
         p_label,
     ])
@@ -634,18 +632,21 @@ def stat_falsified_test(
         holm_valid = np.empty(m, dtype = float)
         holm_valid[order] = np.minimum(holm_sorted, 1.0)
         holm[valid_p] = holm_valid
-    summary["Holm-adjusted p"] = holm
-    summary["Sig."] = summary["Holm-adjusted p"].map(
+    summary["Holm-adj. p"] = holm
+    summary["Sig."] = summary["Holm-adj. p"].map(
         lambda p: np.nan if not np.isfinite(p) else "***" if p < 0.001 else "**" if p < 0.01 else "*" if p < 0.05 else ""
     )
+    med_delta = summary["Median Δ"].to_numpy(dtype = float, copy = True)
+    diff = np.full(shape = len(summary), fill_value = np.nan, dtype = object)
+    valid_diff = np.isfinite(holm) & np.isfinite(med_delta)
+    diff[valid_diff] = np.where((holm[valid_diff] < 0.05) & (med_delta[valid_diff] > 0.0), "Yes", "No")
+    summary["Diff."] = diff
 
     ## convert group/metric labels to display names
     summary = summary.rename(columns = {c: c.title() for c in feat_group})
     if len(feat_value) == 1:
         tag = feat_value[0].upper()
         summary = summary.rename(columns = {
-            "Median Original": f"Median {tag} (Original)",
-            "Median Falsified": f"Median {tag} (Falsified)",
             "Median Δ": f"Median Δ {tag}",
         }).drop(columns = ["metric"])
     else:
@@ -667,20 +668,23 @@ def stat_falsified_test(
     if group_display:
         summary = summary.sort_values(group_display).reset_index(drop = True)
 
-    if "Wilcoxon W+" in summary.columns:
-        summary["Wilcoxon W+"] = summary["Wilcoxon W+"].round(0).astype("Int64")
-    round_cols = [c for c in summary.select_dtypes(include = [np.number]).columns if c != "Wilcoxon W+"]
+    round_cols = list(summary.select_dtypes(include = [np.number]).columns)
     if round_cols:
         summary[round_cols] = summary[round_cols].round(decimals)
 
     ## keep a stable display column order for single- and multi-metric outputs
     if "Metric" in summary.columns:
-        value_cols_order = ["Metric", "Median Original", "Median Falsified", "Median Δ", "Positive Δ", *tail_cols]
+        value_cols_order = ["Metric", "Median Δ", *tail_cols]
     else:
-        med_o = next((c for c in summary.columns if c.startswith("Median ") and c.endswith("(Original)")), "Median Original")
-        med_f = next((c for c in summary.columns if c.startswith("Median ") and c.endswith("(Falsified)")), "Median Falsified")
         med_d = next((c for c in summary.columns if c.startswith("Median Δ")), "Median Δ")
-        value_cols_order = [med_o, med_f, med_d, "Positive Δ", *tail_cols]
+        value_cols_order = [med_d, *tail_cols]
+
+    ## fixed decimal formatting for display
+    num_cols = [c for c in summary.columns if c.startswith("Median") or c in ["Rank-biserial r", p_label, "Holm-adj. p"]]
+    for col in num_cols:
+        summary[col] = summary[col].apply(
+            lambda v: f"{float(v):.{decimals}f}" if pd.notna(v) and np.isfinite(float(v)) else v
+        )
 
     summary = summary.reindex(columns = group_display + [c for c in value_cols_order if c in summary.columns])
     summary = summary.set_index(group_display) if (index and group_display) else summary
