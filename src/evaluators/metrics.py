@@ -5,11 +5,7 @@ import numpy as np
 # from itertools import combinations
 # from sklearn.decomposition import PCA
 from scipy.stats import ConstantInputWarning
-from scipy.stats import (
-    spearmanr, 
-    kendalltau, 
-    pearsonr
-)
+from scipy.stats import spearmanr
 
 ## constants
 FRONTIER_METRICS = ["vr", "mv", "ms", "ei"]
