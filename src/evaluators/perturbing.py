@@ -836,32 +836,36 @@ def _run_perturbation(
 
     return {"key": key, "frozen": frontier_fr, "retrain": frontier_rt}
 
-## aggregate frontier metrics across groups for each perturbation setting
+## collect per-group frontier metrics for each perturbation setting
 def _aggregate_frontier(results_dict: dict, track: str) -> pd.DataFrame:
 
     """
-    Desc: aggregate frontier metrics across groups per perturbation setting.
+    Desc: collect per-group frontier metrics for each perturbation setting.
+          emits one row per (model, perturbation, method, intensity, group)
+          so downstream paired statistics can pair on (model, group) rather
+          than averaging domains out before pairing.
     Args:
         results_dict: mapping of (model, pert_type, method, intensity)
                       to frontier dataframe.
         track: label for the evaluation track (default "frozen").
     Returns:
-        dataframe with one row per perturbation setting.
+        dataframe with one row per perturbation setting and group.
     """
 
     rows = []
     for (model_name, pert_type, method, intensity), frontier in results_dict.items():
-        vals = frontier[FRONTIER_METRICS]
-        row = {
-            "track": track,
-            "model": model_name,
-            "perturbation": pert_type,
-            "method": method,
-            "intensity": intensity,
-        }
-        for col in FRONTIER_METRICS:
-            row[col] = vals[col].mean()
-        rows.append(row)
+        for _, frow in frontier.iterrows():
+            row = {
+                "track": track,
+                "model": model_name,
+                "perturbation": pert_type,
+                "method": method,
+                "intensity": intensity,
+                "group": frow["group"],
+            }
+            for col in FRONTIER_METRICS:
+                row[col] = frow[col]
+            rows.append(row)
     return pd.DataFrame(rows)
 
 ## ----------------------------------------------------------------------------
@@ -972,16 +976,23 @@ def eval_perturbed(
     agg_retrain = _aggregate_frontier(results_dict = results_retrain, track = "retrain")
     results_data = pd.concat([agg_frozen, agg_retrain], ignore_index = True)
 
-    ## baseline lookup
+    ## baseline lookup keyed on (model, group) to match per-group aggregation
     baseline_lookup = (
         agg_frozen.query("perturbation == 'baseline'")
-        .drop_duplicates(subset = ["model"])
-        .set_index("model")[FRONTIER_METRICS]
+        .drop_duplicates(subset = ["model", "group"])
+        .set_index(["model", "group"])[FRONTIER_METRICS]
     )
 
     ## directed deltas (positive = degradation; NaN for baseline rows)
+    pair_index = pd.MultiIndex.from_arrays([
+        results_data["model"].to_numpy(),
+        results_data["group"].to_numpy(),
+    ])
     for col in FRONTIER_METRICS:
-        base = results_data["model"].map(baseline_lookup[col])
+        base = pd.Series(
+            baseline_lookup[col].reindex(pair_index).to_numpy(),
+            index = results_data.index,
+        )
         delta = (base - results_data[col]) if col == "ei" else (results_data[col] - base)
         results_data[f"Δ {col.upper()}"] = delta.where(results_data["perturbation"] != "baseline")
 
@@ -990,11 +1001,11 @@ def eval_perturbed(
     pert_rows = results_data.query("perturbation != 'baseline'")
     frozen_deltas = (
         pert_rows.query("track == 'frozen'")
-        .set_index(["model", "perturbation", "method", "intensity"])[delta_cols]
+        .set_index(["model", "perturbation", "method", "intensity", "group"])[delta_cols]
     )
     retrain_deltas = (
         pert_rows.query("track == 'retrain'")
-        .set_index(["model", "perturbation", "method", "intensity"])[delta_cols]
+        .set_index(["model", "perturbation", "method", "intensity", "group"])[delta_cols]
     )
     common_idx = frozen_deltas.index.intersection(retrain_deltas.index)
     fr = frozen_deltas.loc[common_idx]
@@ -1032,7 +1043,8 @@ def stat_perturbed_test(
             baseline rows.
         feat_value: Metric columns to test (for example ["ei"]).
         feat_pairs: Columns that align a baseline row with each perturbed
-            row. Defaults to ["model"].
+            row. Defaults to ["model", "group"] to match the falsification
+            pipeline's (model × domain) pairing convention.
         feat_group: Columns whose unique combinations define independent
             tests (default ["track", "method"]).
         pert_type: Perturbation type to restrict to (e.g. "network",
@@ -1068,7 +1080,7 @@ def stat_perturbed_test(
     group_display = [c.replace("_", " ").title() for c in feat_group]
     p_label = "One-sided p"
     tail_cols = ["Wilcoxon W+", "Rank-biserial r", p_label, "Holm-adj. p", "Sig"]
-    pair_cols = list(feat_pairs) if feat_pairs is not None else ["model"]
+    pair_cols = list(feat_pairs) if feat_pairs is not None else ["model", "group"]
 
     data = results.copy()
 
@@ -1318,7 +1330,8 @@ def stat_perturbed_tost(
             baseline rows.
         feat_value: Metric columns to test (e.g. ["ei"]).
         feat_pairs: Columns aligning baseline to perturbed rows.
-            Defaults to ["model"].
+            Defaults to ["model", "group"] to match the falsification
+            pipeline's (model × domain) pairing convention.
         feat_group: Columns whose unique combinations define independent
             tests (default ["track"]).
         pert_type: Perturbation family to restrict to (e.g. "network").
@@ -1350,7 +1363,7 @@ def stat_perturbed_tost(
     feat_value = list(feat_value)
     feat_group = list(feat_group or [])
     group_display = [c.replace("_", " ").title() for c in feat_group]
-    pair_cols = list(feat_pairs) if feat_pairs is not None else ["model"]
+    pair_cols = list(feat_pairs) if feat_pairs is not None else ["model", "group"]
 
     ## normalize group and pairing columns for the merge
     metric_label = (
