@@ -37,11 +37,11 @@ def compile_cross_valid(results: dict) -> pd.DataFrame:
 ## summarizes one or more cv result dicts into table
 def results_cross_valid(
     *results: dict[str, pd.DataFrame],
-    indicies: tuple[str, str] = ("procedure", "method"),
-    keys: list[str] | None = None,
-    n_repeats: int | None = None,
-    random_state: int | None = None,
-    decimals: int | None = None,
+    keys: tuple[str, str] = None,
+    indicies: tuple[str, str] = None,
+    n_repeats: int = 30,
+    random_state: int = 42,
+    decimals: int = 3
     ) -> pd.DataFrame | "pd.io.formats.style.Styler":
 
     """
