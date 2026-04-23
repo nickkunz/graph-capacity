@@ -354,9 +354,8 @@ def eval_falsified_alignment(
                     "method": method_name,
                     "condition": condition,
                     "group": "all",
+                    **mvals,
                 }
-                for col, value in mvals.items():
-                    row[col] = value
                 obs.append(row)
 
         frame = pd.DataFrame(obs)
@@ -479,16 +478,14 @@ def eval_falsified_consensus(
                         y_true = y_i[valid],
                         y_pred = y_j[valid],
                     )
-                    row = {
+                    obs.append({
                         "method": method_name,
                         "condition": condition,
                         "group": "all",
                         "model_i": model_i,
                         "model_j": model_j,
-                    }
-                    for col, value in mvals.items():
-                        row[col] = value
-                    obs.append(row)
+                        **mvals,
+                    })
 
         frame = pd.DataFrame(obs)
         frame["track"] = track
