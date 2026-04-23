@@ -1483,11 +1483,18 @@ def stat_perturbed_tost(
 
     ## final display cleanup
     summary = summary.rename(columns = {c: ("Frontier" if c == "track" else c.replace("_", " ").title()) for c in feat_group})
+    for orig, disp in zip(feat_group, group_display):
+        if disp not in summary.columns:
+            continue
+        if orig == "method":
+            summary[disp] = summary[disp].astype(object).str.replace("_", " ")
+        elif orig != "track" and summary[disp].dtype == object:
+            summary[disp] = summary[disp].astype(object).str.replace("_", " ").str.title()
     summary = summary.astype(object).where(pd.notna(summary), "-")
     if index and group_display:
         summary = summary.set_index(group_display)
 
-    print(f"TOST Equivalence (Wilcoxon Signed-Rank): n = {n_display}, δ = {delta}")
+    print(f"Paired TOST (Wilcoxon Signed-Rank): n = {n_display}, δ = {delta}")
     print(f"H₀: |Δ {metric_label}| ≥ δ")
     print(f"H₁: |Δ {metric_label}| < δ")
     print(f"Median Δ {metric_label}: Median of paired differences, not the difference of marginal medians")
