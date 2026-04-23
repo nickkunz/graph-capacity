@@ -539,7 +539,7 @@ def stat_falsified_test(
     
     feat_value = list(feat_value)
     feat_group = list(feat_group or list())
-    group_display = [c.title() for c in feat_group]
+    group_display = [("Frontier" if c == "track" else c.title()) for c in feat_group]
     p_label = "One-sided p"
     tail_cols = ["Rank-biserial r", p_label, "Holm-adj. p", "Sig.", "Diff."]
 
@@ -640,7 +640,7 @@ def stat_falsified_test(
     summary["Diff."] = diff
 
     ## convert group/metric labels to display names
-    summary = summary.rename(columns = {c: c.title() for c in feat_group})
+    summary = summary.rename(columns = {c: ("Frontier" if c == "track" else c.title()) for c in feat_group})
     if len(feat_value) == 1:
         tag = feat_value[0].upper()
         summary = summary.rename(columns = {
@@ -650,9 +650,9 @@ def stat_falsified_test(
         summary = summary.rename(columns = {"metric": "Metric"})
 
     ## apply native display ordering, then format numeric output
-    if "Track" in summary.columns:
-        summary["Track"] = pd.Categorical(
-            summary["Track"],
+    if "Frontier" in summary.columns:
+        summary["Frontier"] = pd.Categorical(
+            summary["Frontier"],
             categories = ["original", "frozen", "retrain"],
             ordered = True,
         )
@@ -740,6 +740,11 @@ def stat_falsified_summary(
     source["method"] = pd.Categorical(source["method"], categories = list(method_order), ordered = True)
 
     summary = source.groupby(by = feat_group, observed = True)[metrics].median()
+
+    ## display-only index renaming
+    summary.index.names = [
+        ("Frontier" if n == "track" else n.title()) for n in summary.index.names
+    ]
     if decimals is not None:
         summary = summary.round(decimals)
 
