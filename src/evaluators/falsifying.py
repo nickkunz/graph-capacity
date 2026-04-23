@@ -31,7 +31,7 @@ def eval_falsified_frontier(
     feat_z: Sequence[str],
     target: str = "target",
     group: str = "domain",
-    n_repeat: int = 30,
+    n_repeats: int = 30,
     random_state: int = 42,
     n_jobs: int = -1,
     ) -> pd.DataFrame:
@@ -49,7 +49,7 @@ def eval_falsified_frontier(
         feat_z: process signature feature column names for the residual model.
         target: target variable column name (default "target").
         group: group column name for leave-one-group-out splits (default "domain").
-        n_repeat: number of repeated CV seeds to average predictions (default 30).
+        n_repeats: number of repeated CV seeds to average predictions (default 30).
         random_state: base random state for seed reproducibility (default 42).
         n_jobs: number of parallel jobs for cross-validation (default -1, all cores).
 
@@ -61,8 +61,8 @@ def eval_falsified_frontier(
     feat_x = list(feat_x)
     feat_z = list(feat_z)
     model_names = list(models.keys())
-    if n_repeat < 1:
-        raise ValueError("n_repeat must be >= 1")
+    if n_repeats < 1:
+        raise ValueError("n_repeats must be >= 1")
 
     y_true_proc = _log_transformer(data_proc[target]).astype(float).values
     groups_proc = data_proc[group].values
@@ -81,12 +81,12 @@ def eval_falsified_frontier(
             n_jobs = 1,
         )
         for name in model_names
-        for repeat_idx in range(n_repeat)
+        for repeat_idx in range(n_repeats)
     )
     real_cv = dict()
     for model_idx, model_name in enumerate(model_names):
-        start = model_idx * n_repeat
-        runs = real_results[start:start + n_repeat]
+        start = model_idx * n_repeats
+        runs = real_results[start:start + n_repeats]
         pred_stack = np.vstack([y_pred for _, y_pred in runs])
         valid_pred = np.isfinite(pred_stack)
         y_pred_mean = np.full(shape = pred_stack.shape[1], fill_value = np.nan, dtype = float)
@@ -133,7 +133,7 @@ def eval_falsified_frontier(
                     n_jobs = 1,  ## avoid over-subscription of parallel jobs
                 )
                 for model_name, _, data in false_jobs
-                for repeat_idx in range(n_repeat)
+                for repeat_idx in range(n_repeats)
             )
         else:
             false_results = Parallel(n_jobs = n_jobs)(
@@ -150,14 +150,14 @@ def eval_falsified_frontier(
                     n_jobs = 1,  ## avoid over-subscription of parallel jobs
                 )
                 for model_name, _, data_test in false_jobs
-                for repeat_idx in range(n_repeat)
+                for repeat_idx in range(n_repeats)
             )
             false_results = [(frontier, yhat) for frontier, yhat, _ in false_results]
 
         false_results_mean = list()
         for job_idx, (_, _, data_eval) in enumerate(false_jobs):
-            start = job_idx * n_repeat
-            runs = false_results[start:start + n_repeat]
+            start = job_idx * n_repeats
+            runs = false_results[start:start + n_repeats]
             pred_stack = np.vstack([y_pred for _, y_pred in runs])
             valid_pred = np.isfinite(pred_stack)
             y_pred_mean = np.full(shape = pred_stack.shape[1], fill_value = np.nan, dtype = float)
@@ -215,7 +215,7 @@ def eval_falsified_alignment(
     feat_z: Sequence[str],
     target: str = "target",
     group: str = "domain",
-    n_repeat: int = 30,
+    n_repeats: int = 30,
     random_state: int = 42,
     n_jobs: int = -1,
     ) -> pd.DataFrame:
@@ -234,7 +234,7 @@ def eval_falsified_alignment(
         feat_z: process signature feature column names for the residual model.
         target: target variable column name (default "target").
         group: group column name for leave-one-group-out splits (default "domain").
-        n_repeat: number of repeated CV seeds to average predictions (default 30).
+        n_repeats: number of repeated CV seeds to average predictions (default 30).
         random_state: base random state for seed reproducibility (default 42).
         n_jobs: number of parallel jobs for cross-validation (default -1, all cores).
     Returns:
@@ -246,8 +246,8 @@ def eval_falsified_alignment(
     feat_x = list(feat_x)
     feat_z = list(feat_z)
     model_names = list(models.keys())
-    if n_repeat < 1:
-        raise ValueError("n_repeat must be >= 1")
+    if n_repeats < 1:
+        raise ValueError("n_repeats must be >= 1")
 
     ## original-data cv: repeated across seeds, then average predictions
     real_results = Parallel(n_jobs = n_jobs)(
@@ -263,12 +263,12 @@ def eval_falsified_alignment(
             n_jobs = 1,
         )
         for name in model_names
-        for repeat_idx in range(n_repeat)
+        for repeat_idx in range(n_repeats)
     )
     real_cv = dict()
     for model_idx, model_name in enumerate(model_names):
-        start = model_idx * n_repeat
-        runs = real_results[start:start + n_repeat]
+        start = model_idx * n_repeats
+        runs = real_results[start:start + n_repeats]
         pred_stack = np.vstack([y_pred for _, y_pred in runs])
         valid_pred = np.isfinite(pred_stack)
         y_pred_mean = np.full(shape = pred_stack.shape[1], fill_value = np.nan, dtype = float)
@@ -300,7 +300,7 @@ def eval_falsified_alignment(
                     n_jobs = 1,
                 )
                 for model_name, _, data_false in false_jobs
-                for repeat_idx in range(n_repeat)
+                for repeat_idx in range(n_repeats)
             )
         else:
             false_results = Parallel(n_jobs = n_jobs)(
@@ -317,14 +317,14 @@ def eval_falsified_alignment(
                     n_jobs = 1,
                 )
                 for model_name, _, data_false in false_jobs
-                for repeat_idx in range(n_repeat)
+                for repeat_idx in range(n_repeats)
             )
             false_results = [(f, y) for f, y, _ in false_results]
 
         false_results_mean = list()
         for job_idx in range(len(false_jobs)):
-            start = job_idx * n_repeat
-            runs = false_results[start:start + n_repeat]
+            start = job_idx * n_repeats
+            runs = false_results[start:start + n_repeats]
             pred_stack = np.vstack([y_pred for _, y_pred in runs])
             valid_pred = np.isfinite(pred_stack)
             y_pred_mean = np.full(shape = pred_stack.shape[1], fill_value = np.nan, dtype = float)
@@ -374,7 +374,7 @@ def eval_falsified_consensus(
     feat_x: Sequence[str],
     feat_z: Sequence[str],
     target: str = "target",
-    n_repeat: int = 30,
+    n_repeats: int = 30,
     n_jobs: int = -1,
     random_state: int = 42,
     ) -> pd.DataFrame:
@@ -392,7 +392,7 @@ def eval_falsified_consensus(
         feat_x: Graph invariant feature column names for frontier model.
         feat_z: Process signature feature column names for the residual model.
         target: Target variable column name (default "target").
-        n_repeat: Number of repeated fits to average (default 30).
+        n_repeats: Number of repeated fits to average (default 30).
         random_state: Random state forwarded to estimator fitting (default 42).
         n_jobs: Parallel job count (default -1, all cores).
     Returns:
@@ -414,7 +414,7 @@ def eval_falsified_consensus(
             estimator_c = models[name].estimator_c,
             estimator_r = models[name].estimator_r,
             target = target,
-            n_repeat = n_repeat,
+            n_repeats = n_repeats,
             random_state = random_state,
         )
         for name in model_names
@@ -443,7 +443,7 @@ def eval_falsified_consensus(
                     estimator_c = models[model_name].estimator_c,
                     estimator_r = models[model_name].estimator_r,
                     target = target,
-                    n_repeat = n_repeat,
+                    n_repeats = n_repeats,
                     random_state = random_state,
                 )
                 for model_name, _, data_false in false_jobs
@@ -564,7 +564,7 @@ def stat_falsified_test(
     n_pairs = int(unique_n_pairs[0]) if len(unique_n_pairs) == 1 else f"{int(np.min(unique_n_pairs))}-{int(np.max(unique_n_pairs))}"
 
     metric_label = feat_value[0].upper() if len(feat_value) == 1 else ", ".join(v.upper() for v in feat_value)
-    print(f"Wilcoxon Signed-Rank (One-Sided): n = {n_pairs}")
+    print(f"Paired One-Sided Test (Wilcoxon Signed-Rank): n = {n_pairs}")
     print(f"H₀: Δ {metric_label} ≤ 0")
     print(f"H₁: Δ {metric_label} > 0")
     print(f"Median Δ {metric_label}: Median of paired differences, not the difference of marginal medians")
@@ -665,6 +665,11 @@ def stat_falsified_test(
     if group_display:
         summary = summary.sort_values(group_display).reset_index(drop = True)
 
+    ## strip categorical typing so display formatting can mutate strings
+    for c in group_display:
+        if c in summary.columns and isinstance(summary[c].dtype, pd.CategoricalDtype):
+            summary[c] = summary[c].astype(object)
+
     round_cols = list(summary.select_dtypes(include = [np.number]).columns)
     if round_cols:
         summary[round_cols] = summary[round_cols].round(decimals)
@@ -682,6 +687,15 @@ def stat_falsified_test(
         summary[col] = summary[col].apply(
             lambda v: f"{float(v):.{decimals}f}" if pd.notna(v) and np.isfinite(float(v)) else v
         )
+
+    ## final display formatting - note: columns have been renamed already
+    for orig, disp in zip(feat_group, group_display):
+        if disp not in summary.columns:
+            continue
+        if orig == "method":
+            summary[disp] = summary[disp].astype(object).str.replace("_", " ")
+        elif orig != "track" and summary[disp].dtype == object:
+            summary[disp] = summary[disp].astype(object).str.title()
 
     summary = summary.reindex(columns = group_display + [c for c in value_cols_order if c in summary.columns])
     summary = summary.set_index(group_display) if (index and group_display) else summary
@@ -747,5 +761,11 @@ def stat_falsified_summary(
     ]
     if decimals is not None:
         summary = summary.round(decimals)
+
+    ## strip underscores from method-level index values for display
+    if "Method" in summary.index.names:
+        new_idx = summary.index.to_frame(index = False)
+        new_idx["Method"] = new_idx["Method"].astype(object).str.replace("_", " ")
+        summary.index = pd.MultiIndex.from_frame(new_idx) if new_idx.shape[1] > 1 else pd.Index(new_idx["Method"], name = "Method")
 
     return summary
