@@ -1077,7 +1077,7 @@ def stat_perturbed_test(
 
     feat_value = list(feat_value)
     feat_group = list(feat_group or [])
-    group_display = [c.replace("_", " ").title() for c in feat_group]
+    group_display = [("Frontier" if c == "track" else c.replace("_", " ").title()) for c in feat_group]
     p_label = "One-sided p"
     tail_cols = ["Wilcoxon W+", "Rank-biserial r", p_label, "Holm-adj. p", "Sig"]
     pair_cols = list(feat_pairs) if feat_pairs is not None else ["model", "group"]
@@ -1180,7 +1180,7 @@ def stat_perturbed_test(
     )
 
     ## convert group/metric labels to display names
-    summary = summary.rename(columns = {c: c.replace("_", " ").title() for c in feat_group})
+    summary = summary.rename(columns = {c: ("Frontier" if c == "track" else c.replace("_", " ").title()) for c in feat_group})
     if len(feat_value) == 1:
         tag = feat_value[0].upper()
         summary = summary.rename(columns = {
@@ -1192,9 +1192,9 @@ def stat_perturbed_test(
         summary = summary.rename(columns = {"metric": "Metric"})
 
     ## apply native display ordering, then format numeric output
-    if "Track" in summary.columns:
-        summary["Track"] = pd.Categorical(
-            summary["Track"],
+    if "Frontier" in summary.columns:
+        summary["Frontier"] = pd.Categorical(
+            summary["Frontier"],
             categories = ["frozen", "retrain"],
             ordered = True,
         )
@@ -1362,7 +1362,7 @@ def stat_perturbed_tost(
 
     feat_value = list(feat_value)
     feat_group = list(feat_group or [])
-    group_display = [c.replace("_", " ").title() for c in feat_group]
+    group_display = [("Frontier" if c == "track" else c.replace("_", " ").title()) for c in feat_group]
     pair_cols = list(feat_pairs) if feat_pairs is not None else ["model", "group"]
 
     ## normalize group and pairing columns for the merge
@@ -1482,7 +1482,7 @@ def stat_perturbed_tost(
         )
 
     ## final display cleanup
-    summary = summary.rename(columns = {c: c.replace("_", " ").title() for c in feat_group})
+    summary = summary.rename(columns = {c: ("Frontier" if c == "track" else c.replace("_", " ").title()) for c in feat_group})
     summary = summary.astype(object).where(pd.notna(summary), "-")
     if index and group_display:
         summary = summary.set_index(group_display)
