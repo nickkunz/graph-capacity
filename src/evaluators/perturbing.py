@@ -163,7 +163,7 @@ def _rewire_estimate(
     return out
 
 ## node sampling estimate (analytical)
-def _node_sample_estimate(
+def _sample_estimate(
     invariants: Dict[str, float],
     degrees: np.ndarray,
     n_nodes: int,
@@ -337,7 +337,7 @@ def analytical_perturb(
         return _force_finite_dict(out)
 
     if method == "uniform_node_sampling":
-        out = _node_sample_estimate(invariants, degree, n_nodes, n_edges, x)
+        out = _sample_estimate(invariants, degree, n_nodes, n_edges, x)
         return _force_finite_dict(out)
 
     if method == "bernoulli_edge_densification":
@@ -363,7 +363,7 @@ def network_perturb(
 
     Args:
         graph: Original igraph.Graph object.
-        method: Perturbation method ('rewire', 'node_sample', 'densify').
+        method: Perturbation method ('rewire', 'sample', 'densify').
         intensity: Fraction of edges/nodes to modify.
         n_swaps: Number of rewiring swaps (for rewire). Defaults to |n_edges| * intensity.
 
@@ -390,7 +390,7 @@ def network_perturb(
         G.rewire(n = n_swaps, mode = "simple")
 
     ## node sampling (remove nodes)
-    elif method == "node_sample":
+    elif method == "sample":
         n_remove = int(n_nodes * intensity)
         if n_remove > 0 and n_remove < n_nodes:
             nodes_to_remove = rng.choice(n_nodes, n_remove, replace = False).tolist()
