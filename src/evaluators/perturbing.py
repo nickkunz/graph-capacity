@@ -7,13 +7,13 @@ import numpy as np
 import pandas as pd
 import scipy.stats as stats
 from pathlib import Path
-from typing import Sequence, Optional, Tuple, Dict, Literal, Any
 from sklearn.utils import resample
 from sklearn.base import BaseEstimator
 from joblib import parallel, Parallel, delayed
 from joblib.parallel import BatchCompletionCallBack
-from contextlib import contextmanager
+from typing import Sequence, Optional, Tuple, Dict, Literal, Any
 from scipy.stats import rankdata, wilcoxon
+from contextlib import contextmanager
 from tqdm import tqdm
 
 ## path
@@ -22,7 +22,10 @@ if str(root) not in sys.path:
     sys.path.append(str(root))
     
 ## modules
-from src.evaluators.metrics import FRONTIER_METRICS
+from itertools import combinations
+from src.evaluators.training import fit_predict_frontier
+from src.vectorizers.scalers import _log_transformer
+from src.evaluators.metrics import consensus_metrics
 from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
 from src.evaluators.resampling import (
@@ -34,6 +37,7 @@ from src.data.helpers import (
     _force_finite_dict,
     _clip_unit_interval
 )
+from src.evaluators.metrics import FRONTIER_METRICS
 
 ## joblib progress bar bridge
 @contextmanager
@@ -871,7 +875,7 @@ def _aggregate_frontier(results_dict: dict, track: str) -> pd.DataFrame:
 ## ----------------------------------------------------------------------------
 ## main evaluation pipeline
 ## ----------------------------------------------------------------------------
-def eval_perturbed(
+def eval_perturbed_frontier(
     data: pd.DataFrame,
     models: Dict[str, Any],
     data_pert: dict,
@@ -1635,3 +1639,475 @@ def find_perturbed_max(
 #         summary = summary.round(decimals)
 
 #     return summary
+
+
+## ----------------------------------------------------------------------------
+## worker for perturbation alignment
+## ----------------------------------------------------------------------------
+def _run_perturbation_alignment(
+    model_name: str,
+    model: BaseEstimator,
+    pert_type: str,
+    method: str,
+    intensity: str,
+    pert_df: pd.DataFrame,
+    data: pd.DataFrame,
+    feat_cols: Sequence[str],
+    feat_x: Sequence[str],
+    feat_z: Sequence[str],
+    group: str,
+    target: str,
+    random_state: int,
+    n_repeats: int,
+    ) -> dict | None:
+
+    """
+    Desc: worker for a single (model, perturbation, method, intensity)
+          combination. runs frozen logo-cv with seed averaging and emits
+          per-group consensus metrics of predictions against the observed
+          target.
+    Args:
+        model_name: name of the estimator.
+        model: estimator with .estimator_c and .estimator_r attributes.
+        pert_type: perturbation family name.
+        method: perturbation method within the family.
+        intensity: perturbation intensity level.
+        pert_df: perturbed feature dataframe indexed by dataset.
+        data: clean baseline dataframe.
+        feat_cols: feature columns affected by this perturbation type.
+        feat_x: graph invariant feature column names.
+        feat_z: process signatures feature column names.
+        group: group column name.
+        target: target column name.
+        random_state: base random state for repeat reproducibility.
+        n_repeats: number of repeated cv seeds to average predictions.
+    Returns:
+        dict with "frozen" list of per-group rows, or None if skipped.
+    """
+
+    lookup = pert_df.set_index("dataset")
+    data_mod = data.copy()
+    for col in feat_cols:
+        if col in lookup.columns:
+            data_mod[col] = data_mod["name"].map(lookup[col])
+
+    if pert_type == "temporal" and target in lookup.columns:
+        data_mod[target] = data_mod["name"].map(lookup[target])
+
+    required = list(feat_cols)
+    if pert_type == "temporal":
+        required = required + [target]
+    data_mod = data_mod.dropna(subset = required).reset_index(drop = True)
+    if len(data_mod) < 2:
+        return None
+
+    ## frozen: train on clean data, predict perturbed rows; seed averaged inside helper
+    _, y_pred_mean, _ = logo_cross_valid_frozen(
+        data_train = data,
+        data_test = data_mod,
+        feat_x = feat_x,
+        feat_z = feat_z,
+        estimator_c = model.estimator_c,
+        estimator_r = model.estimator_r,
+        target = target,
+        group = group,
+        n_repeats = n_repeats,
+        random_state = random_state,
+        n_jobs = 1,
+    )
+
+    y_true = _log_transformer(data_mod[target]).astype(float).values
+    groups_eval = data_mod[group].values
+
+    rows = list()
+    for group_name in pd.unique(groups_eval):
+        mask = (
+            (groups_eval == group_name)
+            & np.isfinite(y_true)
+            & np.isfinite(y_pred_mean)
+        )
+        if int(np.sum(mask)) < 2:
+            continue
+        mvals = consensus_metrics(
+            y_true = y_true[mask],
+            y_pred = y_pred_mean[mask],
+        )
+        rows.append({
+            "track": "frozen",
+            "model": model_name,
+            "perturbation": pert_type,
+            "method": method,
+            "intensity": intensity,
+            "group": group_name,
+            **mvals,
+        })
+
+    return {"frozen": rows}
+
+## ----------------------------------------------------------------------------
+## target-alignment perturbation pipeline
+## ----------------------------------------------------------------------------
+def eval_perturbed_alignment(
+    data: pd.DataFrame,
+    models: Dict[str, Any],
+    data_pert: dict,
+    feat_x: Sequence[str],
+    feat_z: Sequence[str],
+    group: str = "domain",
+    target: str = "target",
+    n_repeats: int = 30,
+    random_state: int = 42,
+    n_jobs: int = -1,
+    ) -> pd.DataFrame:
+
+    """
+    Desc:
+        Test whether perturbed data preserves predictive alignment with the
+        observed target relative to the unperturbed baseline under the frozen
+        protocol. Predictions are generated via LOGO-CV (domain) with
+        seed-averaged repeats, and consensus metrics are computed per domain
+        so downstream paired tests align on (model, group), consistent with
+        the frontier pipeline.
+
+    Args:
+        data: clean baseline dataframe with features, target, and group columns.
+        models: mapping of model name to estimator with .estimator_c and
+                .estimator_r attributes.
+        data_pert: nested perturbation dict from load_perturbed_data()
+                   with schema {json_key: {method: {intensity: DataFrame}}}.
+        feat_x: graph invariant feature column names.
+        feat_z: process signatures feature column names.
+        group: group column name (default "domain").
+        target: target column name (default "target").
+        n_repeats: number of repeated cv seeds to average predictions (default 30).
+        random_state: base random state for seed reproducibility (default 42).
+        n_jobs: number of parallel workers (default -1, all cores).
+
+    Returns:
+        DataFrame with consensus metrics (rho, rbo, dcr, ci) per
+        (track, model, perturbation, method, intensity, group). Baseline
+        rows are emitted with perturbation == "baseline" and
+        method/intensity == None for the frozen track.
+    """
+
+    feat_x = list(feat_x)
+    feat_z = list(feat_z)
+    model_names = list(models.keys())
+    feat_lookup = {"x": feat_x, "z": feat_z}
+    if n_repeats < 1:
+        raise ValueError("n_repeats must be >= 1")
+
+    ## baselines: logo-cv on clean data, seed averaged per model (n_repeats internal)
+    real_results = Parallel(n_jobs = n_jobs)(
+        delayed(logo_cross_valid)(
+            data = data,
+            feat_x = feat_x,
+            feat_z = feat_z,
+            estimator_c = models[name].estimator_c,
+            estimator_r = models[name].estimator_r,
+            target = target,
+            group = group,
+            n_repeats = n_repeats,
+            random_state = random_state,
+            n_jobs = 1,
+        )
+        for name in model_names
+    )
+
+    baseline_preds = {
+        name: np.asarray(y_pred, dtype = float)
+        for name, (_, y_pred) in zip(model_names, real_results)
+    }
+
+    y_true_proc = _log_transformer(data[target]).astype(float).values
+    groups_proc = data[group].values
+
+    rows = list()
+    for model_name, y_pred in baseline_preds.items():
+        for group_name in pd.unique(groups_proc):
+            mask = (
+                (groups_proc == group_name)
+                & np.isfinite(y_true_proc)
+                & np.isfinite(y_pred)
+            )
+            if int(np.sum(mask)) < 2:
+                continue
+            mvals = consensus_metrics(
+                y_true = y_true_proc[mask],
+                y_pred = y_pred[mask],
+            )
+            rows.append({
+                "track": "frozen",
+                "model": model_name,
+                "perturbation": "baseline",
+                "method": None,
+                "intensity": None,
+                "group": group_name,
+                **mvals,
+            })
+
+    jobs = list()
+    for json_key, methods in data_pert.items():
+        pert_type = KEY_TO_TYPE.get(json_key)
+        if pert_type not in FEAT_MAP:
+            continue
+        feat_cols = feat_lookup[FEAT_MAP[pert_type]]
+        for method, intensities in methods.items():
+            for intensity, pert_df in intensities.items():
+                for model_name, model in models.items():
+                    jobs.append((
+                        model_name, model, pert_type, method, intensity,
+                        pert_df, data, feat_cols, feat_x, feat_z, group, target,
+                        random_state, n_repeats,
+                    ))
+
+    if jobs:
+        with warnings.catch_warnings():
+            warnings.filterwarnings(
+                action = "ignore",
+                message = ".*A worker stopped while some jobs were given to the executor.*",
+                category = UserWarning,
+            )
+            with _tqdm_joblib(total = len(jobs), desc = "Perturbation alignment"):
+                outputs = Parallel(n_jobs = n_jobs, verbose = 0)(
+                    delayed(_run_perturbation_alignment)(*args) for args in jobs
+                )
+    else:
+        outputs = list()
+
+    for result in outputs:
+        if result is None:
+            continue
+        rows.extend(result["frozen"])
+
+    return pd.DataFrame(rows)
+
+## ----------------------------------------------------------------------------
+## worker for perturbation pairwise consensus (full-data fit, frozen scoring)
+## ----------------------------------------------------------------------------
+def _run_perturbation_consensus(
+    model_name: str,
+    pert_type: str,
+    method: str,
+    intensity: str,
+    pert_df: pd.DataFrame,
+    data: pd.DataFrame,
+    feat_cols: Sequence[str],
+    target: str,
+    fit_real: dict,
+    ) -> dict | None:
+
+    """
+    Desc: worker for a single (model, perturbation, method, intensity)
+          combination. uses the model's clean-data fit bundle to score the
+          perturbed dataframe (frozen protocol) and returns the prediction
+          vector for downstream pairwise consensus aggregation.
+    Args:
+        model_name: name of the estimator.
+        pert_type: perturbation family name.
+        method: perturbation method within the family.
+        intensity: perturbation intensity level.
+        pert_df: perturbed feature dataframe indexed by dataset.
+        data: clean baseline dataframe.
+        feat_cols: feature columns affected by this perturbation type.
+        target: target column name.
+        fit_real: clean-data fit bundle from fit_predict_frontier for this model.
+    Returns:
+        dict with model identifier and prediction vector, or None if skipped.
+    """
+
+    lookup = pert_df.set_index("dataset")
+    data_mod = data.copy()
+    for col in feat_cols:
+        if col in lookup.columns:
+            data_mod[col] = data_mod["name"].map(lookup[col])
+
+    if pert_type == "temporal" and target in lookup.columns:
+        data_mod[target] = data_mod["name"].map(lookup[target])
+
+    required = list(feat_cols)
+    if pert_type == "temporal":
+        required = required + [target]
+    data_mod = data_mod.dropna(subset = required).reset_index(drop = True)
+    if len(data_mod) < 2:
+        return None
+
+    fit_pert = fit_predict_frontier(
+        data = data_mod,
+        fit_result = fit_real,
+    )
+
+    return {
+        "model": model_name,
+        "pert_type": pert_type,
+        "method": method,
+        "intensity": intensity,
+        "y_pred": np.asarray(fit_pert["y_pred"], dtype = float),
+        "n_rows": len(data_mod),
+    }
+
+## ----------------------------------------------------------------------------
+## pairwise consensus perturbation pipeline
+## ----------------------------------------------------------------------------
+def eval_perturbed_consensus(
+    data: pd.DataFrame,
+    models: Dict[str, Any],
+    data_pert: dict,
+    feat_x: Sequence[str],
+    feat_z: Sequence[str],
+    target: str = "target",
+    n_repeats: int = 30,
+    random_state: int = 42,
+    n_jobs: int = -1,
+    ) -> pd.DataFrame:
+
+    """
+    Desc:
+        Test whether perturbed data preserves inter-model frontier consensus
+        relative to the unperturbed baseline under the frozen protocol.
+        Models are fit on clean data once, then scored on each perturbed
+        dataframe. Pairwise consensus metrics are computed across model
+        pairs on the prediction vectors so downstream paired tests align on
+        (model_i, model_j, group), mirroring the falsification consensus
+        pipeline. Consensus is global (group == "all") because pairwise
+        agreement is most informative across the full prediction surface.
+
+    Args:
+        data: clean baseline dataframe with features and target columns.
+        models: mapping of model name to estimator with .estimator_c and
+                .estimator_r attributes.
+        data_pert: nested perturbation dict from load_perturbed_data()
+                   with schema {json_key: {method: {intensity: DataFrame}}}.
+        feat_x: graph invariant feature column names.
+        feat_z: process signatures feature column names.
+        target: target column name (default "target").
+        n_repeats: number of repeated full-data fits to average per model
+                   (default 30).
+        random_state: base random state for fit reproducibility (default 42).
+        n_jobs: number of parallel workers (default -1, all cores).
+
+    Returns:
+        DataFrame with pairwise consensus metrics (rho, rbo, dcr, ci) per
+        (track, perturbation, method, intensity, model_i, model_j, group).
+        Baseline rows are emitted with perturbation == "baseline" and
+        method/intensity == None for the frozen track.
+    """
+
+    feat_x = list(feat_x)
+    feat_z = list(feat_z)
+    model_names = list(models.keys())
+    feat_lookup = {"x": feat_x, "z": feat_z}
+
+    ## clean-data full fit, once per model (n_repeats averaged inside helper)
+    real_results = Parallel(n_jobs = n_jobs)(
+        delayed(fit_predict_frontier)(
+            data = data,
+            feat_x = feat_x,
+            feat_z = feat_z,
+            estimator_c = models[name].estimator_c,
+            estimator_r = models[name].estimator_r,
+            target = target,
+            n_repeat = n_repeats,
+            random_state = random_state,
+        )
+        for name in model_names
+    )
+    pred_real = {
+        name: np.asarray(r["y_pred"], dtype = float)
+        for name, r in zip(model_names, real_results)
+    }
+    fit_real = dict(zip(model_names, real_results))
+
+    ## baseline pairwise consensus rows
+    rows = list()
+    for model_i, model_j in combinations(model_names, 2):
+        y_i = pred_real[model_i]
+        y_j = pred_real[model_j]
+        valid = np.isfinite(y_i) & np.isfinite(y_j)
+        if int(np.sum(valid)) < 2:
+            continue
+        mvals = consensus_metrics(
+            y_true = y_i[valid],
+            y_pred = y_j[valid],
+        )
+        rows.append({
+            "track": "frozen",
+            "perturbation": "baseline",
+            "method": None,
+            "intensity": None,
+            "model_i": model_i,
+            "model_j": model_j,
+            "group": "all",
+            **mvals,
+        })
+
+    ## perturbation jobs: per (model, perturbation, method, intensity)
+    jobs = list()
+    for json_key, methods in data_pert.items():
+        pert_type = KEY_TO_TYPE.get(json_key)
+        if pert_type not in FEAT_MAP:
+            continue
+        feat_cols = feat_lookup[FEAT_MAP[pert_type]]
+        for method, intensities in methods.items():
+            for intensity, pert_df in intensities.items():
+                for model_name in model_names:
+                    jobs.append((
+                        model_name, pert_type, method, intensity,
+                        pert_df, data, feat_cols, target, fit_real[model_name],
+                    ))
+
+    if jobs:
+        with warnings.catch_warnings():
+            warnings.filterwarnings(
+                action = "ignore",
+                message = ".*A worker stopped while some jobs were given to the executor.*",
+                category = UserWarning,
+            )
+            with _tqdm_joblib(total = len(jobs), desc = "Perturbation consensus"):
+                outputs = Parallel(n_jobs = n_jobs, verbose = 0)(
+                    delayed(_run_perturbation_consensus)(*args) for args in jobs
+                )
+    else:
+        outputs = list()
+
+    ## index perturbed predictions by (pert_type, method, intensity, model)
+    pred_pert = dict()
+    for r in outputs:
+        if r is None:
+            continue
+        key = (r["pert_type"], r["method"], r["intensity"], r["model"])
+        pred_pert[key] = r["y_pred"]
+
+    ## aggregate pairwise consensus per perturbation setting
+    setting_keys = set(
+        (p, m, i) for (p, m, i, _) in pred_pert.keys()
+    )
+    for (pert_type, method, intensity) in setting_keys:
+        for model_i, model_j in combinations(model_names, 2):
+            key_i = (pert_type, method, intensity, model_i)
+            key_j = (pert_type, method, intensity, model_j)
+            if key_i not in pred_pert or key_j not in pred_pert:
+                continue
+            y_i = pred_pert[key_i]
+            y_j = pred_pert[key_j]
+            if len(y_i) != len(y_j):
+                continue
+            valid = np.isfinite(y_i) & np.isfinite(y_j)
+            if int(np.sum(valid)) < 2:
+                continue
+            mvals = consensus_metrics(
+                y_true = y_i[valid],
+                y_pred = y_j[valid],
+            )
+            rows.append({
+                "track": "frozen",
+                "perturbation": pert_type,
+                "method": method,
+                "intensity": intensity,
+                "model_i": model_i,
+                "model_j": model_j,
+                "group": "all",
+                **mvals,
+            })
+
+    return pd.DataFrame(rows)
