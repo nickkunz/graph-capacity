@@ -1,20 +1,41 @@
 ## libraries
+import os
 import torch
+import random
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 import numpy as np
+from typing import Any, Callable
+from numpy.typing import ArrayLike, NDArray
 from sklearn.base import BaseEstimator, RegressorMixin
 
+## modules
+from src.estimators.config import ASYMMETRY_C, ASYMMETRY_R
 
 ## neural network sklearn regressors
-class NeuralQuantile:
-    def __init__(self, quantile_c = 0.99, quantile_r = 0.5, input_dims = None, **kwargs):
+class NeuralQuantile(BaseEstimator):
+    def __init__(
+        self, 
+        quantile_c: float = ASYMMETRY_C,
+        quantile_r: float = ASYMMETRY_R,
+        input_dims: int | None = None,
+        random_state: int = 42,
+        **kwargs: Any
+        ) -> None:
+
+        self.quantile_c = quantile_c
+        self.quantile_r = quantile_r
+        self.input_dims = input_dims
+        self.random_state = random_state
+        self.kwargs: dict[str, Any] = kwargs
+
         self.estimator_c = NeuralBase(
             net_cls = QuantileNet,
             loss_fn = quantile_loss,
             quantile = quantile_c,
             input_dims = input_dims,
+            random_state = random_state,
             **kwargs
         )
         self.estimator_r = NeuralBase(
@@ -22,16 +43,32 @@ class NeuralQuantile:
             loss_fn = quantile_loss,
             quantile = quantile_r,
             input_dims = input_dims,
+            random_state = random_state,
             **kwargs
         )
 
-class NeuralExpectile:
-    def __init__(self, quantile_c = 0.99, quantile_r = 0.5, input_dims = None, **kwargs):
+class NeuralExpectile(BaseEstimator):
+    def __init__(
+        self, 
+        quantile_c: float = ASYMMETRY_C, 
+        quantile_r: float = ASYMMETRY_R, 
+        input_dims: int | None = None,
+        random_state: int = 42,
+        **kwargs: Any
+        ) -> None:
+
+        self.quantile_c = quantile_c
+        self.quantile_r = quantile_r
+        self.input_dims = input_dims
+        self.random_state = random_state
+        self.kwargs: dict[str, Any] = kwargs
+        
         self.estimator_c = NeuralBase(
             net_cls = ExpectileNet,
             loss_fn = expectile_loss,
             quantile = quantile_c,
             input_dims = input_dims,
+            random_state = random_state,
             **kwargs
         )
         self.estimator_r = NeuralBase(
@@ -39,16 +76,32 @@ class NeuralExpectile:
             loss_fn = expectile_loss,
             quantile = quantile_r,
             input_dims = input_dims,
+            random_state = random_state,
             **kwargs
         )
 
-class NeuralConvex:
-    def __init__(self, quantile_c = 0.99, quantile_r = 0.5, input_dims = None, **kwargs):
+class NeuralConvex(BaseEstimator):
+    def __init__(
+        self, 
+        quantile_c: float = ASYMMETRY_C, 
+        quantile_r: float = ASYMMETRY_R, 
+        input_dims: int | None = None,
+        random_state: int = 42,
+        **kwargs: Any
+        ) -> None:
+
+        self.quantile_c = quantile_c
+        self.quantile_r = quantile_r
+        self.input_dims = input_dims
+        self.random_state = random_state
+        self.kwargs: dict[str, Any] = kwargs
+
         self.estimator_c = NeuralBase(
             net_cls = ConvexNet,
             loss_fn = quantile_loss,
             quantile = quantile_c,
             input_dims = input_dims,
+            random_state = random_state,
             **kwargs
         )
         self.estimator_r = NeuralBase(
@@ -56,13 +109,27 @@ class NeuralConvex:
             loss_fn = quantile_loss,
             quantile = quantile_r,
             input_dims = input_dims,
+            random_state = random_state,
             **kwargs
         )
 
 
 ## neural network sklearn framework
 class NeuralBase(BaseEstimator, RegressorMixin):
-    def __init__(self, net_cls, loss_fn, quantile, input_dims, hidden_dims = [8, 4], lr = 0.1, epochs = 5000, dropout = 0.1, weight_decay = 0.01):
+    def __init__(
+        self, 
+        net_cls: type[nn.Module],
+        loss_fn: Callable[[torch.Tensor, torch.Tensor, float, torch.Tensor | None], torch.Tensor],
+        quantile: float,
+        input_dims: int | None,
+        hidden_dims: list[int] = [8, 4],
+        lr: float = 0.1,
+        epochs: int = 1000,
+        dropout: float = 0.1,
+        weight_decay: float = 0.01,
+        random_state: int = 42
+        ) -> None:
+
         self.net_cls = net_cls
         self.loss_fn = loss_fn
         self.input_dims = input_dims
@@ -72,11 +139,28 @@ class NeuralBase(BaseEstimator, RegressorMixin):
         self.quantile = quantile 
         self.dropout = dropout
         self.weight_decay = weight_decay
+        self.random_state = random_state
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.model_ = None
 
     ## sklearn fit interface
-    def fit(self, X, y):
+    def fit(self, X: ArrayLike, y: ArrayLike) -> "NeuralBase":
+
+        ## seed torch for reproducibility
+        seed = int(self.random_state)
+        random.seed(seed)
+        np.random.seed(seed)
+        torch.manual_seed(seed)
+        torch.use_deterministic_algorithms(True, warn_only = True)
+
+        if torch.cuda.is_available():
+            os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
+            torch.cuda.manual_seed(seed)
+            torch.cuda.manual_seed_all(seed)
+            torch.backends.cudnn.deterministic = True
+            torch.backends.cudnn.benchmark = False
+            torch.backends.cuda.matmul.allow_tf32 = False
+            torch.backends.cudnn.allow_tf32 = False
 
         ## data prep
         X_train = np.array(X)
@@ -117,18 +201,23 @@ class NeuralBase(BaseEstimator, RegressorMixin):
             torch.nn.utils.clip_grad_norm_(self.model_.parameters(), max_norm = 5.0)
             optimizer.step()
             
+        ## store training target range for prediction clipping
+        self.y_min_ = float(y_train.min())
+        self.y_max_ = float(y_train.max())
+
         return self
     
     ## sklearn predict interface
-    def predict(self, X):
+    def predict(self, X: ArrayLike) -> NDArray[np.float32]:
         self.model_.eval()
         with torch.no_grad():
-            return self.model_(torch.FloatTensor(X).to(self.device)).cpu().numpy()
+            preds = self.model_(torch.FloatTensor(X).to(self.device)).cpu().numpy()
+            return np.clip(preds, self.y_min_, self.y_max_)
 
 
 ## quantile neural network
 class QuantileNet(nn.Module):
-    def __init__(self, input_dims: int, hidden_dims: list[int], dropout: float = 0.0):
+    def __init__(self, input_dims: int, hidden_dims: list[int], dropout: float = 0.0) -> None:
         super().__init__()
         self.mlp = BaseNet(input_dims, hidden_dims, output_dims = 1, dropout = dropout)
 
@@ -137,7 +226,7 @@ class QuantileNet(nn.Module):
 
 ## expectile neural network
 class ExpectileNet(nn.Module):
-    def __init__(self, input_dims: int, hidden_dims: list[int], dropout: float = 0.0):
+    def __init__(self, input_dims: int, hidden_dims: list[int], dropout: float = 0.0) -> None:
         super().__init__()
         self.mlp = BaseNet(input_dims, hidden_dims, output_dims = 1, dropout = dropout)
 
@@ -146,7 +235,7 @@ class ExpectileNet(nn.Module):
 
 ## convex neural network
 class ConvexNet(nn.Module):
-    def __init__(self, input_dims: int, hidden_dims: list[int], dropout: float = 0.0):
+    def __init__(self, input_dims: int, hidden_dims: list[int], dropout: float = 0.0) -> None:
         super().__init__()
         self.mlp = BaseNet(input_dims, hidden_dims, output_dims = 1, dropout = dropout)
 
@@ -160,9 +249,17 @@ class ConvexNet(nn.Module):
 
 ## base neural network (shared by quantile / expectile)
 class BaseNet(nn.Module):
-    def __init__(self, input_dims: int, hidden_dims: list[int], output_dims: int, dropout: float = 0.0):
+    def __init__(
+        self, 
+        input_dims: int, 
+        hidden_dims: list[int], 
+        output_dims: int, 
+        dropout: float = 0.0
+        ) -> None:
+
         super().__init__()
-        layers = []
+
+        layers = list()
         prev_dim = input_dims
         for h in hidden_dims:
             layers.append(nn.Linear(prev_dim, h))
@@ -178,14 +275,26 @@ class BaseNet(nn.Module):
 
 
 ## training loss functions
-def quantile_loss(y_true: torch.Tensor, y_pred: torch.Tensor, alpha: float, weights: torch.Tensor = None) -> torch.Tensor:
+def quantile_loss(
+    y_true: torch.Tensor, 
+    y_pred: torch.Tensor, 
+    alpha: float, 
+    weights: torch.Tensor | None = None
+    ) -> torch.Tensor:
+    
     diff = y_true - y_pred
     loss = torch.maximum(alpha * diff, (alpha - 1.0) * diff)
     if weights is not None:
         loss = loss * weights
     return torch.mean(loss)
 
-def expectile_loss(y_true: torch.Tensor, y_pred: torch.Tensor, alpha: float, weights: torch.Tensor = None) -> torch.Tensor:
+def expectile_loss(
+    y_true: torch.Tensor, 
+    y_pred: torch.Tensor, 
+    alpha: float, 
+    weights: torch.Tensor | None = None
+    ) -> torch.Tensor:
+
     diff = y_true - y_pred
     weight_alpha = torch.where(diff > 0, alpha, 1.0 - alpha)
     loss = diff ** 2

@@ -72,6 +72,21 @@ def _save_to_json(data: dict, path: str) -> None:
     with open(path, 'w') as fp:
         json.dump(obj = data, fp = fp, indent = 2, default = str)
 
+## load a single key from environment variable or .env file
+def _load_env_var(key: str, env_path: str) -> str | None:
+    try:
+        with open(env_path, 'r') as fp:
+            for line in fp:
+                line = line.strip()
+                if not line or line.startswith('#') or '=' not in line:
+                    continue
+                k, v = line.split('=', 1)
+                if k.strip() == key:
+                    return v.strip().strip('"').strip("'")
+    except FileNotFoundError:
+        return None
+    return None
+
 ## find path for cache directory
 def _cache_dir(namespace: str = "http") -> str:
     path = Path(__file__).resolve().parents[2] / "cache" / namespace
@@ -105,7 +120,7 @@ def _request_with_retry(
     method: str = 'GET',
     params: dict = None,
     json: dict = None,
-    retries: int = 3, 
+    retries: int = 5, 
     timeout: int = 60, 
     sleep: float = 0.5,
     use_cache: bool = True,
@@ -264,7 +279,7 @@ def _load_events_zip(url: str, name: str, timeout: int = 30) -> pd.DataFrame:
             elif final.endswith('.json'):
                 data = json.load(fp = file_final)
             else:
-                raise ValueError(f"Unsupported file type: {final}. Only .csv and .json are supported.")
+                raise ValueError(f"Unsupported file type: {final}. .csv and .json only.")
 
         ## check for empty data
         if isinstance(data, pd.DataFrame) and data.empty:
@@ -364,116 +379,3 @@ def _to_datetime(values: pd.Series | None) -> pd.Series | None:
     if pd.api.types.is_numeric_dtype(values):
         return pd.to_datetime(values, unit = 's')
     return pd.to_datetime(values)
-
-
-# -----------------------------------------------------------------------------
-# perturbation table helpers
-# -----------------------------------------------------------------------------
-
-## constants
-PERT_TYPE = [
-    ('network_perturbed', 'network', 'invariants', 'net'),
-    ('invariants_perturbed', 'invariants', 'invariants', 'inv'),
-    ('process_perturbed', 'process', 'signatures', 'proc'),
-    ('signatures_perturbed', 'signature', 'signatures', 'sig'),
-    ('temporal_aggregated', 'temporal', 'events', 'tmp'),
-]
-PERT_JSON_BY_TYPE = {
-    type: json_key for json_key, type, _, _ in PERT_TYPE
-}
-PATH_PERT = config['paths']['PATH_PERT'].strip('"')
-
-## prefix feature keys in a dictionary with a given prefix
-def _prefix_features(features: dict, prefix: str) -> dict:
-    """ Add a prefix to each key in the features dictionary. """
-
-    ## ensure features is a dictionary
-    return {f"{prefix}__{k}": v for k, v in features.items()}
-
-## collect perturbated data from json files
-def _index_perturbs(pert_path: str) -> dict:
-    """ Iterate over all perturbation json files and extract features into an index. """
-
-    ## iterate over all json files in the perturbation directory
-    index = dict()
-    path = Path(pert_path)
-    for json_path in sorted(path.glob("*.json")):
-        data_name = json_path.stem
-        with open(json_path, "r") as f:
-            data = json.load(f)
-
-        ## iterate over defined perturbation types and extract features into index
-        for json_key, type, feat_key, prefix in PERT_TYPE:
-            for rec in data.get(json_key, []):
-                
-                ## support for both intensity or param field
-                intensity = rec.get("intensity", rec.get("param"))
-                method = rec.get("method")
-
-                ## temporal aggregation: method is always "aggregation", intensity is the scale
-                if type == "temporal":
-                    method = "aggregation"
-                    intensity = rec.get("scale")
-
-                key = (type, method, intensity)
-                if key not in index:
-                    index[key] = dict()
-
-                ## create observation with dataset name and prefixed features
-                obs = {"dataset": data_name}
-
-                ## temporal aggregation: compute signatures from events list
-                if type == "temporal" and isinstance(rec.get("events"), list):
-                    events_df = pd.DataFrame(rec["events"])
-                    if "target" in events_df.columns and len(events_df) >= 2:
-                        from src.vectorizers.signatures import ProcessSignatures
-                        events_df["idx"] = range(len(events_df))
-                        sigs = ProcessSignatures(events_df, sort_by = ["idx"], target = "target")
-                        obs.update(_prefix_features(sigs.all(), prefix))
-                else:
-                    feat_val = rec.get(feat_key, dict()) if feat_key is not None else dict()
-                    if isinstance(feat_val, dict):
-                        obs.update(_prefix_features(feat_val, prefix))
-                index[key][data_name] = obs
-    return index
-
-## create perturbation data from indexed perturbation data
-def load_perturbs(pert_path: str | None = None, schema: str = "tuple") -> dict:
-    """ Create perturbation tables indexed by tuple or payload schema. """
-
-    ## fallback to default path if not provided
-    if pert_path is None:
-        pert_path = os.path.join(root, PATH_PERT)
-
-    ## build tables from indexed perturbation data
-    data_dict = dict()
-    index = _index_perturbs(pert_path)
-    for key in sorted(index.keys()):
-        type, method, intensity = key
-        data = pd.DataFrame(list(index[key].values()))
-        data = data.sort_values("dataset").reset_index(drop = True)
-        data_dict[key] = data
-        logger.info(
-            f"Table ({type}, {method}, {intensity}): "
-            f"{len(data)} datasets"
-        )
-
-    ## default tuple schema: {(type, method, intensity): DataFrame}
-    if schema == "tuple":
-        logger.info(f"Created {len(data_dict)} perturbation tables from {pert_path}")
-        return data_dict
-
-    ## payload schema: {json_key: {method: {intensity: DataFrame}}}
-    if schema == "payload":
-        payload_dict = dict()
-        for (type, method, intensity), data in data_dict.items():
-            json_key = PERT_JSON_BY_TYPE.get(type, type)
-            if json_key not in payload_dict:
-                payload_dict[json_key] = dict()
-            if method not in payload_dict[json_key]:
-                payload_dict[json_key][method] = dict()
-            payload_dict[json_key][method][intensity] = data
-        logger.info(f"Created {len(payload_dict)} perturbation groups from {pert_path}")
-        return payload_dict
-
-    raise ValueError("schema must be either 'tuple' or 'payload'")

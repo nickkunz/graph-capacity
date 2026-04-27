@@ -1,0 +1,454 @@
+{
+  "target_remap": {
+    "invariants": {
+      "n_nodes": 2964,
+      "n_edges": 9371,
+      "n_articulation_points": 38,
+      "n_bridges": 1699,
+      "diameter": 8.0,
+      "radius": 4.0,
+      "degeneracy": 13,
+      "k_core_size": 55,
+      "maximum_degree": 1139,
+      "degree_variance": 1932.9744814517348,
+      "global_clustering": 0.0,
+      "degree_assortativity": -0.6007474371857727,
+      "degree_entropy": 1.7394038649818697,
+      "joint_degree_entropy": 5.101561207886473,
+      "degree_skewness": 18.317783008325748,
+      "degree_kurtosis": 375.9167626523419,
+      "normalized_laplacian_second_moment": 1.0138185788792222,
+      "normalized_laplacian_third_moment": 1.0414557366376667,
+      "random_walk_triangle_weight": 0.0,
+      "random_walk_fourth_moment": 0.009430404406801601,
+      "adjacency_fourth_moment_per_node": 18478.31241565452
+    },
+    "signatures": {
+      "lag1_autocorr": 0.17793108151453657,
+      "coef_variation": 3.4635220803040707,
+      "fano_factor": 7709.991059741658,
+      "norm_succ_diff": 1.483868843282044,
+      "hurst_exponent": 0.5253369800752574,
+      "trend_coeff": 0.3497665305329729,
+      "count_skewness": 4.545405356882332
+    },
+    "events": [
+      {
+        "day": 0,
+        "target": 188
+      },
+      {
+        "day": 1,
+        "target": 206
+      },
+      {
+        "day": 2,
+        "target": 116
+      },
+      {
+        "day": 3,
+        "target": 52
+      },
+      {
+        "day": 4,
+        "target": 168
+      },
+      {
+        "day": 5,
+        "target": 256
+      },
+      {
+        "day": 6,
+        "target": 197
+      },
+      {
+        "day": 7,
+        "target": 209
+      },
+      {
+        "day": 8,
+        "target": 240
+      },
+      {
+        "day": 9,
+        "target": 138
+      },
+      {
+        "day": 10,
+        "target": 54
+      },
+      {
+        "day": 11,
+        "target": 104
+      },
+      {
+        "day": 12,
+        "target": 217
+      },
+      {
+        "day": 13,
+        "target": 206
+      },
+      {
+        "day": 14,
+        "target": 184
+      },
+      {
+        "day": 15,
+        "target": 232
+      },
+      {
+        "day": 16,
+        "target": 108
+      },
+      {
+        "day": 17,
+        "target": 64
+      },
+      {
+        "day": 18,
+        "target": 193
+      },
+      {
+        "day": 19,
+        "target": 145
+      },
+      {
+        "day": 20,
+        "target": 209
+      },
+      {
+        "day": 21,
+        "target": 121
+      },
+      {
+        "day": 22,
+        "target": 217
+      },
+      {
+        "day": 23,
+        "target": 116
+      },
+      {
+        "day": 24,
+        "target": 46
+      },
+      {
+        "day": 25,
+        "target": 166
+      },
+      {
+        "day": 26,
+        "target": 181
+      },
+      {
+        "day": 27,
+        "target": 174
+      },
+      {
+        "day": 28,
+        "target": 194
+      },
+      {
+        "day": 29,
+        "target": 190
+      }
+    ]
+  },
+  "random_generate": {
+    "invariants": {
+      "n_nodes": 106213.92763934664,
+      "n_edges": 4266534331.286831,
+      "n_articulation_points": 34008.98801394968,
+      "n_bridges": 3452.9390574514646,
+      "diameter": 341.0297907107226,
+      "radius": 76.1965973657154,
+      "degeneracy": 1790.709320595814,
+      "k_core_size": 454185.43285146443,
+      "maximum_degree": 1797804.7210991639,
+      "degree_variance": 2780530174.35679,
+      "global_clustering": 0.9367299887367345,
+      "degree_assortativity": -0.7693790560713386,
+      "degree_entropy": 1.6079874517880137,
+      "joint_degree_entropy": 1.096101854285273,
+      "degree_skewness": 28.04840948407592,
+      "degree_kurtosis": 818.8880736435011,
+      "normalized_laplacian_second_moment": 0.3925198682621933,
+      "normalized_laplacian_third_moment": 1.6930025528702852,
+      "random_walk_triangle_weight": 0.15322916253772798,
+      "random_walk_fourth_moment": 0.22328728292587072,
+      "adjacency_fourth_moment_per_node": 21202445127528.406
+    },
+    "signatures": {
+      "lag1_autocorr": 0.18487714873328245,
+      "coef_variation": 0.4764446085897855,
+      "fano_factor": 27114.24371706672,
+      "norm_succ_diff": 1.404545182922769,
+      "hurst_exponent": 0.7312907577235698,
+      "trend_coeff": -0.09815186924117761,
+      "count_skewness": 1.9381172915024383
+    },
+    "events": [
+      {
+        "date": "2005-07-01",
+        "target": 83
+      },
+      {
+        "date": "2006-06-01",
+        "target": 137
+      },
+      {
+        "date": "2006-10-01",
+        "target": 18
+      },
+      {
+        "date": "2008-07-01",
+        "target": 88
+      },
+      {
+        "date": "2009-06-01",
+        "target": 16
+      },
+      {
+        "date": "2009-07-01",
+        "target": 104
+      },
+      {
+        "date": "2009-08-01",
+        "target": 16
+      },
+      {
+        "date": "2011-04-01",
+        "target": 91
+      },
+      {
+        "date": "2011-05-01",
+        "target": 98
+      },
+      {
+        "date": "2011-09-01",
+        "target": 85
+      },
+      {
+        "date": "2012-05-01",
+        "target": 63
+      },
+      {
+        "date": "2012-06-01",
+        "target": 237
+      },
+      {
+        "date": "2013-06-01",
+        "target": 143
+      },
+      {
+        "date": "2013-07-01",
+        "target": 191
+      },
+      {
+        "date": "2014-06-01",
+        "target": 421
+      },
+      {
+        "date": "2014-07-01",
+        "target": 193
+      },
+      {
+        "date": "2015-04-01",
+        "target": 42
+      },
+      {
+        "date": "2015-09-01",
+        "target": 230
+      },
+      {
+        "date": "2015-10-01",
+        "target": 32
+      },
+      {
+        "date": "2016-09-01",
+        "target": 327
+      },
+      {
+        "date": "2017-04-01",
+        "target": 57
+      },
+      {
+        "date": "2017-05-01",
+        "target": 37
+      },
+      {
+        "date": "2017-06-01",
+        "target": 35
+      },
+      {
+        "date": "2017-08-01",
+        "target": 92
+      },
+      {
+        "date": "2018-05-01",
+        "target": 1278
+      },
+      {
+        "date": "2019-04-01",
+        "target": 11847
+      },
+      {
+        "date": "2019-05-01",
+        "target": 1620
+      },
+      {
+        "date": "2019-06-01",
+        "target": 415
+      }
+    ]
+  },
+  "vector_generate": {
+    "invariants": {
+      "n_nodes": 162702.46743443992,
+      "n_edges": -2281137668.777921,
+      "n_articulation_points": -12385.528185084655,
+      "n_bridges": 37624.368838246744,
+      "diameter": -95.1124811494223,
+      "radius": 128.93224911033832,
+      "degeneracy": -357.9976526245106,
+      "k_core_size": -653011.1994440675,
+      "maximum_degree": 226321.28015644403,
+      "degree_variance": 1091374106.078215,
+      "global_clustering": 0.009150154596299611,
+      "degree_assortativity": -1.081405348076389,
+      "degree_entropy": 0.31126685161379214,
+      "joint_degree_entropy": 5.192238515970238,
+      "degree_skewness": 18.70484901071097,
+      "degree_kurtosis": 196.61411640615054,
+      "normalized_laplacian_second_moment": 1.379121827899737,
+      "normalized_laplacian_third_moment": 3.400152212086806,
+      "random_walk_triangle_weight": 0.05504326828867485,
+      "random_walk_fourth_moment": 0.27386787629858345,
+      "adjacency_fourth_moment_per_node": 31916707577784.375
+    },
+    "signatures": {
+      "lag1_autocorr": 0.35971811012211324,
+      "coef_variation": 0.6147931259857757,
+      "fano_factor": 3887.686897154314,
+      "norm_succ_diff": 0.3087619182685133,
+      "hurst_exponent": 0.6417638651067975,
+      "trend_coeff": 0.0007333364227395112,
+      "count_skewness": 0.4966768882814969
+    },
+    "events": [
+      {
+        "date": "2005-07-01",
+        "target": 83
+      },
+      {
+        "date": "2006-06-01",
+        "target": 137
+      },
+      {
+        "date": "2006-10-01",
+        "target": 18
+      },
+      {
+        "date": "2008-07-01",
+        "target": 88
+      },
+      {
+        "date": "2009-06-01",
+        "target": 16
+      },
+      {
+        "date": "2009-07-01",
+        "target": 104
+      },
+      {
+        "date": "2009-08-01",
+        "target": 16
+      },
+      {
+        "date": "2011-04-01",
+        "target": 91
+      },
+      {
+        "date": "2011-05-01",
+        "target": 98
+      },
+      {
+        "date": "2011-09-01",
+        "target": 85
+      },
+      {
+        "date": "2012-05-01",
+        "target": 63
+      },
+      {
+        "date": "2012-06-01",
+        "target": 237
+      },
+      {
+        "date": "2013-06-01",
+        "target": 143
+      },
+      {
+        "date": "2013-07-01",
+        "target": 191
+      },
+      {
+        "date": "2014-06-01",
+        "target": 421
+      },
+      {
+        "date": "2014-07-01",
+        "target": 193
+      },
+      {
+        "date": "2015-04-01",
+        "target": 42
+      },
+      {
+        "date": "2015-09-01",
+        "target": 230
+      },
+      {
+        "date": "2015-10-01",
+        "target": 32
+      },
+      {
+        "date": "2016-09-01",
+        "target": 327
+      },
+      {
+        "date": "2017-04-01",
+        "target": 57
+      },
+      {
+        "date": "2017-05-01",
+        "target": 37
+      },
+      {
+        "date": "2017-06-01",
+        "target": 35
+      },
+      {
+        "date": "2017-08-01",
+        "target": 92
+      },
+      {
+        "date": "2018-05-01",
+        "target": 1278
+      },
+      {
+        "date": "2019-04-01",
+        "target": 11847
+      },
+      {
+        "date": "2019-05-01",
+        "target": 1620
+      },
+      {
+        "date": "2019-06-01",
+        "target": 415
+      }
+    ]
+  }
+}

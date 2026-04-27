@@ -1,13 +1,13 @@
-## logging
-import logging
-logger = logging.getLogger(__name__)
-
 ## libraries
+import logging
 import numpy as np
 import pandas as pd
 
 ## modules
 from src.data.helpers import _force_finite
+
+## logging
+logger = logging.getLogger(__name__)
 
 ## process signatures class
 class ProcessSignatures:
@@ -27,9 +27,9 @@ class ProcessSignatures:
             coef_variation: Coefficient of variation of counts.
             fano_factor: Fano factor of counts.
             norm_succ_diff: Mean absolute difference between consecutive counts.
-            rec_time_shape: Weibull shape parameter of recurrence times.
             hurst_exponent: Long-range dependence exponent.
-            entropy_rate: First-order Markov entropy rate of event occurrence.
+            trend_coeff: Correlation between counts and time index.
+            count_skewness: Skewness of the counts distribution.
 
     Raises:
         TypeError: If data is not a pandas dataframe.
@@ -37,7 +37,6 @@ class ProcessSignatures:
                     If target is an invalid column.
                     If there are fewer than two observations.
     """
-
     def __init__(self, data, sort_by, target):
         ## validate input dataframe
         if not isinstance(data, pd.DataFrame):
@@ -105,13 +104,6 @@ class ProcessSignatures:
             return 0.0
         b = float(np.mean(diffs)) / (m + 1e-12)
         return _force_finite(b, 0.0)
-
-    ## recurrence times helper
-    def _recurrence_times(self):
-        idx = np.where(self.counts > 0)[0]  ## positions of non-zero events and interarrivals
-        if len(idx) < 2:
-            return np.array([1.0], dtype = float)
-        return np.diff(idx).astype(float)
 
     ## hurst exponent via rescaled range
     def _hurst_exponent(self):

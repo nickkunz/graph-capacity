@@ -1,4 +1,5 @@
 ## libraries
+import os
 import sys
 import pandas as pd
 from pathlib import Path
@@ -14,11 +15,12 @@ from src.vectorizers.invariants import GraphInvariants
 from src.vectorizers.signatures import ProcessSignatures
 from src.data.helpers import (
     _create_igraph_object,
-    _request_with_retry
+    _request_with_retry,
+    _load_env_var,
 )
 
 ## load faers drug–reaction reporting network data
-def _load_network_faers(id: str, url: str) -> pd.DataFrame:
+def _load_network_faers(id: str, url: str, key: str | None = None) -> pd.DataFrame:
     q = f'patient.drug.medicinalproduct.exact:"{id.upper()}"'
     limit, skip = 1000, 0
     
@@ -29,11 +31,12 @@ def _load_network_faers(id: str, url: str) -> pd.DataFrame:
             "limit": limit,
             "skip": skip,
         }
+        if key:
+            params["api_key"] = key
         try:
             response = _request_with_retry(
                 url = url,
-                params = params,
-                timeout = 60,
+                params = params
             )
         except RuntimeError as e:
             if "404" in str(e):
@@ -80,7 +83,7 @@ def _build_network_faers(data: pd.DataFrame) -> tuple[list[str], list[tuple]]:
     return nodes, edges
 
 ## load faers adverse event reports
-def _load_events_faers(id: str, url: str) -> pd.DataFrame:
+def _load_events_faers(id: str, url: str, key: str | None = None) -> pd.DataFrame:
     q = f'patient.drug.medicinalproduct.exact:"{id.upper()}"'
     limit, skip = 1000, 0
     obs = []
@@ -91,6 +94,8 @@ def _load_events_faers(id: str, url: str) -> pd.DataFrame:
             "limit": limit,
             "skip": skip,
         }
+        if key:
+            params["api_key"] = key
         try:
             response = _request_with_retry(
                 url = url, 
@@ -134,9 +139,10 @@ def _process_events_faers(data: pd.DataFrame) -> pd.DataFrame:
 
 ## faers adverse event network
 class FaersProcessor:
-    def __init__(self, id: str, url: str):
+    def __init__(self, id: str, url: str, key: str | None = None):
         self.id = id
         self.url = url
+        self.key = key or _load_env_var("FDA_API_KEY", os.path.join(root, ".env"))
         self.data_network: Optional[pd.DataFrame] = None
         self.data_events: Optional[pd.DataFrame] = None
         self.graph: Optional[Any] = None
@@ -146,8 +152,8 @@ class FaersProcessor:
 
     def load_data(self):
         """ Loads the raw data from source. """
-        self.data_network = _load_network_faers(id = self.id, url = self.url)
-        self.data_events = _load_events_faers(id = self.id, url = self.url)
+        self.data_network = _load_network_faers(id = self.id, url = self.url, key = self.key)
+        self.data_events = _load_events_faers(id = self.id, url = self.url, key = self.key)
         return self
 
     def process_network(self):

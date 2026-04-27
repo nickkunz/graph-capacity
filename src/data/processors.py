@@ -102,14 +102,14 @@ URL_SEISMIC_NETWORK = config['urls']['URL_SEISMIC_NETWORK'].strip('"')
 URL_SEISMIC_EVENTS = config['urls']['URL_SEISMIC_EVENTS'].strip('"')
 
 ## json data processor pipeline
-def json_processor():
+def json_processor(force: bool = False):
 
     ## ensure processed directory exists
     os.makedirs(name = PATH_PROC, exist_ok = True)
-    
+
     ## --- federal contracts --- ##
     federal_path = os.path.join(PATH_PROC, f"{NAME_FEDERAL}.json")
-    if not os.path.exists(federal_path):
+    if force or not os.path.exists(federal_path):
         logging.info("Processing Federal data...")
         data_federal = FederalProcessor(
             url = URL_FEDERAL,
@@ -123,7 +123,7 @@ def json_processor():
 
     ## --- mooc students --- ##
     mooc_path = os.path.join(PATH_PROC, f"{NAME_MOOC}.json")
-    if not os.path.exists(mooc_path):
+    if force or not os.path.exists(mooc_path):
         logging.info("Processing MOOC data...")
         data_mooc = MoocProcessor(url = URL_MOOC).run()
         _save_to_json(data = data_mooc, path = mooc_path)
@@ -133,7 +133,7 @@ def json_processor():
 
     ## --- bitcoin trust --- ##
     bitcoin_path = os.path.join(PATH_PROC, f"{NAME_BITCOIN}.json")
-    if not os.path.exists(bitcoin_path):
+    if force or not os.path.exists(bitcoin_path):
         logging.info("Processing Bitcoin data...")
         data_bitcoin = BitcoinProcessor(root_path = PATH_ROOT, name = NAME_BITCOIN).run()
         _save_to_json(data = data_bitcoin, path = bitcoin_path)
@@ -143,7 +143,7 @@ def json_processor():
 
     ## --- amazon reviews --- ##
     amazon_path = os.path.join(PATH_PROC, f"{NAME_AMAZON}.json")
-    if not os.path.exists(amazon_path):
+    if force or not os.path.exists(amazon_path):
         logging.info("Processing Amazon data...")
         data_amazon = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON).run()
         _save_to_json(data = data_amazon, path = amazon_path)
@@ -153,7 +153,7 @@ def json_processor():
 
     ## --- world bank --- ##
     world_path = os.path.join(PATH_PROC, f"{NAME_WORLD}.json")
-    if not os.path.exists(world_path):
+    if force or not os.path.exists(world_path):
         logging.info("Processing World Bank data...")
         data_world = WorldBankProcessor(
             url_projects = URL_WORLD_NETWORK,
@@ -168,7 +168,7 @@ def json_processor():
 
     ## --- math wiki --- ##
     wiki_path = os.path.join(PATH_PROC, f"{NAME_WIKI}.json")
-    if not os.path.exists(wiki_path):
+    if force or not os.path.exists(wiki_path):
         logging.info("Processing Wiki data...")
         data_wiki = WikiProcessor(url = URL_WIKI, name = "wikivital_mathematics.json").run()
         _save_to_json(data = data_wiki, path = wiki_path)
@@ -178,9 +178,9 @@ def json_processor():
 
     ## --- jodie wiki --- ##
     jodie_path = os.path.join(PATH_PROC, f"{NAME_JODIE}.json")
-    if not os.path.exists(jodie_path):
+    if force or not os.path.exists(jodie_path):
         logging.info("Processing JODIE data...")
-        data_jodie = JodieProcessor(root_path = PATH_ROOT, name = "wikipedia").run() ## name required
+        data_jodie = JodieProcessor(root_path = PATH_ROOT, name = "wikipedia").run()  ## name required
         _save_to_json(data=data_jodie, path=jodie_path)
         logging.info(f"JODIE data saved to {jodie_path}")
     else:
@@ -188,7 +188,7 @@ def json_processor():
 
     ## --- mathoverflow --- ##
     overflow_path = os.path.join(PATH_PROC, f"{NAME_OVERFLOW}.json")
-    if not os.path.exists(overflow_path):
+    if force or not os.path.exists(overflow_path):
         logging.info("Processing MathOverflow data...")
         data_overflow = OverflowProcessor(url = URL_OVERFLOW).run()
         _save_to_json(data = data_overflow, path = overflow_path)
@@ -198,7 +198,7 @@ def json_processor():
 
     ## --- eu-core email --- ##
     email_path = os.path.join(PATH_PROC, f"{NAME_EMAIL}.json")
-    if not os.path.exists(email_path):
+    if force or not os.path.exists(email_path):
         logging.info("Processing EU-Core Email data...")
         data_email = EmailProcessor(url = URL_EMAIL).run()
         _save_to_json(data = data_email, path = email_path)
@@ -208,7 +208,7 @@ def json_processor():
 
     ## --- college --- ##
     college_path = os.path.join(PATH_PROC, f"{NAME_COLLEGE}.json")
-    if not os.path.exists(college_path):
+    if force or not os.path.exists(college_path):
         logging.info("Processing UC Irvine College Message data...")
         data_college = CollegeProcessor(url = URL_COLLEGE).run()
         _save_to_json(data = data_college, path = college_path)
@@ -268,7 +268,7 @@ def json_processor():
 
     ## --- crop pollinator --- ##
     path_crop = os.path.join(PATH_PROC, f"{NAME_CROP}.json")
-    if not os.path.exists(path_crop):
+    if force or not os.path.exists(path_crop):
         logging.info("Processing CropPol data...")
         data_crop = CropProcessor(url_sampling = URL_CROP_SAMPLING, url_field = URL_CROP_FIELD).run()
         _save_to_json(data = data_crop, path = path_crop)
@@ -278,7 +278,7 @@ def json_processor():
 
     ## --- faers --- ##
     path_faers = os.path.join(PATH_PROC, f"{NAME_FAERS}.json")
-    if not os.path.exists(path_faers):
+    if force or not os.path.exists(path_faers):
         logging.info("Processing FAERS data...")
         data_faers = FaersProcessor(id = "IMATINIB", url = URL_FAERS).run()
         _save_to_json(data = data_faers, path = path_faers)
@@ -288,7 +288,7 @@ def json_processor():
 
     ## --- c. elegans --- ##
     path_celegans = os.path.join(PATH_PROC, f"{NAME_CELEGANS}.json")
-    if not os.path.exists(path_celegans):
+    if force or not os.path.exists(path_celegans):
         logging.info("Processing C. Elegans data...")
         data_celegans = CelegansProcessor().run()
         _save_to_json(data = data_celegans, path = path_celegans)
@@ -298,7 +298,7 @@ def json_processor():
 
     ## --- epilepsy --- ##
     path_epilepsy = os.path.join(PATH_PROC, f"{NAME_EPILEPSY}.json")
-    if not os.path.exists(path_epilepsy):
+    if force or not os.path.exists(path_epilepsy):
         logging.info("Processing Epilepsy data...")
         ids = [f'chb{i:02d}' for i in range(1, 25)]
         data_epilepsy = EpilepsyProcessor(url = URL_EPILEPSY, ids = ids).run()
@@ -309,10 +309,10 @@ def json_processor():
 
     ## --- chickenpox --- ##
     path_chickenpox = os.path.join(PATH_PROC, f"{NAME_CHICKENPOX}.json")
-    if not os.path.exists(path_chickenpox):
+    if force or not os.path.exists(path_chickenpox):
         logging.info("Processing Chickenpox data...")
         data_chickenpox = ChickenpoxProcessor(
-            url = URL_CHICKENPOX_EVENTS, 
+            url = URL_CHICKENPOX_EVENTS,
             name = "hungary_chickenpox.csv"
         ).run()
         _save_to_json(data = data_chickenpox, path = path_chickenpox)
@@ -322,7 +322,7 @@ def json_processor():
 
     ## --- gwosc --- ##
     path_gwosc = os.path.join(PATH_PROC, f"{NAME_GWOSC}.json")
-    if not os.path.exists(path_gwosc):
+    if force or not os.path.exists(path_gwosc):
         logging.info("Processing GWOSC data...")
         data_gwosc = GwoscProcessor(url = URL_GWOSC).run()
         _save_to_json(data = data_gwosc, path = path_gwosc)
@@ -332,7 +332,7 @@ def json_processor():
 
     ## --- nwis --- ##
     path_nwis = os.path.join(PATH_PROC, f"{NAME_RIVER}.json")
-    if not os.path.exists(path_nwis):
+    if force or not os.path.exists(path_nwis):
         logging.info("Processing NWIS river data...")
         params = {
             "format": "rdb",
@@ -355,7 +355,7 @@ def json_processor():
 
     ## --- auger --- ##
     path_auger = os.path.join(PATH_PROC, f"{NAME_AUGER}.json")
-    if not os.path.exists(path_auger):
+    if force or not os.path.exists(path_auger):
         logging.info("Processing Auger data...")
         data_auger = AugerProcessor(
             url_network = URL_AUGER_NETWORK,
@@ -368,9 +368,8 @@ def json_processor():
 
     ## --- seismic --- ##
     path_seismic = os.path.join(PATH_PROC, f"{NAME_SEISMIC}.json")
-    if not os.path.exists(path_seismic):
+    if force or not os.path.exists(path_seismic):
         logging.info("Processing Seismic data...")
-        
         ## define parameters for the seismic data
         params_network = {"level": "station", "format": "xml", "network": "IU"}
         namespace = {"ns": "http://www.fdsn.org/xml/station/1"}
@@ -401,7 +400,7 @@ def json_processor():
 
     ## --- rain --- ##
     path_rain = os.path.join(PATH_PROC, f"{NAME_RAIN}.json")
-    if not os.path.exists(path_rain):
+    if force or not os.path.exists(path_rain):
         logging.info("Processing Rain data...")
         data_rain = RainProcessor(
             country = "LA",  ## iso country code for laos
@@ -415,4 +414,4 @@ def json_processor():
 
 ## primary execution
 if __name__ == '__main__':
-    json_processor()
+    json_processor(force = False)

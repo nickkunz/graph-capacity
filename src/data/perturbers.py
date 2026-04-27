@@ -116,48 +116,31 @@ URL_AUGER_EVENTS = config['urls']['URL_AUGER_EVENTS'].strip('"')
 URL_SEISMIC_NETWORK = config['urls']['URL_SEISMIC_NETWORK'].strip('"')
 URL_SEISMIC_EVENTS = config['urls']['URL_SEISMIC_EVENTS'].strip('"')
 
-## ----------------------------
-## network perturbation (G space)
-## ----------------------------
 NETWORK_METHODS = {
-    'rewire':      (0.01, 0.03, 0.10, 0.20, 0.35),
-    'sparsify':    (0.01, 0.03, 0.07, 0.15, 0.25),
-    'node_sample': (0.01, 0.02, 0.05, 0.10, 0.20),
+    "rewire":      tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+    "densify":     tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+    "sample": tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2))
 }
-
-## --------------------------------
-## invariant perturbation (x encoding)
-## --------------------------------
 INVARIANT_METHODS = {
-    'noise':  (0.01, 0.02, 0.05, 0.10, 0.20),
-    'jitter': (0.01, 0.02, 0.05, 0.10, 0.20),
-    'subset': (0.95, 0.90, 0.80, 0.70, 0.60),
+    'noise':  tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+    'jitter': tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+    'subset': tuple(np.round(np.linspace(start = 0.95, stop = 0.65, num = 7), decimals = 2)),
 }
-
-## ------------------------------
-## process perturbation (S space)
-## ------------------------------
 PROCESS_METHODS = {
-    'scaling':       (0.50, 0.75, 1.00, 1.50, 2.00),
-    'smoothing':     (1, 2, 4, 8, 16),
-    'bootstrapping': (0.00, 0.10, 0.20, 0.35, 0.50),
+    'scaling':       (0.25, 0.50, 0.75, 1.00, 1.25, 1.50, 1.75),
+    'smoothing':     (3.00, 5.00, 7.00, 9.00, 11.00, 13.00, 15.00),
+    'bootstrapping': tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2))
 }
-
-## --------------------------------------
-## signature-level perturbation (z encoding)
-## --------------------------------------
 SIGNATURE_METHODS = {
-    'noise':  (0.01, 0.02, 0.05, 0.10, 0.20),
-    'jitter': (0.01, 0.02, 0.05, 0.10, 0.20),
-    'subset': (0.95, 0.90, 0.80, 0.70, 0.60),
+    'noise':  tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+    'jitter': tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+    'subset': tuple(np.round(np.linspace(start = 0.95, stop = 0.65, num = 7), decimals = 2)),
 }
-
-## ----------------------
-## temporal resolution
-## ----------------------
-TEMPORAL_SCALES = ('2D', '3D', '7D', '14D', '30D')
-
-
+TEMPORAL_METHODS = {
+    'aggregation': ('2D', '7D', '14D', '30D', '60D', '90D', '180D'),
+    'jitter':      tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+    'dropout':     tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
+}
 
 ## helper functions
 def _is_fully_connected_bipartite(graph: Any) -> bool:
@@ -171,9 +154,10 @@ def _is_fully_connected_bipartite(graph: Any) -> bool:
     n2 = len(types) - n1
     return graph.ecount() == n1 * n2
 
-def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
+def _execute_perturbations(proc: Any, name: str, force: bool = False, random_state: int = 42) -> dict[str, Any]:
     """Run network, process, and temporal perturbations for a given processor."""
     results = dict()
+    rng = np.random.default_rng(random_state)
 
     ## --- network perturbation --- ##
     graph = getattr(proc, 'graph', None)
@@ -185,7 +169,7 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
         graph.simplify()
 
         ## check for fully connected bipartite structure to determine if analytical perturbation can be used
-        network_results = list()
+        network_results: dict[str, list[dict[str, Any]]] = dict()
         analytical = _is_fully_connected_bipartite(graph)
         if analytical:
             degrees = np.array(graph.degree(), dtype=float)
@@ -193,6 +177,15 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
             n_edges = graph.ecount()
             logging.info(f"  Using analytical perturbation for {name} ({n_nodes:,} nodes, {n_edges:,} edges)")
         invariants = GraphInvariants(graph).all(analytical = analytical)
+
+        ## force analytical perturbation when specified
+        if not analytical and force:
+            degrees = np.array(graph.degree(), dtype=float)
+            n_nodes = graph.vcount()
+            n_edges = graph.ecount()
+            analytical = True
+            logging.info(f"  Forcing analytical perturbation for {name} ({n_nodes:,} nodes, {n_edges:,} edges)")
+
         for method, intensities in NETWORK_METHODS.items():
             for intensity in intensities:
                 if analytical:
@@ -202,7 +195,7 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
                             degrees = degrees,
                             n_nodes = n_nodes,
                             n_edges = n_edges,
-                            method = {"rewire": "degree_preserving_rewire", "sparsify": "bernoulli_edge_thinning", "node_sample": "uniform_node_sampling"}[method],
+                            method = {"rewire": "degree_preserving_rewire", "densify": "bernoulli_edge_densification", "sample": "uniform_node_sampling"}[method],
                             intensity = float(intensity),
                         )
                     except Exception as exc:
@@ -210,17 +203,17 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
                         continue
                 else:
                     try:
-                        features = network_perturb(graph, method = method, intensity = float(intensity))
+                        features = network_perturb(graph, method = method, intensity = float(intensity), random_state = random_state)
                     except Exception as exc:
                         logging.warning(f"Network {method} @ {intensity:.2f} failed for {name}: {exc}")
                         continue
-                network_results.append({
-                    'method': method,
+                network_results.setdefault(method, []).append({
                     'intensity': float(intensity),
                     'invariants': features
                 })
         results['network_perturbed'] = network_results
-        logging.info(f"  Network perturbation: {len(network_results)} records")
+        total = sum(len(v) for v in network_results.values())
+        logging.info(f"  Network perturbation: {total} records")
     elif pre_inv is not None and dimensions is not None:
         m, n = int(dimensions[0]), int(dimensions[1])
         n_nodes = int(m + n)
@@ -230,7 +223,7 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
             np.full(shape = n, fill_value = float(m), dtype = float),
         ])
         invariants = dict(pre_inv)
-        network_results = list()
+        network_results: dict[str, list[dict[str, Any]]] = dict()
         logging.info(f"  Using analytical perturbation for {name} ({n_nodes:,} nodes, {n_edges:,} edges) [graph-free]")
         for method, intensities in NETWORK_METHODS.items():
             for intensity in intensities:
@@ -240,27 +233,27 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
                         degrees = degrees,
                         n_nodes = n_nodes,
                         n_edges = n_edges,
-                        method = {"rewire": "degree_preserving_rewire", "sparsify": "bernoulli_edge_thinning", "node_sample": "uniform_node_sampling"}[method],
+                        method = {"rewire": "degree_preserving_rewire", "densify": "bernoulli_edge_densification", "sample": "uniform_node_sampling"}[method],
                         intensity = float(intensity),
                     )
                 except Exception as exc:
                     logging.warning(f"Analytical {method} @ {intensity:.2f} failed for {name}: {exc}")
                     continue
-                network_results.append({
-                    'method': method,
+                network_results.setdefault(method, []).append({
                     'intensity': float(intensity),
                     'invariants': features
                 })
         results['network_perturbed'] = network_results
-        logging.info(f"  Network perturbation: {len(network_results)} records")
+        total = sum(len(v) for v in network_results.values())
+        logging.info(f"  Network perturbation: {total} records")
     else:
         logging.warning(f"  No graph object for {name}, skipping network perturbation.")
 
     ## --- invariant perturbation --- ##
     if graph is not None or pre_inv is not None:
-        base_inv = GraphInvariants(graph).all(analytical = analytical) if graph is not None else pre_inv
+        base_inv = invariants if graph is not None else pre_inv
         base_df = pd.DataFrame([base_inv])
-        invariant_results = list()
+        invariant_results: dict[str, list[dict[str, Any]]] = dict()
         for method, params in INVARIANT_METHODS.items():
             for param in params:
                 try:
@@ -269,39 +262,40 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
                         method = method,
                         noise = float(param) if method != 'subset' else 0.05,
                         subset = float(param) if method == 'subset' else 0.8,
+                        random_state = random_state,
                     )
                     row = perturbed_df.iloc[0].to_dict()
                 except Exception as exc:
                     logging.warning(f"Invariant {method} @ {param:.3f} failed for {name}: {exc}")
                     continue
-                invariant_results.append({
-                    'method': method,
+                invariant_results.setdefault(method, []).append({
                     'intensity': float(param),
                     'invariants': row
                 })
         results['invariants_perturbed'] = invariant_results
-        logging.info(f"  Invariant perturbation: {len(invariant_results)} records")
+        total = sum(len(v) for v in invariant_results.values())
+        logging.info(f"  Invariant perturbation: {total} records")
 
     ## --- process perturbation --- ##
     events = getattr(proc, 'events', None)
     counts = _extract_counts(events)
 
     if counts is not None and len(counts) > 0:
-        process_results = list()
+        process_results: dict[str, list[dict[str, Any]]] = dict()
         for method, params in PROCESS_METHODS.items():
             for param in params:
                 try:
-                    sigs = process_perturb(counts, method = method, param = float(param))
+                    sigs = process_perturb(counts, method = method, param = float(param), random_state = random_state)
                 except Exception as exc:
                     logging.warning(f"Process {method} @ {param} failed for {name}: {exc}")
                     continue
-                process_results.append({
-                    'method': method,
+                process_results.setdefault(method, []).append({
                     'intensity': float(param),
                     'signatures': sigs
                 })
         results['process_perturbed'] = process_results
-        logging.info(f"  Process perturbation: {len(process_results)} records")
+        total = sum(len(v) for v in process_results.values())
+        logging.info(f"  Process perturbation: {total} records")
     else:
         logging.warning(f"  No count series for {name}, skipping process perturbation.")
 
@@ -310,7 +304,7 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
         data_temp = pd.DataFrame({"counts": counts, "idx": range(len(counts))})
         base_sigs = ProcessSignatures(data_temp, sort_by = ["idx"], target = "counts").all()
         base_sig_df = pd.DataFrame([base_sigs])
-        sig_pert_results = list()
+        sig_pert_results: dict[str, list[dict[str, Any]]] = dict()
         for method, params in SIGNATURE_METHODS.items():
             for param in params:
                 try:
@@ -319,18 +313,19 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
                         method = method,
                         noise = float(param) if method != 'subset' else 0.05,
                         subset = float(param) if method == 'subset' else 0.8,
+                        random_state = random_state,
                     )
                     row = perturbed_df.iloc[0].to_dict()
                 except Exception as exc:
                     logging.warning(f"Signature {method} @ {param:.3f} failed for {name}: {exc}")
                     continue
-                sig_pert_results.append({
-                    'method': method,
+                sig_pert_results.setdefault(method, []).append({
                     'intensity': float(param),
                     'signatures': row
                 })
         results['signatures_perturbed'] = sig_pert_results
-        logging.info(f"  Signature perturbation: {len(sig_pert_results)} records")
+        total = sum(len(v) for v in sig_pert_results.values())
+        logging.info(f"  Signature perturbation: {total} records")
 
     ## --- temporal aggregation --- ##
     if events is not None and isinstance(events, pd.DataFrame) and not events.empty:
@@ -338,72 +333,137 @@ def _execute_perturbations(proc: Any, name: str) -> dict[str, Any]:
         target_col = next((c for c in ('target', 'count') if c in events.columns), None)
 
         if date_col is not None and target_col is not None:
-            temporal_results = list()
-            df_temp = events[[date_col, target_col]].copy()
-            is_ordinal = pd.api.types.is_integer_dtype(df_temp[date_col])
+            temporal_results: dict[str, list[dict[str, Any]]] = dict()
+            data_temp = events[[date_col, target_col]].copy()
+            is_ordinal = pd.api.types.is_integer_dtype(data_temp[date_col])
 
             if is_ordinal:
-                ## integer day indices: bin directly without synthesizing dates
-                df_temp = df_temp.sort_values(date_col).reset_index(drop = True)
-                day_min = int(df_temp[date_col].min())
-                day_max = int(df_temp[date_col].max())
-
-                for scale in TEMPORAL_SCALES:
-                    scale_days = int(re.match(r'(\d+)', scale).group(1))
-                    bin_edges = list(range(day_min, day_max + scale_days, scale_days))
-                    if len(bin_edges) < 2:
-                        bin_edges = [day_min, day_min + scale_days]
-                    labels = bin_edges[:-1]
-                    df_temp['_bin'] = pd.cut(
-                        df_temp[date_col], bins = bin_edges,
-                        right = False, labels = labels, include_lowest = True
-                    )
-                    agg = df_temp.groupby('_bin', observed = False)[target_col].sum()
-                    records = [
-                        {'day': int(b), 'target': int(v)}
-                        for b, v in agg.items()
-                    ]
-                    temporal_results.append({
-                        'scale': scale,
-                        'events': records
-                    })
-                df_temp.drop(columns = '_bin', inplace = True, errors = 'ignore')
-
+                data_temp = data_temp.sort_values(date_col).reset_index(drop = True)
+                day_min = int(data_temp[date_col].min())
+                day_max = int(data_temp[date_col].max())
             else:
-                ## real dates: resample with native pandas frequency
-                df_temp[date_col] = pd.to_datetime(df_temp[date_col])
-                df_temp = df_temp.set_index(date_col).sort_index()
+                data_temp[date_col] = pd.to_datetime(data_temp[date_col])
+                data_temp = data_temp.set_index(date_col).sort_index()
 
-                for scale in TEMPORAL_SCALES:
-                    resampled = df_temp[target_col].resample(scale).sum()
-                    records = [
-                        {'date': str(dt.date()), 'target': int(val)}
-                        for dt, val in resampled.items()
-                    ]
-                    temporal_results.append({
-                        'scale': scale,
-                        'events': records
-                    })
+            for method, params in TEMPORAL_METHODS.items():
+                for param in params:
+                    try:
+                        if method == 'aggregation':
+                            scale = param
+                            if is_ordinal:
+                                scale_days = int(re.match(r'(\d+)', scale).group(1))
+                                bin_edges = list(range(day_min, day_max + scale_days, scale_days))
+                                if len(bin_edges) < 2:
+                                    bin_edges = [day_min, day_min + scale_days]
+                                labels = bin_edges[:-1]
+                                data_temp['_bin'] = pd.cut(
+                                    data_temp[date_col], bins = bin_edges,
+                                    right = False, labels = labels, include_lowest = True
+                                )
+                                agg = data_temp.groupby('_bin', observed = False)[target_col].sum()
+                                records = [
+                                    {'day': int(b), 'target': int(v)}
+                                    for b, v in agg.items()
+                                ]
+                                data_temp.drop(columns = '_bin', inplace = True, errors = 'ignore')
+                            else:
+                                resampled = data_temp[target_col].resample(scale).sum()
+                                records = [
+                                    {'date': str(dt.date()), 'target': int(val)}
+                                    for dt, val in resampled.items()
+                                ]
+                            temporal_results.setdefault(method, []).append({'intensity': scale, 'events': records})
 
-            results['temporal_aggregated'] = temporal_results
-            logging.info(f"  Temporal aggregation: {len(temporal_results)} scales")
+                        elif method == 'jitter':
+                            intensity = float(param)
+                            if is_ordinal:
+                                days_arr = np.repeat(
+                                    data_temp[date_col].values,
+                                    data_temp[target_col].values.clip(0).astype(int)
+                                )
+                                if len(days_arr) == 0:
+                                    continue
+                                sigma = intensity * max(day_max - day_min, 1)
+                                jittered = np.round(
+                                    days_arr + rng.normal(0, sigma, size = len(days_arr))
+                                ).astype(int).clip(day_min, day_max)
+                                day_keys, day_vals = np.unique(jittered, return_counts = True)
+                                new_counts = dict(zip(day_keys.tolist(), day_vals.tolist()))
+                                records = [
+                                    {'day': int(d), 'target': int(c)}
+                                    for d, c in sorted(new_counts.items())
+                                ]
+                            else:
+                                daily = data_temp[target_col].resample('1D').sum()
+                                n_days = len(daily)
+                                if n_days == 0:
+                                    continue
+                                event_days = np.repeat(
+                                    np.arange(n_days),
+                                    daily.values.clip(0).astype(int)
+                                )
+                                if len(event_days) == 0:
+                                    continue
+                                sigma = intensity * max(n_days, 1)
+                                jittered = np.round(
+                                    event_days + rng.normal(0, sigma, size = len(event_days))
+                                ).astype(int).clip(0, n_days - 1)
+                                new_daily = np.zeros(n_days, dtype = int)
+                                idx_keys, idx_vals = np.unique(jittered, return_counts = True)
+                                new_daily[idx_keys] = idx_vals
+                                records = [
+                                    {'date': str(daily.index[i].date()), 'target': int(new_daily[i])}
+                                    for i in range(n_days)
+                                ]
+                            temporal_results.setdefault(method, []).append({'intensity': intensity, 'events': records})
+
+                        elif method == 'dropout':
+                            intensity = float(param)
+                            if is_ordinal:
+                                counts_arr = data_temp[target_col].values.clip(0).astype(int)
+                                survived = rng.binomial(counts_arr, max(0.0, 1.0 - intensity))
+                                records = [
+                                    {'day': int(data_temp[date_col].iloc[i]), 'target': int(survived[i])}
+                                    for i in range(len(data_temp))
+                                ]
+                            else:
+                                counts_arr = data_temp[target_col].values.clip(0).astype(int)
+                                survived = rng.binomial(counts_arr, max(0.0, 1.0 - intensity))
+                                dropped = pd.Series(survived.astype(float), index = data_temp.index)
+                                resampled = dropped.resample('1D').sum()
+                                records = [
+                                    {'date': str(dt.date()), 'target': int(val)}
+                                    for dt, val in resampled.items()
+                                ]
+                            temporal_results.setdefault(method, []).append({'intensity': intensity, 'events': records})
+
+                    except Exception as exc:
+                        logging.warning(f"Temporal {method} @ {param} failed for {name}: {exc}")
+                        continue
+
+            results['temporal_perturbed'] = temporal_results
+            total = sum(len(v) for v in temporal_results.values())
+            logging.info(f"  Temporal perturbations: {total} records")
         else:
-            logging.warning(f"  No date/target columns for {name}, skipping temporal aggregation.")
+            logging.warning(f"  No date/target columns for {name}, skipping temporal perturbations.")
     else:
-        logging.warning(f"  No events for {name}, skipping temporal aggregation.")
+        logging.warning(f"  No events for {name}, skipping temporal perturbations.")
 
     return results
 
-## data perturbation pipeline
-def json_perturber():
+## perturbation pipeline
+def json_perturber(force: bool = False):
 
     ## ensure perturbation directory exists
     os.makedirs(name = PATH_PERT, exist_ok = True)
 
     ## --- federal contracts --- ##
     federal_path = os.path.join(PATH_PERT, f"{NAME_FEDERAL}.json")
-    if not os.path.exists(federal_path):
-        logging.info("Perturbing Federal data...")
+    if force or not os.path.exists(federal_path):
+        if force and os.path.exists(federal_path):
+            logging.info(f"Overwriting existing federal perturbations at {federal_path}")
+        else:
+            logging.info("Perturbing Federal data...")
         proc = FederalProcessor(
             url = URL_FEDERAL,
             start_date = "2014-01-01",
@@ -418,8 +478,11 @@ def json_perturber():
 
     ## --- mooc students --- ##
     mooc_path = os.path.join(PATH_PERT, f"{NAME_MOOC}.json")
-    if not os.path.exists(mooc_path):
-        logging.info("Perturbing MOOC data...")
+    if force or not os.path.exists(mooc_path):
+        if force and os.path.exists(mooc_path):
+            logging.info(f"Overwriting existing MOOC perturbations at {mooc_path}")
+        else:
+            logging.info("Perturbing MOOC data...")
         proc = MoocProcessor(url = URL_MOOC)
         proc.run()
         data = _execute_perturbations(proc = proc, name = NAME_MOOC)
@@ -430,8 +493,11 @@ def json_perturber():
 
     ## --- bitcoin trust --- ##
     bitcoin_path = os.path.join(PATH_PERT, f"{NAME_BITCOIN}.json")
-    if not os.path.exists(bitcoin_path):
-        logging.info("Perturbing Bitcoin data...")
+    if force or not os.path.exists(bitcoin_path):
+        if force and os.path.exists(bitcoin_path):
+            logging.info(f"Overwriting existing Bitcoin perturbations at {bitcoin_path}")
+        else:
+            logging.info("Perturbing Bitcoin data...")
         proc = BitcoinProcessor(root_path = PATH_ROOT, name = NAME_BITCOIN)
         proc.run()
         data = _execute_perturbations(proc = proc, name = NAME_BITCOIN)
@@ -440,22 +506,13 @@ def json_perturber():
     else:
         logging.info(f"Bitcoin perturbations already exist at {bitcoin_path}. Skipping.")
 
-    ## --- amazon reviews --- ##
-    # amazon_path = os.path.join(PATH_PERT, f"{NAME_AMAZON}.json")
-    # if not os.path.exists(amazon_path):
-    #     logging.info("Perturbing Amazon data...")
-    #     proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
-    #     proc.run()
-    #     data = _execute_perturbations(proc = proc, name = NAME_AMAZON)
-    #     _save_to_json(data = data, path = amazon_path)
-    #     logging.info(f"Amazon perturbations saved to {amazon_path}")
-    # else:
-    #     logging.info(f"Amazon perturbations already exist at {amazon_path}. Skipping.")
-
     ## --- world bank --- ##
     world_path = os.path.join(PATH_PERT, f"{NAME_WORLD}.json")
-    if not os.path.exists(world_path):
-        logging.info("Perturbing World Bank data...")
+    if force or not os.path.exists(world_path):
+        if force and os.path.exists(world_path):
+            logging.info(f"Overwriting existing World Bank perturbations at {world_path}")
+        else:
+            logging.info("Perturbing World Bank data...")
         proc = WorldBankProcessor(
             url_projects = URL_WORLD_NETWORK,
             url_meta = URL_WORLD_METADATA,
@@ -471,8 +528,11 @@ def json_perturber():
 
     ## --- math wiki --- ##
     wiki_path = os.path.join(PATH_PERT, f"{NAME_WIKI}.json")
-    if not os.path.exists(wiki_path):
-        logging.info("Perturbing Wiki data...")
+    if force or not os.path.exists(wiki_path):
+        if force and os.path.exists(wiki_path):
+            logging.info(f"Overwriting existing Wiki perturbations at {wiki_path}")
+        else:
+            logging.info("Perturbing Wiki data...")
         proc = WikiProcessor(url = URL_WIKI, name = "wikivital_mathematics.json")
         proc.run()
         data = _execute_perturbations(proc = proc, name = NAME_WIKI)
@@ -483,8 +543,11 @@ def json_perturber():
 
     ## --- jodie wiki --- ##
     jodie_path = os.path.join(PATH_PERT, f"{NAME_JODIE}.json")
-    if not os.path.exists(jodie_path):
-        logging.info("Perturbing JODIE data...")
+    if force or not os.path.exists(jodie_path):
+        if force and os.path.exists(jodie_path):
+            logging.info(f"Overwriting existing JODIE perturbations at {jodie_path}")
+        else:
+            logging.info("Perturbing JODIE data...")
         proc = JodieProcessor(root_path = PATH_ROOT, name = "wikipedia")
         proc.run()
         data = _execute_perturbations(proc = proc, name = NAME_JODIE)
@@ -495,8 +558,11 @@ def json_perturber():
 
     ## --- mathoverflow --- ##
     overflow_path = os.path.join(PATH_PERT, f"{NAME_OVERFLOW}.json")
-    if not os.path.exists(overflow_path):
-        logging.info("Perturbing MathOverflow data...")
+    if force or not os.path.exists(overflow_path):
+        if force and os.path.exists(overflow_path):
+            logging.info(f"Overwriting existing MathOverflow perturbations at {overflow_path}")
+        else:
+            logging.info("Perturbing MathOverflow data...")
         proc = OverflowProcessor(url = URL_OVERFLOW)
         proc.run()
         data = _execute_perturbations(proc = proc, name = NAME_OVERFLOW)
@@ -507,8 +573,11 @@ def json_perturber():
 
     ## --- eu-core email --- ##
     email_path = os.path.join(PATH_PERT, f"{NAME_EMAIL}.json")
-    if not os.path.exists(email_path):
-        logging.info("Perturbing EU-Core Email data...")
+    if force or not os.path.exists(email_path):
+        if force and os.path.exists(email_path):
+            logging.info(f"Overwriting existing EU-Core Email perturbations at {email_path}")
+        else:
+            logging.info("Perturbing EU-Core Email data...")
         proc = EmailProcessor(url = URL_EMAIL)
         proc.run()
         data = _execute_perturbations(proc = proc, name = NAME_EMAIL)
@@ -519,8 +588,11 @@ def json_perturber():
 
     ## --- college --- ##
     college_path = os.path.join(PATH_PERT, f"{NAME_COLLEGE}.json")
-    if not os.path.exists(college_path):
-        logging.info("Perturbing UC Irvine College Message data...")
+    if force or not os.path.exists(college_path):
+        if force and os.path.exists(college_path):
+            logging.info(f"Overwriting existing UC Irvine College Message perturbations at {college_path}")
+        else:
+            logging.info("Perturbing UC Irvine College Message data...")
         proc = CollegeProcessor(url = URL_COLLEGE)
         proc.run()
         data = _execute_perturbations(proc = proc, name = NAME_COLLEGE)
@@ -531,8 +603,11 @@ def json_perturber():
 
     ## --- idling --- ##
     idling_path = os.path.join(PATH_PERT, f"{NAME_IDLING}.json")
-    if not os.path.exists(idling_path):
-        logging.info("Perturbing Halifax idling data...")
+    if force or not os.path.exists(idling_path):
+        if force and os.path.exists(idling_path):
+            logging.info(f"Overwriting existing Halifax idling perturbations at {idling_path}")
+        else:
+            logging.info("Perturbing Halifax idling data...")
         proc = IdlingProcessor(path_events = PATH_ROOT + "idling/")
         proc.run()
         data = _execute_perturbations(proc = proc, name = NAME_IDLING)
@@ -543,8 +618,11 @@ def json_perturber():
 
     ## --- windmill --- ##
     windmill_path = os.path.join(PATH_PERT, f"{NAME_WINDMILL}.json")
-    if not os.path.exists(windmill_path):
-        logging.info("Perturbing Windmill data...")
+    if force or not os.path.exists(windmill_path):
+        if force and os.path.exists(windmill_path):
+            logging.info(f"Overwriting existing Windmill perturbations at {windmill_path}")
+        else:
+            logging.info("Perturbing Windmill data...")
         proc = WindmillProcessor(raw_data_dir = os.path.join(PATH_ROOT, NAME_WINDMILL))
         proc.run()
         data = _execute_perturbations(proc = proc, name = NAME_WINDMILL)
@@ -555,8 +633,11 @@ def json_perturber():
 
     ## --- metr-la --- ##
     metrla_path = os.path.join(PATH_PERT, f"{NAME_METRLA}.json")
-    if not os.path.exists(metrla_path):
-        logging.info("Perturbing METR-LA data...")
+    if force or not os.path.exists(metrla_path):
+        if force and os.path.exists(metrla_path):
+            logging.info(f"Overwriting existing METR-LA perturbations at {metrla_path}")
+        else:
+            logging.info("Perturbing METR-LA data...")
         proc = MetrLaProcessor(raw_data_dir = os.path.join(PATH_ROOT, NAME_METRLA))
         proc.run()
         data = _execute_perturbations(proc = proc, name = NAME_METRLA)
@@ -567,8 +648,11 @@ def json_perturber():
 
     ## --- pems-bay --- ##
     pemsbay_path = os.path.join(PATH_PERT, f"{NAME_PEMSBAY}.json")
-    if not os.path.exists(pemsbay_path):
-        logging.info("Perturbing PEMS-BAY data...")
+    if force or not os.path.exists(pemsbay_path):
+        if force and os.path.exists(pemsbay_path):
+            logging.info(f"Overwriting existing PEMS-BAY perturbations at {pemsbay_path}")
+        else:
+            logging.info("Perturbing PEMS-BAY data...")
         proc = PemsBayProcessor(raw_data_dir = os.path.join(PATH_ROOT, NAME_PEMSBAY))
         proc.run()
         data = _execute_perturbations(proc = proc, name = NAME_PEMSBAY)
@@ -579,8 +663,11 @@ def json_perturber():
 
     ## --- montevideo --- ##
     montevideo_path = os.path.join(PATH_PERT, f"{NAME_MONTEVIDEO}.json")
-    if not os.path.exists(montevideo_path):
-        logging.info("Perturbing Montevideo data...")
+    if force or not os.path.exists(montevideo_path):
+        if force and os.path.exists(montevideo_path):
+            logging.info(f"Overwriting existing Montevideo perturbations at {montevideo_path}")
+        else:
+            logging.info("Perturbing Montevideo data...")
         proc = MontevideoProcessor()
         proc.run()
         data = _execute_perturbations(proc = proc, name = NAME_MONTEVIDEO)
@@ -591,8 +678,11 @@ def json_perturber():
 
     ## --- crop pollinator --- ##
     crop_path = os.path.join(PATH_PERT, f"{NAME_CROP}.json")
-    if not os.path.exists(crop_path):
-        logging.info("Perturbing CropPol data...")
+    if force or not os.path.exists(crop_path):
+        if force and os.path.exists(crop_path):
+            logging.info(f"Overwriting existing CropPol perturbations at {crop_path}")
+        else:
+            logging.info("Perturbing CropPol data...")
         proc = CropProcessor(url_sampling = URL_CROP_SAMPLING, url_field = URL_CROP_FIELD)
         proc.run()
         data = _execute_perturbations(proc = proc, name = NAME_CROP)
@@ -603,8 +693,11 @@ def json_perturber():
 
     ## --- faers --- ##
     faers_path = os.path.join(PATH_PERT, f"{NAME_FAERS}.json")
-    if not os.path.exists(faers_path):
-        logging.info("Perturbing FAERS data...")
+    if force or not os.path.exists(faers_path):
+        if force and os.path.exists(faers_path):
+            logging.info(f"Overwriting existing FAERS perturbations at {faers_path}")
+        else:
+            logging.info("Perturbing FAERS data...")
         proc = FaersProcessor(id = "IMATINIB", url = URL_FAERS)
         proc.run()
         data = _execute_perturbations(proc = proc, name = NAME_FAERS)
@@ -615,8 +708,11 @@ def json_perturber():
 
     ## --- c. elegans --- ##
     celegans_path = os.path.join(PATH_PERT, f"{NAME_CELEGANS}.json")
-    if not os.path.exists(celegans_path):
-        logging.info("Perturbing C. Elegans data...")
+    if force or not os.path.exists(celegans_path):
+        if force and os.path.exists(celegans_path):
+            logging.info(f"Overwriting existing C. Elegans perturbations at {celegans_path}")
+        else:
+            logging.info("Perturbing C. Elegans data...")
         proc = CelegansProcessor()
         proc.run()
         data = _execute_perturbations(proc = proc, name = NAME_CELEGANS)
@@ -627,8 +723,11 @@ def json_perturber():
 
     ## --- epilepsy --- ##
     epilepsy_path = os.path.join(PATH_PERT, f"{NAME_EPILEPSY}.json")
-    if not os.path.exists(epilepsy_path):
-        logging.info("Perturbing Epilepsy data...")
+    if force or not os.path.exists(epilepsy_path):
+        if force and os.path.exists(epilepsy_path):
+            logging.info(f"Overwriting existing Epilepsy perturbations at {epilepsy_path}")
+        else:
+            logging.info("Perturbing Epilepsy data...")
         ids = [f'chb{i:02d}' for i in range(1, 25)]
         proc = EpilepsyProcessor(url = URL_EPILEPSY, ids = ids)
         proc.run()
@@ -640,8 +739,11 @@ def json_perturber():
 
     ## --- chickenpox --- ##
     chickenpox_path = os.path.join(PATH_PERT, f"{NAME_CHICKENPOX}.json")
-    if not os.path.exists(chickenpox_path):
-        logging.info("Perturbing Chickenpox data...")
+    if force or not os.path.exists(chickenpox_path):
+        if force and os.path.exists(chickenpox_path):
+            logging.info(f"Overwriting existing Chickenpox perturbations at {chickenpox_path}")
+        else:
+            logging.info("Perturbing Chickenpox data...")
         proc = ChickenpoxProcessor(
             url = URL_CHICKENPOX_EVENTS,
             name = "hungary_chickenpox.csv"
@@ -655,8 +757,11 @@ def json_perturber():
 
     ## --- gwosc --- ##
     gwosc_path = os.path.join(PATH_PERT, f"{NAME_GWOSC}.json")
-    if not os.path.exists(gwosc_path):
-        logging.info("Perturbing GWOSC data...")
+    if force or not os.path.exists(gwosc_path):
+        if force and os.path.exists(gwosc_path):
+            logging.info(f"Overwriting existing GWOSC perturbations at {gwosc_path}")
+        else:
+            logging.info("Perturbing GWOSC data...")
         proc = GwoscProcessor(url = URL_GWOSC)
         proc.run()
         data = _execute_perturbations(proc = proc, name = NAME_GWOSC)
@@ -667,8 +772,11 @@ def json_perturber():
 
     ## --- nwis --- ##
     river_path = os.path.join(PATH_PERT, f"{NAME_RIVER}.json")
-    if not os.path.exists(river_path):
-        logging.info("Perturbing NWIS river data...")
+    if force or not os.path.exists(river_path):
+        if force and os.path.exists(river_path):
+            logging.info(f"Overwriting existing NWIS river perturbations at {river_path}")
+        else:
+            logging.info("Perturbing NWIS river data...")
         params = {
             "format": "rdb",
             "huc": "15010001,15010002,15010005",
@@ -692,8 +800,11 @@ def json_perturber():
 
     ## --- auger --- ##
     auger_path = os.path.join(PATH_PERT, f"{NAME_AUGER}.json")
-    if not os.path.exists(auger_path):
-        logging.info("Perturbing Auger data...")
+    if force or not os.path.exists(auger_path):
+        if force and os.path.exists(auger_path):
+            logging.info(f"Overwriting existing Auger perturbations at {auger_path}")
+        else:
+            logging.info("Perturbing Auger data...")
         proc = AugerProcessor(
             url_network = URL_AUGER_NETWORK,
             url_events = URL_AUGER_EVENTS
@@ -707,8 +818,11 @@ def json_perturber():
 
     ## --- seismic --- ##
     seismic_path = os.path.join(PATH_PERT, f"{NAME_SEISMIC}.json")
-    if not os.path.exists(seismic_path):
-        logging.info("Perturbing Seismic data...")
+    if force or not os.path.exists(seismic_path):
+        if force and os.path.exists(seismic_path):
+            logging.info(f"Overwriting existing Seismic perturbations at {seismic_path}")
+        else:
+            logging.info("Perturbing Seismic data...")
 
         ## define parameters for the seismic data
         params_network = {"level": "station", "format": "xml", "network": "IU"}
@@ -742,8 +856,11 @@ def json_perturber():
 
     ## --- rain --- ##
     rain_path = os.path.join(PATH_PERT, f"{NAME_RAIN}.json")
-    if not os.path.exists(rain_path):
-        logging.info("Perturbing Rain data...")
+    if force or not os.path.exists(rain_path):
+        if force and os.path.exists(rain_path):
+            logging.info(f"Overwriting existing Rain perturbations at {rain_path}")
+        else:
+            logging.info("Perturbing Rain data...")
         proc = RainProcessor(
             country = "LA",  ## iso country code for laos
             start_date = "2024-01-01",
@@ -756,6 +873,21 @@ def json_perturber():
     else:
         logging.info(f"Rain perturbations already exist at {rain_path}. Skipping.")
 
+    ## --- amazon reviews --- ##
+    amazon_path = os.path.join(PATH_PERT, f"{NAME_AMAZON}.json")
+    if force or not os.path.exists(amazon_path):
+        if force and os.path.exists(amazon_path):
+            logging.info(f"Overwriting existing Amazon perturbations at {amazon_path}")
+        else:
+            logging.info("Perturbing Amazon data...")
+        proc = AmazonProcessor(root_path = PATH_ROOT, url = URL_AMAZON, name = NAME_AMAZON)
+        proc.run()
+        data = _execute_perturbations(proc = proc, name = NAME_AMAZON, force = True)
+        _save_to_json(data = data, path = amazon_path)
+        logging.info(f"Amazon perturbations saved to {amazon_path}")
+    else:
+        logging.info(f"Amazon perturbations already exist at {amazon_path}. Skipping.")
+
 ## primary execution
 if __name__ == '__main__':
-    json_perturber()
+    json_perturber(force = False)

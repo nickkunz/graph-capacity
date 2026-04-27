@@ -1,28 +1,61 @@
 ## libraries
 import numpy as np
+from numpy.typing import ArrayLike, NDArray
 from sklearn.base import BaseEstimator, RegressorMixin
 from sklearn.linear_model import QuantileRegressor
 
+## modules
+from src.estimators.config import (
+    ASYMMETRY_C,
+    ASYMMETRY_R,
+    ALPHA
+)
+
 ## convex hull sklearn regressors
 class LinearConvex(BaseEstimator):
-    def __init__(self, quantile_c = 0.99, quantile_r = 0.5, alpha = 0.1, beta = None):
-        self.estimator_c = BaseConvex(quantile = quantile_c, alpha = alpha, beta = beta)
-        self.estimator_r = BaseConvex(quantile = quantile_r, alpha = alpha, beta = beta)
+    def __init__(
+        self,
+        quantile_c: float = ASYMMETRY_C,
+        quantile_r: float = ASYMMETRY_R,
+        alpha: float = ALPHA,
+        beta: ArrayLike | None = None
+        ) -> None:
+
+        self.quantile_c = quantile_c
+        self.quantile_r = quantile_r
+        self.alpha = alpha
+        self.beta = beta
+
+        self.estimator_c = BaseConvex(
+            quantile = quantile_c, 
+            alpha = alpha, 
+            beta = beta
+        )
+        self.estimator_r = BaseConvex(
+            quantile = quantile_r, 
+            alpha = alpha, 
+            beta = beta
+        )
 
 ## convex hull sklearn framework
 class BaseConvex(BaseEstimator, RegressorMixin):
-    def __init__(self, quantile, alpha, beta):
+    def __init__(
+        self,
+        quantile: float,
+        alpha: float,
+        beta: ArrayLike | None
+        ) -> None:
         self.beta = beta
         self.quantile = quantile
         self.alpha = alpha
 
         # fitted state
-        self.beta_ = None
-        self.s_hull_ = None
-        self.y_hull_ = None
+        self.beta_: NDArray[np.float64] | None = None
+        self.s_hull_: NDArray[np.float64] | None = None
+        self.y_hull_: NDArray[np.float64] | None = None
 
     ## sklearn fit interfaces
-    def fit(self, X, y):
+    def fit(self, X: ArrayLike, y: ArrayLike) -> "BaseConvex":
         X = np.asarray(X, dtype = float)
         y = np.asarray(y, dtype = float).reshape(-1)
         if X.size == 0:
@@ -48,18 +81,27 @@ class BaseConvex(BaseEstimator, RegressorMixin):
         return self
 
     ## sklearn predict interface
-    def predict(self, X):
+    def predict(self, X: ArrayLike) -> NDArray[np.float64]:
         if self.s_hull_ is None or self.y_hull_ is None:
             raise RuntimeError("ConvexHullRegressor must be fit before calling predict().")
         X = np.asarray(X, dtype = float)
         s = X @ self.beta_
         if self.s_hull_.size == 1:
             return np.full(len(s), float(self.y_hull_[0]))
-        return np.interp(s, self.s_hull_, self.y_hull_, left = float(self.y_hull_[0]), right = float(self.y_hull_[-1]))
+        return np.interp(
+            x = s, 
+            xp = self.s_hull_,
+            fp = self.y_hull_,
+            left = float(self.y_hull_[0]), 
+            right = float(self.y_hull_[-1])
+        )
 
 
 ## compute concave upper envelope
-def _concave_upper_envelope(x, y):
+def _concave_upper_envelope(
+    x: ArrayLike,
+    y: ArrayLike
+    ) -> tuple[NDArray[np.float64], NDArray[np.float64]]:
     x = np.asarray(x, dtype = float)
     y = np.asarray(y, dtype = float)
 
