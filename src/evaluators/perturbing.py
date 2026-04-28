@@ -23,7 +23,7 @@ if str(root) not in sys.path:
     
 ## modules
 from itertools import combinations
-from src.evaluators.training import fit_predict_frontier
+from src.evaluators.training import fit_predict_frontier, predict_frontier_repeats
 from src.vectorizers.scalers import _log_transformer
 from src.evaluators.metrics import consensus_metrics
 from src.vectorizers.invariants import GraphInvariants
@@ -1083,7 +1083,8 @@ def stat_perturbed_test(
     feat_group = list(feat_group or [])
     group_display = [("Frontier" if c == "track" else c.replace("_", " ").title()) for c in feat_group]
     p_label = "One-sided p"
-    tail_cols = ["Wilcoxon W+", "Rank-biserial r", p_label, "Holm-adj. p", "Sig"]
+    decision_label = "Loss."
+    tail_cols = ["Rank-biserial r", p_label, "Holm-adj. p", "Sig.", decision_label]
     pair_cols = list(feat_pairs) if feat_pairs is not None else ["model", "group"]
 
     data = results.copy()
@@ -1092,8 +1093,11 @@ def stat_perturbed_test(
     perturbed = data.loc[data[label_pert] != label_base].copy()
     merge_keys = ["track", *pair_cols] if "track" in data.columns else list(pair_cols)
 
-    merged = perturbed.loc[:, feat_group + pair_cols + feat_value].merge(
-        baseline.loc[:, merge_keys + feat_value],
+    left_cols = list(dict.fromkeys(feat_group + merge_keys + feat_value))
+    right_cols = list(dict.fromkeys(merge_keys + feat_value))
+
+    merged = perturbed.loc[:, left_cols].merge(
+        baseline.loc[:, right_cols],
         on = merge_keys,
         suffixes = ("_pert", "_orig"),
     )
@@ -1168,30 +1172,39 @@ def stat_perturbed_test(
     ## holm-bonferroni correction with monotonic adjustment
     summary[p_label] = pd.to_numeric(summary[p_label], errors = "coerce")
     p_value = summary[p_label].to_numpy(dtype = float, copy = True)
-    p_valid = np.isfinite(p_value)
+    valid_mask = np.isfinite(p_value)
     holm = np.full(shape = len(p_value), fill_value = np.nan, dtype = float)
-    if np.any(p_valid):
-        p_valid = p_value[p_valid]
+    if np.any(valid_mask):
+        p_valid = p_value[valid_mask]
         m = len(p_valid)
         order = np.argsort(p_valid)
         holm_sorted = np.maximum.accumulate(p_valid[order] * (m - np.arange(m)))
         holm_valid = np.empty(m, dtype = float)
         holm_valid[order] = np.minimum(holm_sorted, 1.0)
-        holm[p_valid] = holm_valid
+        holm[valid_mask] = holm_valid
     summary["Holm-adj. p"] = holm
-    summary["Sig"] = summary["Holm-adj. p"].map(
+    summary["Sig."] = summary["Holm-adj. p"].map(
         lambda p: np.nan if not np.isfinite(p) else "***" if p < 0.001 else "**" if p < 0.01 else "*" if p < 0.05 else ""
     )
+    med_delta = summary["Median Δ "].to_numpy(dtype = float, copy = True)
+    loss = np.full(shape = len(summary), fill_value = np.nan, dtype = object)
+    valid_loss = np.isfinite(holm) & np.isfinite(med_delta)
+    loss[valid_loss] = np.where((holm[valid_loss] < 0.05) & (med_delta[valid_loss] > 0.0), "Yes", "No")
+    summary[decision_label] = loss
 
     ## convert group/metric labels to display names
     summary = summary.rename(columns = {c: ("Frontier" if c == "track" else c.replace("_", " ").title()) for c in feat_group})
     if len(feat_value) == 1:
         tag = feat_value[0].upper()
         summary = summary.rename(columns = {
-            "Median Original": f"Median {tag} (Original)",
-            "Median Perturbed": f"Median {tag} (Perturbed)",
-            "Median Δ ": f"Median Δ  {tag}",
-        }).drop(columns = ["metric"])
+            "Median Δ ": f"Median Δ {tag}",
+        }).drop(columns = [
+            "metric",
+            "Median Original",
+            "Median Perturbed",
+            "Positive Δ ",
+            "Wilcoxon W+",
+        ])
     else:
         summary = summary.rename(columns = {"metric": "Metric"})
 
@@ -1227,12 +1240,11 @@ def stat_perturbed_test(
 
     ## keep a stable display column order
     if "Metric" in summary.columns:
-        value_cols_order = ["Metric", "Median Original", "Median Perturbed", "Median Δ ", "Positive Δ ", *tail_cols]
-    else:
-        med_o = next((c for c in summary.columns if c.startswith("Median ") and c.endswith("(Original)")), "Median Original")
-        med_p = next((c for c in summary.columns if c.startswith("Median ") and c.endswith("(Perturbed)")), "Median Perturbed")
         med_d = next((c for c in summary.columns if c.startswith("Median Δ ")), "Median Δ ")
-        value_cols_order = [med_o, med_p, med_d, "Positive Δ ", *tail_cols]
+        value_cols_order = ["Metric", med_d, *tail_cols]
+    else:
+        med_d = next((c for c in summary.columns if c.startswith("Median Δ ")), "Median Δ ")
+        value_cols_order = [med_d, *tail_cols]
 
     summary = summary.reindex(columns = group_display + [c for c in value_cols_order if c in summary.columns])
     summary = summary.set_index(group_display) if (index and group_display) else summary
@@ -1303,6 +1315,101 @@ def spec_marginal_delta(
         raise ValueError(f"unknown method: {method}")
 
     return round(max(float(scale * dispersion), 1e-6), decimals)
+
+
+def spec_pairwise_agreement_floor(
+    data: pd.DataFrame,
+    models: Dict[str, Any],
+    feat_x: Sequence[str],
+    feat_z: Sequence[str],
+    target: str = "target",
+    n_repeats: int = 30,
+    random_state: int = 42,
+    quantile: float = 0.25,
+    decimals: int = 3,
+    n_jobs: int = -1,
+    ) -> float:
+
+    """
+    Desc:
+        Estimate an empirical pairwise agreement floor from repeated clean
+        full-data fits. The floor is the chosen quantile of the repeat-level
+        clean pairwise CI distribution across all model pairs.
+
+    Args:
+        data: Clean baseline dataframe with features and target columns.
+        models: Mapping of model name to estimator bundle.
+        feat_x: Graph invariant feature column names.
+        feat_z: Process signature feature column names.
+        target: Target column name.
+        n_repeats: Number of repeated full-data fits per model.
+        random_state: Base random state for fit reproducibility.
+        quantile: Quantile of the repeat-level clean CI distribution used as
+            the agreement floor.
+        decimals: Number of decimals to round the floor.
+        n_jobs: Number of parallel workers.
+
+    Returns:
+        Empirical pairwise agreement floor on the CI scale.
+
+    Raises:
+        ValueError: If quantile is outside (0, 1).
+        ValueError: If too few repeat-level pairwise CI values are available.
+    """
+
+    if not 0.0 < float(quantile) < 1.0:
+        raise ValueError("quantile must be strictly between 0 and 1")
+    if n_repeats < 1:
+        raise ValueError("n_repeats must be >= 1")
+
+    feat_x = list(feat_x)
+    feat_z = list(feat_z)
+    model_names = list(models.keys())
+
+    fit_real = Parallel(n_jobs = n_jobs)(
+        delayed(fit_predict_frontier)(
+            data = data,
+            feat_x = feat_x,
+            feat_z = feat_z,
+            estimator_c = models[name].estimator_c,
+            estimator_r = models[name].estimator_r,
+            target = target,
+            n_repeat = n_repeats,
+            random_state = random_state,
+        )
+        for name in model_names
+    )
+
+    pred_repeat = dict()
+    for name, fit_result in zip(model_names, fit_real):
+        repeat_result = predict_frontier_repeats(
+            data = data,
+            fit_result = fit_result,
+        )
+        pred_repeat[name] = np.asarray(repeat_result["y_pred_repeats"], dtype = float)
+
+    ci_vals = list()
+    for model_i, model_j in combinations(model_names, 2):
+        y_i = pred_repeat[model_i]
+        y_j = pred_repeat[model_j]
+        n_common = min(y_i.shape[0], y_j.shape[0])
+        for repeat_idx in range(n_common):
+            pred_i = y_i[repeat_idx]
+            pred_j = y_j[repeat_idx]
+            valid = np.isfinite(pred_i) & np.isfinite(pred_j)
+            if int(np.sum(valid)) < 2:
+                continue
+            ci_vals.append(consensus_metrics(
+                y_true = pred_i[valid],
+                y_pred = pred_j[valid],
+            )["ci"])
+
+    ci_vals = np.asarray(ci_vals, dtype = float)
+    ci_vals = ci_vals[np.isfinite(ci_vals)]
+    if len(ci_vals) < 2:
+        raise ValueError("pairwise agreement floor requires at least two finite repeat-level CI values")
+
+    return round(float(np.quantile(ci_vals, quantile)), decimals)
 
 
 ## ----------------------------------------------------------------------------
@@ -1458,6 +1565,21 @@ def stat_perturbed_tost(
 
     summary = pd.DataFrame(rows)
 
+    ## stable ordering by feat_group using first-appearance order in original results
+    if feat_group and not summary.empty:
+        order_src = (
+            results.loc[results[label_pert] != label_base, feat_group]
+            .drop_duplicates()
+        )
+        order_map = {
+            tuple(row): i for i, row in enumerate(order_src.itertuples(index = False, name = None))
+        }
+        summary["__order__"] = summary[feat_group].apply(
+            lambda r: order_map.get(tuple(r), len(order_map)),
+            axis = 1,
+        )
+        summary = summary.sort_values("__order__", kind = "stable").drop(columns = "__order__").reset_index(drop = True)
+
     ## holm-bonferroni step-down adjustment
     p_value = summary["TOST p"].to_numpy(dtype = float, copy = True)
     p_valid = np.isfinite(p_value)
@@ -1505,6 +1627,211 @@ def stat_perturbed_tost(
     print(f"Rank-biserial r: Paired effect size, equivalence determined by TOST")
     print(f"TOST p: max(Upper p, Lower p)")
     print(f"Holm-adj. p: Holm-Bonferroni adjusted TOST p-value")
+    print("Significance codes reflect Holm-adj. p")
+    print("*** p < 0.001, ** p < 0.01, * p < 0.05")
+
+    return summary
+
+
+def stat_perturbed_tost_absolute(
+    results: pd.DataFrame,
+    feat_value: Sequence[str],
+    feat_group: Sequence[str] = ["track"],
+    pert_type: str | None = None,
+    track: str | Sequence[str] | None = None,
+    reference: float = 1.0,
+    delta: float = 0.05,
+    label_pert: str = "perturbation",
+    label_base: str = "baseline",
+    decimals: int = 4,
+    index: bool = True,
+    ) -> pd.DataFrame:
+
+    """
+    Desc:
+        Two one-sided tests (TOST) for equivalence of perturbed metrics to
+        an absolute reference value. This is useful when the scientific
+        question is whether perturbed agreement remains high enough on its
+        own, rather than whether it matches a row-wise clean-data baseline.
+
+    Args:
+        results: Full aggregated output from eval_perturb, including
+            baseline rows.
+        feat_value: Metric columns to test (e.g. ["ci"]).
+        feat_group: Columns whose unique combinations define independent
+            tests (default ["track"]).
+        pert_type: Perturbation family to restrict to (e.g. "network").
+        track: Evaluation track to restrict to (e.g. "frozen", "retrain").
+            None -> use all tracks.
+        reference: Absolute reference value for the equivalence target
+            (default 1.0).
+        delta: Equivalence margin around the reference value.
+        label_pert: Perturbation label column.
+        label_base: Baseline label.
+        decimals: Display rounding.
+        index: Whether to set group columns as index.
+
+    Returns:
+        DataFrame with columns: [*group, Median <M>, TOST p,
+            Holm-adj. p, Eq.].
+    """
+
+    if pert_type is not None:
+        results = results.loc[
+            results[label_pert].isin([label_base, pert_type])
+        ].copy()
+
+    if track is not None and "track" in results.columns:
+        track_vals = [track] if isinstance(track, str) else list(track)
+        results = results.loc[results["track"].isin(track_vals)].copy()
+
+    feat_value = list(feat_value)
+    feat_group = list(feat_group or [])
+    group_display = [("Frontier" if c == "track" else c.replace("_", " ").title()) for c in feat_group]
+
+    data = results.copy()
+    perturbed = data.loc[data[label_pert] != label_base].copy()
+    groups = (
+        perturbed.groupby(feat_group, sort = False)
+        if feat_group
+        else [((), perturbed)]
+    )
+
+    if feat_group:
+        n_pairs_by_group = perturbed.groupby(feat_group, sort = False).size()
+        unique_n = np.array(pd.unique(n_pairs_by_group), dtype = float)
+    else:
+        unique_n = np.array([perturbed.shape[0]], dtype = float)
+    if len(unique_n) == 0:
+        n_display = 0
+    elif len(unique_n) == 1:
+        n_display = int(unique_n[0])
+    else:
+        n_display = f"{int(np.min(unique_n))}-{int(np.max(unique_n))}"
+
+    metric_label = (
+        feat_value[0].upper()
+        if len(feat_value) == 1
+        else ", ".join(v.upper() for v in feat_value)
+    )
+    lower_bound = reference - delta
+    upper_bound = reference + delta
+
+    rows = list()
+    for group_key, grp in groups:
+        group_key = group_key if isinstance(group_key, tuple) else (group_key,)
+        for metric in feat_value:
+            x = grp[metric].to_numpy(dtype = float)
+            x = x[np.isfinite(x)]
+            n = len(x)
+            med_x = float(np.median(x)) if n else np.nan
+
+            if n < 2:
+                p_upper = p_lower = p_tost = r_eff = np.nan
+            else:
+                try:
+                    _, p_upper = wilcoxon(
+                        x - upper_bound,
+                        alternative = "less",
+                    )
+                    _, p_lower = wilcoxon(
+                        x - lower_bound,
+                        alternative = "greater",
+                    )
+                    p_tost = max(float(p_upper), float(p_lower))
+                except ValueError:
+                    p_tost = np.nan
+
+                d_floor = x - lower_bound
+                d_nz = d_floor[d_floor != 0]
+                if len(d_nz) < 2:
+                    r_eff = np.nan
+                else:
+                    ranks = rankdata(np.abs(d_nz), method = "average")
+                    pos_rank_sum = float(np.sum(ranks[d_nz > 0]))
+                    neg_rank_sum = float(np.sum(ranks[d_nz < 0]))
+                    r_eff = (pos_rank_sum - neg_rank_sum) / float(np.sum(ranks))
+
+            row = dict(zip(feat_group, group_key))
+            tag = metric.upper()
+            row[f"Median {tag}"] = round(med_x, decimals) if np.isfinite(med_x) else np.nan
+            row["Rank-biserial r"] = round(r_eff, decimals) if np.isfinite(r_eff) else np.nan
+            row["TOST p"] = round(p_tost, decimals) if np.isfinite(p_tost) else np.nan
+            rows.append(row)
+
+    summary = pd.DataFrame(rows)
+
+    if feat_group and not summary.empty:
+        order_src = perturbed.loc[:, feat_group].drop_duplicates()
+        order_map = {
+            tuple(row): i for i, row in enumerate(order_src.itertuples(index = False, name = None))
+        }
+        summary["__order__"] = summary[feat_group].apply(
+            lambda row: order_map.get(tuple(row), len(order_map)),
+            axis = 1,
+        )
+        summary = summary.sort_values("__order__", kind = "stable").drop(columns = "__order__").reset_index(drop = True)
+
+    p_value = summary["TOST p"].to_numpy(dtype = float, copy = True)
+    valid_mask = np.isfinite(p_value)
+    holm = np.full(len(p_value), np.nan, dtype = float)
+    if np.any(valid_mask):
+        p_valid = p_value[valid_mask]
+        m = len(p_valid)
+        order = np.argsort(p_valid)
+        holm_sorted = np.maximum.accumulate(p_valid[order] * (m - np.arange(m)))
+        holm_valid = np.empty(m, dtype = float)
+        holm_valid[order] = np.minimum(holm_sorted, 1.0)
+        holm[valid_mask] = holm_valid
+    summary["Holm-adj. p"] = holm
+    summary["Sig."] = summary["Holm-adj. p"].map(
+        lambda p: "-" if not np.isfinite(p) else "***" if p < 0.001 else "**" if p < 0.01 else "*" if p < 0.05 else ""
+    )
+    summary["Eq."] = summary["Sig."].map(
+        lambda s: "-" if s == "-" else "Yes" if s != "" else "No"
+    )
+
+    num_cols = [
+        c for c in summary.columns
+        if c.startswith("Median") or c in ["Rank-biserial r", "TOST p", "Holm-adj. p"]
+    ]
+    for col in num_cols:
+        summary[col] = summary[col].apply(
+            lambda v: f"{float(v):.{decimals}f}" if pd.notna(v) and np.isfinite(float(v)) else v
+        )
+
+    summary = summary.rename(columns = {c: ("Frontier" if c == "track" else c.replace("_", " ").title()) for c in feat_group})
+    for orig, disp in zip(feat_group, group_display):
+        if disp not in summary.columns:
+            continue
+        if orig == "method":
+            summary[disp] = summary[disp].astype(object).str.replace("_", " ")
+        elif orig != "track" and summary[disp].dtype == object:
+            summary[disp] = summary[disp].astype(object).str.replace("_", " ").str.title()
+
+    value_cols = [
+        next((c for c in summary.columns if c.startswith("Median ")), "Median"),
+        "Rank-biserial r",
+        "TOST p",
+        "Holm-adj. p",
+        "Sig.",
+        "Eq.",
+    ]
+    summary = summary.reindex(columns = group_display + [c for c in value_cols if c in summary.columns])
+    summary = summary.astype(object).where(pd.notna(summary), "-")
+    if index and group_display:
+        summary = summary.set_index(group_display)
+
+    print(
+        f"Absolute TOST (Wilcoxon Signed-Rank): n = {n_display}, "
+        f"reference = {reference:.{decimals}f}, floor = {lower_bound:.{decimals}f}, δ = {delta:.{decimals}f}"
+    )
+    print(f"H₀: |{metric_label} - {reference:.{decimals}f}| ≥ {delta:.{decimals}f}")
+    print(f"H₁: |{metric_label} - {reference:.{decimals}f}| < {delta:.{decimals}f}")
+    print(f"Median {metric_label}: Median perturbed agreement under the frozen-manifold protocol")
+    print("Rank-biserial r: One-sample effect size, positive values favor agreement above the floor")
+    print("TOST p: max(Upper p, Lower p)")
+    print("Holm-adj. p: Holm-Bonferroni adjusted TOST p-value")
     print("Significance codes reflect Holm-adj. p")
     print("*** p < 0.001, ** p < 0.01, * p < 0.05")
 
@@ -2079,9 +2406,9 @@ def eval_perturbed_consensus(
         pred_pert[key] = r["y_pred"]
 
     ## aggregate pairwise consensus per perturbation setting
-    setting_keys = set(
+    setting_keys = list(dict.fromkeys(
         (p, m, i) for (p, m, i, _) in pred_pert.keys()
-    )
+    ))
     for (pert_type, method, intensity) in setting_keys:
         for model_i, model_j in combinations(model_names, 2):
             key_i = (pert_type, method, intensity, model_i)
