@@ -220,6 +220,22 @@ def _rank_biased_overlap(y_true: np.ndarray, y_pred: np.ndarray, p: float) -> fl
 
 
 ## consensus index
+def consensus_index(
+    rho: float,
+    rbo: float,
+    dcr: float,
+    eps: float = 1e-12,
+    ) -> float:
+
+    """ CI geometric mean over comparable agreement-scale metrics. """
+
+    rho_agree = (rho + 1.0) / 2.0
+    ci_vals = np.array([rho_agree, rbo, dcr], dtype = float)
+    ci_vals = np.clip(ci_vals, a_min = eps, a_max = 1.0)
+    log_ci = float(np.mean(np.log(ci_vals)))
+    return float(np.exp(log_ci))
+
+
 def _consensus_index(
     rho: float,
     rbo: float,
@@ -227,12 +243,14 @@ def _consensus_index(
     eps: float = 1e-12,
     ) -> float:
 
-    """ CI geometric mean over the rho, rbo, and dcr base metrics. """
+    """ CI geometric mean over comparable agreement-scale metrics. """
 
-    ci_vals = np.array([rho, rbo, dcr], dtype = float)
-    ci_vals = np.clip(ci_vals, a_min = eps, a_max = 1.0)
-    log_ci = float(np.mean(np.log(ci_vals)))
-    return float(np.exp(log_ci))
+    return consensus_index(
+        rho = rho,
+        rbo = rbo,
+        dcr = dcr,
+        eps = eps,
+    )
 
 
 ## joint consensus metrics
