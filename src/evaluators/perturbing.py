@@ -23,7 +23,7 @@ if str(root) not in sys.path:
     
 ## modules
 from itertools import combinations
-from src.evaluators.training import fit_predict_frontier, predict_frontier_repeats
+from src.evaluators.training import fit_predict_frontier
 from src.vectorizers.scalers import _log_transformer
 from src.evaluators.metrics import consensus_metrics
 from src.vectorizers.invariants import GraphInvariants
