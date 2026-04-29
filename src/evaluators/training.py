@@ -28,7 +28,8 @@ def fit_predict_frontier(
     """
     Desc:
         Fits repeated full-data frontier models and returns the averaged
-        predictions together with the fitted models and preprocessing state.
+        predictions together with repeat-level predictions, fitted models,
+        and preprocessing state.
         When `fit_result` is provided, reuses that fitted bundle to score a
         new dataframe without retraining.
 
@@ -60,8 +61,9 @@ def fit_predict_frontier(
         fit_result: Optional fitted bundle used for frozen transfer.
 
     Returns:
-        Dictionary containing averaged predictions. The reusable fitted state
-        needed for frozen transfer is returned under `fit_result`.
+        Dictionary containing averaged predictions and repeat-level
+        predictions. The reusable fitted state needed for frozen transfer is
+        returned under `fit_result`.
 
     Raises:
         ValueError: If n_repeat is less than 1.
@@ -71,7 +73,6 @@ def fit_predict_frontier(
 
     if fit_result is not None:
         bundle = dict(fit_result.get("fit_result", fit_result))
-
         feat_x = list(bundle["feat_x"])
         feat_z = list(bundle["feat_z"])
         models_c = list(bundle["models_c"])
@@ -86,26 +87,34 @@ def fit_predict_frontier(
             X[feat_x].notna().all(axis = 1)
             & Z[feat_z].notna().all(axis = 1)
         ).to_numpy()
+        y_pred_repeats = np.full(
+            shape = (len(models_c), len(data)),
+            fill_value = np.nan,
+            dtype = float,
+        )
+        if int(np.sum(valid)) > 0:
+            X_scaled = bundle["x_scaler"].transform(
+                X.loc[valid, feat_x].astype(float)
+            )
+            Z_scaled = bundle["z_scaler"].transform(
+                Z.loc[valid, feat_z].astype(float)
+            )
+            for idx, (model_c, model_r, r_mean) in enumerate(
+                zip(models_c, models_r, r_train_means)
+            ):
+                c_hat = model_c.predict(X_scaled).astype(float)
+                r_hat = model_r.predict(Z_scaled).astype(float)
+                y_pred_repeats[idx, valid] = (
+                    c_hat + (r_hat - float(r_mean))
+                ).astype(float)
 
         y_pred = np.full(shape = len(data), fill_value = np.nan, dtype = float)
-        if int(np.sum(valid)) == 0:
-            return {
-                "y_pred": y_pred,
-                "fit_result": bundle,
-            }
-
-        X_scaled = bundle["x_scaler"].transform(X.loc[valid, feat_x].astype(float))
-        Z_scaled = bundle["z_scaler"].transform(Z.loc[valid, feat_z].astype(float))
-
-        y_pred_sum = np.zeros(shape = int(np.sum(valid)), dtype = float)
-        for model_c, model_r, r_mean in zip(models_c, models_r, r_train_means):
-            c_hat = model_c.predict(X_scaled).astype(float)
-            r_hat = model_r.predict(Z_scaled).astype(float)
-            y_pred_sum += (c_hat + (r_hat - float(r_mean))).astype(float)
-
-        y_pred[valid] = y_pred_sum / float(len(models_c))
+        valid_cols = np.any(np.isfinite(y_pred_repeats), axis = 0)
+        if np.any(valid_cols):
+            y_pred[valid_cols] = np.nanmean(y_pred_repeats[:, valid_cols], axis = 0)
         return {
             "y_pred": y_pred,
+            "y_pred_repeats": y_pred_repeats,
             "fit_result": bundle,
         }
 
@@ -141,7 +150,11 @@ def fit_predict_frontier(
     Z_scaled_df, z_scaler = _standardizer(Z_valid, feat_z)
     Z_scaled = Z_scaled_df[feat_z].values.astype(float)
 
-    y_pred_sum = np.zeros(shape = len(y_valid), dtype = float)
+    y_pred_repeats = np.full(
+        shape = (n_repeat, len(data)),
+        fill_value = np.nan,
+        dtype = float,
+    )
     models_c = []
     models_r = []
     r_train_means = []
@@ -164,17 +177,20 @@ def fit_predict_frontier(
         r_hat = model_r.predict(Z_scaled).astype(float)
 
         r_mean = float(np.mean(r_hat))
-        y_pred_sum += (c_hat + (r_hat - r_mean)).astype(float)
+        y_pred_repeats[i, valid] = (c_hat + (r_hat - r_mean)).astype(float)
 
         models_c.append(model_c)
         models_r.append(model_r)
         r_train_means.append(r_mean)
 
     y_pred = np.full(shape = len(data), fill_value = np.nan, dtype = float)
-    y_pred[valid] = y_pred_sum / float(n_repeat)
+    valid_cols = np.any(np.isfinite(y_pred_repeats), axis = 0)
+    if np.any(valid_cols):
+        y_pred[valid_cols] = np.nanmean(y_pred_repeats[:, valid_cols], axis = 0)
 
     return {
         "y_pred": y_pred,
+        "y_pred_repeats": y_pred_repeats,
         "fit_result": {
             "models_c": models_c,
             "models_r": models_r,
