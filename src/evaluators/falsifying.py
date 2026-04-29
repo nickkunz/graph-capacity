@@ -224,8 +224,8 @@ def eval_falsified_alignment(
     Desc:
         Test whether original data produces better target-prediction alignment
         than falsified data under both frozen and retrain protocols, using
-        cross-validated predictions and global aggregation across all valid
-        observations.
+        cross-validated predictions and domain-level aggregation so paired
+        tests align on (model, group).
     Args:
         data_proc: clean evaluation dataframe used for original model training.
         data_fals: mapping from falsification method name to falsified dataframe.
@@ -341,22 +341,28 @@ def eval_falsified_alignment(
                 ("falsified", y_pred_false, data_false),
             ]:
                 y_true = _log_transformer(data_eval[target]).astype(float).values
-                valid = np.isfinite(y_true) & np.isfinite(y_pred)
-                if int(np.sum(valid)) < 2:
-                    continue
+                groups_eval = data_eval[group].values
+                for group_name in pd.unique(groups_eval):
+                    mask = (
+                        (groups_eval == group_name)
+                        & np.isfinite(y_true)
+                        & np.isfinite(y_pred)
+                    )
+                    if int(np.sum(mask)) < 2:
+                        continue
 
-                mvals = consensus_metrics(
-                    y_true = y_true[valid],
-                    y_pred = y_pred[valid],
-                )
-                row = {
-                    "model": model_name,
-                    "method": method_name,
-                    "condition": condition,
-                    "group": "all",
-                    **mvals,
-                }
-                obs.append(row)
+                    mvals = consensus_metrics(
+                        y_true = y_true[mask],
+                        y_pred = y_pred[mask],
+                    )
+                    row = {
+                        "model": model_name,
+                        "method": method_name,
+                        "condition": condition,
+                        "group": group_name,
+                        **mvals,
+                    }
+                    obs.append(row)
 
         frame = pd.DataFrame(obs)
         frame["track"] = track
