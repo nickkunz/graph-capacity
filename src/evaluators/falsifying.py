@@ -420,7 +420,7 @@ def eval_falsified_consensus(
             estimator_c = models[name].estimator_c,
             estimator_r = models[name].estimator_r,
             target = target,
-            n_repeats = n_repeats,
+            n_repeat = n_repeats,
             random_state = random_state,
         )
         for name in model_names
@@ -449,7 +449,7 @@ def eval_falsified_consensus(
                     estimator_c = models[model_name].estimator_c,
                     estimator_r = models[model_name].estimator_r,
                     target = target,
-                    n_repeats = n_repeats,
+                    n_repeat = n_repeats,
                     random_state = random_state,
                 )
                 for model_name, _, data_false in false_jobs
