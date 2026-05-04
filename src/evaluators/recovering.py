@@ -1,14 +1,14 @@
 ## libraries
-from collections.abc import Mapping, Sequence
-from typing import Any
-
 import numpy as np
 import pandas as pd
+from typing import Any
+from collections.abc import Mapping, Sequence
 
 ## modules
-from src.evaluators.metrics import CONSENSUS_METRICS, consensus_metrics
+from src.evaluators.metrics import consensus_metrics
 from src.evaluators.resampling import logo_cross_valid
 from src.vectorizers.scalers import _log_transformer
+from src.evaluators.metrics import CONSENSUS_METRICS
 
 ## ----------------------------------------------------------------------------
 ## prediction-quality evaluation
