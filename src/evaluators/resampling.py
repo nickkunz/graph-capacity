@@ -123,7 +123,11 @@ def results_cross_valid(
         result = result[["ei"] + cols]
 
         ## capitalize core metrics
-        rename_map = {c: c.upper() for c in FRONTIER_METRICS if c in result.columns}
+        rename_map = {
+            c: "EI [IQR]" if c == "ei" else c.upper()
+            for c in FRONTIER_METRICS
+            if c in result.columns
+        }
         result = result.rename(columns = rename_map)
 
     ## optionally return styled output
