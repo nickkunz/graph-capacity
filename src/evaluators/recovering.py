@@ -23,12 +23,13 @@ def eval_prediction_quality(
     n_repeats: int = 30,
     random_state: int = 42,
     n_jobs: int = -1,
-    ) -> pd.DataFrame:
+    ) -> dict[str, np.ndarray]:
 
     """
     Desc:
-        Evaluates whether held-out LOGO predictions recover observed capacity
-        structure within each held-out group.
+        Generates held-out LOGO predictions for each model. Returns the raw
+        prediction vectors keyed by model name; per-group consensus metrics
+        are computed downstream by `compile_prediction_quality`.
 
     Args:
         data: Evaluation dataframe with features, target, and group columns.
@@ -37,14 +38,14 @@ def eval_prediction_quality(
         feat_x: Graph invariant feature column names.
         feat_z: Process signature feature column names.
         target: Target column name.
-        group: Group column name for LOGO splitting and reporting.
+        group: Group column name for LOGO splitting.
         n_repeats: Number of repeated LOGO runs per model.
         random_state: Base random seed for reproducibility.
         n_jobs: Number of parallel jobs passed to LOGO cross-validation.
 
     Returns:
-        DataFrame with one row per model and held-out group containing the
-        consensus metrics between observed and predicted capacities.
+        Mapping from model name to held-out prediction array aligned with
+        `data` rows. Entries outside any held-out fold are `np.nan`.
 
     Raises:
         ValueError: If n_repeats is less than 1.
@@ -55,11 +56,8 @@ def eval_prediction_quality(
 
     feat_x = list(feat_x)
     feat_z = list(feat_z)
-    y_true_full = _log_transformer(data[target]).astype(float).to_numpy()
-    groups = data[group].to_numpy()
-    group_names = sorted(pd.Series(data = groups).dropna().unique())
 
-    rows = list()
+    predictions: dict[str, np.ndarray] = dict()
     for model_name, model in models.items():
         print(f"Training {model_name}...")
         _, y_pred = logo_cross_valid(
@@ -74,7 +72,42 @@ def eval_prediction_quality(
             random_state = random_state,
             n_jobs = n_jobs,
         )
+        predictions[model_name] = np.asarray(y_pred, dtype = float)
 
+    return predictions
+
+
+def compile_prediction_quality(
+    predictions: Mapping[str, np.ndarray],
+    data: pd.DataFrame,
+    target: str = "target",
+    group: str = "domain",
+    ) -> pd.DataFrame:
+
+    """
+    Desc:
+        Computes per-(model, held-out group) consensus metrics from the raw
+        LOGO predictions returned by `eval_prediction_quality`.
+
+    Args:
+        predictions: Mapping from model name to held-out prediction array
+            aligned with `data` rows.
+        data: Evaluation dataframe with target and group columns.
+        target: Target column name.
+        group: Group column name for held-out reporting.
+
+    Returns:
+        DataFrame with one row per (model, held-out group) containing the
+        consensus metrics between observed and predicted capacities.
+    """
+
+    y_true_full = _log_transformer(data[target]).astype(float).to_numpy()
+    groups = data[group].to_numpy()
+    group_names = sorted(pd.Series(data = groups).dropna().unique())
+
+    rows = list()
+    for model_name, y_pred in predictions.items():
+        y_pred = np.asarray(y_pred, dtype = float)
         for group_name in group_names:
             valid = (
                 (groups == group_name)
@@ -119,7 +152,7 @@ def summarize_prediction_quality(
         across fitted learners within each held-out group.
 
     Args:
-        results: Prediction-quality result table from eval_prediction_quality.
+        results: Prediction-quality result table from compile_prediction_quality.
         group_col: Column containing held-out group labels.
         index_name: Name assigned to the output table index.
         group_label: Human-readable group label used in printed notes.
