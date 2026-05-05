@@ -991,7 +991,7 @@ def stat_falsified_test(
     summary = summary.astype(object).where(pd.notna(summary), '-')
     return summary
 
-## falsified summary with metric medians only
+## falsified summary with metric medians and primary metric iqr
 def stat_falsified_summary(
     results: pd.DataFrame,
     metrics: Sequence[str],
@@ -1007,7 +1007,7 @@ def stat_falsified_summary(
     
     """
     Desc:
-        Compute a grouped median summary of falsification results for display.
+        Compute a grouped summary of falsification results for display.
 
     Args:
         results: Output of an eval_falsified_* function.
@@ -1023,7 +1023,7 @@ def stat_falsified_summary(
         decimals: Number of decimals to round.
 
     Returns:
-        DataFrame: [*feat_group, *metrics] with median metric values per group and condition.
+        DataFrame: [*feat_group, *metrics] with display-formatted metric values per group and condition.
     """
 
     feat_group = list(feat_group or ["track", "method"])
@@ -1042,19 +1042,65 @@ def stat_falsified_summary(
     source["track"] = pd.Categorical(source["track"], categories = list(track_order), ordered = True)
     source["method"] = pd.Categorical(source["method"], categories = list(method_order), ordered = True)
 
-    summary = source.groupby(by = feat_group, observed = True)[metrics].median()
+    grouped = source.groupby(by = feat_group, observed = True)[metrics]
+    summary = grouped.median()
+    q1 = grouped.quantile(q = 0.25)
+    q3 = grouped.quantile(q = 0.75)
+
+    def _format_iqr(row: pd.Series) -> str:
+        if decimals is None:
+            return f"{row['median']} [{row['q1']}, {row['q3']}]"
+
+        return (
+            f"{row['median']:.{decimals}f} "
+            f"[{row['q1']:.{decimals}f}, {row['q3']:.{decimals}f}]"
+        )
+
+    iqr_metric = next((metric for metric in ["ei", "ci"] if metric in metrics), None)
+    if iqr_metric is not None:
+        summary = summary.astype({iqr_metric: object})
+        summary[iqr_metric] = pd.DataFrame(
+            data = {
+                "median": summary[iqr_metric],
+                "q1": q1[iqr_metric],
+                "q3": q3[iqr_metric],
+            },
+            index = summary.index,
+        ).apply(
+            func = _format_iqr,
+            axis = 1,
+        )
+
+    metrics_ordered = list(metrics)
+    if iqr_metric is not None:
+        metrics_ordered = [
+            iqr_metric,
+            *[metric for metric in metrics_ordered if metric != iqr_metric],
+        ]
+    summary = summary.reindex(columns = metrics_ordered)
+
+    rename_map = {
+        metric: f"{metric.upper()} [IQR]" if metric == iqr_metric else metric.upper()
+        for metric in metrics_ordered
+    }
+    summary = summary.rename(columns = rename_map)
 
     ## display-only index renaming
     summary.index.names = [
-        ("Frontier" if n == "track" else n.title()) for n in summary.index.names
+        ("FRONTIER" if n == "track" else n.upper()) for n in summary.index.names
     ]
     if decimals is not None:
-        summary = summary.round(decimals)
+        numeric_cols = list(summary.select_dtypes(include = [np.number]).columns)
+        summary[numeric_cols] = summary[numeric_cols].round(decimals)
 
     ## strip underscores from method-level index values for display
-    if "Method" in summary.index.names:
+    if "METHOD" in summary.index.names:
         new_idx = summary.index.to_frame(index = False)
-        new_idx["Method"] = new_idx["Method"].astype(object).str.replace("_", " ")
-        summary.index = pd.MultiIndex.from_frame(new_idx) if new_idx.shape[1] > 1 else pd.Index(new_idx["Method"], name = "Method")
+        new_idx["METHOD"] = new_idx["METHOD"].astype(object).str.replace("_", " ")
+        summary.index = (
+            pd.MultiIndex.from_frame(new_idx)
+            if new_idx.shape[1] > 1
+            else pd.Index(new_idx["METHOD"], name = "METHOD")
+        )
 
     return summary
