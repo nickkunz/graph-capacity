@@ -91,6 +91,7 @@ def _run_single_stage_fold(
     y_star: pd.Series,
     feats: list[str],
     estimator,
+    random_state: int = 42,
     group_name: str | None = None,
     ) -> dict | None:
 
@@ -104,6 +105,7 @@ def _run_single_stage_fold(
         y_star: log-transformed target series.
         feats: feature column names.
         estimator: estimator to clone and fit.
+        random_state: random seed forwarded to estimator when supported.
         group_name: optional group label for the fold.
     Returns:
         dict with frontier metrics, predictions, and index mapping,
@@ -139,6 +141,8 @@ def _run_single_stage_fold(
 
     ## clone, fit, predict
     m = clone(estimator)
+    if hasattr(m, "random_state"):
+        m.set_params(random_state = random_state)
     m.fit(F_tr_s, y_tr)
     y_pred = m.predict(F_te_s).astype(float)
 
@@ -163,6 +167,8 @@ def _single_stage_logo_cv(
     estimator,
     target: str,
     group: str,
+    n_repeats: int = 30,
+    random_state: int = 42,
     n_jobs: int = 1,
     ) -> tuple[pd.DataFrame, np.ndarray]:
 
@@ -175,6 +181,8 @@ def _single_stage_logo_cv(
         estimator: estimator to clone per fold.
         target: target column name.
         group: group column name for logo splitting.
+        n_repeats: number of repeated cv seeds to average predictions.
+        random_state: base random state for seed reproducibility.
         n_jobs: number of parallel jobs (-1 for all cores).
     Returns:
         tuple of (frontier results dataframe, predicted values array).
@@ -184,6 +192,9 @@ def _single_stage_logo_cv(
     from joblib import Parallel, delayed
     from src.vectorizers.scalers import _log_transformer
 
+    if n_repeats < 1:
+        raise ValueError("n_repeats must be >= 1")
+
     F = data[feats].apply(pd.to_numeric, errors = "coerce")
     y_star = _log_transformer(data[target]).astype(float)
     groups = data[group].values
@@ -191,7 +202,7 @@ def _single_stage_logo_cv(
     logo = LeaveOneGroupOut()
     fold_splits = list(logo.split(F.values, y_star.values, groups))
 
-    ## parallel fold execution
+    ## parallel fold execution across all repeats
     fold_results = Parallel(n_jobs = n_jobs)(
         delayed(_run_single_stage_fold)(
             train_idx = train_idx,
@@ -200,19 +211,35 @@ def _single_stage_logo_cv(
             y_star = y_star,
             feats = feats,
             estimator = estimator,
+            random_state = int(random_state) + repeat_idx,
             group_name = groups[test_idx][0],
         )
+        for repeat_idx in range(n_repeats)
         for train_idx, test_idx in fold_splits
     )
 
-    ## merge results
-    y_pred_out = np.full(len(data), np.nan)
-    frontier_rows = []
+    ## merge repeat-averaged predictions and metrics
+    y_pred_sum = np.zeros(shape = len(data), dtype = float)
+    y_pred_count = np.zeros(shape = len(data), dtype = int)
+    group_frontiers = dict()
     for result in fold_results:
         if result is None:
             continue
-        y_pred_out[result["kept_indices"]] = result["y_pred"]
-        frontier_rows.append({"group": result["group_name"], **result["frontier"]})
+        y_pred_sum[result["kept_indices"]] += result["y_pred"]
+        y_pred_count[result["kept_indices"]] += 1
+        grp = result["group_name"]
+        if grp not in group_frontiers:
+            group_frontiers[grp] = list()
+        group_frontiers[grp].append(result["frontier"])
+
+    frontier_rows = []
+    for grp in sorted(group_frontiers.keys()):
+        metrics_avg = pd.DataFrame(group_frontiers[grp]).mean().to_dict()
+        frontier_rows.append({"group": grp, **metrics_avg})
+
+    y_pred_out = np.full(shape = len(data), fill_value = np.nan)
+    valid_pred = y_pred_count > 0
+    y_pred_out[valid_pred] = y_pred_sum[valid_pred] / y_pred_count[valid_pred]
 
     return pd.DataFrame(frontier_rows), y_pred_out
 
@@ -231,6 +258,8 @@ def _eval_separability_model(
     interaction_cols: list[str],
     target: str,
     group: str,
+    n_repeats: int,
+    random_state: int,
     y_star_all: np.ndarray,
     groups_all: np.ndarray,
     names_all: np.ndarray,
@@ -251,6 +280,8 @@ def _eval_separability_model(
         interaction_cols: interaction column names.
         target: target column name.
         group: group column name.
+        n_repeats: number of repeated cv seeds to average predictions.
+        random_state: base random state for seed reproducibility.
         y_star_all: full target array for prediction reporting.
         groups_all: full group array for prediction reporting.
         names_all: full dataset-name array for prediction reporting.
@@ -268,6 +299,8 @@ def _eval_separability_model(
         estimator_r = model.estimator_r,
         target = target,
         group = group,
+        n_repeats = n_repeats,
+        random_state = random_state,
         n_jobs = 1,
     )
 
@@ -279,6 +312,8 @@ def _eval_separability_model(
         estimator_r = model.estimator_r,
         target = target,
         group = group,
+        n_repeats = n_repeats,
+        random_state = random_state,
         n_jobs = 1,
     )
 
@@ -289,6 +324,8 @@ def _eval_separability_model(
         estimator = model.estimator_c,
         target = target,
         group = group,
+        n_repeats = n_repeats,
+        random_state = random_state,
         n_jobs = 1,
     )
 
@@ -299,6 +336,8 @@ def _eval_separability_model(
         estimator = model.estimator_c,
         target = target,
         group = group,
+        n_repeats = n_repeats,
+        random_state = random_state,
         n_jobs = 1,
     )
 
@@ -308,6 +347,8 @@ def _eval_separability_model(
         estimator = model.estimator_c,
         target = target,
         group = group,
+        n_repeats = n_repeats,
+        random_state = random_state,
         n_jobs = 1,
     )
 
@@ -317,6 +358,8 @@ def _eval_separability_model(
         estimator = model.estimator_c,
         target = target,
         group = group,
+        n_repeats = n_repeats,
+        random_state = random_state,
         n_jobs = 1,
     )
 
@@ -366,6 +409,7 @@ def _run_capacity_fold(
     feat_x: list[str],
     feat_z: list[str],
     estimator_c,
+    random_state: int = 42,
     ) -> dict | None:
 
     """
@@ -380,6 +424,7 @@ def _run_capacity_fold(
         feat_x: graph invariant column names.
         feat_z: process signature column names.
         estimator_c: capacity estimator (cloned internally).
+        random_state: random seed forwarded to estimator when supported.
     Returns:
         dict with kept indices, c_hat predictions, and slack values,
         or none if the fold is skipped.
@@ -409,6 +454,8 @@ def _run_capacity_fold(
     X_te_s = x_sc.transform(X_te.astype(float))
 
     mc = clone(estimator_c)
+    if hasattr(mc, "random_state"):
+        mc.set_params(random_state = random_state)
     mc.fit(X_tr_s, y_tr)
     c_hat = mc.predict(X_te_s).astype(float)
 
@@ -434,6 +481,7 @@ def _run_slack_fold(
     y_star: pd.Series,
     estimator_r,
     groups: np.ndarray,
+    random_state: int = 42,
     ) -> dict | None:
 
     """
@@ -449,6 +497,7 @@ def _run_slack_fold(
         y_star: log-transformed target series.
         estimator_r: residual estimator (cloned internally).
         groups: group labels array.
+        random_state: random seed forwarded to estimator when supported.
     Returns:
         dict with group name, r_squared, frontier metrics, predictions,
         and index mapping, or none if the fold is skipped.
@@ -491,6 +540,8 @@ def _run_slack_fold(
 
     ## fit residual estimator on slack
     mr = clone(estimator_r)
+    if hasattr(mr, "random_state"):
+        mr.set_params(random_state = random_state)
     mr.fit(F_tr_s, s_tr)
     s_pred = mr.predict(F_te_s).astype(float)
 
@@ -529,6 +580,8 @@ def train_decomposed_separability(
     feat_z: Sequence[str],
     target: str = "target",
     group: str = "domain",
+    n_repeats: int = 30,
+    random_state: int = 42,
     n_jobs: int = -1,
     ) -> dict[str, Any]:
 
@@ -543,6 +596,8 @@ def train_decomposed_separability(
         feat_z: process signature feature column names.
         target: target column name.
         group: group column name for logo splitting.
+        n_repeats: number of repeated cv seeds to average predictions.
+        random_state: base random state for seed reproducibility.
         n_jobs: number of parallel model workers (-1 for all cores).
     Returns:
         Dictionary with raw model outputs from the separability evaluation.
@@ -553,6 +608,8 @@ def train_decomposed_separability(
 
     feat_x = list(feat_x)
     feat_z = list(feat_z)
+    if n_repeats < 1:
+        raise ValueError("n_repeats must be >= 1")
 
     ## create interaction features
     interaction_cols = []
@@ -590,6 +647,8 @@ def train_decomposed_separability(
                     interaction_cols = interaction_cols,
                     target = target,
                     group = group,
+                    n_repeats = n_repeats,
+                    random_state = random_state,
                     y_star_all = y_star_all,
                     groups_all = groups_all,
                     names_all = names_all,
@@ -601,6 +660,8 @@ def train_decomposed_separability(
 
     return {
         "model_outputs": model_outputs,
+        "n_repeats": n_repeats,
+        "random_state": random_state,
     }
 
 
@@ -639,6 +700,8 @@ def eval_decomposed_separability(
     feat_z: Sequence[str],
     target: str = "target",
     group: str = "domain",
+    n_repeats: int = 30,
+    random_state: int = 42,
     n_jobs: int = -1,
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
 
@@ -653,6 +716,8 @@ def eval_decomposed_separability(
         feat_z: process signature feature column names.
         target: target column name.
         group: group column name for logo splitting.
+        n_repeats: number of repeated cv seeds to average predictions.
+        random_state: base random state for seed reproducibility.
         n_jobs: number of parallel model workers (-1 for all cores).
     Returns:
         Tuple of (frontier results dataframe, per-dataset predictions dataframe).
@@ -665,6 +730,8 @@ def eval_decomposed_separability(
         feat_z = feat_z,
         target = target,
         group = group,
+        n_repeats = n_repeats,
+        random_state = random_state,
         n_jobs = n_jobs,
     )
     return compile_decomposed_separability(results = raw)
@@ -678,6 +745,8 @@ def eval_separability(
     feat_z: Sequence[str],
     target: str = "target",
     group: str = "domain",
+    n_repeats: int = 30,
+    random_state: int = 42,
     n_jobs: int = -1,
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
 
@@ -690,6 +759,8 @@ def eval_separability(
         feat_z: process signature feature column names.
         target: target column name.
         group: group column name for logo splitting.
+        n_repeats: number of repeated cv seeds to average predictions.
+        random_state: base random state for seed reproducibility.
         n_jobs: number of parallel model workers (-1 for all cores).
     Returns:
         Tuple of (frontier results dataframe, per-dataset predictions dataframe).
@@ -702,6 +773,8 @@ def eval_separability(
         feat_z = feat_z,
         target = target,
         group = group,
+        n_repeats = n_repeats,
+        random_state = random_state,
         n_jobs = n_jobs,
     )
 
@@ -717,6 +790,8 @@ def _eval_exhaustiveness_model(
     feat_z: list[str],
     target: str,
     group: str,
+    n_repeats: int,
+    random_state: int,
     ) -> tuple[list[dict], list[dict]]:
 
     """
@@ -731,6 +806,8 @@ def _eval_exhaustiveness_model(
         feat_z: process signature feature names.
         target: target column name.
         group: group column name.
+        n_repeats: number of repeated cv seeds to average predictions.
+        random_state: base random state for seed reproducibility.
     Returns:
         tuple of (frontier rows, prediction rows).
     """
@@ -747,57 +824,86 @@ def _eval_exhaustiveness_model(
     logo = LeaveOneGroupOut()
     fold_splits = list(logo.split(X.values, y_star.values, groups))
 
-    slack_oof = np.full(len(data), np.nan)
-    c_hat_oof = np.full(len(data), np.nan)
-
-    for train_idx, test_idx in fold_splits:
-        result = _run_capacity_fold(
-            train_idx = train_idx,
-            test_idx = test_idx,
-            X = X,
-            Z = Z,
-            y_star = y_star,
-            feat_x = feat_x,
-            feat_z = feat_z,
-            estimator_c = model.estimator_c,
-        )
-        if result is None:
-            continue
-        slack_oof[result["kept_indices"]] = result["slack"]
-        c_hat_oof[result["kept_indices"]] = result["c_hat"]
-
-    results = []
-    predictions = []
     conditions = [
         ("X_to_slack", feat_x, X),
         ("Z_to_slack", feat_z, Z),
     ]
+    prediction_sums = {
+        feat_label: np.zeros(shape = len(data), dtype = float)
+        for feat_label, _, _ in conditions
+    }
+    prediction_counts = {
+        feat_label: np.zeros(shape = len(data), dtype = int)
+        for feat_label, _, _ in conditions
+    }
+    frontier_groups = {feat_label: dict() for feat_label, _, _ in conditions}
 
-    for feat_label, feats, feat_df in conditions:
-        y_pred_out = np.full(len(data), np.nan)
+    for repeat_idx in range(n_repeats):
+        seed = int(random_state) + repeat_idx
+        slack_oof = np.full(len(data), np.nan)
+        c_hat_oof = np.full(len(data), np.nan)
+
         for train_idx, test_idx in fold_splits:
-            result = _run_slack_fold(
+            result = _run_capacity_fold(
                 train_idx = train_idx,
                 test_idx = test_idx,
-                feat_df = feat_df,
-                feats = feats,
-                slack_oof = slack_oof,
-                c_hat_oof = c_hat_oof,
+                X = X,
+                Z = Z,
                 y_star = y_star,
-                estimator_r = model.estimator_r,
-                groups = groups,
+                feat_x = feat_x,
+                feat_z = feat_z,
+                estimator_c = model.estimator_c,
+                random_state = seed,
             )
             if result is None:
                 continue
-            y_pred_out[result["kept_indices"]] = result["y_pred"]
+            slack_oof[result["kept_indices"]] = result["slack"]
+            c_hat_oof[result["kept_indices"]] = result["c_hat"]
+
+        for feat_label, feats, feat_df in conditions:
+            for train_idx, test_idx in fold_splits:
+                result = _run_slack_fold(
+                    train_idx = train_idx,
+                    test_idx = test_idx,
+                    feat_df = feat_df,
+                    feats = feats,
+                    slack_oof = slack_oof,
+                    c_hat_oof = c_hat_oof,
+                    y_star = y_star,
+                    estimator_r = model.estimator_r,
+                    groups = groups,
+                    random_state = seed,
+                )
+                if result is None:
+                    continue
+                prediction_sums[feat_label][result["kept_indices"]] += result["y_pred"]
+                prediction_counts[feat_label][result["kept_indices"]] += 1
+                grp = result["group_name"]
+                if grp not in frontier_groups[feat_label]:
+                    frontier_groups[feat_label][grp] = list()
+                frontier_groups[feat_label][grp].append({
+                    "r_squared": result["r_squared"],
+                    **result["frontier"],
+                })
+
+    results = []
+    predictions = []
+    for feat_label, _, _ in conditions:
+        for grp in sorted(frontier_groups[feat_label].keys()):
+            metrics_avg = pd.DataFrame(frontier_groups[feat_label][grp]).mean().to_dict()
             results.append({
                 "model": model_name,
                 "residual_features": feat_label,
-                "group": result["group_name"],
-                "r_squared": result["r_squared"],
-                **{c: result["frontier"][c] for c in FRONTIER_METRICS},
+                "group": grp,
+                **metrics_avg,
             })
 
+        y_pred_out = np.full(shape = len(data), fill_value = np.nan)
+        valid_pred = prediction_counts[feat_label] > 0
+        y_pred_out[valid_pred] = (
+            prediction_sums[feat_label][valid_pred]
+            / prediction_counts[feat_label][valid_pred]
+        )
         for i in range(len(data)):
             if np.isfinite(y_pred_out[i]) and np.isfinite(y_star.iloc[i]):
                 predictions.append({
@@ -823,6 +929,8 @@ def train_decomposed_exhaustiveness(
     feat_z: Sequence[str],
     target: str = "target",
     group: str = "domain",
+    n_repeats: int = 30,
+    random_state: int = 42,
     n_jobs: int = -1,
     ) -> dict[str, Any]:
 
@@ -837,6 +945,8 @@ def train_decomposed_exhaustiveness(
         feat_z: process signature feature column names.
         target: target column name.
         group: group column name for logo splitting.
+        n_repeats: number of repeated cv seeds to average predictions.
+        random_state: base random state for seed reproducibility.
         n_jobs: number of parallel model workers (-1 for all cores).
     Returns:
         Dictionary with raw model outputs from the exhaustiveness evaluation.
@@ -846,6 +956,8 @@ def train_decomposed_exhaustiveness(
 
     feat_x = list(feat_x)
     feat_z = list(feat_z)
+    if n_repeats < 1:
+        raise ValueError("n_repeats must be >= 1")
     model_items = list(models.items())
 
     if model_items:
@@ -859,6 +971,8 @@ def train_decomposed_exhaustiveness(
                     feat_z = feat_z,
                     target = target,
                     group = group,
+                    n_repeats = n_repeats,
+                    random_state = random_state,
                 )
                 for model_name, model in model_items
             )
@@ -867,6 +981,8 @@ def train_decomposed_exhaustiveness(
 
     return {
         "model_outputs": model_outputs,
+        "n_repeats": n_repeats,
+        "random_state": random_state,
     }
 
 
@@ -905,6 +1021,8 @@ def eval_decomposed_exhaustiveness(
     feat_z: Sequence[str],
     target: str = "target",
     group: str = "domain",
+    n_repeats: int = 30,
+    random_state: int = 42,
     n_jobs: int = -1,
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
 
@@ -918,6 +1036,8 @@ def eval_decomposed_exhaustiveness(
         feat_z: process signature feature column names.
         target: target column name.
         group: group column name for logo splitting.
+        n_repeats: number of repeated cv seeds to average predictions.
+        random_state: base random state for seed reproducibility.
         n_jobs: number of parallel model workers (-1 for all cores).
     Returns:
         Tuple of (frontier results dataframe, per-dataset predictions dataframe).
@@ -930,6 +1050,8 @@ def eval_decomposed_exhaustiveness(
         feat_z = feat_z,
         target = target,
         group = group,
+        n_repeats = n_repeats,
+        random_state = random_state,
         n_jobs = n_jobs,
     )
     return compile_decomposed_exhaustiveness(results = raw)
@@ -943,6 +1065,8 @@ def eval_exhaustiveness(
     feat_z: Sequence[str],
     target: str = "target",
     group: str = "domain",
+    n_repeats: int = 30,
+    random_state: int = 42,
     n_jobs: int = -1,
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
 
@@ -955,6 +1079,8 @@ def eval_exhaustiveness(
         feat_z: process signature feature column names.
         target: target column name.
         group: group column name for logo splitting.
+        n_repeats: number of repeated cv seeds to average predictions.
+        random_state: base random state for seed reproducibility.
         n_jobs: number of parallel model workers (-1 for all cores).
     Returns:
         Tuple of (frontier results dataframe, per-dataset predictions dataframe).
@@ -967,6 +1093,8 @@ def eval_exhaustiveness(
         feat_z = feat_z,
         target = target,
         group = group,
+        n_repeats = n_repeats,
+        random_state = random_state,
         n_jobs = n_jobs,
     )
 
