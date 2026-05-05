@@ -1847,7 +1847,7 @@ def _run_perturbation_recovery(
     }
 
 ## ----------------------------------------------------------------------------
-## structural recovery perturbation pipeline
+## structural agreement perturbation pipeline
 ## ----------------------------------------------------------------------------
 def train_perturbed_recovery(
     data: pd.DataFrame,
@@ -1864,7 +1864,7 @@ def train_perturbed_recovery(
 
     """
     Desc:
-        Run raw structural recovery perturbation jobs under the frozen protocol.
+        Run raw structural agreement perturbation jobs under the frozen protocol.
         Post-processing is handled separately by compile_perturbed_recovery.
 
     Args:
@@ -1972,12 +1972,12 @@ def train_perturbed_recovery(
     }
 
 
-## compile structural recovery perturbation results
+## compile structural agreement perturbation results
 def compile_perturbed_recovery(results: dict[str, Any]) -> pd.DataFrame:
 
     """
     Desc:
-        Compile raw structural recovery perturbation predictions into consensus
+        Compile raw structural agreement perturbation predictions into consensus
         metrics per model, perturbation setting, and group.
     Args:
         results: dictionary returned by train_perturbed_recovery.
@@ -2029,7 +2029,7 @@ def compile_perturbed_recovery(results: dict[str, Any]) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-## structural recovery perturbation evaluation wrapper
+## structural agreement perturbation evaluation wrapper
 def eval_perturbed_recovery(
     data: pd.DataFrame,
     models: Dict[str, Any],
@@ -2045,7 +2045,7 @@ def eval_perturbed_recovery(
 
     """
     Desc:
-        Convenience wrapper that runs structural recovery perturbation training
+        Convenience wrapper that runs structural agreement perturbation training
         and then compiles raw predictions into an analysis-ready dataframe.
     Args:
         data: clean baseline dataframe with features, target, and group columns.

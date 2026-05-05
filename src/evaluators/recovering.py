@@ -9,9 +9,9 @@ from src.vectorizers.scalers import _log_transformer
 from src.evaluators.metrics import CONSENSUS_METRICS
 
 ## ----------------------------------------------------------------------------
-## structural recovery compilation
+## structural agreement compilation
 ## ----------------------------------------------------------------------------
-def compile_structural_recovery(
+def compile_structural_agreement(
     predictions: Mapping[str, np.ndarray],
     data: pd.DataFrame,
     target: str = "target",
@@ -69,7 +69,7 @@ def compile_structural_recovery(
     return result[columns].sort_values(by = ["model", "group"]).reset_index(drop = True)
 
 
-def results_structural_recovery(
+def results_structural_agreement(
     results: pd.DataFrame,
     group_col: str = "group",
     index_name: str = "Domain",
@@ -82,11 +82,11 @@ def results_structural_recovery(
 
     """
     Desc:
-        Builds a display table summarizing structural recovery metrics across
+        Builds a display table summarizing structural agreement metrics across
         fitted learners within each held-out group.
 
     Args:
-        results: Structural recovery result table from compile_structural_recovery.
+        results: Structural agreement result table from compile_structural_agreement.
         group_col: Column containing held-out group labels.
         index_name: Name assigned to the output table index.
         group_label: Human-readable group label used in printed notes.

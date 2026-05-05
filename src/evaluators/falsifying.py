@@ -300,7 +300,7 @@ compile_falsified_frontier = compile_falsified_transfer
 eval_falsified_frontier = eval_falsified_transfer
 
 ## ----------------------------------------------------------------------------
-## structural recovery falsifiability test
+## structural agreement falsifiability test
 ## ----------------------------------------------------------------------------
 def train_falsified_recovery(
     data_proc: pd.DataFrame,
@@ -317,7 +317,7 @@ def train_falsified_recovery(
 
     """
     Desc:
-        Run raw structural recovery falsification jobs under frozen and retrain
+        Run raw structural agreement falsification jobs under frozen and retrain
         protocols. Post-processing is handled separately by
         compile_falsified_recovery.
     Args:
@@ -442,12 +442,12 @@ def train_falsified_recovery(
     }
 
 
-## compile structural recovery falsification results
+## compile structural agreement falsification results
 def compile_falsified_recovery(results: dict[str, Any]) -> pd.DataFrame:
 
     """
     Desc:
-        Compile raw structural recovery falsification predictions into consensus
+        Compile raw structural agreement falsification predictions into consensus
         metrics per model, method, condition, group, and track.
     Args:
         results: dictionary returned by train_falsified_recovery.
@@ -515,7 +515,7 @@ def compile_falsified_recovery(results: dict[str, Any]) -> pd.DataFrame:
     return pd.concat(frames, ignore_index = True)
 
 
-## structural recovery falsification evaluation wrapper
+## structural agreement falsification evaluation wrapper
 def eval_falsified_recovery(
     data_proc: pd.DataFrame,
     data_fals: dict[str, pd.DataFrame],
@@ -531,7 +531,7 @@ def eval_falsified_recovery(
 
     """
     Desc:
-        Convenience wrapper that runs structural recovery falsification training
+        Convenience wrapper that runs structural agreement falsification training
         and then compiles raw predictions into an analysis-ready dataframe.
     Args:
         data_proc: clean evaluation dataframe used for original model training.
