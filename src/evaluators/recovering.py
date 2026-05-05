@@ -69,7 +69,7 @@ def compile_structural_recovery(
     return result[columns].sort_values(by = ["model", "group"]).reset_index(drop = True)
 
 
-def summarize_structural_recovery(
+def results_structural_recovery(
     results: pd.DataFrame,
     group_col: str = "group",
     index_name: str = "Domain",
