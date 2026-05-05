@@ -6,9 +6,51 @@ from joblib import parallel
 from contextlib import contextmanager
 from joblib.parallel import BatchCompletionCallBack
 from typing import Sequence, Dict, Any, Iterator
+from scipy.stats import binomtest, rankdata, ttest_1samp, wilcoxon
 
 ## modules
 from src.evaluators.metrics import FRONTIER_METRICS
+
+
+SPECIFICATION_ORDER = [
+    "additive",
+    "interaction",
+    "interaction_joint",
+    "joint",
+    "capacity_only",
+    "dynamics_only",
+]
+
+
+## significance code helper
+def _sig_code(p_value: float) -> str:
+    if not np.isfinite(p_value):
+        return ""
+    if p_value < 0.001:
+        return "***"
+    if p_value < 0.01:
+        return "**"
+    if p_value < 0.05:
+        return "*"
+    return ""
+
+
+## holm-bonferroni helper
+def _holm_adjust(p_values: Sequence[float]) -> np.ndarray:
+    p_values = np.asarray(p_values, dtype = float)
+    adjusted = np.full(shape = len(p_values), fill_value = np.nan, dtype = float)
+    valid = np.isfinite(p_values)
+    if not np.any(valid):
+        return adjusted
+
+    p_valid = p_values[valid]
+    n_tests = len(p_valid)
+    order = np.argsort(p_valid)
+    adjusted_sorted = np.maximum.accumulate(p_valid[order] * (n_tests - np.arange(n_tests)))
+    adjusted_valid = np.empty(n_tests, dtype = float)
+    adjusted_valid[order] = np.minimum(adjusted_sorted, 1.0)
+    adjusted[valid] = adjusted_valid
+    return adjusted
 
 ## joblib progress bar bridge
 @contextmanager
@@ -478,9 +520,9 @@ def _run_slack_fold(
 
 
 ## --------------------------------------------------------------------------
-## separability test
+## separability training
 ## --------------------------------------------------------------------------
-def eval_separability(
+def train_decomposed_separability(
     data: pd.DataFrame,
     models: Dict[str, Any],
     feat_x: Sequence[str],
@@ -488,14 +530,11 @@ def eval_separability(
     target: str = "target",
     group: str = "domain",
     n_jobs: int = -1,
-    ) -> tuple[pd.DataFrame, pd.DataFrame]:
+    ) -> dict[str, Any]:
 
     """
-    Desc: test additive separability by comparing an additive frontier
-          y* = C(X) + R(Z) against alternatives under logo-cv:
-          interaction (X tensor Z cross-terms), interaction_joint
-          (single-stage with cross-products), joint single-stage,
-          capacity-only, and dynamics-only.
+    Desc: Run raw additive separability jobs. Post-processing is handled
+        separately by compile_decomposed_separability.
     Args:
         data: training data with features, target, and group columns.
         models: mapping of model name to estimator with .estimator_c and
@@ -506,10 +545,7 @@ def eval_separability(
         group: group column name for logo splitting.
         n_jobs: number of parallel model workers (-1 for all cores).
     Returns:
-        tuple of (frontier results dataframe, per-dataset predictions dataframe).
-        frontier results contain one row per (model, specification, group)
-        showing frontier metrics for additive, interaction, interaction_joint,
-        joint, capacity_only, and dynamics_only specifications.
+        Dictionary with raw model outputs from the separability evaluation.
     """
 
     from joblib import Parallel, delayed
@@ -563,13 +599,111 @@ def eval_separability(
     else:
         model_outputs = list()
 
-    results = []
-    predictions = []
-    for model_results, model_predictions in model_outputs:
-        results.extend(model_results)
-        predictions.extend(model_predictions)
+    return {
+        "model_outputs": model_outputs,
+    }
 
-    return pd.DataFrame(results), pd.DataFrame(predictions)
+
+## --------------------------------------------------------------------------
+## separability compilation
+## --------------------------------------------------------------------------
+def compile_decomposed_separability(
+    results: dict[str, Any],
+    ) -> tuple[pd.DataFrame, pd.DataFrame]:
+
+    """
+    Desc: Compile raw separability outputs into frontier and prediction tables.
+    Args:
+        results: Dictionary returned by train_decomposed_separability.
+    Returns:
+        Tuple of (frontier results dataframe, per-dataset predictions dataframe).
+    """
+
+    model_outputs = results.get("model_outputs", list())
+    frontier_rows = []
+    prediction_rows = []
+    for model_results, model_predictions in model_outputs:
+        frontier_rows.extend(model_results)
+        prediction_rows.extend(model_predictions)
+
+    return pd.DataFrame(frontier_rows), pd.DataFrame(prediction_rows)
+
+
+## --------------------------------------------------------------------------
+## separability evaluation wrapper
+## --------------------------------------------------------------------------
+def eval_decomposed_separability(
+    data: pd.DataFrame,
+    models: Dict[str, Any],
+    feat_x: Sequence[str],
+    feat_z: Sequence[str],
+    target: str = "target",
+    group: str = "domain",
+    n_jobs: int = -1,
+    ) -> tuple[pd.DataFrame, pd.DataFrame]:
+
+    """
+    Desc: Convenience wrapper that runs separability training and then compiles
+        raw outputs into analysis-ready tables.
+    Args:
+        data: training data with features, target, and group columns.
+        models: mapping of model name to estimator with .estimator_c and
+            .estimator_r attributes.
+        feat_x: graph invariant feature column names.
+        feat_z: process signature feature column names.
+        target: target column name.
+        group: group column name for logo splitting.
+        n_jobs: number of parallel model workers (-1 for all cores).
+    Returns:
+        Tuple of (frontier results dataframe, per-dataset predictions dataframe).
+    """
+
+    raw = train_decomposed_separability(
+        data = data,
+        models = models,
+        feat_x = feat_x,
+        feat_z = feat_z,
+        target = target,
+        group = group,
+        n_jobs = n_jobs,
+    )
+    return compile_decomposed_separability(results = raw)
+
+
+## backward-compatible alias
+def eval_separability(
+    data: pd.DataFrame,
+    models: Dict[str, Any],
+    feat_x: Sequence[str],
+    feat_z: Sequence[str],
+    target: str = "target",
+    group: str = "domain",
+    n_jobs: int = -1,
+    ) -> tuple[pd.DataFrame, pd.DataFrame]:
+
+    """
+    Desc: Backward-compatible alias for eval_decomposed_separability.
+    Args:
+        data: training data with features, target, and group columns.
+        models: mapping of model name to estimator bundles.
+        feat_x: graph invariant feature column names.
+        feat_z: process signature feature column names.
+        target: target column name.
+        group: group column name for logo splitting.
+        n_jobs: number of parallel model workers (-1 for all cores).
+    Returns:
+        Tuple of (frontier results dataframe, per-dataset predictions dataframe).
+    """
+
+    return eval_decomposed_separability(
+        data = data,
+        models = models,
+        feat_x = feat_x,
+        feat_z = feat_z,
+        target = target,
+        group = group,
+        n_jobs = n_jobs,
+    )
 
 
 ## --------------------------------------------------------------------------
@@ -604,8 +738,6 @@ def _eval_exhaustiveness_model(
     from sklearn.model_selection import LeaveOneGroupOut
     from src.vectorizers.scalers import _log_transformer
 
-    print(f"  {model_name}:", end = " ", flush = True)
-
     X = data[feat_x].apply(pd.to_numeric, errors = "coerce")
     Z = data[feat_z].apply(pd.to_numeric, errors = "coerce")
     y_star = _log_transformer(data[target]).astype(float)
@@ -617,8 +749,6 @@ def _eval_exhaustiveness_model(
 
     slack_oof = np.full(len(data), np.nan)
     c_hat_oof = np.full(len(data), np.nan)
-
-    print("C(X)...", end = " ", flush = True)
 
     for train_idx, test_idx in fold_splits:
         result = _run_capacity_fold(
@@ -644,8 +774,6 @@ def _eval_exhaustiveness_model(
     ]
 
     for feat_label, feats, feat_df in conditions:
-        print(f"{feat_label}...", end = " ", flush = True)
-
         y_pred_out = np.full(len(data), np.nan)
         for train_idx, test_idx in fold_splits:
             result = _run_slack_fold(
@@ -682,13 +810,132 @@ def _eval_exhaustiveness_model(
                     "abs_error": abs(float(y_star.iloc[i]) - y_pred_out[i]),
                 })
 
-    print("done.")
     return results, predictions
 
 
 ## --------------------------------------------------------------------------
-## exhaustiveness test: slack independence from X
+## exhaustiveness training
 ## --------------------------------------------------------------------------
+def train_decomposed_exhaustiveness(
+    data: pd.DataFrame,
+    models: Dict[str, Any],
+    feat_x: Sequence[str],
+    feat_z: Sequence[str],
+    target: str = "target",
+    group: str = "domain",
+    n_jobs: int = -1,
+    ) -> dict[str, Any]:
+
+    """
+    Desc: Run raw exhaustiveness jobs. Post-processing is handled separately
+        by compile_decomposed_exhaustiveness.
+    Args:
+        data: training data with features, target, and group columns.
+        models: mapping of model name to estimator with .estimator_c
+                and .estimator_r attributes.
+        feat_x: graph invariant feature column names.
+        feat_z: process signature feature column names.
+        target: target column name.
+        group: group column name for logo splitting.
+        n_jobs: number of parallel model workers (-1 for all cores).
+    Returns:
+        Dictionary with raw model outputs from the exhaustiveness evaluation.
+    """
+
+    from joblib import Parallel, delayed
+
+    feat_x = list(feat_x)
+    feat_z = list(feat_z)
+    model_items = list(models.items())
+
+    if model_items:
+        with _tqdm_joblib(total = len(model_items), desc = "Exhaustiveness evaluation"):
+            model_outputs = Parallel(n_jobs = n_jobs, verbose = 0)(
+                delayed(_eval_exhaustiveness_model)(
+                    model_name = model_name,
+                    model = model,
+                    data = data,
+                    feat_x = feat_x,
+                    feat_z = feat_z,
+                    target = target,
+                    group = group,
+                )
+                for model_name, model in model_items
+            )
+    else:
+        model_outputs = list()
+
+    return {
+        "model_outputs": model_outputs,
+    }
+
+
+## --------------------------------------------------------------------------
+## exhaustiveness compilation
+## --------------------------------------------------------------------------
+def compile_decomposed_exhaustiveness(
+    results: dict[str, Any],
+    ) -> tuple[pd.DataFrame, pd.DataFrame]:
+
+    """
+    Desc: Compile raw exhaustiveness outputs into frontier and prediction tables.
+    Args:
+        results: Dictionary returned by train_decomposed_exhaustiveness.
+    Returns:
+        Tuple of (frontier results dataframe, per-dataset predictions dataframe).
+    """
+
+    model_outputs = results.get("model_outputs", list())
+    frontier_rows = []
+    prediction_rows = []
+    for model_results, model_predictions in model_outputs:
+        frontier_rows.extend(model_results)
+        prediction_rows.extend(model_predictions)
+
+    return pd.DataFrame(frontier_rows), pd.DataFrame(prediction_rows)
+
+
+## --------------------------------------------------------------------------
+## exhaustiveness evaluation wrapper
+## --------------------------------------------------------------------------
+def eval_decomposed_exhaustiveness(
+    data: pd.DataFrame,
+    models: Dict[str, Any],
+    feat_x: Sequence[str],
+    feat_z: Sequence[str],
+    target: str = "target",
+    group: str = "domain",
+    n_jobs: int = -1,
+    ) -> tuple[pd.DataFrame, pd.DataFrame]:
+
+    """
+    Desc: Convenience wrapper that runs exhaustiveness training and then
+        compiles raw outputs into analysis-ready tables.
+    Args:
+        data: training data with features, target, and group columns.
+        models: mapping of model name to estimator bundles.
+        feat_x: graph invariant feature column names.
+        feat_z: process signature feature column names.
+        target: target column name.
+        group: group column name for logo splitting.
+        n_jobs: number of parallel model workers (-1 for all cores).
+    Returns:
+        Tuple of (frontier results dataframe, per-dataset predictions dataframe).
+    """
+
+    raw = train_decomposed_exhaustiveness(
+        data = data,
+        models = models,
+        feat_x = feat_x,
+        feat_z = feat_z,
+        target = target,
+        group = group,
+        n_jobs = n_jobs,
+    )
+    return compile_decomposed_exhaustiveness(results = raw)
+
+
+## backward-compatible alias
 def eval_exhaustiveness(
     data: pd.DataFrame,
     models: Dict[str, Any],
@@ -700,51 +947,311 @@ def eval_exhaustiveness(
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
 
     """
-    Desc: test whether the capacity stage C(X) fully absorbs the
-          contribution of X to y*. under true additivity
-          y* = C(X) + R(Z), the slack s = y* - C_hat(X) should be
-          independent of X. fits a model X -> s within each logo fold
-          and compares its predictive accuracy against the canonical
-          Z -> s model. if C(X) is exhaustive, X -> s should perform
-          no better than a constant (R^2 near zero) and Z -> s should
-          dominate.
+    Desc: Backward-compatible alias for eval_decomposed_exhaustiveness.
     Args:
         data: training data with features, target, and group columns.
-        models: mapping of model name to estimator with .estimator_c
-                and .estimator_r attributes.
+        models: mapping of model name to estimator bundles.
         feat_x: graph invariant feature column names.
         feat_z: process signature feature column names.
         target: target column name.
         group: group column name for logo splitting.
         n_jobs: number of parallel model workers (-1 for all cores).
     Returns:
-        tuple of (frontier results dataframe, per-dataset predictions).
-        frontier results contain one row per (model, residual_features,
-        group) with frontier metrics and r_squared on the slack.
-        per-dataset predictions contain one row per observation.
+        Tuple of (frontier results dataframe, per-dataset predictions dataframe).
     """
 
-    from joblib import Parallel, delayed
-
-    feat_x = list(feat_x)
-    feat_z = list(feat_z)
-    model_outputs = Parallel(n_jobs = n_jobs)(
-        delayed(_eval_exhaustiveness_model)(
-            model_name = model_name,
-            model = model,
-            data = data,
-            feat_x = feat_x,
-            feat_z = feat_z,
-            target = target,
-            group = group,
-        )
-        for model_name, model in models.items()
+    return eval_decomposed_exhaustiveness(
+        data = data,
+        models = models,
+        feat_x = feat_x,
+        feat_z = feat_z,
+        target = target,
+        group = group,
+        n_jobs = n_jobs,
     )
 
-    results = []
-    predictions = []
-    for model_results, model_predictions in model_outputs:
-        results.extend(model_results)
-        predictions.extend(model_predictions)
 
-    return pd.DataFrame(results), pd.DataFrame(predictions)
+## --------------------------------------------------------------------------
+## decomposition separability summary
+## --------------------------------------------------------------------------
+def stat_decomposed_separability(
+    results: pd.DataFrame,
+    spec_order: Sequence[str] = SPECIFICATION_ORDER,
+    metrics: Sequence[str] = ("ei", "vr", "mv", "ms"),
+    decimals: int = 4,
+    ) -> pd.DataFrame:
+
+    """
+    Desc: Summarize mean frontier metrics by decomposition specification.
+    Args:
+        results: Frontier result table returned by compile_decomposed_separability.
+        spec_order: Specification order for table display.
+        metrics: Frontier metric columns to summarize.
+        decimals: Number of decimals to round.
+    Returns:
+        Display-ready dataframe indexed by specification with uppercase metrics.
+    Raises:
+        ValueError: If required columns are missing.
+    """
+
+    metrics = list(metrics)
+    missing = sorted({"specification", *metrics} - set(results.columns))
+    if missing:
+        raise ValueError(f"Missing required columns: {missing}")
+
+    metrics_ordered = ["ei", *[metric for metric in metrics if metric != "ei"]]
+    present_specs = set(results["specification"].dropna().unique())
+    table = (
+        results
+        .groupby(by = "specification", observed = True)[metrics_ordered]
+        .mean()
+        .reindex(index = [spec for spec in spec_order if spec in present_specs])
+        .rename(index = lambda spec: str(spec).replace("_", " ").title())
+    )
+    table.index.name = "SPECIFICATION"
+    table.columns = [column.upper() for column in table.columns]
+    return table.round(decimals)
+
+
+## --------------------------------------------------------------------------
+## decomposition exhaustiveness test
+## --------------------------------------------------------------------------
+def stat_decomposed_exhaustiveness(
+    predictions: pd.DataFrame,
+    decimals: int = 4,
+    ) -> tuple[pd.DataFrame, pd.DataFrame]:
+
+    """
+    Desc: Test whether Z predicts slack better than X after C(X) extraction.
+    Args:
+        predictions: Prediction table returned by compile_decomposed_exhaustiveness.
+        decimals: Number of decimals to round.
+    Returns:
+        Tuple of (paired Wilcoxon test table, feature-set error summary table).
+    Raises:
+        ValueError: If required columns are missing.
+    """
+
+    required = {"model", "residual_features", "group", "abs_error"}
+    missing = sorted(required - set(predictions.columns))
+    if missing:
+        raise ValueError(f"Missing required columns: {missing}")
+
+    domain_err = (
+        predictions
+        .groupby(by = ["model", "residual_features", "group"], observed = True)["abs_error"]
+        .mean()
+        .reset_index()
+    )
+    x_slack_err = (
+        domain_err
+        .query("residual_features == 'X_to_slack'")
+        .set_index(keys = ["model", "group"])["abs_error"]
+    )
+    z_slack_err = (
+        domain_err
+        .query("residual_features == 'Z_to_slack'")
+        .set_index(keys = ["model", "group"])["abs_error"]
+    )
+
+    delta = (x_slack_err - z_slack_err).dropna()
+    n = len(delta)
+    n_z_better = int((delta > 0).sum())
+    n_x_better = int((delta < 0).sum())
+
+    if n < 2 or int((delta != 0).sum()) < 2:
+        p_value = np.nan
+        r_effect = np.nan
+    else:
+        _, p_value = wilcoxon(x = delta.values, alternative = "greater")
+        delta_nonzero = delta[delta != 0]
+        ranks = rankdata(np.abs(delta_nonzero), method = "average")
+        pos_rank_sum = float(np.sum(ranks[delta_nonzero > 0]))
+        neg_rank_sum = float(np.sum(ranks[delta_nonzero < 0]))
+        r_effect = (pos_rank_sum - neg_rank_sum) / float(np.sum(ranks))
+
+    print(f"Paired One-Sided Test (Wilcoxon Signed-Rank): n = {n}")
+    print("H0: Δ |ERROR| <= 0")
+    print("H1: Δ |ERROR| > 0")
+    print("Δ |ERROR|: paired X -> slack error minus Z -> slack error")
+    print("Rank-biserial r: positive values favor Z -> slack")
+    print("*** p < 0.001, ** p < 0.01, * p < 0.05")
+
+    test = pd.DataFrame([{
+        "N": n,
+        "Z BETTER": n_z_better,
+        "X BETTER": n_x_better,
+        "MEAN Δ |ERROR|": delta.mean(),
+        "MEDIAN Δ |ERROR|": delta.median(),
+        "RANK-BISERIAL R": r_effect,
+        "WILCOXON P": p_value,
+        "SIG.": _sig_code(float(p_value)),
+        "DIFF.": "Yes" if np.isfinite(p_value) and p_value < 0.05 and delta.median() > 0 else "No",
+    }])
+
+    error_summary = (
+        domain_err
+        .groupby(by = "residual_features", observed = True)["abs_error"]
+        .agg(["mean", "std", "count"])
+        .rename(index = {"X_to_slack": "X -> SLACK", "Z_to_slack": "Z -> SLACK"})
+        .rename(columns = {"mean": "MEAN |ERROR|", "std": "STD |ERROR|", "count": "N"})
+    )
+    error_summary.index.name = "RESIDUAL FEATURES"
+
+    numeric_cols = list(test.select_dtypes(include = [np.number]).columns)
+    test[numeric_cols] = test[numeric_cols].round(decimals)
+    return test, error_summary.round(decimals)
+
+
+## --------------------------------------------------------------------------
+## decomposition sufficiency non-inferiority test
+## --------------------------------------------------------------------------
+def stat_decomposed_sufficiency(
+    results: pd.DataFrame,
+    delta: float = 0.05,
+    ceiling_specs: Sequence[str] = (
+        "interaction",
+        "interaction_joint",
+        "joint",
+        "capacity_only",
+        "dynamics_only",
+    ),
+    decimals: int = 4,
+    index: bool = True,
+    ) -> pd.DataFrame:
+
+    """
+    Desc: Test additive non-inferiority against relaxed specifications.
+    Args:
+        results: Frontier result table returned by compile_decomposed_separability.
+        delta: Non-inferiority margin in EI points.
+        ceiling_specs: Relaxed specifications to compare against additive.
+        decimals: Number of decimals to round.
+        index: Whether to index the output by specification.
+    Returns:
+        Display-ready non-inferiority summary table.
+    Raises:
+        ValueError: If required columns are missing.
+    """
+
+    required = {"model", "group", "specification", "ei"}
+    missing = sorted(required - set(results.columns))
+    if missing:
+        raise ValueError(f"Missing required columns: {missing}")
+
+    additive_ei = (
+        results
+        .query("specification == 'additive'")
+        .set_index(keys = ["model", "group"])["ei"]
+    )
+
+    rows = []
+    for spec in ceiling_specs:
+        spec_ei = (
+            results
+            .query("specification == @spec")
+            .set_index(keys = ["model", "group"])["ei"]
+        )
+        gap = (spec_ei - additive_ei).dropna()
+        n = len(gap)
+        n_spec_better = int((gap > 0).sum())
+        n_additive_better = int((gap <= 0).sum())
+
+        if n < 2 or int((gap - delta != 0).sum()) < 2:
+            p_t, p_w, p_sign = np.nan, np.nan, np.nan
+        else:
+            _, p_t = ttest_1samp(a = gap.values, popmean = delta, alternative = "less")
+            _, p_w = wilcoxon(x = gap.values - delta, alternative = "less")
+            n_above = int((gap.values >= delta).sum())
+            p_sign = binomtest(k = n_above, n = n, p = 0.5, alternative = "less").pvalue
+
+        rows.append({
+            "SPECIFICATION": spec.replace("_", " ").title(),
+            "N": n,
+            "SPEC BETTER": n_spec_better,
+            "ADDITIVE BETTER": n_additive_better,
+            "MEAN Δ EI": gap.mean(),
+            "MEDIAN Δ EI": gap.median(),
+            "T-TEST P": p_t,
+            "WILCOXON P": p_w,
+            "SIGN P": p_sign,
+        })
+
+    summary = pd.DataFrame(rows)
+    holm = _holm_adjust(summary["WILCOXON P"].to_numpy(dtype = float, copy = True))
+    summary["HOLM-ADJ. P"] = holm
+    summary["SIG."] = summary["HOLM-ADJ. P"].map(_sig_code)
+    median_gap = summary["MEDIAN Δ EI"].to_numpy(dtype = float, copy = True)
+    summary["NI."] = np.where(
+        np.isfinite(holm) & (holm < 0.05) & np.isfinite(median_gap) & (median_gap < delta),
+        "Yes",
+        "No",
+    )
+
+    n_display = int(summary["N"].iloc[0]) if summary["N"].nunique() == 1 and len(summary) else "varies"
+    print(f"Paired Non-Inferiority Test (Wilcoxon Signed-Rank): n = {n_display}, δ = {delta}")
+    print("H0: Δ EI >= δ")
+    print("H1: Δ EI < δ")
+    print("Median Δ EI: relaxed specification minus additive")
+    print("Holm-adj. p: Holm-Bonferroni adjusted Wilcoxon p-value")
+    print("NI.: Yes if Holm-adj. p < 0.05 and Median Δ EI < δ")
+    print("*** p < 0.001, ** p < 0.01, * p < 0.05")
+
+    numeric_cols = list(summary.select_dtypes(include = [np.number]).columns)
+    summary[numeric_cols] = summary[numeric_cols].round(decimals)
+    if index:
+        summary = summary.set_index("SPECIFICATION")
+    return summary
+
+
+## --------------------------------------------------------------------------
+## additive specification summary
+## --------------------------------------------------------------------------
+def stat_decomposed_additive(
+    results: pd.DataFrame,
+    sufficiency: pd.DataFrame,
+    delta: float = 0.05,
+    decimals: int = 4,
+    ) -> pd.DataFrame:
+
+    """
+    Desc: Summarize absolute additive EI and non-inferiority coverage.
+    Args:
+        results: Frontier result table returned by compile_decomposed_separability.
+        sufficiency: Table returned by stat_decomposed_sufficiency.
+        delta: Non-inferiority margin in EI points.
+        decimals: Number of decimals to round.
+    Returns:
+        One-row display-ready additive summary table.
+    Raises:
+        ValueError: If required columns are missing.
+    """
+
+    required = {"model", "specification", "ei", "vr", "mv", "ms"}
+    missing = sorted(required - set(results.columns))
+    if missing:
+        raise ValueError(f"Missing required columns: {missing}")
+
+    additive_summary = (
+        results
+        .query("specification == 'additive'")
+        .groupby(by = "model", observed = True)[["ei", "vr", "mv", "ms"]]
+        .mean()
+    )
+    sufficiency_table = sufficiency.reset_index(drop = False)
+    p_col = "HOLM-ADJ. P" if "HOLM-ADJ. P" in sufficiency_table.columns else "WILCOXON P"
+    n_sig = int((pd.to_numeric(sufficiency_table[p_col], errors = "coerce") < 0.05).sum())
+    n_total = len(sufficiency_table)
+
+    table = pd.DataFrame([{
+        "MEAN EI": additive_summary["ei"].mean(),
+        "SD EI": additive_summary["ei"].std(),
+        "MAX MEAN Δ EI": pd.to_numeric(sufficiency_table["MEAN Δ EI"], errors = "coerce").max(),
+        "MARGIN Δ": delta,
+        "NON-INFERIOR": f"{n_sig}/{n_total}",
+        "WORST ADJ. P": pd.to_numeric(sufficiency_table[p_col], errors = "coerce").max(),
+    }])
+
+    numeric_cols = list(table.select_dtypes(include = [np.number]).columns)
+    table[numeric_cols] = table[numeric_cols].round(decimals)
+    return table
