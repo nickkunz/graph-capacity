@@ -1,8 +1,6 @@
-## directive
-from __future__ import annotations
-
 ## libraries
 import pandas as pd
+from pandas.io.formats.style import Styler
 
 ## modules
 from src.evaluators.metrics import FRONTIER_METRICS
@@ -39,7 +37,7 @@ def results_domain_transfer(
     n_repeats: int = 30,
     random_state: int = 42,
     decimals: int = 3
-    ) -> pd.DataFrame | "pd.io.formats.style.Styler":
+    ) -> pd.DataFrame | Styler:
 
     """
     Desc:
