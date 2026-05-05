@@ -1,83 +1,17 @@
 ## libraries
 import numpy as np
 import pandas as pd
-from typing import Any
-from collections.abc import Mapping, Sequence
+from collections.abc import Mapping
 
 ## modules
 from src.evaluators.metrics import consensus_metrics
-from src.evaluators.resampling import logo_cross_valid
 from src.vectorizers.scalers import _log_transformer
 from src.evaluators.metrics import CONSENSUS_METRICS
 
 ## ----------------------------------------------------------------------------
-## prediction-quality evaluation
+## structural recovery compilation
 ## ----------------------------------------------------------------------------
-def eval_prediction_quality(
-    data: pd.DataFrame,
-    models: Mapping[str, Any],
-    feat_x: Sequence[str],
-    feat_z: Sequence[str],
-    target: str = "target",
-    group: str = "domain",
-    n_repeats: int = 30,
-    random_state: int = 42,
-    n_jobs: int = -1,
-    ) -> dict[str, np.ndarray]:
-
-    """
-    Desc:
-        Generates held-out LOGO predictions for each model. Returns the raw
-        prediction vectors keyed by model name; per-group consensus metrics
-        are computed downstream by `compile_prediction_quality`.
-
-    Args:
-        data: Evaluation dataframe with features, target, and group columns.
-        models: Mapping from model name to estimator bundle with `estimator_c`
-            and `estimator_r` attributes.
-        feat_x: Graph invariant feature column names.
-        feat_z: Process signature feature column names.
-        target: Target column name.
-        group: Group column name for LOGO splitting.
-        n_repeats: Number of repeated LOGO runs per model.
-        random_state: Base random seed for reproducibility.
-        n_jobs: Number of parallel jobs passed to LOGO cross-validation.
-
-    Returns:
-        Mapping from model name to held-out prediction array aligned with
-        `data` rows. Entries outside any held-out fold are `np.nan`.
-
-    Raises:
-        ValueError: If n_repeats is less than 1.
-    """
-
-    if n_repeats < 1:
-        raise ValueError("n_repeats must be at least 1")
-
-    feat_x = list(feat_x)
-    feat_z = list(feat_z)
-
-    predictions: dict[str, np.ndarray] = dict()
-    for model_name, model in models.items():
-        print(f"Training {model_name}...")
-        _, y_pred = logo_cross_valid(
-            data = data,
-            feat_x = feat_x,
-            feat_z = feat_z,
-            estimator_c = model.estimator_c,
-            estimator_r = model.estimator_r,
-            target = target,
-            group = group,
-            n_repeats = n_repeats,
-            random_state = random_state,
-            n_jobs = n_jobs,
-        )
-        predictions[model_name] = np.asarray(y_pred, dtype = float)
-
-    return predictions
-
-
-def compile_prediction_quality(
+def compile_structural_recovery(
     predictions: Mapping[str, np.ndarray],
     data: pd.DataFrame,
     target: str = "target",
@@ -87,7 +21,7 @@ def compile_prediction_quality(
     """
     Desc:
         Computes per-(model, held-out group) consensus metrics from the raw
-        LOGO predictions returned by `eval_prediction_quality`.
+        LOGO prediction vectors returned by `logo_cross_valid`.
 
     Args:
         predictions: Mapping from model name to held-out prediction array
@@ -135,7 +69,7 @@ def compile_prediction_quality(
     return result[columns].sort_values(by = ["model", "group"]).reset_index(drop = True)
 
 
-def summarize_prediction_quality(
+def summarize_structural_recovery(
     results: pd.DataFrame,
     group_col: str = "group",
     index_name: str = "Domain",
@@ -148,11 +82,11 @@ def summarize_prediction_quality(
 
     """
     Desc:
-        Builds a display table summarizing prediction-quality consensus metrics
-        across fitted learners within each held-out group.
+        Builds a display table summarizing structural recovery metrics across
+        fitted learners within each held-out group.
 
     Args:
-        results: Prediction-quality result table from compile_prediction_quality.
+        results: Structural recovery result table from compile_structural_recovery.
         group_col: Column containing held-out group labels.
         index_name: Name assigned to the output table index.
         group_label: Human-readable group label used in printed notes.
