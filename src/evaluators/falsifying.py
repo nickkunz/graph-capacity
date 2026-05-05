@@ -21,9 +21,9 @@ from src.evaluators.metrics import consensus_metrics, frontier_metrics
 from src.evaluators.metrics import FRONTIER_METRICS, CONSENSUS_METRICS
 
 ## ----------------------------------------------------------------------------
-## frontier falsifiability test
+## transfer falsifiability test
 ## ----------------------------------------------------------------------------
-def eval_falsified_frontier(
+def train_falsified_transfer(
     data_proc: pd.DataFrame,
     data_fals: dict[str, pd.DataFrame],
     models: Dict[str, Any],
@@ -34,12 +34,12 @@ def eval_falsified_frontier(
     n_repeats: int = 30,
     random_state: int = 42,
     n_jobs: int = -1,
-    ) -> pd.DataFrame:
+    ) -> dict[str, Any]:
 
     """
     Desc:
-        Test whether original data produces better frontier envelope metrics
-        than falsified data under both frozen and retrain protocols.
+        Run raw transfer falsification jobs under frozen and retrain protocols.
+        Post-processing is handled separately by compile_falsified_transfer.
     
     Args:
         data_proc: clean evaluation dataframe used for original model training.
@@ -54,7 +54,8 @@ def eval_falsified_frontier(
         n_jobs: number of parallel jobs for cross-validation (default -1, all cores).
 
     Returns:
-        dataframe with frontier metrics per model/method/condition/group/track.
+        dictionary with original transfer results and falsified transfer results
+        nested by track, method, and model.
     """
 
     ## init feature lists as mutable for parallel jobs
@@ -117,7 +118,7 @@ def eval_falsified_frontier(
         for model_name in model_names
     ]
 
-    frames = list()
+    false_by_track = dict()
     for track in ("frozen", "retrain"):
         if track == "retrain":
             false_results = Parallel(n_jobs = n_jobs)(
@@ -183,31 +184,70 @@ def eval_falsified_frontier(
 
             false_results_mean.append((pd.DataFrame(frontier_rows), y_pred_mean))
 
+        track_results = dict()
+        for (model_name, method_name, _), result in zip(false_jobs, false_results_mean):
+            track_results.setdefault(method_name, dict())[model_name] = result
+        false_by_track[track] = track_results
+
+    return {
+        "original": real_cv,
+        "falsified": false_by_track,
+    }
+
+
+## compile transfer falsification results
+def compile_falsified_transfer(results: dict[str, Any]) -> pd.DataFrame:
+
+    """
+    Desc:
+        Compile raw transfer falsification outputs into model/method/condition
+        rows for downstream paired tests and summaries.
+    Args:
+        results: dictionary returned by train_falsified_transfer.
+    Returns:
+        dataframe with frontier metrics per model/method/condition/group/track.
+    """
+
+    original = results["original"]
+    falsified = results["falsified"]
+    frames = list()
+
+    for track, track_results in falsified.items():
         obs = list()
-        for (model_name, method_name, _), (frontier_false, _) in zip(false_jobs, false_results_mean):
-            frontier_real, _ = real_cv[model_name]
-            for condition, frontier in [("original", frontier_real), ("falsified", frontier_false)]:
-                for _, frow in frontier.iterrows():
-                    row = {
-                        "model": model_name,
-                        "method": method_name,
-                        "condition": condition,
-                        "group": frow["group"],
-                    }
-                    for col in FRONTIER_METRICS:
-                        row[col] = frow[col]
-                    obs.append(row)
+        for method_name, model_results in track_results.items():
+            for model_name, (frontier_false, _) in model_results.items():
+                frontier_real, _ = original[model_name]
+                for condition, frontier in [("original", frontier_real), ("falsified", frontier_false)]:
+                    for _, frow in frontier.iterrows():
+                        row = {
+                            "model": model_name,
+                            "method": method_name,
+                            "condition": condition,
+                            "group": frow["group"],
+                        }
+                        for col in FRONTIER_METRICS:
+                            row[col] = frow[col]
+                        obs.append(row)
 
         frame = pd.DataFrame(obs)
         frame["track"] = track
         frames.append(frame)
 
+    if not frames:
+        return pd.DataFrame(columns = [
+            "model",
+            "method",
+            "condition",
+            "group",
+            *FRONTIER_METRICS,
+            "track",
+        ])
+
     return pd.concat(frames, ignore_index = True)
 
-## ----------------------------------------------------------------------------
-## target-alignment falsifiability test
-## ----------------------------------------------------------------------------
-def eval_falsified_alignment(
+
+## transfer falsification evaluation wrapper
+def eval_falsified_transfer(
     data_proc: pd.DataFrame,
     data_fals: dict[str, pd.DataFrame],
     models: Dict[str, Any],
@@ -222,10 +262,64 @@ def eval_falsified_alignment(
 
     """
     Desc:
-        Test whether original data produces better target-prediction alignment
-        than falsified data under both frozen and retrain protocols, using
-        cross-validated predictions and domain-level aggregation so paired
-        tests align on (model, group).
+        Convenience wrapper that runs transfer falsification training and then
+        compiles raw outputs into an analysis-ready dataframe.
+    Args:
+        data_proc: clean evaluation dataframe used for original model training.
+        data_fals: mapping from falsification method name to falsified dataframe.
+        models: mapping from model name to estimator bundle with `estimator_c` and `estimator_r`.
+        feat_x: graph invariant feature column names for frontier model.
+        feat_z: process signature feature column names for the residual model.
+        target: target variable column name.
+        group: group column name for leave-one-group-out splits.
+        n_repeats: number of repeated CV seeds to average predictions.
+        random_state: base random state for seed reproducibility.
+        n_jobs: number of parallel jobs for cross-validation.
+    Returns:
+        dataframe with frontier metrics per model/method/condition/group/track.
+    """
+
+    results = train_falsified_transfer(
+        data_proc = data_proc,
+        data_fals = data_fals,
+        models = models,
+        feat_x = feat_x,
+        feat_z = feat_z,
+        target = target,
+        group = group,
+        n_repeats = n_repeats,
+        random_state = random_state,
+        n_jobs = n_jobs,
+    )
+    return compile_falsified_transfer(results = results)
+
+
+## backwards-compatible frontier aliases
+train_falsified_frontier = train_falsified_transfer
+compile_falsified_frontier = compile_falsified_transfer
+eval_falsified_frontier = eval_falsified_transfer
+
+## ----------------------------------------------------------------------------
+## structural recovery falsifiability test
+## ----------------------------------------------------------------------------
+def train_falsified_recovery(
+    data_proc: pd.DataFrame,
+    data_fals: dict[str, pd.DataFrame],
+    models: Dict[str, Any],
+    feat_x: Sequence[str],
+    feat_z: Sequence[str],
+    target: str = "target",
+    group: str = "domain",
+    n_repeats: int = 30,
+    random_state: int = 42,
+    n_jobs: int = -1,
+    ) -> dict[str, Any]:
+
+    """
+    Desc:
+        Run raw structural recovery falsification jobs under frozen and retrain
+        protocols. Post-processing is handled separately by
+        compile_falsified_recovery.
     Args:
         data_proc: clean evaluation dataframe used for original model training.
         data_fals: mapping from falsification method name to falsified dataframe.
@@ -238,8 +332,8 @@ def eval_falsified_alignment(
         random_state: base random state for seed reproducibility (default 42).
         n_jobs: number of parallel jobs for cross-validation (default -1, all cores).
     Returns:
-        dataframe with consensus metrics per
-        (model, method, condition, group, track).
+        dictionary with original and falsified prediction vectors plus the
+        dataframe metadata needed for compilation.
     """
 
     ## init feature lists as mutable for parallel jobs
@@ -284,7 +378,7 @@ def eval_falsified_alignment(
         for model_name in model_names
     ]
 
-    frames = list()
+    false_by_track = dict()
     for track in ("frozen", "retrain"):
         if track == "retrain":
             false_results = Parallel(n_jobs = n_jobs)(
@@ -333,47 +427,146 @@ def eval_falsified_alignment(
                 y_pred_mean[valid_cols] = np.nanmean(pred_stack[:, valid_cols], axis = 0)
             false_results_mean.append(y_pred_mean)
 
-        obs = list()
-        for (model_name, method_name, data_false), y_pred_false in zip(false_jobs, false_results_mean):
-            y_pred_real = real_cv[model_name]
-            for condition, y_pred, data_eval in [
-                ("original", y_pred_real, data_proc),
-                ("falsified", y_pred_false, data_false),
-            ]:
-                y_true = _log_transformer(data_eval[target]).astype(float).values
-                groups_eval = data_eval[group].values
-                for group_name in pd.unique(groups_eval):
-                    mask = (
-                        (groups_eval == group_name)
-                        & np.isfinite(y_true)
-                        & np.isfinite(y_pred)
-                    )
-                    if int(np.sum(mask)) < 2:
-                        continue
+        track_results = dict()
+        for (model_name, method_name, _), y_pred_false in zip(false_jobs, false_results_mean):
+            track_results.setdefault(method_name, dict())[model_name] = y_pred_false
+        false_by_track[track] = track_results
 
-                    mvals = consensus_metrics(
-                        y_true = y_true[mask],
-                        y_pred = y_pred[mask],
-                    )
-                    row = {
-                        "model": model_name,
-                        "method": method_name,
-                        "condition": condition,
-                        "group": group_name,
-                        **mvals,
-                    }
-                    obs.append(row)
+    return {
+        "data_proc": data_proc,
+        "data_fals": data_fals,
+        "original": real_cv,
+        "falsified": false_by_track,
+        "target": target,
+        "group": group,
+    }
+
+
+## compile structural recovery falsification results
+def compile_falsified_recovery(results: dict[str, Any]) -> pd.DataFrame:
+
+    """
+    Desc:
+        Compile raw structural recovery falsification predictions into consensus
+        metrics per model, method, condition, group, and track.
+    Args:
+        results: dictionary returned by train_falsified_recovery.
+    Returns:
+        dataframe with consensus metrics per
+        (model, method, condition, group, track).
+    """
+
+    data_proc = results["data_proc"]
+    data_fals = results["data_fals"]
+    original = results["original"]
+    falsified = results["falsified"]
+    target = results.get("target", "target")
+    group = results.get("group", "domain")
+    frames = list()
+
+    for track, track_results in falsified.items():
+        obs = list()
+        for method_name, model_results in track_results.items():
+            data_false = data_fals[method_name]
+            for model_name, y_pred_false in model_results.items():
+                y_pred_real = original[model_name]
+                for condition, y_pred, data_eval in [
+                    ("original", y_pred_real, data_proc),
+                    ("falsified", y_pred_false, data_false),
+                ]:
+                    y_true = _log_transformer(data_eval[target]).astype(float).values
+                    groups_eval = data_eval[group].values
+                    for group_name in pd.unique(groups_eval):
+                        mask = (
+                            (groups_eval == group_name)
+                            & np.isfinite(y_true)
+                            & np.isfinite(y_pred)
+                        )
+                        if int(np.sum(mask)) < 2:
+                            continue
+
+                        mvals = consensus_metrics(
+                            y_true = y_true[mask],
+                            y_pred = y_pred[mask],
+                        )
+                        row = {
+                            "model": model_name,
+                            "method": method_name,
+                            "condition": condition,
+                            "group": group_name,
+                            **mvals,
+                        }
+                        obs.append(row)
 
         frame = pd.DataFrame(obs)
         frame["track"] = track
         frames.append(frame)
 
+    if not frames:
+        return pd.DataFrame(columns = [
+            "model",
+            "method",
+            "condition",
+            "group",
+            *CONSENSUS_METRICS,
+            "track",
+        ])
+
     return pd.concat(frames, ignore_index = True)
+
+
+## structural recovery falsification evaluation wrapper
+def eval_falsified_recovery(
+    data_proc: pd.DataFrame,
+    data_fals: dict[str, pd.DataFrame],
+    models: Dict[str, Any],
+    feat_x: Sequence[str],
+    feat_z: Sequence[str],
+    target: str = "target",
+    group: str = "domain",
+    n_repeats: int = 30,
+    random_state: int = 42,
+    n_jobs: int = -1,
+    ) -> pd.DataFrame:
+
+    """
+    Desc:
+        Convenience wrapper that runs structural recovery falsification training
+        and then compiles raw predictions into an analysis-ready dataframe.
+    Args:
+        data_proc: clean evaluation dataframe used for original model training.
+        data_fals: mapping from falsification method name to falsified dataframe.
+        models: mapping from model name to estimator bundle with `estimator_c` and `estimator_r`.
+        feat_x: graph invariant feature column names for frontier model.
+        feat_z: process signature feature column names for the residual model.
+        target: target variable column name.
+        group: group column name for leave-one-group-out splits.
+        n_repeats: number of repeated CV seeds to average predictions.
+        random_state: base random state for seed reproducibility.
+        n_jobs: number of parallel jobs for cross-validation.
+    Returns:
+        dataframe with consensus metrics per
+        (model, method, condition, group, track).
+    """
+
+    results = train_falsified_recovery(
+        data_proc = data_proc,
+        data_fals = data_fals,
+        models = models,
+        feat_x = feat_x,
+        feat_z = feat_z,
+        target = target,
+        group = group,
+        n_repeats = n_repeats,
+        random_state = random_state,
+        n_jobs = n_jobs,
+    )
+    return compile_falsified_recovery(results = results)
 
 ## ----------------------------------------------------------------------------
 ## pairwise consensus falsifiability test
 ## ----------------------------------------------------------------------------
-def eval_falsified_consensus(
+def train_falsified_consensus(
     data_proc: pd.DataFrame,
     data_fals: dict[str, pd.DataFrame],
     models: Dict[str, Any],
@@ -383,14 +576,13 @@ def eval_falsified_consensus(
     n_repeats: int = 30,
     n_jobs: int = -1,
     random_state: int = 42,
-    ) -> pd.DataFrame:
+    ) -> dict[str, Any]:
     
     """
     Desc:
-        Test whether original data produces higher inter-model frontier
-        consensus than falsified data under both frozen and retrain protocols,
-        treating pairwise consensus as a fitted-frontier agreement analysis
-        rather than a predictive resampling test.
+        Run raw pairwise consensus falsification jobs under frozen and retrain
+        protocols. Post-processing is handled separately by
+        compile_falsified_consensus.
     Args:
         data_proc: Clean evaluation dataframe used for original model fitting.
         data_fals: Mapping from falsification method name to falsified dataframe.
@@ -402,8 +594,8 @@ def eval_falsified_consensus(
         random_state: Random state forwarded to estimator fitting (default 42).
         n_jobs: Parallel job count (default -1, all cores).
     Returns:
-        DataFrame with pairwise consensus metrics per
-        (method, condition, group, model_i, model_j, track).
+        dictionary with original prediction vectors and falsified prediction
+        vectors nested by track, method, and model.
     """
 
     ## init feature lists as mutable for parallel jobs
@@ -438,7 +630,7 @@ def eval_falsified_consensus(
         for model_name in model_names
     ]
 
-    frames = list()
+    false_by_track = dict()
     for track in ("frozen", "retrain"):
         if track == "retrain":
             false_results = Parallel(n_jobs = n_jobs)(
@@ -468,13 +660,47 @@ def eval_falsified_consensus(
         for (model_name, method_name, _), fit_false in zip(false_jobs, false_results):
             pred_false[(method_name, model_name)] = np.asarray(fit_false["y_pred"], dtype = float)
 
+        track_results = dict()
+        for (method_name, model_name), y_pred in pred_false.items():
+            track_results.setdefault(method_name, dict())[model_name] = y_pred
+        false_by_track[track] = track_results
+
+    return {
+        "model_names": model_names,
+        "original": pred_real,
+        "falsified": false_by_track,
+    }
+
+
+## compile pairwise consensus falsification results
+def compile_falsified_consensus(results: dict[str, Any]) -> pd.DataFrame:
+
+    """
+    Desc:
+        Compile raw pairwise consensus falsification predictions into consensus
+        metrics per method, condition, model pair, and track.
+    Args:
+        results: dictionary returned by train_falsified_consensus.
+    Returns:
+        DataFrame with pairwise consensus metrics per
+        (method, condition, group, model_i, model_j, track).
+    """
+
+    model_names = results["model_names"]
+    pred_real = results["original"]
+    falsified = results["falsified"]
+    frames = list()
+
+    for track, track_results in falsified.items():
         obs = list()
-        for method_name, data_false in data_fals.items():
+        for method_name, pred_false in track_results.items():
             for model_i, model_j in combinations(model_names, 2):
-                for condition, pred_map, data_eval in [
-                    ("original", pred_real, data_proc),
-                    ("falsified", {n: pred_false[(method_name, n)] for n in model_names}, data_false),
+                for condition, pred_map in [
+                    ("original", pred_real),
+                    ("falsified", pred_false),
                 ]:
+                    if model_i not in pred_map or model_j not in pred_map:
+                        continue
                     y_i = pred_map[model_i]
                     y_j = pred_map[model_j]
                     valid = np.isfinite(y_i) & np.isfinite(y_j)
@@ -497,7 +723,64 @@ def eval_falsified_consensus(
         frame["track"] = track
         frames.append(frame)
 
+    if not frames:
+        return pd.DataFrame(columns = [
+            "method",
+            "condition",
+            "group",
+            "model_i",
+            "model_j",
+            *CONSENSUS_METRICS,
+            "track",
+        ])
+
     return pd.concat(frames, ignore_index = True)
+
+
+## pairwise consensus falsification evaluation wrapper
+def eval_falsified_consensus(
+    data_proc: pd.DataFrame,
+    data_fals: dict[str, pd.DataFrame],
+    models: Dict[str, Any],
+    feat_x: Sequence[str],
+    feat_z: Sequence[str],
+    target: str = "target",
+    n_repeats: int = 30,
+    n_jobs: int = -1,
+    random_state: int = 42,
+    ) -> pd.DataFrame:
+
+    """
+    Desc:
+        Convenience wrapper that runs pairwise consensus falsification training
+        and then compiles raw predictions into an analysis-ready dataframe.
+    Args:
+        data_proc: Clean evaluation dataframe used for original model fitting.
+        data_fals: Mapping from falsification method name to falsified dataframe.
+        models: Mapping from model name to estimator bundle with `estimator_c` and `estimator_r`.
+        feat_x: Graph invariant feature column names for frontier model.
+        feat_z: Process signature feature column names for the residual model.
+        target: Target variable column name.
+        n_repeats: Number of repeated fits to average.
+        random_state: Random state forwarded to estimator fitting.
+        n_jobs: Parallel job count.
+    Returns:
+        DataFrame with pairwise consensus metrics per
+        (method, condition, group, model_i, model_j, track).
+    """
+
+    results = train_falsified_consensus(
+        data_proc = data_proc,
+        data_fals = data_fals,
+        models = models,
+        feat_x = feat_x,
+        feat_z = feat_z,
+        target = target,
+        n_repeats = n_repeats,
+        n_jobs = n_jobs,
+        random_state = random_state,
+    )
+    return compile_falsified_consensus(results = results)
 
 ## ----------------------------------------------------------------------------
 ## summarize falsification tests
@@ -517,7 +800,7 @@ def stat_falsified_test(
     """
     Desc:
         Paired Wilcoxon signed-rank summary comparing original vs falsified
-        conditions. Works for frontier, alignment, and pairwise consensus
+        conditions. Works for transfer, recovery, and pairwise consensus
         outputs by parameterising metric, grouping, and pairing columns.
     
     Args:
