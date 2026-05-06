@@ -828,7 +828,20 @@ def stat_falsified_test(
     
     feat_value = list(feat_value)
     feat_group = list(feat_group or list())
-    group_display = [("Frontier" if c == "track" else c.title()) for c in feat_group]
+    metric_display = (
+        pd.Series(feat_value, dtype = "object")
+        .astype(str)
+        .str.upper()
+        .replace({"RHO": "ρ"})
+        .tolist()
+    )
+    group_display = (
+        pd.Series(feat_group, dtype = "object")
+        .replace({"track": "Falsification", "method": "Method"})
+        .str.replace("_", " ", regex = False)
+        .str.title()
+        .tolist()
+    )
     p_label = "One-sided p"
     tail_cols = ["Rank-biserial r", p_label, "Holm-adj. p", "Sig.", "Diff."]
 
@@ -852,7 +865,7 @@ def stat_falsified_test(
 
     n_pairs = int(unique_n_pairs[0]) if len(unique_n_pairs) == 1 else f"{int(np.min(unique_n_pairs))}-{int(np.max(unique_n_pairs))}"
 
-    metric_label = feat_value[0].upper() if len(feat_value) == 1 else ", ".join(v.upper() for v in feat_value)
+    metric_label = metric_display[0] if len(metric_display) == 1 else ", ".join(metric_display)
     print(f"Paired One-Sided Test (Wilcoxon Signed-Rank): n = {n_pairs}")
     print(f"H₀: Δ {metric_label} ≤ 0")
     print(f"H₁: Δ {metric_label} > 0")
@@ -929,19 +942,25 @@ def stat_falsified_test(
     summary["Diff."] = diff
 
     ## convert group/metric labels to display names
-    summary = summary.rename(columns = {c: ("Frontier" if c == "track" else c.title()) for c in feat_group})
+    summary = summary.rename(columns = dict(zip(feat_group, group_display)))
     if len(feat_value) == 1:
-        tag = feat_value[0].upper()
+        tag = metric_display[0]
         summary = summary.rename(columns = {
             "Median Δ": f"Median Δ {tag}",
         }).drop(columns = ["metric"])
     else:
         summary = summary.rename(columns = {"metric": "Metric"})
+        summary["Metric"] = (
+            summary["Metric"]
+            .astype(str)
+            .str.upper()
+            .replace({"RHO": "ρ"})
+        )
 
     ## apply native display ordering, then format numeric output
-    if "Frontier" in summary.columns:
-        summary["Frontier"] = pd.Categorical(
-            summary["Frontier"],
+    if "Falsification" in summary.columns:
+        summary["Falsification"] = pd.Categorical(
+            summary["Falsification"],
             categories = ["original", "frozen", "retrain"],
             ordered = True,
         )
@@ -1079,28 +1098,42 @@ def stat_falsified_summary(
         ]
     summary = summary.reindex(columns = metrics_ordered)
 
+    metric_display = (
+        pd.Series(metrics_ordered, index = metrics_ordered, dtype = "object")
+        .astype(str)
+        .str.upper()
+        .replace({"RHO": "ρ"})
+        .to_dict()
+    )
+
     rename_map = {
-        metric: f"{metric.upper()} [IQR]" if metric == iqr_metric else metric.upper()
+        metric: f"{metric_display[metric]} [IQR]" if metric == iqr_metric else metric_display[metric]
         for metric in metrics_ordered
     }
     summary = summary.rename(columns = rename_map)
 
     ## display-only index renaming
     summary.index.names = [
-        ("FRONTIER" if n == "track" else n.upper()) for n in summary.index.names
+        *(
+            pd.Series(summary.index.names, dtype = "object")
+            .replace({"track": "Falsification", "method": "Method"})
+            .str.replace("_", " ", regex = False)
+            .str.title()
+            .tolist()
+        )
     ]
     if decimals is not None:
         numeric_cols = list(summary.select_dtypes(include = [np.number]).columns)
         summary[numeric_cols] = summary[numeric_cols].round(decimals)
 
     ## strip underscores from method-level index values for display
-    if "METHOD" in summary.index.names:
+    if "Method" in summary.index.names:
         new_idx = summary.index.to_frame(index = False)
-        new_idx["METHOD"] = new_idx["METHOD"].astype(object).str.replace("_", " ")
+        new_idx["Method"] = new_idx["Method"].astype(object).str.replace("_", " ")
         summary.index = (
             pd.MultiIndex.from_frame(new_idx)
             if new_idx.shape[1] > 1
-            else pd.Index(new_idx["METHOD"], name = "METHOD")
+            else pd.Index(new_idx["Method"], name = "Method")
         )
 
     return summary
