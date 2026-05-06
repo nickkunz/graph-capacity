@@ -200,12 +200,13 @@ def compile_falsified_transfer(results: dict[str, Any]) -> pd.DataFrame:
 
     """
     Desc:
-        Compile raw transfer falsification outputs into model/method/condition
+        Compile raw transfer falsification outputs into model, Method, condition,
         rows for downstream paired tests and summaries.
     Args:
         results: dictionary returned by train_falsified_transfer.
     Returns:
-        dataframe with frontier metrics per model/method/condition/group/track.
+        dataframe with frontier metrics per
+        (model, Method, condition, group, Falsification).
     """
 
     original = results["original"]
@@ -221,7 +222,7 @@ def compile_falsified_transfer(results: dict[str, Any]) -> pd.DataFrame:
                     for _, frow in frontier.iterrows():
                         row = {
                             "model": model_name,
-                            "method": method_name,
+                            "Method": method_name,
                             "condition": condition,
                             "group": frow["group"],
                         }
@@ -230,17 +231,17 @@ def compile_falsified_transfer(results: dict[str, Any]) -> pd.DataFrame:
                         obs.append(row)
 
         frame = pd.DataFrame(obs)
-        frame["track"] = track
+        frame["Falsification"] = track
         frames.append(frame)
 
     if not frames:
         return pd.DataFrame(columns = [
             "model",
-            "method",
+            "Method",
             "condition",
             "group",
             *FRONTIER_METRICS,
-            "track",
+            "Falsification",
         ])
 
     return pd.concat(frames, ignore_index = True)
@@ -276,7 +277,8 @@ def eval_falsified_transfer(
         random_state: base random state for seed reproducibility.
         n_jobs: number of parallel jobs for cross-validation.
     Returns:
-        dataframe with frontier metrics per model/method/condition/group/track.
+        dataframe with frontier metrics per
+        (model, Method, condition, group, Falsification).
     """
 
     results = train_falsified_transfer(
@@ -448,12 +450,12 @@ def compile_falsified_recovery(results: dict[str, Any]) -> pd.DataFrame:
     """
     Desc:
         Compile raw structural agreement falsification predictions into consensus
-        metrics per model, method, condition, group, and track.
+        metrics per model, Method, condition, group, and Falsification.
     Args:
         results: dictionary returned by train_falsified_recovery.
     Returns:
         dataframe with consensus metrics per
-        (model, method, condition, group, track).
+        (model, Method, condition, group, Falsification).
     """
 
     data_proc = results["data_proc"]
@@ -491,7 +493,7 @@ def compile_falsified_recovery(results: dict[str, Any]) -> pd.DataFrame:
                         )
                         row = {
                             "model": model_name,
-                            "method": method_name,
+                            "Method": method_name,
                             "condition": condition,
                             "group": group_name,
                             **mvals,
@@ -499,17 +501,17 @@ def compile_falsified_recovery(results: dict[str, Any]) -> pd.DataFrame:
                         obs.append(row)
 
         frame = pd.DataFrame(obs)
-        frame["track"] = track
+        frame["Falsification"] = track
         frames.append(frame)
 
     if not frames:
         return pd.DataFrame(columns = [
             "model",
-            "method",
+            "Method",
             "condition",
             "group",
             *CONSENSUS_METRICS,
-            "track",
+            "Falsification",
         ])
 
     return pd.concat(frames, ignore_index = True)
@@ -546,7 +548,7 @@ def eval_falsified_recovery(
         n_jobs: number of parallel jobs for cross-validation.
     Returns:
         dataframe with consensus metrics per
-        (model, method, condition, group, track).
+        (model, Method, condition, group, Falsification).
     """
 
     results = train_falsified_recovery(
@@ -678,12 +680,12 @@ def compile_falsified_consensus(results: dict[str, Any]) -> pd.DataFrame:
     """
     Desc:
         Compile raw pairwise consensus falsification predictions into consensus
-        metrics per method, condition, model pair, and track.
+        metrics per Method, condition, model pair, and Falsification.
     Args:
         results: dictionary returned by train_falsified_consensus.
     Returns:
         DataFrame with pairwise consensus metrics per
-        (method, condition, group, model_i, model_j, track).
+        (Method, condition, group, model_i, model_j, Falsification).
     """
 
     model_names = results["model_names"]
@@ -711,7 +713,7 @@ def compile_falsified_consensus(results: dict[str, Any]) -> pd.DataFrame:
                         y_pred = y_j[valid],
                     )
                     obs.append({
-                        "method": method_name,
+                        "Method": method_name,
                         "condition": condition,
                         "group": "all",
                         "model_i": model_i,
@@ -720,18 +722,18 @@ def compile_falsified_consensus(results: dict[str, Any]) -> pd.DataFrame:
                     })
 
         frame = pd.DataFrame(obs)
-        frame["track"] = track
+        frame["Falsification"] = track
         frames.append(frame)
 
     if not frames:
         return pd.DataFrame(columns = [
-            "method",
+            "Method",
             "condition",
             "group",
             "model_i",
             "model_j",
             *CONSENSUS_METRICS,
-            "track",
+            "Falsification",
         ])
 
     return pd.concat(frames, ignore_index = True)
@@ -766,7 +768,7 @@ def eval_falsified_consensus(
         n_jobs: Parallel job count.
     Returns:
         DataFrame with pairwise consensus metrics per
-        (method, condition, group, model_i, model_j, track).
+        (Method, condition, group, model_i, model_j, Falsification).
     """
 
     results = train_falsified_consensus(
@@ -789,7 +791,7 @@ def stat_falsified_test(
     results: pd.DataFrame,
     feat_value: Sequence[str],
     feat_pairs: Sequence[str] | None = None,
-    feat_group: Sequence[str] = ["track", "method"],
+    feat_group: Sequence[str] = ["Falsification", "Method"],
     label_cond: str = "condition",
     label_orig: str = "original",
     label_fals: str = "falsified",
@@ -811,7 +813,7 @@ def stat_falsified_test(
             counterpart (e.g. ["model", "group"]). None -> inferred as
             every non-metric, non-condition, non-group column.
         feat_group: Columns whose unique combinations define independent
-            tests (e.g. ["track", "method"] or ["method"]). None -> one
+            tests (e.g. ["Falsification", "Method"] or ["Method"]). None -> one
             global test.
         label_cond: Column that flags original vs falsified.
         label_orig: Value in label_cond for original data.
@@ -837,7 +839,6 @@ def stat_falsified_test(
     )
     group_display = (
         pd.Series(feat_group, dtype = "object")
-        .replace({"track": "Falsification", "method": "Method"})
         .str.replace("_", " ", regex = False)
         .str.title()
         .tolist()
@@ -997,12 +998,12 @@ def stat_falsified_test(
         )
 
     ## final display formatting - note: columns have been renamed already
-    for orig, disp in zip(feat_group, group_display):
+    for disp in group_display:
         if disp not in summary.columns:
             continue
-        if orig == "method":
+        if disp == "Method":
             summary[disp] = summary[disp].astype(object).str.replace("_", " ")
-        elif orig != "track" and summary[disp].dtype == object:
+        elif disp != "Falsification" and summary[disp].dtype == object:
             summary[disp] = summary[disp].astype(object).str.title()
 
     summary = summary.reindex(columns = group_display + [c for c in value_cols_order if c in summary.columns])
@@ -1014,12 +1015,12 @@ def stat_falsified_test(
 def stat_falsified_summary(
     results: pd.DataFrame,
     metrics: Sequence[str],
-    feat_group: Sequence[str] = ["track", "method"],
+    feat_group: Sequence[str] = ["Falsification", "Method"],
     subset_cols: Sequence[str] | None = None,
     label_cond: str = "condition",
     label_orig: str = "original",
     label_fals: str = "falsified",
-    track_order: Sequence[str] = ("original", "frozen", "retrain"),
+    falsification_order: Sequence[str] = ("original", "frozen", "retrain"),
     method_order: Sequence[str] = ("original", "target_remap", "random_generate", "vector_generate"),
     decimals: int = 4,
     ) -> pd.DataFrame:
@@ -1031,13 +1032,13 @@ def stat_falsified_summary(
     Args:
         results: Output of an eval_falsified_* function.
         metrics: Metrics to aggregate (e.g. FRONTIER_METRICS or CONSENSUS_METRICS).
-        feat_group: Grouping columns for the summary (default ["track", "method"]).
+        feat_group: Grouping columns for the summary (default ["Falsification", "Method"]).
         subset_cols: Columns used to deduplicate original rows before concat.
             Defaults to model/group columns inferred from the DataFrame.
         label_cond: Condition column name.
         label_orig: Original condition value.
         label_fals: Falsified condition value.
-        track_order: Ordered categories for track.
+        falsification_order: Ordered categories for Falsification.
         method_order: Ordered categories for method.
         decimals: Number of decimals to round.
 
@@ -1045,7 +1046,7 @@ def stat_falsified_summary(
         DataFrame: [*feat_group, *metrics] with display-formatted metric values per group and condition.
     """
 
-    feat_group = list(feat_group or ["track", "method"])
+    feat_group = list(feat_group or ["Falsification", "Method"])
 
     if subset_cols is None:
         subset_cols = [c for c in results.columns if c == "group" or c.startswith("model")]
@@ -1053,13 +1054,13 @@ def stat_falsified_summary(
     original = (
         results.loc[results[label_cond] == label_orig]
         .drop_duplicates(subset = subset_cols, ignore_index = True)
-        .assign(track = label_orig, method = label_orig)
+        .assign(Falsification = label_orig, Method = label_orig)
     )
     falsified = results.loc[results[label_cond] == label_fals]
 
     source = pd.concat([original, falsified], ignore_index = True)
-    source["track"] = pd.Categorical(source["track"], categories = list(track_order), ordered = True)
-    source["method"] = pd.Categorical(source["method"], categories = list(method_order), ordered = True)
+    source["Falsification"] = pd.Categorical(source["Falsification"], categories = list(falsification_order), ordered = True)
+    source["Method"] = pd.Categorical(source["Method"], categories = list(method_order), ordered = True)
 
     grouped = source.groupby(by = feat_group, observed = True)[metrics]
     summary = grouped.median()
@@ -1113,15 +1114,13 @@ def stat_falsified_summary(
     summary = summary.rename(columns = rename_map)
 
     ## display-only index renaming
-    summary.index.names = [
-        *(
-            pd.Series(summary.index.names, dtype = "object")
-            .replace({"track": "Falsification", "method": "Method"})
-            .str.replace("_", " ", regex = False)
-            .str.title()
-            .tolist()
-        )
-    ]
+    group_display = (
+        pd.Series(summary.index.names, dtype = "object")
+        .str.replace("_", " ", regex = False)
+        .str.title()
+        .tolist()
+    )
+    summary.index.names = group_display
     if decimals is not None:
         numeric_cols = list(summary.select_dtypes(include = [np.number]).columns)
         summary[numeric_cols] = summary[numeric_cols].round(decimals)
