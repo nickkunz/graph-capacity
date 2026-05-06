@@ -245,9 +245,9 @@ def _single_stage_logo_cv(
 
 
 ## --------------------------------------------------------------------------
-## separability model worker
+## separation model worker
 ## --------------------------------------------------------------------------
-def _eval_separability_model(
+def _eval_separation_model(
     model_name: str,
     model,
     data: pd.DataFrame,
@@ -266,7 +266,7 @@ def _eval_separability_model(
     ) -> tuple[list[dict], list[dict]]:
 
     """
-    Desc: evaluate all separability specifications for a single model.
+    Desc: evaluate all separation specifications for a single model.
           fold-level work stays sequential to avoid high overhead on the
           tiny 5-fold workload; parallelism is applied across models.
     Args:
@@ -398,7 +398,7 @@ def _eval_separability_model(
 
 
 ## --------------------------------------------------------------------------
-## capacity fold worker (exhaustiveness step 1)
+## capacity fold worker (attribution step 1)
 ## --------------------------------------------------------------------------
 def _run_capacity_fold(
     train_idx: np.ndarray,
@@ -469,7 +469,7 @@ def _run_capacity_fold(
 
 
 ## --------------------------------------------------------------------------
-## slack prediction fold worker (exhaustiveness step 2)
+## slack prediction fold worker (attribution step 2)
 ## --------------------------------------------------------------------------
 def _run_slack_fold(
     train_idx: np.ndarray,
@@ -571,9 +571,9 @@ def _run_slack_fold(
 
 
 ## --------------------------------------------------------------------------
-## separability training
+## separation training
 ## --------------------------------------------------------------------------
-def train_decomposed_separability(
+def train_decomposed_separation(
     data: pd.DataFrame,
     models: Dict[str, Any],
     feat_x: Sequence[str],
@@ -586,8 +586,8 @@ def train_decomposed_separability(
     ) -> dict[str, Any]:
 
     """
-    Desc: Run raw additive separability jobs. Post-processing is handled
-        separately by compile_decomposed_separability.
+    Desc: Run raw additive separation jobs. Post-processing is handled
+        separately by compile_decomposed_separation.
     Args:
         data: training data with features, target, and group columns.
         models: mapping of model name to estimator with .estimator_c and
@@ -600,7 +600,7 @@ def train_decomposed_separability(
         random_state: base random state for seed reproducibility.
         n_jobs: number of parallel model workers (-1 for all cores).
     Returns:
-        Dictionary with raw model outputs from the separability evaluation.
+        Dictionary with raw model outputs from the separation evaluation.
     """
 
     from joblib import Parallel, delayed
@@ -634,9 +634,9 @@ def train_decomposed_separability(
     model_items = list(models.items())
 
     if model_items:
-        with _tqdm_joblib(total = len(model_items), desc = "Separability evaluation"):
+        with _tqdm_joblib(total = len(model_items), desc = "Separation evaluation"):
             model_outputs = Parallel(n_jobs = n_jobs, verbose = 0)(
-                delayed(_eval_separability_model)(
+            delayed(_eval_separation_model)(
                     model_name = model_name,
                     model = model,
                     data = data,
@@ -666,16 +666,16 @@ def train_decomposed_separability(
 
 
 ## --------------------------------------------------------------------------
-## separability compilation
+## separation compilation
 ## --------------------------------------------------------------------------
-def compile_decomposed_separability(
+def compile_decomposed_separation(
     results: dict[str, Any],
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
 
     """
-    Desc: Compile raw separability outputs into frontier and prediction tables.
+    Desc: Compile raw separation outputs into frontier and prediction tables.
     Args:
-        results: Dictionary returned by train_decomposed_separability.
+        results: Dictionary returned by train_decomposed_separation.
     Returns:
         Tuple of (frontier results dataframe, per-dataset predictions dataframe).
     """
@@ -691,9 +691,9 @@ def compile_decomposed_separability(
 
 
 ## --------------------------------------------------------------------------
-## separability evaluation wrapper
+## separation evaluation wrapper
 ## --------------------------------------------------------------------------
-def eval_decomposed_separability(
+def eval_decomposed_separation(
     data: pd.DataFrame,
     models: Dict[str, Any],
     feat_x: Sequence[str],
@@ -706,7 +706,7 @@ def eval_decomposed_separability(
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
 
     """
-    Desc: Convenience wrapper that runs separability training and then compiles
+    Desc: Convenience wrapper that runs separation training and then compiles
         raw outputs into analysis-ready tables.
     Args:
         data: training data with features, target, and group columns.
@@ -723,7 +723,7 @@ def eval_decomposed_separability(
         Tuple of (frontier results dataframe, per-dataset predictions dataframe).
     """
 
-    raw = train_decomposed_separability(
+    raw = train_decomposed_separation(
         data = data,
         models = models,
         feat_x = feat_x,
@@ -734,11 +734,11 @@ def eval_decomposed_separability(
         random_state = random_state,
         n_jobs = n_jobs,
     )
-    return compile_decomposed_separability(results = raw)
+    return compile_decomposed_separation(results = raw)
 
 
 ## backward-compatible alias
-def eval_separability(
+def eval_separation(
     data: pd.DataFrame,
     models: Dict[str, Any],
     feat_x: Sequence[str],
@@ -751,7 +751,7 @@ def eval_separability(
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
 
     """
-    Desc: Backward-compatible alias for eval_decomposed_separability.
+    Desc: Convenience alias for eval_decomposed_separation.
     Args:
         data: training data with features, target, and group columns.
         models: mapping of model name to estimator bundles.
@@ -766,7 +766,7 @@ def eval_separability(
         Tuple of (frontier results dataframe, per-dataset predictions dataframe).
     """
 
-    return eval_decomposed_separability(
+    return eval_decomposed_separation(
         data = data,
         models = models,
         feat_x = feat_x,
@@ -780,9 +780,9 @@ def eval_separability(
 
 
 ## --------------------------------------------------------------------------
-## exhaustiveness model worker
+## attribution model worker
 ## --------------------------------------------------------------------------
-def _eval_exhaustiveness_model(
+def _eval_attribution_model(
     model_name: str,
     model,
     data: pd.DataFrame,
@@ -795,7 +795,7 @@ def _eval_exhaustiveness_model(
     ) -> tuple[list[dict], list[dict]]:
 
     """
-    Desc: evaluate exhaustiveness for a single model. fold-level work stays
+    Desc: evaluate residual attribution for a single model. fold-level work stays
           sequential because there are only five folds; model-level
           parallelism gives better throughput with less overhead.
     Args:
@@ -920,9 +920,9 @@ def _eval_exhaustiveness_model(
 
 
 ## --------------------------------------------------------------------------
-## exhaustiveness training
+## attribution training
 ## --------------------------------------------------------------------------
-def train_decomposed_exhaustiveness(
+def train_decomposed_attribution(
     data: pd.DataFrame,
     models: Dict[str, Any],
     feat_x: Sequence[str],
@@ -935,8 +935,8 @@ def train_decomposed_exhaustiveness(
     ) -> dict[str, Any]:
 
     """
-    Desc: Run raw exhaustiveness jobs. Post-processing is handled separately
-        by compile_decomposed_exhaustiveness.
+    Desc: Run raw residual attribution jobs. Post-processing is handled separately
+        by compile_decomposed_attribution.
     Args:
         data: training data with features, target, and group columns.
         models: mapping of model name to estimator with .estimator_c
@@ -949,7 +949,7 @@ def train_decomposed_exhaustiveness(
         random_state: base random state for seed reproducibility.
         n_jobs: number of parallel model workers (-1 for all cores).
     Returns:
-        Dictionary with raw model outputs from the exhaustiveness evaluation.
+        Dictionary with raw model outputs from the residual attribution evaluation.
     """
 
     from joblib import Parallel, delayed
@@ -961,9 +961,9 @@ def train_decomposed_exhaustiveness(
     model_items = list(models.items())
 
     if model_items:
-        with _tqdm_joblib(total = len(model_items), desc = "Exhaustiveness evaluation"):
+        with _tqdm_joblib(total = len(model_items), desc = "Residual attribution evaluation"):
             model_outputs = Parallel(n_jobs = n_jobs, verbose = 0)(
-                delayed(_eval_exhaustiveness_model)(
+            delayed(_eval_attribution_model)(
                     model_name = model_name,
                     model = model,
                     data = data,
@@ -987,16 +987,16 @@ def train_decomposed_exhaustiveness(
 
 
 ## --------------------------------------------------------------------------
-## exhaustiveness compilation
+## attribution compilation
 ## --------------------------------------------------------------------------
-def compile_decomposed_exhaustiveness(
+def compile_decomposed_attribution(
     results: dict[str, Any],
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
 
     """
-    Desc: Compile raw exhaustiveness outputs into frontier and prediction tables.
+    Desc: Compile raw residual attribution outputs into frontier and prediction tables.
     Args:
-        results: Dictionary returned by train_decomposed_exhaustiveness.
+        results: Dictionary returned by train_decomposed_attribution.
     Returns:
         Tuple of (frontier results dataframe, per-dataset predictions dataframe).
     """
@@ -1012,9 +1012,9 @@ def compile_decomposed_exhaustiveness(
 
 
 ## --------------------------------------------------------------------------
-## exhaustiveness evaluation wrapper
+## attribution evaluation wrapper
 ## --------------------------------------------------------------------------
-def eval_decomposed_exhaustiveness(
+def eval_decomposed_attribution(
     data: pd.DataFrame,
     models: Dict[str, Any],
     feat_x: Sequence[str],
@@ -1027,7 +1027,7 @@ def eval_decomposed_exhaustiveness(
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
 
     """
-    Desc: Convenience wrapper that runs exhaustiveness training and then
+    Desc: Convenience wrapper that runs residual attribution training and then
         compiles raw outputs into analysis-ready tables.
     Args:
         data: training data with features, target, and group columns.
@@ -1043,7 +1043,7 @@ def eval_decomposed_exhaustiveness(
         Tuple of (frontier results dataframe, per-dataset predictions dataframe).
     """
 
-    raw = train_decomposed_exhaustiveness(
+    raw = train_decomposed_attribution(
         data = data,
         models = models,
         feat_x = feat_x,
@@ -1054,11 +1054,11 @@ def eval_decomposed_exhaustiveness(
         random_state = random_state,
         n_jobs = n_jobs,
     )
-    return compile_decomposed_exhaustiveness(results = raw)
+    return compile_decomposed_attribution(results = raw)
 
 
 ## backward-compatible alias
-def eval_exhaustiveness(
+def eval_attribution(
     data: pd.DataFrame,
     models: Dict[str, Any],
     feat_x: Sequence[str],
@@ -1071,7 +1071,7 @@ def eval_exhaustiveness(
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
 
     """
-    Desc: Backward-compatible alias for eval_decomposed_exhaustiveness.
+    Desc: Convenience alias for eval_decomposed_attribution.
     Args:
         data: training data with features, target, and group columns.
         models: mapping of model name to estimator bundles.
@@ -1086,7 +1086,7 @@ def eval_exhaustiveness(
         Tuple of (frontier results dataframe, per-dataset predictions dataframe).
     """
 
-    return eval_decomposed_exhaustiveness(
+    return eval_decomposed_attribution(
         data = data,
         models = models,
         feat_x = feat_x,
@@ -1112,7 +1112,7 @@ def stat_decomposed_summary(
     """
     Desc: Summarize median frontier metrics by decomposition specification.
     Args:
-        results: Frontier result table returned by compile_decomposed_separability.
+        results: Frontier result table returned by compile_decomposed_separation.
         spec_order: Specification order for table display.
         metrics: Frontier metric columns to summarize.
         decimals: Number of decimals to round.
@@ -1181,9 +1181,9 @@ def stat_decomposed_summary(
 
 
 ## --------------------------------------------------------------------------
-## decomposition exhaustiveness test
+## decomposition attribution test
 ## --------------------------------------------------------------------------
-def stat_decomposed_exhaustiveness(
+def stat_decomposed_attribution(
     predictions: pd.DataFrame,
     decimals: int = 4,
     ) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -1191,7 +1191,7 @@ def stat_decomposed_exhaustiveness(
     """
     Desc: Test whether Z predicts slack better than X after C(X) extraction.
     Args:
-        predictions: Prediction table returned by compile_decomposed_exhaustiveness.
+        predictions: Prediction table returned by compile_decomposed_attribution.
         decimals: Number of decimals to round.
     Returns:
         Tuple of (paired Wilcoxon test table, feature-set error summary table).
@@ -1290,7 +1290,7 @@ def stat_decomposed_test(
     """
     Desc: Test additive non-inferiority against relaxed specifications.
     Args:
-        results: Frontier result table returned by compile_decomposed_separability.
+        results: Frontier result table returned by compile_decomposed_separation.
         delta: Non-inferiority margin in EI points.
         ceiling_specs: Relaxed specifications to compare against additive.
         decimals: Number of decimals to round.
@@ -1408,7 +1408,7 @@ def stat_decomposed_additive(
     """
     Desc: Summarize absolute additive EI and non-inferiority coverage.
     Args:
-        results: Frontier result table returned by compile_decomposed_separability.
+        results: Frontier result table returned by compile_decomposed_separation.
         sufficiency: Table returned by stat_decomposed_test.
         delta: Non-inferiority margin in EI points.
         decimals: Number of decimals to round.
