@@ -37,7 +37,12 @@ from src.data.helpers import (
     _force_finite_dict,
     _clip_unit_interval
 )
-from src.evaluators.metrics import FRONTIER_METRICS, CONSENSUS_METRICS
+
+## constants
+from src.evaluators.metrics import (
+    FRONTIER_METRICS,
+    CONSENSUS_METRICS
+)
 
 ## joblib progress bar bridge
 @contextmanager
@@ -1337,72 +1342,6 @@ def stat_perturbed_test(
     summary = summary.set_index(group_display) if (index and group_display) else summary
     summary = summary.astype(object).where(pd.notna(summary), '-')
     return summary
-
-## specify delta from baseline variability across learners
-def spec_marginal_delta(
-    results: pd.DataFrame,
-    feat_value: Sequence[str],
-    track: str | Sequence[str] | None = None,
-    label_pert: str = "perturbation",
-    label_base: str = "baseline",
-    method: Literal["mad", "iqr", "max"] = "iqr",
-    scale: float = 0.5,
-    decimals: int = 2,
-    ) -> float:
-
-    """
-    Desc:
-        Compute a data-driven equivalence margin (delta) from the natural
-        variability of baseline metric values across learners. Delta is
-        anchored entirely to original data performance. It is pre-specifed
-        and independent of any perturbation effect.
-
-    Args:
-        results: Full aggregated output from eval_perturb, including
-            baseline rows.
-        feat_value: Metric columns (e.g. ["ei"]).
-        feat_pairs: Unused (kept for API compatibility).
-        track: Evaluation track to restrict to.
-        label_pert: Perturbation label column.
-        label_base: Baseline label.
-        method: Dispersion estimator ("mad" for median absolute deviation,
-            "iqr" for interquartile range, "max" for range).
-        scale: Multiplier applied to the dispersion estimate
-            (default 0.5).
-        decimals: Number of decimal places to round the result
-            (default 2).
-
-    Returns:
-        Scalar equivalence margin delta.
-    """
-
-    data = results.copy()
-
-    if track is not None and "track" in data.columns:
-        track_vals = [track] if isinstance(track, str) else list(track)
-        data = data.loc[data["track"].isin(track_vals)]
-
-    baseline = data.loc[data[label_pert] == label_base]
-
-    vals = np.concatenate([
-        baseline[m].to_numpy(dtype=float) for m in feat_value
-    ])
-    vals = vals[np.isfinite(vals)]
-
-    if len(vals) < 2:
-        return 0.05  # fallback
-
-    if method == "mad":
-        dispersion = float(np.median(np.abs(vals - np.median(vals))))
-    elif method == "iqr":
-        dispersion = float(np.percentile(vals, 75) - np.percentile(vals, 25))
-    elif method == "max":
-        dispersion = float(np.max(vals) - np.min(vals))
-    else:
-        raise ValueError(f"unknown method: {method}")
-
-    return round(max(float(scale * dispersion), 1e-6), decimals)
-
 
 ## ----------------------------------------------------------------------------
 ## tost equivalence test for perturbation stability
