@@ -1186,7 +1186,7 @@ def stat_decomposed_summary(
 def stat_decomposed_attribution(
     predictions: pd.DataFrame,
     decimals: int = 4,
-    ) -> tuple[pd.DataFrame, pd.DataFrame]:
+    ) -> pd.DataFrame:
 
     """
     Desc: Test whether Z predicts slack better than X after C(X) extraction.
@@ -1194,7 +1194,7 @@ def stat_decomposed_attribution(
         predictions: Prediction table returned by compile_decomposed_attribution.
         decimals: Number of decimals to round.
     Returns:
-        Tuple of (paired Wilcoxon test table, feature-set error summary table).
+        Paired Wilcoxon test table.
     Raises:
         ValueError: If required columns are missing.
     """
@@ -1256,18 +1256,9 @@ def stat_decomposed_attribution(
         "DIFF.": "Yes" if np.isfinite(p_value) and p_value < 0.05 and delta.median() > 0 else "No",
     }])
 
-    error_summary = (
-        domain_err
-        .groupby(by = "residual_features", observed = True)["abs_error"]
-        .agg(["mean", "std", "count"])
-        .rename(index = {"X_to_slack": "X -> SLACK", "Z_to_slack": "Z -> SLACK"})
-        .rename(columns = {"mean": "MEAN |ERROR|", "std": "STD |ERROR|", "count": "N"})
-    )
-    error_summary.index.name = "RESIDUAL FEATURES"
-
     numeric_cols = list(test.select_dtypes(include = [np.number]).columns)
     test[numeric_cols] = test[numeric_cols].round(decimals)
-    return test, error_summary.round(decimals)
+    return test
 
 
 ## --------------------------------------------------------------------------
