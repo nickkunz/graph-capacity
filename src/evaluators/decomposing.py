@@ -1171,7 +1171,7 @@ def stat_decomposed_summary(
     }
     table = table.reindex(columns = metrics_ordered).rename(columns = rename_map)
     table = table.rename(index = lambda spec: str(spec).replace("_", " ").title())
-    table.index.name = "SPECIFICATION"
+    table.index.name = "Specification"
 
     if decimals is not None:
         numeric_cols = list(table.select_dtypes(include = [np.number]).columns)
