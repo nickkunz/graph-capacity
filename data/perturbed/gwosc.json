@@ -368,7 +368,7 @@
         }
       }
     ],
-    "node_sample": [
+    "sampling": [
       {
         "intensity": 0.05,
         "invariants": {
