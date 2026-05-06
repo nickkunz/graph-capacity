@@ -1223,8 +1223,8 @@ def stat_decomposed_attribution(
 
     delta = (x_slack_err - z_slack_err).dropna()
     n = len(delta)
-    n_z_better = int((delta > 0).sum())
-    n_x_better = int((delta < 0).sum())
+    p_label = "One-sided p"
+    tail_cols = ["Rank-biserial r", p_label, "Holm-adj. p", "Sig.", "Diff."]
 
     if n < 2 or int((delta != 0).sum()) < 2:
         p_value = np.nan
@@ -1238,27 +1238,42 @@ def stat_decomposed_attribution(
         r_effect = (pos_rank_sum - neg_rank_sum) / float(np.sum(ranks))
 
     print(f"Paired One-Sided Test (Wilcoxon Signed-Rank): n = {n}")
-    print("H0: Δ |ERROR| <= 0")
-    print("H1: Δ |ERROR| > 0")
-    print("Δ |ERROR|: paired X -> slack error minus Z -> slack error")
-    print("Rank-biserial r: positive values favor Z -> slack")
+    print("H₀: Δ MAE ≤ 0")
+    print("H₁: Δ MAE > 0")
+    print("Median Δ MAE: Median of paired differences, not the difference of marginal medians")
+    print("Rank-biserial r: Paired effect size, positive values favor Z -> slack")
+    print("One-sided p: Wilcoxon signed-rank p-value for H₁")
+    print("Holm-adj. p: Holm-Bonferroni adjusted one-sided p-value")
+    print("Diff.: Yes if Holm-adj. p < 0.05 and Median Δ MAE > 0")
+    print("Significance codes reflect Holm-adj. p")
     print("*** p < 0.001, ** p < 0.01, * p < 0.05")
 
-    test = pd.DataFrame([{
-        "N": n,
-        "Z BETTER": n_z_better,
-        "X BETTER": n_x_better,
-        "MEAN Δ |ERROR|": delta.mean(),
-        "MEDIAN Δ |ERROR|": delta.median(),
-        "RANK-BISERIAL R": r_effect,
-        "WILCOXON P": p_value,
-        "SIG.": _sig_code(float(p_value)),
-        "DIFF.": "Yes" if np.isfinite(p_value) and p_value < 0.05 and delta.median() > 0 else "No",
+    holm = _holm_adjust([p_value])[0]
+    summary = pd.DataFrame([{
+        "Median Δ MAE": delta.median(),
+        "Rank-biserial r": r_effect,
+        p_label: p_value,
+        "Holm-adj. p": holm,
+        "Sig.": "-" if not np.isfinite(holm) else _sig_code(float(holm)),
+        "Diff.": (
+            "Yes"
+            if np.isfinite(holm) and np.isfinite(delta.median()) and holm < 0.05 and delta.median() > 0
+            else "No"
+            if np.isfinite(holm) and np.isfinite(delta.median())
+            else "-"
+        ),
     }])
 
-    numeric_cols = list(test.select_dtypes(include = [np.number]).columns)
-    test[numeric_cols] = test[numeric_cols].round(decimals)
-    return test
+    num_cols = [
+        c for c in summary.columns
+        if c.startswith("Median") or c in ["Rank-biserial r", p_label, "Holm-adj. p"]
+    ]
+    for col in num_cols:
+        summary[col] = summary[col].apply(
+            lambda v: f"{float(v):.{decimals}f}" if pd.notna(v) and np.isfinite(float(v)) else v
+        )
+
+    return summary[["Median Δ MAE", *tail_cols]].astype(object).where(pd.notna(summary), "-")
 
 
 ## --------------------------------------------------------------------------
