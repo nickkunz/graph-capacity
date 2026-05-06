@@ -242,3 +242,219 @@ def plot_consensus(
     if show:
         plt.show()
     return fig, axes_array, matrices
+
+
+def plot_decomposition_evidence(
+    results: pd.DataFrame,
+    noninferiority: pd.DataFrame,
+    attribution: pd.DataFrame,
+    delta: float,
+    specification_order: Sequence[str] | None = None,
+    figsize: tuple[float, float] = (13.5, 4.8),
+    title: str = "Evidence for the additive decomposition",
+    show: bool = True,
+    ) -> tuple[Figure, np.ndarray]:
+
+    """
+    Desc:
+        Plot a three-panel decomposition summary showing specification-level
+        EI distributions, non-inferiority gaps relative to additive, and the
+        residual-attribution contrast.
+
+    Args:
+        results: Decomposition results with at least specification and ei
+            columns.
+        noninferiority: Output table from stat_decomposed_test.
+        attribution: Output table from stat_decomposed_attribution.
+        delta: Non-inferiority margin used in the paired EI tests.
+        specification_order: Display order for decomposition specifications.
+        figsize: Figure size in inches.
+        title: Figure title.
+        show: Whether to call plt.show() before returning.
+
+    Returns:
+        Tuple containing the figure and axes array.
+
+    Raises:
+        ValueError: If required columns are missing.
+    """
+
+    if specification_order is None:
+        specification_order = (
+            "additive",
+            "interaction",
+            "interaction_joint",
+            "joint",
+            "capacity_only",
+            "dynamics_only",
+        )
+
+    def format_specification(specification: str) -> str:
+        return {
+            "additive": "Additive",
+            "interaction": "Interaction",
+            "interaction_joint": "Interaction-Joint",
+            "joint": "Joint",
+            "capacity_only": "Capacity-Only",
+            "dynamics_only": "Dynamics-Only",
+        }.get(specification, str(specification).replace("_", " ").title())
+
+    def coerce_numeric(series: pd.Series) -> pd.Series:
+        return pd.to_numeric(series.astype(str).str.replace(",", "", regex = False), errors = "coerce")
+
+    required_results = {"specification", "ei"}
+    missing_results = sorted(required_results - set(results.columns))
+    if missing_results:
+        raise ValueError(f"Missing required result columns: {missing_results}")
+
+    ni_frame = noninferiority.reset_index().copy()
+    attr_frame = attribution.reset_index().copy()
+
+    required_ni = {"Specification", "Median Δ EI", "Holm-adj. p", "NI."}
+    missing_ni = sorted(required_ni - set(ni_frame.columns))
+    if missing_ni:
+        raise ValueError(f"Missing required non-inferiority columns: {missing_ni}")
+
+    required_attr = {"Property", "Comparison", "Median Δ MAE", "Holm-adj. p", "Diff."}
+    missing_attr = sorted(required_attr - set(attr_frame.columns))
+    if missing_attr:
+        raise ValueError(f"Missing required attribution columns: {missing_attr}")
+
+    summary = (
+        results
+        .groupby(by = "specification", observed = True)["ei"]
+        .agg(
+            median = "median",
+            q1 = lambda values: values.quantile(0.25),
+            q3 = lambda values: values.quantile(0.75),
+        )
+        .reset_index()
+    )
+    summary["display"] = summary["specification"].map(format_specification)
+
+    ordered_specs = [spec for spec in specification_order if spec in set(summary["specification"])]
+    ordered_specs.extend(
+        spec for spec in summary["specification"].tolist() if spec not in ordered_specs
+    )
+    summary["specification"] = pd.Categorical(
+        summary["specification"],
+        categories = ordered_specs,
+        ordered = True,
+    )
+    summary = summary.sort_values("specification", ascending = True).reset_index(drop = True)
+
+    ni_frame["Median Δ EI"] = coerce_numeric(ni_frame["Median Δ EI"])
+    ni_frame["Holm-adj. p"] = coerce_numeric(ni_frame["Holm-adj. p"])
+    ni_frame["display"] = ni_frame["Specification"].astype(str)
+    ni_frame["order"] = ni_frame["display"].map(
+        {format_specification(spec): idx for idx, spec in enumerate(ordered_specs)}
+    )
+    ni_frame = ni_frame.sort_values("order").reset_index(drop = True)
+
+    attr_frame["Median Δ MAE"] = coerce_numeric(attr_frame["Median Δ MAE"])
+    attr_frame["Holm-adj. p"] = coerce_numeric(attr_frame["Holm-adj. p"])
+    attr_row = attr_frame.iloc[0]
+
+    fig = plt.figure(figsize = figsize, constrained_layout = True)
+    grid = fig.add_gridspec(nrows = 1, ncols = 3, width_ratios = [1.5, 1.2, 0.9])
+    axes = np.array([
+        fig.add_subplot(grid[0, 0]),
+        fig.add_subplot(grid[0, 1]),
+        fig.add_subplot(grid[0, 2]),
+    ], dtype = object)
+
+    additive_color = "#0f4c5c"
+    comparison_color = "#8fb8de"
+    success_color = "#2d6a4f"
+    warning_color = "#c16630"
+    neutral_color = "#6c757d"
+
+    y_summary = np.arange(len(summary))[::-1]
+    for y_value, (_, row) in zip(y_summary, summary.iterrows()):
+        is_additive = str(row["specification"]) == "additive"
+        color = additive_color if is_additive else comparison_color
+        axes[0].hlines(y = y_value, xmin = row["q1"], xmax = row["q3"], color = color, linewidth = 5, alpha = 0.8)
+        axes[0].scatter(row["median"], y_value, s = 90 if is_additive else 70, color = color, edgecolor = "white", linewidth = 1.1, zorder = 3)
+    axes[0].set_yticks(y_summary)
+    axes[0].set_yticklabels(summary["display"], fontsize = 9)
+    axes[0].set_xlabel("EI median with IQR", fontsize = 9)
+    axes[0].set_title("Specification Performance", fontsize = 11)
+    axes[0].grid(axis = "x", alpha = 0.18, linewidth = 0.8)
+    for spine in ["top", "right", "left"]:
+        axes[0].spines[spine].set_visible(False)
+    axes[0].tick_params(axis = "y", length = 0)
+
+    y_ni = np.arange(len(ni_frame))[::-1]
+    gap_min = float(np.nanmin(np.r_[ni_frame["Median Δ EI"].to_numpy(dtype = float), 0.0]))
+    gap_max = float(np.nanmax(np.r_[ni_frame["Median Δ EI"].to_numpy(dtype = float), delta]))
+    gap_pad = max(0.02, 0.08 * (gap_max - gap_min if gap_max > gap_min else 1.0))
+    axes[1].axvspan(gap_min - gap_pad, delta, color = "#d8f3dc", alpha = 0.55)
+    axes[1].axvline(0.0, color = neutral_color, linewidth = 1.0)
+    axes[1].axvline(delta, color = success_color, linewidth = 1.4, linestyle = "--")
+    for y_value, (_, row) in zip(y_ni, ni_frame.iterrows()):
+        decision = str(row["NI."])
+        color = success_color if decision == "Yes" else warning_color if decision == "No" else neutral_color
+        axes[1].hlines(y = y_value, xmin = 0.0, xmax = row["Median Δ EI"], color = color, linewidth = 2.5)
+        axes[1].scatter(row["Median Δ EI"], y_value, s = 65, color = color, edgecolor = "white", linewidth = 1.0, zorder = 3)
+        axes[1].text(
+            x = gap_max + gap_pad * 0.15,
+            y = y_value,
+            s = decision,
+            va = "center",
+            ha = "left",
+            fontsize = 8,
+            color = color,
+        )
+    axes[1].set_xlim(gap_min - gap_pad, gap_max + gap_pad * 1.8)
+    axes[1].set_yticks(y_ni)
+    axes[1].set_yticklabels(ni_frame["display"], fontsize = 9)
+    axes[1].set_xlabel("Median Δ EI", fontsize = 9)
+    axes[1].set_title("Non-Inferiority vs Additive", fontsize = 11)
+    axes[1].text(delta, len(ni_frame) - 0.2, f"δ = {delta:.2f}", color = success_color, fontsize = 8, ha = "left", va = "bottom")
+    axes[1].grid(axis = "x", alpha = 0.18, linewidth = 0.8)
+    for spine in ["top", "right", "left"]:
+        axes[1].spines[spine].set_visible(False)
+    axes[1].tick_params(axis = "y", length = 0)
+
+    mae_value = float(attr_row["Median Δ MAE"])
+    attr_color = success_color if str(attr_row["Diff."]) == "Yes" else warning_color
+    attr_limit = max(abs(mae_value) * 1.35, 0.2)
+    axes[2].axvline(0.0, color = neutral_color, linewidth = 1.0)
+    axes[2].barh([0], [mae_value], color = attr_color, height = 0.42, alpha = 0.85)
+    axes[2].scatter([mae_value], [0], s = 80, color = attr_color, edgecolor = "white", linewidth = 1.0, zorder = 3)
+    axes[2].set_xlim(-attr_limit * 0.2, attr_limit)
+    axes[2].set_ylim(-0.9, 0.9)
+    axes[2].set_yticks([])
+    axes[2].set_xlabel("Median Δ MAE", fontsize = 9)
+    axes[2].set_title("Residual Attribution", fontsize = 11)
+    axes[2].grid(axis = "x", alpha = 0.18, linewidth = 0.8)
+    for spine in ["top", "right", "left"]:
+        axes[2].spines[spine].set_visible(False)
+    axes[2].text(
+        x = 0.02,
+        y = 0.96,
+        s = (
+            f"{attr_row['Comparison']}\n"
+            f"Diff. = {attr_row['Diff.']}\n"
+            f"Holm-adj. p = {attr_row['Holm-adj. p']}"
+        ),
+        transform = axes[2].transAxes,
+        ha = "left",
+        va = "top",
+        fontsize = 8.5,
+        bbox = {"boxstyle": "round,pad=0.35", "facecolor": "#f8f9fa", "edgecolor": "#d0d7de"},
+    )
+    axes[2].text(
+        x = mae_value,
+        y = 0.18,
+        s = "favors dynamics" if mae_value >= 0 else "favors topology",
+        ha = "center",
+        va = "bottom",
+        fontsize = 8,
+        color = attr_color,
+    )
+
+    fig.suptitle(title, fontsize = 13)
+    if show:
+        plt.show()
+    return fig, axes
