@@ -1186,6 +1186,7 @@ def stat_decomposed_summary(
 def stat_decomposed_attribution(
     predictions: pd.DataFrame,
     decimals: int = 4,
+    index: bool = True,
     ) -> pd.DataFrame:
 
     """
@@ -1193,6 +1194,7 @@ def stat_decomposed_attribution(
     Args:
         predictions: Prediction table returned by compile_decomposed_attribution.
         decimals: Number of decimals to round.
+        index: If True, set label columns as the DataFrame index.
     Returns:
         Paired Wilcoxon test table.
     Raises:
@@ -1250,6 +1252,8 @@ def stat_decomposed_attribution(
 
     holm = _holm_adjust([p_value])[0]
     summary = pd.DataFrame([{
+        "Property": "Residual Attribution",
+        "Comparison": "Topology vs Dynamics",
         "Median Δ MAE": delta.median(),
         "Rank-biserial r": r_effect,
         p_label: p_value,
@@ -1273,7 +1277,10 @@ def stat_decomposed_attribution(
             lambda v: f"{float(v):.{decimals}f}" if pd.notna(v) and np.isfinite(float(v)) else v
         )
 
-    return summary[["Median Δ MAE", *tail_cols]].astype(object).where(pd.notna(summary), "-")
+    label_cols = ["Property", "Comparison"]
+    summary = summary.reindex(columns = [*label_cols, "Median Δ MAE", *tail_cols])
+    summary = summary.set_index(label_cols) if index else summary
+    return summary.astype(object).where(pd.notna(summary), "-")
 
 
 ## --------------------------------------------------------------------------
