@@ -6,7 +6,7 @@ from joblib import parallel
 from contextlib import contextmanager
 from joblib.parallel import BatchCompletionCallBack
 from typing import Sequence, Dict, Any, Iterator
-from scipy.stats import binomtest, rankdata, ttest_1samp, wilcoxon
+from scipy.stats import rankdata, wilcoxon
 
 ## modules
 from src.evaluators.metrics import FRONTIER_METRICS
@@ -1100,9 +1100,9 @@ def eval_exhaustiveness(
 
 
 ## --------------------------------------------------------------------------
-## decomposition separability summary
+## decomposition specification summary
 ## --------------------------------------------------------------------------
-def stat_decomposed_separability(
+def stat_decomposed_summary(
     results: pd.DataFrame,
     spec_order: Sequence[str] = SPECIFICATION_ORDER,
     metrics: Sequence[str] = ("ei", "vr", "mv", "ms"),
@@ -1110,14 +1110,15 @@ def stat_decomposed_separability(
     ) -> pd.DataFrame:
 
     """
-    Desc: Summarize mean frontier metrics by decomposition specification.
+    Desc: Summarize median frontier metrics by decomposition specification.
     Args:
         results: Frontier result table returned by compile_decomposed_separability.
         spec_order: Specification order for table display.
         metrics: Frontier metric columns to summarize.
         decimals: Number of decimals to round.
     Returns:
-        Display-ready dataframe indexed by specification with uppercase metrics.
+        Display-ready dataframe indexed by specification, with EI shown as IQR
+            when present.
     Raises:
         ValueError: If required columns are missing.
     """
@@ -1127,18 +1128,56 @@ def stat_decomposed_separability(
     if missing:
         raise ValueError(f"Missing required columns: {missing}")
 
-    metrics_ordered = ["ei", *[metric for metric in metrics if metric != "ei"]]
-    present_specs = set(results["specification"].dropna().unique())
-    table = (
-        results
-        .groupby(by = "specification", observed = True)[metrics_ordered]
-        .mean()
-        .reindex(index = [spec for spec in spec_order if spec in present_specs])
-        .rename(index = lambda spec: str(spec).replace("_", " ").title())
+    iqr_metric = next((metric for metric in ["ei", "ci"] if metric in metrics), None)
+    metrics_ordered = (
+        [iqr_metric, *[metric for metric in metrics if metric != iqr_metric]]
+        if iqr_metric is not None else metrics
     )
+    observed_specs = results["specification"].dropna().drop_duplicates().tolist()
+    present_specs = set(observed_specs)
+    spec_index = [spec for spec in spec_order if spec in present_specs]
+    spec_index.extend([spec for spec in observed_specs if spec not in spec_index])
+    grouped = results.groupby(by = "specification", observed = True)[metrics_ordered]
+    table = grouped.median().reindex(index = spec_index)
+    q1 = grouped.quantile(q = 0.25).reindex(index = spec_index)
+    q3 = grouped.quantile(q = 0.75).reindex(index = spec_index)
+
+    def _format_iqr(row: pd.Series) -> str:
+        if decimals is None:
+            return f"{row['median']} [{row['q1']}, {row['q3']}]"
+
+        return (
+            f"{row['median']:.{decimals}f} "
+            f"[{row['q1']:.{decimals}f}, {row['q3']:.{decimals}f}]"
+        )
+
+    if iqr_metric is not None:
+        table = table.astype({iqr_metric: object})
+        table[iqr_metric] = pd.DataFrame(
+            data = {
+                "median": table[iqr_metric],
+                "q1": q1[iqr_metric],
+                "q3": q3[iqr_metric],
+            },
+            index = table.index,
+        ).apply(
+            func = _format_iqr,
+            axis = 1,
+        )
+
+    rename_map = {
+        metric: f"{metric.upper()} [IQR]" if metric == iqr_metric else metric.upper()
+        for metric in metrics_ordered
+    }
+    table = table.reindex(columns = metrics_ordered).rename(columns = rename_map)
+    table = table.rename(index = lambda spec: str(spec).replace("_", " ").title())
     table.index.name = "SPECIFICATION"
-    table.columns = [column.upper() for column in table.columns]
-    return table.round(decimals)
+
+    if decimals is not None:
+        numeric_cols = list(table.select_dtypes(include = [np.number]).columns)
+        table[numeric_cols] = table[numeric_cols].round(decimals)
+
+    return table
 
 
 ## --------------------------------------------------------------------------
@@ -1232,9 +1271,9 @@ def stat_decomposed_exhaustiveness(
 
 
 ## --------------------------------------------------------------------------
-## decomposition sufficiency non-inferiority test
+## decomposition non-inferiority test
 ## --------------------------------------------------------------------------
-def stat_decomposed_sufficiency(
+def stat_decomposed_test(
     results: pd.DataFrame,
     delta: float = 0.05,
     ceiling_specs: Sequence[str] = (
@@ -1273,6 +1312,8 @@ def stat_decomposed_sufficiency(
         .set_index(keys = ["model", "group"])["ei"]
     )
 
+    p_label = "One-sided p"
+    tail_cols = ["Rank-biserial r", p_label, "Holm-adj. p", "Sig.", "NI."]
     rows = []
     for spec in ceiling_specs:
         spec_ei = (
@@ -1282,54 +1323,76 @@ def stat_decomposed_sufficiency(
         )
         gap = (spec_ei - additive_ei).dropna()
         n = len(gap)
-        n_spec_better = int((gap > 0).sum())
-        n_additive_better = int((gap <= 0).sum())
 
-        if n < 2 or int((gap - delta != 0).sum()) < 2:
-            p_t, p_w, p_sign = np.nan, np.nan, np.nan
+        margin_gap = delta - gap
+        if n < 2 or int((margin_gap != 0).sum()) < 2:
+            p_w = np.nan
+            r_effect = np.nan
         else:
-            _, p_t = ttest_1samp(a = gap.values, popmean = delta, alternative = "less")
-            _, p_w = wilcoxon(x = gap.values - delta, alternative = "less")
-            n_above = int((gap.values >= delta).sum())
-            p_sign = binomtest(k = n_above, n = n, p = 0.5, alternative = "less").pvalue
+            _, p_w = wilcoxon(x = margin_gap.values, alternative = "greater")
+            margin_nonzero = margin_gap[margin_gap != 0]
+            ranks = rankdata(np.abs(margin_nonzero), method = "average")
+            pos_rank_sum = float(np.sum(ranks[margin_nonzero > 0]))
+            neg_rank_sum = float(np.sum(ranks[margin_nonzero < 0]))
+            r_effect = (pos_rank_sum - neg_rank_sum) / float(np.sum(ranks))
 
         rows.append({
-            "SPECIFICATION": spec.replace("_", " ").title(),
-            "N": n,
-            "SPEC BETTER": n_spec_better,
-            "ADDITIVE BETTER": n_additive_better,
-            "MEAN Δ EI": gap.mean(),
-            "MEDIAN Δ EI": gap.median(),
-            "T-TEST P": p_t,
-            "WILCOXON P": p_w,
-            "SIGN P": p_sign,
+            "Specification": spec.replace("_", " ").title(),
+            "Median Δ EI": gap.median(),
+            "Rank-biserial r": r_effect,
+            p_label: p_w,
         })
 
     summary = pd.DataFrame(rows)
-    holm = _holm_adjust(summary["WILCOXON P"].to_numpy(dtype = float, copy = True))
-    summary["HOLM-ADJ. P"] = holm
-    summary["SIG."] = summary["HOLM-ADJ. P"].map(_sig_code)
-    median_gap = summary["MEDIAN Δ EI"].to_numpy(dtype = float, copy = True)
-    summary["NI."] = np.where(
-        np.isfinite(holm) & (holm < 0.05) & np.isfinite(median_gap) & (median_gap < delta),
+    holm = _holm_adjust(summary[p_label].to_numpy(dtype = float, copy = True))
+    summary["Holm-adj. p"] = holm
+    summary["Sig."] = summary["Holm-adj. p"].map(
+        lambda p: "-" if not np.isfinite(p) else _sig_code(float(p))
+    )
+    median_gap = summary["Median Δ EI"].to_numpy(dtype = float, copy = True)
+    decision = np.full(shape = len(summary), fill_value = "-", dtype = object)
+    valid_decision = np.isfinite(holm) & np.isfinite(median_gap)
+    decision[valid_decision] = np.where(
+        (holm[valid_decision] < 0.05) & (median_gap[valid_decision] < delta),
         "Yes",
         "No",
     )
+    summary["NI."] = decision
 
-    n_display = int(summary["N"].iloc[0]) if summary["N"].nunique() == 1 and len(summary) else "varies"
+    n_by_spec = []
+    for spec in ceiling_specs:
+        spec_ei = (
+            results
+            .query("specification == @spec")
+            .set_index(keys = ["model", "group"])["ei"]
+        )
+        n_by_spec.append(len((spec_ei - additive_ei).dropna()))
+    n_display = int(n_by_spec[0]) if len(set(n_by_spec)) == 1 and len(n_by_spec) else "varies"
     print(f"Paired Non-Inferiority Test (Wilcoxon Signed-Rank): n = {n_display}, δ = {delta}")
-    print("H0: Δ EI >= δ")
-    print("H1: Δ EI < δ")
-    print("Median Δ EI: relaxed specification minus additive")
-    print("Holm-adj. p: Holm-Bonferroni adjusted Wilcoxon p-value")
+    print("H₀: Δ EI ≥ δ")
+    print("H₁: Δ EI < δ")
+    print("Median Δ EI: Median of paired differences, not the difference of marginal medians")
+    print("Rank-biserial r: Paired effect size, positive values favor non-inferiority")
+    print("One-sided p: Wilcoxon signed-rank p-value for H₁")
+    print("Holm-adj. p: Holm-Bonferroni adjusted one-sided p-value")
     print("NI.: Yes if Holm-adj. p < 0.05 and Median Δ EI < δ")
+    print("Significance codes reflect Holm-adj. p")
     print("*** p < 0.001, ** p < 0.01, * p < 0.05")
 
-    numeric_cols = list(summary.select_dtypes(include = [np.number]).columns)
-    summary[numeric_cols] = summary[numeric_cols].round(decimals)
+    summary = summary[["Specification", "Median Δ EI", *tail_cols]]
+
+    num_cols = [
+        c for c in summary.columns
+        if c.startswith("Median") or c in ["Rank-biserial r", p_label, "Holm-adj. p"]
+    ]
+    for col in num_cols:
+        summary[col] = summary[col].apply(
+            lambda v: f"{float(v):.{decimals}f}" if pd.notna(v) and np.isfinite(float(v)) else v
+        )
+
     if index:
-        summary = summary.set_index("SPECIFICATION")
-    return summary
+        summary = summary.set_index("Specification")
+    return summary.astype(object).where(pd.notna(summary), "-")
 
 
 ## --------------------------------------------------------------------------
@@ -1346,7 +1409,7 @@ def stat_decomposed_additive(
     Desc: Summarize absolute additive EI and non-inferiority coverage.
     Args:
         results: Frontier result table returned by compile_decomposed_separability.
-        sufficiency: Table returned by stat_decomposed_sufficiency.
+        sufficiency: Table returned by stat_decomposed_test.
         delta: Non-inferiority margin in EI points.
         decimals: Number of decimals to round.
     Returns:
@@ -1367,14 +1430,15 @@ def stat_decomposed_additive(
         .mean()
     )
     sufficiency_table = sufficiency.reset_index(drop = False)
-    p_col = "HOLM-ADJ. P" if "HOLM-ADJ. P" in sufficiency_table.columns else "WILCOXON P"
+    p_col = "Holm-adj. p" if "Holm-adj. p" in sufficiency_table.columns else "HOLM-ADJ. P"
+    gap_col = "Median Δ EI" if "Median Δ EI" in sufficiency_table.columns else "MEAN Δ EI"
     n_sig = int((pd.to_numeric(sufficiency_table[p_col], errors = "coerce") < 0.05).sum())
     n_total = len(sufficiency_table)
 
     table = pd.DataFrame([{
         "MEAN EI": additive_summary["ei"].mean(),
         "SD EI": additive_summary["ei"].std(),
-        "MAX MEAN Δ EI": pd.to_numeric(sufficiency_table["MEAN Δ EI"], errors = "coerce").max(),
+        "MAX MEDIAN Δ EI": pd.to_numeric(sufficiency_table[gap_col], errors = "coerce").max(),
         "MARGIN Δ": delta,
         "NON-INFERIOR": f"{n_sig}/{n_total}",
         "WORST ADJ. P": pd.to_numeric(sufficiency_table[p_col], errors = "coerce").max(),
