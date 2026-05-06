@@ -286,7 +286,7 @@ def spec_marginal_delta(
     label_pert: str | None = None,
     label_base: str = "baseline",
     method: Literal["mad", "iqr", "max"] = "iqr",
-    scale: float = 0.5,
+    scale: float = 1.0,  ## iqr range for natural variability
     decimals: int = 2,
     ) -> float:
 
