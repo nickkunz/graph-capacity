@@ -2,6 +2,7 @@
 import sys
 import numpy as np
 import pandas as pd
+from tqdm import tqdm
 from pathlib import Path
 from itertools import combinations
 from typing import Dict, Any, Sequence
@@ -69,21 +70,26 @@ def train_falsified_transfer(
     groups_proc = data_proc[group].values
 
     ## original-data cv: repeated across seeds, then average predictions
-    real_results = Parallel(n_jobs = n_jobs)(
-        delayed(logo_cross_valid)(
-            data = data_proc,
-            feat_x = feat_x,
-            feat_z = feat_z,
-            estimator_c = models[name].estimator_c,
-            estimator_r = models[name].estimator_r,
-            target = target,
-            group = group,
-            random_state = None if random_state is None else int(random_state) + repeat_idx,
-            n_jobs = 1,
-        )
-        for name in model_names
-        for repeat_idx in range(n_repeats)
-    )
+    real_results = list(tqdm(
+        Parallel(n_jobs = n_jobs, return_as = "generator")(
+            delayed(logo_cross_valid)(
+                data = data_proc,
+                feat_x = feat_x,
+                feat_z = feat_z,
+                estimator_c = models[name].estimator_c,
+                estimator_r = models[name].estimator_r,
+                target = target,
+                group = group,
+                random_state = None if random_state is None else int(random_state) + repeat_idx,
+                n_jobs = 1,
+            )
+            for name in model_names
+            for repeat_idx in range(n_repeats)
+        ),
+        total = len(model_names) * n_repeats,
+        desc = "transfer: original",
+        unit = "job",
+    ))
     real_cv = dict()
     for model_idx, model_name in enumerate(model_names):
         start = model_idx * n_repeats
@@ -121,38 +127,48 @@ def train_falsified_transfer(
     false_by_track = dict()
     for track in ("frozen", "retrain"):
         if track == "retrain":
-            false_results = Parallel(n_jobs = n_jobs)(
-                delayed(logo_cross_valid)(
-                    data = data,
-                    feat_x = feat_x,
-                    feat_z = feat_z,
-                    estimator_c = models[model_name].estimator_c,
-                    estimator_r = models[model_name].estimator_r,
-                    target = target,
-                    group = group,
-                    random_state = None if random_state is None else int(random_state) + repeat_idx,
-                    n_jobs = 1,  ## avoid over-subscription of parallel jobs
-                )
-                for model_name, _, data in false_jobs
-                for repeat_idx in range(n_repeats)
-            )
+            false_results = list(tqdm(
+                Parallel(n_jobs = n_jobs, return_as = "generator")(
+                    delayed(logo_cross_valid)(
+                        data = data,
+                        feat_x = feat_x,
+                        feat_z = feat_z,
+                        estimator_c = models[model_name].estimator_c,
+                        estimator_r = models[model_name].estimator_r,
+                        target = target,
+                        group = group,
+                        random_state = None if random_state is None else int(random_state) + repeat_idx,
+                        n_jobs = 1,  ## avoid over-subscription of parallel jobs
+                    )
+                    for model_name, _, data in false_jobs
+                    for repeat_idx in range(n_repeats)
+                ),
+                total = len(false_jobs) * n_repeats,
+                desc = "transfer: retrain",
+                unit = "job",
+            ))
         else:
-            false_results = Parallel(n_jobs = n_jobs)(
-                delayed(logo_cross_valid_frozen)(
-                    data_train = data_proc,
-                    data_test = data_test,
-                    feat_x = feat_x,
-                    feat_z = feat_z,
-                    estimator_c = models[model_name].estimator_c,
-                    estimator_r = models[model_name].estimator_r,
-                    target = target,
-                    group = group,
-                    random_state = None if random_state is None else int(random_state) + repeat_idx,
-                    n_jobs = 1,  ## avoid over-subscription of parallel jobs
-                )
-                for model_name, _, data_test in false_jobs
-                for repeat_idx in range(n_repeats)
-            )
+            false_results = list(tqdm(
+                Parallel(n_jobs = n_jobs, return_as = "generator")(
+                    delayed(logo_cross_valid_frozen)(
+                        data_train = data_proc,
+                        data_test = data_test,
+                        feat_x = feat_x,
+                        feat_z = feat_z,
+                        estimator_c = models[model_name].estimator_c,
+                        estimator_r = models[model_name].estimator_r,
+                        target = target,
+                        group = group,
+                        random_state = None if random_state is None else int(random_state) + repeat_idx,
+                        n_jobs = 1,  ## avoid over-subscription of parallel jobs
+                    )
+                    for model_name, _, data_test in false_jobs
+                    for repeat_idx in range(n_repeats)
+                ),
+                total = len(false_jobs) * n_repeats,
+                desc = "transfer: frozen",
+                unit = "job",
+            ))
             false_results = [(frontier, yhat) for frontier, yhat, _ in false_results]
 
         false_results_mean = list()
@@ -304,7 +320,7 @@ eval_falsified_frontier = eval_falsified_transfer
 ## ----------------------------------------------------------------------------
 ## structural agreement falsifiability test
 ## ----------------------------------------------------------------------------
-def train_falsified_recovery(
+def train_falsified_agreement(
     data_proc: pd.DataFrame,
     data_fals: dict[str, pd.DataFrame],
     models: Dict[str, Any],
@@ -321,7 +337,7 @@ def train_falsified_recovery(
     Desc:
         Run raw structural agreement falsification jobs under frozen and retrain
         protocols. Post-processing is handled separately by
-        compile_falsified_recovery.
+        compile_falsified_agreement.
     Args:
         data_proc: clean evaluation dataframe used for original model training.
         data_fals: mapping from falsification method name to falsified dataframe.
@@ -346,21 +362,26 @@ def train_falsified_recovery(
         raise ValueError("n_repeats must be >= 1")
 
     ## original-data cv: repeated across seeds, then average predictions
-    real_results = Parallel(n_jobs = n_jobs)(
-        delayed(logo_cross_valid)(
-            data = data_proc,
-            feat_x = feat_x,
-            feat_z = feat_z,
-            estimator_c = models[name].estimator_c,
-            estimator_r = models[name].estimator_r,
-            target = target,
-            group = group,
-            random_state = None if random_state is None else int(random_state) + repeat_idx,
-            n_jobs = 1,
-        )
-        for name in model_names
-        for repeat_idx in range(n_repeats)
-    )
+    real_results = list(tqdm(
+        Parallel(n_jobs = n_jobs, return_as = "generator")(
+            delayed(logo_cross_valid)(
+                data = data_proc,
+                feat_x = feat_x,
+                feat_z = feat_z,
+                estimator_c = models[name].estimator_c,
+                estimator_r = models[name].estimator_r,
+                target = target,
+                group = group,
+                random_state = None if random_state is None else int(random_state) + repeat_idx,
+                n_jobs = 1,
+            )
+            for name in model_names
+            for repeat_idx in range(n_repeats)
+        ),
+        total = len(model_names) * n_repeats,
+        desc = "agreement: original",
+        unit = "job",
+    ))
     real_cv = dict()
     for model_idx, model_name in enumerate(model_names):
         start = model_idx * n_repeats
@@ -383,38 +404,48 @@ def train_falsified_recovery(
     false_by_track = dict()
     for track in ("frozen", "retrain"):
         if track == "retrain":
-            false_results = Parallel(n_jobs = n_jobs)(
-                delayed(logo_cross_valid)(
-                    data = data_false,
-                    feat_x = feat_x,
-                    feat_z = feat_z,
-                    estimator_c = models[model_name].estimator_c,
-                    estimator_r = models[model_name].estimator_r,
-                    target = target,
-                    group = group,
-                    random_state = None if random_state is None else int(random_state) + repeat_idx,
-                    n_jobs = 1,
-                )
-                for model_name, _, data_false in false_jobs
-                for repeat_idx in range(n_repeats)
-            )
+            false_results = list(tqdm(
+                Parallel(n_jobs = n_jobs, return_as = "generator")(
+                    delayed(logo_cross_valid)(
+                        data = data_false,
+                        feat_x = feat_x,
+                        feat_z = feat_z,
+                        estimator_c = models[model_name].estimator_c,
+                        estimator_r = models[model_name].estimator_r,
+                        target = target,
+                        group = group,
+                        random_state = None if random_state is None else int(random_state) + repeat_idx,
+                        n_jobs = 1,
+                    )
+                    for model_name, _, data_false in false_jobs
+                    for repeat_idx in range(n_repeats)
+                ),
+                total = len(false_jobs) * n_repeats,
+                desc = "agreement: retrain protocol",
+                unit = "job",
+            ))
         else:
-            false_results = Parallel(n_jobs = n_jobs)(
-                delayed(logo_cross_valid_frozen)(
-                    data_train = data_proc,
-                    data_test = data_false,
-                    feat_x = feat_x,
-                    feat_z = feat_z,
-                    estimator_c = models[model_name].estimator_c,
-                    estimator_r = models[model_name].estimator_r,
-                    target = target,
-                    group = group,
-                    random_state = None if random_state is None else int(random_state) + repeat_idx,
-                    n_jobs = 1,
-                )
-                for model_name, _, data_false in false_jobs
-                for repeat_idx in range(n_repeats)
-            )
+            false_results = list(tqdm(
+                Parallel(n_jobs = n_jobs, return_as = "generator")(
+                    delayed(logo_cross_valid_frozen)(
+                        data_train = data_proc,
+                        data_test = data_false,
+                        feat_x = feat_x,
+                        feat_z = feat_z,
+                        estimator_c = models[model_name].estimator_c,
+                        estimator_r = models[model_name].estimator_r,
+                        target = target,
+                        group = group,
+                        random_state = None if random_state is None else int(random_state) + repeat_idx,
+                        n_jobs = 1,
+                    )
+                    for model_name, _, data_false in false_jobs
+                    for repeat_idx in range(n_repeats)
+                ),
+                total = len(false_jobs) * n_repeats,
+                desc = "agreement: frozen protocol",
+                unit = "job",
+            ))
             false_results = [(f, y) for f, y, _ in false_results]
 
         false_results_mean = list()
@@ -445,14 +476,14 @@ def train_falsified_recovery(
 
 
 ## compile structural agreement falsification results
-def compile_falsified_recovery(results: dict[str, Any]) -> pd.DataFrame:
+def compile_falsified_agreement(results: dict[str, Any]) -> pd.DataFrame:
 
     """
     Desc:
         Compile raw structural agreement falsification predictions into consensus
         metrics per model, Method, condition, group, and Falsification.
     Args:
-        results: dictionary returned by train_falsified_recovery.
+        results: dictionary returned by train_falsified_agreement.
     Returns:
         dataframe with consensus metrics per
         (model, Method, condition, group, Falsification).
@@ -518,7 +549,7 @@ def compile_falsified_recovery(results: dict[str, Any]) -> pd.DataFrame:
 
 
 ## structural agreement falsification evaluation wrapper
-def eval_falsified_recovery(
+def eval_falsified_agreement(
     data_proc: pd.DataFrame,
     data_fals: dict[str, pd.DataFrame],
     models: Dict[str, Any],
@@ -551,7 +582,7 @@ def eval_falsified_recovery(
         (model, Method, condition, group, Falsification).
     """
 
-    results = train_falsified_recovery(
+    results = train_falsified_agreement(
         data_proc = data_proc,
         data_fals = data_fals,
         models = models,
@@ -563,7 +594,7 @@ def eval_falsified_recovery(
         random_state = random_state,
         n_jobs = n_jobs,
     )
-    return compile_falsified_recovery(results = results)
+    return compile_falsified_agreement(results = results)
 
 ## ----------------------------------------------------------------------------
 ## pairwise consensus falsifiability test
@@ -606,19 +637,24 @@ def train_falsified_consensus(
     model_names = list(models.keys())
 
     ## original-data full fit: once per model
-    real_results = Parallel(n_jobs = n_jobs)(
-        delayed(fit_predict_frontier)(
-            data = data_proc,
-            feat_x = feat_x,
-            feat_z = feat_z,
-            estimator_c = models[name].estimator_c,
-            estimator_r = models[name].estimator_r,
-            target = target,
-            n_repeat = n_repeats,
-            random_state = random_state,
-        )
-        for name in model_names
-    )
+    real_results = list(tqdm(
+        Parallel(n_jobs = n_jobs, return_as = "generator")(
+            delayed(fit_predict_frontier)(
+                data = data_proc,
+                feat_x = feat_x,
+                feat_z = feat_z,
+                estimator_c = models[name].estimator_c,
+                estimator_r = models[name].estimator_r,
+                target = target,
+                n_repeat = n_repeats,
+                random_state = random_state,
+            )
+            for name in model_names
+        ),
+        total = len(model_names),
+        desc = "consensus: original fit",
+        unit = "job",
+    ))
     pred_real = {
         name: np.asarray(r["y_pred"], dtype = float)
         for name, r in zip(model_names, real_results)
@@ -635,19 +671,24 @@ def train_falsified_consensus(
     false_by_track = dict()
     for track in ("frozen", "retrain"):
         if track == "retrain":
-            false_results = Parallel(n_jobs = n_jobs)(
-                delayed(fit_predict_frontier)(
-                    data = data_false,
-                    feat_x = feat_x,
-                    feat_z = feat_z,
-                    estimator_c = models[model_name].estimator_c,
-                    estimator_r = models[model_name].estimator_r,
-                    target = target,
-                    n_repeat = n_repeats,
-                    random_state = random_state,
-                )
-                for model_name, _, data_false in false_jobs
-            )
+            false_results = list(tqdm(
+                Parallel(n_jobs = n_jobs, return_as = "generator")(
+                    delayed(fit_predict_frontier)(
+                        data = data_false,
+                        feat_x = feat_x,
+                        feat_z = feat_z,
+                        estimator_c = models[model_name].estimator_c,
+                        estimator_r = models[model_name].estimator_r,
+                        target = target,
+                        n_repeat = n_repeats,
+                        random_state = random_state,
+                    )
+                    for model_name, _, data_false in false_jobs
+                ),
+                total = len(false_jobs),
+                desc = "consensus: retrain protocol",
+                unit = "job",
+            ))
         else:
             false_results = [
                 fit_predict_frontier(
@@ -802,7 +843,7 @@ def stat_falsified_test(
     """
     Desc:
         Paired Wilcoxon signed-rank summary comparing original vs falsified
-        conditions. Works for transfer, recovery, and pairwise consensus
+        conditions. Works for transfer, agreement, and pairwise consensus
         outputs by parameterising metric, grouping, and pairing columns.
     
     Args:
