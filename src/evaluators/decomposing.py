@@ -9,7 +9,10 @@ from typing import Sequence, Dict, Any, Iterator
 from scipy.stats import rankdata, wilcoxon
 
 ## modules
-from src.evaluators.metrics import FRONTIER_METRICS
+from src.evaluators.metrics import (
+    FRONTIER_METRICS,
+    CONSENSUS_METRICS
+)
 
 
 SPECIFICATION_ORDER = [
@@ -20,7 +23,6 @@ SPECIFICATION_ORDER = [
     "capacity_only",
     "dynamics_only",
 ]
-
 
 ## significance code helper
 def _sig_code(p_value: float) -> str:
@@ -674,11 +676,16 @@ def compile_decomposed_separation(
 
     """
     Desc: Compile raw separation outputs into frontier and prediction tables.
+        Consensus metrics (rho, rbo, dcr, ci) are computed per
+        (model, specification, group) from the OOF predictions and merged
+        onto the frontier rows alongside the frontier metrics.
     Args:
         results: Dictionary returned by train_decomposed_separation.
     Returns:
         Tuple of (frontier results dataframe, per-dataset predictions dataframe).
     """
+
+    from src.evaluators.metrics import consensus_metrics
 
     model_outputs = results.get("model_outputs", list())
     frontier_rows = []
@@ -687,7 +694,33 @@ def compile_decomposed_separation(
         frontier_rows.extend(model_results)
         prediction_rows.extend(model_predictions)
 
-    return pd.DataFrame(frontier_rows), pd.DataFrame(prediction_rows)
+    frontier_df = pd.DataFrame(frontier_rows)
+    prediction_df = pd.DataFrame(prediction_rows)
+
+    ## compute per-(model, specification, group) consensus metrics from OOF predictions
+    if not prediction_df.empty and {"model", "specification", "group", "y_true", "y_pred"}.issubset(prediction_df.columns):
+        consensus_rows = []
+        for (model, spec, grp), grp_df in prediction_df.groupby(
+            ["model", "specification", "group"], observed = True, sort = False
+        ):
+            y_true = grp_df["y_true"].to_numpy(dtype = float)
+            y_pred = grp_df["y_pred"].to_numpy(dtype = float)
+            valid = np.isfinite(y_true) & np.isfinite(y_pred)
+            if valid.sum() >= 2:
+                cm = consensus_metrics(y_true[valid], y_pred[valid])
+            else:
+                cm = {k: np.nan for k in ["r", "rho", "tau", "rbo", "dcr", "ci"]}
+            consensus_rows.append({"model": model, "specification": spec, "group": grp, **cm})
+
+        if consensus_rows:
+            consensus_df = pd.DataFrame(consensus_rows)
+            frontier_df = frontier_df.merge(
+                consensus_df[["model", "specification", "group", "rho", "rbo", "dcr", "ci"]],
+                on = ["model", "specification", "group"],
+                how = "left",
+            )
+
+    return frontier_df, prediction_df
 
 
 ## --------------------------------------------------------------------------
@@ -1104,6 +1137,7 @@ def eval_attribution(
 ## --------------------------------------------------------------------------
 def stat_decomposed_summary(
     results: pd.DataFrame,
+    metric: str | None = None,
     spec_order: Sequence[str] = SPECIFICATION_ORDER,
     metrics: Sequence[str] = ("ei", "vr", "mv", "ms"),
     decimals: int = 4,
@@ -1113,16 +1147,27 @@ def stat_decomposed_summary(
     Desc: Summarize median frontier metrics by decomposition specification.
     Args:
         results: Frontier result table returned by compile_decomposed_separation.
+        metric: Shorthand for metric group. "ei" uses frontier metrics (ei, vr,
+            mv, ms); "ci" uses consensus metrics (ci, rho, rbo, dcr). Overrides
+            the metrics argument when provided.
         spec_order: Specification order for table display.
         metrics: Frontier metric columns to summarize.
         decimals: Number of decimals to round.
     Returns:
-        Display-ready dataframe indexed by specification, with EI shown as IQR
-            when present.
+        Display-ready dataframe indexed by specification, with EI or CI shown
+            as IQR when present.
     Raises:
         ValueError: If required columns are missing.
     """
 
+    metric_groups = {
+        "ei": FRONTIER_METRICS,
+        "ci": CONSENSUS_METRICS
+    }
+    if metric is not None:
+        if metric not in metric_groups:
+            raise ValueError(f"metric must be 'ei' or 'ci', got {metric!r}")
+        metrics = metric_groups[metric]
     metrics = list(metrics)
     missing = sorted({"specification", *metrics} - set(results.columns))
     if missing:
@@ -1289,55 +1334,74 @@ def stat_decomposed_attribution(
 def stat_decomposed_test(
     results: pd.DataFrame,
     delta: float = 0.05,
-    ceiling_specs: Sequence[str] = (
+    metric: str = "ei",
+    specs: Sequence[str] = (
         "interaction",
         "interaction_joint",
         "joint",
         "capacity_only",
         "dynamics_only",
     ),
+    direction: str = "noninferiority",
     decimals: int = 4,
     index: bool = True,
     ) -> pd.DataFrame:
 
     """
-    Desc: Test additive non-inferiority against relaxed specifications.
+    Desc:
+        Test additive non-inferiority (richer specs) or inferiority (simpler
+        specs) against a reference specification on a chosen metric.
+
     Args:
         results: Frontier result table returned by compile_decomposed_separation.
-        delta: Non-inferiority margin in EI points.
-        ceiling_specs: Relaxed specifications to compare against additive.
+        delta: Non-inferiority / inferiority margin in metric units.
+        metric: Column name of the performance metric to test ("ei" or "ci").
+        specs: Specifications to compare against additive.
+        direction: "noninferiority" tests that alternatives do not exceed
+            additive by delta; "inferiority" tests that additive exceeds
+            alternatives by at least delta.
         decimals: Number of decimals to round.
         index: Whether to index the output by specification.
     Returns:
-        Display-ready non-inferiority summary table.
+        Display-ready summary table.
     Raises:
-        ValueError: If required columns are missing.
+        ValueError: If required columns are missing or direction is unknown.
     """
 
-    required = {"model", "group", "specification", "ei"}
+    if direction not in ("noninferiority", "inferiority"):
+        raise ValueError(f"direction must be 'noninferiority' or 'inferiority', got {direction!r}")
+
+    metric_label = metric.upper()
+    required = {"model", "group", "specification", metric}
     missing = sorted(required - set(results.columns))
     if missing:
         raise ValueError(f"Missing required columns: {missing}")
 
-    additive_ei = (
+    additive_vals = (
         results
         .query("specification == 'additive'")
-        .set_index(keys = ["model", "group"])["ei"]
+        .set_index(keys = ["model", "group"])[metric]
     )
 
     p_label = "One-sided p"
-    tail_cols = ["Rank-biserial r", p_label, "Holm-adj. p", "Sig.", "NI."]
+    decision_col = "NI." if direction == "noninferiority" else "Inf."
+    tail_cols = ["Rank-biserial r", p_label, "Holm-adj. p", "Sig.", decision_col]
+    median_col = f"Median Δ {metric_label}"
     rows = []
-    for spec in ceiling_specs:
-        spec_ei = (
+    for spec in specs:
+        spec_vals = (
             results
             .query("specification == @spec")
-            .set_index(keys = ["model", "group"])["ei"]
+            .set_index(keys = ["model", "group"])[metric]
         )
-        gap = (spec_ei - additive_ei).dropna()
+        gap = (spec_vals - additive_vals).dropna()
         n = len(gap)
 
-        margin_gap = delta - gap
+        if direction == "noninferiority":
+            margin_gap = delta - gap
+        else:
+            margin_gap = -(gap + delta)
+
         if n < 2 or int((margin_gap != 0).sum()) < 2:
             p_w = np.nan
             r_effect = np.nan
@@ -1351,7 +1415,7 @@ def stat_decomposed_test(
 
         rows.append({
             "Specification": spec.replace("_", " ").title(),
-            "Median Δ EI": gap.median(),
+            median_col: gap.median(),
             "Rank-biserial r": r_effect,
             p_label: p_w,
         })
@@ -1362,37 +1426,52 @@ def stat_decomposed_test(
     summary["Sig."] = summary["Holm-adj. p"].map(
         lambda p: "-" if not np.isfinite(p) else _sig_code(float(p))
     )
-    median_gap = summary["Median Δ EI"].to_numpy(dtype = float, copy = True)
+    median_gap = summary[median_col].to_numpy(dtype = float, copy = True)
     decision = np.full(shape = len(summary), fill_value = "-", dtype = object)
     valid_decision = np.isfinite(holm) & np.isfinite(median_gap)
-    decision[valid_decision] = np.where(
-        (holm[valid_decision] < 0.05) & (median_gap[valid_decision] < delta),
-        "Yes",
-        "No",
-    )
-    summary["NI."] = decision
+
+    if direction == "noninferiority":
+        decision[valid_decision] = np.where(
+            (holm[valid_decision] < 0.05) & (median_gap[valid_decision] < delta),
+            "Yes",
+            "No",
+        )
+    else:
+        decision[valid_decision] = np.where(
+            (holm[valid_decision] < 0.05) & (median_gap[valid_decision] < -delta),
+            "Yes",
+            "No",
+        )
+    summary[decision_col] = decision
 
     n_by_spec = []
-    for spec in ceiling_specs:
-        spec_ei = (
+    for spec in specs:
+        spec_vals = (
             results
             .query("specification == @spec")
-            .set_index(keys = ["model", "group"])["ei"]
+            .set_index(keys = ["model", "group"])[metric]
         )
-        n_by_spec.append(len((spec_ei - additive_ei).dropna()))
+        n_by_spec.append(len((spec_vals - additive_vals).dropna()))
     n_display = int(n_by_spec[0]) if len(set(n_by_spec)) == 1 and len(n_by_spec) else "varies"
-    print(f"Paired Non-Inferiority Test (Wilcoxon Signed-Rank): n = {n_display}, δ = {delta}")
-    print("H₀: Δ EI ≥ δ")
-    print("H₁: Δ EI < δ")
-    print("Median Δ EI: Median of paired differences, not the difference of marginal medians")
-    print("Rank-biserial r: Paired effect size, positive values favor non-inferiority")
+
+    if direction == "noninferiority":
+        print(f"Paired Non-Inferiority Test (Wilcoxon Signed-Rank): n = {n_display}, δ = {delta}, metric = {metric_label}")
+        print(f"H₀: Δ {metric_label} ≥ δ")
+        print(f"H₁: Δ {metric_label} < δ")
+        print(f"NI.: Yes if Holm-adj. p < 0.05 and Median Δ {metric_label} < δ")
+    else:
+        print(f"Paired Inferiority Test (Wilcoxon Signed-Rank): n = {n_display}, δ = {delta}, metric = {metric_label}")
+        print(f"H₀: Δ {metric_label} ≥ -δ")
+        print(f"H₁: Δ {metric_label} < -δ")
+        print(f"Inf.: Yes if Holm-adj. p < 0.05 and Median Δ {metric_label} < -δ")
+    print(f"Median Δ {metric_label}: Median of paired differences (spec − additive)")
+    print("Rank-biserial r: Paired effect size, positive values favor the tested direction")
     print("One-sided p: Wilcoxon signed-rank p-value for H₁")
     print("Holm-adj. p: Holm-Bonferroni adjusted one-sided p-value")
-    print("NI.: Yes if Holm-adj. p < 0.05 and Median Δ EI < δ")
     print("Significance codes reflect Holm-adj. p")
     print("*** p < 0.001, ** p < 0.01, * p < 0.05")
 
-    summary = summary[["Specification", "Median Δ EI", *tail_cols]]
+    summary = summary[["Specification", median_col, *tail_cols]]
 
     num_cols = [
         c for c in summary.columns
