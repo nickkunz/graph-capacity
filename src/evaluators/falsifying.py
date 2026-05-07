@@ -421,7 +421,7 @@ def train_falsified_agreement(
                     for repeat_idx in range(n_repeats)
                 ),
                 total = len(false_jobs) * n_repeats,
-                desc = "agreement: retrain protocol",
+                desc = "agreement: retrain",
                 unit = "job",
             ))
         else:
@@ -443,7 +443,7 @@ def train_falsified_agreement(
                     for repeat_idx in range(n_repeats)
                 ),
                 total = len(false_jobs) * n_repeats,
-                desc = "agreement: frozen protocol",
+                desc = "agreement: frozen",
                 unit = "job",
             ))
             false_results = [(f, y) for f, y, _ in false_results]
@@ -686,7 +686,7 @@ def train_falsified_consensus(
                     for model_name, _, data_false in false_jobs
                 ),
                 total = len(false_jobs),
-                desc = "consensus: retrain protocol",
+                desc = "consensus: retrain",
                 unit = "job",
             ))
         else:
