@@ -1394,13 +1394,13 @@ def stat_decomposed_test(
             .query("specification == @spec")
             .set_index(keys = ["model", "group"])[metric]
         )
-        gap = (spec_vals - additive_vals).dropna()
+        gap = (additive_vals - spec_vals).dropna()
         n = len(gap)
 
         if direction == "noninferiority":
-            margin_gap = delta - gap
+            margin_gap = gap + delta
         else:
-            margin_gap = -(gap + delta)
+            margin_gap = gap - delta
 
         if n < 2 or int((margin_gap != 0).sum()) < 2:
             p_w = np.nan
@@ -1432,13 +1432,13 @@ def stat_decomposed_test(
 
     if direction == "noninferiority":
         decision[valid_decision] = np.where(
-            (holm[valid_decision] < 0.05) & (median_gap[valid_decision] < delta),
+            (holm[valid_decision] < 0.05) & (median_gap[valid_decision] > -delta),
             "Yes",
             "No",
         )
     else:
         decision[valid_decision] = np.where(
-            (holm[valid_decision] < 0.05) & (median_gap[valid_decision] < -delta),
+            (holm[valid_decision] < 0.05) & (median_gap[valid_decision] > delta),
             "Yes",
             "No",
         )
@@ -1451,20 +1451,20 @@ def stat_decomposed_test(
             .query("specification == @spec")
             .set_index(keys = ["model", "group"])[metric]
         )
-        n_by_spec.append(len((spec_vals - additive_vals).dropna()))
+        n_by_spec.append(len((additive_vals - spec_vals).dropna()))
     n_display = int(n_by_spec[0]) if len(set(n_by_spec)) == 1 and len(n_by_spec) else "varies"
 
     if direction == "noninferiority":
         print(f"Paired Non-Inferiority Test (Wilcoxon Signed-Rank): n = {n_display}, δ = {delta}, metric = {metric_label}")
-        print(f"H₀: Δ {metric_label} ≥ δ")
-        print(f"H₁: Δ {metric_label} < δ")
-        print(f"NI.: Yes if Holm-adj. p < 0.05 and Median Δ {metric_label} < δ")
+        print(f"H₀: Δ {metric_label} ≤ -δ")
+        print(f"H₁: Δ {metric_label} > -δ")
+        print(f"NI.: Yes if Holm-adj. p < 0.05 and Median Δ {metric_label} > -δ")
     else:
         print(f"Paired Inferiority Test (Wilcoxon Signed-Rank): n = {n_display}, δ = {delta}, metric = {metric_label}")
-        print(f"H₀: Δ {metric_label} ≥ -δ")
-        print(f"H₁: Δ {metric_label} < -δ")
-        print(f"Inf.: Yes if Holm-adj. p < 0.05 and Median Δ {metric_label} < -δ")
-    print(f"Median Δ {metric_label}: Median of paired differences (spec − additive)")
+        print(f"H₀: Δ {metric_label} ≤ δ")
+        print(f"H₁: Δ {metric_label} > δ")
+        print(f"Inf.: Yes if Holm-adj. p < 0.05 and Median Δ {metric_label} > δ")
+    print(f"Median Δ {metric_label}: Median of paired differences (additive − spec)")
     print("Rank-biserial r: Paired effect size, positive values favor the tested direction")
     print("One-sided p: Wilcoxon signed-rank p-value for H₁")
     print("Holm-adj. p: Holm-Bonferroni adjusted one-sided p-value")
