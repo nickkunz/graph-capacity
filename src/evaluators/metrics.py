@@ -1,4 +1,5 @@
 ## libraries
+import math
 import dcor
 import warnings
 import numpy as np
@@ -6,8 +7,7 @@ import pandas as pd
 # from itertools import combinations
 # from sklearn.decomposition import PCA
 from typing import Literal, Sequence
-from scipy.stats import ConstantInputWarning
-from scipy.stats import spearmanr
+from scipy.stats import ConstantInputWarning, spearmanr
 
 ## constants
 FRONTIER_METRICS = ["vr", "mv", "ms", "ei"]
@@ -356,7 +356,7 @@ def spec_marginal_delta(
     else:
         raise ValueError(f"unknown method: {method}")
 
-    return round(max(float(scale * dispersion), 1e-6), decimals)
+    return math.ceil(max(float(scale * dispersion), 1e-6) * 10 ** decimals) / 10 ** decimals
 
 # ## compute structural index via pca
 # def compute_kappa(K_vect: np.ndarray, y_pred: np.ndarray | None = None) -> np.ndarray:
