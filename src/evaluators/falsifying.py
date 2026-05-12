@@ -909,13 +909,13 @@ def stat_falsified_test(
 
     metric_label = metric_display[0] if len(metric_display) == 1 else ", ".join(metric_display)
     print(f"Paired One-Sided Test (Wilcoxon Signed-Rank): n = {n_pairs}")
-    print(f"H₀: Δ {metric_label} ≤ 0")
-    print(f"H₁: Δ {metric_label} > 0")
-    print(f"Median Δ {metric_label}: Median of paired differences, not the difference of marginal medians")
-    print("Rank-biserial r: Paired effect size, positive values favor original")
+    print(f"H₀: Δ {metric_label} ≥ 0")
+    print(f"H₁: Δ {metric_label} < 0")
+    print(f"Median Δ {metric_label}: Median of paired differences (falsified - original), not the difference of marginal medians")
+    print("Rank-biserial r: Paired effect size, negative values favor original > falsified")
     print("One-sided p: Wilcoxon signed-rank p-value for H₁")
     print("Holm-adj. p: Holm-Bonferroni adjusted one-sided p-value")
-    print("Diff.: Yes if Holm-adj. p < 0.05 and Median Δ > 0")
+    print("Diff.: Yes if Holm-adj. p < 0.05 and Median Δ < 0")
     print("Significance codes reflect Holm-adj. p")
     print("*** p < 0.001, ** p < 0.01, * p < 0.05")
 
@@ -931,7 +931,7 @@ def stat_falsified_test(
             valid = np.isfinite(x) & np.isfinite(y)
             x, y = x[valid], y[valid]
             n = len(x)
-            d = x - y
+            d = y - x
             med_d = float(np.median(d)) if n else np.nan
 
             n_eff = int(np.sum(d != 0))
@@ -939,11 +939,11 @@ def stat_falsified_test(
                 r_eff, p_val = np.nan, np.nan
             else:
 
-                ## strict one-sided test for original > falsified
-                _, p_val = wilcoxon(x, y, alternative = "greater")
+                ## strict one-sided test for falsified - original < 0
+                _, p_val = wilcoxon(y, x, alternative = "less")
 
                 ## rank-biserial r from signed differences (kerby 2014)
-                ## r > 0 means original > falsified, independent of scipy convention
+                ## r < 0 means original > falsified, independent of scipy convention
                 d_nz = d[d != 0]
                 ranks = rankdata(np.abs(d_nz), method = "average")
                 pos_rank_sum = float(np.sum(ranks[d_nz > 0]))
@@ -980,7 +980,7 @@ def stat_falsified_test(
     med_delta = summary["Median Δ"].to_numpy(dtype = float, copy = True)
     diff = np.full(shape = len(summary), fill_value = np.nan, dtype = object)
     valid_diff = np.isfinite(holm) & np.isfinite(med_delta)
-    diff[valid_diff] = np.where((holm[valid_diff] < 0.05) & (med_delta[valid_diff] > 0.0), "Yes", "No")
+    diff[valid_diff] = np.where((holm[valid_diff] < 0.05) & (med_delta[valid_diff] < 0.0), "Yes", "No")
     summary["Diff."] = diff
 
     ## convert group/metric labels to display names
