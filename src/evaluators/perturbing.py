@@ -1131,8 +1131,8 @@ def stat_perturbed_test(
 
     """
     Desc:
-        Paired Wilcoxon signed-rank summary comparing original baseline vs
-        perturbed metrics under each perturbation grouping.
+        Paired Wilcoxon signed-rank summary comparing perturbed metrics against
+        the original baseline under each perturbation grouping.
 
     Args:
         results: Full aggregated output from eval_perturb, including
@@ -1208,8 +1208,15 @@ def stat_perturbed_test(
         n_display = f"{int(np.min(unique_n))}-{int(np.max(unique_n))}"
 
     metric_label = feat_value[0].upper() if len(feat_value) == 1 else ", ".join(v.upper() for v in feat_value)
-    print(f"=== Perturbation: Original vs Perturbed Median {metric_label} (n = {n_display}) ===")
-    print(f"H₁: Perturbation lowers median {metric_label}")
+    print(f"Paired One-Sided Test (Wilcoxon Signed-Rank): n = {n_display}")
+    print(f"H₀: Δ {metric_label} ≥ 0")
+    print(f"H₁: Δ {metric_label} < 0")
+    print(f"Median Δ {metric_label}: Median of paired differences (perturbed - original), not the difference of marginal medians")
+    print("Rank-biserial r: Paired effect size, negative values favor original > perturbed")
+    print("One-sided p: Wilcoxon signed-rank p-value for H₁")
+    print("Holm-adj. p: Holm-Bonferroni adjusted one-sided p-value")
+    print("Loss.: Yes if Holm-adj. p < 0.05 and Median Δ < 0")
+    print("Significance codes reflect Holm-adj. p")
     print("*** p < 0.001, ** p < 0.01, * p < 0.05")
 
     groups = merged.groupby(feat_group, sort = False) if feat_group else [((), merged)]
@@ -1224,12 +1231,12 @@ def stat_perturbed_test(
             valid = np.isfinite(x) & np.isfinite(y)
             x, y = x[valid], y[valid]
             n = len(x)
-            d = x - y
+            d = y - x
             n_pos = int(np.sum(d > 0))
             if n:
                 med_o = float(np.median(x))
                 med_p = float(np.median(y))
-                med_d = med_o - med_p
+                med_d = float(np.median(d))
             else:
                 med_o, med_p, med_d = np.nan, np.nan, np.nan
 
@@ -1237,8 +1244,8 @@ def stat_perturbed_test(
             if n < 2 or n_eff < 2:
                 w_stat, r_eff, p_val = np.nan, np.nan, np.nan
             else:
-                ## one-sided paired test: significance indicates frontier collapse
-                w_stat, p_val = wilcoxon(x, y, alternative = "greater")
+                ## one-sided paired test: significance indicates a negative perturbation shift
+                w_stat, p_val = wilcoxon(x = y, y = x, alternative = "less")
 
                 ## rank-biserial r (kerby 2014)
                 d_nz = d[d != 0]
@@ -1281,7 +1288,7 @@ def stat_perturbed_test(
     med_delta = summary["Median Δ "].to_numpy(dtype = float, copy = True)
     loss = np.full(shape = len(summary), fill_value = np.nan, dtype = object)
     valid_loss = np.isfinite(holm) & np.isfinite(med_delta)
-    loss[valid_loss] = np.where((holm[valid_loss] < 0.05) & (med_delta[valid_loss] > 0.0), "Yes", "No")
+    loss[valid_loss] = np.where((holm[valid_loss] < 0.05) & (med_delta[valid_loss] < 0.0), "Yes", "No")
     summary[decision_label] = loss
 
     ## convert group/metric labels to display names
