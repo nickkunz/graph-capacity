@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 from matplotlib.colors import Normalize
 from matplotlib.figure import Figure
+from matplotlib.lines import Line2D
 from matplotlib.patches import Rectangle
 from matplotlib.text import Text
 
@@ -41,12 +42,18 @@ DEFAULT_PERTURBATION_ORDER = (
 )
 DEFAULT_PERTURBATION_PALETTE = {
     "network": "#2C6E91",
-    "invariants": "#67AEDD",
+    "invariants": "#2C6E91",
     "process": "#7B5EA7",
-    "signatures": "#A78CCB",
+    "signatures": "#7B5EA7",
+}
+DEFAULT_PERTURBATION_TITLE_COLORS = {
+    "network": "#2C6E91",
+    "invariants": "#2C6E91",
+    "process": "#7B5EA7",
+    "signatures": "#7B5EA7",
 }
 DEFAULT_METHOD_LINESTYLES = ("-", "--", ":")
-DEFAULT_METHOD_SHADE_FACTORS = (0.65, 1.0, 1.45)
+DEFAULT_METHOD_SHADE_FACTORS = (0.65, 1.0, 1.22)
 
 
 def build_paradigm_consensus_matrices(
@@ -489,10 +496,12 @@ def plot_perturbation_superfigure(
         unit_col = unit_col,
     )
     palette = dict(DEFAULT_PERTURBATION_PALETTE if palette is None else palette)
+    title_colors = dict(DEFAULT_PERTURBATION_TITLE_COLORS)
     method_linestyles = tuple(DEFAULT_METHOD_LINESTYLES if method_linestyles is None else method_linestyles)
     method_shade_factors = tuple(
         DEFAULT_METHOD_SHADE_FACTORS if method_shade_factors is None else method_shade_factors
     )
+    tick_color = "#8E8E8E"
 
     transfer_paired = _paired_plot_deltas(
         results = results_transfer,
@@ -631,8 +640,6 @@ def plot_perturbation_superfigure(
     fingerprint_margin_color = "#CFEAD6"
     margin_edge_color = "#C9C9C9"
     margin_text_color = "#3D7F50"
-    degradation_face = "#F2B8A8"
-    degradation_text = "#8F2A2A"
     fingerprint_limit = 0.5
     fingerprint_ticks = np.linspace(-0.5, 0.5, 5)
     sweep_ticks = [float(sweep_ylim[0]), 0.0, float(sweep_ylim[1])]
@@ -664,6 +671,31 @@ def plot_perturbation_superfigure(
             labels.append(f"{tick:.2f}" if tick_label is None else tick_label)
 
         return merged_ticks, labels
+
+    def _draw_method_legend(
+        axis,
+        text_colors: Mapping[str, str],
+        loc: str,
+        bbox_to_anchor: tuple[float, float],
+        handles: Sequence[Line2D] | None = None,
+        handlelength: float = 1.9,
+        ) -> None:
+
+        legend = axis.legend(
+            handles = handles,
+            fontsize = 5.9,
+            loc = loc,
+            bbox_to_anchor = bbox_to_anchor,
+            borderaxespad = 0.0,
+            framealpha = 0.9,
+            edgecolor = "#D0D0D0",
+            handlelength = handlelength,
+            borderpad = 0.45,
+            labelspacing = 0.25,
+            handletextpad = 0.45,
+        )
+        for legend_text in legend.get_texts():
+            legend_text.set_color(text_colors.get(legend_text.get_text(), "#444444"))
 
     for row_index, row_spec in enumerate(row_specs):
         aggregate = row_spec["aggregate"]
@@ -744,14 +776,8 @@ def plot_perturbation_superfigure(
 
             methods = sorted(aggregate_panel["method"].unique())
             method_text_colors = {
-                _format_method_label(method = method): _shade_plot_color(
-                    hex_color = color,
-                    factor = min(
-                        method_shade_factors[method_index % len(method_shade_factors)],
-                        1.18,
-                    ),
-                )
-                for method_index, method in enumerate(methods)
+                _format_method_label(method = method): color
+                for method in methods
             }
             for method_index, method in enumerate(methods):
                 method_label = _format_method_label(method = method)
@@ -794,36 +820,33 @@ def plot_perturbation_superfigure(
                 line_artist.set_clip_path(sweep_clip)
 
             if row_index == 0:
-                axis.set_title(
+                title = axis.set_title(
                     label = perturbation.capitalize(),
-                    fontsize = 9.7,
-                    color = color,
+                    fontsize = 11.2,
+                    color = title_colors.get(perturbation, color),
                     fontweight = "semibold",
-                    pad = 6,
+                    y = 1.0,
+                    pad = 0,
                 )
-                legend = axis.legend(
-                    fontsize = 5.9,
-                    loc = "lower left",
-                    bbox_to_anchor = (0.03, 0.04),
-                    borderaxespad = 0.0,
-                    framealpha = 0.9,
-                    edgecolor = "#D0D0D0",
-                    handlelength = 1.9,
-                    borderpad = 0.45,
-                    labelspacing = 0.25,
-                    handletextpad = 0.45,
-                )
-                for legend_text in legend.get_texts():
-                    legend_text.set_color(method_text_colors.get(legend_text.get_text(), color))
+                title.set_verticalalignment("center")
 
-            axis.set_xticks(ticks = np.linspace(start = 0.0, stop = 1.0, num = 5))
+            if row_index == 1:
+                _draw_method_legend(
+                    axis = axis,
+                    text_colors = method_text_colors,
+                    loc = "center left",
+                    bbox_to_anchor = (0.03, 1.06),
+                    handlelength = 3.2,
+                )
+
+            axis.set_xticks(ticks = np.linspace(start = 0.0, stop = 1.0, num = 7))
             if row_index == 0:
                 axis.set_xticklabels(labels = [])
             else:
                 axis.set_xticklabels(
-                    labels = ["0", "0.25", "0.50", "0.75", "1\nMax"],
+                    labels = ["0", "0.17", "0.33", "0.50", "0.67", "0.83", "1\nMax"],
                     fontsize = 6.5,
-                    color = "#555555",
+                    color = "#000000",
                 )
                 axis.get_xticklabels()[-1].set_fontweight("bold")
             axis.set_xlim(left = 0.0, right = 1.03)
@@ -839,12 +862,25 @@ def plot_perturbation_superfigure(
             axis.set_yticklabels(labels = sweep_y_labels)
             for tick_label in axis.get_yticklabels():
                 if tick_label.get_text() in {r"$-\delta$", r"$+\delta$"}:
-                    tick_label.set_color("#8E8E8E")
-            axis.tick_params(axis = "x", bottom = False)
-            axis.tick_params(axis = "y", labelsize = 7)
+                    tick_label.set_color(tick_color)
+            if row_index == 0:
+                axis.tick_params(axis = "x", bottom = False, color = tick_color)
+            else:
+                axis.tick_params(
+                    axis = "x",
+                    bottom = True,
+                    length = 2.8,
+                    width = 0.6,
+                    color = tick_color,
+                )
+            axis.tick_params(axis = "y", labelsize = 7, color = tick_color)
             axis.spines[["top", "right", "bottom"]].set_visible(False)
+            if row_index == 1:
+                axis.spines["bottom"].set_visible(True)
+                axis.spines["bottom"].set_linewidth(0.6)
+                axis.spines["bottom"].set_color("#9A9A9A")
             axis.spines["left"].set_linewidth(0.6)
-            axis.spines["left"].set_color("#CCCCCC")
+            axis.spines["left"].set_color("#9A9A9A")
             axis.yaxis.grid(True, lw = 0.35, color = "#E8E8E8", zorder = 0)
             axis.set_axisbelow(True)
 
@@ -858,29 +894,6 @@ def plot_perturbation_superfigure(
             axis.set_visible(False)
             continue
 
-        degradation_width = max(0.0, fingerprint_limit - float(delta_ei))
-        degradation_height = max(0.0, fingerprint_limit - float(delta_ci))
-        axis.add_patch(
-            Rectangle(
-                xy = (-fingerprint_limit, -fingerprint_limit),
-                width = degradation_width,
-                height = degradation_height,
-                facecolor = degradation_face,
-                edgecolor = "none",
-                alpha = 0.42,
-                zorder = 0,
-            )
-        )
-        axis.text(
-            x = -0.92 * fingerprint_limit,
-            y = -0.95 * fingerprint_limit,
-            s = "Degradation",
-            ha = "left",
-            va = "bottom",
-            fontsize = 7.4,
-            color = degradation_text,
-            fontweight = "semibold",
-        )
         axis.add_patch(
             Rectangle(
                 xy = (-float(delta_ei), -float(delta_ci)),
@@ -913,6 +926,8 @@ def plot_perturbation_superfigure(
         axis.axvline(x = 0.0, color = "#7A7A7A", lw = 0.6, ls = "-", zorder = 2.1)
 
         methods = sorted(panel["method"].unique())
+        fingerprint_handles: list[Line2D] = []
+        fingerprint_text_colors: dict[str, str] = {}
         for method_index, method in enumerate(methods):
             method_panel = panel.loc[panel["method"] == method].copy()
             if method_panel.empty:
@@ -920,6 +935,7 @@ def plot_perturbation_superfigure(
 
             method_label = _format_method_label(method = method)
             method_depth = len(methods) - method_index
+            line_style = method_linestyles[method_index % len(method_linestyles)]
             shade = _shade_plot_color(
                 hex_color = color,
                 factor = method_shade_factors[method_index % len(method_shade_factors)],
@@ -942,6 +958,7 @@ def plot_perturbation_superfigure(
                 [0.0, median_y],
                 color = shade,
                 lw = 1.1,
+                ls = line_style,
                 alpha = 0.88,
                 zorder = 4,
             )
@@ -960,16 +977,34 @@ def plot_perturbation_superfigure(
                 median_x_label = "0.00"
             if median_y_label in {"+0.00", "-0.00"}:
                 median_y_label = "0.00"
-            axis.text(
-                x = 0.03,
-                y = 0.950 - method_index * 0.061,
-                s = f"{method_label}: $\\Delta$EI={median_x_label}, $\\Delta$CI={median_y_label}",
-                transform = axis.transAxes,
-                ha = "left",
-                va = "top",
-                fontsize = 6.9,
-                color = shade,
-                fontweight = "semibold",
+            legend_label = (
+                f"{method_label}: "
+                f"ΔEI = {median_x_label}, ΔCI = {median_y_label}"
+            )
+            fingerprint_handles.append(
+                Line2D(
+                    [0.0],
+                    [0.0],
+                    color = shade,
+                    lw = 0.0,
+                    ls = "None",
+                    marker = "o",
+                    markersize = 4.4,
+                    markerfacecolor = shade,
+                    markeredgecolor = shade,
+                    markeredgewidth = 0.0,
+                    label = legend_label,
+                )
+            )
+            fingerprint_text_colors[legend_label] = color
+
+        if fingerprint_handles:
+            _draw_method_legend(
+                axis = axis,
+                handles = fingerprint_handles,
+                text_colors = fingerprint_text_colors,
+                loc = "upper left",
+                bbox_to_anchor = (0.03, 1.0),
             )
 
         axis.set_xlim(left = -fingerprint_limit, right = fingerprint_limit)
@@ -994,14 +1029,14 @@ def plot_perturbation_superfigure(
         axis.set_yticklabels(labels = fingerprint_y_labels)
         for tick_label in axis.get_xticklabels() + axis.get_yticklabels():
             if tick_label.get_text() in {r"$-\delta$", r"$+\delta$"}:
-                tick_label.set_color("#8E8E8E")
-        axis.tick_params(axis = "both", labelsize = 7)
+                tick_label.set_color(tick_color)
+        axis.tick_params(axis = "both", labelsize = 7, color = tick_color)
         axis.grid(False)
         axis.set_aspect(aspect = "equal", adjustable = "box")
         axis.spines[["top", "right"]].set_visible(False)
         axis.spines[["left", "bottom"]].set_visible(True)
-        axis.spines["left"].set_color("#C9C9C9")
-        axis.spines["bottom"].set_color("#C9C9C9")
+        axis.spines["left"].set_color("#9A9A9A")
+        axis.spines["bottom"].set_color("#9A9A9A")
         axis.spines["left"].set_linewidth(0.6)
         axis.spines["bottom"].set_linewidth(0.6)
 
@@ -1035,6 +1070,428 @@ def plot_perturbation_superfigure(
         x = 0.52,
         y = fingerprint_label_y,
         s = r"$\Delta$ EI at Maximum Perturbation Intensity",
+        ha = "center",
+        va = "top",
+        fontsize = 9.2,
+    )
+    for text_artist in fig.findobj(match = Text):
+        text_artist.set_fontfamily(["Helvetica", "Arial", "sans-serif"])
+        text_artist.set_fontsize(text_artist.get_fontsize() + 2.0)
+
+    if show:
+        plt.show()
+    return fig, axes
+
+
+def plot_falsification_fingerprint(
+    results_transfer: pd.DataFrame,
+    results_agreement: pd.DataFrame,
+    method_order: Sequence[str] | None = None,
+    track_order: Sequence[str] | None = ("frozen", "retrain"),
+    track_colors: Mapping[str, str] | None = None,
+    method_col: str = "Method",
+    track_col: str = "Falsification",
+    condition_col: str = "condition",
+    condition_original: str = "original",
+    condition_falsified: str = "falsified",
+    unit_col: str = "group",
+    value_transfer: str = "ei",
+    value_agreement: str = "ci",
+    delta_ei: float | None = None,
+    delta_ci: float | None = None,
+    iqr_scale_ei: float = 1.0,
+    iqr_scale_ci: float = 1.0,
+    iqr_decimals: int = 2,
+    delta_label: str | None = "Eq.",
+    degradation_label: str | None = "Falsified",
+    limit: float = 0.5,
+    figsize: tuple[float, float] = (13.8, 4.7),
+    show: bool = True,
+    ) -> tuple[Figure, np.ndarray]:
+
+    """
+    Desc:
+        Plot falsification paired-delta fingerprints using the same visual
+        language as the perturbation fingerprint panels.
+
+    Args:
+        results_transfer: Falsified transfer results with original and
+            falsified EI values.
+        results_agreement: Falsified agreement results with original and
+            falsified CI values.
+        method_order: Optional order for falsification method panels.
+        track_order: Optional order for falsification tracks.
+        track_colors: Optional mapping from track to color.
+        method_col: Column identifying falsification method.
+        track_col: Column identifying falsification track.
+        condition_col: Column identifying original versus falsified rows.
+        condition_original: Label for original rows.
+        condition_falsified: Label for falsified rows.
+        unit_col: Pairing unit column.
+        value_transfer: EI metric column.
+        value_agreement: CI metric column.
+        delta_ei: Optional shared EI reference margin. If both delta values are
+            None, a single shared margin is derived from the larger original
+            EI/CI IQR so both axes use the same delta.
+        delta_ci: Optional shared CI reference margin. If one delta is provided
+            and the other is None, the provided value is used for both axes.
+        iqr_scale_ei: Multiplier applied to the EI IQR margin.
+        iqr_scale_ci: Multiplier applied to the CI IQR margin.
+        iqr_decimals: Number of decimals used when rounding IQR margins up.
+        delta_label: Optional text label drawn near the reference margins.
+        degradation_label: Optional text label drawn in the lower-left
+            degradation quadrant.
+        limit: Symmetric axis limit.
+        figsize: Figure size in inches.
+        show: Whether to call plt.show() before returning.
+
+    Returns:
+        Tuple containing the figure and axes array.
+
+    Raises:
+        ValueError: If required columns are missing or no paired rows exist.
+    """
+
+    if track_colors is None:
+        track_colors = {
+            "frozen": "#A6363A",
+            "retrain": "#C46A1C",
+        }
+    else:
+        track_colors = dict(track_colors)
+
+    pair_columns = [track_col, method_col, "model", unit_col]
+
+    def _iqr_margin(
+        results: pd.DataFrame,
+        value_col: str,
+        scale: float,
+        ) -> float:
+
+        required_columns = {condition_col, value_col}
+        missing_columns = sorted(required_columns - set(results.columns))
+        if missing_columns:
+            raise ValueError(f"Missing required falsification columns: {missing_columns}")
+
+        reference = results.loc[results[condition_col] == condition_original]
+        values = pd.to_numeric(reference[value_col], errors = "coerce").to_numpy(dtype = float)
+        values = values[np.isfinite(values)]
+        if len(values) < 2:
+            raise ValueError("At least two finite original values are required to derive IQR margins")
+
+        dispersion = float(np.percentile(values, 75) - np.percentile(values, 25))
+        multiplier = 10 ** int(iqr_decimals)
+        return float(np.ceil(max(float(scale * dispersion), 1e-6) * multiplier) / multiplier)
+
+    def _paired_metric_frame(
+        results: pd.DataFrame,
+        value_col: str,
+        delta_col: str,
+        ) -> pd.DataFrame:
+
+        required_columns = set(pair_columns + [condition_col, value_col])
+        missing_columns = sorted(required_columns - set(results.columns))
+        if missing_columns:
+            raise ValueError(f"Missing required falsification columns: {missing_columns}")
+
+        paired = (
+            results
+            .loc[:, pair_columns + [condition_col, value_col]]
+            .pivot_table(
+                index = pair_columns,
+                columns = condition_col,
+                values = value_col,
+                aggfunc = "median",
+                observed = True,
+            )
+        )
+        missing_conditions = [
+            condition
+            for condition in (condition_original, condition_falsified)
+            if condition not in paired.columns
+        ]
+        if missing_conditions:
+            raise ValueError(f"Missing falsification conditions: {missing_conditions}")
+
+        paired = paired.dropna(subset = [condition_original, condition_falsified]).reset_index()
+        paired[delta_col] = paired[condition_falsified] - paired[condition_original]
+        return paired.loc[:, pair_columns + [delta_col]].copy()
+
+    transfer_paired = _paired_metric_frame(
+        results = results_transfer,
+        value_col = value_transfer,
+        delta_col = "delta_ei",
+    )
+    agreement_paired = _paired_metric_frame(
+        results = results_agreement,
+        value_col = value_agreement,
+        delta_col = "delta_ci",
+    )
+    fingerprint = transfer_paired.merge(
+        right = agreement_paired,
+        on = pair_columns,
+        how = "inner",
+    )
+    if fingerprint.empty:
+        raise ValueError("No paired falsification rows are available for plotting")
+
+    if delta_ei is None and delta_ci is None:
+        delta_ei_iqr = _iqr_margin(
+            results = results_transfer,
+            value_col = value_transfer,
+            scale = iqr_scale_ei,
+        )
+        delta_ci_iqr = _iqr_margin(
+            results = results_agreement,
+            value_col = value_agreement,
+            scale = iqr_scale_ci,
+        )
+        delta_shared = max(delta_ei_iqr, delta_ci_iqr)
+        delta_ei = delta_shared
+        delta_ci = delta_shared
+    elif delta_ei is None:
+        delta_ei = float(delta_ci)
+    elif delta_ci is None:
+        delta_ci = float(delta_ei)
+
+    def _normalize_label(value: object) -> str:
+        return str(value).replace("_", " ").replace("-", " ").lower()
+
+    available_methods = fingerprint[method_col].dropna().unique().tolist()
+    if method_order is None:
+        preferred_methods = ("target remap", "random generate", "vector generate")
+        ordered_methods = []
+        for preferred_method in preferred_methods:
+            ordered_methods.extend(
+                [
+                    method
+                    for method in available_methods
+                    if _normalize_label(value = method) == preferred_method
+                ]
+            )
+        ordered_methods.extend(
+            sorted(
+                [method for method in available_methods if method not in ordered_methods],
+                key = lambda method: str(method),
+            )
+        )
+    else:
+        ordered_methods = [method for method in method_order if method in available_methods]
+    if not ordered_methods:
+        raise ValueError("No falsification method rows are available for plotting")
+
+    available_tracks = fingerprint[track_col].dropna().unique().tolist()
+    if track_order is None:
+        ordered_tracks = sorted(available_tracks, key = lambda track: str(track))
+    else:
+        ordered_tracks = [track for track in track_order if track in available_tracks]
+        ordered_tracks.extend(
+            sorted(
+                [track for track in available_tracks if track not in ordered_tracks],
+                key = lambda track: str(track),
+            )
+        )
+
+    def _format_label(value: object) -> str:
+        return str(value).replace("_", " ").title()
+
+    def _format_signed(value: float) -> str:
+        label = f"{value:+.2f}"
+        return "0.00" if label in {"+0.00", "-0.00"} else label
+
+    def _compose_reference_ticks(
+        base_ticks: Sequence[float],
+        delta_ticks: Mapping[float, str],
+        ) -> tuple[list[float], list[str]]:
+
+        ordered_ticks = sorted(
+            [float(tick) for tick in base_ticks] + [float(tick) for tick in delta_ticks.keys()]
+        )
+        merged_ticks: list[float] = []
+        for tick in ordered_ticks:
+            if merged_ticks and np.isclose(tick, merged_ticks[-1], atol = 1e-9, rtol = 0.0):
+                continue
+            merged_ticks.append(tick)
+
+        labels = []
+        for tick in merged_ticks:
+            tick_label = None
+            for delta_tick, delta_label in delta_ticks.items():
+                if np.isclose(tick, float(delta_tick), atol = 1e-9, rtol = 0.0):
+                    tick_label = delta_label
+                    break
+            labels.append(f"{tick:.2f}" if tick_label is None else tick_label)
+
+        return merged_ticks, labels
+
+    fig, axes_grid = plt.subplots(
+        nrows = 1,
+        ncols = len(ordered_methods),
+        figsize = figsize,
+        sharex = True,
+        sharey = True,
+        squeeze = False,
+    )
+    axes = axes_grid.ravel()
+    fig.patch.set_facecolor("white")
+    fig.subplots_adjust(top = 0.88, bottom = 0.16, left = 0.07, right = 0.985, wspace = 0.28)
+
+    title_color = "#8F2A2A"
+    zero_color = "#7A7A7A"
+    spine_color = "#9A9A9A"
+    tick_color = "#8E8E8E"
+    degradation_face = "#F2CACA"
+    ticks = np.linspace(start = -float(limit), stop = float(limit), num = 5)
+    x_ticks, x_tick_labels = _compose_reference_ticks(
+        base_ticks = ticks,
+        delta_ticks = {},
+    )
+    y_ticks, y_tick_labels = _compose_reference_ticks(
+        base_ticks = ticks,
+        delta_ticks = {},
+    )
+
+    for axis, method in zip(axes, ordered_methods):
+        panel = fingerprint.loc[fingerprint[method_col] == method].copy()
+        axis.add_patch(
+            Rectangle(
+                xy = (-float(limit), -float(limit)),
+                width = float(limit),
+                height = float(limit),
+                facecolor = degradation_face,
+                edgecolor = "none",
+                alpha = 0.22,
+                zorder = 1.6,
+            )
+        )
+        if degradation_label is not None and str(degradation_label).strip():
+            degradation_label_pad = 0.04
+            axis.text(
+                x = -float(limit) + degradation_label_pad,
+                y = -float(limit) + degradation_label_pad,
+                s = str(degradation_label),
+                ha = "left",
+                va = "bottom",
+                fontsize = 8.4,
+                color = title_color,
+                fontweight = "bold",
+                alpha = 0.82,
+                zorder = 2.0,
+            )
+        axis.axhline(y = 0.0, color = zero_color, lw = 0.6, ls = "-", zorder = 2.1)
+        axis.axvline(x = 0.0, color = zero_color, lw = 0.6, ls = "-", zorder = 2.1)
+
+        legend_handles: list[Line2D] = []
+        legend_text_colors: dict[str, str] = {}
+        for track_index, track in enumerate(ordered_tracks):
+            track_panel = panel.loc[panel[track_col] == track].copy()
+            if track_panel.empty:
+                continue
+
+            color = track_colors.get(str(track), "#666666")
+            track_depth = len(ordered_tracks) - track_index
+            x_values = track_panel["delta_ei"].to_numpy(dtype = float)
+            y_values = track_panel["delta_ci"].to_numpy(dtype = float)
+            axis.scatter(
+                x = x_values,
+                y = y_values,
+                s = 18,
+                color = color,
+                alpha = 0.26,
+                edgecolors = "none",
+                zorder = 3.0 + (0.1 * track_depth),
+            )
+            median_x = float(np.nanmedian(x_values))
+            median_y = float(np.nanmedian(y_values))
+            axis.plot(
+                [0.0, median_x],
+                [0.0, median_y],
+                color = color,
+                lw = 1.1,
+                alpha = 0.88,
+                zorder = 4,
+            )
+            axis.scatter(
+                x = [median_x],
+                y = [median_y],
+                s = 64,
+                color = color,
+                edgecolors = "none",
+                linewidths = 0.0,
+                zorder = 5.0 + (0.1 * track_depth),
+            )
+            legend_label = (
+                f"{_format_label(value = track)}: "
+                f"ΔEI = {_format_signed(value = median_x)}, "
+                f"ΔCI = {_format_signed(value = median_y)}"
+            )
+            legend_handles.append(
+                Line2D(
+                    [0.0],
+                    [0.0],
+                    color = color,
+                    lw = 0.0,
+                    ls = "None",
+                    marker = "o",
+                    markersize = 4.4,
+                    markerfacecolor = color,
+                    markeredgecolor = color,
+                    markeredgewidth = 0.0,
+                    label = legend_label,
+                )
+            )
+            legend_text_colors[legend_label] = color
+
+        if legend_handles:
+            legend = axis.legend(
+                handles = legend_handles,
+                fontsize = 5.9,
+                loc = "center left",
+                bbox_to_anchor = (0.03, 0.875),
+                borderaxespad = 0.0,
+                framealpha = 0.9,
+                edgecolor = "#D0D0D0",
+                handlelength = 1.9,
+                borderpad = 0.45,
+                labelspacing = 0.25,
+                handletextpad = 0.45,
+            )
+            for legend_text in legend.get_texts():
+                legend_text.set_color(legend_text_colors.get(legend_text.get_text(), "#444444"))
+
+        axis.set_title(
+            label = _format_label(value = method),
+            fontsize = 10.2,
+            fontweight = "semibold",
+            color = title_color,
+            pad = 8,
+        )
+        axis.set_xlim(left = -float(limit), right = float(limit))
+        axis.set_ylim(bottom = -float(limit), top = float(limit))
+        axis.set_xticks(ticks = x_ticks)
+        axis.set_xticklabels(labels = x_tick_labels)
+        axis.set_yticks(ticks = y_ticks)
+        axis.set_yticklabels(labels = y_tick_labels)
+        axis.tick_params(axis = "both", labelsize = 7, color = tick_color)
+        axis.tick_params(axis = "y", labelleft = True)
+        axis.grid(False)
+        axis.set_aspect(aspect = "equal", adjustable = "box")
+        axis.spines[["top", "right"]].set_visible(False)
+        axis.spines[["left", "bottom"]].set_visible(True)
+        axis.spines["left"].set_color(spine_color)
+        axis.spines["bottom"].set_color(spine_color)
+        axis.spines["left"].set_linewidth(0.6)
+        axis.spines["bottom"].set_linewidth(0.6)
+
+    axes[0].set_ylabel(
+        ylabel = r"$\Delta$ CI (Falsified - Original)",
+        fontsize = 9.2,
+        labelpad = 8,
+    )
+    fig.text(
+        x = 0.52,
+        y = 0.08,
+        s = r"$\Delta$ EI (Falsified - Original)",
         ha = "center",
         va = "top",
         fontsize = 9.2,
@@ -1278,7 +1735,7 @@ def plot_decomposition_moneyshot(
     """
     Desc:
         Plot paired decomposition coordinate fingerprints showing how each
-        alternative specification moves relative to the additive reference on
+        test specification moves relative to the original additive reference on
         efficiency and consensus.
 
     Args:
@@ -1321,26 +1778,33 @@ def plot_decomposition_moneyshot(
         "capacity_only": "Capacity Only",
         "dynamics_only": "Dynamics Only",
     }
+    spec_legend_labels = {
+        "interaction": "Interaction",
+        "interaction_joint": "Interaction Joint",
+        "joint": "Joint",
+        "capacity_only": "Capacity",
+        "dynamics_only": "Dynamics",
+    }
     spec_family = {
-        "interaction": "Richer",
-        "interaction_joint": "Richer",
-        "joint": "Richer",
-        "capacity_only": "Reduced",
-        "dynamics_only": "Reduced",
+        "interaction": "Complex",
+        "interaction_joint": "Complex",
+        "joint": "Complex",
+        "capacity_only": "Simple",
+        "dynamics_only": "Simple",
     }
     spec_colors = {
-        "interaction": "#9ecae1",
-        "interaction_joint": "#4f83b6",
-        "joint": "#1d4f7a",
-        "capacity_only": "#f4a261",
-        "dynamics_only": "#c96b27",
+        "interaction": "#4C78A8",
+        "interaction_joint": "#B04E8A",
+        "joint": "#6C5AA8",
+        "capacity_only": "#D17A22",
+        "dynamics_only": "#B5472F",
     }
     spec_markers = {
         "interaction": "o",
-        "interaction_joint": "^",
-        "joint": "D",
-        "capacity_only": "s",
-        "dynamics_only": "P",
+        "interaction_joint": "o",
+        "joint": "o",
+        "capacity_only": "o",
+        "dynamics_only": "o",
     }
 
     additive = (
@@ -1378,195 +1842,262 @@ def plot_decomposition_moneyshot(
         ordered = True,
     )
 
-    from matplotlib.patches import Ellipse as MplEllipse
-
-    def draw_cov_ellipse(axis: object, x: np.ndarray, y: np.ndarray, color: str, q: float = 0.80) -> None:
-
-        valid = np.isfinite(x) & np.isfinite(y)
-        if int(valid.sum()) < 3:
-            return
-
-        coordinates = np.column_stack((x[valid], y[valid]))
-        covariance = np.cov(m = coordinates, rowvar = False)
-        if covariance.shape != (2, 2) or not np.all(np.isfinite(covariance)):
-            return
-
-        eigen_values, eigen_vectors = np.linalg.eigh(covariance)
-        eigen_values = np.maximum(eigen_values, 0.0)
-        order = np.argsort(eigen_values)[::-1]
-        eigen_values = eigen_values[order]
-        eigen_vectors = eigen_vectors[:, order]
-
-        if float(eigen_values[0]) <= 0.0:
-            return
-
-        scale = float(np.sqrt(-2.0 * np.log(max(1.0 - q, 1e-9))))
-        width, height = 2.0 * scale * np.sqrt(eigen_values)
-        angle = float(np.degrees(np.arctan2(eigen_vectors[1, 0], eigen_vectors[0, 0])))
-        center = coordinates.mean(axis = 0)
-
-        ellipse = MplEllipse(
-            xy = (float(center[0]), float(center[1])),
-            width = float(width),
-            height = float(height),
-            angle = angle,
-            facecolor = color,
-            edgecolor = color,
-            linewidth = 1.1,
-            alpha = 0.16,
-            zorder = 1,
-        )
-        axis.add_patch(ellipse)
+    category_order = ("Complex", "Simple")
 
     fig, axes_raw = plt.subplots(
         nrows = 1,
-        ncols = len(specification_order),
+        ncols = len(category_order),
         figsize = figsize,
         sharex = True,
         sharey = True,
-        constrained_layout = True,
+        squeeze = False,
+        constrained_layout = False,
     )
-    axes = np.atleast_1d(axes_raw).astype(object)
+    axes = axes_raw.ravel().astype(object)
+    fig.patch.set_facecolor("white")
+    fig.subplots_adjust(top = 0.84, bottom = 0.16, left = 0.08, right = 0.985, wspace = 0.06)
 
-    neutral_color = "#6c757d"
-    margin_face = "#edf6ee"
-    margin_edge = "#5b8c5a"
-    additive_face = "#f6d8cc"
-    additive_color = "#9a3412"
+    neutral_color = "#7A7A7A"
+    margin_face = "#F8EDAA"
+    margin_edge = "#C9C9C9"
+    margin_text_color = "#3D7F50"
+    spine_color = "#9A9A9A"
+    tick_color = "#8E8E8E"
+    delta_annotation_color = "#8E8E8E"
+    category_title_color = "#333333"
 
     axis_limits = (-0.5, 0.5)
+    def _compose_reference_ticks(
+        base_ticks: Sequence[float],
+        delta_ticks: Mapping[float, str],
+        ) -> tuple[list[float], list[str]]:
+
+        ordered_ticks = sorted([float(tick) for tick in base_ticks] + [float(tick) for tick in delta_ticks.keys()])
+        merged_ticks: list[float] = []
+        for tick in ordered_ticks:
+            if merged_ticks and np.isclose(tick, merged_ticks[-1], atol = 1e-9, rtol = 0.0):
+                continue
+            merged_ticks.append(tick)
+
+        labels: list[str] = []
+        for tick in merged_ticks:
+            tick_label = None
+            for delta_tick, delta_label in delta_ticks.items():
+                if np.isclose(tick, float(delta_tick), atol = 1e-9, rtol = 0.0):
+                    tick_label = delta_label
+                    break
+            labels.append(f"{tick:.2f}" if tick_label is None else tick_label)
+
+        return merged_ticks, labels
+
     axis_ticks = [-0.5, -0.25, 0.0, 0.25, 0.5]
+    x_ticks, x_tick_labels = _compose_reference_ticks(
+        base_ticks = axis_ticks,
+        delta_ticks = {
+            float(delta_ei): r"$+\delta$",
+        },
+    )
+    y_ticks, y_tick_labels = _compose_reference_ticks(
+        base_ticks = axis_ticks,
+        delta_ticks = {
+            float(delta_ci): r"$+\delta$",
+        },
+    )
 
-    for axis, specification in zip(axes, specification_order, strict = True):
-        spec_points = paired.loc[paired["specification"] == specification]
-        if spec_points.empty:
-            axis.set_visible(False)
-            continue
+    for axis, category in zip(axes, category_order):
+        category_specs = [
+            specification
+            for specification in specification_order
+            if spec_family.get(specification) == category
+        ]
 
-        color = spec_colors[specification]
-        marker = spec_markers[specification]
-        x = spec_points["delta_ei"].to_numpy(dtype = float)
-        y = spec_points["delta_ci"].to_numpy(dtype = float)
-        median_x = float(np.nanmedian(x))
-        median_y = float(np.nanmedian(y))
-        additive_share = float(np.mean((x < 0.0) & (y < 0.0)))
-        margin_share = float(np.mean((np.abs(x) <= delta_ei) & (np.abs(y) <= delta_ci)))
-
+        ni_origin_x = float(axis_limits[0])
+        ni_origin_y = float(axis_limits[0])
+        ni_width = float(delta_ei) - ni_origin_x
+        ni_height = float(delta_ci) - ni_origin_y
         axis.add_patch(
             Rectangle(
-                xy = (axis_limits[0], axis_limits[0]),
-                width = abs(axis_limits[0]),
-                height = abs(axis_limits[0]),
-                facecolor = additive_face,
-                edgecolor = "none",
-                alpha = 0.72,
-                zorder = 0,
-            )
-        )
-        axis.add_patch(
-            Rectangle(
-                xy = (-delta_ei, -delta_ci),
-                width = 2.0 * delta_ei,
-                height = 2.0 * delta_ci,
+                xy = (ni_origin_x, ni_origin_y),
+                width = ni_width,
+                height = ni_height,
                 facecolor = margin_face,
-                edgecolor = margin_edge,
-                linewidth = 1.1,
-                linestyle = "--",
-                alpha = 0.72,
-                zorder = 1,
+                edgecolor = "none",
+                linewidth = 0.0,
+                alpha = 0.82,
+                zorder = 1.85,
             )
         )
-        axis.axhline(y = 0.0, color = neutral_color, linewidth = 0.8, linestyle = "--", alpha = 0.42, zorder = 2)
-        axis.axvline(x = 0.0, color = neutral_color, linewidth = 0.8, linestyle = "--", alpha = 0.42, zorder = 2)
-        axis.scatter(
-            x,
-            y,
-            s = 24,
-            alpha = 0.30,
-            color = color,
-            linewidths = 0.0,
-            zorder = 4,
+        region_label_pad = 0.03
+        axis.text(
+            x = ni_origin_x + region_label_pad,
+            y = ni_origin_y + region_label_pad,
+            s = "Non-Inferior",
+            ha = "left",
+            va = "bottom",
+            fontsize = 6.9,
+            color = margin_text_color,
+            fontweight = "semibold",
+            zorder = 2.05,
         )
-        draw_cov_ellipse(axis = axis, x = x, y = y, color = color, q = 0.80)
         axis.plot(
-            [0.0, median_x],
-            [0.0, median_y],
-            color = color,
-            linewidth = 1.3,
-            alpha = 0.86,
-            zorder = 5,
-        )
-        axis.scatter(
-            [median_x],
-            [median_y],
-            s = 84,
-            marker = marker,
-            color = color,
-            edgecolor = "white",
-            linewidth = 1.2,
-            zorder = 6,
-        )
-        axis.text(
-            x = 0.04,
-            y = 0.94,
-            s = (
-                f"P(both < 0) = {additive_share:.2f}\n"
-                f"P(within δ) = {margin_share:.2f}"
-            ),
-            transform = axis.transAxes,
-            ha = "left",
-            va = "top",
-            fontsize = 7.8,
-            color = color,
-            fontweight = "bold",
-        )
-        axis.text(
-            x = 0.04,
-            y = 0.04,
-            s = "additive\nfavored",
-            transform = axis.transAxes,
-            ha = "left",
-            va = "bottom",
-            fontsize = 7.8,
-            color = additive_color,
-            fontweight = "bold",
-        )
-        axis.text(
-            x = delta_ei + 0.015,
-            y = delta_ci + 0.015,
-            s = "±δ",
-            ha = "left",
-            va = "bottom",
-            fontsize = 7.2,
+            [ni_origin_x, float(delta_ei)],
+            [float(delta_ci), float(delta_ci)],
             color = margin_edge,
+            lw = 0.6,
+            ls = "--",
+            zorder = 2.0,
         )
-        axis.set_title(spec_labels[specification], fontsize = 10, fontweight = "bold", color = color)
+        axis.plot(
+            [float(delta_ei), float(delta_ei)],
+            [ni_origin_y, float(delta_ci)],
+            color = margin_edge,
+            lw = 0.6,
+            ls = "--",
+            zorder = 2.0,
+        )
+        axis.axhline(y = 0.0, color = neutral_color, lw = 0.6, ls = "-", zorder = 2.1)
+        axis.axvline(x = 0.0, color = neutral_color, lw = 0.6, ls = "-", zorder = 2.1)
+
+        legend_handles: list[Line2D] = []
+        legend_text_colors: dict[str, str] = {}
+        for specification in category_specs:
+            spec_points = paired.loc[paired["specification"] == specification].copy()
+            if spec_points.empty:
+                continue
+
+            color = spec_colors[specification]
+            marker = spec_markers[specification]
+            x = spec_points["delta_ei"].to_numpy(dtype = float)
+            y = spec_points["delta_ci"].to_numpy(dtype = float)
+            median_x = float(np.nanmedian(x))
+            median_y = float(np.nanmedian(y))
+            axis.scatter(
+                x = x,
+                y = y,
+                s = 18,
+                color = color,
+                alpha = 0.26,
+                edgecolors = "none",
+                zorder = 3.0,
+            )
+            axis.plot(
+                [0.0, median_x],
+                [0.0, median_y],
+                color = color,
+                lw = 1.1,
+                alpha = 0.88,
+                zorder = 4.0,
+            )
+            axis.scatter(
+                x = [median_x],
+                y = [median_y],
+                s = 76,
+                marker = marker,
+                color = color,
+                edgecolors = "none",
+                linewidths = 0.0,
+                zorder = 5.0,
+            )
+
+            legend_label = (
+                f"{spec_legend_labels[specification]}: "
+                f"ΔEI = {median_x:+.2f}, "
+                f"ΔCI = {median_y:+.2f}"
+            )
+            legend_handles.append(
+                Line2D(
+                    [0.0],
+                    [0.0],
+                    color = color,
+                    lw = 0.0,
+                    ls = "None",
+                    marker = marker,
+                    markersize = 4.8,
+                    markerfacecolor = color,
+                    markeredgecolor = color,
+                    markeredgewidth = 0.0,
+                    label = legend_label,
+                )
+            )
+            legend_text_colors[legend_label] = color
+
+        if legend_handles:
+            legend = axis.legend(
+                handles = legend_handles,
+                fontsize = 6.0,
+                loc = "upper left",
+                bbox_to_anchor = (0.03, 1.0),
+                borderaxespad = 0.0,
+                framealpha = 0.9,
+                edgecolor = "#D0D0D0",
+                handlelength = 1.9,
+                borderpad = 0.45,
+                labelspacing = 0.25,
+                handletextpad = 0.45,
+            )
+            for legend_text in legend.get_texts():
+                legend_text.set_color(legend_text_colors.get(legend_text.get_text(), "#444444"))
+
+        axis.set_title(
+            label = category,
+            fontsize = 10.2,
+            fontweight = "semibold",
+            color = category_title_color,
+            pad = 8,
+        )
         axis.set_xlim(*axis_limits)
         axis.set_ylim(*axis_limits)
-        axis.set_xticks(ticks = axis_ticks)
-        axis.set_yticks(ticks = axis_ticks)
+        axis.set_xticks(ticks = x_ticks)
+        axis.set_xticklabels(labels = x_tick_labels)
+        axis.set_yticks(ticks = y_ticks)
+        axis.set_yticklabels(labels = y_tick_labels)
+        axis.tick_params(axis = "both", labelsize = 7, color = tick_color)
+        axis.tick_params(axis = "y", labelleft = True)
+        for tick_label in axis.get_xticklabels() + axis.get_yticklabels():
+            tick_text = tick_label.get_text().lower()
+            if ("delta" in tick_text) or ("δ" in tick_text):
+                tick_label.set_color(delta_annotation_color)
+        axis.grid(False)
         axis.set_aspect(aspect = "equal", adjustable = "box")
-        axis.grid(alpha = 0.16, linewidth = 0.7)
-        for spine in ["top", "right"]:
-            axis.spines[spine].set_visible(False)
+        axis.spines[["top", "right"]].set_visible(False)
+        axis.spines[["left", "bottom"]].set_visible(True)
+        axis.spines["left"].set_color(spine_color)
+        axis.spines["bottom"].set_color(spine_color)
+        axis.spines["left"].set_linewidth(0.6)
+        axis.spines["bottom"].set_linewidth(0.6)
 
-    axes[0].set_ylabel("Δ CI (alternative − additive)", fontsize = 9)
-    fig.text(x = 0.5, y = 0.055, s = "Δ EI (alternative − additive)", ha = "center", fontsize = 9)
-    fig.suptitle(title, x = 0.03, y = 1.02, ha = "left", fontsize = 13, fontweight = "bold")
+    current_positions = [axis.get_position() for axis in axes]
+    target_gap = 0.035
+    panel_width = min(position.width for position in current_positions)
+    panel_height = min(position.height for position in current_positions)
+    panel_bottom = min(position.y0 for position in current_positions)
+    total_width = (len(axes) * panel_width) + ((len(axes) - 1) * target_gap)
+    left_start = 0.5 - (0.5 * total_width)
+    for axis_index, axis in enumerate(axes):
+        axis.set_position([
+            left_start + (axis_index * (panel_width + target_gap)),
+            panel_bottom,
+            panel_width,
+            panel_height,
+        ])
+
+    x_label_pad_points = 8.0
+    x_tick_label_points = 9.0
+    x_tick_pad_points = 3.5
+    x_label_clearance_points = x_label_pad_points + x_tick_label_points + x_tick_pad_points
+    x_label_y = panel_bottom - ((x_label_clearance_points / 72.0) / float(figsize[1]))
+    axes[0].set_ylabel("Δ CI (Test - Original)", fontsize = 9, labelpad = 8)
     fig.text(
-        x = 0.03,
-        y = 0.935,
-        s = (
-            "Each point is a paired unit (model × domain): Δ = alternative − additive. "
-            "Additive-favored loss appears in the lower-left quadrant; dashed boxes show ±δ practical-equivalence margins. "
-            "Axes fixed to [-0.5, 0.5]."
-        ),
-        ha = "left",
+        x = left_start + (0.5 * total_width),
+        y = x_label_y,
+        s = "Δ EI (Test - Original)",
+        ha = "center",
         va = "top",
-        fontsize = 8.5,
-        color = "#666666",
-        style = "italic",
+        fontsize = 9,
     )
+    for text_artist in fig.findobj(match = Text):
+        text_artist.set_fontfamily(["Helvetica", "Arial", "sans-serif"])
+        text_artist.set_fontsize(text_artist.get_fontsize() + 2.0)
 
     if show:
         plt.show()
