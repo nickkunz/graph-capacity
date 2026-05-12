@@ -257,7 +257,7 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False, random_sta
         for method, params in INVARIANT_METHODS.items():
             for param in params:
                 try:
-                    perturbed_df = invariant_perturb(
+                    perturbed_df = feature_perturb(
                         base_df.copy(),
                         method = method,
                         noise = float(param) if method != 'subset' else 0.05,

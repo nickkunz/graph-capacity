@@ -446,7 +446,7 @@ def feature_perturb(
         X: DataFrame of feature vectors.
         method: Perturbation method ('noise', 'jitter', 'subset').
         noise: Standard deviation of noise (relative to feature std).
-        subset: Fraction of features to keep (for subset).
+        subset: Fraction of features to keep (for subset ablation).
 
     Returns:
         Perturbed feature matrix.
@@ -479,17 +479,17 @@ def feature_perturb(
             if (X[col] >= 0).all():
                 X_new[col] = np.clip(X_new[col], a_min = 0, a_max = None)
 
-    ## random feature ablation (permute values to destroy structure)
+    ## random feature ablation by masking dropped columns
     elif method == "subset":
         n_features = X_new.shape[1]
         n_keep = int(n_features * subset)
+        n_keep = int(np.clip(n_keep, a_min = 0, a_max = n_features))
         drop_indices = rng.choice(
             X_new.columns,
             size = n_features - n_keep,
             replace = False
         )
-        for col in drop_indices:
-            X_new[col] = rng.permutation(X_new[col].values)
+        X_new.loc[:, drop_indices] = 0.0
 
     else:
         raise ValueError(f"unknown invariant perturbation method: {method}")
