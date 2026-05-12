@@ -1462,7 +1462,7 @@ def stat_perturbed_tost(
             valid = np.isfinite(x) & np.isfinite(y)
             x, y = x[valid], y[valid]
             n = len(x)
-            d = x - y
+            d = y - x
             med_d = float(np.median(d)) if n else np.nan
 
             if n < 2:
@@ -1554,8 +1554,10 @@ def stat_perturbed_tost(
     print(f"Paired TOST (Wilcoxon Signed-Rank): n = {n_display}, δ = {delta}")
     print(f"H₀: |Δ {metric_label}| ≥ δ")
     print(f"H₁: |Δ {metric_label}| < δ")
-    print(f"Median Δ {metric_label}: Median of paired differences, not the difference of marginal medians")
-    print(f"Rank-biserial r: Paired effect size, equivalence determined by TOST")
+    print(
+        f"Median Δ {metric_label}: Median of paired differences (perturbed - original), not the difference of marginal medians"
+    )
+    print(f"Rank-biserial r: Paired effect size, positive values favor perturbed > original; equivalence is determined by TOST")
     print(f"TOST p: max(Upper p, Lower p)")
     print(f"Holm-adj. p: Holm-Bonferroni adjusted TOST p-value")
     print("Significance codes reflect Holm-adj. p")
