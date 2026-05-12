@@ -1108,11 +1108,6 @@ def eval_perturbed_transfer(
     return compile_perturbed_transfer(results = results)
 
 
-## backwards-compatible frontier aliases
-train_perturbed_frontier = train_perturbed_transfer
-compile_perturbed_frontier = compile_perturbed_transfer
-eval_perturbed_frontier = eval_perturbed_transfer
-
 ## ----------------------------------------------------------------------------
 ## tost equivalence test for perturbation stability
 ## ----------------------------------------------------------------------------
