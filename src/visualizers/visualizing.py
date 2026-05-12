@@ -639,7 +639,7 @@ def plot_perturbation_superfigure(
     margin_color = "#E6F4EA"
     fingerprint_margin_color = "#CFEAD6"
     margin_edge_color = "#C9C9C9"
-    margin_text_color = "#3D7F50"
+    margin_text_color = "#9A6A1B"
     fingerprint_limit = 0.5
     fingerprint_ticks = np.linspace(-0.5, 0.5, 5)
     sweep_ticks = [float(sweep_ylim[0]), 0.0, float(sweep_ylim[1])]
@@ -1860,7 +1860,7 @@ def plot_decomposition_moneyshot(
     neutral_color = "#7A7A7A"
     margin_face = "#F8EDAA"
     margin_edge = "#C9C9C9"
-    margin_text_color = "#3D7F50"
+    margin_text_color = "#9A6A1B"
     spine_color = "#9A9A9A"
     tick_color = "#8E8E8E"
     delta_annotation_color = "#8E8E8E"
