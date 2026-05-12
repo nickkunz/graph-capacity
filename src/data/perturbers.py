@@ -44,9 +44,9 @@ from src.data.loaders.rain import RainProcessor
 from src.data.loaders.chickenpox import ChickenpoxProcessor
 from src.evaluators.perturbing import (
     network_perturb,
-    analytical_perturb,
+    feature_perturb,
     process_perturb,
-    invariant_perturb
+    analytical_perturb
 )
 from src.data.helpers import (
     _save_to_json, 
@@ -308,7 +308,7 @@ def _execute_perturbations(proc: Any, name: str, force: bool = False, random_sta
         for method, params in SIGNATURE_METHODS.items():
             for param in params:
                 try:
-                    perturbed_df = invariant_perturb(
+                    perturbed_df = feature_perturb(
                         base_sig_df.copy(),
                         method = method,
                         noise = float(param) if method != 'subset' else 0.05,

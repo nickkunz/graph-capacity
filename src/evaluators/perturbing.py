@@ -428,9 +428,9 @@ def network_perturb(
     return GraphInvariants(G).all()
 
 ## ----------------------------------------------------------------------------
-## invariant perturbation
+## feature vector perturbation
 ## ----------------------------------------------------------------------------
-def invariant_perturb(
+def feature_perturb(
     X: pd.DataFrame,
     method: str = "noise",
     noise: float = 0.05,
@@ -440,10 +440,10 @@ def invariant_perturb(
     
     """
     Desc:
-        Directly modifies invariant encoding.
+        Directly modifies invariant and signature feature vectors.
 
     Args:
-        X: DataFrame of graph invariants.
+        X: DataFrame of feature vectors.
         method: Perturbation method ('noise', 'jitter', 'subset').
         noise: Standard deviation of noise (relative to feature std).
         subset: Fraction of features to keep (for subset).
@@ -560,59 +560,59 @@ def process_perturb(
     signatures = ProcessSignatures(data_temp, sort_by = ["idx"], target = "counts")
     return signatures.all()
 
-## ----------------------------------------------------------------------------
-## signature perturbation
-## ----------------------------------------------------------------------------
-def signature_perturb(
-    X: pd.DataFrame,
-    Z: pd.DataFrame,
-    y: pd.Series,
-    method: str = "bootstrap",
-    fraction: float = 1.0,
-    random_state: int = 42,
-    ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series]:
-    """
-    Desc:
-        Modifies raw observations of the (X, Z, y) tuples.
+# ## ----------------------------------------------------------------------------
+# ## signature perturbation
+# ## ----------------------------------------------------------------------------
+# def signature_perturb(
+#     X: pd.DataFrame,
+#     Z: pd.DataFrame,
+#     y: pd.Series,
+#     method: str = "bootstrap",
+#     fraction: float = 1.0,
+#     random_state: int = 42,
+#     ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series]:
+#     """
+#     Desc:
+#         Modifies raw observations of the (X, Z, y) tuples.
 
-    Args:
-        X: DataFrame of graph invariants.
-        Z: DataFrame of process signatures.
-        y: Series of target values.
-        method: Perturbation method ('bootstrap', 'subsample', 'additive_noise').
-        fraction: Fraction of samples (for subsample), or noise level (for additive_noise).
+#     Args:
+#         X: DataFrame of graph invariants.
+#         Z: DataFrame of process signatures.
+#         y: Series of target values.
+#         method: Perturbation method ('bootstrap', 'subsample', 'additive_noise').
+#         fraction: Fraction of samples (for subsample), or noise level (for additive_noise).
 
-    Returns:
-        Tuple of (X_new, Z_new, y_new).
-    """
+#     Returns:
+#         Tuple of (X_new, Z_new, y_new).
+#     """
 
-    n_samples = len(y)
-    indices = np.arange(n_samples)
-    rng = np.random.default_rng(random_state)
+#     n_samples = len(y)
+#     indices = np.arange(n_samples)
+#     rng = np.random.default_rng(random_state)
 
-    if method == "bootstrap":
-        ## bootstrap keeps original sample size
-        new_indices = resample(indices, n_samples = n_samples, replace = True, random_state = random_state)
+#     if method == "bootstrap":
+#         ## bootstrap keeps original sample size
+#         new_indices = resample(indices, n_samples = n_samples, replace = True, random_state = random_state)
 
-    elif method == "subsample":
-        ## subsample uses fraction
-        new_n = int(max(1, np.floor(n_samples * fraction)))
-        new_indices = resample(indices, n_samples = new_n, replace = False, random_state = random_state)
+#     elif method == "subsample":
+#         ## subsample uses fraction
+#         new_n = int(max(1, np.floor(n_samples * fraction)))
+#         new_indices = resample(indices, n_samples = new_n, replace = False, random_state = random_state)
 
-    elif method == "additive_noise":
-        ## additive gaussian noise scaled by y standard deviation
-        y_new = y.copy().astype(float)
-        std = float(y_new.std())
-        if std > 0:
-            noise = rng.normal(0, std * fraction, size = n_samples)
-            y_new = y_new + noise
-            y_new = np.maximum(y_new, 0.0)  # counts are non-negative
-        return X.copy(), Z.copy(), pd.Series(y_new, name = y.name)
+#     elif method == "additive_noise":
+#         ## additive gaussian noise scaled by y standard deviation
+#         y_new = y.copy().astype(float)
+#         std = float(y_new.std())
+#         if std > 0:
+#             noise = rng.normal(0, std * fraction, size = n_samples)
+#             y_new = y_new + noise
+#             y_new = np.maximum(y_new, 0.0)  # counts are non-negative
+#         return X.copy(), Z.copy(), pd.Series(y_new, name = y.name)
 
-    else:
-        new_indices = indices
+#     else:
+#         new_indices = indices
 
-    return X.iloc[new_indices], Z.iloc[new_indices], y.iloc[new_indices]
+#     return X.iloc[new_indices], Z.iloc[new_indices], y.iloc[new_indices]
 
 ## ----------------------------------------------------------------------------
 ## temporal perturbation
