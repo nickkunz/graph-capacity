@@ -1215,8 +1215,28 @@ def stat_decomposed_summary(
         for metric in metrics_ordered
     }
     table = table.reindex(columns = metrics_ordered).rename(columns = rename_map)
-    table = table.rename(index = lambda spec: str(spec).replace("_", " ").title())
-    table.index.name = "Specification"
+
+    simple_specs = {"capacity_only", "dynamics_only"}
+
+    def _format_specification(specification: str) -> str:
+        if str(specification) == "additive":
+            return "Original"
+        return str(specification).replace("_", " ").title()
+
+    def _format_family(specification: str) -> str:
+        if str(specification) == "additive":
+            return "Original"
+        if str(specification) in simple_specs:
+            return "Simple"
+        return "Complex"
+
+    table.index = pd.MultiIndex.from_tuples(
+        tuples = [
+            (_format_family(specification = specification), _format_specification(specification = specification))
+            for specification in table.index
+        ],
+        names = ["Specification", "Method"],
+    )
 
     if decimals is not None:
         numeric_cols = list(table.select_dtypes(include = [np.number]).columns)
@@ -1464,7 +1484,7 @@ def stat_decomposed_test(
         print(f"H₀: Δ {metric_label} ≥ -δ")
         print(f"H₁: Δ {metric_label} < -δ")
         print(f"Inf.: Yes if Holm-adj. p < 0.05 and Median Δ {metric_label} < -δ")
-    print(f"Median Δ {metric_label}: Median of paired differences (spec − additive)")
+    print(f"Median Δ {metric_label}: Median of paired differences (Test - Original)")
     print("Rank-biserial r: Paired effect size, positive values favor the tested direction")
     print("One-sided p: Wilcoxon signed-rank p-value for H₁")
     print("Holm-adj. p: Holm-Bonferroni adjusted one-sided p-value")
