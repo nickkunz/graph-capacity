@@ -14,17 +14,17 @@
           "k_core_size": 16,
           "maximum_degree": 7,
           "degree_variance": 1.2664359861591694,
-          "global_clustering": 0.39622641509433965,
-          "degree_assortativity": -0.13104948341489428,
+          "global_clustering": 0.4528301886792453,
+          "degree_assortativity": -0.08754758020663149,
           "degree_entropy": 1.3647193751408024,
-          "joint_degree_entropy": 2.0880466760605683,
+          "joint_degree_entropy": 2.0474240601572955,
           "degree_skewness": -0.16205083089403174,
           "degree_kurtosis": 0.9450608515376064,
-          "normalized_laplacian_second_moment": 1.210905695611578,
-          "normalized_laplacian_third_moment": 1.5685854341736696,
-          "random_walk_triangle_weight": 0.06413165266106442,
-          "random_walk_fourth_moment": 0.10800269292902347,
-          "adjacency_fourth_moment_per_node": 59.529411764705884
+          "normalized_laplacian_second_moment": 1.2112418300653596,
+          "normalized_laplacian_third_moment": 1.5572408963585436,
+          "random_walk_triangle_weight": 0.07648459383753503,
+          "random_walk_fourth_moment": 0.11025271293702665,
+          "adjacency_fourth_moment_per_node": 60.0
         }
       },
       {
@@ -34,23 +34,23 @@
           "n_edges": 40,
           "n_articulation_points": 0,
           "n_bridges": 0,
-          "diameter": 3.0,
-          "radius": 3.0,
+          "diameter": 4.0,
+          "radius": 2.0,
           "degeneracy": 4,
           "k_core_size": 16,
           "maximum_degree": 7,
           "degree_variance": 1.2664359861591694,
           "global_clustering": 0.3584905660377359,
-          "degree_assortativity": -0.15280043501902876,
+          "degree_assortativity": -0.022294725394231125,
           "degree_entropy": 1.3647193751408024,
-          "joint_degree_entropy": 2.009111827862558,
+          "joint_degree_entropy": 2.060153732146292,
           "degree_skewness": -0.16205083089403174,
           "degree_kurtosis": 0.9450608515376064,
-          "normalized_laplacian_second_moment": 1.210611577964519,
-          "normalized_laplacian_third_moment": 1.5747408963585434,
-          "random_walk_triangle_weight": 0.05709383753501401,
-          "random_walk_fourth_moment": 0.10189824615031197,
-          "adjacency_fourth_moment_per_node": 56.705882352941174
+          "normalized_laplacian_second_moment": 1.2118720821662,
+          "normalized_laplacian_third_moment": 1.5743907563025212,
+          "random_walk_triangle_weight": 0.061225490196078425,
+          "random_walk_fourth_moment": 0.1052516541801906,
+          "adjacency_fourth_moment_per_node": 58.588235294117645
         }
       },
       {
@@ -63,20 +63,20 @@
           "diameter": 4.0,
           "radius": 2.0,
           "degeneracy": 4,
-          "k_core_size": 15,
+          "k_core_size": 16,
           "maximum_degree": 7,
           "degree_variance": 1.2664359861591694,
           "global_clustering": 0.3584905660377359,
-          "degree_assortativity": -0.044045676998365604,
+          "degree_assortativity": -0.022294725394231125,
           "degree_entropy": 1.3647193751408024,
-          "joint_degree_entropy": 2.052264138730325,
+          "joint_degree_entropy": 2.060153732146292,
           "degree_skewness": -0.16205083089403174,
           "degree_kurtosis": 0.9450608515376064,
-          "normalized_laplacian_second_moment": 1.2127124183006537,
-          "normalized_laplacian_third_moment": 1.5816666666666668,
-          "random_walk_triangle_weight": 0.05647058823529411,
-          "random_walk_fourth_moment": 0.10274829728187572,
-          "adjacency_fourth_moment_per_node": 56.705882352941174
+          "normalized_laplacian_second_moment": 1.2118720821662,
+          "normalized_laplacian_third_moment": 1.5743907563025212,
+          "random_walk_triangle_weight": 0.061225490196078425,
+          "random_walk_fourth_moment": 0.1052516541801906,
+          "adjacency_fourth_moment_per_node": 58.588235294117645
         }
       },
       {
@@ -86,22 +86,22 @@
           "n_edges": 40,
           "n_articulation_points": 0,
           "n_bridges": 0,
-          "diameter": 3.0,
-          "radius": 3.0,
+          "diameter": 4.0,
+          "radius": 2.0,
           "degeneracy": 4,
-          "k_core_size": 16,
+          "k_core_size": 14,
           "maximum_degree": 7,
           "degree_variance": 1.2664359861591694,
           "global_clustering": 0.30188679245283023,
-          "degree_assortativity": -0.044045676998365604,
+          "degree_assortativity": 0.042958129418166145,
           "degree_entropy": 1.3647193751408024,
-          "joint_degree_entropy": 2.0608788330647205,
+          "joint_degree_entropy": 2.141424475494154,
           "degree_skewness": -0.16205083089403174,
           "degree_kurtosis": 0.9450608515376064,
-          "normalized_laplacian_second_moment": 1.211732026143791,
-          "normalized_laplacian_third_moment": 1.5902030812324932,
-          "random_walk_triangle_weight": 0.04499299719887956,
-          "random_walk_fourth_moment": 0.10613123378981223,
+          "normalized_laplacian_second_moment": 1.2136367880485528,
+          "normalized_laplacian_third_moment": 1.5872408963585434,
+          "random_walk_triangle_weight": 0.053669467787114844,
+          "random_walk_fourth_moment": 0.1046767708935426,
           "adjacency_fourth_moment_per_node": 58.11764705882353
         }
       },
@@ -112,23 +112,23 @@
           "n_edges": 40,
           "n_articulation_points": 0,
           "n_bridges": 0,
-          "diameter": 4.0,
-          "radius": 3.0,
+          "diameter": 3.0,
+          "radius": 2.0,
           "degeneracy": 4,
           "k_core_size": 16,
           "maximum_degree": 7,
           "degree_variance": 1.2664359861591694,
-          "global_clustering": 0.3207547169811321,
-          "degree_assortativity": -0.10929853181076288,
+          "global_clustering": 0.339622641509434,
+          "degree_assortativity": 0.021207177814031662,
           "degree_entropy": 1.3647193751408024,
-          "joint_degree_entropy": 2.1195232965256605,
+          "joint_degree_entropy": 2.14528562633007,
           "degree_skewness": -0.16205083089403174,
           "degree_kurtosis": 0.9450608515376064,
-          "normalized_laplacian_second_moment": 1.2110971055088702,
-          "normalized_laplacian_third_moment": 1.582309523809524,
-          "random_walk_triangle_weight": 0.05098179271708683,
-          "random_walk_fourth_moment": 0.10922054840454702,
-          "adjacency_fourth_moment_per_node": 59.05882352941177
+          "normalized_laplacian_second_moment": 1.2124603174603175,
+          "normalized_laplacian_third_moment": 1.5851295518207287,
+          "random_walk_triangle_weight": 0.05225140056022409,
+          "random_walk_fourth_moment": 0.10648825548738013,
+          "adjacency_fourth_moment_per_node": 59.529411764705884
         }
       },
       {
@@ -138,23 +138,23 @@
           "n_edges": 40,
           "n_articulation_points": 0,
           "n_bridges": 0,
-          "diameter": 4.0,
+          "diameter": 3.0,
           "radius": 2.0,
           "degeneracy": 4,
           "k_core_size": 16,
           "maximum_degree": 7,
           "degree_variance": 1.2664359861591694,
-          "global_clustering": 0.24528301886792453,
-          "degree_assortativity": -0.15280043501902876,
+          "global_clustering": 0.339622641509434,
+          "degree_assortativity": 0.021207177814031662,
           "degree_entropy": 1.3647193751408024,
-          "joint_degree_entropy": 2.062161743157441,
+          "joint_degree_entropy": 2.14528562633007,
           "degree_skewness": -0.16205083089403174,
           "degree_kurtosis": 0.9450608515376064,
-          "normalized_laplacian_second_moment": 1.2109757236227825,
-          "normalized_laplacian_third_moment": 1.5933788515406162,
-          "random_walk_triangle_weight": 0.0395483193277311,
-          "random_walk_fourth_moment": 0.10318320124346035,
-          "adjacency_fourth_moment_per_node": 57.64705882352941
+          "normalized_laplacian_second_moment": 1.2124603174603175,
+          "normalized_laplacian_third_moment": 1.5851295518207287,
+          "random_walk_triangle_weight": 0.05225140056022409,
+          "random_walk_fourth_moment": 0.10648825548738013,
+          "adjacency_fourth_moment_per_node": 59.529411764705884
         }
       },
       {
@@ -165,210 +165,210 @@
           "n_articulation_points": 0,
           "n_bridges": 0,
           "diameter": 3.0,
-          "radius": 3.0,
-          "degeneracy": 3,
+          "radius": 2.0,
+          "degeneracy": 4,
           "k_core_size": 16,
           "maximum_degree": 7,
           "degree_variance": 1.2664359861591694,
-          "global_clustering": 0.30188679245283023,
-          "degree_assortativity": -0.044045676998365604,
+          "global_clustering": 0.339622641509434,
+          "degree_assortativity": 0.021207177814031662,
           "degree_entropy": 1.3647193751408024,
-          "joint_degree_entropy": 2.1647311676540864,
+          "joint_degree_entropy": 2.14528562633007,
           "degree_skewness": -0.16205083089403174,
           "degree_kurtosis": 0.9450608515376064,
-          "normalized_laplacian_second_moment": 1.2128104575163399,
-          "normalized_laplacian_third_moment": 1.5950560224089636,
-          "random_walk_triangle_weight": 0.04337535014005602,
-          "random_walk_fourth_moment": 0.10793635750596535,
-          "adjacency_fourth_moment_per_node": 59.05882352941177
+          "normalized_laplacian_second_moment": 1.2124603174603175,
+          "normalized_laplacian_third_moment": 1.5851295518207287,
+          "random_walk_triangle_weight": 0.05225140056022409,
+          "random_walk_fourth_moment": 0.10648825548738013,
+          "adjacency_fourth_moment_per_node": 59.529411764705884
         }
       }
     ],
-    "sparsify": [
+    "densify": [
       {
         "intensity": 0.05,
         "invariants": {
           "n_nodes": 17,
-          "n_edges": 38,
+          "n_edges": 42,
           "n_articulation_points": 0,
           "n_bridges": 0,
           "diameter": 4.0,
           "radius": 2.0,
-          "degeneracy": 3,
+          "degeneracy": 4,
           "k_core_size": 16,
-          "maximum_degree": 6,
-          "degree_variance": 1.1903114186851211,
-          "global_clustering": 0.4225352112676056,
-          "degree_assortativity": -0.07042253521126557,
-          "degree_entropy": 1.452044073193683,
-          "joint_degree_entropy": 2.0831255197511847,
-          "degree_skewness": -0.5149156862392632,
-          "degree_kurtosis": -0.027845167271884463,
-          "normalized_laplacian_second_moment": 1.2217647058823529,
-          "normalized_laplacian_third_moment": 1.589901960784314,
-          "random_walk_triangle_weight": 0.0753921568627451,
-          "random_walk_fourth_moment": 0.11757418300653595,
-          "adjacency_fourth_moment_per_node": 52.470588235294116
+          "maximum_degree": 7,
+          "degree_variance": 1.2318339100346019,
+          "global_clustering": 0.40909090909090906,
+          "degree_assortativity": -0.08495981630310252,
+          "degree_entropy": 1.3795824068593732,
+          "joint_degree_entropy": 2.00710219204238,
+          "degree_skewness": -0.7238305920807201,
+          "degree_kurtosis": 1.7105776687647687,
+          "normalized_laplacian_second_moment": 1.2018067226890756,
+          "normalized_laplacian_third_moment": 1.5384733893557423,
+          "random_walk_triangle_weight": 0.0669467787114846,
+          "random_walk_fourth_moment": 0.10139282546351874,
+          "adjacency_fourth_moment_per_node": 67.05882352941177
         }
       },
       {
         "intensity": 0.1,
         "invariants": {
           "n_nodes": 17,
-          "n_edges": 36,
+          "n_edges": 44,
           "n_articulation_points": 0,
           "n_bridges": 0,
           "diameter": 4.0,
-          "radius": 3.0,
-          "degeneracy": 3,
+          "radius": 2.0,
+          "degeneracy": 4,
           "k_core_size": 16,
-          "maximum_degree": 6,
-          "degree_variance": 1.7093425605536332,
-          "global_clustering": 0.366412213740458,
-          "degree_assortativity": -0.04785397138628934,
-          "degree_entropy": 1.4669071049122542,
-          "joint_degree_entropy": 2.1218755702634016,
-          "degree_skewness": 0.036650833442011685,
-          "degree_kurtosis": -1.4731053732119153,
-          "normalized_laplacian_second_moment": 1.2337908496732026,
-          "normalized_laplacian_third_moment": 1.6428758169934643,
-          "random_walk_triangle_weight": 0.05849673202614379,
-          "random_walk_fourth_moment": 0.12567207697893973,
-          "adjacency_fourth_moment_per_node": 46.8235294117647
+          "maximum_degree": 8,
+          "degree_variance": 1.5570934256055364,
+          "global_clustering": 0.4568527918781726,
+          "degree_assortativity": -0.048771543821049645,
+          "degree_entropy": 1.3945573191650276,
+          "joint_degree_entropy": 2.1877777821089253,
+          "degree_skewness": -0.17000464191193448,
+          "degree_kurtosis": 2.3866920634920623,
+          "normalized_laplacian_second_moment": 1.1932329598506068,
+          "normalized_laplacian_third_moment": 1.5090651260504202,
+          "random_walk_triangle_weight": 0.07063375350140057,
+          "random_walk_fourth_moment": 0.0997517429657048,
+          "adjacency_fourth_moment_per_node": 80.70588235294117
         }
       },
       {
         "intensity": 0.15,
         "invariants": {
           "n_nodes": 17,
-          "n_edges": 34,
+          "n_edges": 46,
           "n_articulation_points": 0,
           "n_bridges": 0,
-          "diameter": 5.0,
-          "radius": 3.0,
-          "degeneracy": 3,
-          "k_core_size": 16,
-          "maximum_degree": 6,
-          "degree_variance": 1.0588235294117647,
-          "global_clustering": 0.40540540540540543,
-          "degree_assortativity": -0.3088363954505701,
-          "degree_entropy": 1.413121068379068,
-          "joint_degree_entropy": 2.116391936445759,
-          "degree_skewness": 0.0,
-          "degree_kurtosis": -0.6349206349206349,
-          "normalized_laplacian_second_moment": 1.2441830065359476,
-          "normalized_laplacian_third_moment": 1.6578921568627454,
-          "random_walk_triangle_weight": 0.07465686274509804,
-          "random_walk_fourth_moment": 0.12983171750181555,
-          "adjacency_fourth_moment_per_node": 37.64705882352941
+          "diameter": 3.0,
+          "radius": 2.0,
+          "degeneracy": 4,
+          "k_core_size": 17,
+          "maximum_degree": 8,
+          "degree_variance": 1.065743944636678,
+          "global_clustering": 0.35377358490566035,
+          "degree_assortativity": -0.2046736502820316,
+          "degree_entropy": 1.3647193751408022,
+          "joint_degree_entropy": 2.1707860846612976,
+          "degree_skewness": 0.7896281988386719,
+          "degree_kurtosis": 0.8854106932029016,
+          "normalized_laplacian_second_moment": 1.183361344537815,
+          "normalized_laplacian_third_moment": 1.4953148926237163,
+          "random_walk_triangle_weight": 0.05476914098972922,
+          "random_walk_fourth_moment": 0.08949966431016852,
+          "adjacency_fourth_moment_per_node": 82.58823529411765
         }
       },
       {
         "intensity": 0.2,
         "invariants": {
           "n_nodes": 17,
-          "n_edges": 32,
+          "n_edges": 48,
           "n_articulation_points": 0,
           "n_bridges": 0,
-          "diameter": 5.0,
-          "radius": 3.0,
-          "degeneracy": 3,
-          "k_core_size": 11,
-          "maximum_degree": 6,
-          "degree_variance": 1.356401384083045,
-          "global_clustering": 0.33,
-          "degree_assortativity": -0.012658227848101266,
-          "degree_entropy": 1.5136026783424532,
-          "joint_degree_entropy": 2.191890910432677,
-          "degree_skewness": 0.0203998317020828,
-          "degree_kurtosis": -0.8176831082287137,
-          "normalized_laplacian_second_moment": 1.267450980392157,
-          "normalized_laplacian_third_moment": 1.7434313725490198,
-          "random_walk_triangle_weight": 0.05892156862745098,
-          "random_walk_fourth_moment": 0.14325958605664485,
-          "adjacency_fourth_moment_per_node": 32.94117647058823
+          "diameter": 3.0,
+          "radius": 2.0,
+          "degeneracy": 4,
+          "k_core_size": 16,
+          "maximum_degree": 8,
+          "degree_variance": 1.5224913494809689,
+          "global_clustering": 0.4194915254237288,
+          "degree_assortativity": -0.21827411167513008,
+          "degree_entropy": 1.5992212565872679,
+          "joint_degree_entropy": 2.4407380114168546,
+          "degree_skewness": -0.2701825078130981,
+          "degree_kurtosis": 0.008028335301062839,
+          "normalized_laplacian_second_moment": 1.1754415099373083,
+          "normalized_laplacian_third_moment": 1.4671045084700547,
+          "random_walk_triangle_weight": 0.05922002134187007,
+          "random_walk_fourth_moment": 0.08623209615289804,
+          "adjacency_fourth_moment_per_node": 98.3529411764706
         }
       },
       {
         "intensity": 0.25,
         "invariants": {
           "n_nodes": 17,
-          "n_edges": 30,
+          "n_edges": 50,
           "n_articulation_points": 0,
           "n_bridges": 0,
-          "diameter": 5.0,
-          "radius": 3.0,
-          "degeneracy": 3,
-          "k_core_size": 7,
-          "maximum_degree": 7,
-          "degree_variance": 2.4844290657439445,
-          "global_clustering": 0.3711340206185567,
-          "degree_assortativity": 0.00617630544637762,
-          "degree_entropy": 1.645916830017467,
-          "joint_degree_entropy": 2.4336955466907337,
-          "degree_skewness": -0.009943877714030835,
-          "degree_kurtosis": 0.7332088183229928,
-          "normalized_laplacian_second_moment": 0.0,
-          "normalized_laplacian_third_moment": 0.0,
-          "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 33.411764705882355
+          "diameter": 3.0,
+          "radius": 2.0,
+          "degeneracy": 5,
+          "k_core_size": 15,
+          "maximum_degree": 8,
+          "degree_variance": 1.5155709342560555,
+          "global_clustering": 0.38521400778210113,
+          "degree_assortativity": -0.28319904506117255,
+          "degree_entropy": 1.4976864074866394,
+          "joint_degree_entropy": 2.218595434717825,
+          "degree_skewness": -0.3771069744339826,
+          "degree_kurtosis": 0.7940594590247434,
+          "normalized_laplacian_second_moment": 1.167766106442577,
+          "normalized_laplacian_third_moment": 1.4508356676003735,
+          "random_walk_triangle_weight": 0.052462651727357604,
+          "random_walk_fourth_moment": 0.07952376418159857,
+          "adjacency_fourth_moment_per_node": 106.82352941176471
         }
       },
       {
         "intensity": 0.3,
         "invariants": {
           "n_nodes": 17,
-          "n_edges": 28,
+          "n_edges": 52,
           "n_articulation_points": 0,
           "n_bridges": 0,
-          "diameter": 4.0,
-          "radius": 3.0,
-          "degeneracy": 2,
-          "k_core_size": 16,
-          "maximum_degree": 6,
-          "degree_variance": 1.8546712802768166,
-          "global_clustering": 0.26249999999999996,
-          "degree_assortativity": 0.07053941908713537,
-          "degree_entropy": 1.5118965585343869,
-          "joint_degree_entropy": 2.0081957740568774,
-          "degree_skewness": -0.44177209790610855,
-          "degree_kurtosis": 0.8646341851510035,
-          "normalized_laplacian_second_moment": 0.0,
-          "normalized_laplacian_third_moment": 0.0,
-          "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 26.352941176470587
+          "diameter": 3.0,
+          "radius": 2.0,
+          "degeneracy": 5,
+          "k_core_size": 15,
+          "maximum_degree": 9,
+          "degree_variance": 1.986159169550173,
+          "global_clustering": 0.392226148409894,
+          "degree_assortativity": -0.16365051566452846,
+          "degree_entropy": 1.6110656763229672,
+          "joint_degree_entropy": 2.5481754494080944,
+          "degree_skewness": 0.047491053024076024,
+          "degree_kurtosis": 0.3965958066748412,
+          "normalized_laplacian_second_moment": 1.162199991107554,
+          "normalized_laplacian_third_moment": 1.435800875905918,
+          "random_walk_triangle_weight": 0.050799097416744474,
+          "random_walk_fourth_moment": 0.07871160307324408,
+          "adjacency_fourth_moment_per_node": 124.94117647058823
         }
       },
       {
         "intensity": 0.35,
         "invariants": {
           "n_nodes": 17,
-          "n_edges": 26,
-          "n_articulation_points": 2,
-          "n_bridges": 3,
-          "diameter": 5.0,
-          "radius": 3.0,
-          "degeneracy": 2,
+          "n_edges": 54,
+          "n_articulation_points": 0,
+          "n_bridges": 0,
+          "diameter": 3.0,
+          "radius": 2.0,
+          "degeneracy": 5,
           "k_core_size": 14,
-          "maximum_degree": 6,
-          "degree_variance": 1.7024221453287196,
-          "global_clustering": 0.3088235294117647,
-          "degree_assortativity": -0.03999999999999968,
-          "degree_entropy": 1.4976864074866392,
-          "joint_degree_entropy": 2.235317138002495,
-          "degree_skewness": 0.5791116453876075,
-          "degree_kurtosis": 0.3432650633126557,
-          "normalized_laplacian_second_moment": 1.3262745098039215,
-          "normalized_laplacian_third_moment": 1.9194117647058826,
-          "random_walk_triangle_weight": 0.05941176470588235,
-          "random_walk_fourth_moment": 0.19834655047204067,
-          "adjacency_fourth_moment_per_node": 21.88235294117647
+          "maximum_degree": 10,
+          "degree_variance": 3.051903114186852,
+          "global_clustering": 0.4476190476190476,
+          "degree_assortativity": -0.0724637681159419,
+          "degree_entropy": 1.7233917060220516,
+          "joint_degree_entropy": 2.8028856351293205,
+          "degree_skewness": 0.48909226130178546,
+          "degree_kurtosis": 0.03290692370242443,
+          "normalized_laplacian_second_moment": 1.156853704444741,
+          "normalized_laplacian_third_moment": 1.4127843730084626,
+          "random_walk_triangle_weight": 0.057776740325759926,
+          "random_walk_fourth_moment": 0.07913852655775411,
+          "adjacency_fourth_moment_per_node": 155.2941176470588
         }
       }
     ],
-    "sampling": [
+    "sample": [
       {
         "intensity": 0.05,
         "invariants": {
@@ -399,156 +399,156 @@
         "intensity": 0.1,
         "invariants": {
           "n_nodes": 16,
-          "n_edges": 36,
+          "n_edges": 35,
           "n_articulation_points": 0,
           "n_bridges": 0,
           "diameter": 4.0,
           "radius": 2.0,
-          "degeneracy": 4,
+          "degeneracy": 3,
           "k_core_size": 15,
           "maximum_degree": 6,
-          "degree_variance": 1.0,
-          "global_clustering": 0.4477611940298507,
-          "degree_assortativity": -0.1530249110320272,
-          "degree_entropy": 1.1803045569946196,
-          "joint_degree_entropy": 1.7361211828147627,
-          "degree_skewness": -0.41496250137936613,
-          "degree_kurtosis": 1.1074862637362637,
-          "normalized_laplacian_second_moment": 1.2200694444444444,
-          "normalized_laplacian_third_moment": 1.5833593750000001,
-          "random_walk_triangle_weight": 0.07684895833333334,
-          "random_walk_fourth_moment": 0.11835796682098766,
-          "adjacency_fourth_moment_per_node": 53.5
+          "degree_variance": 1.609375,
+          "global_clustering": 0.43511450381679384,
+          "degree_assortativity": 0.014084507042253702,
+          "degree_entropy": 1.526878147274592,
+          "joint_degree_entropy": 2.104524055229556,
+          "degree_skewness": -0.19689500210377928,
+          "degree_kurtosis": -1.184066193020854,
+          "normalized_laplacian_second_moment": 1.2291319444444444,
+          "normalized_laplacian_third_moment": 1.6149479166666667,
+          "random_walk_triangle_weight": 0.07244791666666667,
+          "random_walk_fourth_moment": 0.1174220775462963,
+          "adjacency_fourth_moment_per_node": 50.625
         }
       },
       {
         "intensity": 0.15,
         "invariants": {
           "n_nodes": 15,
-          "n_edges": 31,
-          "n_articulation_points": 0,
-          "n_bridges": 0,
-          "diameter": 4.0,
-          "radius": 2.0,
+          "n_edges": 30,
+          "n_articulation_points": 1,
+          "n_bridges": 1,
+          "diameter": 5.0,
+          "radius": 3.0,
           "degeneracy": 3,
           "k_core_size": 14,
           "maximum_degree": 6,
-          "degree_variance": 0.9155555555555553,
-          "global_clustering": 0.43269230769230765,
-          "degree_assortativity": -0.11568123393315824,
-          "degree_entropy": 1.3378606778364333,
-          "joint_degree_entropy": 1.9104281137149854,
-          "degree_skewness": -0.2993546212724724,
-          "degree_kurtosis": 0.6174365741714247,
-          "normalized_laplacian_second_moment": 1.239962962962963,
-          "normalized_laplacian_third_moment": 1.6431111111111114,
-          "random_walk_triangle_weight": 0.07677777777777779,
-          "random_walk_fourth_moment": 0.1327774794238683,
-          "adjacency_fourth_moment_per_node": 42.53333333333333
+          "degree_variance": 1.7333333333333334,
+          "global_clustering": 0.4368932038834951,
+          "degree_assortativity": 0.08340214698595938,
+          "degree_entropy": 1.4897503188505907,
+          "joint_degree_entropy": 2.167763276919782,
+          "degree_skewness": -0.39078073794959084,
+          "degree_kurtosis": 0.11788802913063234,
+          "normalized_laplacian_second_moment": 1.2524814814814815,
+          "normalized_laplacian_third_moment": 1.6864111111111115,
+          "random_walk_triangle_weight": 0.07103333333333334,
+          "random_walk_fourth_moment": 0.13363630658436212,
+          "adjacency_fourth_moment_per_node": 41.6
         }
       },
       {
         "intensity": 0.2,
         "invariants": {
           "n_nodes": 14,
-          "n_edges": 26,
+          "n_edges": 28,
           "n_articulation_points": 0,
           "n_bridges": 0,
-          "diameter": 6.0,
-          "radius": 3.0,
+          "diameter": 4.0,
+          "radius": 2.0,
           "degeneracy": 3,
-          "k_core_size": 6,
-          "maximum_degree": 5,
-          "degree_variance": 1.0612244897959182,
-          "global_clustering": 0.46153846153846156,
-          "degree_assortativity": -0.16666666666666602,
-          "degree_entropy": 1.3517839942896452,
-          "joint_degree_entropy": 1.8810934295097335,
-          "degree_skewness": -0.2158648492369587,
-          "degree_kurtosis": -1.0983391608391595,
-          "normalized_laplacian_second_moment": 1.2665873015873015,
-          "normalized_laplacian_third_moment": 1.7116666666666667,
-          "random_walk_triangle_weight": 0.08809523809523812,
-          "random_walk_fourth_moment": 0.1563115520282187,
-          "adjacency_fourth_moment_per_node": 35.142857142857146
+          "k_core_size": 11,
+          "maximum_degree": 6,
+          "degree_variance": 1.4285714285714286,
+          "global_clustering": 0.4148936170212766,
+          "degree_assortativity": 0.061594202898554246,
+          "degree_entropy": 1.4944032113796115,
+          "joint_degree_entropy": 2.3264184804685146,
+          "degree_skewness": 0.28217902119044924,
+          "degree_kurtosis": -0.9454545454545453,
+          "normalized_laplacian_second_moment": 1.2536904761904761,
+          "normalized_laplacian_third_moment": 1.6866071428571432,
+          "random_walk_triangle_weight": 0.07446428571428572,
+          "random_walk_fourth_moment": 0.1302194554673721,
+          "adjacency_fourth_moment_per_node": 39.42857142857143
         }
       },
       {
         "intensity": 0.25,
         "invariants": {
           "n_nodes": 13,
-          "n_edges": 24,
-          "n_articulation_points": 0,
-          "n_bridges": 0,
+          "n_edges": 22,
+          "n_articulation_points": 2,
+          "n_bridges": 1,
           "diameter": 4.0,
           "radius": 2.0,
           "degeneracy": 3,
-          "k_core_size": 5,
+          "k_core_size": 9,
           "maximum_degree": 6,
-          "degree_variance": 1.5976331360946747,
-          "global_clustering": 0.48,
-          "degree_assortativity": -0.06666666666666587,
-          "degree_entropy": 1.550845706383281,
-          "joint_degree_entropy": 2.315250126913641,
-          "degree_skewness": 0.15355897981133107,
-          "degree_kurtosis": -1.0526060606060608,
-          "normalized_laplacian_second_moment": 1.2679059829059829,
-          "normalized_laplacian_third_moment": 1.7126923076923077,
-          "random_walk_triangle_weight": 0.09102564102564102,
-          "random_walk_fourth_moment": 0.15108192070275403,
-          "adjacency_fourth_moment_per_node": 34.76923076923077
+          "degree_variance": 1.1597633136094674,
+          "global_clustering": 0.44999999999999996,
+          "degree_assortativity": -0.08405797101449071,
+          "degree_entropy": 1.3038755293363844,
+          "joint_degree_entropy": 2.059044366009097,
+          "degree_skewness": 1.179316478626785,
+          "degree_kurtosis": 1.434720381659158,
+          "normalized_laplacian_second_moment": 1.2935897435897437,
+          "normalized_laplacian_third_moment": 1.7876068376068377,
+          "random_walk_triangle_weight": 0.09316239316239318,
+          "random_walk_fourth_moment": 0.17591286799620132,
+          "adjacency_fourth_moment_per_node": 26.153846153846153
         }
       },
       {
         "intensity": 0.3,
         "invariants": {
           "n_nodes": 12,
-          "n_edges": 21,
-          "n_articulation_points": 0,
-          "n_bridges": 0,
-          "diameter": 4.0,
-          "radius": 2.0,
+          "n_edges": 17,
+          "n_articulation_points": 3,
+          "n_bridges": 4,
+          "diameter": 5.0,
+          "radius": 3.0,
           "degeneracy": 3,
-          "k_core_size": 10,
-          "maximum_degree": 6,
-          "degree_variance": 2.0833333333333335,
-          "global_clustering": 0.46153846153846156,
-          "degree_assortativity": -0.09603340292275338,
-          "degree_entropy": 1.539654447440097,
-          "joint_degree_entropy": 2.0704930404278237,
-          "degree_skewness": -0.8596691456601194,
-          "degree_kurtosis": 2.060373333333332,
-          "normalized_laplacian_second_moment": 0.0,
-          "normalized_laplacian_third_moment": 0.0,
-          "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 33.166666666666664
+          "k_core_size": 7,
+          "maximum_degree": 5,
+          "degree_variance": 1.3055555555555556,
+          "global_clustering": 0.3846153846153846,
+          "degree_assortativity": 0.08253968253968333,
+          "degree_entropy": 1.4677339293271519,
+          "joint_degree_entropy": 2.0028830410906493,
+          "degree_skewness": -0.007131324098693138,
+          "degree_kurtosis": -0.20316885468537738,
+          "normalized_laplacian_second_moment": 1.3680555555555556,
+          "normalized_laplacian_third_moment": 2.047222222222222,
+          "random_walk_triangle_weight": 0.05694444444444444,
+          "random_walk_fourth_moment": 0.23583461934156377,
+          "adjacency_fourth_moment_per_node": 17.833333333333332
         }
       },
       {
         "intensity": 0.35,
         "invariants": {
           "n_nodes": 12,
-          "n_edges": 22,
-          "n_articulation_points": 1,
-          "n_bridges": 0,
+          "n_edges": 17,
+          "n_articulation_points": 3,
+          "n_bridges": 4,
           "diameter": 5.0,
           "radius": 3.0,
           "degeneracy": 3,
-          "k_core_size": 6,
+          "k_core_size": 7,
           "maximum_degree": 5,
-          "degree_variance": 1.222222222222222,
-          "global_clustering": 0.5,
-          "degree_assortativity": 0.14285714285714338,
-          "degree_entropy": 1.2650013752730698,
-          "joint_degree_entropy": 1.7665295601640236,
-          "degree_skewness": -0.488123409405774,
-          "degree_kurtosis": -1.1181818181818182,
-          "normalized_laplacian_second_moment": 1.2793055555555557,
-          "normalized_laplacian_third_moment": 1.7354166666666666,
-          "random_walk_triangle_weight": 0.10250000000000002,
-          "random_walk_fourth_moment": 0.16221539351851852,
-          "adjacency_fourth_moment_per_node": 35.0
+          "degree_variance": 1.3055555555555556,
+          "global_clustering": 0.3846153846153846,
+          "degree_assortativity": 0.08253968253968333,
+          "degree_entropy": 1.4677339293271519,
+          "joint_degree_entropy": 2.0028830410906493,
+          "degree_skewness": -0.007131324098693138,
+          "degree_kurtosis": -0.20316885468537738,
+          "normalized_laplacian_second_moment": 1.3680555555555556,
+          "normalized_laplacian_third_moment": 2.047222222222222,
+          "random_walk_triangle_weight": 0.05694444444444444,
+          "random_walk_fourth_moment": 0.23583461934156377,
+          "adjacency_fourth_moment_per_node": 17.833333333333332
         }
       }
     ]
@@ -558,183 +558,183 @@
       {
         "intensity": 0.05,
         "invariants": {
-          "n_nodes": 16.950963484058477,
-          "n_edges": 38.22388514101435,
+          "n_nodes": 17.259009517791267,
+          "n_edges": 37.92003178751901,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 4.088980788774664,
-          "radius": 2.0851659311264004,
-          "degeneracy": 4.167145050981477,
-          "k_core_size": 15.731240042548588,
-          "maximum_degree": 6.825352016498768,
-          "degree_variance": 1.1508335116115584,
-          "global_clustering": 0.4415005938474578,
-          "degree_assortativity": -0.08999011047902596,
-          "degree_entropy": 1.3091187083816942,
-          "joint_degree_entropy": 2.1882887212906583,
-          "degree_skewness": -0.17144043025077418,
-          "degree_kurtosis": 0.9962746887107536,
-          "normalized_laplacian_second_moment": 1.1551678370792642,
-          "normalized_laplacian_third_moment": 1.2793803799850905,
-          "random_walk_triangle_weight": 0.08042298943853987,
-          "random_walk_fourth_moment": 0.12274311919380736,
-          "adjacency_fourth_moment_per_node": 57.59497707013769
+          "diameter": 4.150090239161291,
+          "radius": 2.0940564716391212,
+          "degeneracy": 3.609792962269233,
+          "k_core_size": 14.958256394510146,
+          "maximum_degree": 7.04474414110855,
+          "degree_variance": 1.2464109361941607,
+          "global_clustering": 0.45244978511311046,
+          "degree_assortativity": -0.0912816767900829,
+          "degree_entropy": 1.4247259478785468,
+          "joint_degree_entropy": 2.1270475562769726,
+          "degree_skewness": -0.16151581442381638,
+          "degree_kurtosis": 0.9983264282848808,
+          "normalized_laplacian_second_moment": 1.2395551736294605,
+          "normalized_laplacian_third_moment": 1.490334628101822,
+          "random_walk_triangle_weight": 0.07789478153492616,
+          "random_walk_fourth_moment": 0.1049667425305512,
+          "adjacency_fourth_moment_per_node": 62.63535090392182
         }
       },
       {
         "intensity": 0.1,
         "invariants": {
-          "n_nodes": 20.361741759686065,
-          "n_edges": 38.91452260342061,
+          "n_nodes": 17.518019035582533,
+          "n_edges": 35.840063575038016,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 3.894181332670253,
-          "radius": 2.4118511071351163,
-          "degeneracy": 4.094389662673836,
-          "k_core_size": 16.965807559262327,
-          "maximum_degree": 6.402046929644501,
-          "degree_variance": 1.0991152217950626,
-          "global_clustering": 0.37537630994083326,
-          "degree_assortativity": -0.08202949998893021,
-          "degree_entropy": 1.2798203446126517,
-          "joint_degree_entropy": 2.3049190862938547,
-          "degree_skewness": -0.13959096716493685,
-          "degree_kurtosis": 1.0652473265564388,
-          "normalized_laplacian_second_moment": 1.1636410136841724,
-          "normalized_laplacian_third_moment": 1.5879914623546894,
-          "random_walk_triangle_weight": 0.07538009473355257,
-          "random_walk_fourth_moment": 0.10460896326565036,
-          "adjacency_fourth_moment_per_node": 62.87361943528999
+          "diameter": 4.3001804783225825,
+          "radius": 2.188112943278243,
+          "degeneracy": 3.2195859245384653,
+          "k_core_size": 13.916512789020292,
+          "maximum_degree": 7.0894882822171,
+          "degree_variance": 1.2263858862291517,
+          "global_clustering": 0.4520693815469756,
+          "degree_assortativity": -0.09501577337353428,
+          "degree_entropy": 1.4847325206162911,
+          "joint_degree_entropy": 2.2066710523966493,
+          "degree_skewness": -0.16098079795360098,
+          "degree_kurtosis": 1.0515920050321552,
+          "normalized_laplacian_second_moment": 1.2678685171935615,
+          "normalized_laplacian_third_moment": 1.4234283598451,
+          "random_walk_triangle_weight": 0.07930496923231728,
+          "random_walk_fourth_moment": 0.09968077212407574,
+          "adjacency_fourth_moment_per_node": 65.27070180784364
         }
       },
       {
         "intensity": 0.15,
         "invariants": {
-          "n_nodes": 19.951006070338117,
-          "n_edges": 31.33652824908986,
+          "n_nodes": 17.7770285533738,
+          "n_edges": 33.760095362557024,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 4.659406653222152,
-          "radius": 1.8539536542255646,
-          "degeneracy": 3.341523760822838,
-          "k_core_size": 16.014436304056243,
-          "maximum_degree": 7.035458643987459,
-          "degree_variance": 0.8858379223110947,
-          "global_clustering": 0.4251436961615218,
-          "degree_assortativity": -0.08321730431734278,
-          "degree_entropy": 1.5267848183698536,
-          "joint_degree_entropy": 2.025183820953094,
-          "degree_skewness": -0.14450822033285682,
-          "degree_kurtosis": 1.0008476256862315,
-          "normalized_laplacian_second_moment": 1.1234988590007442,
-          "normalized_laplacian_third_moment": 1.7058991565574047,
-          "random_walk_triangle_weight": 0.07423078912203539,
-          "random_walk_fourth_moment": 0.10556821559708929,
-          "adjacency_fourth_moment_per_node": 58.515808377199086
+          "diameter": 4.450270717483875,
+          "radius": 2.282169414917364,
+          "degeneracy": 2.829378886807698,
+          "k_core_size": 12.874769183530436,
+          "maximum_degree": 7.13423242332565,
+          "degree_variance": 1.206360836264143,
+          "global_clustering": 0.4516889779808408,
+          "degree_assortativity": -0.09874986995698568,
+          "degree_entropy": 1.5447390933540355,
+          "joint_degree_entropy": 2.2862945485163264,
+          "degree_skewness": -0.16044578148338562,
+          "degree_kurtosis": 1.1048575817794297,
+          "normalized_laplacian_second_moment": 1.2961818607576625,
+          "normalized_laplacian_third_moment": 1.3565220915883784,
+          "random_walk_triangle_weight": 0.0807151569297084,
+          "random_walk_fourth_moment": 0.09439480171760029,
+          "adjacency_fourth_moment_per_node": 67.90605271176545
         }
       },
       {
         "intensity": 0.2,
         "invariants": {
-          "n_nodes": 13.968907819391072,
-          "n_edges": 34.18447478466973,
+          "n_nodes": 18.036038071165066,
+          "n_edges": 31.680127150076036,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 2.5485059405972734,
-          "radius": 2.1502331125865934,
-          "degeneracy": 6.000407451870125,
-          "k_core_size": 15.508421876389303,
-          "maximum_degree": 5.858339276099795,
-          "degree_variance": 1.4687428039248975,
-          "global_clustering": 0.5516091903425172,
-          "degree_assortativity": -0.0950855254354401,
-          "degree_entropy": 1.777422340080017,
-          "joint_degree_entropy": 1.897168578074519,
-          "degree_skewness": -0.19174544825873582,
-          "degree_kurtosis": 0.7462871781582928,
-          "normalized_laplacian_second_moment": 0.9912160336966654,
-          "normalized_laplacian_third_moment": 1.1806809048660263,
-          "random_walk_triangle_weight": 0.07398452507701858,
-          "random_walk_fourth_moment": 0.16261960029042558,
-          "adjacency_fourth_moment_per_node": 65.12940906003602
+          "diameter": 4.600360956645166,
+          "radius": 2.376225886556486,
+          "degeneracy": 2.4391718490769305,
+          "k_core_size": 11.833025578040582,
+          "maximum_degree": 7.178976564434199,
+          "degree_variance": 1.186335786299134,
+          "global_clustering": 0.45130857441470595,
+          "degree_assortativity": -0.10248396654043708,
+          "degree_entropy": 1.6047456660917798,
+          "joint_degree_entropy": 2.365918044636003,
+          "degree_skewness": -0.15991076501317023,
+          "degree_kurtosis": 1.1581231585267042,
+          "normalized_laplacian_second_moment": 1.3244952043217637,
+          "normalized_laplacian_third_moment": 1.2896158233316566,
+          "random_walk_triangle_weight": 0.08212534462709953,
+          "random_walk_fourth_moment": 0.08910883131112482,
+          "adjacency_fourth_moment_per_node": 70.54140361568727
         }
       },
       {
         "intensity": 0.25,
         "invariants": {
-          "n_nodes": 19.782716021131098,
-          "n_edges": 48.78893516827322,
+          "n_nodes": 18.295047588956333,
+          "n_edges": 29.600158937595044,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 4.577791459760679,
-          "radius": 2.414727866685284,
-          "degeneracy": 3.6330855316570783,
-          "k_core_size": 15.437824281367828,
-          "maximum_degree": 3.7162803150630714,
-          "degree_variance": 2.0417024314342975,
-          "global_clustering": 0.5653644541985754,
-          "degree_assortativity": -0.05560625509730542,
-          "degree_entropy": 1.5264673956029888,
-          "joint_degree_entropy": 1.739047898285643,
-          "degree_skewness": -0.1814842263762787,
-          "degree_kurtosis": 0.8541481583593225,
-          "normalized_laplacian_second_moment": 1.2861936547114967,
-          "normalized_laplacian_third_moment": 1.194854011032633,
-          "random_walk_triangle_weight": 0.034422870862188544,
-          "random_walk_fourth_moment": 0.146718869759779,
-          "adjacency_fourth_moment_per_node": 87.19341636089136
+          "diameter": 4.750451195806457,
+          "radius": 2.470282358195607,
+          "degeneracy": 2.0489648113461634,
+          "k_core_size": 10.791281972550728,
+          "maximum_degree": 7.22372070554275,
+          "degree_variance": 1.1663107363341252,
+          "global_clustering": 0.45092817084857106,
+          "degree_assortativity": -0.10621806312388847,
+          "degree_entropy": 1.6647522388295242,
+          "joint_degree_entropy": 2.44554154075568,
+          "degree_skewness": -0.15937574854295486,
+          "degree_kurtosis": 1.2113887352739785,
+          "normalized_laplacian_second_moment": 1.3528085478858647,
+          "normalized_laplacian_third_moment": 1.222709555074935,
+          "random_walk_triangle_weight": 0.08353553232449065,
+          "random_walk_fourth_moment": 0.08382286090464937,
+          "adjacency_fourth_moment_per_node": 73.17675451960909
         }
       },
       {
         "intensity": 0.3,
         "invariants": {
-          "n_nodes": 20.73624909192677,
-          "n_edges": 41.974855336002435,
+          "n_nodes": 18.5540571067476,
+          "n_edges": 27.520190725114055,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 4.223519985849776,
-          "radius": 2.6836693345389886,
-          "degeneracy": 5.856097180572027,
-          "k_core_size": 23.662341759952024,
-          "maximum_degree": 6.187979756603581,
-          "degree_variance": 0.9962248471141695,
-          "global_clustering": 0.5171647593212111,
-          "degree_assortativity": -0.12609968710187297,
-          "degree_entropy": 1.6581346570623348,
-          "joint_degree_entropy": 1.692507409027382,
-          "degree_skewness": -0.19626027938956275,
-          "degree_kurtosis": 1.380947425140524,
-          "normalized_laplacian_second_moment": 0.5502596582887677,
-          "normalized_laplacian_third_moment": 1.0200525289056173,
-          "random_walk_triangle_weight": 0.06722958569459049,
-          "random_walk_fourth_moment": 0.048034096440829684,
-          "adjacency_fourth_moment_per_node": 47.11007276379426
+          "diameter": 4.9005414349677485,
+          "radius": 2.5643388298347283,
+          "degeneracy": 1.6587577736153962,
+          "k_core_size": 9.749538367060874,
+          "maximum_degree": 7.268464846651299,
+          "degree_variance": 1.1462856863691164,
+          "global_clustering": 0.45054776728243623,
+          "degree_assortativity": -0.10995215970733987,
+          "degree_entropy": 1.7247588115672685,
+          "joint_degree_entropy": 2.525165036875357,
+          "degree_skewness": -0.15884073207273947,
+          "degree_kurtosis": 1.264654312021253,
+          "normalized_laplacian_second_moment": 1.3811218914499657,
+          "normalized_laplacian_third_moment": 1.1558032868182133,
+          "random_walk_triangle_weight": 0.08494572002188178,
+          "random_walk_fourth_moment": 0.07853689049817392,
+          "adjacency_fourth_moment_per_node": 75.81210542353091
         }
       },
       {
         "intensity": 0.35,
         "invariants": {
-          "n_nodes": 10.433307423164061,
-          "n_edges": 53.253914638525366,
+          "n_nodes": 18.813066624538866,
+          "n_edges": 25.440222512633063,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 3.480820957084136,
-          "radius": 2.095604818940833,
-          "degeneracy": 2.8361794556557296,
-          "k_core_size": 19.18387506671855,
-          "maximum_degree": 5.965162254106383,
-          "degree_variance": 1.2569940326615403,
-          "global_clustering": 0.16314903454149293,
-          "degree_assortativity": -0.05529002809376353,
-          "degree_entropy": 2.242784719095332,
-          "joint_degree_entropy": 1.024225048006497,
-          "degree_skewness": -0.21340328699216615,
-          "degree_kurtosis": 0.827094411847124,
-          "normalized_laplacian_second_moment": 0.9924492128929528,
-          "normalized_laplacian_third_moment": 1.4603197852117555,
-          "random_walk_triangle_weight": 0.07065226831154894,
-          "random_walk_fourth_moment": 0.1029565722477081,
-          "adjacency_fourth_moment_per_node": 41.60863909291382
+          "diameter": 5.05063167412904,
+          "radius": 2.6583953014738495,
+          "degeneracy": 1.268550735884629,
+          "k_core_size": 8.70779476157102,
+          "maximum_degree": 7.313208987759849,
+          "degree_variance": 1.1262606364041075,
+          "global_clustering": 0.4501673637163014,
+          "degree_assortativity": -0.11368625629079127,
+          "degree_entropy": 1.7847653843050126,
+          "joint_degree_entropy": 2.604788532995034,
+          "degree_skewness": -0.1583057156025241,
+          "degree_kurtosis": 1.3179198887685275,
+          "normalized_laplacian_second_moment": 1.4094352350140666,
+          "normalized_laplacian_third_moment": 1.0888970185614917,
+          "random_walk_triangle_weight": 0.0863559077192729,
+          "random_walk_fourth_moment": 0.07325092009169845,
+          "adjacency_fourth_moment_per_node": 78.44745632745273
         }
       }
     ],
@@ -742,183 +742,183 @@
       {
         "intensity": 0.05,
         "invariants": {
-          "n_nodes": 17.25142067519109,
-          "n_edges": 39.063144461676835,
+          "n_nodes": 17.259009517791267,
+          "n_edges": 37.92003178751901,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 3.9573360561757522,
-          "radius": 2.124489099881747,
-          "degeneracy": 4.025055974427721,
-          "k_core_size": 17.080016935771997,
-          "maximum_degree": 5.962711932030222,
-          "degree_variance": 1.327628639979352,
-          "global_clustering": 0.4440615891466284,
-          "degree_assortativity": -0.08698637808372897,
-          "degree_entropy": 1.3588448931952126,
-          "joint_degree_entropy": 2.122248147922026,
-          "degree_skewness": -0.1499587523864211,
-          "degree_kurtosis": 0.9098752392787177,
-          "normalized_laplacian_second_moment": 1.1843531843179895,
-          "normalized_laplacian_third_moment": 1.476825668336376,
-          "random_walk_triangle_weight": 0.07304669881768523,
-          "random_walk_fourth_moment": 0.10573524797975434,
-          "adjacency_fourth_moment_per_node": 67.49618609396411
+          "diameter": 3.609792962269233,
+          "radius": 1.8697820493137682,
+          "degeneracy": 4.025568080633457,
+          "k_core_size": 15.747005926125134,
+          "maximum_degree": 6.994119594873498,
+          "degree_variance": 1.2124197097764826,
+          "global_clustering": 0.4727410862233093,
+          "degree_assortativity": -0.09095227029918333,
+          "degree_entropy": 1.3692250437565952,
+          "joint_degree_entropy": 2.1628210985946503,
+          "degree_skewness": -0.16583884476216507,
+          "degree_kurtosis": 0.9044566682029924,
+          "normalized_laplacian_second_moment": 1.2335741487928658,
+          "normalized_laplacian_third_moment": 1.4825803363176655,
+          "random_walk_triangle_weight": 0.07984398956263239,
+          "random_walk_fourth_moment": 0.1099774895804223,
+          "adjacency_fourth_moment_per_node": 59.44541290936422
         }
       },
       {
         "intensity": 0.1,
         "invariants": {
-          "n_nodes": 19.598393548988888,
-          "n_edges": 39.91204850043341,
+          "n_nodes": 17.518019035582533,
+          "n_edges": 35.840063575038016,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 4.393931995060833,
-          "radius": 1.947321136311842,
-          "degeneracy": 4.499002258059207,
-          "k_core_size": 19.08954230763902,
-          "maximum_degree": 7.306526243657813,
-          "degree_variance": 1.1435361706109202,
-          "global_clustering": 0.4424150725376297,
-          "degree_assortativity": -0.0852614464861572,
-          "degree_entropy": 1.3843834586078607,
-          "joint_degree_entropy": 1.9787580631908768,
-          "degree_skewness": -0.1656565263160403,
-          "degree_kurtosis": 0.9421589396531354,
-          "normalized_laplacian_second_moment": 1.1823733633489193,
-          "normalized_laplacian_third_moment": 1.316351302206314,
-          "random_walk_triangle_weight": 0.0731318631989927,
-          "random_walk_fourth_moment": 0.09476437666184497,
-          "adjacency_fourth_moment_per_node": 59.05659402626975
+          "diameter": 3.2195859245384653,
+          "radius": 1.7395640986275365,
+          "degeneracy": 4.051136161266914,
+          "k_core_size": 15.494011852250269,
+          "maximum_degree": 6.988239189746998,
+          "degree_variance": 1.1584034333937956,
+          "global_clustering": 0.49265198376737335,
+          "degree_assortativity": -0.09435696039173519,
+          "degree_entropy": 1.3737307123723879,
+          "joint_degree_entropy": 2.2782181370320056,
+          "degree_skewness": -0.1696268586302984,
+          "degree_kurtosis": 0.8638524848683784,
+          "normalized_laplacian_second_moment": 1.2559064675203717,
+          "normalized_laplacian_third_moment": 1.4079197762767874,
+          "random_walk_triangle_weight": 0.08320338528772973,
+          "random_walk_fourth_moment": 0.10970226622381797,
+          "adjacency_fourth_moment_per_node": 58.89082581872844
         }
       },
       {
         "intensity": 0.15,
         "invariants": {
-          "n_nodes": 16.296753031798,
-          "n_edges": 31.92083923364119,
+          "n_nodes": 17.7770285533738,
+          "n_edges": 33.760095362557024,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 4.522172031688722,
-          "radius": 1.6554746599353203,
-          "degeneracy": 4.027204558356007,
-          "k_core_size": 18.56612605189466,
-          "maximum_degree": 7.659238770096986,
-          "degree_variance": 1.4328332949256577,
-          "global_clustering": 0.39827388973265504,
-          "degree_assortativity": -0.09417328503988082,
-          "degree_entropy": 1.3802259767871445,
-          "joint_degree_entropy": 2.0585698169780433,
-          "degree_skewness": -0.20199724752441767,
-          "degree_kurtosis": 0.9101308021730954,
-          "normalized_laplacian_second_moment": 1.228539618003272,
-          "normalized_laplacian_third_moment": 1.6828537906160577,
-          "random_walk_triangle_weight": 0.093475817227992,
-          "random_walk_fourth_moment": 0.11367568135371645,
-          "adjacency_fourth_moment_per_node": 52.069403151730704
+          "diameter": 2.829378886807698,
+          "radius": 1.6093461479413045,
+          "degeneracy": 4.076704241900371,
+          "k_core_size": 15.241017778375403,
+          "maximum_degree": 6.982358784620497,
+          "degree_variance": 1.1043871570111088,
+          "global_clustering": 0.5125628813114373,
+          "degree_assortativity": -0.09776165048428703,
+          "degree_entropy": 1.3782363809881806,
+          "joint_degree_entropy": 2.3936151754693604,
+          "degree_skewness": -0.17341487249843168,
+          "degree_kurtosis": 0.8232483015337644,
+          "normalized_laplacian_second_moment": 1.278238786247878,
+          "normalized_laplacian_third_moment": 1.3332592162359092,
+          "random_walk_triangle_weight": 0.08656278101282708,
+          "random_walk_fourth_moment": 0.10942704286721362,
+          "adjacency_fourth_moment_per_node": 58.33623872809266
         }
       },
       {
         "intensity": 0.2,
         "invariants": {
-          "n_nodes": 14.773002427445649,
-          "n_edges": 35.2596371492182,
+          "n_nodes": 18.03603807116507,
+          "n_edges": 31.680127150076032,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 3.7311160923084574,
-          "radius": 0.9981268083720229,
-          "degeneracy": 3.050104264707014,
-          "k_core_size": 16.36616264414391,
-          "maximum_degree": 6.6694539558160875,
-          "degree_variance": 1.1025843479051853,
-          "global_clustering": 0.36235780640295145,
-          "degree_assortativity": -0.08754335618619977,
-          "degree_entropy": 1.1107787875377033,
-          "joint_degree_entropy": 2.15916034316534,
-          "degree_skewness": -0.21361475456613804,
-          "degree_kurtosis": 0.7921693035960609,
-          "normalized_laplacian_second_moment": 1.1842500668591922,
-          "normalized_laplacian_third_moment": 1.160765497169845,
-          "random_walk_triangle_weight": 0.0989618331235041,
-          "random_walk_fourth_moment": 0.10731086732303834,
-          "adjacency_fourth_moment_per_node": 51.643184059872844
+          "diameter": 2.4391718490769305,
+          "radius": 1.4791281972550727,
+          "degeneracy": 4.102272322533828,
+          "k_core_size": 14.988023704500536,
+          "maximum_degree": 6.9764783794939955,
+          "degree_variance": 1.0503708806284218,
+          "global_clustering": 0.5324737788555015,
+          "degree_assortativity": -0.10116634057683889,
+          "degree_entropy": 1.382742049603973,
+          "joint_degree_entropy": 2.5090122139067152,
+          "degree_skewness": -0.177202886366565,
+          "degree_kurtosis": 0.7826441181991504,
+          "normalized_laplacian_second_moment": 1.300571104975384,
+          "normalized_laplacian_third_moment": 1.258598656195031,
+          "random_walk_triangle_weight": 0.08992217673792442,
+          "random_walk_fourth_moment": 0.10915181951060929,
+          "adjacency_fourth_moment_per_node": 57.781651637456875
         }
       },
       {
         "intensity": 0.25,
         "invariants": {
-          "n_nodes": 17.13270500482438,
-          "n_edges": 18.367149012327125,
+          "n_nodes": 18.295047588956333,
+          "n_edges": 29.600158937595044,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 2.5545346672160445,
-          "radius": 0.8285266111606677,
-          "degeneracy": 5.258660193541717,
-          "k_core_size": 6.371722484100195,
-          "maximum_degree": 6.461919522191037,
-          "degree_variance": 1.609184272720159,
-          "global_clustering": 0.39038622085707675,
-          "degree_assortativity": -0.09127456468880642,
-          "degree_entropy": 1.2037202896480916,
-          "joint_degree_entropy": 2.014952857416162,
-          "degree_skewness": -0.15677134134333123,
-          "degree_kurtosis": 0.6889430507481922,
-          "normalized_laplacian_second_moment": 1.2308910154432366,
-          "normalized_laplacian_third_moment": 2.0539857469365717,
-          "random_walk_triangle_weight": 0.10505531918357798,
-          "random_walk_fourth_moment": 0.12776527334005403,
-          "adjacency_fourth_moment_per_node": 57.590661479416696
+          "diameter": 2.0489648113461634,
+          "radius": 1.348910246568841,
+          "degeneracy": 4.127840403167285,
+          "k_core_size": 14.735029630625672,
+          "maximum_degree": 6.970597974367495,
+          "degree_variance": 0.9963546042457349,
+          "global_clustering": 0.5523846763995656,
+          "degree_assortativity": -0.10457103066939073,
+          "degree_entropy": 1.387247718219766,
+          "joint_degree_entropy": 2.6244092523440705,
+          "degree_skewness": -0.18099090023469833,
+          "degree_kurtosis": 0.7420399348645363,
+          "normalized_laplacian_second_moment": 1.32290342370289,
+          "normalized_laplacian_third_moment": 1.183938096154153,
+          "random_walk_triangle_weight": 0.09328157246302178,
+          "random_walk_fourth_moment": 0.10887659615400493,
+          "adjacency_fourth_moment_per_node": 57.2270645468211
         }
       },
       {
         "intensity": 0.3,
         "invariants": {
-          "n_nodes": 19.29749398643328,
-          "n_edges": 41.01685215302484,
+          "n_nodes": 18.5540571067476,
+          "n_edges": 27.520190725114055,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 4.881064027337268,
-          "radius": 3.1077400333662806,
-          "degeneracy": 6.0757776974597935,
-          "k_core_size": 15.245079265896745,
-          "maximum_degree": 5.57098548317424,
-          "degree_variance": 1.1183072958316733,
-          "global_clustering": 0.4576681771422122,
-          "degree_assortativity": -0.08236637834180287,
-          "degree_entropy": 1.8879631277761488,
-          "joint_degree_entropy": 1.1048283536557635,
-          "degree_skewness": -0.2146780852911489,
-          "degree_kurtosis": 0.38155684635659215,
-          "normalized_laplacian_second_moment": 1.566104593893049,
-          "normalized_laplacian_third_moment": 0.5944201764096733,
-          "random_walk_triangle_weight": 0.11532965269188838,
-          "random_walk_fourth_moment": 0.08502764851367295,
-          "adjacency_fourth_moment_per_node": 63.19861182171345
+          "diameter": 1.6587577736153962,
+          "radius": 1.2186922958826092,
+          "degeneracy": 4.153408483800742,
+          "k_core_size": 14.482035556750805,
+          "maximum_degree": 6.964717569240993,
+          "degree_variance": 0.9423383278630479,
+          "global_clustering": 0.5722955739436295,
+          "degree_assortativity": -0.10797572076194258,
+          "degree_entropy": 1.3917533868355587,
+          "joint_degree_entropy": 2.7398062907814253,
+          "degree_skewness": -0.18477891410283165,
+          "degree_kurtosis": 0.7014357515299224,
+          "normalized_laplacian_second_moment": 1.3452357424303962,
+          "normalized_laplacian_third_moment": 1.109277536113275,
+          "random_walk_triangle_weight": 0.09664096818811914,
+          "random_walk_fourth_moment": 0.10860137279740058,
+          "adjacency_fourth_moment_per_node": 56.672477456185305
         }
       },
       {
         "intensity": 0.35,
         "invariants": {
-          "n_nodes": 14.834112321719449,
-          "n_edges": 41.69855057752983,
+          "n_nodes": 18.813066624538866,
+          "n_edges": 25.440222512633063,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 2.212864243983962,
-          "radius": 0.4373416798066101,
-          "degeneracy": 0.0,
-          "k_core_size": 11.663148571262369,
-          "maximum_degree": 5.328569269735163,
-          "degree_variance": 1.1681908819905378,
-          "global_clustering": 0.667412505518219,
-          "degree_assortativity": -0.10784362795511293,
-          "degree_entropy": 1.6931645383452192,
-          "joint_degree_entropy": 2.2493644525235093,
-          "degree_skewness": -0.11879687552523197,
-          "degree_kurtosis": 1.1571200317562451,
-          "normalized_laplacian_second_moment": 1.5022495704615755,
-          "normalized_laplacian_third_moment": 0.7066202395465246,
-          "random_walk_triangle_weight": 0.06734840633215038,
-          "random_walk_fourth_moment": 0.0624731159774366,
-          "adjacency_fourth_moment_per_node": 43.78666174439123
+          "diameter": 1.268550735884629,
+          "radius": 1.0884743451963774,
+          "degeneracy": 4.178976564434199,
+          "k_core_size": 14.229041482875939,
+          "maximum_degree": 6.958837164114492,
+          "degree_variance": 0.888322051480361,
+          "global_clustering": 0.5922064714876936,
+          "degree_assortativity": -0.11138041085449443,
+          "degree_entropy": 1.3962590554513512,
+          "joint_degree_entropy": 2.85520332921878,
+          "degree_skewness": -0.18856692797096491,
+          "degree_kurtosis": 0.6608315681953084,
+          "normalized_laplacian_second_moment": 1.3675680611579024,
+          "normalized_laplacian_third_moment": 1.0346169760723969,
+          "random_walk_triangle_weight": 0.10000036391321648,
+          "random_walk_fourth_moment": 0.10832614944079624,
+          "adjacency_fourth_moment_per_node": 56.11789036554953
         }
       }
     ],
@@ -927,7 +927,7 @@
         "intensity": 0.95,
         "invariants": {
           "n_nodes": 17.0,
-          "n_edges": 40.0,
+          "n_edges": 0.0,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
           "diameter": 4.0,
@@ -942,7 +942,7 @@
           "joint_degree_entropy": 2.0474240601572955,
           "degree_skewness": -0.16205083089403174,
           "degree_kurtosis": 0.9450608515376064,
-          "normalized_laplacian_second_moment": 1.2112418300653596,
+          "normalized_laplacian_second_moment": 0.0,
           "normalized_laplacian_third_moment": 1.5572408963585436,
           "random_walk_triangle_weight": 0.07648459383753503,
           "random_walk_fourth_moment": 0.11025271293702665,
@@ -953,7 +953,7 @@
         "intensity": 0.9,
         "invariants": {
           "n_nodes": 17.0,
-          "n_edges": 40.0,
+          "n_edges": 0.0,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
           "diameter": 4.0,
@@ -965,9 +965,9 @@
           "global_clustering": 0.4528301886792453,
           "degree_assortativity": -0.08754758020663149,
           "degree_entropy": 1.3647193751408024,
-          "joint_degree_entropy": 2.0474240601572955,
+          "joint_degree_entropy": 0.0,
           "degree_skewness": -0.16205083089403174,
-          "degree_kurtosis": 0.9450608515376064,
+          "degree_kurtosis": 0.0,
           "normalized_laplacian_second_moment": 1.2112418300653596,
           "normalized_laplacian_third_moment": 1.5572408963585436,
           "random_walk_triangle_weight": 0.07648459383753503,
@@ -979,7 +979,7 @@
         "intensity": 0.85,
         "invariants": {
           "n_nodes": 17.0,
-          "n_edges": 40.0,
+          "n_edges": 0.0,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
           "diameter": 4.0,
@@ -987,12 +987,12 @@
           "degeneracy": 4.0,
           "k_core_size": 16.0,
           "maximum_degree": 7.0,
-          "degree_variance": 1.2664359861591694,
+          "degree_variance": 0.0,
           "global_clustering": 0.4528301886792453,
           "degree_assortativity": -0.08754758020663149,
           "degree_entropy": 1.3647193751408024,
-          "joint_degree_entropy": 2.0474240601572955,
-          "degree_skewness": -0.16205083089403174,
+          "joint_degree_entropy": 0.0,
+          "degree_skewness": 0.0,
           "degree_kurtosis": 0.9450608515376064,
           "normalized_laplacian_second_moment": 1.2112418300653596,
           "normalized_laplacian_third_moment": 1.5572408963585436,
@@ -1005,19 +1005,19 @@
         "intensity": 0.8,
         "invariants": {
           "n_nodes": 17.0,
-          "n_edges": 40.0,
+          "n_edges": 0.0,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
           "diameter": 4.0,
           "radius": 2.0,
           "degeneracy": 4.0,
           "k_core_size": 16.0,
-          "maximum_degree": 7.0,
-          "degree_variance": 1.2664359861591694,
+          "maximum_degree": 0.0,
+          "degree_variance": 0.0,
           "global_clustering": 0.4528301886792453,
           "degree_assortativity": -0.08754758020663149,
-          "degree_entropy": 1.3647193751408024,
-          "joint_degree_entropy": 2.0474240601572955,
+          "degree_entropy": 0.0,
+          "joint_degree_entropy": 0.0,
           "degree_skewness": -0.16205083089403174,
           "degree_kurtosis": 0.9450608515376064,
           "normalized_laplacian_second_moment": 1.2112418300653596,
@@ -1031,25 +1031,25 @@
         "intensity": 0.75,
         "invariants": {
           "n_nodes": 17.0,
-          "n_edges": 40.0,
+          "n_edges": 0.0,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
           "diameter": 4.0,
           "radius": 2.0,
           "degeneracy": 4.0,
           "k_core_size": 16.0,
-          "maximum_degree": 7.0,
+          "maximum_degree": 0.0,
           "degree_variance": 1.2664359861591694,
           "global_clustering": 0.4528301886792453,
-          "degree_assortativity": -0.08754758020663149,
+          "degree_assortativity": 0.0,
           "degree_entropy": 1.3647193751408024,
-          "joint_degree_entropy": 2.0474240601572955,
+          "joint_degree_entropy": 0.0,
           "degree_skewness": -0.16205083089403174,
           "degree_kurtosis": 0.9450608515376064,
           "normalized_laplacian_second_moment": 1.2112418300653596,
           "normalized_laplacian_third_moment": 1.5572408963585436,
-          "random_walk_triangle_weight": 0.07648459383753503,
-          "random_walk_fourth_moment": 0.11025271293702665,
+          "random_walk_triangle_weight": 0.0,
+          "random_walk_fourth_moment": 0.0,
           "adjacency_fourth_moment_per_node": 60.0
         }
       },
@@ -1057,51 +1057,51 @@
         "intensity": 0.7,
         "invariants": {
           "n_nodes": 17.0,
-          "n_edges": 40.0,
+          "n_edges": 0.0,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
           "diameter": 4.0,
           "radius": 2.0,
           "degeneracy": 4.0,
-          "k_core_size": 16.0,
-          "maximum_degree": 7.0,
+          "k_core_size": 0.0,
+          "maximum_degree": 0.0,
           "degree_variance": 1.2664359861591694,
           "global_clustering": 0.4528301886792453,
-          "degree_assortativity": -0.08754758020663149,
-          "degree_entropy": 1.3647193751408024,
+          "degree_assortativity": 0.0,
+          "degree_entropy": 0.0,
           "joint_degree_entropy": 2.0474240601572955,
           "degree_skewness": -0.16205083089403174,
           "degree_kurtosis": 0.9450608515376064,
           "normalized_laplacian_second_moment": 1.2112418300653596,
-          "normalized_laplacian_third_moment": 1.5572408963585436,
+          "normalized_laplacian_third_moment": 0.0,
           "random_walk_triangle_weight": 0.07648459383753503,
           "random_walk_fourth_moment": 0.11025271293702665,
-          "adjacency_fourth_moment_per_node": 60.0
+          "adjacency_fourth_moment_per_node": 0.0
         }
       },
       {
         "intensity": 0.65,
         "invariants": {
           "n_nodes": 17.0,
-          "n_edges": 40.0,
+          "n_edges": 0.0,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
           "diameter": 4.0,
           "radius": 2.0,
           "degeneracy": 4.0,
-          "k_core_size": 16.0,
+          "k_core_size": 0.0,
           "maximum_degree": 7.0,
           "degree_variance": 1.2664359861591694,
-          "global_clustering": 0.4528301886792453,
-          "degree_assortativity": -0.08754758020663149,
+          "global_clustering": 0.0,
+          "degree_assortativity": 0.0,
           "degree_entropy": 1.3647193751408024,
           "joint_degree_entropy": 2.0474240601572955,
-          "degree_skewness": -0.16205083089403174,
+          "degree_skewness": 0.0,
           "degree_kurtosis": 0.9450608515376064,
-          "normalized_laplacian_second_moment": 1.2112418300653596,
-          "normalized_laplacian_third_moment": 1.5572408963585436,
+          "normalized_laplacian_second_moment": 0.0,
+          "normalized_laplacian_third_moment": 0.0,
           "random_walk_triangle_weight": 0.07648459383753503,
-          "random_walk_fourth_moment": 0.11025271293702665,
+          "random_walk_fourth_moment": 0.0,
           "adjacency_fourth_moment_per_node": 60.0
         }
       }
@@ -1284,85 +1284,85 @@
       {
         "intensity": 0.05,
         "signatures": {
-          "lag1_autocorr": -0.18527841342486653,
-          "coef_variation": 0.7683063090091236,
-          "fano_factor": 1.5223386651952175,
-          "norm_succ_diff": 0.8803088803085389,
-          "hurst_exponent": 0.44210319140157767,
-          "trend_coeff": -0.2430262070695399,
-          "count_skewness": 0.4138163355787949
+          "lag1_autocorr": -0.05322966507177038,
+          "coef_variation": 0.4272698586801634,
+          "fano_factor": 1.7102945642269658,
+          "norm_succ_diff": 0.43850592165194224,
+          "hurst_exponent": 0.4923728699223681,
+          "trend_coeff": -0.01944223181634193,
+          "count_skewness": 0.30726076664089286
         }
       },
       {
         "intensity": 0.1,
         "signatures": {
-          "lag1_autocorr": -0.16987643275602718,
-          "coef_variation": 1.2051788613628411,
-          "fano_factor": 21.442838560484166,
-          "norm_succ_diff": 1.3016331839860371,
-          "hurst_exponent": 0.44835759016432436,
-          "trend_coeff": 0.025629214681873055,
-          "count_skewness": 1.1321735520917289
+          "lag1_autocorr": 0.0031749666888740663,
+          "coef_variation": 0.5184175182075489,
+          "fano_factor": 1.9661676064551075,
+          "norm_succ_diff": 0.45440404433203974,
+          "hurst_exponent": 0.5252836490261684,
+          "trend_coeff": -0.03719220463742011,
+          "count_skewness": 1.1570505444400332
         }
       },
       {
         "intensity": 0.15,
         "signatures": {
-          "lag1_autocorr": 0.21595082918638678,
-          "coef_variation": 1.1927210498234424,
-          "fano_factor": 19.167440878376958,
-          "norm_succ_diff": 0.8986486486485821,
-          "hurst_exponent": 0.6050293309640344,
-          "trend_coeff": 0.25348622287457623,
-          "count_skewness": 1.1397443705907309
+          "lag1_autocorr": -0.08105948167599043,
+          "coef_variation": 0.48459917619053455,
+          "fano_factor": 1.5696956799316657,
+          "norm_succ_diff": 0.41647158969987386,
+          "hurst_exponent": 0.5394964980416401,
+          "trend_coeff": -0.07808459191265979,
+          "count_skewness": 1.7352220345974876
         }
       },
       {
         "intensity": 0.2,
         "signatures": {
-          "lag1_autocorr": 0.010003297150873744,
-          "coef_variation": 1.2200607830666756,
-          "fano_factor": 18.5676816056548,
-          "norm_succ_diff": 1.2263656061123431,
-          "hurst_exponent": 0.5166847932647467,
-          "trend_coeff": -0.1209718894586058,
-          "count_skewness": 1.3137188445114245
+          "lag1_autocorr": -0.11485170384947489,
+          "coef_variation": 0.5069992606295239,
+          "fano_factor": 2.0766792851480833,
+          "norm_succ_diff": 0.5419491152389504,
+          "hurst_exponent": 0.48240582419232947,
+          "trend_coeff": 0.14160907164368453,
+          "count_skewness": 0.7329301613262967
         }
       },
       {
         "intensity": 0.25,
         "signatures": {
-          "lag1_autocorr": 0.033751791099039766,
-          "coef_variation": 1.0914265660404459,
-          "fano_factor": 12.915245342428612,
-          "norm_succ_diff": 1.0669115717658424,
-          "hurst_exponent": 0.6131852117666363,
-          "trend_coeff": -0.18784638981897295,
-          "count_skewness": 1.9163644075280497
+          "lag1_autocorr": -0.20319525222009854,
+          "coef_variation": 0.608130042972363,
+          "fano_factor": 2.4622369404974407,
+          "norm_succ_diff": 0.6738596303812684,
+          "hurst_exponent": 0.39823449307253295,
+          "trend_coeff": -0.13484900889901086,
+          "count_skewness": 0.9868415631224509
         }
       },
       {
         "intensity": 0.3,
         "signatures": {
-          "lag1_autocorr": -0.03914767096134787,
-          "coef_variation": 0.923144596445071,
-          "fano_factor": 6.817567567566715,
-          "norm_succ_diff": 0.9020270270269142,
-          "hurst_exponent": 0.47121905772221634,
-          "trend_coeff": -0.15938609846026544,
-          "count_skewness": 1.4449200846975316
+          "lag1_autocorr": 0.308038723117456,
+          "coef_variation": 0.614774839512229,
+          "fano_factor": 2.675474731236435,
+          "norm_succ_diff": 0.4428815432532279,
+          "hurst_exponent": 0.620109384515502,
+          "trend_coeff": 0.2864005834491106,
+          "count_skewness": 0.7812643974910053
         }
       },
       {
         "intensity": 0.35,
         "signatures": {
-          "lag1_autocorr": 0.19896062337867879,
-          "coef_variation": 1.1681696680482594,
-          "fano_factor": 20.325661350394967,
-          "norm_succ_diff": 0.950816540922484,
-          "hurst_exponent": 0.6154953340446402,
-          "trend_coeff": -0.061640283373645695,
-          "count_skewness": 1.006389435919608
+          "lag1_autocorr": -0.09815461015988956,
+          "coef_variation": 0.6716662923060381,
+          "fano_factor": 3.347901092581491,
+          "norm_succ_diff": 0.7065363235575048,
+          "hurst_exponent": 0.5506858329449272,
+          "trend_coeff": -0.19175128460356977,
+          "count_skewness": 1.1241233515235018
         }
       }
     ]
@@ -1372,85 +1372,85 @@
       {
         "intensity": 0.05,
         "signatures": {
-          "lag1_autocorr": 0.2783142943418845,
-          "coef_variation": 1.044690389401217,
-          "fano_factor": 9.637666002418523,
-          "norm_succ_diff": 0.7428825863010975,
-          "hurst_exponent": 0.6126487975364433,
-          "trend_coeff": 0.1871401169976302,
-          "count_skewness": 2.4633971738299474
+          "lag1_autocorr": 0.29111299260640033,
+          "coef_variation": 1.011091307654496,
+          "fano_factor": 9.628064626335522,
+          "norm_succ_diff": 0.8082291194372497,
+          "hurst_exponent": 0.5643774251468612,
+          "trend_coeff": 0.18684094566471257,
+          "count_skewness": 2.4731890322664762
         }
       },
       {
         "intensity": 0.1,
         "signatures": {
-          "lag1_autocorr": 0.291169774415211,
-          "coef_variation": 1.0688850981905569,
-          "fano_factor": 8.696571124625466,
-          "norm_succ_diff": 0.7555036170649427,
-          "hurst_exponent": 0.7353967789352918,
-          "trend_coeff": 0.24218953830590212,
-          "count_skewness": 2.2084797192202275
+          "lag1_autocorr": 0.2954817853670758,
+          "coef_variation": 0.9556314970820432,
+          "fano_factor": 9.976268747005225,
+          "norm_succ_diff": 0.8445314733994416,
+          "hurst_exponent": 0.5033700362105621,
+          "trend_coeff": 0.17382870979601017,
+          "count_skewness": 2.4888972988594538
         }
       },
       {
         "intensity": 0.15,
         "signatures": {
-          "lag1_autocorr": 0.30201677339335475,
-          "coef_variation": 0.9670495553245408,
-          "fano_factor": 9.466311638862441,
-          "norm_succ_diff": 0.913613663069585,
-          "hurst_exponent": 0.5906770059374851,
-          "trend_coeff": 0.19895328699661907,
-          "count_skewness": 2.1365969018109947
+          "lag1_autocorr": 0.29985057812775134,
+          "coef_variation": 0.9001716865095906,
+          "fano_factor": 10.324472867674926,
+          "norm_succ_diff": 0.8808338273616333,
+          "hurst_exponent": 0.4423626472742629,
+          "trend_coeff": 0.1608164739273078,
+          "count_skewness": 2.5046055654524313
         }
       },
       {
         "intensity": 0.2,
         "signatures": {
-          "lag1_autocorr": 0.26468360270137603,
-          "coef_variation": 1.3514169655815946,
-          "fano_factor": 7.990038014652779,
-          "norm_succ_diff": 0.9530292192388413,
-          "hurst_exponent": 0.5297717048989425,
-          "trend_coeff": 0.19457520947439327,
-          "count_skewness": 2.10473043754505
+          "lag1_autocorr": 0.3042193708884269,
+          "coef_variation": 0.8447118759371378,
+          "fano_factor": 10.672676988344628,
+          "norm_succ_diff": 0.917136181323825,
+          "hurst_exponent": 0.3813552583379637,
+          "trend_coeff": 0.14780423805860543,
+          "count_skewness": 2.5203138320454084
         }
       },
       {
         "intensity": 0.25,
         "signatures": {
-          "lag1_autocorr": 0.30379022316595294,
-          "coef_variation": 1.3018691690763176,
-          "fano_factor": 10.306737463487039,
-          "norm_succ_diff": 0.89654778333345,
-          "hurst_exponent": 0.6683428172434301,
-          "trend_coeff": 0.15710071148883362,
-          "count_skewness": 2.765523582767499
+          "lag1_autocorr": 0.30858816364910235,
+          "coef_variation": 0.7892520653646851,
+          "fano_factor": 11.02088110901433,
+          "norm_succ_diff": 0.9534385352860167,
+          "hurst_exponent": 0.3203478694016646,
+          "trend_coeff": 0.13479200218990306,
+          "count_skewness": 2.536022098638386
         }
       },
       {
         "intensity": 0.3,
         "signatures": {
-          "lag1_autocorr": 0.35380412934073435,
-          "coef_variation": 1.0426822426575826,
-          "fano_factor": 8.775206977888184,
-          "norm_succ_diff": 0.5356485491817379,
-          "hurst_exponent": 0.922180043923686,
-          "trend_coeff": 0.25015718248994984,
-          "count_skewness": 2.652731628219844
+          "lag1_autocorr": 0.3129569564097779,
+          "coef_variation": 0.7337922547922324,
+          "fano_factor": 11.36908522968403,
+          "norm_succ_diff": 0.9897408892482085,
+          "hurst_exponent": 0.2593404804653654,
+          "trend_coeff": 0.12177976632120066,
+          "count_skewness": 2.5517303652313634
         }
       },
       {
         "intensity": 0.35,
         "signatures": {
-          "lag1_autocorr": 0.13517472604353492,
-          "coef_variation": 1.1300070796363995,
-          "fano_factor": 16.71798156116728,
-          "norm_succ_diff": 0.9395585873485396,
-          "hurst_exponent": 0.4976709439550157,
-          "trend_coeff": 0.07251805760951116,
-          "count_skewness": 2.6538136731393953
+          "lag1_autocorr": 0.3173257491704534,
+          "coef_variation": 0.6783324442197798,
+          "fano_factor": 11.717289350353731,
+          "norm_succ_diff": 1.0260432432104003,
+          "hurst_exponent": 0.19833309152906625,
+          "trend_coeff": 0.10876753045249829,
+          "count_skewness": 2.567438631824341
         }
       }
     ],
@@ -1458,85 +1458,85 @@
       {
         "intensity": 0.05,
         "signatures": {
-          "lag1_autocorr": 0.2953762145391398,
-          "coef_variation": 1.1391244374708884,
-          "fano_factor": 9.439165379796838,
-          "norm_succ_diff": 0.7166447163703281,
-          "hurst_exponent": 0.6572795505129829,
-          "trend_coeff": 0.20722300745331737,
-          "count_skewness": 2.324443765466133
+          "lag1_autocorr": 0.29111299260640033,
+          "coef_variation": 1.011091307654496,
+          "fano_factor": 9.628064626335522,
+          "norm_succ_diff": 0.8082291194372497,
+          "hurst_exponent": 0.5643774251468613,
+          "trend_coeff": 0.18684094566471257,
+          "count_skewness": 2.4731890322664762
         }
       },
       {
         "intensity": 0.1,
         "signatures": {
-          "lag1_autocorr": 0.25235329594449524,
-          "coef_variation": 0.8693388142546219,
-          "fano_factor": 8.26656659660732,
-          "norm_succ_diff": 0.7166982525030059,
-          "hurst_exponent": 0.5070957702183222,
-          "trend_coeff": 0.20633671043441368,
-          "count_skewness": 2.1441682858018476
+          "lag1_autocorr": 0.2954817853670758,
+          "coef_variation": 0.9556314970820432,
+          "fano_factor": 9.976268747005223,
+          "norm_succ_diff": 0.8445314733994416,
+          "hurst_exponent": 0.503370036210562,
+          "trend_coeff": 0.1738287097960102,
+          "count_skewness": 2.4888972988594538
         }
       },
       {
         "intensity": 0.15,
         "signatures": {
-          "lag1_autocorr": 0.21700096210872075,
-          "coef_variation": 1.133352486833647,
-          "fano_factor": 6.88993930802175,
-          "norm_succ_diff": 0.7121181129292321,
-          "hurst_exponent": 0.5761876853224097,
-          "trend_coeff": 0.1851687467034777,
-          "count_skewness": 2.212994076646778
+          "lag1_autocorr": 0.29985057812775134,
+          "coef_variation": 0.9001716865095906,
+          "fano_factor": 10.324472867674928,
+          "norm_succ_diff": 0.8808338273616333,
+          "hurst_exponent": 0.4423626472742629,
+          "trend_coeff": 0.1608164739273078,
+          "count_skewness": 2.504605565452431
         }
       },
       {
         "intensity": 0.2,
         "signatures": {
-          "lag1_autocorr": 0.39250679875497524,
-          "coef_variation": 1.1163135624064329,
-          "fano_factor": 4.988838547603621,
-          "norm_succ_diff": 0.6638172071491025,
-          "hurst_exponent": 0.47422371956803494,
-          "trend_coeff": 0.2173227453397875,
-          "count_skewness": 2.946031804993317
+          "lag1_autocorr": 0.3042193708884269,
+          "coef_variation": 0.8447118759371378,
+          "fano_factor": 10.672676988344628,
+          "norm_succ_diff": 0.9171361813238251,
+          "hurst_exponent": 0.3813552583379637,
+          "trend_coeff": 0.1478042380586054,
+          "count_skewness": 2.5203138320454084
         }
       },
       {
         "intensity": 0.25,
         "signatures": {
-          "lag1_autocorr": 0.31466812647572734,
-          "coef_variation": 1.0435734804673495,
-          "fano_factor": 10.495802897054888,
-          "norm_succ_diff": 0.6721774182411037,
-          "hurst_exponent": 0.7436974414853612,
-          "trend_coeff": 0.14695162867982065,
-          "count_skewness": 3.341905785359667
+          "lag1_autocorr": 0.3085881636491024,
+          "coef_variation": 0.7892520653646852,
+          "fano_factor": 11.02088110901433,
+          "norm_succ_diff": 0.9534385352860169,
+          "hurst_exponent": 0.32034786940166454,
+          "trend_coeff": 0.13479200218990303,
+          "count_skewness": 2.536022098638386
         }
       },
       {
         "intensity": 0.3,
         "signatures": {
-          "lag1_autocorr": 0.3288175909411495,
-          "coef_variation": 1.0644109929304846,
-          "fano_factor": 14.141330388335113,
-          "norm_succ_diff": 1.0319082551723433,
-          "hurst_exponent": 0.437786719868715,
-          "trend_coeff": 0.11679902641402679,
-          "count_skewness": 2.6630765129361778
+          "lag1_autocorr": 0.3129569564097779,
+          "coef_variation": 0.7337922547922324,
+          "fano_factor": 11.36908522968403,
+          "norm_succ_diff": 0.9897408892482085,
+          "hurst_exponent": 0.2593404804653654,
+          "trend_coeff": 0.12177976632120066,
+          "count_skewness": 2.5517303652313634
         }
       },
       {
         "intensity": 0.35,
         "signatures": {
-          "lag1_autocorr": 0.2215410259632969,
-          "coef_variation": 1.6261546454772036,
-          "fano_factor": 12.927968602917861,
-          "norm_succ_diff": 0.9287561434083171,
-          "hurst_exponent": 1.1593184838769615,
-          "trend_coeff": 0.11510990358501814,
-          "count_skewness": 1.12916606494066
+          "lag1_autocorr": 0.3173257491704534,
+          "coef_variation": 0.6783324442197797,
+          "fano_factor": 11.717289350353731,
+          "norm_succ_diff": 1.0260432432104,
+          "hurst_exponent": 0.19833309152906625,
+          "trend_coeff": 0.10876753045249829,
+          "count_skewness": 2.567438631824341
         }
       }
     ],
@@ -1544,7 +1544,7 @@
       {
         "intensity": 0.95,
         "signatures": {
-          "lag1_autocorr": 0.2867441998457248,
+          "lag1_autocorr": 0.0,
           "coef_variation": 1.0665511182269487,
           "fano_factor": 9.279860505665821,
           "norm_succ_diff": 0.771926765475058,
@@ -1556,7 +1556,7 @@
       {
         "intensity": 0.9,
         "signatures": {
-          "lag1_autocorr": 0.2867441998457248,
+          "lag1_autocorr": 0.0,
           "coef_variation": 1.0665511182269487,
           "fano_factor": 9.279860505665821,
           "norm_succ_diff": 0.771926765475058,
@@ -1568,61 +1568,61 @@
       {
         "intensity": 0.85,
         "signatures": {
-          "lag1_autocorr": 0.2867441998457248,
+          "lag1_autocorr": 0.0,
           "coef_variation": 1.0665511182269487,
           "fano_factor": 9.279860505665821,
           "norm_succ_diff": 0.771926765475058,
           "hurst_exponent": 0.6253848140831604,
-          "trend_coeff": 0.19985318153341494,
+          "trend_coeff": 0.0,
           "count_skewness": 2.4574807656734987
         }
       },
       {
         "intensity": 0.8,
         "signatures": {
-          "lag1_autocorr": 0.2867441998457248,
+          "lag1_autocorr": 0.0,
           "coef_variation": 1.0665511182269487,
           "fano_factor": 9.279860505665821,
           "norm_succ_diff": 0.771926765475058,
           "hurst_exponent": 0.6253848140831604,
-          "trend_coeff": 0.19985318153341494,
+          "trend_coeff": 0.0,
           "count_skewness": 2.4574807656734987
         }
       },
       {
         "intensity": 0.75,
         "signatures": {
-          "lag1_autocorr": 0.2867441998457248,
+          "lag1_autocorr": 0.0,
           "coef_variation": 1.0665511182269487,
           "fano_factor": 9.279860505665821,
           "norm_succ_diff": 0.771926765475058,
           "hurst_exponent": 0.6253848140831604,
-          "trend_coeff": 0.19985318153341494,
+          "trend_coeff": 0.0,
           "count_skewness": 2.4574807656734987
         }
       },
       {
         "intensity": 0.7,
         "signatures": {
-          "lag1_autocorr": 0.2867441998457248,
+          "lag1_autocorr": 0.0,
           "coef_variation": 1.0665511182269487,
           "fano_factor": 9.279860505665821,
           "norm_succ_diff": 0.771926765475058,
-          "hurst_exponent": 0.6253848140831604,
+          "hurst_exponent": 0.0,
           "trend_coeff": 0.19985318153341494,
-          "count_skewness": 2.4574807656734987
+          "count_skewness": 0.0
         }
       },
       {
         "intensity": 0.65,
         "signatures": {
-          "lag1_autocorr": 0.2867441998457248,
+          "lag1_autocorr": 0.0,
           "coef_variation": 1.0665511182269487,
           "fano_factor": 9.279860505665821,
           "norm_succ_diff": 0.771926765475058,
-          "hurst_exponent": 0.6253848140831604,
+          "hurst_exponent": 0.0,
           "trend_coeff": 0.19985318153341494,
-          "count_skewness": 2.4574807656734987
+          "count_skewness": 0.0
         }
       }
     ]
@@ -1931,63 +1931,63 @@
         "events": [
           {
             "date": "2024-01-12",
-            "target": 22
+            "target": 18
           },
           {
             "date": "2024-01-13",
-            "target": 4
+            "target": 6
           },
           {
             "date": "2024-01-14",
-            "target": 6
+            "target": 3
           },
           {
             "date": "2024-01-15",
-            "target": 5
+            "target": 8
           },
           {
             "date": "2024-01-16",
-            "target": 8
-          },
-          {
-            "date": "2024-01-17",
-            "target": 3
-          },
-          {
-            "date": "2024-01-18",
-            "target": 3
-          },
-          {
-            "date": "2024-01-19",
-            "target": 3
-          },
-          {
-            "date": "2024-01-20",
-            "target": 0
-          },
-          {
-            "date": "2024-01-21",
-            "target": 6
-          },
-          {
-            "date": "2024-01-22",
-            "target": 8
-          },
-          {
-            "date": "2024-01-23",
-            "target": 5
-          },
-          {
-            "date": "2024-01-24",
             "target": 7
           },
           {
+            "date": "2024-01-17",
+            "target": 7
+          },
+          {
+            "date": "2024-01-18",
+            "target": 4
+          },
+          {
+            "date": "2024-01-19",
+            "target": 5
+          },
+          {
+            "date": "2024-01-20",
+            "target": 1
+          },
+          {
+            "date": "2024-01-21",
+            "target": 1
+          },
+          {
+            "date": "2024-01-22",
+            "target": 3
+          },
+          {
+            "date": "2024-01-23",
+            "target": 6
+          },
+          {
+            "date": "2024-01-24",
+            "target": 4
+          },
+          {
             "date": "2024-01-25",
-            "target": 0
+            "target": 4
           },
           {
             "date": "2024-01-26",
-            "target": 5
+            "target": 6
           },
           {
             "date": "2024-01-27",
@@ -1995,35 +1995,35 @@
           },
           {
             "date": "2024-01-28",
-            "target": 2
+            "target": 9
           },
           {
             "date": "2024-01-29",
-            "target": 0
-          },
-          {
-            "date": "2024-01-30",
-            "target": 4
-          },
-          {
-            "date": "2024-01-31",
-            "target": 3
-          },
-          {
-            "date": "2024-02-01",
-            "target": 3
-          },
-          {
-            "date": "2024-02-02",
-            "target": 3
-          },
-          {
-            "date": "2024-02-03",
             "target": 1
           },
           {
+            "date": "2024-01-30",
+            "target": 6
+          },
+          {
+            "date": "2024-01-31",
+            "target": 2
+          },
+          {
+            "date": "2024-02-01",
+            "target": 0
+          },
+          {
+            "date": "2024-02-02",
+            "target": 1
+          },
+          {
+            "date": "2024-02-03",
+            "target": 2
+          },
+          {
             "date": "2024-02-04",
-            "target": 3
+            "target": 0
           },
           {
             "date": "2024-02-05",
@@ -2031,19 +2031,19 @@
           },
           {
             "date": "2024-02-06",
-            "target": 0
-          },
-          {
-            "date": "2024-02-07",
-            "target": 2
-          },
-          {
-            "date": "2024-02-08",
             "target": 1
           },
           {
-            "date": "2024-02-09",
+            "date": "2024-02-07",
             "target": 0
+          },
+          {
+            "date": "2024-02-08",
+            "target": 0
+          },
+          {
+            "date": "2024-02-09",
+            "target": 1
           },
           {
             "date": "2024-02-10",
@@ -2059,7 +2059,7 @@
           },
           {
             "date": "2024-02-13",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-14",
@@ -2079,7 +2079,7 @@
           },
           {
             "date": "2024-02-18",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-19",
@@ -2095,11 +2095,11 @@
           },
           {
             "date": "2024-02-22",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-23",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-02-24",
@@ -2107,15 +2107,15 @@
           },
           {
             "date": "2024-02-25",
-            "target": 3
-          },
-          {
-            "date": "2024-02-26",
             "target": 1
           },
           {
+            "date": "2024-02-26",
+            "target": 2
+          },
+          {
             "date": "2024-02-27",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-28",
@@ -2123,11 +2123,11 @@
           },
           {
             "date": "2024-02-29",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-03-01",
-            "target": 3
+            "target": 1
           },
           {
             "date": "2024-03-02",
@@ -2135,23 +2135,23 @@
           },
           {
             "date": "2024-03-03",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-03-04",
-            "target": 1
-          },
-          {
-            "date": "2024-03-05",
-            "target": 1
-          },
-          {
-            "date": "2024-03-06",
             "target": 0
           },
           {
-            "date": "2024-03-07",
+            "date": "2024-03-05",
             "target": 2
+          },
+          {
+            "date": "2024-03-06",
+            "target": 1
+          },
+          {
+            "date": "2024-03-07",
+            "target": 4
           },
           {
             "date": "2024-03-08",
@@ -2159,15 +2159,15 @@
           },
           {
             "date": "2024-03-09",
-            "target": 3
+            "target": 1
           },
           {
             "date": "2024-03-10",
-            "target": 2
+            "target": 4
           },
           {
             "date": "2024-03-11",
-            "target": 7
+            "target": 2
           },
           {
             "date": "2024-03-12",
@@ -2175,59 +2175,59 @@
           },
           {
             "date": "2024-03-13",
-            "target": 7
+            "target": 6
           },
           {
             "date": "2024-03-14",
-            "target": 7
+            "target": 11
           },
           {
             "date": "2024-03-15",
-            "target": 9
-          },
-          {
-            "date": "2024-03-16",
-            "target": 7
-          },
-          {
-            "date": "2024-03-17",
-            "target": 8
-          },
-          {
-            "date": "2024-03-18",
-            "target": 4
-          },
-          {
-            "date": "2024-03-19",
-            "target": 9
-          },
-          {
-            "date": "2024-03-20",
-            "target": 15
-          },
-          {
-            "date": "2024-03-21",
             "target": 10
           },
           {
-            "date": "2024-03-22",
+            "date": "2024-03-16",
+            "target": 8
+          },
+          {
+            "date": "2024-03-17",
             "target": 9
           },
           {
+            "date": "2024-03-18",
+            "target": 9
+          },
+          {
+            "date": "2024-03-19",
+            "target": 10
+          },
+          {
+            "date": "2024-03-20",
+            "target": 14
+          },
+          {
+            "date": "2024-03-21",
+            "target": 9
+          },
+          {
+            "date": "2024-03-22",
+            "target": 10
+          },
+          {
             "date": "2024-03-23",
-            "target": 8
+            "target": 5
           },
           {
             "date": "2024-03-24",
-            "target": 7
+            "target": 5
           },
           {
             "date": "2024-03-25",
-            "target": 13
+            "target": 9
           },
           {
             "date": "2024-03-26",
-            "target": 8
+            "target": 7
           },
           {
             "date": "2024-03-27",
@@ -2239,11 +2239,11 @@
           },
           {
             "date": "2024-03-29",
-            "target": 7
+            "target": 9
           },
           {
             "date": "2024-03-30",
-            "target": 28
+            "target": 26
           }
         ]
       },
@@ -2252,51 +2252,51 @@
         "events": [
           {
             "date": "2024-01-12",
-            "target": 26
+            "target": 24
           },
           {
             "date": "2024-01-13",
-            "target": 0
-          },
-          {
-            "date": "2024-01-14",
-            "target": 3
-          },
-          {
-            "date": "2024-01-15",
-            "target": 2
-          },
-          {
-            "date": "2024-01-16",
-            "target": 10
-          },
-          {
-            "date": "2024-01-17",
-            "target": 8
-          },
-          {
-            "date": "2024-01-18",
-            "target": 1
-          },
-          {
-            "date": "2024-01-19",
-            "target": 4
-          },
-          {
-            "date": "2024-01-20",
-            "target": 1
-          },
-          {
-            "date": "2024-01-21",
-            "target": 6
-          },
-          {
-            "date": "2024-01-22",
             "target": 5
           },
           {
+            "date": "2024-01-14",
+            "target": 0
+          },
+          {
+            "date": "2024-01-15",
+            "target": 5
+          },
+          {
+            "date": "2024-01-16",
+            "target": 3
+          },
+          {
+            "date": "2024-01-17",
+            "target": 3
+          },
+          {
+            "date": "2024-01-18",
+            "target": 7
+          },
+          {
+            "date": "2024-01-19",
+            "target": 5
+          },
+          {
+            "date": "2024-01-20",
+            "target": 4
+          },
+          {
+            "date": "2024-01-21",
+            "target": 3
+          },
+          {
+            "date": "2024-01-22",
+            "target": 3
+          },
+          {
             "date": "2024-01-23",
-            "target": 2
+            "target": 3
           },
           {
             "date": "2024-01-24",
@@ -2304,55 +2304,55 @@
           },
           {
             "date": "2024-01-25",
-            "target": 6
+            "target": 2
           },
           {
             "date": "2024-01-26",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-01-27",
-            "target": 2
-          },
-          {
-            "date": "2024-01-28",
-            "target": 2
-          },
-          {
-            "date": "2024-01-29",
-            "target": 0
-          },
-          {
-            "date": "2024-01-30",
-            "target": 3
-          },
-          {
-            "date": "2024-01-31",
-            "target": 2
-          },
-          {
-            "date": "2024-02-01",
-            "target": 6
-          },
-          {
-            "date": "2024-02-02",
             "target": 4
           },
           {
-            "date": "2024-02-03",
+            "date": "2024-01-28",
+            "target": 5
+          },
+          {
+            "date": "2024-01-29",
+            "target": 5
+          },
+          {
+            "date": "2024-01-30",
+            "target": 4
+          },
+          {
+            "date": "2024-01-31",
             "target": 1
+          },
+          {
+            "date": "2024-02-01",
+            "target": 3
+          },
+          {
+            "date": "2024-02-02",
+            "target": 2
+          },
+          {
+            "date": "2024-02-03",
+            "target": 3
           },
           {
             "date": "2024-02-04",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-02-05",
-            "target": 1
+            "target": 3
           },
           {
             "date": "2024-02-06",
-            "target": 2
+            "target": 0
           },
           {
             "date": "2024-02-07",
@@ -2360,7 +2360,7 @@
           },
           {
             "date": "2024-02-08",
-            "target": 2
+            "target": 0
           },
           {
             "date": "2024-02-09",
@@ -2368,7 +2368,7 @@
           },
           {
             "date": "2024-02-10",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-02-11",
@@ -2376,7 +2376,7 @@
           },
           {
             "date": "2024-02-12",
-            "target": 0
+            "target": 2
           },
           {
             "date": "2024-02-13",
@@ -2384,7 +2384,7 @@
           },
           {
             "date": "2024-02-14",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-02-15",
@@ -2392,11 +2392,11 @@
           },
           {
             "date": "2024-02-16",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-02-17",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-02-18",
@@ -2404,7 +2404,7 @@
           },
           {
             "date": "2024-02-19",
-            "target": 0
+            "target": 3
           },
           {
             "date": "2024-02-20",
@@ -2412,11 +2412,11 @@
           },
           {
             "date": "2024-02-21",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-22",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-23",
@@ -2424,23 +2424,23 @@
           },
           {
             "date": "2024-02-24",
-            "target": 0
-          },
-          {
-            "date": "2024-02-25",
             "target": 1
           },
           {
+            "date": "2024-02-25",
+            "target": 2
+          },
+          {
             "date": "2024-02-26",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-27",
-            "target": 2
+            "target": 0
           },
           {
             "date": "2024-02-28",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-02-29",
@@ -2448,11 +2448,11 @@
           },
           {
             "date": "2024-03-01",
-            "target": 4
+            "target": 1
           },
           {
             "date": "2024-03-02",
-            "target": 0
+            "target": 2
           },
           {
             "date": "2024-03-03",
@@ -2460,43 +2460,43 @@
           },
           {
             "date": "2024-03-04",
-            "target": 2
+            "target": 3
           },
           {
             "date": "2024-03-05",
-            "target": 0
-          },
-          {
-            "date": "2024-03-06",
-            "target": 3
-          },
-          {
-            "date": "2024-03-07",
-            "target": 2
-          },
-          {
-            "date": "2024-03-08",
-            "target": 6
-          },
-          {
-            "date": "2024-03-09",
-            "target": 3
-          },
-          {
-            "date": "2024-03-10",
             "target": 1
           },
           {
-            "date": "2024-03-11",
+            "date": "2024-03-06",
             "target": 4
           },
           {
-            "date": "2024-03-12",
+            "date": "2024-03-07",
+            "target": 3
+          },
+          {
+            "date": "2024-03-08",
             "target": 5
           },
           {
+            "date": "2024-03-09",
+            "target": 4
+          },
+          {
+            "date": "2024-03-10",
+            "target": 3
+          },
+          {
+            "date": "2024-03-11",
+            "target": 1
+          },
+          {
+            "date": "2024-03-12",
+            "target": 3
+          },
+          {
             "date": "2024-03-13",
-            "target": 5
+            "target": 3
           },
           {
             "date": "2024-03-14",
@@ -2504,67 +2504,67 @@
           },
           {
             "date": "2024-03-15",
-            "target": 8
-          },
-          {
-            "date": "2024-03-16",
-            "target": 9
-          },
-          {
-            "date": "2024-03-17",
             "target": 7
           },
           {
+            "date": "2024-03-16",
+            "target": 12
+          },
+          {
+            "date": "2024-03-17",
+            "target": 9
+          },
+          {
             "date": "2024-03-18",
-            "target": 6
+            "target": 9
           },
           {
             "date": "2024-03-19",
-            "target": 9
+            "target": 8
           },
           {
             "date": "2024-03-20",
-            "target": 5
+            "target": 8
           },
           {
             "date": "2024-03-21",
-            "target": 3
-          },
-          {
-            "date": "2024-03-22",
-            "target": 13
-          },
-          {
-            "date": "2024-03-23",
             "target": 9
           },
           {
+            "date": "2024-03-22",
+            "target": 5
+          },
+          {
+            "date": "2024-03-23",
+            "target": 5
+          },
+          {
             "date": "2024-03-24",
-            "target": 6
+            "target": 9
           },
           {
             "date": "2024-03-25",
-            "target": 6
+            "target": 7
           },
           {
             "date": "2024-03-26",
-            "target": 5
-          },
-          {
-            "date": "2024-03-27",
-            "target": 5
-          },
-          {
-            "date": "2024-03-28",
-            "target": 5
-          },
-          {
-            "date": "2024-03-29",
             "target": 10
           },
           {
+            "date": "2024-03-27",
+            "target": 3
+          },
+          {
+            "date": "2024-03-28",
+            "target": 3
+          },
+          {
+            "date": "2024-03-29",
+            "target": 5
+          },
+          {
             "date": "2024-03-30",
-            "target": 43
+            "target": 39
           }
         ]
       },
@@ -2573,95 +2573,95 @@
         "events": [
           {
             "date": "2024-01-12",
-            "target": 32
+            "target": 35
           },
           {
             "date": "2024-01-13",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-01-14",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-01-15",
-            "target": 2
+            "target": 4
           },
           {
             "date": "2024-01-16",
-            "target": 2
-          },
-          {
-            "date": "2024-01-17",
-            "target": 5
-          },
-          {
-            "date": "2024-01-18",
-            "target": 3
-          },
-          {
-            "date": "2024-01-19",
-            "target": 1
-          },
-          {
-            "date": "2024-01-20",
             "target": 6
           },
           {
-            "date": "2024-01-21",
+            "date": "2024-01-17",
             "target": 7
           },
           {
-            "date": "2024-01-22",
+            "date": "2024-01-18",
+            "target": 2
+          },
+          {
+            "date": "2024-01-19",
             "target": 5
           },
           {
-            "date": "2024-01-23",
+            "date": "2024-01-20",
+            "target": 5
+          },
+          {
+            "date": "2024-01-21",
+            "target": 2
+          },
+          {
+            "date": "2024-01-22",
             "target": 3
+          },
+          {
+            "date": "2024-01-23",
+            "target": 1
           },
           {
             "date": "2024-01-24",
-            "target": 3
+            "target": 0
           },
           {
             "date": "2024-01-25",
-            "target": 0
+            "target": 4
           },
           {
             "date": "2024-01-26",
-            "target": 0
+            "target": 2
           },
           {
             "date": "2024-01-27",
-            "target": 3
+            "target": 4
           },
           {
             "date": "2024-01-28",
-            "target": 3
+            "target": 5
           },
           {
             "date": "2024-01-29",
-            "target": 2
-          },
-          {
-            "date": "2024-01-30",
-            "target": 8
-          },
-          {
-            "date": "2024-01-31",
             "target": 3
           },
           {
+            "date": "2024-01-30",
+            "target": 0
+          },
+          {
+            "date": "2024-01-31",
+            "target": 1
+          },
+          {
             "date": "2024-02-01",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-02-02",
-            "target": 2
+            "target": 0
           },
           {
             "date": "2024-02-03",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-02-04",
@@ -2673,7 +2673,7 @@
           },
           {
             "date": "2024-02-06",
-            "target": 1
+            "target": 5
           },
           {
             "date": "2024-02-07",
@@ -2681,19 +2681,19 @@
           },
           {
             "date": "2024-02-08",
-            "target": 2
+            "target": 0
           },
           {
             "date": "2024-02-09",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-02-10",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-02-11",
-            "target": 0
+            "target": 3
           },
           {
             "date": "2024-02-12",
@@ -2701,23 +2701,23 @@
           },
           {
             "date": "2024-02-13",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-14",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-15",
-            "target": 2
+            "target": 0
           },
           {
             "date": "2024-02-16",
-            "target": 0
+            "target": 2
           },
           {
             "date": "2024-02-17",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-18",
@@ -2729,11 +2729,11 @@
           },
           {
             "date": "2024-02-20",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-02-21",
-            "target": 2
+            "target": 0
           },
           {
             "date": "2024-02-22",
@@ -2745,27 +2745,27 @@
           },
           {
             "date": "2024-02-24",
-            "target": 4
+            "target": 1
           },
           {
             "date": "2024-02-25",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-02-26",
-            "target": 2
+            "target": 3
           },
           {
             "date": "2024-02-27",
-            "target": 0
+            "target": 2
           },
           {
             "date": "2024-02-28",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-29",
-            "target": 3
+            "target": 2
           },
           {
             "date": "2024-03-01",
@@ -2773,71 +2773,71 @@
           },
           {
             "date": "2024-03-02",
-            "target": 3
-          },
-          {
-            "date": "2024-03-03",
-            "target": 8
-          },
-          {
-            "date": "2024-03-04",
-            "target": 3
-          },
-          {
-            "date": "2024-03-05",
-            "target": 1
-          },
-          {
-            "date": "2024-03-06",
-            "target": 4
-          },
-          {
-            "date": "2024-03-07",
-            "target": 1
-          },
-          {
-            "date": "2024-03-08",
-            "target": 4
-          },
-          {
-            "date": "2024-03-09",
-            "target": 6
-          },
-          {
-            "date": "2024-03-10",
-            "target": 3
-          },
-          {
-            "date": "2024-03-11",
-            "target": 7
-          },
-          {
-            "date": "2024-03-12",
             "target": 2
           },
           {
-            "date": "2024-03-13",
-            "target": 3
+            "date": "2024-03-03",
+            "target": 2
           },
           {
-            "date": "2024-03-14",
-            "target": 6
+            "date": "2024-03-04",
+            "target": 2
           },
           {
-            "date": "2024-03-15",
-            "target": 6
+            "date": "2024-03-05",
+            "target": 5
           },
           {
-            "date": "2024-03-16",
-            "target": 0
+            "date": "2024-03-06",
+            "target": 2
           },
           {
-            "date": "2024-03-17",
+            "date": "2024-03-07",
             "target": 4
           },
           {
+            "date": "2024-03-08",
+            "target": 2
+          },
+          {
+            "date": "2024-03-09",
+            "target": 4
+          },
+          {
+            "date": "2024-03-10",
+            "target": 5
+          },
+          {
+            "date": "2024-03-11",
+            "target": 1
+          },
+          {
+            "date": "2024-03-12",
+            "target": 3
+          },
+          {
+            "date": "2024-03-13",
+            "target": 4
+          },
+          {
+            "date": "2024-03-14",
+            "target": 5
+          },
+          {
+            "date": "2024-03-15",
+            "target": 5
+          },
+          {
+            "date": "2024-03-16",
+            "target": 6
+          },
+          {
+            "date": "2024-03-17",
+            "target": 8
+          },
+          {
             "date": "2024-03-18",
-            "target": 9
+            "target": 5
           },
           {
             "date": "2024-03-19",
@@ -2845,47 +2845,47 @@
           },
           {
             "date": "2024-03-20",
-            "target": 4
-          },
-          {
-            "date": "2024-03-21",
             "target": 7
           },
           {
-            "date": "2024-03-22",
+            "date": "2024-03-21",
             "target": 3
           },
           {
+            "date": "2024-03-22",
+            "target": 11
+          },
+          {
             "date": "2024-03-23",
-            "target": 9
+            "target": 10
           },
           {
             "date": "2024-03-24",
-            "target": 5
+            "target": 7
           },
           {
             "date": "2024-03-25",
-            "target": 5
+            "target": 4
           },
           {
             "date": "2024-03-26",
-            "target": 4
+            "target": 3
           },
           {
             "date": "2024-03-27",
-            "target": 4
+            "target": 8
           },
           {
             "date": "2024-03-28",
-            "target": 6
+            "target": 1
           },
           {
             "date": "2024-03-29",
-            "target": 5
+            "target": 2
           },
           {
             "date": "2024-03-30",
-            "target": 48
+            "target": 50
           }
         ]
       },
@@ -2894,7 +2894,7 @@
         "events": [
           {
             "date": "2024-01-12",
-            "target": 35
+            "target": 27
           },
           {
             "date": "2024-01-13",
@@ -2902,15 +2902,15 @@
           },
           {
             "date": "2024-01-14",
-            "target": 1
-          },
-          {
-            "date": "2024-01-15",
             "target": 4
           },
           {
-            "date": "2024-01-16",
+            "date": "2024-01-15",
             "target": 2
+          },
+          {
+            "date": "2024-01-16",
+            "target": 1
           },
           {
             "date": "2024-01-17",
@@ -2918,7 +2918,7 @@
           },
           {
             "date": "2024-01-18",
-            "target": 6
+            "target": 2
           },
           {
             "date": "2024-01-19",
@@ -2926,23 +2926,23 @@
           },
           {
             "date": "2024-01-20",
-            "target": 4
+            "target": 5
           },
           {
             "date": "2024-01-21",
-            "target": 1
+            "target": 6
           },
           {
             "date": "2024-01-22",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-01-23",
-            "target": 1
+            "target": 5
           },
           {
             "date": "2024-01-24",
-            "target": 4
+            "target": 2
           },
           {
             "date": "2024-01-25",
@@ -2950,15 +2950,15 @@
           },
           {
             "date": "2024-01-26",
-            "target": 1
+            "target": 4
           },
           {
             "date": "2024-01-27",
-            "target": 0
+            "target": 4
           },
           {
             "date": "2024-01-28",
-            "target": 3
+            "target": 0
           },
           {
             "date": "2024-01-29",
@@ -2966,7 +2966,7 @@
           },
           {
             "date": "2024-01-30",
-            "target": 4
+            "target": 3
           },
           {
             "date": "2024-01-31",
@@ -2974,7 +2974,7 @@
           },
           {
             "date": "2024-02-01",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-02-02",
@@ -2982,23 +2982,23 @@
           },
           {
             "date": "2024-02-03",
-            "target": 5
+            "target": 2
           },
           {
             "date": "2024-02-04",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-05",
-            "target": 0
+            "target": 2
           },
           {
             "date": "2024-02-06",
-            "target": 3
+            "target": 2
           },
           {
             "date": "2024-02-07",
-            "target": 0
+            "target": 5
           },
           {
             "date": "2024-02-08",
@@ -3006,7 +3006,7 @@
           },
           {
             "date": "2024-02-09",
-            "target": 3
+            "target": 2
           },
           {
             "date": "2024-02-10",
@@ -3014,11 +3014,11 @@
           },
           {
             "date": "2024-02-11",
-            "target": 6
+            "target": 2
           },
           {
             "date": "2024-02-12",
-            "target": 3
+            "target": 1
           },
           {
             "date": "2024-02-13",
@@ -3030,15 +3030,15 @@
           },
           {
             "date": "2024-02-15",
-            "target": 1
+            "target": 4
           },
           {
             "date": "2024-02-16",
-            "target": 0
+            "target": 3
           },
           {
             "date": "2024-02-17",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-02-18",
@@ -3046,35 +3046,35 @@
           },
           {
             "date": "2024-02-19",
-            "target": 0
+            "target": 2
           },
           {
             "date": "2024-02-20",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-21",
-            "target": 0
+            "target": 2
           },
           {
             "date": "2024-02-22",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-02-23",
-            "target": 2
+            "target": 3
           },
           {
             "date": "2024-02-24",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-25",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-26",
-            "target": 1
+            "target": 3
           },
           {
             "date": "2024-02-27",
@@ -3082,39 +3082,39 @@
           },
           {
             "date": "2024-02-28",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-02-29",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-03-01",
-            "target": 2
+            "target": 4
           },
           {
             "date": "2024-03-02",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-03-03",
-            "target": 3
-          },
-          {
-            "date": "2024-03-04",
-            "target": 3
-          },
-          {
-            "date": "2024-03-05",
-            "target": 0
-          },
-          {
-            "date": "2024-03-06",
             "target": 1
           },
           {
-            "date": "2024-03-07",
+            "date": "2024-03-04",
+            "target": 1
+          },
+          {
+            "date": "2024-03-05",
             "target": 3
+          },
+          {
+            "date": "2024-03-06",
+            "target": 4
+          },
+          {
+            "date": "2024-03-07",
+            "target": 4
           },
           {
             "date": "2024-03-08",
@@ -3122,11 +3122,11 @@
           },
           {
             "date": "2024-03-09",
-            "target": 5
+            "target": 4
           },
           {
             "date": "2024-03-10",
-            "target": 4
+            "target": 5
           },
           {
             "date": "2024-03-11",
@@ -3134,11 +3134,11 @@
           },
           {
             "date": "2024-03-12",
-            "target": 7
+            "target": 2
           },
           {
             "date": "2024-03-13",
-            "target": 6
+            "target": 5
           },
           {
             "date": "2024-03-14",
@@ -3146,7 +3146,7 @@
           },
           {
             "date": "2024-03-15",
-            "target": 6
+            "target": 8
           },
           {
             "date": "2024-03-16",
@@ -3158,7 +3158,7 @@
           },
           {
             "date": "2024-03-18",
-            "target": 3
+            "target": 8
           },
           {
             "date": "2024-03-19",
@@ -3170,43 +3170,43 @@
           },
           {
             "date": "2024-03-21",
-            "target": 7
-          },
-          {
-            "date": "2024-03-22",
-            "target": 5
-          },
-          {
-            "date": "2024-03-23",
-            "target": 6
-          },
-          {
-            "date": "2024-03-24",
-            "target": 2
-          },
-          {
-            "date": "2024-03-25",
-            "target": 7
-          },
-          {
-            "date": "2024-03-26",
             "target": 3
           },
           {
-            "date": "2024-03-27",
-            "target": 5
+            "date": "2024-03-22",
+            "target": 4
           },
           {
-            "date": "2024-03-28",
-            "target": 7
+            "date": "2024-03-23",
+            "target": 0
           },
           {
-            "date": "2024-03-29",
+            "date": "2024-03-24",
+            "target": 3
+          },
+          {
+            "date": "2024-03-25",
+            "target": 3
+          },
+          {
+            "date": "2024-03-26",
             "target": 6
           },
           {
+            "date": "2024-03-27",
+            "target": 2
+          },
+          {
+            "date": "2024-03-28",
+            "target": 4
+          },
+          {
+            "date": "2024-03-29",
+            "target": 3
+          },
+          {
             "date": "2024-03-30",
-            "target": 59
+            "target": 58
           }
         ]
       },
@@ -3215,19 +3215,19 @@
         "events": [
           {
             "date": "2024-01-12",
-            "target": 35
+            "target": 40
           },
           {
             "date": "2024-01-13",
-            "target": 3
+            "target": 4
           },
           {
             "date": "2024-01-14",
-            "target": 5
+            "target": 0
           },
           {
             "date": "2024-01-15",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-01-16",
@@ -3235,11 +3235,11 @@
           },
           {
             "date": "2024-01-17",
-            "target": 3
+            "target": 2
           },
           {
             "date": "2024-01-18",
-            "target": 1
+            "target": 4
           },
           {
             "date": "2024-01-19",
@@ -3247,7 +3247,7 @@
           },
           {
             "date": "2024-01-20",
-            "target": 3
+            "target": 1
           },
           {
             "date": "2024-01-21",
@@ -3255,7 +3255,7 @@
           },
           {
             "date": "2024-01-22",
-            "target": 3
+            "target": 4
           },
           {
             "date": "2024-01-23",
@@ -3263,23 +3263,23 @@
           },
           {
             "date": "2024-01-24",
-            "target": 2
+            "target": 0
           },
           {
             "date": "2024-01-25",
-            "target": 3
+            "target": 1
           },
           {
             "date": "2024-01-26",
-            "target": 3
+            "target": 2
           },
           {
             "date": "2024-01-27",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-01-28",
-            "target": 1
+            "target": 3
           },
           {
             "date": "2024-01-29",
@@ -3287,11 +3287,11 @@
           },
           {
             "date": "2024-01-30",
-            "target": 2
+            "target": 0
           },
           {
             "date": "2024-01-31",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-02-01",
@@ -3299,27 +3299,27 @@
           },
           {
             "date": "2024-02-02",
-            "target": 2
-          },
-          {
-            "date": "2024-02-03",
-            "target": 2
-          },
-          {
-            "date": "2024-02-04",
-            "target": 1
-          },
-          {
-            "date": "2024-02-05",
-            "target": 2
-          },
-          {
-            "date": "2024-02-06",
             "target": 4
           },
           {
+            "date": "2024-02-03",
+            "target": 5
+          },
+          {
+            "date": "2024-02-04",
+            "target": 2
+          },
+          {
+            "date": "2024-02-05",
+            "target": 0
+          },
+          {
+            "date": "2024-02-06",
+            "target": 5
+          },
+          {
             "date": "2024-02-07",
-            "target": 1
+            "target": 3
           },
           {
             "date": "2024-02-08",
@@ -3327,11 +3327,11 @@
           },
           {
             "date": "2024-02-09",
-            "target": 3
+            "target": 2
           },
           {
             "date": "2024-02-10",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-02-11",
@@ -3339,27 +3339,27 @@
           },
           {
             "date": "2024-02-12",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-02-13",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-02-14",
-            "target": 2
-          },
-          {
-            "date": "2024-02-15",
             "target": 3
           },
           {
+            "date": "2024-02-15",
+            "target": 2
+          },
+          {
             "date": "2024-02-16",
-            "target": 4
+            "target": 7
           },
           {
             "date": "2024-02-17",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-18",
@@ -3367,11 +3367,11 @@
           },
           {
             "date": "2024-02-19",
-            "target": 2
+            "target": 4
           },
           {
             "date": "2024-02-20",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-02-21",
@@ -3379,23 +3379,23 @@
           },
           {
             "date": "2024-02-22",
-            "target": 1
+            "target": 5
           },
           {
             "date": "2024-02-23",
-            "target": 1
+            "target": 3
           },
           {
             "date": "2024-02-24",
-            "target": 4
+            "target": 3
           },
           {
             "date": "2024-02-25",
-            "target": 1
+            "target": 3
           },
           {
             "date": "2024-02-26",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-02-27",
@@ -3407,7 +3407,7 @@
           },
           {
             "date": "2024-02-29",
-            "target": 3
+            "target": 0
           },
           {
             "date": "2024-03-01",
@@ -3415,11 +3415,11 @@
           },
           {
             "date": "2024-03-02",
-            "target": 6
+            "target": 4
           },
           {
             "date": "2024-03-03",
-            "target": 1
+            "target": 3
           },
           {
             "date": "2024-03-04",
@@ -3427,15 +3427,15 @@
           },
           {
             "date": "2024-03-05",
-            "target": 2
+            "target": 3
           },
           {
             "date": "2024-03-06",
-            "target": 1
+            "target": 5
           },
           {
             "date": "2024-03-07",
-            "target": 6
+            "target": 2
           },
           {
             "date": "2024-03-08",
@@ -3443,11 +3443,11 @@
           },
           {
             "date": "2024-03-09",
-            "target": 3
+            "target": 2
           },
           {
             "date": "2024-03-10",
-            "target": 1
+            "target": 4
           },
           {
             "date": "2024-03-11",
@@ -3455,19 +3455,19 @@
           },
           {
             "date": "2024-03-12",
-            "target": 8
+            "target": 2
           },
           {
             "date": "2024-03-13",
-            "target": 3
+            "target": 2
           },
           {
             "date": "2024-03-14",
-            "target": 4
+            "target": 7
           },
           {
             "date": "2024-03-15",
-            "target": 5
+            "target": 2
           },
           {
             "date": "2024-03-16",
@@ -3475,43 +3475,43 @@
           },
           {
             "date": "2024-03-17",
-            "target": 7
+            "target": 5
           },
           {
             "date": "2024-03-18",
-            "target": 4
+            "target": 5
           },
           {
             "date": "2024-03-19",
-            "target": 1
-          },
-          {
-            "date": "2024-03-20",
-            "target": 5
-          },
-          {
-            "date": "2024-03-21",
-            "target": 4
-          },
-          {
-            "date": "2024-03-22",
-            "target": 0
-          },
-          {
-            "date": "2024-03-23",
-            "target": 5
-          },
-          {
-            "date": "2024-03-24",
             "target": 2
           },
           {
-            "date": "2024-03-25",
+            "date": "2024-03-20",
             "target": 3
           },
           {
-            "date": "2024-03-26",
+            "date": "2024-03-21",
+            "target": 3
+          },
+          {
+            "date": "2024-03-22",
+            "target": 2
+          },
+          {
+            "date": "2024-03-23",
+            "target": 6
+          },
+          {
+            "date": "2024-03-24",
             "target": 5
+          },
+          {
+            "date": "2024-03-25",
+            "target": 2
+          },
+          {
+            "date": "2024-03-26",
+            "target": 7
           },
           {
             "date": "2024-03-27",
@@ -3519,15 +3519,15 @@
           },
           {
             "date": "2024-03-28",
-            "target": 3
+            "target": 1
           },
           {
             "date": "2024-03-29",
-            "target": 3
+            "target": 4
           },
           {
             "date": "2024-03-30",
-            "target": 78
+            "target": 68
           }
         ]
       },
@@ -3536,7 +3536,7 @@
         "events": [
           {
             "date": "2024-01-12",
-            "target": 46
+            "target": 45
           },
           {
             "date": "2024-01-13",
@@ -3548,47 +3548,47 @@
           },
           {
             "date": "2024-01-15",
-            "target": 0
+            "target": 2
           },
           {
             "date": "2024-01-16",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-01-17",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-01-18",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-01-19",
-            "target": 4
+            "target": 0
           },
           {
             "date": "2024-01-20",
-            "target": 3
+            "target": 0
           },
           {
             "date": "2024-01-21",
-            "target": 1
+            "target": 3
           },
           {
             "date": "2024-01-22",
-            "target": 5
+            "target": 3
           },
           {
             "date": "2024-01-23",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-01-24",
-            "target": 4
+            "target": 5
           },
           {
             "date": "2024-01-25",
-            "target": 1
+            "target": 3
           },
           {
             "date": "2024-01-26",
@@ -3600,7 +3600,7 @@
           },
           {
             "date": "2024-01-28",
-            "target": 1
+            "target": 3
           },
           {
             "date": "2024-01-29",
@@ -3620,7 +3620,7 @@
           },
           {
             "date": "2024-02-02",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-02-03",
@@ -3628,7 +3628,7 @@
           },
           {
             "date": "2024-02-04",
-            "target": 2
+            "target": 3
           },
           {
             "date": "2024-02-05",
@@ -3636,39 +3636,39 @@
           },
           {
             "date": "2024-02-06",
-            "target": 2
+            "target": 3
           },
           {
             "date": "2024-02-07",
-            "target": 0
+            "target": 3
           },
           {
             "date": "2024-02-08",
-            "target": 3
-          },
-          {
-            "date": "2024-02-09",
-            "target": 4
-          },
-          {
-            "date": "2024-02-10",
             "target": 1
           },
           {
-            "date": "2024-02-11",
-            "target": 2
+            "date": "2024-02-09",
+            "target": 1
           },
           {
-            "date": "2024-02-12",
+            "date": "2024-02-10",
             "target": 3
           },
           {
+            "date": "2024-02-11",
+            "target": 4
+          },
+          {
+            "date": "2024-02-12",
+            "target": 4
+          },
+          {
             "date": "2024-02-13",
-            "target": 2
+            "target": 4
           },
           {
             "date": "2024-02-14",
-            "target": 2
+            "target": 3
           },
           {
             "date": "2024-02-15",
@@ -3680,7 +3680,7 @@
           },
           {
             "date": "2024-02-17",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-02-18",
@@ -3692,63 +3692,63 @@
           },
           {
             "date": "2024-02-20",
-            "target": 6
+            "target": 2
           },
           {
             "date": "2024-02-21",
-            "target": 3
-          },
-          {
-            "date": "2024-02-22",
-            "target": 2
-          },
-          {
-            "date": "2024-02-23",
-            "target": 2
-          },
-          {
-            "date": "2024-02-24",
-            "target": 5
-          },
-          {
-            "date": "2024-02-25",
-            "target": 4
-          },
-          {
-            "date": "2024-02-26",
-            "target": 3
-          },
-          {
-            "date": "2024-02-27",
             "target": 0
           },
           {
-            "date": "2024-02-28",
-            "target": 2
-          },
-          {
-            "date": "2024-02-29",
-            "target": 1
-          },
-          {
-            "date": "2024-03-01",
-            "target": 6
-          },
-          {
-            "date": "2024-03-02",
-            "target": 1
-          },
-          {
-            "date": "2024-03-03",
+            "date": "2024-02-22",
             "target": 3
           },
           {
-            "date": "2024-03-04",
+            "date": "2024-02-23",
+            "target": 9
+          },
+          {
+            "date": "2024-02-24",
+            "target": 1
+          },
+          {
+            "date": "2024-02-25",
+            "target": 1
+          },
+          {
+            "date": "2024-02-26",
+            "target": 4
+          },
+          {
+            "date": "2024-02-27",
+            "target": 2
+          },
+          {
+            "date": "2024-02-28",
             "target": 5
           },
           {
-            "date": "2024-03-05",
+            "date": "2024-02-29",
             "target": 2
+          },
+          {
+            "date": "2024-03-01",
+            "target": 3
+          },
+          {
+            "date": "2024-03-02",
+            "target": 4
+          },
+          {
+            "date": "2024-03-03",
+            "target": 2
+          },
+          {
+            "date": "2024-03-04",
+            "target": 6
+          },
+          {
+            "date": "2024-03-05",
+            "target": 6
           },
           {
             "date": "2024-03-06",
@@ -3756,19 +3756,19 @@
           },
           {
             "date": "2024-03-07",
-            "target": 3
+            "target": 5
           },
           {
             "date": "2024-03-08",
-            "target": 0
+            "target": 3
           },
           {
             "date": "2024-03-09",
-            "target": 4
+            "target": 1
           },
           {
             "date": "2024-03-10",
-            "target": 4
+            "target": 1
           },
           {
             "date": "2024-03-11",
@@ -3776,11 +3776,11 @@
           },
           {
             "date": "2024-03-12",
-            "target": 3
+            "target": 1
           },
           {
             "date": "2024-03-13",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-03-14",
@@ -3788,23 +3788,23 @@
           },
           {
             "date": "2024-03-15",
-            "target": 4
+            "target": 3
           },
           {
             "date": "2024-03-16",
-            "target": 4
+            "target": 3
           },
           {
             "date": "2024-03-17",
-            "target": 6
+            "target": 3
           },
           {
             "date": "2024-03-18",
-            "target": 1
+            "target": 4
           },
           {
             "date": "2024-03-19",
-            "target": 4
+            "target": 2
           },
           {
             "date": "2024-03-20",
@@ -3812,19 +3812,19 @@
           },
           {
             "date": "2024-03-21",
-            "target": 3
+            "target": 5
           },
           {
             "date": "2024-03-22",
-            "target": 1
+            "target": 4
           },
           {
             "date": "2024-03-23",
-            "target": 2
+            "target": 4
           },
           {
             "date": "2024-03-24",
-            "target": 2
+            "target": 3
           },
           {
             "date": "2024-03-25",
@@ -3836,7 +3836,7 @@
           },
           {
             "date": "2024-03-27",
-            "target": 3
+            "target": 2
           },
           {
             "date": "2024-03-28",
@@ -3844,11 +3844,11 @@
           },
           {
             "date": "2024-03-29",
-            "target": 4
+            "target": 2
           },
           {
             "date": "2024-03-30",
-            "target": 77
+            "target": 64
           }
         ]
       },
@@ -3857,7 +3857,7 @@
         "events": [
           {
             "date": "2024-01-12",
-            "target": 38
+            "target": 57
           },
           {
             "date": "2024-01-13",
@@ -3865,7 +3865,7 @@
           },
           {
             "date": "2024-01-14",
-            "target": 3
+            "target": 0
           },
           {
             "date": "2024-01-15",
@@ -3877,7 +3877,7 @@
           },
           {
             "date": "2024-01-17",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-01-18",
@@ -3885,11 +3885,11 @@
           },
           {
             "date": "2024-01-19",
-            "target": 1
+            "target": 3
           },
           {
             "date": "2024-01-20",
-            "target": 1
+            "target": 3
           },
           {
             "date": "2024-01-21",
@@ -3897,31 +3897,31 @@
           },
           {
             "date": "2024-01-22",
-            "target": 4
+            "target": 1
           },
           {
             "date": "2024-01-23",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-01-24",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-01-25",
-            "target": 4
+            "target": 1
           },
           {
             "date": "2024-01-26",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-01-27",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-01-28",
-            "target": 3
+            "target": 2
           },
           {
             "date": "2024-01-29",
@@ -3929,27 +3929,27 @@
           },
           {
             "date": "2024-01-30",
-            "target": 3
+            "target": 4
           },
           {
             "date": "2024-01-31",
-            "target": 2
-          },
-          {
-            "date": "2024-02-01",
-            "target": 1
-          },
-          {
-            "date": "2024-02-02",
             "target": 3
           },
           {
+            "date": "2024-02-01",
+            "target": 0
+          },
+          {
+            "date": "2024-02-02",
+            "target": 5
+          },
+          {
             "date": "2024-02-03",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-02-04",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-02-05",
@@ -3957,39 +3957,39 @@
           },
           {
             "date": "2024-02-06",
-            "target": 1
+            "target": 3
           },
           {
             "date": "2024-02-07",
-            "target": 4
-          },
-          {
-            "date": "2024-02-08",
-            "target": 3
-          },
-          {
-            "date": "2024-02-09",
-            "target": 3
-          },
-          {
-            "date": "2024-02-10",
             "target": 0
           },
           {
+            "date": "2024-02-08",
+            "target": 2
+          },
+          {
+            "date": "2024-02-09",
+            "target": 2
+          },
+          {
+            "date": "2024-02-10",
+            "target": 3
+          },
+          {
             "date": "2024-02-11",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-02-12",
-            "target": 2
+            "target": 3
           },
           {
             "date": "2024-02-13",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-02-14",
-            "target": 5
+            "target": 4
           },
           {
             "date": "2024-02-15",
@@ -3997,15 +3997,15 @@
           },
           {
             "date": "2024-02-16",
-            "target": 4
+            "target": 3
           },
           {
             "date": "2024-02-17",
-            "target": 0
+            "target": 4
           },
           {
             "date": "2024-02-18",
-            "target": 0
+            "target": 4
           },
           {
             "date": "2024-02-19",
@@ -4017,27 +4017,27 @@
           },
           {
             "date": "2024-02-21",
-            "target": 8
+            "target": 4
           },
           {
             "date": "2024-02-22",
-            "target": 4
+            "target": 0
           },
           {
             "date": "2024-02-23",
-            "target": 5
-          },
-          {
-            "date": "2024-02-24",
-            "target": 2
-          },
-          {
-            "date": "2024-02-25",
             "target": 3
           },
           {
+            "date": "2024-02-24",
+            "target": 0
+          },
+          {
+            "date": "2024-02-25",
+            "target": 1
+          },
+          {
             "date": "2024-02-26",
-            "target": 4
+            "target": 3
           },
           {
             "date": "2024-02-27",
@@ -4053,7 +4053,7 @@
           },
           {
             "date": "2024-03-01",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-03-02",
@@ -4061,7 +4061,7 @@
           },
           {
             "date": "2024-03-03",
-            "target": 4
+            "target": 5
           },
           {
             "date": "2024-03-04",
@@ -4069,31 +4069,31 @@
           },
           {
             "date": "2024-03-05",
-            "target": 4
+            "target": 2
           },
           {
             "date": "2024-03-06",
-            "target": 1
-          },
-          {
-            "date": "2024-03-07",
-            "target": 4
-          },
-          {
-            "date": "2024-03-08",
             "target": 6
           },
           {
-            "date": "2024-03-09",
-            "target": 0
+            "date": "2024-03-07",
+            "target": 3
           },
           {
-            "date": "2024-03-10",
+            "date": "2024-03-08",
             "target": 1
           },
           {
+            "date": "2024-03-09",
+            "target": 2
+          },
+          {
+            "date": "2024-03-10",
+            "target": 6
+          },
+          {
             "date": "2024-03-11",
-            "target": 5
+            "target": 0
           },
           {
             "date": "2024-03-12",
@@ -4105,47 +4105,47 @@
           },
           {
             "date": "2024-03-14",
-            "target": 5
+            "target": 3
           },
           {
             "date": "2024-03-15",
-            "target": 2
+            "target": 3
           },
           {
             "date": "2024-03-16",
-            "target": 4
+            "target": 1
           },
           {
             "date": "2024-03-17",
-            "target": 3
-          },
-          {
-            "date": "2024-03-18",
-            "target": 2
-          },
-          {
-            "date": "2024-03-19",
-            "target": 2
-          },
-          {
-            "date": "2024-03-20",
-            "target": 3
-          },
-          {
-            "date": "2024-03-21",
-            "target": 2
-          },
-          {
-            "date": "2024-03-22",
             "target": 4
           },
           {
+            "date": "2024-03-18",
+            "target": 6
+          },
+          {
+            "date": "2024-03-19",
+            "target": 1
+          },
+          {
+            "date": "2024-03-20",
+            "target": 4
+          },
+          {
+            "date": "2024-03-21",
+            "target": 4
+          },
+          {
+            "date": "2024-03-22",
+            "target": 5
+          },
+          {
             "date": "2024-03-23",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-03-24",
-            "target": 5
+            "target": 2
           },
           {
             "date": "2024-03-25",
@@ -4153,23 +4153,23 @@
           },
           {
             "date": "2024-03-26",
-            "target": 1
+            "target": 3
           },
           {
             "date": "2024-03-27",
-            "target": 1
-          },
-          {
-            "date": "2024-03-28",
-            "target": 2
-          },
-          {
-            "date": "2024-03-29",
             "target": 5
           },
           {
+            "date": "2024-03-28",
+            "target": 0
+          },
+          {
+            "date": "2024-03-29",
+            "target": 4
+          },
+          {
             "date": "2024-03-30",
-            "target": 86
+            "target": 78
           }
         ]
       }
@@ -4180,7 +4180,7 @@
         "events": [
           {
             "date": "2024-01-12",
-            "target": 13
+            "target": 14
           },
           {
             "date": "2024-01-13",
@@ -4196,332 +4196,11 @@
           },
           {
             "date": "2024-01-16",
-            "target": 13
+            "target": 14
           },
           {
             "date": "2024-01-17",
-            "target": 5
-          },
-          {
-            "date": "2024-01-18",
-            "target": 0
-          },
-          {
-            "date": "2024-01-19",
-            "target": 0
-          },
-          {
-            "date": "2024-01-20",
-            "target": 0
-          },
-          {
-            "date": "2024-01-21",
-            "target": 0
-          },
-          {
-            "date": "2024-01-22",
             "target": 4
-          },
-          {
-            "date": "2024-01-23",
-            "target": 2
-          },
-          {
-            "date": "2024-01-24",
-            "target": 0
-          },
-          {
-            "date": "2024-01-25",
-            "target": 6
-          },
-          {
-            "date": "2024-01-26",
-            "target": 6
-          },
-          {
-            "date": "2024-01-27",
-            "target": 1
-          },
-          {
-            "date": "2024-01-28",
-            "target": 16
-          },
-          {
-            "date": "2024-01-29",
-            "target": 8
-          },
-          {
-            "date": "2024-01-30",
-            "target": 2
-          },
-          {
-            "date": "2024-01-31",
-            "target": 1
-          },
-          {
-            "date": "2024-02-01",
-            "target": 0
-          },
-          {
-            "date": "2024-02-02",
-            "target": 0
-          },
-          {
-            "date": "2024-02-03",
-            "target": 0
-          },
-          {
-            "date": "2024-02-04",
-            "target": 0
-          },
-          {
-            "date": "2024-02-05",
-            "target": 0
-          },
-          {
-            "date": "2024-02-06",
-            "target": 0
-          },
-          {
-            "date": "2024-02-07",
-            "target": 0
-          },
-          {
-            "date": "2024-02-08",
-            "target": 0
-          },
-          {
-            "date": "2024-02-09",
-            "target": 0
-          },
-          {
-            "date": "2024-02-10",
-            "target": 4
-          },
-          {
-            "date": "2024-02-11",
-            "target": 0
-          },
-          {
-            "date": "2024-02-12",
-            "target": 0
-          },
-          {
-            "date": "2024-02-13",
-            "target": 0
-          },
-          {
-            "date": "2024-02-14",
-            "target": 0
-          },
-          {
-            "date": "2024-02-15",
-            "target": 0
-          },
-          {
-            "date": "2024-02-16",
-            "target": 0
-          },
-          {
-            "date": "2024-02-17",
-            "target": 0
-          },
-          {
-            "date": "2024-02-18",
-            "target": 0
-          },
-          {
-            "date": "2024-02-19",
-            "target": 0
-          },
-          {
-            "date": "2024-02-20",
-            "target": 0
-          },
-          {
-            "date": "2024-02-21",
-            "target": 0
-          },
-          {
-            "date": "2024-02-22",
-            "target": 0
-          },
-          {
-            "date": "2024-02-23",
-            "target": 0
-          },
-          {
-            "date": "2024-02-24",
-            "target": 4
-          },
-          {
-            "date": "2024-02-25",
-            "target": 0
-          },
-          {
-            "date": "2024-02-26",
-            "target": 0
-          },
-          {
-            "date": "2024-02-27",
-            "target": 0
-          },
-          {
-            "date": "2024-02-28",
-            "target": 0
-          },
-          {
-            "date": "2024-02-29",
-            "target": 3
-          },
-          {
-            "date": "2024-03-01",
-            "target": 3
-          },
-          {
-            "date": "2024-03-02",
-            "target": 0
-          },
-          {
-            "date": "2024-03-03",
-            "target": 0
-          },
-          {
-            "date": "2024-03-04",
-            "target": 0
-          },
-          {
-            "date": "2024-03-05",
-            "target": 0
-          },
-          {
-            "date": "2024-03-06",
-            "target": 0
-          },
-          {
-            "date": "2024-03-07",
-            "target": 0
-          },
-          {
-            "date": "2024-03-08",
-            "target": 0
-          },
-          {
-            "date": "2024-03-09",
-            "target": 4
-          },
-          {
-            "date": "2024-03-10",
-            "target": 2
-          },
-          {
-            "date": "2024-03-11",
-            "target": 7
-          },
-          {
-            "date": "2024-03-12",
-            "target": 3
-          },
-          {
-            "date": "2024-03-13",
-            "target": 0
-          },
-          {
-            "date": "2024-03-14",
-            "target": 0
-          },
-          {
-            "date": "2024-03-15",
-            "target": 5
-          },
-          {
-            "date": "2024-03-16",
-            "target": 7
-          },
-          {
-            "date": "2024-03-17",
-            "target": 5
-          },
-          {
-            "date": "2024-03-18",
-            "target": 20
-          },
-          {
-            "date": "2024-03-19",
-            "target": 44
-          },
-          {
-            "date": "2024-03-20",
-            "target": 6
-          },
-          {
-            "date": "2024-03-21",
-            "target": 3
-          },
-          {
-            "date": "2024-03-22",
-            "target": 7
-          },
-          {
-            "date": "2024-03-23",
-            "target": 0
-          },
-          {
-            "date": "2024-03-24",
-            "target": 5
-          },
-          {
-            "date": "2024-03-25",
-            "target": 0
-          },
-          {
-            "date": "2024-03-26",
-            "target": 9
-          },
-          {
-            "date": "2024-03-27",
-            "target": 5
-          },
-          {
-            "date": "2024-03-28",
-            "target": 21
-          },
-          {
-            "date": "2024-03-29",
-            "target": 26
-          },
-          {
-            "date": "2024-03-30",
-            "target": 3
-          }
-        ]
-      },
-      {
-        "intensity": 0.1,
-        "events": [
-          {
-            "date": "2024-01-12",
-            "target": 11
-          },
-          {
-            "date": "2024-01-13",
-            "target": 12
-          },
-          {
-            "date": "2024-01-14",
-            "target": 0
-          },
-          {
-            "date": "2024-01-15",
-            "target": 9
-          },
-          {
-            "date": "2024-01-16",
-            "target": 13
-          },
-          {
-            "date": "2024-01-17",
-            "target": 5
           },
           {
             "date": "2024-01-18",
@@ -4553,7 +4232,7 @@
           },
           {
             "date": "2024-01-25",
-            "target": 5
+            "target": 6
           },
           {
             "date": "2024-01-26",
@@ -4617,7 +4296,7 @@
           },
           {
             "date": "2024-02-10",
-            "target": 4
+            "target": 3
           },
           {
             "date": "2024-02-11",
@@ -4729,7 +4408,7 @@
           },
           {
             "date": "2024-03-09",
-            "target": 3
+            "target": 4
           },
           {
             "date": "2024-03-10",
@@ -4765,11 +4444,11 @@
           },
           {
             "date": "2024-03-18",
-            "target": 16
+            "target": 19
           },
           {
             "date": "2024-03-19",
-            "target": 41
+            "target": 44
           },
           {
             "date": "2024-03-20",
@@ -4777,11 +4456,11 @@
           },
           {
             "date": "2024-03-21",
-            "target": 2
+            "target": 3
           },
           {
             "date": "2024-03-22",
-            "target": 4
+            "target": 6
           },
           {
             "date": "2024-03-23",
@@ -4789,7 +4468,7 @@
           },
           {
             "date": "2024-03-24",
-            "target": 5
+            "target": 6
           },
           {
             "date": "2024-03-25",
@@ -4805,7 +4484,328 @@
           },
           {
             "date": "2024-03-28",
-            "target": 19
+            "target": 20
+          },
+          {
+            "date": "2024-03-29",
+            "target": 23
+          },
+          {
+            "date": "2024-03-30",
+            "target": 3
+          }
+        ]
+      },
+      {
+        "intensity": 0.1,
+        "events": [
+          {
+            "date": "2024-01-12",
+            "target": 14
+          },
+          {
+            "date": "2024-01-13",
+            "target": 13
+          },
+          {
+            "date": "2024-01-14",
+            "target": 0
+          },
+          {
+            "date": "2024-01-15",
+            "target": 9
+          },
+          {
+            "date": "2024-01-16",
+            "target": 10
+          },
+          {
+            "date": "2024-01-17",
+            "target": 5
+          },
+          {
+            "date": "2024-01-18",
+            "target": 0
+          },
+          {
+            "date": "2024-01-19",
+            "target": 0
+          },
+          {
+            "date": "2024-01-20",
+            "target": 0
+          },
+          {
+            "date": "2024-01-21",
+            "target": 1
+          },
+          {
+            "date": "2024-01-22",
+            "target": 4
+          },
+          {
+            "date": "2024-01-23",
+            "target": 2
+          },
+          {
+            "date": "2024-01-24",
+            "target": 0
+          },
+          {
+            "date": "2024-01-25",
+            "target": 5
+          },
+          {
+            "date": "2024-01-26",
+            "target": 6
+          },
+          {
+            "date": "2024-01-27",
+            "target": 1
+          },
+          {
+            "date": "2024-01-28",
+            "target": 13
+          },
+          {
+            "date": "2024-01-29",
+            "target": 8
+          },
+          {
+            "date": "2024-01-30",
+            "target": 2
+          },
+          {
+            "date": "2024-01-31",
+            "target": 1
+          },
+          {
+            "date": "2024-02-01",
+            "target": 0
+          },
+          {
+            "date": "2024-02-02",
+            "target": 0
+          },
+          {
+            "date": "2024-02-03",
+            "target": 0
+          },
+          {
+            "date": "2024-02-04",
+            "target": 0
+          },
+          {
+            "date": "2024-02-05",
+            "target": 0
+          },
+          {
+            "date": "2024-02-06",
+            "target": 0
+          },
+          {
+            "date": "2024-02-07",
+            "target": 0
+          },
+          {
+            "date": "2024-02-08",
+            "target": 0
+          },
+          {
+            "date": "2024-02-09",
+            "target": 0
+          },
+          {
+            "date": "2024-02-10",
+            "target": 3
+          },
+          {
+            "date": "2024-02-11",
+            "target": 0
+          },
+          {
+            "date": "2024-02-12",
+            "target": 0
+          },
+          {
+            "date": "2024-02-13",
+            "target": 0
+          },
+          {
+            "date": "2024-02-14",
+            "target": 0
+          },
+          {
+            "date": "2024-02-15",
+            "target": 0
+          },
+          {
+            "date": "2024-02-16",
+            "target": 0
+          },
+          {
+            "date": "2024-02-17",
+            "target": 0
+          },
+          {
+            "date": "2024-02-18",
+            "target": 0
+          },
+          {
+            "date": "2024-02-19",
+            "target": 0
+          },
+          {
+            "date": "2024-02-20",
+            "target": 0
+          },
+          {
+            "date": "2024-02-21",
+            "target": 0
+          },
+          {
+            "date": "2024-02-22",
+            "target": 0
+          },
+          {
+            "date": "2024-02-23",
+            "target": 0
+          },
+          {
+            "date": "2024-02-24",
+            "target": 4
+          },
+          {
+            "date": "2024-02-25",
+            "target": 0
+          },
+          {
+            "date": "2024-02-26",
+            "target": 0
+          },
+          {
+            "date": "2024-02-27",
+            "target": 0
+          },
+          {
+            "date": "2024-02-28",
+            "target": 0
+          },
+          {
+            "date": "2024-02-29",
+            "target": 3
+          },
+          {
+            "date": "2024-03-01",
+            "target": 3
+          },
+          {
+            "date": "2024-03-02",
+            "target": 1
+          },
+          {
+            "date": "2024-03-03",
+            "target": 0
+          },
+          {
+            "date": "2024-03-04",
+            "target": 0
+          },
+          {
+            "date": "2024-03-05",
+            "target": 0
+          },
+          {
+            "date": "2024-03-06",
+            "target": 0
+          },
+          {
+            "date": "2024-03-07",
+            "target": 0
+          },
+          {
+            "date": "2024-03-08",
+            "target": 0
+          },
+          {
+            "date": "2024-03-09",
+            "target": 3
+          },
+          {
+            "date": "2024-03-10",
+            "target": 2
+          },
+          {
+            "date": "2024-03-11",
+            "target": 8
+          },
+          {
+            "date": "2024-03-12",
+            "target": 3
+          },
+          {
+            "date": "2024-03-13",
+            "target": 0
+          },
+          {
+            "date": "2024-03-14",
+            "target": 0
+          },
+          {
+            "date": "2024-03-15",
+            "target": 5
+          },
+          {
+            "date": "2024-03-16",
+            "target": 6
+          },
+          {
+            "date": "2024-03-17",
+            "target": 5
+          },
+          {
+            "date": "2024-03-18",
+            "target": 20
+          },
+          {
+            "date": "2024-03-19",
+            "target": 39
+          },
+          {
+            "date": "2024-03-20",
+            "target": 5
+          },
+          {
+            "date": "2024-03-21",
+            "target": 3
+          },
+          {
+            "date": "2024-03-22",
+            "target": 7
+          },
+          {
+            "date": "2024-03-23",
+            "target": 0
+          },
+          {
+            "date": "2024-03-24",
+            "target": 4
+          },
+          {
+            "date": "2024-03-25",
+            "target": 0
+          },
+          {
+            "date": "2024-03-26",
+            "target": 9
+          },
+          {
+            "date": "2024-03-27",
+            "target": 5
+          },
+          {
+            "date": "2024-03-28",
+            "target": 20
           },
           {
             "date": "2024-03-29",
@@ -4826,7 +4826,7 @@
           },
           {
             "date": "2024-01-13",
-            "target": 13
+            "target": 14
           },
           {
             "date": "2024-01-14",
@@ -4834,15 +4834,15 @@
           },
           {
             "date": "2024-01-15",
-            "target": 7
+            "target": 11
           },
           {
             "date": "2024-01-16",
-            "target": 12
+            "target": 11
           },
           {
             "date": "2024-01-17",
-            "target": 5
+            "target": 3
           },
           {
             "date": "2024-01-18",
@@ -4862,11 +4862,11 @@
           },
           {
             "date": "2024-01-22",
-            "target": 2
+            "target": 4
           },
           {
             "date": "2024-01-23",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-01-24",
@@ -4874,11 +4874,11 @@
           },
           {
             "date": "2024-01-25",
-            "target": 4
+            "target": 5
           },
           {
             "date": "2024-01-26",
-            "target": 4
+            "target": 6
           },
           {
             "date": "2024-01-27",
@@ -4890,7 +4890,7 @@
           },
           {
             "date": "2024-01-29",
-            "target": 6
+            "target": 8
           },
           {
             "date": "2024-01-30",
@@ -4898,7 +4898,7 @@
           },
           {
             "date": "2024-01-31",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-02-01",
@@ -4938,7 +4938,7 @@
           },
           {
             "date": "2024-02-10",
-            "target": 3
+            "target": 4
           },
           {
             "date": "2024-02-11",
@@ -4994,7 +4994,7 @@
           },
           {
             "date": "2024-02-24",
-            "target": 4
+            "target": 5
           },
           {
             "date": "2024-02-25",
@@ -5022,7 +5022,7 @@
           },
           {
             "date": "2024-03-02",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-03-03",
@@ -5050,19 +5050,19 @@
           },
           {
             "date": "2024-03-09",
-            "target": 3
+            "target": 4
           },
           {
             "date": "2024-03-10",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-03-11",
-            "target": 5
+            "target": 7
           },
           {
             "date": "2024-03-12",
-            "target": 3
+            "target": 2
           },
           {
             "date": "2024-03-13",
@@ -5078,27 +5078,27 @@
           },
           {
             "date": "2024-03-16",
-            "target": 5
+            "target": 7
           },
           {
             "date": "2024-03-17",
-            "target": 4
+            "target": 5
           },
           {
             "date": "2024-03-18",
-            "target": 16
+            "target": 19
           },
           {
             "date": "2024-03-19",
-            "target": 43
+            "target": 41
           },
           {
             "date": "2024-03-20",
-            "target": 6
+            "target": 3
           },
           {
             "date": "2024-03-21",
-            "target": 2
+            "target": 3
           },
           {
             "date": "2024-03-22",
@@ -5118,19 +5118,19 @@
           },
           {
             "date": "2024-03-26",
-            "target": 8
+            "target": 9
           },
           {
             "date": "2024-03-27",
-            "target": 6
+            "target": 5
           },
           {
             "date": "2024-03-28",
-            "target": 20
+            "target": 18
           },
           {
             "date": "2024-03-29",
-            "target": 23
+            "target": 20
           },
           {
             "date": "2024-03-30",
@@ -5143,11 +5143,11 @@
         "events": [
           {
             "date": "2024-01-12",
-            "target": 7
+            "target": 12
           },
           {
             "date": "2024-01-13",
-            "target": 13
+            "target": 11
           },
           {
             "date": "2024-01-14",
@@ -5155,11 +5155,11 @@
           },
           {
             "date": "2024-01-15",
-            "target": 9
+            "target": 7
           },
           {
             "date": "2024-01-16",
-            "target": 11
+            "target": 12
           },
           {
             "date": "2024-01-17",
@@ -5183,7 +5183,7 @@
           },
           {
             "date": "2024-01-22",
-            "target": 3
+            "target": 4
           },
           {
             "date": "2024-01-23",
@@ -5199,7 +5199,7 @@
           },
           {
             "date": "2024-01-26",
-            "target": 6
+            "target": 5
           },
           {
             "date": "2024-01-27",
@@ -5259,7 +5259,7 @@
           },
           {
             "date": "2024-02-10",
-            "target": 3
+            "target": 4
           },
           {
             "date": "2024-02-11",
@@ -5315,7 +5315,7 @@
           },
           {
             "date": "2024-02-24",
-            "target": 3
+            "target": 5
           },
           {
             "date": "2024-02-25",
@@ -5335,7 +5335,7 @@
           },
           {
             "date": "2024-02-29",
-            "target": 3
+            "target": 2
           },
           {
             "date": "2024-03-01",
@@ -5375,11 +5375,11 @@
           },
           {
             "date": "2024-03-10",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-03-11",
-            "target": 6
+            "target": 7
           },
           {
             "date": "2024-03-12",
@@ -5395,31 +5395,31 @@
           },
           {
             "date": "2024-03-15",
-            "target": 3
-          },
-          {
-            "date": "2024-03-16",
-            "target": 5
-          },
-          {
-            "date": "2024-03-17",
-            "target": 5
-          },
-          {
-            "date": "2024-03-18",
-            "target": 15
-          },
-          {
-            "date": "2024-03-19",
-            "target": 36
-          },
-          {
-            "date": "2024-03-20",
             "target": 2
           },
           {
-            "date": "2024-03-21",
+            "date": "2024-03-16",
+            "target": 7
+          },
+          {
+            "date": "2024-03-17",
             "target": 3
+          },
+          {
+            "date": "2024-03-18",
+            "target": 19
+          },
+          {
+            "date": "2024-03-19",
+            "target": 37
+          },
+          {
+            "date": "2024-03-20",
+            "target": 4
+          },
+          {
+            "date": "2024-03-21",
+            "target": 2
           },
           {
             "date": "2024-03-22",
@@ -5431,7 +5431,7 @@
           },
           {
             "date": "2024-03-24",
-            "target": 6
+            "target": 5
           },
           {
             "date": "2024-03-25",
@@ -5439,7 +5439,7 @@
           },
           {
             "date": "2024-03-26",
-            "target": 6
+            "target": 8
           },
           {
             "date": "2024-03-27",
@@ -5447,11 +5447,11 @@
           },
           {
             "date": "2024-03-28",
-            "target": 19
+            "target": 17
           },
           {
             "date": "2024-03-29",
-            "target": 23
+            "target": 21
           },
           {
             "date": "2024-03-30",
@@ -5464,11 +5464,11 @@
         "events": [
           {
             "date": "2024-01-12",
-            "target": 12
+            "target": 11
           },
           {
             "date": "2024-01-13",
-            "target": 11
+            "target": 12
           },
           {
             "date": "2024-01-14",
@@ -5476,11 +5476,11 @@
           },
           {
             "date": "2024-01-15",
-            "target": 7
+            "target": 9
           },
           {
             "date": "2024-01-16",
-            "target": 10
+            "target": 12
           },
           {
             "date": "2024-01-17",
@@ -5516,7 +5516,7 @@
           },
           {
             "date": "2024-01-25",
-            "target": 5
+            "target": 3
           },
           {
             "date": "2024-01-26",
@@ -5528,19 +5528,19 @@
           },
           {
             "date": "2024-01-28",
-            "target": 13
+            "target": 16
           },
           {
             "date": "2024-01-29",
-            "target": 6
+            "target": 9
           },
           {
             "date": "2024-01-30",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-01-31",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-02-01",
@@ -5580,7 +5580,7 @@
           },
           {
             "date": "2024-02-10",
-            "target": 1
+            "target": 4
           },
           {
             "date": "2024-02-11",
@@ -5636,7 +5636,7 @@
           },
           {
             "date": "2024-02-24",
-            "target": 4
+            "target": 3
           },
           {
             "date": "2024-02-25",
@@ -5656,11 +5656,11 @@
           },
           {
             "date": "2024-02-29",
-            "target": 1
+            "target": 3
           },
           {
             "date": "2024-03-01",
-            "target": 3
+            "target": 2
           },
           {
             "date": "2024-03-02",
@@ -5692,19 +5692,19 @@
           },
           {
             "date": "2024-03-09",
-            "target": 1
+            "target": 3
           },
           {
             "date": "2024-03-10",
-            "target": 1
+            "target": 2
           },
           {
             "date": "2024-03-11",
-            "target": 5
+            "target": 6
           },
           {
             "date": "2024-03-12",
-            "target": 2
+            "target": 0
           },
           {
             "date": "2024-03-13",
@@ -5716,11 +5716,11 @@
           },
           {
             "date": "2024-03-15",
-            "target": 5
+            "target": 4
           },
           {
             "date": "2024-03-16",
-            "target": 4
+            "target": 6
           },
           {
             "date": "2024-03-17",
@@ -5728,11 +5728,11 @@
           },
           {
             "date": "2024-03-18",
-            "target": 12
+            "target": 15
           },
           {
             "date": "2024-03-19",
-            "target": 32
+            "target": 34
           },
           {
             "date": "2024-03-20",
@@ -5740,7 +5740,7 @@
           },
           {
             "date": "2024-03-21",
-            "target": 3
+            "target": 2
           },
           {
             "date": "2024-03-22",
@@ -5752,7 +5752,7 @@
           },
           {
             "date": "2024-03-24",
-            "target": 6
+            "target": 4
           },
           {
             "date": "2024-03-25",
@@ -5760,23 +5760,23 @@
           },
           {
             "date": "2024-03-26",
-            "target": 9
+            "target": 8
           },
           {
             "date": "2024-03-27",
-            "target": 3
+            "target": 4
           },
           {
             "date": "2024-03-28",
-            "target": 20
+            "target": 17
           },
           {
             "date": "2024-03-29",
-            "target": 20
+            "target": 21
           },
           {
             "date": "2024-03-30",
-            "target": 2
+            "target": 1
           }
         ]
       },
@@ -5785,11 +5785,11 @@
         "events": [
           {
             "date": "2024-01-12",
-            "target": 11
+            "target": 9
           },
           {
             "date": "2024-01-13",
-            "target": 10
+            "target": 6
           },
           {
             "date": "2024-01-14",
@@ -5797,7 +5797,7 @@
           },
           {
             "date": "2024-01-15",
-            "target": 9
+            "target": 8
           },
           {
             "date": "2024-01-16",
@@ -5805,7 +5805,7 @@
           },
           {
             "date": "2024-01-17",
-            "target": 3
+            "target": 4
           },
           {
             "date": "2024-01-18",
@@ -5821,15 +5821,15 @@
           },
           {
             "date": "2024-01-21",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-01-22",
-            "target": 3
+            "target": 4
           },
           {
             "date": "2024-01-23",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-01-24",
@@ -5837,11 +5837,11 @@
           },
           {
             "date": "2024-01-25",
-            "target": 4
+            "target": 6
           },
           {
             "date": "2024-01-26",
-            "target": 5
+            "target": 2
           },
           {
             "date": "2024-01-27",
@@ -5849,11 +5849,11 @@
           },
           {
             "date": "2024-01-28",
-            "target": 8
+            "target": 13
           },
           {
             "date": "2024-01-29",
-            "target": 3
+            "target": 5
           },
           {
             "date": "2024-01-30",
@@ -5861,7 +5861,7 @@
           },
           {
             "date": "2024-01-31",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-02-01",
@@ -5957,7 +5957,7 @@
           },
           {
             "date": "2024-02-24",
-            "target": 4
+            "target": 5
           },
           {
             "date": "2024-02-25",
@@ -5985,7 +5985,7 @@
           },
           {
             "date": "2024-03-02",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-03-03",
@@ -6013,15 +6013,15 @@
           },
           {
             "date": "2024-03-09",
-            "target": 3
-          },
-          {
-            "date": "2024-03-10",
             "target": 2
           },
           {
+            "date": "2024-03-10",
+            "target": 1
+          },
+          {
             "date": "2024-03-11",
-            "target": 4
+            "target": 5
           },
           {
             "date": "2024-03-12",
@@ -6037,11 +6037,11 @@
           },
           {
             "date": "2024-03-15",
-            "target": 5
+            "target": 3
           },
           {
             "date": "2024-03-16",
-            "target": 5
+            "target": 3
           },
           {
             "date": "2024-03-17",
@@ -6057,15 +6057,15 @@
           },
           {
             "date": "2024-03-20",
-            "target": 5
+            "target": 3
           },
           {
             "date": "2024-03-21",
-            "target": 1
+            "target": 0
           },
           {
             "date": "2024-03-22",
-            "target": 4
+            "target": 6
           },
           {
             "date": "2024-03-23",
@@ -6073,7 +6073,7 @@
           },
           {
             "date": "2024-03-24",
-            "target": 3
+            "target": 5
           },
           {
             "date": "2024-03-25",
@@ -6081,7 +6081,7 @@
           },
           {
             "date": "2024-03-26",
-            "target": 5
+            "target": 7
           },
           {
             "date": "2024-03-27",
@@ -6089,11 +6089,11 @@
           },
           {
             "date": "2024-03-28",
-            "target": 11
+            "target": 14
           },
           {
             "date": "2024-03-29",
-            "target": 15
+            "target": 22
           },
           {
             "date": "2024-03-30",
@@ -6106,11 +6106,11 @@
         "events": [
           {
             "date": "2024-01-12",
-            "target": 8
+            "target": 9
           },
           {
             "date": "2024-01-13",
-            "target": 10
+            "target": 9
           },
           {
             "date": "2024-01-14",
@@ -6118,15 +6118,15 @@
           },
           {
             "date": "2024-01-15",
-            "target": 6
+            "target": 7
           },
           {
             "date": "2024-01-16",
-            "target": 9
+            "target": 8
           },
           {
             "date": "2024-01-17",
-            "target": 5
+            "target": 3
           },
           {
             "date": "2024-01-18",
@@ -6166,15 +6166,15 @@
           },
           {
             "date": "2024-01-27",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-01-28",
-            "target": 14
+            "target": 10
           },
           {
             "date": "2024-01-29",
-            "target": 7
+            "target": 4
           },
           {
             "date": "2024-01-30",
@@ -6182,7 +6182,7 @@
           },
           {
             "date": "2024-01-31",
-            "target": 0
+            "target": 1
           },
           {
             "date": "2024-02-01",
@@ -6222,7 +6222,7 @@
           },
           {
             "date": "2024-02-10",
-            "target": 4
+            "target": 2
           },
           {
             "date": "2024-02-11",
@@ -6278,7 +6278,7 @@
           },
           {
             "date": "2024-02-24",
-            "target": 2
+            "target": 4
           },
           {
             "date": "2024-02-25",
@@ -6298,7 +6298,7 @@
           },
           {
             "date": "2024-02-29",
-            "target": 2
+            "target": 1
           },
           {
             "date": "2024-03-01",
@@ -6334,7 +6334,7 @@
           },
           {
             "date": "2024-03-09",
-            "target": 4
+            "target": 2
           },
           {
             "date": "2024-03-10",
@@ -6346,7 +6346,7 @@
           },
           {
             "date": "2024-03-12",
-            "target": 3
+            "target": 1
           },
           {
             "date": "2024-03-13",
@@ -6358,35 +6358,35 @@
           },
           {
             "date": "2024-03-15",
-            "target": 4
+            "target": 3
           },
           {
             "date": "2024-03-16",
-            "target": 6
+            "target": 5
           },
           {
             "date": "2024-03-17",
-            "target": 3
-          },
-          {
-            "date": "2024-03-18",
-            "target": 13
-          },
-          {
-            "date": "2024-03-19",
-            "target": 30
-          },
-          {
-            "date": "2024-03-20",
             "target": 4
           },
           {
+            "date": "2024-03-18",
+            "target": 16
+          },
+          {
+            "date": "2024-03-19",
+            "target": 33
+          },
+          {
+            "date": "2024-03-20",
+            "target": 5
+          },
+          {
             "date": "2024-03-21",
-            "target": 3
+            "target": 2
           },
           {
             "date": "2024-03-22",
-            "target": 5
+            "target": 3
           },
           {
             "date": "2024-03-23",
@@ -6394,7 +6394,7 @@
           },
           {
             "date": "2024-03-24",
-            "target": 3
+            "target": 4
           },
           {
             "date": "2024-03-25",
@@ -6402,15 +6402,15 @@
           },
           {
             "date": "2024-03-26",
-            "target": 6
+            "target": 8
           },
           {
             "date": "2024-03-27",
-            "target": 4
+            "target": 5
           },
           {
             "date": "2024-03-28",
-            "target": 14
+            "target": 15
           },
           {
             "date": "2024-03-29",
@@ -6418,7 +6418,7 @@
           },
           {
             "date": "2024-03-30",
-            "target": 0
+            "target": 2
           }
         ]
       }

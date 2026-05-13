@@ -184,191 +184,191 @@
         }
       }
     ],
-    "sparsify": [
+    "densify": [
       {
         "intensity": 0.05,
         "invariants": {
           "n_nodes": 7144.0,
-          "n_edges": 649381.0499999999,
+          "n_edges": 717736.95,
           "diameter": 2.0,
           "radius": 1.0,
-          "degeneracy": 1139.6324407456993,
-          "maximum_degree": 6694.65,
-          "degree_variance": 583861.6278134197,
+          "degeneracy": 1198.112640781325,
+          "maximum_degree": 7047.132135310053,
+          "degree_variance": 645158.4139416312,
           "degree_entropy": 0.07186061555040595,
-          "joint_degree_entropy": 1.3862936543552076,
-          "normalized_laplacian_second_moment": 1.0055006224773575,
-          "normalized_laplacian_third_moment": 5464869.520860017,
-          "random_walk_triangle_weight": 123215.08247446404,
-          "random_walk_fourth_moment": 36.79591807406676,
-          "adjacency_fourth_moment_per_node": 1047331498.1557496,
+          "joint_degree_entropy": 1.383890475901647,
+          "normalized_laplacian_second_moment": 1.00497675366999,
+          "normalized_laplacian_third_moment": 5553926.903022801,
+          "random_walk_triangle_weight": 107569.87433135204,
+          "random_walk_fourth_moment": 32.01624363408883,
+          "adjacency_fourth_moment_per_node": 1170111779.4668338,
           "k_core_size": 97.0,
-          "degree_skewness": 8.407909024000414,
-          "degree_kurtosis": 68.7121704081371,
+          "degree_skewness": 8.407909024000412,
+          "degree_kurtosis": 68.71217040813707,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "global_clustering": 0.0,
-          "degree_assortativity": -1.0
+          "global_clustering": 0.0013764094797210466,
+          "degree_assortativity": -0.9986235905202789
         }
       },
       {
         "intensity": 0.1,
         "invariants": {
           "n_nodes": 7144.0,
-          "n_edges": 615203.1,
+          "n_edges": 751914.9,
           "diameter": 2.0,
           "radius": 1.0,
-          "degeneracy": 1109.2367646269213,
-          "maximum_degree": 6342.3,
-          "degree_variance": 524019.85432561743,
+          "degeneracy": 1226.3073839784217,
+          "maximum_degree": 7047.264270620107,
+          "degree_variance": 643381.1873756247,
           "degree_entropy": 0.07186061555040595,
-          "joint_degree_entropy": 1.3862914795471415,
-          "normalized_laplacian_second_moment": 1.0058062126149885,
-          "normalized_laplacian_third_moment": 4646384.937860029,
-          "random_walk_triangle_weight": 116726.25491047454,
-          "random_walk_fourth_moment": 36.770323265441064,
-          "adjacency_fourth_moment_per_node": 890543399.4360005,
+          "joint_degree_entropy": 1.3783268001215125,
+          "normalized_laplacian_second_moment": 1.0047505375940815,
+          "normalized_laplacian_third_moment": 4876080.711430918,
+          "random_walk_triangle_weight": 90412.87990294836,
+          "random_walk_fourth_moment": 28.14112718285188,
+          "adjacency_fourth_moment_per_node": 1124002082.2095175,
           "k_core_size": 97.0,
-          "degree_skewness": 8.407909024000418,
-          "degree_kurtosis": 68.71217040813711,
+          "degree_skewness": 8.407909024000409,
+          "degree_kurtosis": 68.71217040813706,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "global_clustering": 0.0,
-          "degree_assortativity": -1.0
+          "global_clustering": 0.0027528189594420932,
+          "degree_assortativity": -0.9972471810405579
         }
       },
       {
         "intensity": 0.15,
         "invariants": {
           "n_nodes": 7144.0,
-          "n_edges": 581025.15,
+          "n_edges": 786092.85,
           "diameter": 2.0,
           "radius": 1.0,
-          "degeneracy": 1077.984369088903,
-          "maximum_degree": 5989.95,
-          "degree_variance": 467412.77129661565,
+          "degeneracy": 1253.8682945190058,
+          "maximum_degree": 7047.39640593016,
+          "degree_variance": 641606.4120620008,
           "degree_entropy": 0.07186061555040595,
-          "joint_degree_entropy": 1.3862868503994465,
-          "normalized_laplacian_second_moment": 1.0061477545335171,
-          "normalized_laplacian_third_moment": 3913998.0568600204,
-          "random_walk_triangle_weight": 110237.42741646223,
-          "random_walk_fourth_moment": 36.74465847932995,
-          "adjacency_fourth_moment_per_node": 750240009.5602498,
+          "joint_degree_entropy": 1.369334707129077,
+          "normalized_laplacian_second_moment": 1.0045439924812953,
+          "normalized_laplacian_third_moment": 4310960.824424904,
+          "random_walk_triangle_weight": 76880.65809293251,
+          "random_walk_fourth_moment": 24.965951575311426,
+          "adjacency_fourth_moment_per_node": 1082505224.930595,
           "k_core_size": 97.0,
-          "degree_skewness": 8.40790902400041,
-          "degree_kurtosis": 68.71217040813707,
+          "degree_skewness": 8.407909024000416,
+          "degree_kurtosis": 68.71217040813714,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "global_clustering": 0.0,
-          "degree_assortativity": -1.0
+          "global_clustering": 0.004129228439163139,
+          "degree_assortativity": -0.9958707715608368
         }
       },
       {
         "intensity": 0.2,
         "invariants": {
           "n_nodes": 7144.0,
-          "n_edges": 546847.2000000001,
+          "n_edges": 820270.8,
           "diameter": 2.0,
           "radius": 1.0,
-          "degeneracy": 1045.7984509454966,
-          "maximum_degree": 5637.6,
-          "degree_variance": 414040.3787264138,
+          "degeneracy": 1280.8362893047652,
+          "maximum_degree": 7047.528541240213,
+          "degree_variance": 639834.0880007615,
           "degree_entropy": 0.07186061555040595,
-          "joint_degree_entropy": 1.3862879337751526,
-          "normalized_laplacian_second_moment": 1.006531989191862,
-          "normalized_laplacian_third_moment": 3262924.183860021,
-          "random_walk_triangle_weight": 103748.60000554833,
-          "random_walk_fourth_moment": 36.71891059495496,
-          "adjacency_fourth_moment_per_node": 625505701.248,
+          "joint_degree_entropy": 1.3581686243199869,
+          "normalized_laplacian_second_moment": 1.0043546594612414,
+          "normalized_laplacian_third_moment": 3835984.2719172896,
+          "random_walk_triangle_weight": 66046.06155853384,
+          "random_walk_fourth_moment": 22.328719413188463,
+          "adjacency_fourth_moment_per_node": 1045050310.5207427,
           "k_core_size": 97.0,
-          "degree_skewness": 8.407909024000414,
-          "degree_kurtosis": 68.71217040813708,
+          "degree_skewness": 8.407909024000407,
+          "degree_kurtosis": 68.71217040813706,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "global_clustering": 0.0,
-          "degree_assortativity": -1.0
+          "global_clustering": 0.0055056379188841865,
+          "degree_assortativity": -0.9944943620811159
         }
       },
       {
         "intensity": 0.25,
         "invariants": {
           "n_nodes": 7144.0,
-          "n_edges": 512669.25,
+          "n_edges": 854448.75,
           "diameter": 2.0,
           "radius": 1.0,
-          "degeneracy": 1012.5899960003555,
-          "maximum_degree": 5285.25,
-          "degree_variance": 363902.67661501217,
+          "degeneracy": 1307.2480636818707,
+          "maximum_degree": 7047.6606765502665,
+          "degree_variance": 638064.2151919049,
           "degree_entropy": 0.07186061555040595,
-          "joint_degree_entropy": 1.3862913372857513,
-          "normalized_laplacian_second_moment": 1.0069674551379861,
-          "normalized_laplacian_third_moment": 2688378.6248600227,
-          "random_walk_triangle_weight": 97259.77269435237,
-          "random_walk_fourth_moment": 36.69306299266331,
-          "adjacency_fourth_moment_per_node": 515424847.21875,
+          "joint_degree_entropy": 1.3467180748444578,
+          "normalized_laplacian_second_moment": 1.0041804730827917,
+          "normalized_laplacian_third_moment": 3433792.7315949593,
+          "random_walk_triangle_weight": 57256.82983911769,
+          "random_walk_fourth_moment": 20.112423724491673,
+          "adjacency_fourth_moment_per_node": 1011158217.221137,
           "k_core_size": 97.0,
-          "degree_skewness": 8.407909024000412,
-          "degree_kurtosis": 68.71217040813711,
+          "degree_skewness": 8.407909024000421,
+          "degree_kurtosis": 68.7121704081372,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "global_clustering": 0.0,
-          "degree_assortativity": -1.0
+          "global_clustering": 0.006882047398605233,
+          "degree_assortativity": -0.9931179526013948
         }
       },
       {
         "intensity": 0.3,
         "invariants": {
           "n_nodes": 7144.0,
-          "n_edges": 478491.3,
+          "n_edges": 888626.7,
           "diameter": 2.0,
           "radius": 1.0,
-          "degeneracy": 978.2548747642405,
-          "maximum_degree": 4932.9,
-          "degree_variance": 316999.66496241075,
+          "degeneracy": 1333.1366771640483,
+          "maximum_degree": 7047.7928118603195,
+          "degree_variance": 636296.7936354326,
           "degree_entropy": 0.07186061555040595,
-          "joint_degree_entropy": 1.3862938344804343,
-          "normalized_laplacian_second_moment": 1.007465130504985,
-          "normalized_laplacian_third_moment": 2185576.685860021,
-          "random_walk_triangle_weight": 90770.94550424237,
-          "random_walk_fourth_moment": 36.667094304329986,
-          "adjacency_fourth_moment_per_node": 419081820.1919998,
+          "joint_degree_entropy": 1.3328749168101361,
+          "normalized_laplacian_second_moment": 1.0040196856565304,
+          "normalized_laplacian_third_moment": 3090895.319437441,
+          "random_walk_triangle_weight": 50043.805415965835,
+          "random_walk_fourth_moment": 18.23066620862052,
+          "adjacency_fourth_moment_per_node": 980423949.5175912,
           "k_core_size": 97.0,
-          "degree_skewness": 8.407909024000407,
-          "degree_kurtosis": 68.71217040813704,
+          "degree_skewness": 8.407909024000416,
+          "degree_kurtosis": 68.71217040813706,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "global_clustering": 0.0,
-          "degree_assortativity": -1.0
+          "global_clustering": 0.008258456878326279,
+          "degree_assortativity": -0.9917415431216737
         }
       },
       {
         "intensity": 0.35,
         "invariants": {
           "n_nodes": 7144.0,
-          "n_edges": 444313.35000000003,
+          "n_edges": 922804.65,
           "diameter": 2.0,
           "radius": 1.0,
-          "degeneracy": 942.6699846711998,
-          "maximum_degree": 4580.55,
-          "degree_variance": 273331.3437686091,
+          "degeneracy": 1358.532038635821,
+          "maximum_degree": 7047.924947170372,
+          "degree_variance": 634531.8233313436,
           "degree_entropy": 0.07186061555040595,
-          "joint_degree_entropy": 1.386294162394453,
-          "normalized_laplacian_second_moment": 1.0080393713130609,
-          "normalized_laplacian_third_moment": 1749733.6728600245,
-          "random_walk_triangle_weight": 84282.11846316146,
-          "random_walk_fourth_moment": 36.64097658702233,
-          "adjacency_fourth_moment_per_node": 335560992.88725024,
+          "joint_degree_entropy": 1.3181900465010459,
+          "normalized_laplacian_second_moment": 1.0038708084099923,
+          "normalized_laplacian_third_moment": 2796699.6449696077,
+          "random_walk_triangle_weight": 44062.954431096055,
+          "random_walk_fourth_moment": 16.618418578154056,
+          "adjacency_fourth_moment_per_node": 952502911.058217,
           "k_core_size": 97.0,
-          "degree_skewness": 8.407909024000414,
-          "degree_kurtosis": 68.71217040813713,
+          "degree_skewness": 8.407909024000416,
+          "degree_kurtosis": 68.71217040813714,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "global_clustering": 0.0,
-          "degree_assortativity": -1.0
+          "global_clustering": 0.009634866358047325,
+          "degree_assortativity": -0.9903651336419527
         }
       }
     ],
-    "sampling": [
+    "sample": [
       {
         "intensity": 0.05,
         "invariants": {
@@ -558,183 +558,183 @@
       {
         "intensity": 0.05,
         "invariants": {
-          "n_nodes": 7129.002879498409,
-          "n_edges": 676912.3996290144,
+          "n_nodes": 7252.8449408882825,
+          "n_edges": 648014.4752161177,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 2.0728829050913995,
-          "radius": 2.066212505590183,
-          "degeneracy": 94.91853439761249,
-          "k_core_size": 7569.23489116702,
-          "maximum_degree": 6998.775785063275,
-          "degree_variance": 694550.9971531968,
+          "diameter": 2.0750451195806456,
+          "radius": 2.0940564716391212,
+          "degeneracy": 87.53747933502889,
+          "k_core_size": 6678.86148014878,
+          "maximum_degree": 7092.044566055993,
+          "degree_variance": 636708.6227988217,
           "global_clustering": 0.0,
-          "degree_assortativity": -1.0229006106501801,
-          "degree_entropy": 0.07051649211565227,
+          "degree_assortativity": -1.0008400578752144,
+          "degree_entropy": 0.06879560246405747,
           "joint_degree_entropy": 0.0,
-          "degree_skewness": 8.156168998047796,
-          "degree_kurtosis": 64.66659697127332,
-          "normalized_laplacian_second_moment": 1.007399344312496,
-          "normalized_laplacian_third_moment": 1.0280775783430416,
+          "degree_skewness": 8.775760822979972,
+          "degree_kurtosis": 71.33353533534611,
+          "normalized_laplacian_second_moment": 1.0035824143671084,
+          "normalized_laplacian_third_moment": 1.0572492625267458,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.02126913459340913,
-          "adjacency_fourth_moment_per_node": 132802401.39873451
+          "random_walk_fourth_moment": 0.020817969387458026,
+          "adjacency_fourth_moment_per_node": 125189686.85359168
         }
       },
       {
         "intensity": 0.1,
         "invariants": {
-          "n_nodes": 7689.670864081759,
-          "n_edges": 597368.8585619986,
+          "n_nodes": 7361.689881776566,
+          "n_edges": 612469.9504322353,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 2.2557173032903965,
-          "radius": 2.2303686483577656,
-          "degeneracy": 93.91058624975905,
-          "k_core_size": 7806.19527641452,
-          "maximum_degree": 6702.910373820592,
-          "degree_variance": 689874.9637514395,
+          "diameter": 2.1500902391612913,
+          "radius": 2.188112943278243,
+          "degeneracy": 78.07495867005778,
+          "k_core_size": 6213.722960297559,
+          "maximum_degree": 7137.089132111986,
+          "degree_variance": 626479.1538376217,
           "global_clustering": 0.0,
-          "degree_assortativity": -1.0182155359865566,
-          "degree_entropy": 0.06093433070635075,
+          "degree_assortativity": -1.001680115750429,
+          "degree_entropy": 0.0657305893777088,
           "joint_degree_entropy": 0.0,
-          "degree_skewness": 9.297228242758989,
-          "degree_kurtosis": 58.40940709208898,
-          "normalized_laplacian_second_moment": 0.7839956529142174,
-          "normalized_laplacian_third_moment": 0.8852305928287675,
+          "degree_skewness": 9.145378103368051,
+          "degree_kurtosis": 74.00382141203276,
+          "normalized_laplacian_second_moment": 1.00688487352705,
+          "normalized_laplacian_third_moment": 1.1136586594319908,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.01784866558211897,
-          "adjacency_fourth_moment_per_node": 152444613.0145772
+          "random_walk_fourth_moment": 0.021293483775291343,
+          "adjacency_fourth_moment_per_node": 119569489.47398068
         }
       },
       {
         "intensity": 0.15,
         "invariants": {
-          "n_nodes": 4381.3245335192005,
-          "n_edges": 797495.0571606267,
+          "n_nodes": 7470.534822664848,
+          "n_edges": 576925.425648353,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 2.228875631224278,
-          "radius": 1.9007636647751756,
-          "degeneracy": 121.81887560635784,
-          "k_core_size": 8037.615659457839,
-          "maximum_degree": 6503.439600441454,
-          "degree_variance": 665048.6166230344,
+          "diameter": 2.2251353587419374,
+          "radius": 2.282169414917364,
+          "degeneracy": 68.61243800508669,
+          "k_core_size": 5748.5844404463405,
+          "maximum_degree": 7182.133698167979,
+          "degree_variance": 616249.6848764217,
           "global_clustering": 0.0,
-          "degree_assortativity": -1.0678398246876881,
-          "degree_entropy": 0.07537390696775226,
+          "degree_assortativity": -1.0025201736256433,
+          "degree_entropy": 0.06266557629136012,
           "joint_degree_entropy": 0.0,
-          "degree_skewness": 8.637672565542138,
-          "degree_kurtosis": 64.84579423246825,
-          "normalized_laplacian_second_moment": 1.1101976559796767,
-          "normalized_laplacian_third_moment": 1.0927885846179672,
+          "degree_skewness": 9.514995383756128,
+          "degree_kurtosis": 76.67410748871941,
+          "normalized_laplacian_second_moment": 1.0101873326869915,
+          "normalized_laplacian_third_moment": 1.170068056337236,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.0181692479729014,
-          "adjacency_fourth_moment_per_node": 151936685.19684833
+          "random_walk_fourth_moment": 0.021768998163124664,
+          "adjacency_fourth_moment_per_node": 113949292.09436968
         }
       },
       {
         "intensity": 0.2,
         "invariants": {
-          "n_nodes": 7399.46065305889,
-          "n_edges": 870603.9903559537,
+          "n_nodes": 7579.379763553132,
+          "n_edges": 541380.9008644706,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 2.0784485706044395,
-          "radius": 2.543354137832903,
-          "degeneracy": 107.7929960105576,
-          "k_core_size": 5450.368185506919,
-          "maximum_degree": 7390.072984391338,
-          "degree_variance": 388221.72250928555,
+          "diameter": 2.300180478322583,
+          "radius": 2.376225886556486,
+          "degeneracy": 59.14991734011557,
+          "k_core_size": 5283.44592059512,
+          "maximum_degree": 7227.178264223972,
+          "degree_variance": 606020.2159152217,
           "global_clustering": 0.0,
-          "degree_assortativity": -1.4675094086395237,
-          "degree_entropy": 0.05529141645014872,
+          "degree_assortativity": -1.0033602315008578,
+          "degree_entropy": 0.05960056320501145,
           "joint_degree_entropy": 0.0,
-          "degree_skewness": 8.535272169376071,
-          "degree_kurtosis": 61.413976526922426,
-          "normalized_laplacian_second_moment": 1.0383868716814848,
-          "normalized_laplacian_third_moment": 1.1001017452923587,
+          "degree_skewness": 9.884612664144207,
+          "degree_kurtosis": 79.34439356540607,
+          "normalized_laplacian_second_moment": 1.013489791846933,
+          "normalized_laplacian_third_moment": 1.2264774532424814,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.022736173181026283,
-          "adjacency_fourth_moment_per_node": 155903840.37084305
+          "random_walk_fourth_moment": 0.02224451255095798,
+          "adjacency_fourth_moment_per_node": 108329094.71475868
         }
       },
       {
         "intensity": 0.25,
         "invariants": {
-          "n_nodes": 5249.677229836196,
-          "n_edges": 557663.325289988,
+          "n_nodes": 7688.224704441414,
+          "n_edges": 505836.3760805883,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 2.4443220183087018,
-          "radius": 2.2255972698582633,
-          "degeneracy": 100.35483771197472,
-          "k_core_size": 7226.768642805782,
-          "maximum_degree": 5206.763849336103,
-          "degree_variance": 542812.2875008625,
+          "diameter": 2.3752255979032286,
+          "radius": 2.470282358195607,
+          "degeneracy": 49.68739667514447,
+          "k_core_size": 4818.3074007439,
+          "maximum_degree": 7272.222830279965,
+          "degree_variance": 595790.7469540217,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.6031566282902112,
-          "degree_entropy": 0.08458415571078712,
+          "degree_assortativity": -1.0042002893760722,
+          "degree_entropy": 0.056535550118662764,
           "joint_degree_entropy": 0.0,
-          "degree_skewness": 11.617580498779828,
-          "degree_kurtosis": 53.05733827839384,
-          "normalized_laplacian_second_moment": 1.2868827314714013,
-          "normalized_laplacian_third_moment": 0.8986076134788649,
+          "degree_skewness": 10.254229944532284,
+          "degree_kurtosis": 82.01467964209272,
+          "normalized_laplacian_second_moment": 1.0167922510068745,
+          "normalized_laplacian_third_moment": 1.2828868501477264,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.02657571666089157,
-          "adjacency_fourth_moment_per_node": 108064359.71122451
+          "random_walk_fourth_moment": 0.022720026938791302,
+          "adjacency_fourth_moment_per_node": 102708897.33514768
         }
       },
       {
         "intensity": 0.3,
         "invariants": {
-          "n_nodes": 6741.476339433642,
-          "n_edges": 475066.75525129866,
+          "n_nodes": 7797.069645329697,
+          "n_edges": 470291.85129670595,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 1.5425339444549993,
-          "radius": 2.3391425949041547,
-          "degeneracy": 109.27779585286682,
-          "k_core_size": 7207.011171195794,
-          "maximum_degree": 8619.124145309252,
-          "degree_variance": 1018928.2957525697,
+          "diameter": 2.4502707174838743,
+          "radius": 2.5643388298347283,
+          "degeneracy": 40.22487601017337,
+          "k_core_size": 4353.16888089268,
+          "maximum_degree": 7317.2673963359575,
+          "degree_variance": 585561.2779928218,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.7909774146308811,
-          "degree_entropy": 0.08215139759623645,
+          "degree_assortativity": -1.0050403472512865,
+          "degree_entropy": 0.053470537032314094,
           "joint_degree_entropy": 0.0,
-          "degree_skewness": 7.429631476411949,
-          "degree_kurtosis": 64.8901211997174,
-          "normalized_laplacian_second_moment": 0.7897572587707707,
-          "normalized_laplacian_third_moment": 0.9871799800662363,
+          "degree_skewness": 10.623847224920361,
+          "degree_kurtosis": 84.68496571877938,
+          "normalized_laplacian_second_moment": 1.020094710166816,
+          "normalized_laplacian_third_moment": 1.3392962470529717,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.017279255992306657,
-          "adjacency_fourth_moment_per_node": 103193985.02931926
+          "random_walk_fourth_moment": 0.02319554132662462,
+          "adjacency_fourth_moment_per_node": 97088699.95553668
         }
       },
       {
         "intensity": 0.35,
         "invariants": {
-          "n_nodes": 11330.557590735903,
-          "n_edges": 527589.7063283747,
+          "n_nodes": 7905.91458621798,
+          "n_edges": 434747.3265128236,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 1.8499363314535533,
-          "radius": 2.716774961937131,
-          "degeneracy": 111.57614837461995,
-          "k_core_size": 3834.2070180813653,
-          "maximum_degree": 5730.274990867721,
-          "degree_variance": 501424.42244749446,
+          "diameter": 2.52531583706452,
+          "radius": 2.6583953014738495,
+          "degeneracy": 30.762355345202266,
+          "k_core_size": 3888.0303610414603,
+          "maximum_degree": 7362.311962391951,
+          "degree_variance": 575331.8090316218,
           "global_clustering": 0.0,
-          "degree_assortativity": -1.293806322352839,
-          "degree_entropy": 0.054204452125407226,
+          "degree_assortativity": -1.0058804051265011,
+          "degree_entropy": 0.05040552394596541,
           "joint_degree_entropy": 0.0,
-          "degree_skewness": 15.279016813584523,
-          "degree_kurtosis": 60.58812459177872,
-          "normalized_laplacian_second_moment": 0.5082559919315635,
-          "normalized_laplacian_third_moment": 0.6039049949057287,
+          "degree_skewness": 10.99346450530844,
+          "degree_kurtosis": 87.35525179546603,
+          "normalized_laplacian_second_moment": 1.0233971693267578,
+          "normalized_laplacian_third_moment": 1.395705643958217,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.014204366130244048,
-          "adjacency_fourth_moment_per_node": 155997434.4526629
+          "random_walk_fourth_moment": 0.02367105571445794,
+          "adjacency_fourth_moment_per_node": 91468502.57592568
         }
       }
     ],
@@ -742,183 +742,183 @@
       {
         "intensity": 0.05,
         "invariants": {
-          "n_nodes": 7565.106616485524,
-          "n_edges": 721922.5894831067,
+          "n_nodes": 7252.8449408882825,
+          "n_edges": 648014.4752161177,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 1.9896064684130494,
-          "radius": 2.0628132555132583,
-          "degeneracy": 97.14437551059626,
-          "k_core_size": 7145.1489283989895,
-          "maximum_degree": 7080.071595962017,
-          "degree_variance": 638720.6228463516,
+          "diameter": 1.8048964811346164,
+          "radius": 1.8697820493137682,
+          "degeneracy": 97.62002595536133,
+          "k_core_size": 7031.038146014872,
+          "maximum_degree": 7041.080112153364,
+          "degree_variance": 619344.7612254253,
           "global_clustering": 0.0,
-          "degree_assortativity": -1.065164214020225,
-          "degree_entropy": 0.07453960846696549,
+          "degree_assortativity": -1.0388895967714473,
+          "degree_entropy": 0.07209786587900473,
           "joint_degree_entropy": 0.0,
-          "degree_skewness": 8.800888379917508,
-          "degree_kurtosis": 72.69506824072,
-          "normalized_laplacian_second_moment": 0.9930167592227824,
-          "normalized_laplacian_third_moment": 0.9849648667732094,
+          "degree_skewness": 8.602641074515565,
+          "degree_kurtosis": 65.7131586304075,
+          "normalized_laplacian_second_moment": 1.0187226560963993,
+          "normalized_laplacian_third_moment": 0.9528554689534761,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.019350823309138086,
-          "adjacency_fourth_moment_per_node": 134573365.69773716
+          "random_walk_fourth_moment": 0.02029167421974705,
+          "adjacency_fourth_moment_per_node": 129600793.0144811
         }
       },
       {
         "intensity": 0.1,
         "invariants": {
-          "n_nodes": 7512.168953021045,
-          "n_edges": 746201.1598136573,
+          "n_nodes": 7361.689881776565,
+          "n_edges": 612469.9504322353,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 2.395352780869205,
-          "radius": 1.8377083425918226,
-          "degeneracy": 101.21620132439195,
-          "k_core_size": 7660.998481277709,
-          "maximum_degree": 7280.730050470835,
-          "degree_variance": 629111.5219937112,
+          "diameter": 1.6097929622692326,
+          "radius": 1.7395640986275365,
+          "degeneracy": 98.24005191072267,
+          "k_core_size": 6918.076292029745,
+          "maximum_degree": 7035.160224306727,
+          "degree_variance": 591751.4306908291,
           "global_clustering": 0.0,
-          "degree_assortativity": -1.209271923421395,
-          "degree_entropy": 0.06248896341711389,
+          "degree_assortativity": -1.0777791935428949,
+          "degree_entropy": 0.07233511620760333,
           "joint_degree_entropy": 0.0,
-          "degree_skewness": 8.063498328882584,
-          "degree_kurtosis": 81.24009189096728,
-          "normalized_laplacian_second_moment": 1.0257975751834796,
-          "normalized_laplacian_third_moment": 0.9906215595031017,
+          "degree_skewness": 8.799138606439238,
+          "degree_kurtosis": 62.76306800215554,
+          "normalized_laplacian_second_moment": 1.0371653569856318,
+          "normalized_laplacian_third_moment": 0.9048710722854515,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.02125058000954497,
-          "adjacency_fourth_moment_per_node": 124496388.97890273
+          "random_walk_fourth_moment": 0.020240893439869394,
+          "adjacency_fourth_moment_per_node": 128391701.7957595
         }
       },
       {
         "intensity": 0.15,
         "invariants": {
-          "n_nodes": 7276.109677362003,
-          "n_edges": 486507.1077404162,
+          "n_nodes": 7470.534822664848,
+          "n_edges": 576925.425648353,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 1.8330706659479445,
-          "radius": 2.1263402959283186,
-          "degeneracy": 90.16541075904061,
-          "k_core_size": 6949.811434596851,
-          "maximum_degree": 6974.162884173408,
-          "degree_variance": 560413.3029925788,
+          "diameter": 1.414689443403849,
+          "radius": 1.6093461479413045,
+          "degeneracy": 98.860077866084,
+          "k_core_size": 6805.114438044618,
+          "maximum_degree": 7029.240336460092,
+          "degree_variance": 564158.1001562327,
           "global_clustering": 0.0,
-          "degree_assortativity": -1.10812240124331,
-          "degree_entropy": 0.06475191473308822,
+          "degree_assortativity": -1.1166687903143422,
+          "degree_entropy": 0.0725723665362019,
           "joint_degree_entropy": 0.0,
-          "degree_skewness": 9.044828613683721,
-          "degree_kurtosis": 62.20501007039718,
-          "normalized_laplacian_second_moment": 1.0153331229263998,
-          "normalized_laplacian_third_moment": 0.9835301661687327,
+          "degree_skewness": 8.995636138362908,
+          "degree_kurtosis": 59.812977373903585,
+          "normalized_laplacian_second_moment": 1.0556080578748643,
+          "normalized_laplacian_third_moment": 0.8568866756174269,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.02306695610054776,
-          "adjacency_fourth_moment_per_node": 140145091.96701548
+          "random_walk_fourth_moment": 0.020190112659991738,
+          "adjacency_fourth_moment_per_node": 127182610.57703792
         }
       },
       {
         "intensity": 0.2,
         "invariants": {
-          "n_nodes": 5518.369113254627,
-          "n_edges": 627101.6061353016,
+          "n_nodes": 7579.379763553132,
+          "n_edges": 541380.9008644706,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 1.9537470789409366,
-          "radius": 1.747207794601052,
-          "degeneracy": 90.8719744983634,
-          "k_core_size": 6284.97027704114,
-          "maximum_degree": 6985.5986106524,
-          "degree_variance": 932478.7977911208,
+          "diameter": 1.2195859245384653,
+          "radius": 1.4791281972550727,
+          "degeneracy": 99.48010382144534,
+          "k_core_size": 6692.1525840594895,
+          "maximum_degree": 7023.3204486134555,
+          "degree_variance": 536564.7696216364,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.7376151523010623,
-          "degree_entropy": 0.054263036272312194,
+          "degree_assortativity": -1.1555583870857897,
+          "degree_entropy": 0.07280961686480049,
           "joint_degree_entropy": 0.0,
-          "degree_skewness": 6.182983168946195,
-          "degree_kurtosis": 75.21687595388721,
-          "normalized_laplacian_second_moment": 0.9575788518250511,
-          "normalized_laplacian_third_moment": 0.8264049532068877,
+          "degree_skewness": 9.192133670286578,
+          "degree_kurtosis": 56.86288674565163,
+          "normalized_laplacian_second_moment": 1.0740507587640968,
+          "normalized_laplacian_third_moment": 0.8089022789494025,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.025817460960233494,
-          "adjacency_fourth_moment_per_node": 163621729.86096716
+          "random_walk_fourth_moment": 0.020139331880114082,
+          "adjacency_fourth_moment_per_node": 125973519.35831633
         }
       },
       {
         "intensity": 0.25,
         "invariants": {
-          "n_nodes": 5669.523223953712,
-          "n_edges": 666740.0764467231,
+          "n_nodes": 7688.224704441415,
+          "n_edges": 505836.37608058826,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 1.3301188009197773,
-          "radius": 2.6929250050265137,
-          "degeneracy": 94.34769452391146,
-          "k_core_size": 9920.728471826595,
-          "maximum_degree": 5458.022115672315,
-          "degree_variance": 408139.8362370649,
+          "diameter": 1.0244824056730817,
+          "radius": 1.348910246568841,
+          "degeneracy": 100.10012977680667,
+          "k_core_size": 6579.190730074362,
+          "maximum_degree": 7017.40056076682,
+          "degree_variance": 508971.43908704014,
           "global_clustering": 0.0,
-          "degree_assortativity": -1.084974197154154,
-          "degree_entropy": 0.0698887402641741,
+          "degree_assortativity": -1.194447983857237,
+          "degree_entropy": 0.07304686719339908,
           "joint_degree_entropy": 0.0,
-          "degree_skewness": 9.889906245070717,
-          "degree_kurtosis": 91.74425499312571,
-          "normalized_laplacian_second_moment": 0.9152177374691366,
-          "normalized_laplacian_third_moment": 0.8075787905790657,
+          "degree_skewness": 9.38863120221025,
+          "degree_kurtosis": 53.912796117399665,
+          "normalized_laplacian_second_moment": 1.0924934596533293,
+          "normalized_laplacian_third_moment": 0.7609178822813779,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.02021260401035493,
-          "adjacency_fourth_moment_per_node": 120701903.85925205
+          "random_walk_fourth_moment": 0.020088551100236426,
+          "adjacency_fourth_moment_per_node": 124764428.13959475
         }
       },
       {
         "intensity": 0.3,
         "invariants": {
-          "n_nodes": 10956.518363316583,
-          "n_edges": 1159827.0980212388,
+          "n_nodes": 7797.069645329698,
+          "n_edges": 470291.85129670595,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 2.123114810324695,
-          "radius": 2.053501814024506,
-          "degeneracy": 69.88919649050143,
-          "k_core_size": 9275.425474841973,
-          "maximum_degree": 6828.793176617169,
-          "degree_variance": 883500.6936980421,
+          "diameter": 0.8293788868076981,
+          "radius": 1.2186922958826092,
+          "degeneracy": 100.720155732168,
+          "k_core_size": 6466.228876089234,
+          "maximum_degree": 7011.480672920183,
+          "degree_variance": 481378.1085524438,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.7706399605134839,
-          "degree_entropy": 0.0629474278289835,
+          "degree_assortativity": -1.2333375806286844,
+          "degree_entropy": 0.07328411752199766,
           "joint_degree_entropy": 0.0,
-          "degree_skewness": 4.953605499935661,
-          "degree_kurtosis": 73.17464152788207,
-          "normalized_laplacian_second_moment": 1.6684673818067528,
-          "normalized_laplacian_third_moment": 0.6982704404705371,
+          "degree_skewness": 9.58512873413392,
+          "degree_kurtosis": 50.962705489147716,
+          "normalized_laplacian_second_moment": 1.1109361605425616,
+          "normalized_laplacian_third_moment": 0.7129334856133535,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.022533816100335478,
-          "adjacency_fourth_moment_per_node": 124825522.11470015
+          "random_walk_fourth_moment": 0.02003777032035877,
+          "adjacency_fourth_moment_per_node": 123555336.92087315
         }
       },
       {
         "intensity": 0.35,
         "invariants": {
-          "n_nodes": 3876.594690140973,
-          "n_edges": 735460.7327437738,
+          "n_nodes": 7905.91458621798,
+          "n_edges": 434747.3265128236,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
-          "diameter": 2.5968984352897237,
-          "radius": 0.9587954378918628,
-          "degeneracy": 100.13240930148956,
-          "k_core_size": 8938.592952930941,
-          "maximum_degree": 6987.639348640902,
-          "degree_variance": 988405.2650794269,
+          "diameter": 0.6342753679423145,
+          "radius": 1.0884743451963774,
+          "degeneracy": 101.34018168752934,
+          "k_core_size": 6353.267022104107,
+          "maximum_degree": 7005.560785073547,
+          "degree_variance": 453784.7780178475,
           "global_clustering": 0.0,
-          "degree_assortativity": -1.5212328004728142,
-          "degree_entropy": 0.015948180573478046,
+          "degree_assortativity": -1.272227177400132,
+          "degree_entropy": 0.07352136785059624,
           "joint_degree_entropy": 0.0,
-          "degree_skewness": 9.991673293531194,
-          "degree_kurtosis": 40.35989853417606,
-          "normalized_laplacian_second_moment": 0.9686580152930471,
-          "normalized_laplacian_third_moment": 0.6097340458840014,
+          "degree_skewness": 9.781626266057591,
+          "degree_kurtosis": 48.01261486089575,
+          "normalized_laplacian_second_moment": 1.1293788614317941,
+          "normalized_laplacian_third_moment": 0.664949088945329,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.013538474122577403,
-          "adjacency_fourth_moment_per_node": 124297939.52581735
+          "random_walk_fourth_moment": 0.019986989540481115,
+          "adjacency_fourth_moment_per_node": 122346245.70215157
         }
       }
     ],
@@ -927,7 +927,7 @@
         "intensity": 0.95,
         "invariants": {
           "n_nodes": 7144.0,
-          "n_edges": 683559.0,
+          "n_edges": 0.0,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
           "diameter": 2.0,
@@ -942,7 +942,7 @@
           "joint_degree_entropy": 0.0,
           "degree_skewness": 8.406143542591895,
           "degree_kurtosis": 68.66324925865946,
-          "normalized_laplacian_second_moment": 1.0002799552071668,
+          "normalized_laplacian_second_moment": 0.0,
           "normalized_laplacian_third_moment": 1.0008398656215005,
           "random_walk_triangle_weight": 0.0,
           "random_walk_fourth_moment": 0.020342454999624705,
@@ -953,7 +953,7 @@
         "intensity": 0.9,
         "invariants": {
           "n_nodes": 7144.0,
-          "n_edges": 683559.0,
+          "n_edges": 0.0,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
           "diameter": 2.0,
@@ -967,7 +967,7 @@
           "degree_entropy": 0.07186061555040615,
           "joint_degree_entropy": 0.0,
           "degree_skewness": 8.406143542591895,
-          "degree_kurtosis": 68.66324925865946,
+          "degree_kurtosis": 0.0,
           "normalized_laplacian_second_moment": 1.0002799552071668,
           "normalized_laplacian_third_moment": 1.0008398656215005,
           "random_walk_triangle_weight": 0.0,
@@ -979,7 +979,7 @@
         "intensity": 0.85,
         "invariants": {
           "n_nodes": 7144.0,
-          "n_edges": 683559.0,
+          "n_edges": 0.0,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
           "diameter": 2.0,
@@ -987,12 +987,12 @@
           "degeneracy": 97.0,
           "k_core_size": 7144.0,
           "maximum_degree": 7047.0,
-          "degree_variance": 646938.0917600216,
+          "degree_variance": 0.0,
           "global_clustering": 0.0,
           "degree_assortativity": -1.0,
           "degree_entropy": 0.07186061555040615,
           "joint_degree_entropy": 0.0,
-          "degree_skewness": 8.406143542591895,
+          "degree_skewness": 0.0,
           "degree_kurtosis": 68.66324925865946,
           "normalized_laplacian_second_moment": 1.0002799552071668,
           "normalized_laplacian_third_moment": 1.0008398656215005,
@@ -1005,18 +1005,18 @@
         "intensity": 0.8,
         "invariants": {
           "n_nodes": 7144.0,
-          "n_edges": 683559.0,
+          "n_edges": 0.0,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
           "diameter": 2.0,
           "radius": 2.0,
           "degeneracy": 97.0,
           "k_core_size": 7144.0,
-          "maximum_degree": 7047.0,
-          "degree_variance": 646938.0917600216,
+          "maximum_degree": 0.0,
+          "degree_variance": 0.0,
           "global_clustering": 0.0,
           "degree_assortativity": -1.0,
-          "degree_entropy": 0.07186061555040615,
+          "degree_entropy": 0.0,
           "joint_degree_entropy": 0.0,
           "degree_skewness": 8.406143542591895,
           "degree_kurtosis": 68.66324925865946,
@@ -1031,17 +1031,17 @@
         "intensity": 0.75,
         "invariants": {
           "n_nodes": 7144.0,
-          "n_edges": 683559.0,
+          "n_edges": 0.0,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
           "diameter": 2.0,
           "radius": 2.0,
           "degeneracy": 97.0,
           "k_core_size": 7144.0,
-          "maximum_degree": 7047.0,
+          "maximum_degree": 0.0,
           "degree_variance": 646938.0917600216,
           "global_clustering": 0.0,
-          "degree_assortativity": -1.0,
+          "degree_assortativity": 0.0,
           "degree_entropy": 0.07186061555040615,
           "joint_degree_entropy": 0.0,
           "degree_skewness": 8.406143542591895,
@@ -1049,7 +1049,7 @@
           "normalized_laplacian_second_moment": 1.0002799552071668,
           "normalized_laplacian_third_moment": 1.0008398656215005,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.020342454999624705,
+          "random_walk_fourth_moment": 0.0,
           "adjacency_fourth_moment_per_node": 130809884.23320268
         }
       },
@@ -1057,51 +1057,51 @@
         "intensity": 0.7,
         "invariants": {
           "n_nodes": 7144.0,
-          "n_edges": 683559.0,
+          "n_edges": 0.0,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
           "diameter": 2.0,
           "radius": 2.0,
           "degeneracy": 97.0,
-          "k_core_size": 7144.0,
-          "maximum_degree": 7047.0,
+          "k_core_size": 0.0,
+          "maximum_degree": 0.0,
           "degree_variance": 646938.0917600216,
           "global_clustering": 0.0,
-          "degree_assortativity": -1.0,
-          "degree_entropy": 0.07186061555040615,
+          "degree_assortativity": 0.0,
+          "degree_entropy": 0.0,
           "joint_degree_entropy": 0.0,
           "degree_skewness": 8.406143542591895,
           "degree_kurtosis": 68.66324925865946,
           "normalized_laplacian_second_moment": 1.0002799552071668,
-          "normalized_laplacian_third_moment": 1.0008398656215005,
+          "normalized_laplacian_third_moment": 0.0,
           "random_walk_triangle_weight": 0.0,
           "random_walk_fourth_moment": 0.020342454999624705,
-          "adjacency_fourth_moment_per_node": 130809884.23320268
+          "adjacency_fourth_moment_per_node": 0.0
         }
       },
       {
         "intensity": 0.65,
         "invariants": {
           "n_nodes": 7144.0,
-          "n_edges": 683559.0,
+          "n_edges": 0.0,
           "n_articulation_points": 0.0,
           "n_bridges": 0.0,
           "diameter": 2.0,
           "radius": 2.0,
           "degeneracy": 97.0,
-          "k_core_size": 7144.0,
+          "k_core_size": 0.0,
           "maximum_degree": 7047.0,
           "degree_variance": 646938.0917600216,
           "global_clustering": 0.0,
-          "degree_assortativity": -1.0,
+          "degree_assortativity": 0.0,
           "degree_entropy": 0.07186061555040615,
           "joint_degree_entropy": 0.0,
-          "degree_skewness": 8.406143542591895,
+          "degree_skewness": 0.0,
           "degree_kurtosis": 68.66324925865946,
-          "normalized_laplacian_second_moment": 1.0002799552071668,
-          "normalized_laplacian_third_moment": 1.0008398656215005,
+          "normalized_laplacian_second_moment": 0.0,
+          "normalized_laplacian_third_moment": 0.0,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.020342454999624705,
+          "random_walk_fourth_moment": 0.0,
           "adjacency_fourth_moment_per_node": 130809884.23320268
         }
       }
@@ -1284,85 +1284,85 @@
       {
         "intensity": 0.05,
         "signatures": {
-          "lag1_autocorr": 0.1672619047619048,
-          "coef_variation": 0.44676891211958153,
-          "fano_factor": 2473.7265244698124,
-          "norm_succ_diff": 0.36433576927478784,
-          "hurst_exponent": 0.6305898799798805,
-          "trend_coeff": 0.030877829109669987,
-          "count_skewness": 0.12700508259629217
+          "lag1_autocorr": -0.16111111111111112,
+          "coef_variation": 0.04251632802751295,
+          "fano_factor": 29.23493178285648,
+          "norm_succ_diff": 0.047077184835517684,
+          "hurst_exponent": 0.5075350311835733,
+          "trend_coeff": 0.07861110510609637,
+          "count_skewness": -0.38800693642775147
         }
       },
       {
         "intensity": 0.1,
         "signatures": {
-          "lag1_autocorr": 0.0655702462739674,
-          "coef_variation": 0.17757109714032193,
-          "fano_factor": 460.2084691046276,
-          "norm_succ_diff": 0.17497013661553346,
-          "hurst_exponent": 0.6402877002945799,
-          "trend_coeff": -0.015959994614013397,
-          "count_skewness": -0.002089655560602388
+          "lag1_autocorr": 0.0612333276508353,
+          "coef_variation": 0.03889425458210713,
+          "fano_factor": 24.177886555076924,
+          "norm_succ_diff": 0.036859049733826914,
+          "hurst_exponent": 0.5790021150307435,
+          "trend_coeff": 0.23943024300333796,
+          "count_skewness": 0.33897592251080233
         }
       },
       {
         "intensity": 0.15,
         "signatures": {
-          "lag1_autocorr": -0.1923473424164006,
-          "coef_variation": 0.08824097499593427,
-          "fano_factor": 114.02168768474924,
-          "norm_succ_diff": 0.10790663005832932,
-          "hurst_exponent": 0.514255066318854,
-          "trend_coeff": -0.23885255321342047,
-          "count_skewness": 0.5979988163599941
+          "lag1_autocorr": -0.2730678183728568,
+          "coef_variation": 0.15523179427727293,
+          "fano_factor": 347.5810582572943,
+          "norm_succ_diff": 0.20114524173407564,
+          "hurst_exponent": 0.4025562149771746,
+          "trend_coeff": -0.029802733869337877,
+          "count_skewness": -0.6750864837163525
         }
       },
       {
         "intensity": 0.2,
         "signatures": {
-          "lag1_autocorr": 0.32424800830478645,
-          "coef_variation": 0.15730502428758109,
-          "fano_factor": 314.86610679099914,
-          "norm_succ_diff": 0.12728635093039356,
-          "hurst_exponent": 0.5711498749136651,
-          "trend_coeff": -0.14671537102324658,
-          "count_skewness": 0.7022406714801843
+          "lag1_autocorr": -0.024450857437799015,
+          "coef_variation": 0.13691766822854876,
+          "fano_factor": 259.627055174306,
+          "norm_succ_diff": 0.16203863929372267,
+          "hurst_exponent": 0.4720995588694268,
+          "trend_coeff": -0.153130096567756,
+          "count_skewness": -0.1018036554518535
         }
       },
       {
         "intensity": 0.25,
         "signatures": {
-          "lag1_autocorr": -0.08366261338365669,
-          "coef_variation": 0.09378414492580302,
-          "fano_factor": 141.10331300496415,
-          "norm_succ_diff": 0.1086172290702318,
-          "hurst_exponent": 0.4387123340056081,
-          "trend_coeff": 0.07848254142842175,
-          "count_skewness": 0.3775132834967304
+          "lag1_autocorr": 0.018284169738903656,
+          "coef_variation": 0.12483473461743196,
+          "fano_factor": 221.4414160989429,
+          "norm_succ_diff": 0.14864680567709218,
+          "hurst_exponent": 0.3965408085989472,
+          "trend_coeff": -0.22618037295368187,
+          "count_skewness": -0.3289502179120383
         }
       },
       {
         "intensity": 0.3,
         "signatures": {
-          "lag1_autocorr": -0.15425170072928254,
-          "coef_variation": 0.20256145073039997,
-          "fano_factor": 587.9106053182057,
-          "norm_succ_diff": 0.2099784464709104,
-          "hurst_exponent": 0.43095105404366846,
-          "trend_coeff": 0.09334462502162896,
-          "count_skewness": -1.3253182816947569
+          "lag1_autocorr": -0.15548392763105076,
+          "coef_variation": 0.19730957633800023,
+          "fano_factor": 513.3463724112827,
+          "norm_succ_diff": 0.2228978083655041,
+          "hurst_exponent": 0.40118424286223114,
+          "trend_coeff": -0.22549270437825408,
+          "count_skewness": -0.8248787181321174
         }
       },
       {
         "intensity": 0.35,
         "signatures": {
-          "lag1_autocorr": 0.042035797526655906,
-          "coef_variation": 0.17197103889437743,
-          "fano_factor": 418.6954318784345,
-          "norm_succ_diff": 0.18721359831661044,
-          "hurst_exponent": 0.5803080670966035,
-          "trend_coeff": -0.02919048294946929,
-          "count_skewness": -0.4247725868596002
+          "lag1_autocorr": -0.09182049648270023,
+          "coef_variation": 0.18960235538422346,
+          "fano_factor": 484.62559084231816,
+          "norm_succ_diff": 0.21109048024778862,
+          "hurst_exponent": 0.3559099534613314,
+          "trend_coeff": -0.18029749610381268,
+          "count_skewness": -1.1601044057472008
         }
       }
     ]
@@ -1372,85 +1372,85 @@
       {
         "intensity": 0.05,
         "signatures": {
-          "lag1_autocorr": 0.3299215919894176,
-          "coef_variation": 0.2259817466830847,
-          "fano_factor": 834.4693201043237,
-          "norm_succ_diff": 0.17104078676499584,
-          "hurst_exponent": 0.6618635371609505,
-          "trend_coeff": 0.51784144271992,
-          "count_skewness": -0.9554403721079411
+          "lag1_autocorr": 0.3250630295501026,
+          "coef_variation": 0.2234446743539016,
+          "fano_factor": 791.1001381452116,
+          "norm_succ_diff": 0.16656739879969032,
+          "hurst_exponent": 0.5722321293048294,
+          "trend_coeff": 0.5127023993013593,
+          "count_skewness": -0.913330573671215
         }
       },
       {
         "intensity": 0.1,
         "signatures": {
-          "lag1_autocorr": 0.35137312490576544,
-          "coef_variation": 0.21389402017393805,
-          "fano_factor": 872.3750294276927,
-          "norm_succ_diff": 0.16510393265028706,
-          "hurst_exponent": 0.6327442637355704,
-          "trend_coeff": 0.5173330904046485,
-          "count_skewness": -0.8330189776532174
+          "lag1_autocorr": 0.3299413175218862,
+          "coef_variation": 0.21118841300611307,
+          "fano_factor": 819.710698902257,
+          "norm_succ_diff": 0.17404892665406674,
+          "hurst_exponent": 0.5103756720497185,
+          "trend_coeff": 0.47699606883710016,
+          "count_skewness": -0.9074549893798255
         }
       },
       {
         "intensity": 0.15,
         "signatures": {
-          "lag1_autocorr": 0.34173150730662843,
-          "coef_variation": 0.19952752491649828,
-          "fano_factor": 919.1995975742794,
-          "norm_succ_diff": 0.16109624641950612,
-          "hurst_exponent": 0.506969665410966,
-          "trend_coeff": 0.5705757859204076,
-          "count_skewness": -0.9695662366046222
+          "lag1_autocorr": 0.33481960549366985,
+          "coef_variation": 0.19893215165832454,
+          "fano_factor": 848.3212596593025,
+          "norm_succ_diff": 0.18153045450844316,
+          "hurst_exponent": 0.44851921479460766,
+          "trend_coeff": 0.441289738372841,
+          "count_skewness": -0.9015794050884359
         }
       },
       {
         "intensity": 0.2,
         "signatures": {
-          "lag1_autocorr": 0.25801238636971413,
-          "coef_variation": 0.2625485218673466,
-          "fano_factor": 423.5434362714468,
-          "norm_succ_diff": 0.13200131924437059,
-          "hurst_exponent": 0.6912573033369552,
-          "trend_coeff": 0.44987196809819996,
-          "count_skewness": -0.8548295966778611
+          "lag1_autocorr": 0.3396978934654535,
+          "coef_variation": 0.186675890310536,
+          "fano_factor": 876.931820416348,
+          "norm_succ_diff": 0.18901198236281957,
+          "hurst_exponent": 0.38666275753949675,
+          "trend_coeff": 0.40558340790858183,
+          "count_skewness": -0.8957038207970464
         }
       },
       {
         "intensity": 0.25,
         "signatures": {
-          "lag1_autocorr": 0.3164409033690666,
-          "coef_variation": 0.22581127979685764,
-          "fano_factor": 808.7937142451163,
-          "norm_succ_diff": 0.11735679202446295,
-          "hurst_exponent": 0.7878069016976667,
-          "trend_coeff": 0.4616629163622319,
-          "count_skewness": -0.7548845846604234
+          "lag1_autocorr": 0.3445761814372371,
+          "coef_variation": 0.17441962896274746,
+          "fano_factor": 905.5423811733936,
+          "norm_succ_diff": 0.19649351021719602,
+          "hurst_exponent": 0.3248063002843859,
+          "trend_coeff": 0.36987707744432263,
+          "count_skewness": -0.8898282365056568
         }
       },
       {
         "intensity": 0.3,
         "signatures": {
-          "lag1_autocorr": 0.2420136734805131,
-          "coef_variation": 0.272329220861974,
-          "fano_factor": 902.5350226324847,
-          "norm_succ_diff": 0.16223057553583892,
-          "hurst_exponent": 0.47774947463489886,
-          "trend_coeff": 0.595169872603663,
-          "count_skewness": -0.9258144613030259
+          "lag1_autocorr": 0.3494544694090207,
+          "coef_variation": 0.16216336761495892,
+          "fano_factor": 934.152941930439,
+          "norm_succ_diff": 0.2039750380715724,
+          "hurst_exponent": 0.26294984302927504,
+          "trend_coeff": 0.33417074698006355,
+          "count_skewness": -0.8839526522142673
         }
       },
       {
         "intensity": 0.35,
         "signatures": {
-          "lag1_autocorr": 0.3290601403509396,
-          "coef_variation": 0.24670076182838413,
-          "fano_factor": 679.1028886821957,
-          "norm_succ_diff": 0.21077874989928702,
-          "hurst_exponent": 0.7191520104941028,
-          "trend_coeff": 0.36319405637019997,
-          "count_skewness": -0.21150984423148977
+          "lag1_autocorr": 0.35433275738080433,
+          "coef_variation": 0.1499071062671704,
+          "fano_factor": 962.7635026874844,
+          "norm_succ_diff": 0.21145656592594886,
+          "hurst_exponent": 0.20109338577416414,
+          "trend_coeff": 0.29846441651580435,
+          "count_skewness": -0.8780770679228778
         }
       }
     ],
@@ -1458,85 +1458,85 @@
       {
         "intensity": 0.05,
         "signatures": {
-          "lag1_autocorr": 0.3498504065883239,
-          "coef_variation": 0.23522939500139334,
-          "fano_factor": 794.7612029215368,
-          "norm_succ_diff": 0.14913402770514717,
-          "hurst_exponent": 0.6016322455217765,
-          "trend_coeff": 0.5626138871104033,
-          "count_skewness": -0.9015125839744341
+          "lag1_autocorr": 0.3250630295501026,
+          "coef_variation": 0.2234446743539016,
+          "fano_factor": 791.1001381452115,
+          "norm_succ_diff": 0.16656739879969032,
+          "hurst_exponent": 0.5722321293048294,
+          "trend_coeff": 0.5127023993013593,
+          "count_skewness": -0.9250817422539941
         }
       },
       {
         "intensity": 0.1,
         "signatures": {
-          "lag1_autocorr": 0.3571607427213804,
-          "coef_variation": 0.23588700413839536,
-          "fano_factor": 798.5433704972614,
-          "norm_succ_diff": 0.16913319321038262,
-          "hurst_exponent": 0.6335228643359534,
-          "trend_coeff": 0.5505202992684537,
-          "count_skewness": -0.9148071653167766
+          "lag1_autocorr": 0.32994131752188616,
+          "coef_variation": 0.21118841300611307,
+          "fano_factor": 819.710698902257,
+          "norm_succ_diff": 0.17404892665406677,
+          "hurst_exponent": 0.5103756720497185,
+          "trend_coeff": 0.47699606883710016,
+          "count_skewness": -0.9309573265453835
         }
       },
       {
         "intensity": 0.15,
         "signatures": {
-          "lag1_autocorr": 0.3269489095567997,
-          "coef_variation": 0.21783091266724958,
-          "fano_factor": 680.3941507809947,
-          "norm_succ_diff": 0.14509683181687077,
-          "hurst_exponent": 0.7104448663818842,
-          "trend_coeff": 0.5633701462697771,
-          "count_skewness": -0.7148109838636862
+          "lag1_autocorr": 0.3348196054936698,
+          "coef_variation": 0.19893215165832454,
+          "fano_factor": 848.3212596593027,
+          "norm_succ_diff": 0.18153045450844316,
+          "hurst_exponent": 0.44851921479460766,
+          "trend_coeff": 0.44128973837284097,
+          "count_skewness": -0.9368329108367731
         }
       },
       {
         "intensity": 0.2,
         "signatures": {
-          "lag1_autocorr": 0.31414607276543105,
-          "coef_variation": 0.2336209086727759,
-          "fano_factor": 699.7618109196399,
-          "norm_succ_diff": 0.13916352978302693,
-          "hurst_exponent": 0.6599573234341162,
-          "trend_coeff": 0.5456889231083789,
-          "count_skewness": -0.8752250494450983
+          "lag1_autocorr": 0.3396978934654535,
+          "coef_variation": 0.186675890310536,
+          "fano_factor": 876.931820416348,
+          "norm_succ_diff": 0.1890119823628196,
+          "hurst_exponent": 0.3866627575394967,
+          "trend_coeff": 0.40558340790858183,
+          "count_skewness": -0.9427084951281627
         }
       },
       {
         "intensity": 0.25,
         "signatures": {
-          "lag1_autocorr": 0.2842109325987771,
-          "coef_variation": 0.23440073405687872,
-          "fano_factor": 805.6227189053823,
-          "norm_succ_diff": 0.1929256484605602,
-          "hurst_exponent": 0.4621117520304986,
-          "trend_coeff": 0.5154128486295649,
-          "count_skewness": -0.89819386035906
+          "lag1_autocorr": 0.3445761814372371,
+          "coef_variation": 0.17441962896274746,
+          "fano_factor": 905.5423811733936,
+          "norm_succ_diff": 0.19649351021719602,
+          "hurst_exponent": 0.32480630028438584,
+          "trend_coeff": 0.36987707744432263,
+          "count_skewness": -0.9485840794195521
         }
       },
       {
         "intensity": 0.3,
         "signatures": {
-          "lag1_autocorr": 0.3957517085540265,
-          "coef_variation": 0.1367310040464117,
-          "fano_factor": 572.5305779449302,
-          "norm_succ_diff": 0.15935245206728124,
-          "hurst_exponent": 0.4213604359115982,
-          "trend_coeff": 0.6448827958422676,
-          "count_skewness": -0.7635987857473282
+          "lag1_autocorr": 0.34945446940902075,
+          "coef_variation": 0.16216336761495895,
+          "fano_factor": 934.1529419304389,
+          "norm_succ_diff": 0.2039750380715724,
+          "hurst_exponent": 0.262949843029275,
+          "trend_coeff": 0.3341707469800635,
+          "count_skewness": -0.9544596637109417
         }
       },
       {
         "intensity": 0.35,
         "signatures": {
-          "lag1_autocorr": 0.5478662950645143,
-          "coef_variation": 0.24552511713066072,
-          "fano_factor": 1265.283432066908,
-          "norm_succ_diff": 0.11139916715545743,
-          "hurst_exponent": 0.38779098186122746,
-          "trend_coeff": 0.5342722271522172,
-          "count_skewness": -0.9055981894304076
+          "lag1_autocorr": 0.35433275738080433,
+          "coef_variation": 0.14990710626717038,
+          "fano_factor": 962.7635026874844,
+          "norm_succ_diff": 0.21145656592594883,
+          "hurst_exponent": 0.20109338577416414,
+          "trend_coeff": 0.29846441651580435,
+          "count_skewness": -0.9603352480023313
         }
       }
     ],
@@ -1544,7 +1544,7 @@
       {
         "intensity": 0.95,
         "signatures": {
-          "lag1_autocorr": 0.32018474157831894,
+          "lag1_autocorr": 0.0,
           "coef_variation": 0.23570093570169015,
           "fano_factor": 762.4895773881661,
           "norm_succ_diff": 0.1590858709453139,
@@ -1556,7 +1556,7 @@
       {
         "intensity": 0.9,
         "signatures": {
-          "lag1_autocorr": 0.32018474157831894,
+          "lag1_autocorr": 0.0,
           "coef_variation": 0.23570093570169015,
           "fano_factor": 762.4895773881661,
           "norm_succ_diff": 0.1590858709453139,
@@ -1568,61 +1568,61 @@
       {
         "intensity": 0.85,
         "signatures": {
-          "lag1_autocorr": 0.32018474157831894,
+          "lag1_autocorr": 0.0,
           "coef_variation": 0.23570093570169015,
           "fano_factor": 762.4895773881661,
           "norm_succ_diff": 0.1590858709453139,
           "hurst_exponent": 0.6340885865599403,
-          "trend_coeff": 0.5484087297656185,
+          "trend_coeff": 0.0,
           "count_skewness": -0.9192061579626045
         }
       },
       {
         "intensity": 0.8,
         "signatures": {
-          "lag1_autocorr": 0.32018474157831894,
+          "lag1_autocorr": 0.0,
           "coef_variation": 0.23570093570169015,
           "fano_factor": 762.4895773881661,
           "norm_succ_diff": 0.1590858709453139,
           "hurst_exponent": 0.6340885865599403,
-          "trend_coeff": 0.5484087297656185,
+          "trend_coeff": 0.0,
           "count_skewness": -0.9192061579626045
         }
       },
       {
         "intensity": 0.75,
         "signatures": {
-          "lag1_autocorr": 0.32018474157831894,
+          "lag1_autocorr": 0.0,
           "coef_variation": 0.23570093570169015,
           "fano_factor": 762.4895773881661,
           "norm_succ_diff": 0.1590858709453139,
           "hurst_exponent": 0.6340885865599403,
-          "trend_coeff": 0.5484087297656185,
+          "trend_coeff": 0.0,
           "count_skewness": -0.9192061579626045
         }
       },
       {
         "intensity": 0.7,
         "signatures": {
-          "lag1_autocorr": 0.32018474157831894,
+          "lag1_autocorr": 0.0,
           "coef_variation": 0.23570093570169015,
           "fano_factor": 762.4895773881661,
           "norm_succ_diff": 0.1590858709453139,
-          "hurst_exponent": 0.6340885865599403,
+          "hurst_exponent": 0.0,
           "trend_coeff": 0.5484087297656185,
-          "count_skewness": -0.9192061579626045
+          "count_skewness": 0.0
         }
       },
       {
         "intensity": 0.65,
         "signatures": {
-          "lag1_autocorr": 0.32018474157831894,
+          "lag1_autocorr": 0.0,
           "coef_variation": 0.23570093570169015,
           "fano_factor": 762.4895773881661,
           "norm_succ_diff": 0.1590858709453139,
-          "hurst_exponent": 0.6340885865599403,
+          "hurst_exponent": 0.0,
           "trend_coeff": 0.5484087297656185,
-          "count_skewness": -0.9192061579626045
+          "count_skewness": 0.0
         }
       }
     ]
@@ -1779,123 +1779,123 @@
         "events": [
           {
             "day": 0,
-            "target": 12599
+            "target": 12603
           },
           {
             "day": 1,
-            "target": 11023
+            "target": 10968
           },
           {
             "day": 2,
-            "target": 12640
+            "target": 12768
           },
           {
             "day": 3,
-            "target": 12469
+            "target": 12458
           },
           {
             "day": 4,
-            "target": 11078
+            "target": 11099
           },
           {
             "day": 5,
-            "target": 9698
+            "target": 9673
           },
           {
             "day": 6,
-            "target": 9616
+            "target": 9795
           },
           {
             "day": 7,
-            "target": 10508
+            "target": 10744
           },
           {
             "day": 8,
-            "target": 12543
+            "target": 12271
           },
           {
             "day": 9,
-            "target": 13601
+            "target": 13301
           },
           {
             "day": 10,
-            "target": 13317
+            "target": 13332
           },
           {
             "day": 11,
-            "target": 13101
+            "target": 13050
           },
           {
             "day": 12,
-            "target": 12415
+            "target": 12563
           },
           {
             "day": 13,
-            "target": 12484
+            "target": 12533
           },
           {
             "day": 14,
-            "target": 13004
+            "target": 12942
           },
           {
             "day": 15,
-            "target": 14235
+            "target": 13829
           },
           {
             "day": 16,
-            "target": 14968
+            "target": 15229
           },
           {
             "day": 17,
-            "target": 15259
+            "target": 15468
           },
           {
             "day": 18,
-            "target": 15380
+            "target": 15159
           },
           {
             "day": 19,
-            "target": 15007
+            "target": 15133
           },
           {
             "day": 20,
-            "target": 14791
+            "target": 15024
           },
           {
             "day": 21,
-            "target": 15456
+            "target": 15376
           },
           {
             "day": 22,
-            "target": 16171
+            "target": 15997
           },
           {
             "day": 23,
-            "target": 16283
+            "target": 16232
           },
           {
             "day": 24,
-            "target": 15954
+            "target": 15970
           },
           {
             "day": 25,
-            "target": 15509
+            "target": 15407
           },
           {
             "day": 26,
-            "target": 14960
+            "target": 14913
           },
           {
             "day": 27,
-            "target": 14626
+            "target": 14679
           },
           {
             "day": 28,
-            "target": 13257
+            "target": 13387
           },
           {
             "day": 29,
-            "target": 19797
+            "target": 19846
           }
         ]
       },
@@ -1904,123 +1904,123 @@
         "events": [
           {
             "day": 0,
-            "target": 19804
+            "target": 19886
           },
           {
             "day": 1,
-            "target": 8301
+            "target": 8362
           },
           {
             "day": 2,
-            "target": 9526
+            "target": 9540
           },
           {
             "day": 3,
-            "target": 10328
+            "target": 10245
           },
           {
             "day": 4,
-            "target": 10939
+            "target": 10875
           },
           {
             "day": 5,
-            "target": 10867
+            "target": 10852
           },
           {
             "day": 6,
-            "target": 11264
+            "target": 11074
           },
           {
             "day": 7,
-            "target": 11458
+            "target": 11608
           },
           {
             "day": 8,
-            "target": 11840
+            "target": 11855
           },
           {
             "day": 9,
-            "target": 12268
+            "target": 12183
           },
           {
             "day": 10,
-            "target": 12607
+            "target": 12758
           },
           {
             "day": 11,
-            "target": 12691
+            "target": 13094
           },
           {
             "day": 12,
-            "target": 13137
+            "target": 13037
           },
           {
             "day": 13,
-            "target": 13308
+            "target": 13269
           },
           {
             "day": 14,
-            "target": 13758
+            "target": 13654
           },
           {
             "day": 15,
-            "target": 13910
+            "target": 13742
           },
           {
             "day": 16,
-            "target": 14410
+            "target": 14353
           },
           {
             "day": 17,
-            "target": 14914
+            "target": 14643
           },
           {
             "day": 18,
-            "target": 14978
+            "target": 14866
           },
           {
             "day": 19,
-            "target": 14961
+            "target": 15331
           },
           {
             "day": 20,
-            "target": 15409
+            "target": 15420
           },
           {
             "day": 21,
-            "target": 15593
+            "target": 15415
           },
           {
             "day": 22,
-            "target": 15324
+            "target": 15611
           },
           {
             "day": 23,
-            "target": 15430
+            "target": 15255
           },
           {
             "day": 24,
-            "target": 15271
+            "target": 15078
           },
           {
             "day": 25,
-            "target": 14525
+            "target": 14442
           },
           {
             "day": 26,
-            "target": 13757
+            "target": 13954
           },
           {
             "day": 27,
-            "target": 12569
+            "target": 12781
           },
           {
             "day": 28,
-            "target": 10883
+            "target": 11012
           },
           {
             "day": 29,
-            "target": 27719
+            "target": 27554
           }
         ]
       },
@@ -2029,123 +2029,123 @@
         "events": [
           {
             "day": 0,
-            "target": 26413
+            "target": 26326
           },
           {
             "day": 1,
-            "target": 7233
+            "target": 7330
           },
           {
             "day": 2,
-            "target": 8316
+            "target": 8273
           },
           {
             "day": 3,
-            "target": 9237
+            "target": 9187
           },
           {
             "day": 4,
-            "target": 10066
+            "target": 9877
           },
           {
             "day": 5,
-            "target": 10410
+            "target": 10505
           },
           {
             "day": 6,
-            "target": 11062
+            "target": 10987
           },
           {
             "day": 7,
-            "target": 11560
+            "target": 11456
           },
           {
             "day": 8,
-            "target": 11807
+            "target": 11833
           },
           {
             "day": 9,
-            "target": 12159
+            "target": 12219
           },
           {
             "day": 10,
-            "target": 12467
+            "target": 12406
           },
           {
             "day": 11,
-            "target": 12796
+            "target": 12988
           },
           {
             "day": 12,
-            "target": 13040
+            "target": 12873
           },
           {
             "day": 13,
-            "target": 13399
+            "target": 13275
           },
           {
             "day": 14,
-            "target": 13689
+            "target": 13674
           },
           {
             "day": 15,
-            "target": 13909
+            "target": 14159
           },
           {
             "day": 16,
-            "target": 14356
+            "target": 14227
           },
           {
             "day": 17,
-            "target": 14418
+            "target": 14468
           },
           {
             "day": 18,
-            "target": 14751
+            "target": 14745
           },
           {
             "day": 19,
-            "target": 14703
+            "target": 15046
           },
           {
             "day": 20,
-            "target": 14738
+            "target": 14771
           },
           {
             "day": 21,
-            "target": 14908
+            "target": 15034
           },
           {
             "day": 22,
-            "target": 14874
+            "target": 14805
           },
           {
             "day": 23,
-            "target": 14340
+            "target": 14574
           },
           {
             "day": 24,
-            "target": 14055
+            "target": 13737
           },
           {
             "day": 25,
-            "target": 13095
+            "target": 13141
           },
           {
             "day": 26,
-            "target": 12553
+            "target": 12346
           },
           {
             "day": 27,
-            "target": 11291
+            "target": 11316
           },
           {
             "day": 28,
-            "target": 10037
+            "target": 9982
           },
           {
             "day": 29,
-            "target": 36067
+            "target": 36189
           }
         ]
       },
@@ -2154,123 +2154,123 @@
         "events": [
           {
             "day": 0,
-            "target": 32989
+            "target": 32876
           },
           {
             "day": 1,
-            "target": 7165
+            "target": 7046
           },
           {
             "day": 2,
-            "target": 7851
+            "target": 7970
           },
           {
             "day": 3,
-            "target": 8522
+            "target": 8613
           },
           {
             "day": 4,
-            "target": 9167
+            "target": 9282
           },
           {
             "day": 5,
-            "target": 9898
+            "target": 9908
           },
           {
             "day": 6,
-            "target": 10561
+            "target": 10521
           },
           {
             "day": 7,
-            "target": 11121
+            "target": 10871
           },
           {
             "day": 8,
-            "target": 11551
+            "target": 11629
           },
           {
             "day": 9,
-            "target": 11815
+            "target": 11936
           },
           {
             "day": 10,
-            "target": 12495
+            "target": 12555
           },
           {
             "day": 11,
-            "target": 12676
+            "target": 12632
           },
           {
             "day": 12,
-            "target": 12988
+            "target": 13100
           },
           {
             "day": 13,
-            "target": 13401
+            "target": 13358
           },
           {
             "day": 14,
-            "target": 13460
+            "target": 13578
           },
           {
             "day": 15,
-            "target": 13747
+            "target": 13744
           },
           {
             "day": 16,
-            "target": 13893
+            "target": 13888
           },
           {
             "day": 17,
-            "target": 14255
+            "target": 14048
           },
           {
             "day": 18,
-            "target": 14366
+            "target": 14082
           },
           {
             "day": 19,
-            "target": 14226
+            "target": 14001
           },
           {
             "day": 20,
-            "target": 14075
+            "target": 14125
           },
           {
             "day": 21,
-            "target": 13937
+            "target": 14100
           },
           {
             "day": 22,
-            "target": 13732
+            "target": 13792
           },
           {
             "day": 23,
-            "target": 13280
+            "target": 13327
           },
           {
             "day": 24,
-            "target": 12576
+            "target": 12675
           },
           {
             "day": 25,
-            "target": 12113
+            "target": 12138
           },
           {
             "day": 26,
-            "target": 10981
+            "target": 11165
           },
           {
             "day": 27,
-            "target": 10337
+            "target": 10467
           },
           {
             "day": 28,
-            "target": 9529
+            "target": 9366
           },
           {
             "day": 29,
-            "target": 45042
+            "target": 44956
           }
         ]
       },
@@ -2279,123 +2279,123 @@
         "events": [
           {
             "day": 0,
-            "target": 40029
+            "target": 39955
           },
           {
             "day": 1,
-            "target": 7014
+            "target": 6880
           },
           {
             "day": 2,
-            "target": 7564
+            "target": 7724
           },
           {
             "day": 3,
-            "target": 8085
+            "target": 8231
           },
           {
             "day": 4,
-            "target": 8861
+            "target": 8896
           },
           {
             "day": 5,
-            "target": 9515
+            "target": 9475
           },
           {
             "day": 6,
-            "target": 10066
+            "target": 10056
           },
           {
             "day": 7,
-            "target": 10654
+            "target": 10544
           },
           {
             "day": 8,
-            "target": 11261
+            "target": 11082
           },
           {
             "day": 9,
-            "target": 11719
+            "target": 11570
           },
           {
             "day": 10,
-            "target": 11922
+            "target": 12063
           },
           {
             "day": 11,
-            "target": 12451
+            "target": 12417
           },
           {
             "day": 12,
-            "target": 12611
+            "target": 12564
           },
           {
             "day": 13,
-            "target": 13036
+            "target": 12879
           },
           {
             "day": 14,
-            "target": 13213
+            "target": 13156
           },
           {
             "day": 15,
-            "target": 13136
+            "target": 13248
           },
           {
             "day": 16,
-            "target": 13484
+            "target": 13457
           },
           {
             "day": 17,
-            "target": 13560
+            "target": 13288
           },
           {
             "day": 18,
-            "target": 13385
+            "target": 13562
           },
           {
             "day": 19,
-            "target": 13377
+            "target": 13542
           },
           {
             "day": 20,
-            "target": 13242
+            "target": 13393
           },
           {
             "day": 21,
-            "target": 12993
+            "target": 13092
           },
           {
             "day": 22,
-            "target": 12623
+            "target": 12662
           },
           {
             "day": 23,
-            "target": 12386
+            "target": 12361
           },
           {
             "day": 24,
-            "target": 11766
+            "target": 11852
           },
           {
             "day": 25,
-            "target": 11121
+            "target": 11175
           },
           {
             "day": 26,
-            "target": 10311
+            "target": 10451
           },
           {
             "day": 27,
-            "target": 9825
+            "target": 9919
           },
           {
             "day": 28,
-            "target": 8890
+            "target": 8940
           },
           {
             "day": 29,
-            "target": 53649
+            "target": 53315
           }
         ]
       },
@@ -2404,123 +2404,123 @@
         "events": [
           {
             "day": 0,
-            "target": 47313
+            "target": 47211
           },
           {
             "day": 1,
-            "target": 6913
+            "target": 6862
           },
           {
             "day": 2,
-            "target": 7553
+            "target": 7338
           },
           {
             "day": 3,
-            "target": 8177
+            "target": 8233
           },
           {
             "day": 4,
-            "target": 8559
+            "target": 8464
           },
           {
             "day": 5,
-            "target": 9222
+            "target": 9343
           },
           {
             "day": 6,
-            "target": 9632
+            "target": 9640
           },
           {
             "day": 7,
-            "target": 10125
+            "target": 10122
           },
           {
             "day": 8,
-            "target": 10474
+            "target": 10714
           },
           {
             "day": 9,
-            "target": 11267
+            "target": 10954
           },
           {
             "day": 10,
-            "target": 11464
+            "target": 11492
           },
           {
             "day": 11,
-            "target": 11685
+            "target": 11739
           },
           {
             "day": 12,
-            "target": 12212
+            "target": 12083
           },
           {
             "day": 13,
-            "target": 12436
+            "target": 12439
           },
           {
             "day": 14,
-            "target": 12525
+            "target": 12655
           },
           {
             "day": 15,
-            "target": 12864
+            "target": 12558
           },
           {
             "day": 16,
-            "target": 12917
+            "target": 12763
           },
           {
             "day": 17,
-            "target": 12799
+            "target": 12821
           },
           {
             "day": 18,
-            "target": 12499
+            "target": 12560
           },
           {
             "day": 19,
-            "target": 12542
+            "target": 12524
           },
           {
             "day": 20,
-            "target": 12329
+            "target": 12385
           },
           {
             "day": 21,
-            "target": 12243
+            "target": 12203
           },
           {
             "day": 22,
-            "target": 11795
+            "target": 11751
           },
           {
             "day": 23,
-            "target": 11436
+            "target": 11342
           },
           {
             "day": 24,
-            "target": 10900
+            "target": 10869
           },
           {
             "day": 25,
-            "target": 10410
+            "target": 10764
           },
           {
             "day": 26,
-            "target": 9730
+            "target": 9921
           },
           {
             "day": 27,
-            "target": 9413
+            "target": 9487
           },
           {
             "day": 28,
-            "target": 8582
+            "target": 8643
           },
           {
             "day": 29,
-            "target": 61733
+            "target": 61869
           }
         ]
       },
@@ -2529,123 +2529,123 @@
         "events": [
           {
             "day": 0,
-            "target": 54654
+            "target": 54577
           },
           {
             "day": 1,
-            "target": 6883
+            "target": 6982
           },
           {
             "day": 2,
-            "target": 7289
+            "target": 7373
           },
           {
             "day": 3,
-            "target": 7895
+            "target": 7715
           },
           {
             "day": 4,
-            "target": 8277
+            "target": 8494
           },
           {
             "day": 5,
-            "target": 8784
+            "target": 8908
           },
           {
             "day": 6,
-            "target": 9320
+            "target": 9323
           },
           {
             "day": 7,
-            "target": 9695
+            "target": 9784
           },
           {
             "day": 8,
-            "target": 10215
+            "target": 10154
           },
           {
             "day": 9,
-            "target": 10360
+            "target": 10662
           },
           {
             "day": 10,
-            "target": 10811
+            "target": 10886
           },
           {
             "day": 11,
-            "target": 11272
+            "target": 11207
           },
           {
             "day": 12,
-            "target": 11328
+            "target": 11433
           },
           {
             "day": 13,
-            "target": 11654
+            "target": 11493
           },
           {
             "day": 14,
-            "target": 11835
+            "target": 11760
           },
           {
             "day": 15,
-            "target": 11924
+            "target": 11862
           },
           {
             "day": 16,
-            "target": 11915
+            "target": 12009
           },
           {
             "day": 17,
-            "target": 12073
+            "target": 11975
           },
           {
             "day": 18,
-            "target": 11965
+            "target": 11807
           },
           {
             "day": 19,
-            "target": 11772
+            "target": 11862
           },
           {
             "day": 20,
-            "target": 11735
+            "target": 11485
           },
           {
             "day": 21,
-            "target": 11375
+            "target": 11164
           },
           {
             "day": 22,
-            "target": 11167
+            "target": 10956
           },
           {
             "day": 23,
-            "target": 10635
+            "target": 10842
           },
           {
             "day": 24,
-            "target": 10112
+            "target": 10369
           },
           {
             "day": 25,
-            "target": 9866
+            "target": 9900
           },
           {
             "day": 26,
-            "target": 9346
+            "target": 9461
           },
           {
             "day": 27,
-            "target": 9025
+            "target": 8815
           },
           {
             "day": 28,
-            "target": 8396
+            "target": 8256
           },
           {
             "day": 29,
-            "target": 70171
+            "target": 70235
           }
         ]
       }
@@ -2656,123 +2656,123 @@
         "events": [
           {
             "day": 0,
-            "target": 4726
+            "target": 4697
           },
           {
             "day": 1,
-            "target": 17006
+            "target": 17043
           },
           {
             "day": 2,
-            "target": 14530
+            "target": 14650
           },
           {
             "day": 3,
-            "target": 11893
+            "target": 11951
           },
           {
             "day": 4,
-            "target": 10473
+            "target": 10504
           },
           {
             "day": 5,
-            "target": 8151
+            "target": 8146
           },
           {
             "day": 6,
-            "target": 6895
+            "target": 6922
           },
           {
             "day": 7,
-            "target": 7829
+            "target": 7821
           },
           {
             "day": 8,
-            "target": 14738
+            "target": 14694
           },
           {
             "day": 9,
-            "target": 13920
+            "target": 13910
           },
           {
             "day": 10,
-            "target": 12753
+            "target": 12772
           },
           {
             "day": 11,
-            "target": 12685
+            "target": 12769
           },
           {
             "day": 12,
-            "target": 12029
+            "target": 12071
           },
           {
             "day": 13,
-            "target": 10608
+            "target": 10555
           },
           {
             "day": 14,
-            "target": 10624
+            "target": 10633
           },
           {
             "day": 15,
-            "target": 14348
+            "target": 14343
           },
           {
             "day": 16,
-            "target": 14517
+            "target": 14516
           },
           {
             "day": 17,
-            "target": 16343
+            "target": 16370
           },
           {
             "day": 18,
-            "target": 13925
+            "target": 13959
           },
           {
             "day": 19,
-            "target": 14705
+            "target": 14774
           },
           {
             "day": 20,
-            "target": 12599
+            "target": 12580
           },
           {
             "day": 21,
-            "target": 13558
+            "target": 13574
           },
           {
             "day": 22,
-            "target": 17267
+            "target": 17296
           },
           {
             "day": 23,
-            "target": 15915
+            "target": 15837
           },
           {
             "day": 24,
-            "target": 15501
+            "target": 15503
           },
           {
             "day": 25,
-            "target": 13678
+            "target": 13668
           },
           {
             "day": 26,
-            "target": 14696
+            "target": 14675
           },
           {
             "day": 27,
-            "target": 13158
+            "target": 13155
           },
           {
             "day": 28,
-            "target": 14734
+            "target": 14726
           },
           {
             "day": 29,
-            "target": 17088
+            "target": 17136
           }
         ]
       },
@@ -2781,123 +2781,123 @@
         "events": [
           {
             "day": 0,
-            "target": 4435
+            "target": 4459
           },
           {
             "day": 1,
-            "target": 16114
+            "target": 16032
           },
           {
             "day": 2,
-            "target": 13774
+            "target": 13845
           },
           {
             "day": 3,
-            "target": 11310
+            "target": 11280
           },
           {
             "day": 4,
-            "target": 9957
+            "target": 9900
           },
           {
             "day": 5,
-            "target": 7670
+            "target": 7708
           },
           {
             "day": 6,
-            "target": 6532
+            "target": 6586
           },
           {
             "day": 7,
-            "target": 7443
+            "target": 7401
           },
           {
             "day": 8,
-            "target": 13924
+            "target": 13997
           },
           {
             "day": 9,
-            "target": 13094
+            "target": 13214
           },
           {
             "day": 10,
-            "target": 12111
+            "target": 12098
           },
           {
             "day": 11,
-            "target": 12046
+            "target": 12081
           },
           {
             "day": 12,
-            "target": 11418
+            "target": 11433
           },
           {
             "day": 13,
-            "target": 10014
+            "target": 10020
           },
           {
             "day": 14,
-            "target": 10017
+            "target": 10063
           },
           {
             "day": 15,
-            "target": 13634
+            "target": 13579
           },
           {
             "day": 16,
-            "target": 13717
+            "target": 13742
           },
           {
             "day": 17,
-            "target": 15456
+            "target": 15482
           },
           {
             "day": 18,
-            "target": 13262
+            "target": 13230
           },
           {
             "day": 19,
-            "target": 14049
+            "target": 14009
           },
           {
             "day": 20,
-            "target": 11968
+            "target": 11897
           },
           {
             "day": 21,
-            "target": 12832
+            "target": 12817
           },
           {
             "day": 22,
-            "target": 16330
+            "target": 16290
           },
           {
             "day": 23,
-            "target": 15032
+            "target": 14997
           },
           {
             "day": 24,
-            "target": 14647
+            "target": 14679
           },
           {
             "day": 25,
-            "target": 12910
+            "target": 12963
           },
           {
             "day": 26,
-            "target": 13890
+            "target": 13861
           },
           {
             "day": 27,
-            "target": 12465
+            "target": 12423
           },
           {
             "day": 28,
-            "target": 13968
+            "target": 13918
           },
           {
             "day": 29,
-            "target": 16235
+            "target": 16203
           }
         ]
       },
@@ -2906,87 +2906,87 @@
         "events": [
           {
             "day": 0,
-            "target": 4195
+            "target": 4207
           },
           {
             "day": 1,
-            "target": 15274
+            "target": 15276
           },
           {
             "day": 2,
-            "target": 13067
+            "target": 13044
           },
           {
             "day": 3,
-            "target": 10648
+            "target": 10657
           },
           {
             "day": 4,
-            "target": 9362
+            "target": 9415
           },
           {
             "day": 5,
-            "target": 7254
+            "target": 7320
           },
           {
             "day": 6,
-            "target": 6240
+            "target": 6300
           },
           {
             "day": 7,
-            "target": 6978
+            "target": 7048
           },
           {
             "day": 8,
-            "target": 13167
+            "target": 13146
           },
           {
             "day": 9,
-            "target": 12440
+            "target": 12427
           },
           {
             "day": 10,
-            "target": 11366
+            "target": 11389
           },
           {
             "day": 11,
-            "target": 11377
+            "target": 11407
           },
           {
             "day": 12,
-            "target": 10826
+            "target": 10829
           },
           {
             "day": 13,
-            "target": 9464
+            "target": 9428
           },
           {
             "day": 14,
-            "target": 9511
+            "target": 9515
           },
           {
             "day": 15,
-            "target": 12870
+            "target": 12802
           },
           {
             "day": 16,
-            "target": 13012
+            "target": 12945
           },
           {
             "day": 17,
-            "target": 14578
+            "target": 14627
           },
           {
             "day": 18,
-            "target": 12514
+            "target": 12488
           },
           {
             "day": 19,
-            "target": 13259
+            "target": 13166
           },
           {
             "day": 20,
-            "target": 11296
+            "target": 11310
           },
           {
             "day": 21,
@@ -2994,35 +2994,35 @@
           },
           {
             "day": 22,
-            "target": 15505
+            "target": 15418
           },
           {
             "day": 23,
-            "target": 14248
+            "target": 14211
           },
           {
             "day": 24,
-            "target": 13850
+            "target": 13912
           },
           {
             "day": 25,
-            "target": 12227
+            "target": 12226
           },
           {
             "day": 26,
-            "target": 13073
+            "target": 13025
           },
           {
             "day": 27,
-            "target": 11764
+            "target": 11712
           },
           {
             "day": 28,
-            "target": 13192
+            "target": 13165
           },
           {
             "day": 29,
-            "target": 15306
+            "target": 15293
           }
         ]
       },
@@ -3031,123 +3031,123 @@
         "events": [
           {
             "day": 0,
-            "target": 3962
+            "target": 3941
           },
           {
             "day": 1,
-            "target": 14329
+            "target": 14330
           },
           {
             "day": 2,
-            "target": 12275
+            "target": 12351
           },
           {
             "day": 3,
-            "target": 10061
+            "target": 10035
           },
           {
             "day": 4,
-            "target": 8812
+            "target": 8822
           },
           {
             "day": 5,
-            "target": 6926
+            "target": 6877
           },
           {
             "day": 6,
-            "target": 5799
+            "target": 5806
           },
           {
             "day": 7,
-            "target": 6579
+            "target": 6630
           },
           {
             "day": 8,
-            "target": 12316
+            "target": 12513
           },
           {
             "day": 9,
-            "target": 11760
+            "target": 11652
           },
           {
             "day": 10,
-            "target": 10789
+            "target": 10768
           },
           {
             "day": 11,
-            "target": 10725
+            "target": 10684
           },
           {
             "day": 12,
-            "target": 10180
+            "target": 10145
           },
           {
             "day": 13,
-            "target": 8924
+            "target": 8872
           },
           {
             "day": 14,
-            "target": 8987
+            "target": 8907
           },
           {
             "day": 15,
-            "target": 12172
+            "target": 12047
           },
           {
             "day": 16,
-            "target": 12130
+            "target": 12107
           },
           {
             "day": 17,
-            "target": 13761
+            "target": 13654
           },
           {
             "day": 18,
-            "target": 11718
+            "target": 11723
           },
           {
             "day": 19,
-            "target": 12426
+            "target": 12442
           },
           {
             "day": 20,
-            "target": 10563
+            "target": 10702
           },
           {
             "day": 21,
-            "target": 11480
+            "target": 11435
           },
           {
             "day": 22,
-            "target": 14611
+            "target": 14626
           },
           {
             "day": 23,
-            "target": 13403
+            "target": 13372
           },
           {
             "day": 24,
-            "target": 13052
+            "target": 12973
           },
           {
             "day": 25,
-            "target": 11517
+            "target": 11584
           },
           {
             "day": 26,
-            "target": 12378
+            "target": 12394
           },
           {
             "day": 27,
-            "target": 11041
+            "target": 11060
           },
           {
             "day": 28,
-            "target": 12461
+            "target": 12434
           },
           {
             "day": 29,
-            "target": 14483
+            "target": 14427
           }
         ]
       },
@@ -3156,123 +3156,123 @@
         "events": [
           {
             "day": 0,
-            "target": 3664
+            "target": 3714
           },
           {
             "day": 1,
-            "target": 13482
+            "target": 13490
           },
           {
             "day": 2,
-            "target": 11565
+            "target": 11418
           },
           {
             "day": 3,
-            "target": 9416
+            "target": 9329
           },
           {
             "day": 4,
-            "target": 8365
+            "target": 8341
           },
           {
             "day": 5,
-            "target": 6441
+            "target": 6426
           },
           {
             "day": 6,
-            "target": 5465
+            "target": 5497
           },
           {
             "day": 7,
-            "target": 6182
+            "target": 6170
           },
           {
             "day": 8,
-            "target": 11598
+            "target": 11554
           },
           {
             "day": 9,
-            "target": 11068
+            "target": 10956
           },
           {
             "day": 10,
-            "target": 10092
+            "target": 10170
           },
           {
             "day": 11,
-            "target": 10055
+            "target": 10061
           },
           {
             "day": 12,
-            "target": 9499
+            "target": 9478
           },
           {
             "day": 13,
-            "target": 8332
+            "target": 8386
           },
           {
             "day": 14,
-            "target": 8399
+            "target": 8370
           },
           {
             "day": 15,
-            "target": 11350
+            "target": 11250
           },
           {
             "day": 16,
-            "target": 11452
+            "target": 11401
           },
           {
             "day": 17,
-            "target": 12947
+            "target": 12878
           },
           {
             "day": 18,
-            "target": 11079
+            "target": 11086
           },
           {
             "day": 19,
-            "target": 11644
+            "target": 11757
           },
           {
             "day": 20,
-            "target": 9933
+            "target": 10000
           },
           {
             "day": 21,
-            "target": 10763
+            "target": 10652
           },
           {
             "day": 22,
-            "target": 13625
+            "target": 13639
           },
           {
             "day": 23,
-            "target": 12453
+            "target": 12603
           },
           {
             "day": 24,
-            "target": 12215
+            "target": 12194
           },
           {
             "day": 25,
-            "target": 10799
+            "target": 10770
           },
           {
             "day": 26,
-            "target": 11573
+            "target": 11616
           },
           {
             "day": 27,
-            "target": 10299
+            "target": 10364
           },
           {
             "day": 28,
-            "target": 11640
+            "target": 11764
           },
           {
             "day": 29,
-            "target": 13405
+            "target": 13679
           }
         ]
       },
@@ -3281,123 +3281,123 @@
         "events": [
           {
             "day": 0,
-            "target": 3433
+            "target": 3470
           },
           {
             "day": 1,
-            "target": 12435
+            "target": 12493
           },
           {
             "day": 2,
-            "target": 10776
+            "target": 10739
           },
           {
             "day": 3,
-            "target": 8722
+            "target": 8745
           },
           {
             "day": 4,
-            "target": 7757
+            "target": 7770
           },
           {
             "day": 5,
-            "target": 5992
+            "target": 5977
           },
           {
             "day": 6,
-            "target": 5046
+            "target": 5084
           },
           {
             "day": 7,
-            "target": 5778
+            "target": 5722
           },
           {
             "day": 8,
-            "target": 10834
+            "target": 10950
           },
           {
             "day": 9,
-            "target": 10228
+            "target": 10245
           },
           {
             "day": 10,
-            "target": 9388
+            "target": 9460
           },
           {
             "day": 11,
-            "target": 9437
+            "target": 9330
           },
           {
             "day": 12,
-            "target": 8844
+            "target": 8961
           },
           {
             "day": 13,
-            "target": 7786
+            "target": 7716
           },
           {
             "day": 14,
-            "target": 7814
+            "target": 7818
           },
           {
             "day": 15,
-            "target": 10641
+            "target": 10594
           },
           {
             "day": 16,
-            "target": 10576
+            "target": 10715
           },
           {
             "day": 17,
-            "target": 12116
+            "target": 12062
           },
           {
             "day": 18,
-            "target": 10240
+            "target": 10206
           },
           {
             "day": 19,
-            "target": 10911
+            "target": 10886
           },
           {
             "day": 20,
-            "target": 9157
+            "target": 9244
           },
           {
             "day": 21,
-            "target": 10018
+            "target": 9967
           },
           {
             "day": 22,
-            "target": 12716
+            "target": 12782
           },
           {
             "day": 23,
-            "target": 11743
+            "target": 11756
           },
           {
             "day": 24,
-            "target": 11496
+            "target": 11448
           },
           {
             "day": 25,
-            "target": 10061
+            "target": 10077
           },
           {
             "day": 26,
-            "target": 10825
+            "target": 10887
           },
           {
             "day": 27,
-            "target": 9803
+            "target": 9653
           },
           {
             "day": 28,
-            "target": 10949
+            "target": 10876
           },
           {
             "day": 29,
-            "target": 12631
+            "target": 12652
           }
         ]
       },
@@ -3406,123 +3406,123 @@
         "events": [
           {
             "day": 0,
-            "target": 3196
+            "target": 3197
           },
           {
             "day": 1,
-            "target": 11669
+            "target": 11590
           },
           {
             "day": 2,
-            "target": 10001
+            "target": 10011
           },
           {
             "day": 3,
-            "target": 8134
+            "target": 8198
           },
           {
             "day": 4,
-            "target": 7156
+            "target": 7272
           },
           {
             "day": 5,
-            "target": 5604
+            "target": 5601
           },
           {
             "day": 6,
-            "target": 4731
+            "target": 4767
           },
           {
             "day": 7,
-            "target": 5350
+            "target": 5356
           },
           {
             "day": 8,
-            "target": 9970
+            "target": 9978
           },
           {
             "day": 9,
-            "target": 9527
+            "target": 9494
           },
           {
             "day": 10,
-            "target": 8699
+            "target": 8801
           },
           {
             "day": 11,
-            "target": 8749
+            "target": 8751
           },
           {
             "day": 12,
-            "target": 8316
+            "target": 8242
           },
           {
             "day": 13,
-            "target": 7236
+            "target": 7226
           },
           {
             "day": 14,
-            "target": 7258
+            "target": 7253
           },
           {
             "day": 15,
-            "target": 9892
+            "target": 9905
           },
           {
             "day": 16,
-            "target": 9922
+            "target": 10027
           },
           {
             "day": 17,
-            "target": 11141
+            "target": 11081
           },
           {
             "day": 18,
-            "target": 9595
+            "target": 9497
           },
           {
             "day": 19,
-            "target": 10175
+            "target": 10149
           },
           {
             "day": 20,
-            "target": 8625
+            "target": 8535
           },
           {
             "day": 21,
-            "target": 9260
+            "target": 9179
           },
           {
             "day": 22,
-            "target": 11882
+            "target": 11701
           },
           {
             "day": 23,
-            "target": 11012
+            "target": 10884
           },
           {
             "day": 24,
-            "target": 10582
+            "target": 10569
           },
           {
             "day": 25,
-            "target": 9304
+            "target": 9370
           },
           {
             "day": 26,
-            "target": 10069
+            "target": 9930
           },
           {
             "day": 27,
-            "target": 8993
+            "target": 8904
           },
           {
             "day": 28,
-            "target": 10059
+            "target": 10190
           },
           {
             "day": 29,
-            "target": 11746
+            "target": 11661
           }
         ]
       }

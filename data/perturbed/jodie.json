@@ -6,25 +6,25 @@
         "invariants": {
           "n_nodes": 9227,
           "n_edges": 18257,
-          "n_articulation_points": 1016,
-          "n_bridges": 5734,
+          "n_articulation_points": 1032,
+          "n_bridges": 5741,
           "diameter": 10.0,
           "radius": 5.0,
           "degeneracy": 8,
-          "k_core_size": 222,
+          "k_core_size": 244,
           "maximum_degree": 454,
           "degree_variance": 130.98029434234576,
-          "global_clustering": 0.0038008777566617908,
-          "degree_assortativity": -0.10815646535951269,
+          "global_clustering": 0.0036185814613782516,
+          "degree_assortativity": -0.10747876156622507,
           "degree_entropy": 1.6584678424816912,
-          "joint_degree_entropy": 6.928283625579658,
+          "joint_degree_entropy": 6.933286010316952,
           "degree_skewness": 14.646366962605148,
           "degree_kurtosis": 388.2979613206118,
-          "normalized_laplacian_second_moment": 1.1035846687321416,
-          "normalized_laplacian_third_moment": 1.3107439176551614,
-          "random_walk_triangle_weight": 1.0088541262910247e-05,
-          "random_walk_fourth_moment": 0.05525958754068345,
-          "adjacency_fourth_moment_per_node": 375.31050178823017
+          "normalized_laplacian_second_moment": 1.1054963275995033,
+          "normalized_laplacian_third_moment": 1.3164779690989599,
+          "random_walk_triangle_weight": 1.10136995502834e-05,
+          "random_walk_fourth_moment": 0.05683909193997433,
+          "adjacency_fourth_moment_per_node": 374.8206350926628
         }
       },
       {
@@ -32,25 +32,25 @@
         "invariants": {
           "n_nodes": 9227,
           "n_edges": 18257,
-          "n_articulation_points": 1157,
-          "n_bridges": 5742,
+          "n_articulation_points": 1168,
+          "n_bridges": 5756,
           "diameter": 10.0,
-          "radius": 6.0,
+          "radius": 5.0,
           "degeneracy": 8,
-          "k_core_size": 318,
+          "k_core_size": 254,
           "maximum_degree": 454,
           "degree_variance": 130.98029434234576,
-          "global_clustering": 0.007433131440186307,
-          "degree_assortativity": -0.09877614842682304,
+          "global_clustering": 0.007314638848252007,
+          "degree_assortativity": -0.1003812306966079,
           "degree_entropy": 1.6584678424816912,
-          "joint_degree_entropy": 6.966484230941747,
+          "joint_degree_entropy": 6.966257479916908,
           "degree_skewness": 14.646366962605148,
           "degree_kurtosis": 388.2979613206118,
-          "normalized_laplacian_second_moment": 1.1181345849896165,
-          "normalized_laplacian_third_moment": 1.354382180915474,
-          "random_walk_triangle_weight": 2.157405337561205e-05,
-          "random_walk_fourth_moment": 0.06395843371466195,
-          "adjacency_fourth_moment_per_node": 362.8210686030129
+          "normalized_laplacian_second_moment": 1.1179881844271773,
+          "normalized_laplacian_third_moment": 1.3539453471484133,
+          "random_walk_triangle_weight": 1.9206133118553343e-05,
+          "random_walk_fourth_moment": 0.06374043193642083,
+          "adjacency_fourth_moment_per_node": 364.1025251977891
         }
       },
       {
@@ -58,25 +58,25 @@
         "invariants": {
           "n_nodes": 9227,
           "n_edges": 18257,
-          "n_articulation_points": 1273,
-          "n_bridges": 5755,
+          "n_articulation_points": 1282,
+          "n_bridges": 5766,
           "diameter": 10.0,
-          "radius": 6.0,
+          "radius": 5.0,
           "degeneracy": 8,
-          "k_core_size": 294,
+          "k_core_size": 359,
           "maximum_degree": 454,
           "degree_variance": 130.98029434234576,
-          "global_clustering": 0.009333570318517202,
-          "degree_assortativity": -0.09205921935420161,
+          "global_clustering": 0.009543211058093271,
+          "degree_assortativity": -0.0946436373913024,
           "degree_entropy": 1.6584678424816912,
-          "joint_degree_entropy": 6.992746314098998,
+          "joint_degree_entropy": 6.990456245945022,
           "degree_skewness": 14.646366962605148,
           "degree_kurtosis": 388.2979613206118,
-          "normalized_laplacian_second_moment": 1.1299165976127696,
-          "normalized_laplacian_third_moment": 1.389722514037553,
-          "random_walk_triangle_weight": 2.727880075563146e-05,
-          "random_walk_fourth_moment": 0.07123650901771579,
-          "adjacency_fourth_moment_per_node": 357.6891730790073
+          "normalized_laplacian_second_moment": 1.1306615630090364,
+          "normalized_laplacian_third_moment": 1.3919590605340366,
+          "random_walk_triangle_weight": 2.562849307284406e-05,
+          "random_walk_fourth_moment": 0.07140515667304098,
+          "adjacency_fourth_moment_per_node": 358.00043351035004
         }
       },
       {
@@ -84,25 +84,25 @@
         "invariants": {
           "n_nodes": 9227,
           "n_edges": 18257,
-          "n_articulation_points": 1306,
-          "n_bridges": 5697,
+          "n_articulation_points": 1368,
+          "n_bridges": 5757,
           "diameter": 10.0,
           "radius": 5.0,
           "degeneracy": 8,
-          "k_core_size": 347,
+          "k_core_size": 369,
           "maximum_degree": 454,
           "degree_variance": 130.98029434234576,
-          "global_clustering": 0.009903246241278262,
-          "degree_assortativity": -0.09005486556387401,
+          "global_clustering": 0.010678005496233302,
+          "degree_assortativity": -0.09210455498890953,
           "degree_entropy": 1.6584678424816912,
-          "joint_degree_entropy": 7.013263180864602,
+          "joint_degree_entropy": 7.011167214122132,
           "degree_skewness": 14.646366962605148,
           "degree_kurtosis": 388.2979613206118,
-          "normalized_laplacian_second_moment": 1.1410931281690946,
-          "normalized_laplacian_third_moment": 1.4232488743305785,
-          "random_walk_triangle_weight": 3.05101767051537e-05,
-          "random_walk_fourth_moment": 0.08058012685948518,
-          "adjacency_fourth_moment_per_node": 352.7194104259239
+          "normalized_laplacian_second_moment": 1.141779403796719,
+          "normalized_laplacian_third_moment": 1.4253089895614048,
+          "random_walk_triangle_weight": 2.9221828752245287e-05,
+          "random_walk_fourth_moment": 0.07933432053768323,
+          "adjacency_fourth_moment_per_node": 352.5720169069036
         }
       },
       {
@@ -110,25 +110,25 @@
         "invariants": {
           "n_nodes": 9227,
           "n_edges": 18257,
-          "n_articulation_points": 1399,
-          "n_bridges": 5719,
-          "diameter": 10.0,
-          "radius": 5.0,
-          "degeneracy": 8,
-          "k_core_size": 412,
+          "n_articulation_points": 1426,
+          "n_bridges": 5743,
+          "diameter": 11.0,
+          "radius": 6.0,
+          "degeneracy": 9,
+          "k_core_size": 126,
           "maximum_degree": 454,
           "degree_variance": 130.98029434234576,
-          "global_clustering": 0.012081686969916555,
-          "degree_assortativity": -0.08974801037013376,
+          "global_clustering": 0.011862931415576306,
+          "degree_assortativity": -0.08696732118683233,
           "degree_entropy": 1.6584678424816912,
-          "joint_degree_entropy": 7.030887857822967,
+          "joint_degree_entropy": 7.029129603821287,
           "degree_skewness": 14.646366962605148,
           "degree_kurtosis": 388.2979613206118,
-          "normalized_laplacian_second_moment": 1.1511357741819366,
-          "normalized_laplacian_third_moment": 1.4533767779757092,
-          "random_walk_triangle_weight": 3.054457010019716e-05,
-          "random_walk_fourth_moment": 0.08692119885198002,
-          "adjacency_fourth_moment_per_node": 348.0262273761786
+          "normalized_laplacian_second_moment": 1.1536682688600903,
+          "normalized_laplacian_third_moment": 1.4609727205595566,
+          "random_walk_triangle_weight": 3.208602071457354e-05,
+          "random_walk_fourth_moment": 0.08889903066314518,
+          "adjacency_fourth_moment_per_node": 352.21046927495394
         }
       },
       {
@@ -136,25 +136,25 @@
         "invariants": {
           "n_nodes": 9227,
           "n_edges": 18257,
-          "n_articulation_points": 1487,
-          "n_bridges": 5752,
-          "diameter": 9.0,
-          "radius": 5.0,
+          "n_articulation_points": 1506,
+          "n_bridges": 5750,
+          "diameter": 11.0,
+          "radius": 6.0,
           "degeneracy": 9,
-          "k_core_size": 202,
+          "k_core_size": 223,
           "maximum_degree": 454,
           "degree_variance": 130.98029434234576,
-          "global_clustering": 0.012810872151050711,
-          "degree_assortativity": -0.08467875013899881,
+          "global_clustering": 0.012970381409423807,
+          "degree_assortativity": -0.08409882932159984,
           "degree_entropy": 1.6584678424816912,
-          "joint_degree_entropy": 7.045476633766895,
+          "joint_degree_entropy": 7.041721471908005,
           "degree_skewness": 14.646366962605148,
           "degree_kurtosis": 388.2979613206118,
-          "normalized_laplacian_second_moment": 1.1603321533679463,
-          "normalized_laplacian_third_moment": 1.4809639128293695,
-          "random_walk_triangle_weight": 3.2547274468976245e-05,
-          "random_walk_fourth_moment": 0.09333764716993524,
-          "adjacency_fourth_moment_per_node": 348.20049853690256
+          "normalized_laplacian_second_moment": 1.161945825035914,
+          "normalized_laplacian_third_moment": 1.4857999879733534,
+          "random_walk_triangle_weight": 3.748713438828615e-05,
+          "random_walk_fourth_moment": 0.09448913256450878,
+          "adjacency_fourth_moment_per_node": 351.4899750731549
         }
       },
       {
@@ -162,393 +162,393 @@
         "invariants": {
           "n_nodes": 9227,
           "n_edges": 18257,
-          "n_articulation_points": 1524,
-          "n_bridges": 5739,
-          "diameter": 10.0,
-          "radius": 5.0,
+          "n_articulation_points": 1560,
+          "n_bridges": 5766,
+          "diameter": 11.0,
+          "radius": 6.0,
           "degeneracy": 9,
-          "k_core_size": 182,
+          "k_core_size": 218,
           "maximum_degree": 454,
           "degree_variance": 130.98029434234576,
-          "global_clustering": 0.012428049930955278,
-          "degree_assortativity": -0.08734652454742921,
+          "global_clustering": 0.013936551774426565,
+          "degree_assortativity": -0.0809893163454036,
           "degree_entropy": 1.6584678424816912,
-          "joint_degree_entropy": 7.052511547121517,
+          "joint_degree_entropy": 7.0553178819071025,
           "degree_skewness": 14.646366962605148,
           "degree_kurtosis": 388.2979613206118,
-          "normalized_laplacian_second_moment": 1.1646043885604558,
-          "normalized_laplacian_third_moment": 1.4937811497340416,
-          "random_walk_triangle_weight": 3.2015947325769435e-05,
-          "random_walk_fourth_moment": 0.09648280721800048,
-          "adjacency_fourth_moment_per_node": 344.8260539720386
+          "normalized_laplacian_second_moment": 1.1704063711060304,
+          "normalized_laplacian_third_moment": 1.5111779807250392,
+          "random_walk_triangle_weight": 4.113259305185822e-05,
+          "random_walk_fourth_moment": 0.10069000779792062,
+          "adjacency_fourth_moment_per_node": 351.87666630540804
         }
       }
     ],
-    "sparsify": [
+    "densify": [
       {
         "intensity": 0.05,
         "invariants": {
           "n_nodes": 9227,
-          "n_edges": 17345,
-          "n_articulation_points": 878,
-          "n_bridges": 5600,
-          "diameter": 11.0,
+          "n_edges": 19169,
+          "n_articulation_points": 843,
+          "n_bridges": 4711,
+          "diameter": 10.0,
           "radius": 6.0,
-          "degeneracy": 7,
-          "k_core_size": 422,
-          "maximum_degree": 434,
-          "degree_variance": 118.99998199383965,
-          "global_clustering": 0.0,
-          "degree_assortativity": -0.11088239549337998,
-          "degree_entropy": 1.7333000007759203,
-          "joint_degree_entropy": 6.830350634166892,
-          "degree_skewness": 14.720165551841841,
-          "degree_kurtosis": 391.720159661022,
-          "normalized_laplacian_second_moment": 0.0,
-          "normalized_laplacian_third_moment": 0.0,
-          "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 351.85195621545466
+          "degeneracy": 8,
+          "k_core_size": 218,
+          "maximum_degree": 454,
+          "degree_variance": 131.10961078045852,
+          "global_clustering": 7.665115607978935e-05,
+          "degree_assortativity": -0.10068543876811012,
+          "degree_entropy": 1.8403563968908645,
+          "joint_degree_entropy": 6.9111328002304315,
+          "degree_skewness": 14.613432408071745,
+          "degree_kurtosis": 386.94110727703185,
+          "normalized_laplacian_second_moment": 1.1071208628848028,
+          "normalized_laplacian_third_moment": 1.3213511666987034,
+          "random_walk_triangle_weight": 1.1421955705333314e-05,
+          "random_walk_fourth_moment": 0.04710615833873749,
+          "adjacency_fourth_moment_per_node": 398.9797333911347
         }
       },
       {
         "intensity": 0.1,
         "invariants": {
           "n_nodes": 9227,
-          "n_edges": 16432,
-          "n_articulation_points": 871,
-          "n_bridges": 5403,
+          "n_edges": 20082,
+          "n_articulation_points": 794,
+          "n_bridges": 3882,
           "diameter": 11.0,
           "radius": 6.0,
-          "degeneracy": 7,
-          "k_core_size": 371,
-          "maximum_degree": 421,
-          "degree_variance": 107.26819116396953,
-          "global_clustering": 0.0,
-          "degree_assortativity": -0.10735548912786257,
-          "degree_entropy": 1.7726597413986054,
-          "joint_degree_entropy": 6.7237462085088255,
-          "degree_skewness": 15.038796087447345,
-          "degree_kurtosis": 414.2516559581476,
-          "normalized_laplacian_second_moment": 0.0,
-          "normalized_laplacian_third_moment": 0.0,
-          "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 308.3992630324049
+          "degeneracy": 8,
+          "k_core_size": 229,
+          "maximum_degree": 454,
+          "degree_variance": 131.43308021072588,
+          "global_clustering": 0.00016921503520118036,
+          "degree_assortativity": -0.09025993654774284,
+          "degree_entropy": 1.9684710494876863,
+          "joint_degree_entropy": 6.882824896160425,
+          "degree_skewness": 14.570350373549969,
+          "degree_kurtosis": 385.1484363338881,
+          "normalized_laplacian_second_moment": 1.1199264522651318,
+          "normalized_laplacian_third_moment": 1.3597622735753847,
+          "random_walk_triangle_weight": 1.70832200106178e-05,
+          "random_walk_fourth_moment": 0.047871514199564154,
+          "adjacency_fourth_moment_per_node": 403.12127452042915
         }
       },
       {
         "intensity": 0.15,
         "invariants": {
           "n_nodes": 9227,
-          "n_edges": 15519,
-          "n_articulation_points": 860,
-          "n_bridges": 5225,
-          "diameter": 11.0,
+          "n_edges": 20995,
+          "n_articulation_points": 732,
+          "n_bridges": 3176,
+          "diameter": 10.0,
           "radius": 6.0,
-          "degeneracy": 7,
-          "k_core_size": 295,
-          "maximum_degree": 383,
-          "degree_variance": 94.8678491714271,
-          "global_clustering": 0.0,
-          "degree_assortativity": -0.11586384782170786,
-          "degree_entropy": 1.7924512096910166,
-          "joint_degree_entropy": 6.655018072728483,
-          "degree_skewness": 14.40462129826063,
-          "degree_kurtosis": 375.85592322130407,
-          "normalized_laplacian_second_moment": 0.0,
-          "normalized_laplacian_third_moment": 0.0,
-          "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 263.34735016798527
+          "degeneracy": 8,
+          "k_core_size": 218,
+          "maximum_degree": 454,
+          "degree_variance": 131.45084664132077,
+          "global_clustering": 0.00019823875876105181,
+          "degree_assortativity": -0.08061699034352189,
+          "degree_entropy": 2.0662676996974767,
+          "joint_degree_entropy": 6.836133048748727,
+          "degree_skewness": 14.530746883844042,
+          "degree_kurtosis": 384.0892024729461,
+          "normalized_laplacian_second_moment": 1.1294681700223075,
+          "normalized_laplacian_third_moment": 1.3883723311412868,
+          "random_walk_triangle_weight": 3.217892563561298e-05,
+          "random_walk_fourth_moment": 0.04831145728429413,
+          "adjacency_fourth_moment_per_node": 406.7473718435028
         }
       },
       {
         "intensity": 0.2,
         "invariants": {
           "n_nodes": 9227,
-          "n_edges": 14606,
-          "n_articulation_points": 874,
-          "n_bridges": 5095,
-          "diameter": 12.0,
-          "radius": 6.0,
-          "degeneracy": 6,
-          "k_core_size": 476,
-          "maximum_degree": 349,
-          "degree_variance": 82.10588134405451,
-          "global_clustering": 0.0,
-          "degree_assortativity": -0.11147735030551904,
-          "degree_entropy": 1.789787980335702,
-          "joint_degree_entropy": 6.554804476968437,
-          "degree_skewness": 13.875625050360398,
-          "degree_kurtosis": 349.90134790865636,
-          "normalized_laplacian_second_moment": 0.0,
-          "normalized_laplacian_third_moment": 0.0,
-          "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 223.54394711173728
+          "n_edges": 21908,
+          "n_articulation_points": 678,
+          "n_bridges": 2646,
+          "diameter": 9.0,
+          "radius": 5.0,
+          "degeneracy": 8,
+          "k_core_size": 227,
+          "maximum_degree": 454,
+          "degree_variance": 131.9020452190949,
+          "global_clustering": 0.00026496548209238753,
+          "degree_assortativity": -0.0726027562760952,
+          "degree_entropy": 2.151031379747751,
+          "joint_degree_entropy": 6.8095356267129095,
+          "degree_skewness": 14.458083494083526,
+          "degree_kurtosis": 380.8317888858263,
+          "normalized_laplacian_second_moment": 1.1352772718500825,
+          "normalized_laplacian_third_moment": 1.4058079849950764,
+          "random_walk_triangle_weight": 2.383055517117919e-05,
+          "random_walk_fourth_moment": 0.04772740814134826,
+          "adjacency_fourth_moment_per_node": 411.3978541237672
         }
       },
       {
         "intensity": 0.25,
         "invariants": {
           "n_nodes": 9227,
-          "n_edges": 13693,
-          "n_articulation_points": 851,
-          "n_bridges": 4857,
-          "diameter": 12.0,
-          "radius": 6.0,
-          "degeneracy": 6,
-          "k_core_size": 370,
-          "maximum_degree": 343,
-          "degree_variance": 73.89916207222788,
-          "global_clustering": 0.0,
-          "degree_assortativity": -0.11597735171374496,
-          "degree_entropy": 1.793426259091928,
-          "joint_degree_entropy": 6.473227736292178,
-          "degree_skewness": 14.302251590753169,
-          "degree_kurtosis": 375.99839935733354,
-          "normalized_laplacian_second_moment": 0.0,
-          "normalized_laplacian_third_moment": 0.0,
-          "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 196.07608106643545
+          "n_edges": 22821,
+          "n_articulation_points": 624,
+          "n_bridges": 2138,
+          "diameter": 9.0,
+          "radius": 5.0,
+          "degeneracy": 8,
+          "k_core_size": 218,
+          "maximum_degree": 454,
+          "degree_variance": 131.87543718822283,
+          "global_clustering": 0.00024482012163694463,
+          "degree_assortativity": -0.06431402054764815,
+          "degree_entropy": 2.2173131208944854,
+          "joint_degree_entropy": 6.7695444800133195,
+          "degree_skewness": 14.457823087107295,
+          "degree_kurtosis": 380.95706450322416,
+          "normalized_laplacian_second_moment": 1.1409707743584678,
+          "normalized_laplacian_third_moment": 1.4228885123140118,
+          "random_walk_triangle_weight": 2.38107613914856e-05,
+          "random_walk_fourth_moment": 0.04812409188761925,
+          "adjacency_fourth_moment_per_node": 415.18608431776306
         }
       },
       {
         "intensity": 0.3,
         "invariants": {
           "n_nodes": 9227,
-          "n_edges": 12780,
-          "n_articulation_points": 856,
-          "n_bridges": 4717,
-          "diameter": 13.0,
-          "radius": 7.0,
-          "degeneracy": 6,
-          "k_core_size": 261,
-          "maximum_degree": 319,
-          "degree_variance": 66.2021727691909,
-          "global_clustering": 0.0,
-          "degree_assortativity": -0.1092870243592533,
-          "degree_entropy": 1.7708741240506414,
-          "joint_degree_entropy": 6.380586960034915,
-          "degree_skewness": 14.653979558152171,
-          "degree_kurtosis": 386.1761136142386,
-          "normalized_laplacian_second_moment": 0.0,
-          "normalized_laplacian_third_moment": 0.0,
-          "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 173.44575701744878
+          "n_edges": 23734,
+          "n_articulation_points": 619,
+          "n_bridges": 1746,
+          "diameter": 9.0,
+          "radius": 5.0,
+          "degeneracy": 8,
+          "k_core_size": 219,
+          "maximum_degree": 454,
+          "degree_variance": 132.0254064221197,
+          "global_clustering": 0.00040708785182002195,
+          "degree_assortativity": -0.05718962528924404,
+          "degree_entropy": 2.2724465252469694,
+          "joint_degree_entropy": 6.733136923490005,
+          "degree_skewness": 14.414664056167803,
+          "degree_kurtosis": 379.19300438057076,
+          "normalized_laplacian_second_moment": 1.144716017372733,
+          "normalized_laplacian_third_moment": 1.4341217137614202,
+          "random_walk_triangle_weight": 2.633835677930265e-05,
+          "random_walk_fourth_moment": 0.04769992184283466,
+          "adjacency_fourth_moment_per_node": 419.5890321881435
         }
       },
       {
         "intensity": 0.35,
         "invariants": {
           "n_nodes": 9227,
-          "n_edges": 11868,
-          "n_articulation_points": 854,
-          "n_bridges": 4512,
-          "diameter": 12.0,
-          "radius": 6.0,
-          "degeneracy": 6,
-          "k_core_size": 117,
-          "maximum_degree": 297,
-          "degree_variance": 56.446983515342566,
-          "global_clustering": 0.0,
-          "degree_assortativity": -0.11215918314494623,
-          "degree_entropy": 1.750731829649532,
-          "joint_degree_entropy": 6.266467318742128,
-          "degree_skewness": 14.641562120614248,
-          "degree_kurtosis": 391.5765168947761,
-          "normalized_laplacian_second_moment": 0.0,
-          "normalized_laplacian_third_moment": 0.0,
-          "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 143.22141541129295
+          "n_edges": 24646,
+          "n_articulation_points": 557,
+          "n_bridges": 1457,
+          "diameter": 9.0,
+          "radius": 5.0,
+          "degeneracy": 8,
+          "k_core_size": 267,
+          "maximum_degree": 454,
+          "degree_variance": 132.2372210497206,
+          "global_clustering": 0.0004309064514644544,
+          "degree_assortativity": -0.05109664930193698,
+          "degree_entropy": 2.3278836684250477,
+          "joint_degree_entropy": 6.715118367170299,
+          "degree_skewness": 14.37363684475885,
+          "degree_kurtosis": 377.55484265337054,
+          "normalized_laplacian_second_moment": 1.1451603721796508,
+          "normalized_laplacian_third_moment": 1.4354467885703177,
+          "random_walk_triangle_weight": 3.432796863437447e-05,
+          "random_walk_fourth_moment": 0.04630052852983578,
+          "adjacency_fourth_moment_per_node": 424.40316462555546
         }
       }
     ],
-    "sampling": [
+    "sample": [
       {
         "intensity": 0.05,
         "invariants": {
           "n_nodes": 8766,
-          "n_edges": 16678,
-          "n_articulation_points": 831,
-          "n_bridges": 5330,
+          "n_edges": 16589,
+          "n_articulation_points": 839,
+          "n_bridges": 5343,
           "diameter": 11.0,
           "radius": 6.0,
           "degeneracy": 8,
-          "k_core_size": 199,
-          "maximum_degree": 433,
-          "degree_variance": 122.0710936499987,
+          "k_core_size": 177,
+          "maximum_degree": 442,
+          "degree_variance": 122.63520740979149,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.10987663650266608,
-          "degree_entropy": 1.7287888560584155,
-          "joint_degree_entropy": 6.813970432750194,
-          "degree_skewness": 14.706515549414279,
-          "degree_kurtosis": 389.28373793519853,
+          "degree_assortativity": -0.10877455626251027,
+          "degree_entropy": 1.7242912940574169,
+          "joint_degree_entropy": 6.792091606517644,
+          "degree_skewness": 15.110690458164333,
+          "degree_kurtosis": 410.4364863580274,
           "normalized_laplacian_second_moment": 0.0,
           "normalized_laplacian_third_moment": 0.0,
           "random_walk_triangle_weight": 0.0,
           "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 368.15468856947297
+          "adjacency_fourth_moment_per_node": 369.21218343600276
         }
       },
       {
         "intensity": 0.1,
         "invariants": {
           "n_nodes": 8305,
-          "n_edges": 14703,
-          "n_articulation_points": 788,
-          "n_bridges": 4839,
-          "diameter": 12.0,
+          "n_edges": 14778,
+          "n_articulation_points": 793,
+          "n_bridges": 4909,
+          "diameter": 11.0,
           "radius": 6.0,
           "degeneracy": 7,
-          "k_core_size": 330,
-          "maximum_degree": 402,
-          "degree_variance": 102.90384746790502,
+          "k_core_size": 278,
+          "maximum_degree": 411,
+          "degree_variance": 107.65749746368236,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.11253421326623742,
-          "degree_entropy": 1.7853923990063651,
-          "joint_degree_entropy": 6.651451717755733,
-          "degree_skewness": 15.024381171410042,
-          "degree_kurtosis": 413.9408877644957,
+          "degree_assortativity": -0.10416873015924508,
+          "degree_entropy": 1.768019583946951,
+          "joint_degree_entropy": 6.688268297988078,
+          "degree_skewness": 15.286657631582141,
+          "degree_kurtosis": 417.3867021631781,
           "normalized_laplacian_second_moment": 0.0,
           "normalized_laplacian_third_moment": 0.0,
           "random_walk_triangle_weight": 0.0,
           "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 294.6632149307646
+          "adjacency_fourth_moment_per_node": 316.0202287778447
         }
       },
       {
         "intensity": 0.15,
         "invariants": {
           "n_nodes": 7843,
-          "n_edges": 13406,
-          "n_articulation_points": 736,
-          "n_bridges": 4483,
+          "n_edges": 12971,
+          "n_articulation_points": 726,
+          "n_bridges": 4350,
           "diameter": 11.0,
           "radius": 6.0,
           "degeneracy": 7,
-          "k_core_size": 233,
-          "maximum_degree": 387,
-          "degree_variance": 103.88993619832564,
+          "k_core_size": 230,
+          "maximum_degree": 386,
+          "degree_variance": 96.61208841778218,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.11366883540616558,
-          "degree_entropy": 1.7822738733159367,
-          "joint_degree_entropy": 6.642475005079715,
-          "degree_skewness": 14.826113330442917,
-          "degree_kurtosis": 384.41007608646794,
+          "degree_assortativity": -0.10523177324065389,
+          "degree_entropy": 1.8002202171820398,
+          "joint_degree_entropy": 6.579997400699485,
+          "degree_skewness": 15.190035095231869,
+          "degree_kurtosis": 413.6522302018227,
           "normalized_laplacian_second_moment": 0.0,
           "normalized_laplacian_third_moment": 0.0,
           "random_walk_triangle_weight": 0.0,
           "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 308.0561009817672
+          "adjacency_fourth_moment_per_node": 286.17340303455313
         }
       },
       {
         "intensity": 0.2,
         "invariants": {
           "n_nodes": 7382,
-          "n_edges": 11817,
-          "n_articulation_points": 671,
-          "n_bridges": 4015,
+          "n_edges": 11796,
+          "n_articulation_points": 688,
+          "n_bridges": 4073,
           "diameter": 11.0,
           "radius": 6.0,
           "degeneracy": 7,
-          "k_core_size": 185,
+          "k_core_size": 163,
           "maximum_degree": 358,
-          "degree_variance": 89.57194009372495,
+          "degree_variance": 89.82779122310957,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.10703542107027847,
-          "degree_entropy": 1.7992228194376456,
-          "joint_degree_entropy": 6.531235980958835,
-          "degree_skewness": 14.70144344018758,
-          "degree_kurtosis": 383.4763763699785,
+          "degree_assortativity": -0.11097462334131417,
+          "degree_entropy": 1.794281108601949,
+          "joint_degree_entropy": 6.506257197320218,
+          "degree_skewness": 14.96984343686935,
+          "degree_kurtosis": 390.7358324220677,
           "normalized_laplacian_second_moment": 0.0,
           "normalized_laplacian_third_moment": 0.0,
           "random_walk_triangle_weight": 0.0,
           "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 262.8081820644812
+          "adjacency_fourth_moment_per_node": 257.54375507992415
         }
       },
       {
         "intensity": 0.25,
         "invariants": {
           "n_nodes": 6921,
-          "n_edges": 10049,
-          "n_articulation_points": 652,
-          "n_bridges": 3637,
-          "diameter": 12.0,
-          "radius": 6.0,
-          "degeneracy": 6,
-          "k_core_size": 252,
-          "maximum_degree": 331,
-          "degree_variance": 68.23885332852501,
+          "n_edges": 9344,
+          "n_articulation_points": 665,
+          "n_bridges": 3596,
+          "diameter": 14.0,
+          "radius": 7.0,
+          "degeneracy": 5,
+          "k_core_size": 326,
+          "maximum_degree": 151,
+          "degree_variance": 47.52649758066979,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.10417481234120353,
-          "degree_entropy": 1.782513167233983,
-          "joint_degree_entropy": 6.292768029864908,
-          "degree_skewness": 14.778904072904675,
-          "degree_kurtosis": 422.6361118948366,
+          "degree_assortativity": -0.2256379799058097,
+          "degree_entropy": 1.7597404347325334,
+          "joint_degree_entropy": 6.1386533057217045,
+          "degree_skewness": 8.805615040707565,
+          "degree_kurtosis": 118.63994255844247,
           "normalized_laplacian_second_moment": 0.0,
           "normalized_laplacian_third_moment": 0.0,
           "random_walk_triangle_weight": 0.0,
           "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 185.9046380580841
+          "adjacency_fourth_moment_per_node": 122.42970668978471
         }
       },
       {
         "intensity": 0.3,
         "invariants": {
           "n_nodes": 6459,
-          "n_edges": 8727,
-          "n_articulation_points": 611,
-          "n_bridges": 3398,
-          "diameter": 14.0,
-          "radius": 7.0,
-          "degeneracy": 5,
-          "k_core_size": 347,
-          "maximum_degree": 180,
-          "degree_variance": 49.813976860869595,
+          "n_edges": 8942,
+          "n_articulation_points": 607,
+          "n_bridges": 3248,
+          "diameter": 11.0,
+          "radius": 6.0,
+          "degeneracy": 6,
+          "k_core_size": 194,
+          "maximum_degree": 322,
+          "degree_variance": 69.14412332451259,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.20494408620584845,
-          "degree_entropy": 1.7491952075899027,
-          "joint_degree_entropy": 6.168587883520489,
-          "degree_skewness": 9.680420382140106,
-          "degree_kurtosis": 148.6481316263926,
+          "degree_assortativity": -0.08282772505882524,
+          "degree_entropy": 1.7689685746841861,
+          "joint_degree_entropy": 6.262455688568644,
+          "degree_skewness": 15.9918439748227,
+          "degree_kurtosis": 457.89449467099115,
           "normalized_laplacian_second_moment": 0.0,
           "normalized_laplacian_third_moment": 0.0,
           "random_walk_triangle_weight": 0.0,
           "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 129.16148010527945
+          "adjacency_fourth_moment_per_node": 206.52670692057595
         }
       },
       {
         "intensity": 0.35,
         "invariants": {
           "n_nodes": 5998,
-          "n_edges": 7506,
-          "n_articulation_points": 542,
-          "n_bridges": 2887,
-          "diameter": 11.0,
-          "radius": 6.0,
+          "n_edges": 8207,
+          "n_articulation_points": 549,
+          "n_bridges": 2968,
+          "diameter": 12.0,
+          "radius": 7.0,
           "degeneracy": 6,
-          "k_core_size": 111,
-          "maximum_degree": 284,
-          "degree_variance": 51.563096334990405,
+          "k_core_size": 218,
+          "maximum_degree": 292,
+          "degree_variance": 72.09833187699223,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.11543201496856141,
-          "degree_entropy": 1.7371265627567571,
-          "joint_degree_entropy": 6.0902240566773225,
-          "degree_skewness": 14.79921856228985,
-          "degree_kurtosis": 436.0447602043014,
+          "degree_assortativity": -0.12354388579697637,
+          "degree_entropy": 1.7689600760283148,
+          "joint_degree_entropy": 6.257412190857122,
+          "degree_skewness": 14.748600186328195,
+          "degree_kurtosis": 354.5700229057933,
           "normalized_laplacian_second_moment": 0.0,
           "normalized_laplacian_third_moment": 0.0,
           "random_walk_triangle_weight": 0.0,
           "random_walk_fourth_moment": 0.0,
-          "adjacency_fourth_moment_per_node": 133.51050350116705
+          "adjacency_fourth_moment_per_node": 205.0486828942981
         }
       }
     ]
@@ -558,183 +558,183 @@
       {
         "intensity": 0.05,
         "invariants": {
-          "n_nodes": 9973.172586145864,
-          "n_edges": 19191.02060283533,
-          "n_articulation_points": 828.2075720849763,
-          "n_bridges": 5724.198450379613,
-          "diameter": 10.830037612436103,
-          "radius": 6.178019339660703,
-          "degeneracy": 8.263801744202945,
-          "k_core_size": 212.37205531719627,
-          "maximum_degree": 469.03622750332795,
-          "degree_variance": 129.20273649563848,
+          "n_nodes": 9367.581224744707,
+          "n_edges": 17307.650508618364,
+          "n_articulation_points": 916.1324202948551,
+          "n_bridges": 6019.365327726655,
+          "diameter": 9.92693064624039,
+          "radius": 5.609346147941305,
+          "degeneracy": 8.051136161266914,
+          "k_core_size": 214.55295574345496,
+          "maximum_degree": 453.6186137246526,
+          "degree_variance": 125.39369710631885,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.11728856025508652,
-          "degree_entropy": 1.5318821200665063,
-          "joint_degree_entropy": 7.011817002419512,
-          "degree_skewness": 14.88785730914073,
-          "degree_kurtosis": 426.6150062250792,
-          "normalized_laplacian_second_moment": 1.09443559382482,
-          "normalized_laplacian_third_moment": 1.2361629972116124,
+          "degree_assortativity": -0.10778462956517904,
+          "degree_entropy": 1.7229649881342166,
+          "joint_degree_entropy": 6.9101041891750645,
+          "degree_skewness": 15.471866381236335,
+          "degree_kurtosis": 397.3746075453523,
+          "normalized_laplacian_second_moment": 1.0422209094176063,
+          "normalized_laplacian_third_moment": 1.290390320436793,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.043107115494375216,
-          "adjacency_fourth_moment_per_node": 385.7007786764323
+          "random_walk_fourth_moment": 0.04371090821846637,
+          "adjacency_fourth_moment_per_node": 412.8151817887968
         }
       },
       {
         "intensity": 0.1,
         "invariants": {
-          "n_nodes": 8679.852385714297,
-          "n_edges": 17224.430783695145,
-          "n_articulation_points": 978.4674823909897,
-          "n_bridges": 5197.744923607285,
-          "diameter": 11.664675637042386,
-          "radius": 6.371289441999879,
-          "degeneracy": 8.190188622461505,
-          "k_core_size": 218.00137264345574,
-          "maximum_degree": 422.20538204244787,
-          "degree_variance": 159.99890940163124,
+          "n_nodes": 9508.162449489413,
+          "n_edges": 16358.301017236727,
+          "n_articulation_points": 949.2648405897102,
+          "n_bridges": 6289.730655453309,
+          "diameter": 8.85386129248078,
+          "radius": 5.218692295882609,
+          "degeneracy": 8.102272322533828,
+          "k_core_size": 211.10591148690992,
+          "maximum_degree": 453.2372274493053,
+          "degree_variance": 119.80709987029194,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.10785609621703582,
-          "degree_entropy": 1.7694447869436989,
-          "joint_degree_entropy": 7.076105895714523,
-          "degree_skewness": 15.48555268773676,
-          "degree_kurtosis": 411.8497251380825,
-          "normalized_laplacian_second_moment": 1.2700114175806612,
-          "normalized_laplacian_third_moment": 1.2449991127934097,
+          "degree_assortativity": -0.10282738058126381,
+          "degree_entropy": 1.7874621337867418,
+          "joint_degree_entropy": 6.932843065971828,
+          "degree_skewness": 16.297365799867524,
+          "degree_kurtosis": 406.45125377009276,
+          "normalized_laplacian_second_moment": 0.9954320135324771,
+          "normalized_laplacian_third_moment": 1.3137512249653802,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.05346834048547826,
-          "adjacency_fourth_moment_per_node": 368.55432522203273
+          "random_walk_fourth_moment": 0.04150969132145037,
+          "adjacency_fourth_moment_per_node": 430.1841730497947
         }
       },
       {
         "intensity": 0.15,
         "invariants": {
-          "n_nodes": 6216.154429694415,
-          "n_edges": 20617.055729306518,
-          "n_articulation_points": 1016.0481622512201,
-          "n_bridges": 5957.651799975643,
-          "diameter": 11.091846470565416,
-          "radius": 6.054744510385031,
-          "degeneracy": 10.153469957108435,
-          "k_core_size": 225.96676750019373,
-          "maximum_degree": 352.6192839786551,
-          "degree_variance": 90.55959457269785,
+          "n_nodes": 9648.743674234121,
+          "n_edges": 15408.951525855091,
+          "n_articulation_points": 982.3972608845653,
+          "n_bridges": 6560.095983179963,
+          "diameter": 7.78079193872117,
+          "radius": 4.828038443823914,
+          "degeneracy": 8.153408483800742,
+          "k_core_size": 207.65886723036488,
+          "maximum_degree": 452.8558411739579,
+          "degree_variance": 114.22050263426503,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.1059138333453564,
-          "degree_entropy": 1.1578997812673435,
-          "joint_degree_entropy": 6.998972892118352,
-          "degree_skewness": 17.54480591986606,
-          "degree_kurtosis": 310.5693689104703,
-          "normalized_laplacian_second_moment": 1.1462184516224672,
-          "normalized_laplacian_third_moment": 1.3203528171766978,
+          "degree_assortativity": -0.09787013159734859,
+          "degree_entropy": 1.8519592794392672,
+          "joint_degree_entropy": 6.955581942768591,
+          "degree_skewness": 17.12286521849871,
+          "degree_kurtosis": 415.52789999483326,
+          "normalized_laplacian_second_moment": 0.948643117647348,
+          "normalized_laplacian_third_moment": 1.3371121294939672,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.04709395010817402,
-          "adjacency_fourth_moment_per_node": 382.40581029342854
+          "random_walk_fourth_moment": 0.03930847442443436,
+          "adjacency_fourth_moment_per_node": 447.55316431079257
         }
       },
       {
         "intensity": 0.2,
         "invariants": {
-          "n_nodes": 8173.4603703930115,
-          "n_edges": 22016.150136641852,
-          "n_articulation_points": 947.358350565675,
-          "n_bridges": 5564.455967420796,
-          "diameter": 12.657111397617347,
-          "radius": 6.174980359206876,
-          "degeneracy": 8.776080296411429,
-          "k_core_size": 203.26216748900453,
-          "maximum_degree": 415.0076063543187,
-          "degree_variance": 119.40565719182614,
+          "n_nodes": 9789.324898978828,
+          "n_edges": 14459.602034473453,
+          "n_articulation_points": 1015.5296811794203,
+          "n_bridges": 6830.461310906618,
+          "diameter": 6.70772258496156,
+          "radius": 4.437384591765218,
+          "degeneracy": 8.204544645067656,
+          "k_core_size": 204.2118229738198,
+          "maximum_degree": 452.4744548986106,
+          "degree_variance": 108.63390539823811,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.10699207444729616,
-          "degree_entropy": 1.9604935034995852,
-          "joint_degree_entropy": 9.443145629954477,
-          "degree_skewness": 17.299591261636223,
-          "degree_kurtosis": 592.5014176896187,
-          "normalized_laplacian_second_moment": 0.7402917832111849,
-          "normalized_laplacian_third_moment": 1.145067667062881,
+          "degree_assortativity": -0.09291288261343336,
+          "degree_entropy": 1.9164564250917926,
+          "joint_degree_entropy": 6.978320819565354,
+          "degree_skewness": 17.9483646371299,
+          "degree_kurtosis": 424.6045462195737,
+          "normalized_laplacian_second_moment": 0.9018542217622189,
+          "normalized_laplacian_third_moment": 1.3604730340225544,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.04242884384488489,
-          "adjacency_fourth_moment_per_node": 409.09189575591824
+          "random_walk_fourth_moment": 0.03710725752741835,
+          "adjacency_fourth_moment_per_node": 464.9221555717905
         }
       },
       {
         "intensity": 0.25,
         "invariants": {
-          "n_nodes": 10571.411481124802,
-          "n_edges": 18466.252608698884,
-          "n_articulation_points": 868.9851274523152,
-          "n_bridges": 7436.53821296901,
-          "diameter": 8.42609521472606,
-          "radius": 4.771047050711376,
-          "degeneracy": 8.293160118903266,
-          "k_core_size": 179.54224201095246,
-          "maximum_degree": 561.75498491188,
-          "degree_variance": 108.77405662202496,
+          "n_nodes": 9929.906123723535,
+          "n_edges": 13510.252543091818,
+          "n_articulation_points": 1048.6621014742755,
+          "n_bridges": 7100.8266386332725,
+          "diameter": 5.63465323120195,
+          "radius": 4.046730739706523,
+          "degeneracy": 8.25568080633457,
+          "k_core_size": 200.76477871727477,
+          "maximum_degree": 452.0930686232632,
+          "degree_variance": 103.04730816221121,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.11181200233092442,
-          "degree_entropy": 1.7646436690609761,
-          "joint_degree_entropy": 6.301099538593641,
-          "degree_skewness": 17.076052828456547,
-          "degree_kurtosis": 260.40872758426497,
-          "normalized_laplacian_second_moment": 1.38303609220637,
-          "normalized_laplacian_third_moment": 1.6801054510632523,
+          "degree_assortativity": -0.08795563362951814,
+          "degree_entropy": 1.980953570744318,
+          "joint_degree_entropy": 7.001059696362117,
+          "degree_skewness": 18.773864055761084,
+          "degree_kurtosis": 433.6811924443142,
+          "normalized_laplacian_second_moment": 0.8550653258770897,
+          "normalized_laplacian_third_moment": 1.3838339385511413,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.07111670548708465,
-          "adjacency_fourth_moment_per_node": 364.5387993941508
+          "random_walk_fourth_moment": 0.03490604063040234,
+          "adjacency_fourth_moment_per_node": 482.2911468327884
         }
       },
       {
         "intensity": 0.3,
         "invariants": {
-          "n_nodes": 10211.495451527355,
-          "n_edges": 11966.12369932553,
-          "n_articulation_points": 609.8961934297197,
-          "n_bridges": 3861.2458283890546,
-          "diameter": 11.748912036525809,
-          "radius": 2.395065469549731,
-          "degeneracy": 5.19456954682252,
-          "k_core_size": 343.270361374763,
-          "maximum_degree": 604.6566769371763,
-          "degree_variance": 111.29025090428148,
+          "n_nodes": 10070.487348468241,
+          "n_edges": 12560.903051710182,
+          "n_articulation_points": 1081.7945217691306,
+          "n_bridges": 7371.1919663599265,
+          "diameter": 4.56158387744234,
+          "radius": 3.656076887647828,
+          "degeneracy": 8.306816967601485,
+          "k_core_size": 197.31773446072972,
+          "maximum_degree": 451.7116823479159,
+          "degree_variance": 97.4607109261843,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.12121222269187498,
-          "degree_entropy": 1.1819888748501346,
-          "joint_degree_entropy": 5.7824169753884425,
-          "degree_skewness": 17.669631778227572,
-          "degree_kurtosis": 372.7752429264525,
-          "normalized_laplacian_second_moment": 1.3508780834453344,
-          "normalized_laplacian_third_moment": 0.9089794455316068,
+          "degree_assortativity": -0.08299838464560291,
+          "degree_entropy": 2.0454507163968434,
+          "joint_degree_entropy": 7.023798573158881,
+          "degree_skewness": 19.599363474392273,
+          "degree_kurtosis": 442.75783866905465,
+          "normalized_laplacian_second_moment": 0.8082764299919605,
+          "normalized_laplacian_third_moment": 1.4071948430797285,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.056008392568216804,
-          "adjacency_fourth_moment_per_node": 311.3676136232882
+          "random_walk_fourth_moment": 0.03270482373338633,
+          "adjacency_fourth_moment_per_node": 499.66013809378626
         }
       },
       {
         "intensity": 0.35,
         "invariants": {
-          "n_nodes": 10429.98287100312,
-          "n_edges": 2418.576944180224,
-          "n_articulation_points": 332.26129164528686,
-          "n_bridges": 4424.610966657734,
-          "diameter": 16.141116448906125,
-          "radius": 7.48175558575287,
-          "degeneracy": 9.346481924707039,
-          "k_core_size": 226.79186220563716,
-          "maximum_degree": 595.7509839661515,
-          "degree_variance": 190.35183833184266,
+          "n_nodes": 10211.068573212948,
+          "n_edges": 11611.553560328546,
+          "n_articulation_points": 1114.9269420639855,
+          "n_bridges": 7641.55729408658,
+          "diameter": 3.4885145236827304,
+          "radius": 3.2654230355891323,
+          "degeneracy": 8.357953128868399,
+          "k_core_size": 193.87069020418468,
+          "maximum_degree": 451.3302960725685,
+          "degree_variance": 91.8741136901574,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.13922861752881285,
-          "degree_entropy": 2.450630333757812,
-          "joint_degree_entropy": 5.64562384507713,
-          "degree_skewness": 13.588621487642905,
-          "degree_kurtosis": 273.5111303338972,
-          "normalized_laplacian_second_moment": 1.0626975137347774,
-          "normalized_laplacian_third_moment": 0.8526917418555802,
+          "degree_assortativity": -0.07804113566168769,
+          "degree_entropy": 2.109947862049369,
+          "joint_degree_entropy": 7.046537449955643,
+          "degree_skewness": 20.42486289302346,
+          "degree_kurtosis": 451.83448489379515,
+          "normalized_laplacian_second_moment": 0.7614875341068313,
+          "normalized_laplacian_third_moment": 1.4305557476083155,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.014735097569816086,
-          "adjacency_fourth_moment_per_node": 376.4051556238878
+          "random_walk_fourth_moment": 0.03050360683637033,
+          "adjacency_fourth_moment_per_node": 517.0291293547841
         }
       }
     ],
@@ -742,183 +742,183 @@
       {
         "intensity": 0.05,
         "invariants": {
-          "n_nodes": 9161.81616029639,
-          "n_edges": 18173.29458480511,
-          "n_articulation_points": 984.5237915196188,
-          "n_bridges": 5817.117598022875,
-          "diameter": 10.257346858878304,
-          "radius": 5.924257857387631,
-          "degeneracy": 7.8392428199389865,
-          "k_core_size": 229.97214774579248,
-          "maximum_degree": 440.0586577274438,
-          "degree_variance": 124.27873054650154,
+          "n_nodes": 9367.581224744707,
+          "n_edges": 17307.650508618364,
+          "n_articulation_points": 916.132420294855,
+          "n_bridges": 6019.365327726654,
+          "diameter": 9.92693064624039,
+          "radius": 5.609346147941305,
+          "degeneracy": 8.051136161266914,
+          "k_core_size": 214.55295574345496,
+          "maximum_degree": 453.6186137246526,
+          "degree_variance": 125.39369710631885,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.11641374837635346,
-          "degree_entropy": 1.7714088919733137,
-          "joint_degree_entropy": 6.475553938405188,
-          "degree_skewness": 14.915784612593065,
-          "degree_kurtosis": 375.44871746943534,
-          "normalized_laplacian_second_moment": 1.0658402735605543,
-          "normalized_laplacian_third_moment": 1.2286062143922238,
+          "degree_assortativity": -0.11712636474512403,
+          "degree_entropy": 1.6639433319077865,
+          "joint_degree_entropy": 7.275551411756056,
+          "degree_skewness": 14.98873263185863,
+          "degree_kurtosis": 371.61488574482536,
+          "normalized_laplacian_second_moment": 1.1090884662816811,
+          "normalized_laplacian_third_moment": 1.2062827928255606,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.04895535634450181,
-          "adjacency_fourth_moment_per_node": 431.56060258986116
+          "random_walk_fourth_moment": 0.045797514881897115,
+          "adjacency_fourth_moment_per_node": 391.79103465600195
         }
       },
       {
         "intensity": 0.1,
         "invariants": {
-          "n_nodes": 8869.179938435671,
-          "n_edges": 18001.891542457117,
-          "n_articulation_points": 879.1501969416498,
-          "n_bridges": 5766.211308706007,
-          "diameter": 9.973555783577842,
-          "radius": 5.7819652370861,
-          "degeneracy": 7.994331605140047,
-          "k_core_size": 231.94460696276826,
-          "maximum_degree": 511.5347931182561,
-          "degree_variance": 138.3675899918742,
+          "n_nodes": 9508.162449489413,
+          "n_edges": 16358.301017236727,
+          "n_articulation_points": 949.26484058971,
+          "n_bridges": 6289.730655453309,
+          "diameter": 8.85386129248078,
+          "radius": 5.21869229588261,
+          "degeneracy": 8.102272322533828,
+          "k_core_size": 211.10591148690992,
+          "maximum_degree": 453.2372274493053,
+          "degree_variance": 119.80709987029194,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.11377583485678731,
-          "degree_entropy": 1.6960117011052216,
-          "joint_degree_entropy": 8.01459419696399,
-          "degree_skewness": 14.457219573326821,
-          "degree_kurtosis": 376.92646302013105,
-          "normalized_laplacian_second_moment": 1.087863555597659,
-          "normalized_laplacian_third_moment": 1.2437932344661917,
+          "degree_assortativity": -0.12151085094115381,
+          "degree_entropy": 1.6694188213338825,
+          "joint_degree_entropy": 7.663737511133809,
+          "degree_skewness": 15.33109830111211,
+          "degree_kurtosis": 354.9318101690389,
+          "normalized_laplacian_second_moment": 1.1291671272606267,
+          "normalized_laplacian_third_moment": 1.1455361697429154,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.04371121292803446,
-          "adjacency_fourth_moment_per_node": 342.9106292457002
+          "random_walk_fourth_moment": 0.04568290464831185,
+          "adjacency_fourth_moment_per_node": 388.13587878420503
         }
       },
       {
         "intensity": 0.15,
         "invariants": {
-          "n_nodes": 8722.656041907907,
-          "n_edges": 17121.88547632371,
-          "n_articulation_points": 958.0194785355663,
-          "n_bridges": 4571.367893365448,
-          "diameter": 12.863619890929233,
-          "radius": 6.281650506652314,
-          "degeneracy": 7.030721344084842,
-          "k_core_size": 200.290985507398,
-          "maximum_degree": 385.47447484759664,
-          "degree_variance": 121.54495651088163,
+          "n_nodes": 9648.74367423412,
+          "n_edges": 15408.951525855091,
+          "n_articulation_points": 982.3972608845653,
+          "n_bridges": 6560.095983179963,
+          "diameter": 7.78079193872117,
+          "radius": 4.828038443823914,
+          "degeneracy": 8.153408483800742,
+          "k_core_size": 207.65886723036485,
+          "maximum_degree": 452.85584117395797,
+          "degree_variance": 114.22050263426503,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.09463765181303241,
-          "degree_entropy": 1.7008393375386504,
-          "joint_degree_entropy": 7.862015737292405,
-          "degree_skewness": 13.596394878056415,
-          "degree_kurtosis": 443.50447127840926,
-          "normalized_laplacian_second_moment": 1.2139683862611363,
-          "normalized_laplacian_third_moment": 1.4215101340108187,
+          "degree_assortativity": -0.12589533713718357,
+          "degree_entropy": 1.6748943107599779,
+          "joint_degree_entropy": 8.051923610511563,
+          "degree_skewness": 15.673463970365592,
+          "degree_kurtosis": 338.2487345932525,
+          "normalized_laplacian_second_moment": 1.1492457882395726,
+          "normalized_laplacian_third_moment": 1.0847895466602697,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.0437329526147577,
-          "adjacency_fourth_moment_per_node": 339.36734896050893
+          "random_walk_fourth_moment": 0.04556829441472659,
+          "adjacency_fourth_moment_per_node": 384.48072291240817
         }
       },
       {
         "intensity": 0.2,
         "invariants": {
-          "n_nodes": 8521.353585506475,
-          "n_edges": 21165.52388831963,
-          "n_articulation_points": 599.0349995104905,
-          "n_bridges": 4182.363075100366,
-          "diameter": 9.275563918573127,
-          "radius": 6.1245061007393,
-          "degeneracy": 8.82938571382849,
-          "k_core_size": 119.43598212889006,
-          "maximum_degree": 402.0651431750193,
-          "degree_variance": 163.81824667826945,
+          "n_nodes": 9789.324898978828,
+          "n_edges": 14459.602034473453,
+          "n_articulation_points": 1015.5296811794204,
+          "n_bridges": 6830.461310906619,
+          "diameter": 6.707722584961559,
+          "radius": 4.437384591765218,
+          "degeneracy": 8.204544645067656,
+          "k_core_size": 204.2118229738198,
+          "maximum_degree": 452.4744548986106,
+          "degree_variance": 108.63390539823811,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.11106149463425856,
-          "degree_entropy": 1.4277343506408342,
-          "joint_degree_entropy": 5.947952480115279,
-          "degree_skewness": 13.76319915965702,
-          "degree_kurtosis": 391.2002381479361,
-          "normalized_laplacian_second_moment": 1.2858628536206675,
-          "normalized_laplacian_third_moment": 0.9242296445803526,
+          "degree_assortativity": -0.13027982333321336,
+          "degree_entropy": 1.6803698001860734,
+          "joint_degree_entropy": 8.440109709889317,
+          "degree_skewness": 16.015829639619074,
+          "degree_kurtosis": 321.56565901746603,
+          "normalized_laplacian_second_moment": 1.1693244492185182,
+          "normalized_laplacian_third_moment": 1.0240429235776245,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.04283300573407506,
-          "adjacency_fourth_moment_per_node": 302.04650961654505
+          "random_walk_fourth_moment": 0.045453684181141325,
+          "adjacency_fourth_moment_per_node": 380.8255670406112
         }
       },
       {
         "intensity": 0.25,
         "invariants": {
-          "n_nodes": 9303.557428672877,
-          "n_edges": 21847.634335817595,
-          "n_articulation_points": 946.8831925142541,
-          "n_bridges": 7291.060284084871,
-          "diameter": 9.747545691321537,
-          "radius": 6.21424144005869,
-          "degeneracy": 7.67598693099507,
-          "k_core_size": 169.5951991006038,
-          "maximum_degree": 473.07736252587557,
-          "degree_variance": 113.58895996615001,
+          "n_nodes": 9929.906123723535,
+          "n_edges": 13510.252543091818,
+          "n_articulation_points": 1048.6621014742755,
+          "n_bridges": 7100.8266386332725,
+          "diameter": 5.634653231201949,
+          "radius": 4.046730739706523,
+          "degeneracy": 8.25568080633457,
+          "k_core_size": 200.76477871727477,
+          "maximum_degree": 452.0930686232632,
+          "degree_variance": 103.04730816221121,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.07400510622006098,
-          "degree_entropy": 2.2514938033059533,
-          "joint_degree_entropy": 7.01676720735765,
-          "degree_skewness": 18.770662903065123,
-          "degree_kurtosis": 465.3883976362928,
-          "normalized_laplacian_second_moment": 1.0660891691709784,
-          "normalized_laplacian_third_moment": 1.6581795973182283,
+          "degree_assortativity": -0.13466430952924313,
+          "degree_entropy": 1.6858452896121692,
+          "joint_degree_entropy": 8.828295809267072,
+          "degree_skewness": 16.358195308872556,
+          "degree_kurtosis": 304.88258344167957,
+          "normalized_laplacian_second_moment": 1.1894031101974638,
+          "normalized_laplacian_third_moment": 0.963296300494979,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.05754430079035548,
-          "adjacency_fourth_moment_per_node": 444.55667243056587
+          "random_walk_fourth_moment": 0.045339073947556055,
+          "adjacency_fourth_moment_per_node": 377.1704111688143
         }
       },
       {
         "intensity": 0.3,
         "invariants": {
-          "n_nodes": 12423.629528242565,
-          "n_edges": 31899.99321441566,
-          "n_articulation_points": 1126.593876494237,
-          "n_bridges": 4571.476707621701,
-          "diameter": 9.729649606742933,
-          "radius": 9.292147768749718,
-          "degeneracy": 5.971219414570003,
-          "k_core_size": 405.6392964364172,
-          "maximum_degree": 447.0939295685007,
-          "degree_variance": 156.79597771820505,
+          "n_nodes": 10070.487348468241,
+          "n_edges": 12560.903051710182,
+          "n_articulation_points": 1081.7945217691306,
+          "n_bridges": 7371.1919663599265,
+          "diameter": 4.56158387744234,
+          "radius": 3.656076887647828,
+          "degeneracy": 8.306816967601485,
+          "k_core_size": 197.31773446072972,
+          "maximum_degree": 451.7116823479159,
+          "degree_variance": 97.46071092618429,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.08180148142776554,
-          "degree_entropy": 1.0747770282344813,
-          "joint_degree_entropy": 6.299232608423093,
-          "degree_skewness": 15.896863020455946,
-          "degree_kurtosis": 356.58256264800326,
-          "normalized_laplacian_second_moment": 1.0850091529603294,
-          "normalized_laplacian_third_moment": 1.213872877637118,
+          "degree_assortativity": -0.13904879572527287,
+          "degree_entropy": 1.6913207790382645,
+          "joint_degree_entropy": 9.216481908644825,
+          "degree_skewness": 16.70056097812604,
+          "degree_kurtosis": 288.19950786589317,
+          "normalized_laplacian_second_moment": 1.2094817711764094,
+          "normalized_laplacian_third_moment": 0.9025496774123336,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.0532055437403605,
-          "adjacency_fourth_moment_per_node": 211.17320354425317
+          "random_walk_fourth_moment": 0.04522446371397079,
+          "adjacency_fourth_moment_per_node": 373.51525529701735
         }
       },
       {
         "intensity": 0.35,
         "invariants": {
-          "n_nodes": 4617.465257895424,
-          "n_edges": 23331.864378944683,
-          "n_articulation_points": 609.4566677747811,
-          "n_bridges": 7056.079327749417,
-          "diameter": 13.981916603251662,
-          "radius": 5.38882677084627,
-          "degeneracy": 7.873477327619275,
-          "k_core_size": 350.6061387469475,
-          "maximum_degree": 508.34257715756684,
-          "degree_variance": 59.89999464640912,
+          "n_nodes": 10211.068573212948,
+          "n_edges": 11611.553560328544,
+          "n_articulation_points": 1114.9269420639855,
+          "n_bridges": 7641.55729408658,
+          "diameter": 3.48851452368273,
+          "radius": 3.2654230355891323,
+          "degeneracy": 8.357953128868399,
+          "k_core_size": 193.87069020418465,
+          "maximum_degree": 451.3302960725685,
+          "degree_variance": 91.87411369015739,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.09029423582894681,
-          "degree_entropy": 2.0384897042388737,
-          "joint_degree_entropy": 10.340516210715078,
-          "degree_skewness": 16.89917688370394,
-          "degree_kurtosis": 308.629770628752,
-          "normalized_laplacian_second_moment": 0.8169766260619429,
-          "normalized_laplacian_third_moment": 0.8935640615235185,
+          "degree_assortativity": -0.14343328192130267,
+          "degree_entropy": 1.69679626846436,
+          "joint_degree_entropy": 9.604668008022578,
+          "degree_skewness": 17.042926647379517,
+          "degree_kurtosis": 271.5164322901067,
+          "normalized_laplacian_second_moment": 1.229560432155355,
+          "normalized_laplacian_third_moment": 0.8418030543296883,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.04570984153981971,
-          "adjacency_fourth_moment_per_node": 377.2900053254475
+          "random_walk_fourth_moment": 0.04510985348038553,
+          "adjacency_fourth_moment_per_node": 369.8600994252205
         }
       }
     ],
@@ -927,7 +927,7 @@
         "intensity": 0.95,
         "invariants": {
           "n_nodes": 9227.0,
-          "n_edges": 18257.0,
+          "n_edges": 0.0,
           "n_articulation_points": 883.0,
           "n_bridges": 5749.0,
           "diameter": 11.0,
@@ -942,7 +942,7 @@
           "joint_degree_entropy": 6.887365312378302,
           "degree_skewness": 14.646366962605148,
           "degree_kurtosis": 388.2979613206118,
-          "normalized_laplacian_second_moment": 1.0890098053027355,
+          "normalized_laplacian_second_moment": 0.0,
           "normalized_laplacian_third_moment": 1.267029415908206,
           "random_walk_triangle_weight": 0.0,
           "random_walk_fourth_moment": 0.04591212511548238,
@@ -953,7 +953,7 @@
         "intensity": 0.9,
         "invariants": {
           "n_nodes": 9227.0,
-          "n_edges": 18257.0,
+          "n_edges": 0.0,
           "n_articulation_points": 883.0,
           "n_bridges": 5749.0,
           "diameter": 11.0,
@@ -965,9 +965,9 @@
           "global_clustering": 0.0,
           "degree_assortativity": -0.11274187854909426,
           "degree_entropy": 1.6584678424816912,
-          "joint_degree_entropy": 6.887365312378302,
+          "joint_degree_entropy": 0.0,
           "degree_skewness": 14.646366962605148,
-          "degree_kurtosis": 388.2979613206118,
+          "degree_kurtosis": 0.0,
           "normalized_laplacian_second_moment": 1.0890098053027355,
           "normalized_laplacian_third_moment": 1.267029415908206,
           "random_walk_triangle_weight": 0.0,
@@ -979,7 +979,7 @@
         "intensity": 0.85,
         "invariants": {
           "n_nodes": 9227.0,
-          "n_edges": 18257.0,
+          "n_edges": 0.0,
           "n_articulation_points": 883.0,
           "n_bridges": 5749.0,
           "diameter": 11.0,
@@ -987,12 +987,12 @@
           "degeneracy": 8.0,
           "k_core_size": 218.0,
           "maximum_degree": 454.0,
-          "degree_variance": 130.98029434234576,
+          "degree_variance": 0.0,
           "global_clustering": 0.0,
           "degree_assortativity": -0.11274187854909426,
           "degree_entropy": 1.6584678424816912,
-          "joint_degree_entropy": 6.887365312378302,
-          "degree_skewness": 14.646366962605148,
+          "joint_degree_entropy": 0.0,
+          "degree_skewness": 0.0,
           "degree_kurtosis": 388.2979613206118,
           "normalized_laplacian_second_moment": 1.0890098053027355,
           "normalized_laplacian_third_moment": 1.267029415908206,
@@ -1005,19 +1005,19 @@
         "intensity": 0.8,
         "invariants": {
           "n_nodes": 9227.0,
-          "n_edges": 18257.0,
+          "n_edges": 0.0,
           "n_articulation_points": 883.0,
           "n_bridges": 5749.0,
           "diameter": 11.0,
           "radius": 6.0,
           "degeneracy": 8.0,
           "k_core_size": 218.0,
-          "maximum_degree": 454.0,
-          "degree_variance": 130.98029434234576,
+          "maximum_degree": 0.0,
+          "degree_variance": 0.0,
           "global_clustering": 0.0,
           "degree_assortativity": -0.11274187854909426,
-          "degree_entropy": 1.6584678424816912,
-          "joint_degree_entropy": 6.887365312378302,
+          "degree_entropy": 0.0,
+          "joint_degree_entropy": 0.0,
           "degree_skewness": 14.646366962605148,
           "degree_kurtosis": 388.2979613206118,
           "normalized_laplacian_second_moment": 1.0890098053027355,
@@ -1031,25 +1031,25 @@
         "intensity": 0.75,
         "invariants": {
           "n_nodes": 9227.0,
-          "n_edges": 18257.0,
+          "n_edges": 0.0,
           "n_articulation_points": 883.0,
           "n_bridges": 5749.0,
           "diameter": 11.0,
           "radius": 6.0,
           "degeneracy": 8.0,
           "k_core_size": 218.0,
-          "maximum_degree": 454.0,
+          "maximum_degree": 0.0,
           "degree_variance": 130.98029434234576,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.11274187854909426,
+          "degree_assortativity": 0.0,
           "degree_entropy": 1.6584678424816912,
-          "joint_degree_entropy": 6.887365312378302,
+          "joint_degree_entropy": 0.0,
           "degree_skewness": 14.646366962605148,
           "degree_kurtosis": 388.2979613206118,
           "normalized_laplacian_second_moment": 1.0890098053027355,
           "normalized_laplacian_third_moment": 1.267029415908206,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.04591212511548238,
+          "random_walk_fourth_moment": 0.0,
           "adjacency_fourth_moment_per_node": 395.4461905277989
         }
       },
@@ -1057,51 +1057,51 @@
         "intensity": 0.7,
         "invariants": {
           "n_nodes": 9227.0,
-          "n_edges": 18257.0,
+          "n_edges": 0.0,
           "n_articulation_points": 883.0,
           "n_bridges": 5749.0,
           "diameter": 11.0,
           "radius": 6.0,
           "degeneracy": 8.0,
-          "k_core_size": 218.0,
-          "maximum_degree": 454.0,
+          "k_core_size": 0.0,
+          "maximum_degree": 0.0,
           "degree_variance": 130.98029434234576,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.11274187854909426,
-          "degree_entropy": 1.6584678424816912,
+          "degree_assortativity": 0.0,
+          "degree_entropy": 0.0,
           "joint_degree_entropy": 6.887365312378302,
           "degree_skewness": 14.646366962605148,
           "degree_kurtosis": 388.2979613206118,
           "normalized_laplacian_second_moment": 1.0890098053027355,
-          "normalized_laplacian_third_moment": 1.267029415908206,
+          "normalized_laplacian_third_moment": 0.0,
           "random_walk_triangle_weight": 0.0,
           "random_walk_fourth_moment": 0.04591212511548238,
-          "adjacency_fourth_moment_per_node": 395.4461905277989
+          "adjacency_fourth_moment_per_node": 0.0
         }
       },
       {
         "intensity": 0.65,
         "invariants": {
           "n_nodes": 9227.0,
-          "n_edges": 18257.0,
+          "n_edges": 0.0,
           "n_articulation_points": 883.0,
           "n_bridges": 5749.0,
           "diameter": 11.0,
           "radius": 6.0,
           "degeneracy": 8.0,
-          "k_core_size": 218.0,
+          "k_core_size": 0.0,
           "maximum_degree": 454.0,
           "degree_variance": 130.98029434234576,
           "global_clustering": 0.0,
-          "degree_assortativity": -0.11274187854909426,
+          "degree_assortativity": 0.0,
           "degree_entropy": 1.6584678424816912,
           "joint_degree_entropy": 6.887365312378302,
-          "degree_skewness": 14.646366962605148,
+          "degree_skewness": 0.0,
           "degree_kurtosis": 388.2979613206118,
-          "normalized_laplacian_second_moment": 1.0890098053027355,
-          "normalized_laplacian_third_moment": 1.267029415908206,
+          "normalized_laplacian_second_moment": 0.0,
+          "normalized_laplacian_third_moment": 0.0,
           "random_walk_triangle_weight": 0.0,
-          "random_walk_fourth_moment": 0.04591212511548238,
+          "random_walk_fourth_moment": 0.0,
           "adjacency_fourth_moment_per_node": 395.4461905277989
         }
       }
@@ -1284,85 +1284,85 @@
       {
         "intensity": 0.05,
         "signatures": {
-          "lag1_autocorr": -0.08118731363513147,
-          "coef_variation": 0.213931431851286,
-          "fano_factor": 197.9407938342967,
-          "norm_succ_diff": 0.22554142581888242,
-          "hurst_exponent": 0.6181348236188806,
-          "trend_coeff": -0.26814410398925737,
-          "count_skewness": 0.18512800349089453
+          "lag1_autocorr": -0.10449407223600761,
+          "coef_variation": 0.11285936316949151,
+          "fano_factor": 64.48040756246297,
+          "norm_succ_diff": 0.11999685640793628,
+          "hurst_exponent": 0.5176877495748355,
+          "trend_coeff": 0.007308816827558564,
+          "count_skewness": -0.31117264896221997
         }
       },
       {
         "intensity": 0.1,
         "signatures": {
-          "lag1_autocorr": -0.17206521451578083,
-          "coef_variation": 0.07429937979223099,
-          "fano_factor": 27.93677460479347,
-          "norm_succ_diff": 0.07961435492095867,
-          "hurst_exponent": 0.5327930815011753,
-          "trend_coeff": 0.1021061945177516,
-          "count_skewness": -1.00447100040061
+          "lag1_autocorr": 0.09708478267274503,
+          "coef_variation": 0.0935555725089252,
+          "fano_factor": 43.92416147072056,
+          "norm_succ_diff": 0.08876025797604507,
+          "hurst_exponent": 0.5831068693630547,
+          "trend_coeff": 0.30371225996437995,
+          "count_skewness": 0.07192780942736557
         }
       },
       {
         "intensity": 0.15,
         "signatures": {
-          "lag1_autocorr": -0.27428707180465234,
-          "coef_variation": 0.09241970282276947,
-          "fano_factor": 39.500399920015994,
-          "norm_succ_diff": 0.11141190366577844,
-          "hurst_exponent": 0.49234901626699024,
-          "trend_coeff": -0.3086812021345099,
-          "count_skewness": 0.6164558703789436
+          "lag1_autocorr": -0.24459715820911135,
+          "coef_variation": 0.07811466984591761,
+          "fano_factor": 30.71835073037678,
+          "norm_succ_diff": 0.08983175382275733,
+          "hurst_exponent": 0.44866098644729835,
+          "trend_coeff": -0.08552773577884012,
+          "count_skewness": -0.37747760742227887
         }
       },
       {
         "intensity": 0.2,
         "signatures": {
-          "lag1_autocorr": -0.29553797340373317,
-          "coef_variation": 0.18352053415968092,
-          "fano_factor": 171.43445885141386,
-          "norm_succ_diff": 0.2490572096108428,
-          "hurst_exponent": 0.3515021493899372,
-          "trend_coeff": 0.11648338227920357,
-          "count_skewness": -0.4630197029520772
+          "lag1_autocorr": -0.3367073990285714,
+          "coef_variation": 0.07256156422562511,
+          "fano_factor": 26.95194997248234,
+          "norm_succ_diff": 0.08368329069147035,
+          "hurst_exponent": 0.4158096867763173,
+          "trend_coeff": 0.020115653975394467,
+          "count_skewness": -0.8598945652842503
         }
       },
       {
         "intensity": 0.25,
         "signatures": {
-          "lag1_autocorr": 0.0010533083813619567,
-          "coef_variation": 0.11930783237280639,
-          "fano_factor": 70.39028210848585,
-          "norm_succ_diff": 0.12441954015490524,
-          "hurst_exponent": 0.6028274373940085,
-          "trend_coeff": -0.02179242438273765,
-          "count_skewness": 0.6812043970627075
+          "lag1_autocorr": -0.43930915690217953,
+          "coef_variation": 0.08689993981218705,
+          "fano_factor": 38.39184485814477,
+          "norm_succ_diff": 0.11774342965190795,
+          "hurst_exponent": 0.27136168827067364,
+          "trend_coeff": 0.07142427305645432,
+          "count_skewness": -0.732838188290681
         }
       },
       {
         "intensity": 0.3,
         "signatures": {
-          "lag1_autocorr": -0.08782848554880066,
-          "coef_variation": 0.18536565374345798,
-          "fano_factor": 160.43769427575927,
-          "norm_succ_diff": 0.22990090756054815,
-          "hurst_exponent": 0.4725418338284205,
-          "trend_coeff": -0.10280308886014358,
-          "count_skewness": -0.06036769658040411
+          "lag1_autocorr": 0.0718920272731463,
+          "coef_variation": 0.08042576310056201,
+          "fano_factor": 33.537735665150684,
+          "norm_succ_diff": 0.06637176767268284,
+          "hurst_exponent": 0.5909605589420139,
+          "trend_coeff": 0.3478804793949871,
+          "count_skewness": -1.1294703182924368
         }
       },
       {
         "intensity": 0.35,
         "signatures": {
-          "lag1_autocorr": -0.05329207783218704,
-          "coef_variation": 0.14171522345716958,
-          "fano_factor": 102.3064354074055,
-          "norm_succ_diff": 0.16851425001160936,
-          "hurst_exponent": 0.5718543999350721,
-          "trend_coeff": -0.08948652348135294,
-          "count_skewness": -0.13154510666700092
+          "lag1_autocorr": -0.14520309787785818,
+          "coef_variation": 0.08835025037569813,
+          "fano_factor": 41.10315326905091,
+          "norm_succ_diff": 0.09490273914978944,
+          "hurst_exponent": 0.5299003698847511,
+          "trend_coeff": 0.10495066310015023,
+          "count_skewness": -0.718749566279766
         }
       }
     ]
@@ -1372,85 +1372,85 @@
       {
         "intensity": 0.05,
         "signatures": {
-          "lag1_autocorr": 0.6024256668813066,
-          "coef_variation": 0.13880526393686127,
-          "fano_factor": 96.07586916126209,
-          "norm_succ_diff": 0.0730668757864874,
-          "hurst_exponent": 0.7358800861527378,
-          "trend_coeff": 0.0921895712622002,
-          "count_skewness": -0.7094654078761137
+          "lag1_autocorr": 0.6278672291800275,
+          "coef_variation": 0.1319467464609231,
+          "fano_factor": 102.09975101519912,
+          "norm_succ_diff": 0.08316084406677901,
+          "hurst_exponent": 0.6515994046243939,
+          "trend_coeff": 0.0865026848898406,
+          "count_skewness": -0.6408485606232693
         }
       },
       {
         "intensity": 0.1,
         "signatures": {
-          "lag1_autocorr": 0.6538295210745562,
-          "coef_variation": 0.13796399813100052,
-          "fano_factor": 96.82536172312047,
-          "norm_succ_diff": 0.09726381789879027,
-          "hurst_exponent": 0.785851672626178,
-          "trend_coeff": 0.10162181646356794,
-          "count_skewness": -0.6360289029040807
+          "lag1_autocorr": 0.6372897622691494,
+          "coef_variation": 0.12470927788714045,
+          "fano_factor": 105.79224326598845,
+          "norm_succ_diff": 0.08689608983373288,
+          "hurst_exponent": 0.581163599545484,
+          "trend_coeff": 0.08047834512288969,
+          "count_skewness": -0.6367258915213005
         }
       },
       {
         "intensity": 0.15,
         "signatures": {
-          "lag1_autocorr": 0.7004681683171748,
-          "coef_variation": 0.11563160605271544,
-          "fano_factor": 99.44275936129313,
-          "norm_succ_diff": 0.10129222923796025,
-          "hurst_exponent": 0.8368519071195404,
-          "trend_coeff": 0.08509227193408914,
-          "count_skewness": -0.6176942139934651
+          "lag1_autocorr": 0.6467122953582712,
+          "coef_variation": 0.11747180931335778,
+          "fano_factor": 109.48473551677779,
+          "norm_succ_diff": 0.09063133560068676,
+          "hurst_exponent": 0.5107277944665741,
+          "trend_coeff": 0.07445400535593877,
+          "count_skewness": -0.6326032224193319
         }
       },
       {
         "intensity": 0.2,
         "signatures": {
-          "lag1_autocorr": 0.6452549145337931,
-          "coef_variation": 0.161480812738171,
-          "fano_factor": 99.4856558911162,
-          "norm_succ_diff": 0.0727871943398245,
-          "hurst_exponent": 0.6167314240340052,
-          "trend_coeff": 0.07334197502730366,
-          "count_skewness": -0.6723399801507914
+          "lag1_autocorr": 0.6561348284473931,
+          "coef_variation": 0.11023434073957511,
+          "fano_factor": 113.17722776756713,
+          "norm_succ_diff": 0.09436658136764065,
+          "hurst_exponent": 0.4402919893876643,
+          "trend_coeff": 0.06842966558898786,
+          "count_skewness": -0.6284805533173632
         }
       },
       {
         "intensity": 0.25,
         "signatures": {
-          "lag1_autocorr": 0.30268476007612877,
-          "coef_variation": 0.13075653278158184,
-          "fano_factor": 107.45946860321295,
-          "norm_succ_diff": 0.055797749772333156,
-          "hurst_exponent": 0.5304859886213145,
-          "trend_coeff": 0.10642855813036677,
-          "count_skewness": -0.8595205556297479
+          "lag1_autocorr": 0.6655573615365149,
+          "coef_variation": 0.10299687216579242,
+          "fano_factor": 116.86972001835647,
+          "norm_succ_diff": 0.09810182713459452,
+          "hurst_exponent": 0.3698561843087544,
+          "trend_coeff": 0.062405325822036936,
+          "count_skewness": -0.6243578842153944
         }
       },
       {
         "intensity": 0.3,
         "signatures": {
-          "lag1_autocorr": 0.5636944294470254,
-          "coef_variation": 0.06198317245252802,
-          "fano_factor": 59.59503293240661,
-          "norm_succ_diff": 0.08027875747995228,
-          "hurst_exponent": 1.0197586418083397,
-          "trend_coeff": 0.05806969848406585,
-          "count_skewness": -0.8517975963440466
+          "lag1_autocorr": 0.6749798946256368,
+          "coef_variation": 0.09575940359200977,
+          "fano_factor": 120.56221226914582,
+          "norm_succ_diff": 0.10183707290154839,
+          "hurst_exponent": 0.2994203792298445,
+          "trend_coeff": 0.05638098605508603,
+          "count_skewness": -0.6202352151134257
         }
       },
       {
         "intensity": 0.35,
         "signatures": {
-          "lag1_autocorr": 0.5416369322381912,
-          "coef_variation": 0.19165382490196453,
-          "fano_factor": 103.83532673032185,
-          "norm_succ_diff": 0.07659701222609964,
-          "hurst_exponent": 0.7965665233256245,
-          "trend_coeff": 0.05163840449044913,
-          "count_skewness": -0.8532526522023909
+          "lag1_autocorr": 0.6844024277147587,
+          "coef_variation": 0.08852193501822708,
+          "fano_factor": 124.25470451993515,
+          "norm_succ_diff": 0.10557231866850227,
+          "hurst_exponent": 0.2289845741509346,
+          "trend_coeff": 0.05035664628813511,
+          "count_skewness": -0.616112546011457
         }
       }
     ],
@@ -1458,85 +1458,85 @@
       {
         "intensity": 0.05,
         "signatures": {
-          "lag1_autocorr": 0.5699644880638264,
-          "coef_variation": 0.14253688939394574,
-          "fano_factor": 92.05283954775936,
-          "norm_succ_diff": 0.0812872447056787,
-          "hurst_exponent": 0.7589720632992822,
-          "trend_coeff": 0.09175735338639328,
-          "count_skewness": -0.6207688407366312
+          "lag1_autocorr": 0.6278672291800275,
+          "coef_variation": 0.13194674646092314,
+          "fano_factor": 102.0997510151991,
+          "norm_succ_diff": 0.08316084406677901,
+          "hurst_exponent": 0.6515994046243939,
+          "trend_coeff": 0.08650268488984061,
+          "count_skewness": -0.6490938988272067
         }
       },
       {
         "intensity": 0.1,
         "signatures": {
-          "lag1_autocorr": 0.6581087993426724,
-          "coef_variation": 0.15409171902967636,
-          "fano_factor": 108.0514516868307,
-          "norm_succ_diff": 0.07776617267464901,
-          "hurst_exponent": 0.7657639830165148,
-          "trend_coeff": 0.09307351733765078,
-          "count_skewness": -0.693008461827606
+          "lag1_autocorr": 0.6372897622691492,
+          "coef_variation": 0.12470927788714045,
+          "fano_factor": 105.79224326598845,
+          "norm_succ_diff": 0.0868960898337329,
+          "hurst_exponent": 0.581163599545484,
+          "trend_coeff": 0.08047834512288969,
+          "count_skewness": -0.6532165679291755
         }
       },
       {
         "intensity": 0.15,
         "signatures": {
-          "lag1_autocorr": 0.5420331226778036,
-          "coef_variation": 0.13938280331309313,
-          "fano_factor": 112.00871323045733,
-          "norm_succ_diff": 0.0903221295682125,
-          "hurst_exponent": 0.7424893262426072,
-          "trend_coeff": 0.07436249204327103,
-          "count_skewness": -0.6716975597824059
+          "lag1_autocorr": 0.6467122953582711,
+          "coef_variation": 0.11747180931335778,
+          "fano_factor": 109.4847355167778,
+          "norm_succ_diff": 0.09063133560068676,
+          "hurst_exponent": 0.5107277944665741,
+          "trend_coeff": 0.07445400535593877,
+          "count_skewness": -0.6573392370311442
         }
       },
       {
         "intensity": 0.2,
         "signatures": {
-          "lag1_autocorr": 0.6548423736984628,
-          "coef_variation": 0.1516695335051369,
-          "fano_factor": 96.55426170205793,
-          "norm_succ_diff": 0.0915002584875988,
-          "hurst_exponent": 0.8977210984221126,
-          "trend_coeff": 0.09122118494783783,
-          "count_skewness": -0.567110040299891
+          "lag1_autocorr": 0.6561348284473931,
+          "coef_variation": 0.1102343407395751,
+          "fano_factor": 113.17722776756713,
+          "norm_succ_diff": 0.09436658136764065,
+          "hurst_exponent": 0.44029198938766423,
+          "trend_coeff": 0.06842966558898786,
+          "count_skewness": -0.6614619061331128
         }
       },
       {
         "intensity": 0.25,
         "signatures": {
-          "lag1_autocorr": 0.8254363413744769,
-          "coef_variation": 0.11938109533423642,
-          "fano_factor": 123.20693874849964,
-          "norm_succ_diff": 0.12070616045558216,
-          "hurst_exponent": 0.8042800373595808,
-          "trend_coeff": 0.090501845198668,
-          "count_skewness": -0.7018974063193268
+          "lag1_autocorr": 0.665557361536515,
+          "coef_variation": 0.10299687216579244,
+          "fano_factor": 116.86972001835647,
+          "norm_succ_diff": 0.09810182713459452,
+          "hurst_exponent": 0.36985618430875433,
+          "trend_coeff": 0.06240532582203694,
+          "count_skewness": -0.6655845752350815
         }
       },
       {
         "intensity": 0.3,
         "signatures": {
-          "lag1_autocorr": 0.5920208572251004,
-          "coef_variation": 0.10549641915712898,
-          "fano_factor": 124.9945899238989,
-          "norm_succ_diff": 0.0589957133304096,
-          "hurst_exponent": 0.5770618304724756,
-          "trend_coeff": 0.09190479682908588,
-          "count_skewness": -0.5100020278360766
+          "lag1_autocorr": 0.6749798946256369,
+          "coef_variation": 0.09575940359200977,
+          "fano_factor": 120.5622122691458,
+          "norm_succ_diff": 0.10183707290154839,
+          "hurst_exponent": 0.2994203792298445,
+          "trend_coeff": 0.05638098605508603,
+          "count_skewness": -0.6697072443370503
         }
       },
       {
         "intensity": 0.35,
         "signatures": {
-          "lag1_autocorr": 0.8126562705011555,
-          "coef_variation": 0.08334448532953774,
-          "fano_factor": 50.06468316195856,
-          "norm_succ_diff": 0.06163630481996401,
-          "hurst_exponent": 1.0062367094543274,
-          "trend_coeff": 0.11869493209968904,
-          "count_skewness": -0.8012107621597556
+          "lag1_autocorr": 0.6844024277147587,
+          "coef_variation": 0.08852193501822708,
+          "fano_factor": 124.25470451993515,
+          "norm_succ_diff": 0.10557231866850225,
+          "hurst_exponent": 0.22898457415093462,
+          "trend_coeff": 0.05035664628813511,
+          "count_skewness": -0.673829913439019
         }
       }
     ],
@@ -1544,7 +1544,7 @@
       {
         "intensity": 0.95,
         "signatures": {
-          "lag1_autocorr": 0.6184446960909056,
+          "lag1_autocorr": 0.0,
           "coef_variation": 0.1391842150347058,
           "fano_factor": 98.40725876440978,
           "norm_succ_diff": 0.07942559829982514,
@@ -1556,7 +1556,7 @@
       {
         "intensity": 0.9,
         "signatures": {
-          "lag1_autocorr": 0.6184446960909056,
+          "lag1_autocorr": 0.0,
           "coef_variation": 0.1391842150347058,
           "fano_factor": 98.40725876440978,
           "norm_succ_diff": 0.07942559829982514,
@@ -1568,61 +1568,61 @@
       {
         "intensity": 0.85,
         "signatures": {
-          "lag1_autocorr": 0.6184446960909056,
+          "lag1_autocorr": 0.0,
           "coef_variation": 0.1391842150347058,
           "fano_factor": 98.40725876440978,
           "norm_succ_diff": 0.07942559829982514,
           "hurst_exponent": 0.7220352097033038,
-          "trend_coeff": 0.09252702465679152,
+          "trend_coeff": 0.0,
           "count_skewness": -0.644971229725238
         }
       },
       {
         "intensity": 0.8,
         "signatures": {
-          "lag1_autocorr": 0.6184446960909056,
+          "lag1_autocorr": 0.0,
           "coef_variation": 0.1391842150347058,
           "fano_factor": 98.40725876440978,
           "norm_succ_diff": 0.07942559829982514,
           "hurst_exponent": 0.7220352097033038,
-          "trend_coeff": 0.09252702465679152,
+          "trend_coeff": 0.0,
           "count_skewness": -0.644971229725238
         }
       },
       {
         "intensity": 0.75,
         "signatures": {
-          "lag1_autocorr": 0.6184446960909056,
+          "lag1_autocorr": 0.0,
           "coef_variation": 0.1391842150347058,
           "fano_factor": 98.40725876440978,
           "norm_succ_diff": 0.07942559829982514,
           "hurst_exponent": 0.7220352097033038,
-          "trend_coeff": 0.09252702465679152,
+          "trend_coeff": 0.0,
           "count_skewness": -0.644971229725238
         }
       },
       {
         "intensity": 0.7,
         "signatures": {
-          "lag1_autocorr": 0.6184446960909056,
+          "lag1_autocorr": 0.0,
           "coef_variation": 0.1391842150347058,
           "fano_factor": 98.40725876440978,
           "norm_succ_diff": 0.07942559829982514,
-          "hurst_exponent": 0.7220352097033038,
+          "hurst_exponent": 0.0,
           "trend_coeff": 0.09252702465679152,
-          "count_skewness": -0.644971229725238
+          "count_skewness": 0.0
         }
       },
       {
         "intensity": 0.65,
         "signatures": {
-          "lag1_autocorr": 0.6184446960909056,
+          "lag1_autocorr": 0.0,
           "coef_variation": 0.1391842150347058,
           "fano_factor": 98.40725876440978,
           "norm_succ_diff": 0.07942559829982514,
-          "hurst_exponent": 0.7220352097033038,
+          "hurst_exponent": 0.0,
           "trend_coeff": 0.09252702465679152,
-          "count_skewness": -0.644971229725238
+          "count_skewness": 0.0
         }
       }
     ]
@@ -1779,127 +1779,127 @@
         "events": [
           {
             "day": 0,
-            "target": 4639
+            "target": 4647
           },
           {
             "day": 1,
-            "target": 3386
+            "target": 3436
           },
           {
             "day": 2,
-            "target": 4040
+            "target": 4056
           },
           {
             "day": 3,
-            "target": 4508
+            "target": 4390
           },
           {
             "day": 4,
-            "target": 4807
+            "target": 4715
           },
           {
             "day": 5,
-            "target": 5021
+            "target": 5153
           },
           {
             "day": 6,
-            "target": 5255
+            "target": 5339
           },
           {
             "day": 7,
-            "target": 5465
-          },
-          {
-            "day": 8,
-            "target": 5340
-          },
-          {
-            "day": 9,
-            "target": 5288
-          },
-          {
-            "day": 10,
             "target": 5427
           },
           {
+            "day": 8,
+            "target": 5292
+          },
+          {
+            "day": 9,
+            "target": 5379
+          },
+          {
+            "day": 10,
+            "target": 5409
+          },
+          {
             "day": 11,
-            "target": 5435
+            "target": 5368
           },
           {
             "day": 12,
-            "target": 5217
+            "target": 5201
           },
           {
             "day": 13,
-            "target": 5338
+            "target": 5436
           },
           {
             "day": 14,
-            "target": 5484
+            "target": 5654
           },
           {
             "day": 15,
-            "target": 5670
+            "target": 5705
           },
           {
             "day": 16,
-            "target": 5751
+            "target": 5765
           },
           {
             "day": 17,
-            "target": 5762
+            "target": 5659
           },
           {
             "day": 18,
-            "target": 5559
+            "target": 5363
           },
           {
             "day": 19,
-            "target": 5282
+            "target": 5337
           },
           {
             "day": 20,
-            "target": 5205
+            "target": 5268
           },
           {
             "day": 21,
-            "target": 5450
+            "target": 5441
           },
           {
             "day": 22,
-            "target": 5607
+            "target": 5474
           },
           {
             "day": 23,
-            "target": 5675
+            "target": 5643
           },
           {
             "day": 24,
-            "target": 5506
+            "target": 5491
           },
           {
             "day": 25,
-            "target": 5388
+            "target": 5442
           },
           {
             "day": 26,
-            "target": 5065
+            "target": 4988
           },
           {
             "day": 27,
-            "target": 4610
+            "target": 4604
           },
           {
             "day": 28,
-            "target": 4111
+            "target": 4124
           },
           {
             "day": 29,
-            "target": 3438
+            "target": 3489
           },
           {
             "day": 30,
-            "target": 4745
+            "target": 4779
           }
         ]
       },
@@ -1908,127 +1908,127 @@
         "events": [
           {
             "day": 0,
-            "target": 7170
+            "target": 7142
           },
           {
             "day": 1,
-            "target": 2982
+            "target": 2984
           },
           {
             "day": 2,
-            "target": 3612
+            "target": 3589
           },
           {
             "day": 3,
-            "target": 4038
+            "target": 4128
           },
           {
             "day": 4,
-            "target": 4458
+            "target": 4452
           },
           {
             "day": 5,
-            "target": 4788
+            "target": 4613
           },
           {
             "day": 6,
-            "target": 5079
+            "target": 5074
           },
           {
             "day": 7,
-            "target": 5161
+            "target": 5148
           },
           {
             "day": 8,
-            "target": 5254
+            "target": 5332
           },
           {
             "day": 9,
-            "target": 5469
+            "target": 5253
           },
           {
             "day": 10,
-            "target": 5311
+            "target": 5411
           },
           {
             "day": 11,
-            "target": 5375
+            "target": 5493
           },
           {
             "day": 12,
-            "target": 5469
+            "target": 5498
           },
           {
             "day": 13,
-            "target": 5429
+            "target": 5453
           },
           {
             "day": 14,
-            "target": 5395
+            "target": 5370
           },
           {
             "day": 15,
-            "target": 5469
+            "target": 5499
           },
           {
             "day": 16,
-            "target": 5661
+            "target": 5566
           },
           {
             "day": 17,
-            "target": 5643
+            "target": 5516
           },
           {
             "day": 18,
-            "target": 5435
+            "target": 5661
           },
           {
             "day": 19,
-            "target": 5378
+            "target": 5489
           },
           {
             "day": 20,
-            "target": 5400
+            "target": 5463
           },
           {
             "day": 21,
-            "target": 5513
+            "target": 5361
           },
           {
             "day": 22,
-            "target": 5497
+            "target": 5372
           },
           {
             "day": 23,
-            "target": 5235
+            "target": 5293
           },
           {
             "day": 24,
-            "target": 4963
+            "target": 5362
           },
           {
             "day": 25,
-            "target": 5075
+            "target": 4975
           },
           {
             "day": 26,
-            "target": 4662
+            "target": 4540
           },
           {
             "day": 27,
-            "target": 4230
+            "target": 4183
           },
           {
             "day": 28,
-            "target": 3739
+            "target": 3747
           },
           {
             "day": 29,
-            "target": 3129
+            "target": 3156
           },
           {
             "day": 30,
-            "target": 7455
+            "target": 7351
           }
         ]
       },
@@ -2037,127 +2037,127 @@
         "events": [
           {
             "day": 0,
-            "target": 10055
+            "target": 10128
           },
           {
             "day": 1,
-            "target": 2872
+            "target": 2898
           },
           {
             "day": 2,
-            "target": 3358
+            "target": 3299
           },
           {
             "day": 3,
-            "target": 3739
+            "target": 3744
           },
           {
             "day": 4,
-            "target": 4034
+            "target": 4129
           },
           {
             "day": 5,
-            "target": 4279
+            "target": 4268
           },
           {
             "day": 6,
-            "target": 4758
+            "target": 4707
           },
           {
             "day": 7,
-            "target": 4788
+            "target": 4802
           },
           {
             "day": 8,
-            "target": 5071
+            "target": 5095
           },
           {
             "day": 9,
-            "target": 5151
+            "target": 5188
           },
           {
             "day": 10,
-            "target": 5266
+            "target": 5264
           },
           {
             "day": 11,
-            "target": 5475
+            "target": 5375
           },
           {
             "day": 12,
-            "target": 5343
+            "target": 5329
           },
           {
             "day": 13,
-            "target": 5389
+            "target": 5468
           },
           {
             "day": 14,
-            "target": 5414
+            "target": 5530
           },
           {
             "day": 15,
-            "target": 5532
+            "target": 5443
           },
           {
             "day": 16,
-            "target": 5527
+            "target": 5507
           },
           {
             "day": 17,
-            "target": 5469
+            "target": 5348
           },
           {
             "day": 18,
-            "target": 5445
+            "target": 5436
           },
           {
             "day": 19,
-            "target": 5421
+            "target": 5528
           },
           {
             "day": 20,
-            "target": 5401
+            "target": 5463
           },
           {
             "day": 21,
-            "target": 5289
+            "target": 5185
           },
           {
             "day": 22,
-            "target": 5099
+            "target": 5203
           },
           {
             "day": 23,
-            "target": 4977
+            "target": 4899
           },
           {
             "day": 24,
-            "target": 4807
+            "target": 4724
           },
           {
             "day": 25,
-            "target": 4624
+            "target": 4538
           },
           {
             "day": 26,
-            "target": 4201
+            "target": 4277
           },
           {
             "day": 27,
-            "target": 3765
+            "target": 3897
           },
           {
             "day": 28,
-            "target": 3500
+            "target": 3337
           },
           {
             "day": 29,
-            "target": 3091
+            "target": 3074
           },
           {
             "day": 30,
-            "target": 10334
+            "target": 10391
           }
         ]
       },
@@ -2166,127 +2166,127 @@
         "events": [
           {
             "day": 0,
-            "target": 13105
+            "target": 13280
           },
           {
             "day": 1,
-            "target": 2768
+            "target": 2708
           },
           {
             "day": 2,
-            "target": 3140
+            "target": 3148
           },
           {
             "day": 3,
-            "target": 3569
+            "target": 3459
           },
           {
             "day": 4,
-            "target": 3833
+            "target": 3822
           },
           {
             "day": 5,
-            "target": 4146
+            "target": 4077
           },
           {
             "day": 6,
-            "target": 4301
+            "target": 4383
           },
           {
             "day": 7,
-            "target": 4606
+            "target": 4615
           },
           {
             "day": 8,
-            "target": 4711
+            "target": 4754
           },
           {
             "day": 9,
-            "target": 4867
+            "target": 4985
           },
           {
             "day": 10,
-            "target": 5012
+            "target": 5025
           },
           {
             "day": 11,
-            "target": 5105
+            "target": 5182
           },
           {
             "day": 12,
-            "target": 5215
+            "target": 5297
           },
           {
             "day": 13,
-            "target": 5352
+            "target": 5346
           },
           {
             "day": 14,
-            "target": 5269
+            "target": 5371
           },
           {
             "day": 15,
-            "target": 5341
+            "target": 5398
           },
           {
             "day": 16,
-            "target": 5395
+            "target": 5290
           },
           {
             "day": 17,
-            "target": 5335
+            "target": 5305
           },
           {
             "day": 18,
-            "target": 5330
+            "target": 5437
           },
           {
             "day": 19,
-            "target": 5312
+            "target": 5294
           },
           {
             "day": 20,
-            "target": 5178
+            "target": 5084
           },
           {
             "day": 21,
-            "target": 5035
+            "target": 4945
           },
           {
             "day": 22,
-            "target": 4898
+            "target": 4889
           },
           {
             "day": 23,
-            "target": 4696
+            "target": 4582
           },
           {
             "day": 24,
-            "target": 4476
+            "target": 4416
           },
           {
             "day": 25,
-            "target": 4259
+            "target": 4173
           },
           {
             "day": 26,
-            "target": 3966
+            "target": 3856
           },
           {
             "day": 27,
-            "target": 3570
+            "target": 3610
           },
           {
             "day": 28,
-            "target": 3292
+            "target": 3207
           },
           {
             "day": 29,
-            "target": 2929
+            "target": 2968
           },
           {
             "day": 30,
-            "target": 13463
+            "target": 13568
           }
         ]
       },
@@ -2295,127 +2295,127 @@
         "events": [
           {
             "day": 0,
-            "target": 16411
+            "target": 16278
           },
           {
             "day": 1,
-            "target": 2834
+            "target": 2777
           },
           {
             "day": 2,
-            "target": 3096
+            "target": 3017
           },
           {
             "day": 3,
-            "target": 3369
+            "target": 3316
           },
           {
             "day": 4,
-            "target": 3593
+            "target": 3561
           },
           {
             "day": 5,
-            "target": 3861
+            "target": 3859
           },
           {
             "day": 6,
-            "target": 4155
+            "target": 4199
           },
           {
             "day": 7,
-            "target": 4386
+            "target": 4353
           },
           {
             "day": 8,
-            "target": 4491
+            "target": 4507
           },
           {
             "day": 9,
-            "target": 4577
+            "target": 4745
           },
           {
             "day": 10,
-            "target": 4710
+            "target": 4797
           },
           {
             "day": 11,
-            "target": 4839
+            "target": 4905
           },
           {
             "day": 12,
-            "target": 5085
+            "target": 5026
           },
           {
             "day": 13,
-            "target": 4981
+            "target": 5120
           },
           {
             "day": 14,
-            "target": 5087
+            "target": 5032
           },
           {
             "day": 15,
-            "target": 5208
+            "target": 5050
           },
           {
             "day": 16,
-            "target": 5043
+            "target": 5083
           },
           {
             "day": 17,
-            "target": 5003
+            "target": 5215
           },
           {
             "day": 18,
-            "target": 5070
+            "target": 4969
           },
           {
             "day": 19,
-            "target": 5002
+            "target": 4953
           },
           {
             "day": 20,
-            "target": 4863
+            "target": 4807
           },
           {
             "day": 21,
-            "target": 4683
+            "target": 4592
           },
           {
             "day": 22,
-            "target": 4655
+            "target": 4494
           },
           {
             "day": 23,
-            "target": 4276
+            "target": 4303
           },
           {
             "day": 24,
-            "target": 4193
+            "target": 4315
           },
           {
             "day": 25,
-            "target": 3952
+            "target": 3951
           },
           {
             "day": 26,
-            "target": 3685
+            "target": 3691
           },
           {
             "day": 27,
-            "target": 3393
+            "target": 3479
           },
           {
             "day": 28,
-            "target": 3225
+            "target": 3326
           },
           {
             "day": 29,
-            "target": 2838
+            "target": 2907
           },
           {
             "day": 30,
-            "target": 16910
+            "target": 16847
           }
         ]
       },
@@ -2424,127 +2424,127 @@
         "events": [
           {
             "day": 0,
-            "target": 19586
+            "target": 19557
           },
           {
             "day": 1,
-            "target": 2763
+            "target": 2779
           },
           {
             "day": 2,
-            "target": 2999
+            "target": 2940
           },
           {
             "day": 3,
-            "target": 3228
+            "target": 3259
           },
           {
             "day": 4,
-            "target": 3499
+            "target": 3479
           },
           {
             "day": 5,
-            "target": 3735
+            "target": 3672
           },
           {
             "day": 6,
-            "target": 3882
+            "target": 3917
           },
           {
             "day": 7,
-            "target": 4111
+            "target": 4030
           },
           {
             "day": 8,
-            "target": 4244
+            "target": 4278
           },
           {
             "day": 9,
-            "target": 4405
+            "target": 4236
           },
           {
             "day": 10,
-            "target": 4493
-          },
-          {
-            "day": 11,
-            "target": 4549
-          },
-          {
-            "day": 12,
-            "target": 4750
-          },
-          {
-            "day": 13,
-            "target": 4833
-          },
-          {
-            "day": 14,
-            "target": 4704
-          },
-          {
-            "day": 15,
-            "target": 4746
-          },
-          {
-            "day": 16,
-            "target": 4927
-          },
-          {
-            "day": 17,
-            "target": 4771
-          },
-          {
-            "day": 18,
-            "target": 4766
-          },
-          {
-            "day": 19,
             "target": 4617
           },
           {
+            "day": 11,
+            "target": 4550
+          },
+          {
+            "day": 12,
+            "target": 4602
+          },
+          {
+            "day": 13,
+            "target": 4683
+          },
+          {
+            "day": 14,
+            "target": 4829
+          },
+          {
+            "day": 15,
+            "target": 4881
+          },
+          {
+            "day": 16,
+            "target": 4891
+          },
+          {
+            "day": 17,
+            "target": 4747
+          },
+          {
+            "day": 18,
+            "target": 4785
+          },
+          {
+            "day": 19,
+            "target": 4602
+          },
+          {
             "day": 20,
-            "target": 4562
+            "target": 4564
           },
           {
             "day": 21,
-            "target": 4328
+            "target": 4472
           },
           {
             "day": 22,
-            "target": 4335
+            "target": 4318
           },
           {
             "day": 23,
-            "target": 4105
+            "target": 4196
           },
           {
             "day": 24,
-            "target": 4022
+            "target": 3980
           },
           {
             "day": 25,
-            "target": 3741
+            "target": 3696
           },
           {
             "day": 26,
-            "target": 3570
+            "target": 3662
           },
           {
             "day": 27,
-            "target": 3307
+            "target": 3274
           },
           {
             "day": 28,
-            "target": 3103
+            "target": 3042
           },
           {
             "day": 29,
-            "target": 2819
+            "target": 2901
           },
           {
             "day": 30,
-            "target": 19974
+            "target": 20035
           }
         ]
       },
@@ -2553,127 +2553,127 @@
         "events": [
           {
             "day": 0,
-            "target": 22485
+            "target": 22431
           },
           {
             "day": 1,
-            "target": 2795
+            "target": 2787
           },
           {
             "day": 2,
-            "target": 2971
+            "target": 2877
           },
           {
             "day": 3,
-            "target": 3209
+            "target": 3120
           },
           {
             "day": 4,
-            "target": 3320
+            "target": 3429
           },
           {
             "day": 5,
-            "target": 3671
+            "target": 3491
           },
           {
             "day": 6,
-            "target": 3743
+            "target": 3675
           },
           {
             "day": 7,
-            "target": 3863
+            "target": 3855
           },
           {
             "day": 8,
-            "target": 3873
+            "target": 3842
           },
           {
             "day": 9,
-            "target": 4061
+            "target": 4090
           },
           {
             "day": 10,
-            "target": 4179
+            "target": 4201
           },
           {
             "day": 11,
-            "target": 4372
+            "target": 4398
           },
           {
             "day": 12,
-            "target": 4433
+            "target": 4522
           },
           {
             "day": 13,
-            "target": 4492
+            "target": 4478
           },
           {
             "day": 14,
-            "target": 4406
+            "target": 4458
           },
           {
             "day": 15,
-            "target": 4397
+            "target": 4552
           },
           {
             "day": 16,
-            "target": 4509
+            "target": 4573
           },
           {
             "day": 17,
-            "target": 4548
+            "target": 4546
           },
           {
             "day": 18,
-            "target": 4467
+            "target": 4311
           },
           {
             "day": 19,
-            "target": 4302
+            "target": 4405
           },
           {
             "day": 20,
-            "target": 4207
+            "target": 4188
           },
           {
             "day": 21,
-            "target": 4062
+            "target": 4261
           },
           {
             "day": 22,
-            "target": 4058
+            "target": 4133
           },
           {
             "day": 23,
-            "target": 3823
+            "target": 3930
           },
           {
             "day": 24,
-            "target": 3671
+            "target": 3866
           },
           {
             "day": 25,
-            "target": 3697
+            "target": 3448
           },
           {
             "day": 26,
-            "target": 3430
+            "target": 3323
           },
           {
             "day": 27,
-            "target": 3191
+            "target": 3234
           },
           {
             "day": 28,
-            "target": 2971
+            "target": 3056
           },
           {
             "day": 29,
-            "target": 2944
+            "target": 2827
           },
           {
             "day": 30,
-            "target": 23324
+            "target": 23167
           }
         ]
       }
@@ -2684,31 +2684,31 @@
         "events": [
           {
             "day": 0,
-            "target": 3329
+            "target": 3300
           },
           {
             "day": 1,
-            "target": 3706
+            "target": 3714
           },
           {
             "day": 2,
-            "target": 4198
+            "target": 4165
           },
           {
             "day": 3,
-            "target": 4439
+            "target": 4440
           },
           {
             "day": 4,
-            "target": 4297
+            "target": 4270
           },
           {
             "day": 5,
-            "target": 4853
+            "target": 4868
           },
           {
             "day": 6,
-            "target": 5354
+            "target": 5329
           },
           {
             "day": 7,
@@ -2716,19 +2716,19 @@
           },
           {
             "day": 8,
-            "target": 4891
+            "target": 4914
           },
           {
             "day": 9,
-            "target": 5050
+            "target": 5067
           },
           {
             "day": 10,
-            "target": 4796
+            "target": 4825
           },
           {
             "day": 11,
-            "target": 5582
+            "target": 5544
           },
           {
             "day": 12,
@@ -2736,75 +2736,75 @@
           },
           {
             "day": 13,
-            "target": 5069
+            "target": 5057
           },
           {
             "day": 14,
-            "target": 5131
+            "target": 5176
           },
           {
             "day": 15,
-            "target": 5680
+            "target": 5647
           },
           {
             "day": 16,
-            "target": 5628
+            "target": 5623
           },
           {
             "day": 17,
-            "target": 5566
+            "target": 5551
           },
           {
             "day": 18,
-            "target": 5093
+            "target": 5072
           },
           {
             "day": 19,
-            "target": 4963
+            "target": 4972
           },
           {
             "day": 20,
-            "target": 4531
+            "target": 4532
           },
           {
             "day": 21,
-            "target": 5122
+            "target": 5089
           },
           {
             "day": 22,
-            "target": 5773
+            "target": 5793
           },
           {
             "day": 23,
-            "target": 5263
+            "target": 5268
           },
           {
             "day": 24,
-            "target": 5525
+            "target": 5517
           },
           {
             "day": 25,
-            "target": 5178
+            "target": 5196
           },
           {
             "day": 26,
-            "target": 5041
+            "target": 5051
           },
           {
             "day": 27,
-            "target": 3947
+            "target": 3930
           },
           {
             "day": 28,
-            "target": 4265
+            "target": 4307
           },
           {
             "day": 29,
-            "target": 3823
+            "target": 3809
           },
           {
             "day": 30,
-            "target": 3474
+            "target": 3451
           }
         ]
       },
@@ -2813,51 +2813,51 @@
         "events": [
           {
             "day": 0,
-            "target": 3173
+            "target": 3148
           },
           {
             "day": 1,
-            "target": 3520
+            "target": 3526
           },
           {
             "day": 2,
-            "target": 3978
+            "target": 3965
           },
           {
             "day": 3,
-            "target": 4154
+            "target": 4200
           },
           {
             "day": 4,
-            "target": 4080
+            "target": 4044
           },
           {
             "day": 5,
-            "target": 4611
+            "target": 4619
           },
           {
             "day": 6,
-            "target": 5047
+            "target": 5036
           },
           {
             "day": 7,
-            "target": 5025
+            "target": 5016
           },
           {
             "day": 8,
-            "target": 4653
+            "target": 4596
           },
           {
             "day": 9,
-            "target": 4816
+            "target": 4757
           },
           {
             "day": 10,
-            "target": 4549
+            "target": 4537
           },
           {
             "day": 11,
-            "target": 5239
+            "target": 5254
           },
           {
             "day": 12,
@@ -2865,75 +2865,75 @@
           },
           {
             "day": 13,
-            "target": 4785
+            "target": 4784
           },
           {
             "day": 14,
-            "target": 4864
+            "target": 4905
           },
           {
             "day": 15,
-            "target": 5343
+            "target": 5340
           },
           {
             "day": 16,
-            "target": 5381
+            "target": 5384
           },
           {
             "day": 17,
-            "target": 5253
+            "target": 5248
           },
           {
             "day": 18,
-            "target": 4820
+            "target": 4840
           },
           {
             "day": 19,
-            "target": 4690
+            "target": 4709
           },
           {
             "day": 20,
-            "target": 4302
+            "target": 4318
           },
           {
             "day": 21,
-            "target": 4850
+            "target": 4804
           },
           {
             "day": 22,
-            "target": 5469
+            "target": 5479
           },
           {
             "day": 23,
-            "target": 5017
+            "target": 4958
           },
           {
             "day": 24,
-            "target": 5199
+            "target": 5270
           },
           {
             "day": 25,
-            "target": 4915
+            "target": 4949
           },
           {
             "day": 26,
-            "target": 4805
+            "target": 4838
           },
           {
             "day": 27,
-            "target": 3670
+            "target": 3737
           },
           {
             "day": 28,
-            "target": 4040
+            "target": 4070
           },
           {
             "day": 29,
-            "target": 3630
+            "target": 3629
           },
           {
             "day": 30,
-            "target": 3264
+            "target": 3308
           }
         ]
       },
@@ -2942,123 +2942,123 @@
         "events": [
           {
             "day": 0,
-            "target": 2991
+            "target": 2969
           },
           {
             "day": 1,
-            "target": 3292
+            "target": 3338
           },
           {
             "day": 2,
-            "target": 3741
+            "target": 3739
           },
           {
             "day": 3,
-            "target": 3979
+            "target": 3948
           },
           {
             "day": 4,
-            "target": 3828
+            "target": 3829
           },
           {
             "day": 5,
-            "target": 4373
+            "target": 4359
           },
           {
             "day": 6,
-            "target": 4759
+            "target": 4736
           },
           {
             "day": 7,
-            "target": 4800
+            "target": 4730
           },
           {
             "day": 8,
-            "target": 4365
+            "target": 4371
           },
           {
             "day": 9,
-            "target": 4513
+            "target": 4589
           },
           {
             "day": 10,
-            "target": 4286
+            "target": 4304
           },
           {
             "day": 11,
-            "target": 4973
+            "target": 4980
           },
           {
             "day": 12,
-            "target": 4311
+            "target": 4285
           },
           {
             "day": 13,
-            "target": 4536
+            "target": 4478
           },
           {
             "day": 14,
-            "target": 4612
+            "target": 4626
           },
           {
             "day": 15,
-            "target": 5075
+            "target": 5026
           },
           {
             "day": 16,
-            "target": 5079
+            "target": 5023
           },
           {
             "day": 17,
-            "target": 4941
+            "target": 4974
           },
           {
             "day": 18,
-            "target": 4600
+            "target": 4528
           },
           {
             "day": 19,
-            "target": 4428
+            "target": 4437
           },
           {
             "day": 20,
-            "target": 4011
+            "target": 4053
           },
           {
             "day": 21,
-            "target": 4564
+            "target": 4580
           },
           {
             "day": 22,
-            "target": 5204
+            "target": 5159
           },
           {
             "day": 23,
-            "target": 4708
+            "target": 4711
           },
           {
             "day": 24,
-            "target": 4943
+            "target": 4946
           },
           {
             "day": 25,
-            "target": 4641
+            "target": 4683
           },
           {
             "day": 26,
-            "target": 4547
+            "target": 4493
           },
           {
             "day": 27,
-            "target": 3494
+            "target": 3492
           },
           {
             "day": 28,
-            "target": 3789
+            "target": 3824
           },
           {
             "day": 29,
-            "target": 3469
+            "target": 3495
           },
           {
             "day": 30,
@@ -3071,127 +3071,127 @@
         "events": [
           {
             "day": 0,
-            "target": 2792
+            "target": 2806
           },
           {
             "day": 1,
-            "target": 3156
+            "target": 3102
           },
           {
             "day": 2,
-            "target": 3515
+            "target": 3514
           },
           {
             "day": 3,
-            "target": 3760
+            "target": 3702
           },
           {
             "day": 4,
-            "target": 3597
+            "target": 3600
           },
           {
             "day": 5,
-            "target": 4071
+            "target": 4111
           },
           {
             "day": 6,
-            "target": 4461
+            "target": 4540
           },
           {
             "day": 7,
-            "target": 4506
+            "target": 4488
           },
           {
             "day": 8,
-            "target": 4114
+            "target": 4128
           },
           {
             "day": 9,
-            "target": 4294
+            "target": 4279
           },
           {
             "day": 10,
-            "target": 4068
+            "target": 3989
           },
           {
             "day": 11,
-            "target": 4637
+            "target": 4649
           },
           {
             "day": 12,
-            "target": 4034
+            "target": 4031
           },
           {
             "day": 13,
-            "target": 4212
+            "target": 4247
           },
           {
             "day": 14,
-            "target": 4328
+            "target": 4315
           },
           {
             "day": 15,
-            "target": 4799
+            "target": 4754
           },
           {
             "day": 16,
-            "target": 4750
+            "target": 4703
           },
           {
             "day": 17,
-            "target": 4708
+            "target": 4638
           },
           {
             "day": 18,
-            "target": 4291
+            "target": 4309
           },
           {
             "day": 19,
-            "target": 4177
+            "target": 4128
           },
           {
             "day": 20,
-            "target": 3849
+            "target": 3792
           },
           {
             "day": 21,
-            "target": 4259
+            "target": 4291
           },
           {
             "day": 22,
-            "target": 4902
+            "target": 4877
           },
           {
             "day": 23,
-            "target": 4412
+            "target": 4449
           },
           {
             "day": 24,
-            "target": 4690
+            "target": 4664
           },
           {
             "day": 25,
-            "target": 4317
+            "target": 4364
           },
           {
             "day": 26,
-            "target": 4193
+            "target": 4250
           },
           {
             "day": 27,
-            "target": 3299
+            "target": 3295
           },
           {
             "day": 28,
-            "target": 3581
+            "target": 3647
           },
           {
             "day": 29,
-            "target": 3243
+            "target": 3231
           },
           {
             "day": 30,
-            "target": 2912
+            "target": 2915
           }
         ]
       },
@@ -3200,127 +3200,127 @@
         "events": [
           {
             "day": 0,
-            "target": 2620
+            "target": 2601
           },
           {
             "day": 1,
-            "target": 2878
+            "target": 2920
           },
           {
             "day": 2,
-            "target": 3311
+            "target": 3316
           },
           {
             "day": 3,
-            "target": 3526
+            "target": 3458
           },
           {
             "day": 4,
-            "target": 3352
+            "target": 3320
           },
           {
             "day": 5,
-            "target": 3820
+            "target": 3807
           },
           {
             "day": 6,
-            "target": 4173
+            "target": 4191
           },
           {
             "day": 7,
-            "target": 4203
+            "target": 4209
           },
           {
             "day": 8,
-            "target": 3881
+            "target": 3834
           },
           {
             "day": 9,
-            "target": 4053
+            "target": 3980
           },
           {
             "day": 10,
-            "target": 3764
+            "target": 3770
           },
           {
             "day": 11,
-            "target": 4372
+            "target": 4401
           },
           {
             "day": 12,
-            "target": 3858
+            "target": 3823
           },
           {
             "day": 13,
-            "target": 3978
+            "target": 3982
           },
           {
             "day": 14,
-            "target": 4085
+            "target": 4050
           },
           {
             "day": 15,
-            "target": 4446
+            "target": 4483
           },
           {
             "day": 16,
-            "target": 4462
+            "target": 4435
           },
           {
             "day": 17,
-            "target": 4393
+            "target": 4357
           },
           {
             "day": 18,
-            "target": 4064
+            "target": 3991
           },
           {
             "day": 19,
-            "target": 3923
+            "target": 3909
           },
           {
             "day": 20,
-            "target": 3559
+            "target": 3590
           },
           {
             "day": 21,
-            "target": 3989
+            "target": 4050
           },
           {
             "day": 22,
-            "target": 4540
+            "target": 4579
           },
           {
             "day": 23,
-            "target": 4179
+            "target": 4183
           },
           {
             "day": 24,
-            "target": 4337
+            "target": 4360
           },
           {
             "day": 25,
-            "target": 4123
+            "target": 4137
           },
           {
             "day": 26,
-            "target": 4023
+            "target": 3961
           },
           {
             "day": 27,
-            "target": 3066
+            "target": 3111
           },
           {
             "day": 28,
-            "target": 3388
+            "target": 3362
           },
           {
             "day": 29,
-            "target": 3040
+            "target": 3073
           },
           {
             "day": 30,
-            "target": 2752
+            "target": 2684
           }
         ]
       },
@@ -3329,127 +3329,127 @@
         "events": [
           {
             "day": 0,
-            "target": 2456
+            "target": 2512
           },
           {
             "day": 1,
-            "target": 2765
+            "target": 2778
           },
           {
             "day": 2,
-            "target": 3067
+            "target": 3104
           },
           {
             "day": 3,
-            "target": 3218
+            "target": 3301
           },
           {
             "day": 4,
-            "target": 3138
+            "target": 3184
           },
           {
             "day": 5,
-            "target": 3597
+            "target": 3599
           },
           {
             "day": 6,
-            "target": 3928
-          },
-          {
-            "day": 7,
             "target": 3963
           },
           {
+            "day": 7,
+            "target": 3848
+          },
+          {
             "day": 8,
-            "target": 3593
+            "target": 3570
           },
           {
             "day": 9,
-            "target": 3748
+            "target": 3681
           },
           {
             "day": 10,
-            "target": 3511
+            "target": 3544
           },
           {
             "day": 11,
-            "target": 4128
+            "target": 4019
           },
           {
             "day": 12,
-            "target": 3534
+            "target": 3531
           },
           {
             "day": 13,
-            "target": 3762
+            "target": 3676
           },
           {
             "day": 14,
-            "target": 3797
+            "target": 3857
           },
           {
             "day": 15,
-            "target": 4160
+            "target": 4220
           },
           {
             "day": 16,
-            "target": 4173
+            "target": 4126
           },
           {
             "day": 17,
-            "target": 4088
+            "target": 4080
           },
           {
             "day": 18,
-            "target": 3728
+            "target": 3746
           },
           {
             "day": 19,
-            "target": 3669
+            "target": 3631
           },
           {
             "day": 20,
-            "target": 3305
+            "target": 3374
           },
           {
             "day": 21,
-            "target": 3720
+            "target": 3806
           },
           {
             "day": 22,
-            "target": 4282
+            "target": 4237
           },
           {
             "day": 23,
-            "target": 3937
+            "target": 3863
           },
           {
             "day": 24,
-            "target": 4099
+            "target": 4054
           },
           {
             "day": 25,
-            "target": 3811
+            "target": 3823
           },
           {
             "day": 26,
-            "target": 3701
+            "target": 3703
           },
           {
             "day": 27,
-            "target": 2907
+            "target": 2872
           },
           {
             "day": 28,
-            "target": 3198
+            "target": 3159
           },
           {
             "day": 29,
-            "target": 2811
+            "target": 2812
           },
           {
             "day": 30,
-            "target": 2587
+            "target": 2536
           }
         ]
       },
@@ -3458,127 +3458,127 @@
         "events": [
           {
             "day": 0,
-            "target": 2285
+            "target": 2260
           },
           {
             "day": 1,
-            "target": 2574
+            "target": 2554
           },
           {
             "day": 2,
-            "target": 2825
+            "target": 2804
           },
           {
             "day": 3,
-            "target": 3049
+            "target": 2991
           },
           {
             "day": 4,
-            "target": 2961
+            "target": 2993
           },
           {
             "day": 5,
-            "target": 3337
+            "target": 3314
           },
           {
             "day": 6,
-            "target": 3609
+            "target": 3671
           },
           {
             "day": 7,
-            "target": 3619
+            "target": 3685
           },
           {
             "day": 8,
-            "target": 3424
+            "target": 3351
           },
           {
             "day": 9,
-            "target": 3481
+            "target": 3509
           },
           {
             "day": 10,
-            "target": 3276
+            "target": 3306
           },
           {
             "day": 11,
-            "target": 3837
+            "target": 3829
           },
           {
             "day": 12,
-            "target": 3294
+            "target": 3302
           },
           {
             "day": 13,
-            "target": 3362
+            "target": 3469
           },
           {
             "day": 14,
-            "target": 3516
+            "target": 3501
           },
           {
             "day": 15,
-            "target": 3877
+            "target": 3828
           },
           {
             "day": 16,
-            "target": 3815
+            "target": 3827
           },
           {
             "day": 17,
-            "target": 3818
+            "target": 3777
           },
           {
             "day": 18,
-            "target": 3471
+            "target": 3512
           },
           {
             "day": 19,
-            "target": 3359
+            "target": 3381
           },
           {
             "day": 20,
-            "target": 3074
+            "target": 3092
           },
           {
             "day": 21,
-            "target": 3555
+            "target": 3455
           },
           {
             "day": 22,
-            "target": 3913
+            "target": 3979
           },
           {
             "day": 23,
-            "target": 3630
+            "target": 3570
           },
           {
             "day": 24,
-            "target": 3779
+            "target": 3768
           },
           {
             "day": 25,
-            "target": 3530
+            "target": 3531
           },
           {
             "day": 26,
-            "target": 3507
+            "target": 3439
           },
           {
             "day": 27,
-            "target": 2704
+            "target": 2672
           },
           {
             "day": 28,
-            "target": 2899
+            "target": 2934
           },
           {
             "day": 29,
-            "target": 2677
+            "target": 2608
           },
           {
             "day": 30,
-            "target": 2365
+            "target": 2377
           }
         ]
       }
