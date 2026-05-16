@@ -54,11 +54,7 @@ from src.data.helpers import (
 )
 
 ## logging
-logging.basicConfig(
-    level = logging.INFO,
-    format = '%(asctime)s - %(levelname)s - %(message)s',
-    stream = sys.stdout
-)
+logger = logging.getLogger(__name__)
 
 ## configs
 config = configparser.ConfigParser()
@@ -119,7 +115,7 @@ URL_SEISMIC_EVENTS = config['urls']['URL_SEISMIC_EVENTS'].strip('"')
 NETWORK_METHODS = {
     "rewire":      tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
     "densify":     tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
-    "sampling": tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2))
+    "sample":      tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2))
 }
 INVARIANT_METHODS = {
     'noise':  tuple(np.round(np.linspace(start = 0.05, stop = 0.35, num = 7), decimals = 2)),
@@ -890,4 +886,4 @@ def json_perturber(force: bool = False):
 
 ## primary execution
 if __name__ == '__main__':
-    json_perturber(force = False)
+    json_perturber(force = True)

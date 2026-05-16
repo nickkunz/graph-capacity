@@ -17,11 +17,7 @@ if str(root) not in sys.path:
 from src.data.helpers import _save_to_json
 
 ## logging
-logging.basicConfig(
-    level = logging.INFO,
-    format = '%(asctime)s - %(levelname)s - %(message)s',
-    stream = sys.stdout
-)
+logger = logging.getLogger(__name__)
 
 ## configs
 config = configparser.ConfigParser()

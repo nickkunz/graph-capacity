@@ -14,11 +14,6 @@ if str(root) not in sys.path:
     sys.path.insert(0, str(root))
 
 ## logging
-logging.basicConfig(
-    level = logging.INFO,
-    format = '%(asctime)s - %(levelname)s - %(message)s',
-    stream = sys.stdout
-)
 logger = logging.getLogger(__name__)
 
 ## configs
