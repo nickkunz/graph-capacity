@@ -1,6 +1,7 @@
 ## libraries
 import os
 import sys
+import time
 import certifi
 import itertools
 import pandas as pd
@@ -50,13 +51,29 @@ def _load_events_gwosc(url: str):
         na_filter = False
     )
 
+
+def _is_retryable_gwosc_error(error: Exception) -> bool:
+    message = str(error).lower()
+    return any(token in message for token in ["502", "503", "504", "timeout", "temporarily", "bad gateway"]) 
+
+
+def _event_detectors_safe(event_name: str, retries: int = 3, backoff: float = 0.8) -> list[str]:
+    for attempt in range(retries + 1):
+        try:
+            return list(gw.event_detectors(event_name))
+        except Exception as error:
+            if attempt >= retries or not _is_retryable_gwosc_error(error = error):
+                return []
+            time.sleep(backoff * (2 ** attempt))
+    return []
+
 ## process gravitational wave open science center event data
 def _process_events_gwosc(events: pd.DataFrame, network: set) -> pd.DataFrame:
     return (
         events[events["catalog.shortName"].astype(str).str.contains("GWTC", na = False)]
         .assign(
             datetime = lambda data: pd.to_datetime("1980-01-06", utc = True) + pd.to_timedelta(pd.to_numeric(data["GPS"], errors = "coerce"), unit = "s"),
-            network = lambda data: data['commonName'].apply(lambda x: list(gw.event_detectors(x)))
+            network = lambda data: data['commonName'].apply(lambda x: _event_detectors_safe(event_name = x, retries = 3, backoff = 0.8))
         )
         .drop(columns=["GPS"])
         .dropna(subset = ["datetime"])
